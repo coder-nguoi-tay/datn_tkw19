@@ -57,6 +57,7 @@ class LoginController extends BaseController
         if (Auth::guard('admin')->attempt($credentials, $request->remember_me ?? false)) {
             if (! $this->user->updateLastLogin(Auth::guard('admin')->user()->id)) {
                 Auth::guard('admin')->logout();
+
                 return redirect('/');
             }
 
@@ -69,6 +70,7 @@ class LoginController extends BaseController
     public function logout()
     {
         Auth::guard('admin')->logout();
+
         return redirect(route('login.index'));
     }
 }

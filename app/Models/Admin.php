@@ -10,7 +10,7 @@ use Kyslik\ColumnSortable\Sortable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
- * @property integer $id
+ * @property int $id
  * @property string $name
  * @property string $email
  * @property string $email_verified_at
@@ -26,6 +26,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class Admin extends Authenticatable implements JWTSubject
 {
     use HasFactory, SoftDeletes, Sortable;
+
     /**
      * The "type" of the auto-incrementing ID.
      *
@@ -37,6 +38,7 @@ class Admin extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = ['name', 'email', 'email_verified_at', 'password', 'reset_password_token', 'reset_password_token_expire', 'last_login_at', 'remember_token', 'created_at', 'updated_at', 'deleted_at'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
