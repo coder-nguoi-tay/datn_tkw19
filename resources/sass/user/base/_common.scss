@@ -19,3 +19,11 @@ h6 {
 .fw-600 {
     font-weight: 600 !important;
 }
+a {
+    text-decoration: none;
+    color: #ccc;
+}
+.main-content {
+    background-color: #F7F7F7;
+    min-height: calc(100vh - 100px);
+}
