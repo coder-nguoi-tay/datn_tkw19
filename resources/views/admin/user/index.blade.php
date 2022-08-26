@@ -25,7 +25,8 @@ use Carbon\Carbon;
                                                 <button type="submit" class="btn btn-primary w-100"><i
                                                         class="fa fa-search"></i> &nbsp; 検索</button>
                                             </div>
-                                            <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-action-create">
+                                            <a href="{{ route('admin.user.create') }}"
+                                                class="btn btn-primary btn-action-create">
                                                 <i class="fa fa-plus"></i>新規登録
                                             </a>
                                         </form>
@@ -74,10 +75,13 @@ use Carbon\Carbon;
                                                 </td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <button class="btn btn-primary dropdown-toggle" id="action" type="button" data-coreui-toggle="dropdown" aria-expanded="false">操作選択</button>
+                                                        <button class="btn btn-primary dropdown-toggle" id="action"
+                                                            type="button" data-coreui-toggle="dropdown"
+                                                            aria-expanded="false">操作選択</button>
                                                         <ul class="dropdown-menu" aria-labelledby="action">
                                                             <li>
-                                                                <a class="dropdown-item" href="{{ route('admin.user.edit', $user->id) }}"
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('admin.user.edit', $user->id) }}"
                                                                     class="dropdown-item">
                                                                     <i class="fa fa-eye"></i>確認・編集
                                                                 </a>
