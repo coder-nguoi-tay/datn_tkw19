@@ -27,7 +27,6 @@
         @include('include.user.header')
         <div class="main-content">
             @yield('content')
-            @include("include.user.contact")
         </div>
         @include('include.user.footer')
     </div>
@@ -41,8 +40,6 @@
 <div class="loading-div hidden">
     <div class="loader-img"></div>
 </div>
-
-@include('include.user.footerBtn')
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
