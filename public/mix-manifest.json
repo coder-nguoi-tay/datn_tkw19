@@ -2,6 +2,8 @@
     "/js/app.js": "/js/app.js",
     "/js/guestApp.js": "/js/guestApp.js",
     "/js/adminApp.js": "/js/adminApp.js",
+    "/js/userApp.js": "/js/userApp.js",
     "/css/app.css": "/css/app.css",
+    "/css/userApp.css": "/css/userApp.css",
     "/js/coreui.bundle.min.js": "/js/coreui.bundle.min.js"
 }

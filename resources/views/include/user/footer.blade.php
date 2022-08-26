@@ -1,7 +1,7 @@
 <footer class="footer">
     <div class="container footer__container">
         <div class="footer__nav">
-            <div class="nav__item active">
+            <div class="nav__item">
                 <a href="" class="nav__link">
                     <p class="nav-ic">
                         <img class="ic-brown" src="{{ asset('assets/img/user/common/ic_search.svg') }}" alt="">
@@ -19,7 +19,7 @@
                     <p class="nav-txt">マイイベント</p>
                 </a>
             </div>
-            <div class="nav__item">
+            <div class="nav__item active">
                 <a href="" class="nav__link">
                     <p class="nav-ic">
                         <img class="ic-brown" src="{{ asset('assets/img/user/common/ic_plan.svg') }}" alt="">
