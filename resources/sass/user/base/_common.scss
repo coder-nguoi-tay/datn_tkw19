@@ -1,11 +1,13 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 body {
-    font-family: "Yu Gothic";
+  font-family: "Yu Gothic";
 }
+
 p,
 h1,
 h2,
@@ -13,17 +15,20 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
+
 .fw-600 {
-    font-weight: 600 !important;
+  font-weight: 600 !important;
 }
+
 a {
-    text-decoration: none;
-    color: #ccc;
+  text-decoration: none;
+  color: #ccc;
 }
+
 .main-content {
-    background-color: #F7F7F7;
-    min-height: calc(100vh - 100px);
+  background-color: #F7F7F7;
+  min-height: calc(100vh - 100px);
 }
