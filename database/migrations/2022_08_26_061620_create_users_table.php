@@ -25,13 +25,13 @@ class CreateUsersTable extends Migration
             $table->string('representative_name', 255);
             $table->date('birth_date');
             $table->tinyInteger('gender')->comment('"1: 男性 2: 女性, 3:その他"');
-            $table->string('address_prefecture',255);
-            $table->string('address_city',255)->comment('"1: 即日 2: 一ヶ月以内 3: 2ヶ月以内  4: 3ヶ月以上 5: 検討中のため未確定"');
-            $table->string('address_street',255);
-            $table->string('address_building',255);
+            $table->string('address_prefecture', 255);
+            $table->string('address_city', 255)->comment('"1: 即日 2: 一ヶ月以内 3: 2ヶ月以内  4: 3ヶ月以上 5: 検討中のため未確定"');
+            $table->string('address_street', 255);
+            $table->string('address_building', 255);
             $table->integer('job_type');
             $table->text('job_descriptions');
-            $table->string('reset_password_token',255);
+            $table->string('reset_password_token', 255);
             $table->dateTime('reset_password_token_expire');
             $table->dateTime('registed_datetime');
             $table->timestamps();

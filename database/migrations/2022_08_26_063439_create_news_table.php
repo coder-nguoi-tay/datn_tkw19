@@ -17,9 +17,9 @@ class CreateNewsTable extends Migration
             $table->id();
             $table->string('title', 255);
             $table->text('content');
-            $table->string('url',255)->nullable();
-            $table->string('file_url',255)->nullable();
-            $table->string('file_name',255)->nullable();
+            $table->string('url', 255)->nullable();
+            $table->string('file_url', 255)->nullable();
+            $table->string('file_name', 255)->nullable();
             $table->dateTime('publish_start_datetime');
             $table->dateTime('publish_end_datetime');
             $table->tinyInteger('publish_status')->nullable()->comment('"0: 非公開 1: 公開"');
