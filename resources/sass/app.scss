@@ -1,0 +1,19 @@
+// If you want to override variables do it here
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+$enable-ltr: true;
+$enable-rtl: true;
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+@import "base/layout";
+@import "base/loader";
+@import "base/base";
+@import "custom";
+
+
+

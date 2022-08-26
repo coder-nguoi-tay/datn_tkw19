@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Repositories\{Name};
+
+use App\Models\{Name};
+use App\Http\Controllers\BaseController;
+use App\Repositories\{Name}\{Name}Interface;
+use Illuminate\Support\Facades\Auth;
+
+class {Name}Repository extends BaseController implements {Name}Interface
+{
+    private {Name} ${name};
+    public function __construct({Name} ${name})
+    {
+        $this->{name} = ${name};
+    }
+
+    public function get($request)
+    {
+        // TODO: Implement get() method.
+    }
+
+    public function getById($id)
+    {
+        // TODO: Implement getById() method.
+    }
+
+    public function store($request)
+    {
+        // TODO: Implement store() method.
+    }
+
+    public function update($request, $id)
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function destroy($id)
+    {
+        // TODO: Implement destroy() method.
+    }
+}

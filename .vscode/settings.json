@@ -1,0 +1,7 @@
+{
+  "eslint.format.enable": true,
+  "vetur.format.defaultFormatter.html": "prettier",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true
+}

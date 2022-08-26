@@ -1,0 +1,187 @@
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+h5 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+h6 {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.v-application a {
+  color: $color-black;
+  text-decoration: none;
+}
+
+.container-main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @include mq-down(lg) {
+    padding: 0 30px;
+  }
+
+  @include mq-down(sm) {
+    padding: 0 16px;
+  }
+}
+
+.img-wrap {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.flex-cm {
+  display: flex;
+}
+
+.center-justify {
+  justify-content: center;
+}
+
+.between-justify {
+  justify-content: space-between;
+}
+
+.center-align {
+  align-items: center;
+}
+
+.col-sp {
+  @include mq-down(sm) {
+    flex-direction: column;
+  }
+}
+
+.layout-8 {
+  padding: 40px 48px 48px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px $color-black-029;
+
+  @include mq-down(sm) {
+    padding: 23px 16px 0;
+    border-radius: 16px;
+    box-shadow: unset;
+  }
+}
+
+.box-default {
+  box-shadow: 0 1px 8px $color-black-026;
+}
+
+.mr-24 {
+  margin-right: 24px;
+}
+
+.mt-32 {
+  margin-top: 32px;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+.pt-40 {
+  padding-top: 40px;
+}
+
+.user__wrap-content {
+  display: flex;
+
+  @include mq-down {
+    flex-direction: column;
+  }
+
+  .main-container {
+    flex-grow: 2;
+    max-width: 880px;
+    margin-left: 40px;
+
+    @include mq-down {
+      margin-left: 0;
+    }
+  }
+
+  .page__title {
+    padding-bottom: 26px;
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 48px;
+    color: $text-color;
+    border-bottom: 1px solid $color-gray-ddd;
+  }
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-weight: 400;
+  src: url('/fonts/NotoSansJP-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-weight: 500;
+  src: url('/fonts/NotoSansJP-Medium.otf');
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-weight: 700;
+  src: url('/fonts/NotoSansJP-Bold.otf');
+}
+
+@font-face {
+  font-family: Jost;
+  font-weight: 400;
+  src: url('/fonts/Jost-Regular.ttf');
+}
+
+@font-face {
+  font-family: Jost;
+  font-weight: 500;
+  src: url('/fonts/Jost-Medium.ttf');
+}
+
+.error-message {
+  font-size: 12px;
+  color: #fd5e1c;
+}
+
+.nl2br {
+  white-space: pre-line;
+}

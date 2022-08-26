@@ -1,0 +1,43 @@
+// The variables you want to modify
+// $font-size-root: 20px;
+$text-color: #222;
+$main-color: #ff5e00;
+$color-black: #000;
+$color-black-029: #00000029;
+$color-black-026: #00000026;
+$color-black-01a: #0000001a;
+$color-black-f2f: #2f2f2f;
+$color-gray-999: #999;
+$color-gray-ddd: #ddd;
+$color-gray-eee: #eee;
+$color-gray-070: #707070;
+$color-gray-fef: #efefef;
+$color-gray-afa: #fafafa;
+$color-white: #fff;
+$color-orange-e1c: #fd5e1c;
+$color-orange-722: #f18722;
+$color-orange-e16: #ff5e16;
+$color-orange-b06: #EB5B06;
+$color-yellow-b2b: #e8bb2b;
+$color-teal-6b4: #3b96b4;
+$color-pink-9f5: #fff9f5;
+$color-blue-cd6: #378cd6;
+$color-blue-6b4: #3b96b4;
+$color-pea-402: #8cb402;
+$color-olive-40a: #95640a;
+$color-khaki-95d: #d6b95d;
+$color-brown-f05: #4b1f05;
+$color-yellow-00c: #5C400C;
+$color-green-773: #3C9773;
+$breakpoint-up: ('xs': 'screen and (min-width: 330px)',
+'sm': 'screen and (min-width: 480px)',
+'md': 'screen and (min-width: 768px)',
+'lg': 'screen and (min-width: 1200px)',
+) !default;
+
+// max-width
+$breakpoint-down: ('xs': 'screen and (max-width: 329px)',
+'sm': 'screen and (max-width: 479px)',
+'md': 'screen and (max-width: 767px)',
+'lg': 'screen and (max-width: 1200px)',
+) !default;
