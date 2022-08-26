@@ -6,9 +6,8 @@ $ composer install
 
 # install app's dependencies
 
-$ install php >8.0
-$ install node v14x
-$ install npm v6x
+$ install php >=7.3
+$ install node v14.17.0
 
 $ cp env.example .env
 
