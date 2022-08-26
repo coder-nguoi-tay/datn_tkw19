@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ForgotPassword as ForgotPasswordRequest;
-use App\Repositories\User\UserInterface;
+use App\Repositories\Admin\AdminInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -11,7 +11,7 @@ class ForgotPasswordController extends BaseController
 {
     private $user;
 
-    public function __construct(UserInterface $user)
+    public function __construct(AdminInterface $user)
     {
         $this->user = $user;
     }

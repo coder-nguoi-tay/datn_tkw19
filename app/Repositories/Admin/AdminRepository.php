@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Repositories\User;
+namespace App\Repositories\Admin;
 
 use App\Http\Controllers\BaseController;
 use App\Mail\ForgotPassComplete;
 use App\Mail\ForgotPassword;
-use App\Models\User;
+use App\Models\Admin;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
-class UserRepository extends BaseController implements UserInterface
+class AdminRepository extends BaseController implements AdminInterface
 {
     private $user;
 
-    public function __construct(User $user)
+    public function __construct(Admin $user)
     {
         $this->user = $user;
     }

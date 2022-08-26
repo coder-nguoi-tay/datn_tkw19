@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\User;
+namespace App\Repositories\Admin;
 
-interface UserInterface
+interface AdminInterface
 {
     public function getUsers($request);
 
