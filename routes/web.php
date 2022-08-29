@@ -7,6 +7,7 @@ use App\Http\Controllers\ForgotPasswordSuccessController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\PasswordResetExpiredController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,7 @@ Route::get('/', function () {
     return redirect(route('login.index'));
 });
 Route::resource('login', LoginController::class);
+Route::resource('register', RegisterController::class);
 Route::resource('forgot_password', ForgotPasswordController::class);
 Route::resource('forgot_password_complete', ForgotPasswordSuccessController::class);
 Route::resource('password_reset', PasswordResetController::class);
