@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Repositories\New;
+namespace App\Repositories\News;
 
-use App\Models\New;
+use App\Models\News;
 use App\Http\Controllers\BaseController;
-use App\Repositories\New\NewInterface;
+use App\Repositories\News\NewsInterface;
 use Illuminate\Support\Facades\Auth;
 
-class NewRepository extends BaseController implements NewInterface
+class NewsRepository extends BaseController implements NewsInterface
 {
-    private New $new;
-    public function __construct(New $new)
+    private News $news;
+    public function __construct(News $news)
     {
-        $this->new = $new;
+        $this->news = $news;
     }
 
     public function get($request)

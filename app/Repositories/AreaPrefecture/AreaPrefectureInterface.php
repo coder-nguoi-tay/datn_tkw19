@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\New;
+namespace App\Repositories\AreaPrefecture;
 
-interface NewInterface
+interface AreaPrefectureInterface
 {
     public function get($request);
     public function getById($id);
