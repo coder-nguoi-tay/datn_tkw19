@@ -2,14 +2,15 @@
 
 namespace App\Repositories\Event;
 
-use App\Models\Event;
 use App\Http\Controllers\BaseController;
+use App\Models\Event;
 use App\Repositories\Event\EventInterface;
 use Illuminate\Support\Facades\Auth;
 
 class EventRepository extends BaseController implements EventInterface
 {
     private Event $event;
+
     public function __construct(Event $event)
     {
         $this->event = $event;

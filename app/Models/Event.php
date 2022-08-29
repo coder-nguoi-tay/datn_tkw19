@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
 /**
- * @property integer $id
+ * @property int $id
  * @property string $event_name
  * @property string $event_detail
  * @property string $achievement_conditions

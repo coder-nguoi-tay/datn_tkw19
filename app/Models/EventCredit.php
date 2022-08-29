@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
 /**
- * @property integer $id
- * @property integer $event_id
- * @property integer $user_credit_id
+ * @property int $id
+ * @property int $event_id
+ * @property int $user_credit_id
  * @property string $subcription_id
- * @property integer $parent_event_credit_id
+ * @property int $parent_event_credit_id
  * @property string $subcription_expried_datetimed
- * @property boolean $using_complete_flag
+ * @property bool $using_complete_flag
  * @property string $created_at
  * @property string $updated_at
  * @property string $deleted_at

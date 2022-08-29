@@ -2,14 +2,15 @@
 
 namespace App\Repositories\News;
 
-use App\Models\News;
 use App\Http\Controllers\BaseController;
+use App\Models\News;
 use App\Repositories\News\NewsInterface;
 use Illuminate\Support\Facades\Auth;
 
 class NewsRepository extends BaseController implements NewsInterface
 {
     private News $news;
+
     public function __construct(News $news)
     {
         $this->news = $news;

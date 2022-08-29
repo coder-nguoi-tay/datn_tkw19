@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
 /**
- * @property integer $id
+ * @property int $id
  * @property string $hira_name
  * @property string $kata_name
  * @property string $phone_number
@@ -16,7 +16,7 @@ use Kyslik\ColumnSortable\Sortable;
  * @property string $content
  * @property string $agent
  * @property string $ip
- * @property boolean $type
+ * @property bool $type
  * @property string $created_at
  * @property string $updated_at
  * @property string $deleted_at

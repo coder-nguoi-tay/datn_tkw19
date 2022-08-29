@@ -2,14 +2,15 @@
 
 namespace App\Repositories\EventCondition;
 
-use App\Models\EventCondition;
 use App\Http\Controllers\BaseController;
+use App\Models\EventCondition;
 use App\Repositories\EventCondition\EventConditionInterface;
 use Illuminate\Support\Facades\Auth;
 
 class EventConditionRepository extends BaseController implements EventConditionInterface
 {
     private EventCondition $eventCondition;
+
     public function __construct(EventCondition $eventCondition)
     {
         $this->eventCondition = $eventCondition;

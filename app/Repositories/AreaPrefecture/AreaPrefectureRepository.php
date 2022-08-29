@@ -2,14 +2,15 @@
 
 namespace App\Repositories\AreaPrefecture;
 
-use App\Models\AreaPrefecture;
 use App\Http\Controllers\BaseController;
+use App\Models\AreaPrefecture;
 use App\Repositories\AreaPrefecture\AreaPrefectureInterface;
 use Illuminate\Support\Facades\Auth;
 
 class AreaPrefectureRepository extends BaseController implements AreaPrefectureInterface
 {
     private AreaPrefecture $areaPrefecture;
+
     public function __construct(AreaPrefecture $areaPrefecture)
     {
         $this->areaPrefecture = $areaPrefecture;

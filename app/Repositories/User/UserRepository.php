@@ -2,14 +2,15 @@
 
 namespace App\Repositories\User;
 
-use App\Models\User;
 use App\Http\Controllers\BaseController;
+use App\Models\User;
 use App\Repositories\User\UserInterface;
 use Illuminate\Support\Facades\Auth;
 
 class UserRepository extends BaseController implements UserInterface
 {
     private User $user;
+
     public function __construct(User $user)
     {
         $this->user = $user;

@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
 /**
- * @property integer $id
- * @property integer $area_id
- * @property integer $prefecture_id
+ * @property int $id
+ * @property int $area_id
+ * @property int $prefecture_id
  * @property int $order_number
  * @property string $created_at
  * @property string $updated_at

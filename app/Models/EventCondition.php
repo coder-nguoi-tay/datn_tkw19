@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
 /**
- * @property integer $id
- * @property integer $event_id
- * @property boolean $target_gender
- * @property boolean $target_age_type
+ * @property int $id
+ * @property int $event_id
+ * @property bool $target_gender
+ * @property bool $target_age_type
  * @property int $target_age_from
  * @property int $target_age_to
  * @property string $other_conditions
- * @property boolean $limit_number_of_participants_flag
+ * @property bool $limit_number_of_participants_flag
  * @property int $limit_number_of_participants
  * @property string $created_at
  * @property string $updated_at

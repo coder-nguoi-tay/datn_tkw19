@@ -15,7 +15,7 @@ class HomeController extends BaseController
     public function index()
     {
         return view('user.home.index', [
-            'title' => "Home"
+            'title' => 'Home',
         ]);
     }
 

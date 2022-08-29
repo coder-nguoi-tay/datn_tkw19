@@ -2,14 +2,15 @@
 
 namespace App\Repositories\UserTmp;
 
-use App\Models\UserTmp;
 use App\Http\Controllers\BaseController;
+use App\Models\UserTmp;
 use App\Repositories\UserTmp\UserTmpInterface;
 use Illuminate\Support\Facades\Auth;
 
 class UserTmpRepository extends BaseController implements UserTmpInterface
 {
     private UserTmp $userTmp;
+
     public function __construct(UserTmp $userTmp)
     {
         $this->userTmp = $userTmp;

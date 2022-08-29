@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
 /**
- * @property integer $id
+ * @property int $id
  * @property string $phone_number
  * @property string $email
  * @property string $password
@@ -18,7 +18,7 @@ use Kyslik\ColumnSortable\Sortable;
  * @property string $name_kana
  * @property string $representative_name
  * @property string $birth_date
- * @property boolean $gender
+ * @property bool $gender
  * @property string $address_prefecture
  * @property string $address_city
  * @property string $address_street

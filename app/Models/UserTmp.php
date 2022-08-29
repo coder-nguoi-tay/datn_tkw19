@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
 /**
- * @property integer $id
+ * @property int $id
  * @property string $phone_number
- * @property boolean $sms_confirm_flag
+ * @property bool $sms_confirm_flag
  * @property int $sms_not_confirm_count
  * @property int $sms_send_failed_count
  * @property string $block_expried_time

@@ -2,14 +2,15 @@
 
 namespace App\Repositories\Tag;
 
-use App\Models\Tag;
 use App\Http\Controllers\BaseController;
+use App\Models\Tag;
 use App\Repositories\Tag\TagInterface;
 use Illuminate\Support\Facades\Auth;
 
 class TagRepository extends BaseController implements TagInterface
 {
     private Tag $tag;
+
     public function __construct(Tag $tag)
     {
         $this->tag = $tag;
