@@ -2,14 +2,15 @@
 
 namespace App\Repositories\UserCredit;
 
-use App\Models\UserCredit;
 use App\Http\Controllers\BaseController;
+use App\Models\UserCredit;
 use App\Repositories\UserCredit\UserCreditInterface;
 use Illuminate\Support\Facades\Auth;
 
 class UserCreditRepository extends BaseController implements UserCreditInterface
 {
     private UserCredit $userCredit;
+
     public function __construct(UserCredit $userCredit)
     {
         $this->userCredit = $userCredit;

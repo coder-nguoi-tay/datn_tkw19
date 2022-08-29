@@ -2,14 +2,15 @@
 
 namespace App\Repositories\EventCredit;
 
-use App\Models\EventCredit;
 use App\Http\Controllers\BaseController;
+use App\Models\EventCredit;
 use App\Repositories\EventCredit\EventCreditInterface;
 use Illuminate\Support\Facades\Auth;
 
 class EventCreditRepository extends BaseController implements EventCreditInterface
 {
     private EventCredit $eventCredit;
+
     public function __construct(EventCredit $eventCredit)
     {
         $this->eventCredit = $eventCredit;

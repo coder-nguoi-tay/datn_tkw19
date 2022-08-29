@@ -2,14 +2,15 @@
 
 namespace App\Repositories\Contact;
 
-use App\Models\Contact;
 use App\Http\Controllers\BaseController;
+use App\Models\Contact;
 use App\Repositories\Contact\ContactInterface;
 use Illuminate\Support\Facades\Auth;
 
 class ContactRepository extends BaseController implements ContactInterface
 {
     private Contact $contact;
+
     public function __construct(Contact $contact)
     {
         $this->contact = $contact;
