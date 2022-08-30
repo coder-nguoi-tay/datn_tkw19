@@ -27,89 +27,92 @@
               :action="data.urlStore"
               ref="formData"
             >
-            <template v-if="step1 === 1">
-              <div class="step__container">
-                <div class="step">
-                  <label class="input-label">電話番号</label>
-                  <div class="input-group">
-                    <span class="input-group-text">{{
-                      data.VN_MODE ? '+84' : '+81'
-                    }}</span>
-                    <Field
-                      name="phone_number"
-                      type="text"
-                      autocomplete="off"
-                      v-model="model.phone_number"
-                      rules="required|telephone"
-                      class="form-control input-tel"
-                      @change="error = ''"
-                      placeholder="000 0000 0000"
-                    />
-                  </div>
-                  <ErrorMessage class="error-msg" name="phone_number" />
-                  <div class="error-msg" v-if="error">
-                    {{ error }}
-                  </div>
-                </div>
-              </div>
-              <div class="capcha text-center" v-if="showRecapchar">
-                <vue-recaptcha
-                  language="ja"
-                  @verify="verifyMethod"
-                  ref="recaptcha"
-                  :sitekey="data.GOOGLE_PUBLIC_KEY_V2"
-                ></vue-recaptcha>
-              <Field
-                name="recaptcha_token"
-                type="hidden"
-                autocomplete="off"
-                v-model="model.recaptcha_token"
-                rules="required"
-                @change="error = ''"
-              />
-              <ErrorMessage class="error-msg" name="recaptcha_token" />
-              </div>
-              <div class="submit__container" :class="{'have-capcha': showRecapchar}">
-                <button type="submit" class="btn-submit">送信する</button>
-                <p class="txt-login">
-                  既にアカウントをお持ちの方は<a href="">こちら</a>
-                </p>
-              </div>
-            </template>
-            <template v-else>
+              <template v-if="step1 === 1">
                 <div class="step__container">
-            <div class="step">
-              <label class="input-label">認証コード</label>
-              <div class="input_container">
-                <div style="display: flex; flex-direction: row">
-                  <v-otp-input
-                    ref="otpInput"
-                    input-classes="otp-input"
-                    separator=""
-                    :num-inputs="6"
-                    :should-auto-focus="true"
-                    :inputmode="'text'"
-                    :is-input-num="false"
-                    :conditionalClass="[
-                      'one',
-                      'two',
-                      'three',
-                      'four',
-                      'five',
-                      'six'
-                    ]"
-                  />
+                  <div class="step">
+                    <label class="input-label">電話番号</label>
+                    <div class="input-group">
+                      <span class="input-group-text">{{
+                        data.VN_MODE ? '+84' : '+81'
+                      }}</span>
+                      <Field
+                        name="phone_number"
+                        type="text"
+                        autocomplete="off"
+                        v-model="model.phone_number"
+                        rules="required|telephone"
+                        class="form-control input-tel"
+                        @change="error = ''"
+                        placeholder="000 0000 0000"
+                      />
+                    </div>
+                    <ErrorMessage class="error-msg" name="phone_number" />
+                    <div class="error-msg" v-if="error">
+                      {{ error }}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="submit__container have-capcha">
-            <a href="#" class="btn-submit">送信する</a>
-            <p class="txt-login">
-              <a href="">認証コードを再送する</a>
-            </p>
-          </div>
-            </template>
+                <div class="capcha text-center" v-if="showRecapchar">
+                  <vue-recaptcha
+                    language="ja"
+                    @verify="verifyMethod"
+                    ref="recaptcha"
+                    :sitekey="data.GOOGLE_PUBLIC_KEY_V2"
+                  ></vue-recaptcha>
+                  <Field
+                    name="recaptcha_token"
+                    type="hidden"
+                    autocomplete="off"
+                    v-model="model.recaptcha_token"
+                    rules="required"
+                    @change="error = ''"
+                  />
+                  <ErrorMessage class="error-msg" name="recaptcha_token" />
+                </div>
+                <div
+                  class="submit__container"
+                  :class="{ 'have-capcha': showRecapchar }"
+                >
+                  <button type="submit" class="btn-submit">送信する</button>
+                  <p class="txt-login">
+                    既にアカウントをお持ちの方は<a href="">こちら</a>
+                  </p>
+                </div>
+              </template>
+              <template v-else>
+                <div class="step__container">
+                  <div class="step">
+                    <label class="input-label">認証コード</label>
+                    <div class="input_container">
+                      <div style="display: flex; flex-direction: row">
+                        <v-otp-input
+                          ref="otpInput"
+                          input-classes="otp-input"
+                          separator=""
+                          :num-inputs="6"
+                          :should-auto-focus="true"
+                          :inputmode="'text'"
+                          :is-input-num="false"
+                          :conditionalClass="[
+                            'one',
+                            'two',
+                            'three',
+                            'four',
+                            'five',
+                            'six'
+                          ]"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="submit__container have-capcha">
+                  <a href="#" class="btn-submit">送信する</a>
+                  <p class="txt-login">
+                    <a href="">認証コードを再送する</a>
+                  </p>
+                </div>
+              </template>
             </form>
           </VeeForm>
         </div>
@@ -202,7 +205,7 @@ export default {
         .then(function (response) {
           $('.loading-div').addClass('hidden')
           // response.data.valid
-          that.step1 = 2;
+          that.step1 = 2
         })
         .catch((error) => {
           $('.loading-div').addClass('hidden')
