@@ -9,6 +9,7 @@ use App\Models\Admin;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Nette\Utils\Paginator;
 
 class AdminRepository extends BaseController implements AdminInterface
 {
@@ -43,7 +44,7 @@ class AdminRepository extends BaseController implements AdminInterface
     public function destroy($id)
     {
         $userInfo = $this->user->where('id', $id)->first();
-        if (! $userInfo) {
+        if (!$userInfo) {
             return false;
         }
         if ($userInfo->delete()) {
@@ -55,7 +56,7 @@ class AdminRepository extends BaseController implements AdminInterface
 
     public function checkEmail($request)
     {
-        return ! $this->user->where(function ($query) use ($request) {
+        return !$this->user->where(function ($query) use ($request) {
             if (isset($request['id'])) {
                 $query->where('id', '!=', $request['id']);
             }
@@ -80,7 +81,7 @@ class AdminRepository extends BaseController implements AdminInterface
     public function update($request, $id)
     {
         $userInfo = $this->user->where('id', $id)->first();
-        if (! $userInfo) {
+        if (!$userInfo) {
             return false;
         }
         $userInfo->name = $request->name;
@@ -95,7 +96,7 @@ class AdminRepository extends BaseController implements AdminInterface
     public function updateLastLogin($id)
     {
         $currentUser = $this->user->where('id', $id)->first();
-        if (! $currentUser) {
+        if (!$currentUser) {
             return false;
         }
         $currentUser->last_login_at = Carbon::now();
@@ -111,12 +112,12 @@ class AdminRepository extends BaseController implements AdminInterface
     public function generalResetPass($request)
     {
         $account = $this->user->where('email', $request->email)->first();
-        if (! $account) {
+        if (!$account) {
             return false;
         }
-        $account->reset_password_token = md5($request->email.random_bytes(25).Carbon::now());
+        $account->reset_password_token = md5($request->email . random_bytes(25) . Carbon::now());
         $account->reset_password_token_expire = Carbon::now()->addMinutes(env('EXPIRE_TOKEN', 30));
-        if (! $account->save()) {
+        if (!$account->save()) {
             return false;
         }
         $mailContents = [
@@ -146,13 +147,13 @@ class AdminRepository extends BaseController implements AdminInterface
     public function updatePasswordByToken($request, $token)
     {
         $account = $this->getUserByToken($token);
-        if (! $account) {
+        if (!$account) {
             return false;
         }
         $account->password = Hash::make($request->password);
         $account->reset_password_token = null;
         $account->reset_password_token_expire = null;
-        if (! $account->save()) {
+        if (!$account->save()) {
             return false;
         }
         $mailContents = [

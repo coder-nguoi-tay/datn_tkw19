@@ -32,7 +32,7 @@ class UserRequest extends FormRequest
                 'required',
                 'email',
                 'max:255',
-                Rule::unique('user')->whereNull('deleted_at')->where(function ($q) use ($id) {
+                Rule::unique('admins')->whereNull('deleted_at')->where(function ($q) use ($id) {
                     if ($id) {
                         $q->where('id', '<>', $id);
                     }
