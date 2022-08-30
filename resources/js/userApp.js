@@ -17,5 +17,6 @@ app.use(VueSweetalert2);
 
 import Register from "./components/user/register/index.vue";
 
+
 app.component("register", Register);
 app.mount("#app");

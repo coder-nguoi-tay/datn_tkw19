@@ -9,10 +9,10 @@
             </div>
         </div>
         <VeeForm as="div">
-            <form>
-                <h5 style="margin-top:20px ;">アカウント情報</h5><br>
+            <form class="form-step2 container">
+                <h5>アカウント情報</h5><br>
                 <div>
-                    <CFormLabel class="col-sm-3 lbl-input" require>表示名</CFormLabel>
+                    <CFormLabel class=" col-sm-3 lbl-input" require>表示名</CFormLabel>
                     <Field name="code" class="form-control" placeholder="ララプラ太郎" />
                 </div><br>
                 <div>
@@ -79,46 +79,3 @@ export default {
     },
 };
 </script>
-<style>
-button {
-    width: 160px;
-    height: 45px;
-}
-
-.container {
-    width: 428px;
-    height: auto;
-    font-weight: 900;
-}
-
-.form-control {
-    margin-top: 5px;
-    width: 400px;
-}
-
-.lbl-input {
-    margin-left: 1px;
-}
-
-.text-center {
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
-
-.text-center a {
-    color: black;
-    font-size: 15px;
-}
-
-.radio {
-    margin-left: 5px;
-}
-
-h5 {
-    font-weight: 900;
-}
-
-.form-control::placeholder {
-    color: #dad9d9;
-}
-</style>
