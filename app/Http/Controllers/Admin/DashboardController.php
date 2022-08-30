@@ -15,12 +15,12 @@ class DashboardController extends BaseController
      */
     public function index()
     {
-        $account_sid = getenv("TWILIO_SID");
-        $auth_token = getenv("TWILIO_AUTH_TOKEN");
-        $twilio_number = getenv("TWILIO_NUMBER");
-        $client = new Client($account_sid, $auth_token);
-        $xx = $client->messages->create('+84368278668', ['from' => $twilio_number, 'body' => 'dinhtu test send mail code xxxx']);
-        dd($xx);
+        // $account_sid = getenv("TWILIO_SID");
+        // $auth_token = getenv("TWILIO_AUTH_TOKEN");
+        // $twilio_number = getenv("TWILIO_NUMBER");
+        // $client = new Client($account_sid, $auth_token);
+        // $xx = $client->messages->create('+84368278668', ['from' => $twilio_number, 'body' => 'dinhtu test send mail code xxxx']);
+        // dd($xx);
         return view('admin.dashboard.index', [
             'title' => 'ホーム',
         ]);
