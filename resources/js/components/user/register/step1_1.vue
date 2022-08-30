@@ -26,7 +26,8 @@
                     separator=""
                     :num-inputs="6"
                     :should-auto-focus="true"
-                    :is-input-num="true"
+                    :inputmode="'text'"
+                    :is-input-num="false"
                     :conditionalClass="[
                       'one',
                       'two',
