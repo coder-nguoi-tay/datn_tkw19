@@ -1,4 +1,8 @@
 @extends('layouts.userGuest')
 @section('content')
-    <register></register>
+    <register
+        :data="{{json_encode([
+            'urlStep1' => route('register.step1_1')
+        ]) }}">
+    </register>
 @endsection

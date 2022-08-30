@@ -182,3 +182,19 @@
     }
   }
 }
+.otp-input {
+    width: 60px;
+    height: 90px;
+    padding: 5px;
+    bottom: 20px;
+    margin: 15px 2px 27px;
+    font-size: 20px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+.input_container{
+    display: flex;
+    justify-content: center;
+}
+

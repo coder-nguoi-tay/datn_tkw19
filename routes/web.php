@@ -26,6 +26,7 @@ use App\Http\Controllers\User\RegisterController;
 //    return redirect(route('login.index'));
 //});
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('register/step1_1', [RegisterController::class, 'step1'])->name('register.step1_1');
 Route::resource('register', RegisterController::class);
 Route::resource('login', LoginController::class);
 Route::resource('forgot_password', ForgotPasswordController::class);

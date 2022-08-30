@@ -40,7 +40,7 @@
             />
           </div>
           <div class="submit__container have-capcha">
-            <a href="#" class="btn-submit">送信する</a>
+            <a :href="data.urlStep1" class="btn-submit">送信する</a>
             <p class="txt-login">
               既にアカウントをお持ちの方は<a href="">こちら</a>
             </p>
@@ -51,5 +51,7 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+    props: ["data"],
+}
 </script>

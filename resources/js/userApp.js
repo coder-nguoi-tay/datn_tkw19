@@ -16,6 +16,8 @@ import "sweetalert2/dist/sweetalert2.min.css";
 app.use(VueSweetalert2);
 
 import Register from "./components/user/register/index.vue";
+import Step1 from "./components/user/register/step1_1.vue";
 
 app.component("register", Register);
+app.component("step1_1", Step1);
 app.mount("#app");

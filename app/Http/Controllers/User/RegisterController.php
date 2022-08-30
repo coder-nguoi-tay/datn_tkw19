@@ -84,4 +84,11 @@ class RegisterController extends BaseController
     {
         //
     }
+
+    public function step1()
+    {
+        return view('user.register.step1_1', [
+             'title' => '会員登録',
+         ]);
+    }
 }
