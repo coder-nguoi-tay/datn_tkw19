@@ -14,5 +14,7 @@ interface UserTmpInterface
 
     public function destroy($id);
 
-    public function checkBlock($request);
+    public function checkLock($request);
+
+    public function verifyCode($request);
 }

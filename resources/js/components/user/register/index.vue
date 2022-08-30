@@ -93,6 +93,7 @@
                           :should-auto-focus="true"
                           :inputmode="'text'"
                           :is-input-num="false"
+                          @on-complete="handleOnComplete"
                           :conditionalClass="[
                             'one',
                             'two',
@@ -107,7 +108,14 @@
                   </div>
                 </div>
                 <div class="submit__container have-capcha">
-                  <a href="#" class="btn-submit">送信する</a>
+                  <button
+                    type="button"
+                    @click="step = 2"
+                    :disabled="disabledCheckCode"
+                    class="btn-submit"
+                  >
+                    送信する
+                  </button>
                   <p class="txt-login">
                     <a href="">認証コードを再送する</a>
                   </p>
@@ -115,6 +123,7 @@
               </template>
             </form>
           </VeeForm>
+          <step2 v-else-if="step==2"></step2>
         </div>
       </div>
     </div>
@@ -134,6 +143,7 @@ import { VueRecaptcha } from 'vue-recaptcha'
 import $ from 'jquery'
 import axios from 'axios'
 import VOtpInput from 'vue3-otp-input'
+import step2 from './step2.vue'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -147,19 +157,21 @@ export default {
     Field,
     ErrorMessage,
     VueRecaptcha,
-    VOtpInput
+    VOtpInput,
+    step2
   },
   props: ['data'],
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
       model: {
-        // phone_number: '0368278668'
+        phone_number: '0368278668'
       },
-      step: 1,
+      step: 2,
       step1: 1,
       error: '',
-      showRecapchar: false
+      showRecapchar: false,
+      disabledCheckCode: true
     }
   },
   created() {
@@ -204,8 +216,8 @@ export default {
         })
         .then(function (response) {
           $('.loading-div').addClass('hidden')
-          // response.data.valid
           that.step1 = 2
+          that.disabledCheckCode = false
         })
         .catch((error) => {
           $('.loading-div').addClass('hidden')
@@ -215,8 +227,28 @@ export default {
             that.showRecapchar = true
           }
         })
-      //   this.flagShowLoader = true
-      //   this.$refs.formData.submit()
+    },
+    handleOnComplete(val) {
+      let that = this
+      $('.loading-div').removeClass('hidden')
+      axios
+        .post(this.data.urlVerifyCode, {
+          _token: Laravel.csrfToken,
+          phone_number: this.model.phone_number,
+          code: val
+        })
+        .then(function (response) {
+          $('.loading-div').addClass('hidden')
+          that.disabledCheckCode = false
+        })
+        .catch((error) => {
+          $('.loading-div').addClass('hidden')
+          const { status } = error.response || {}
+          if (status == 500 || status == 429 || status == 400) {
+            that.error = error.response.data.message
+            that.showRecapchar = true
+          }
+        })
     }
   }
 }

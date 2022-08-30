@@ -204,3 +204,7 @@
     justify-content: center;
 }
 
+.btn-submit:disabled {
+    background-color: #e6958a !important;
+    cursor: no-drop;
+}

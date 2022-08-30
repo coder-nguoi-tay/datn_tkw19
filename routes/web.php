@@ -28,6 +28,7 @@ use App\Http\Controllers\User\RegisterController;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::resource('register', RegisterController::class);
 Route::post('register/send-code', [RegisterController::class, 'sendCode'])->name('register.sendCode');
+Route::post('register/verify-code', [RegisterController::class, 'verifyCode'])->name('register.verifyCode');
 Route::resource('login', LoginController::class);
 Route::resource('forgot_password', ForgotPasswordController::class);
 Route::resource('forgot_password_complete', ForgotPasswordSuccessController::class);

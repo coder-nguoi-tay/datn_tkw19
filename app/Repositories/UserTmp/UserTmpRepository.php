@@ -61,7 +61,7 @@ class UserTmpRepository extends BaseController implements UserTmpInterface
         // TODO: Implement destroy() method.
     }
 
-    public function checkBlock($request)
+    public function checkLock($request)
     {
         $user = $this->userTmp->where('phone_number', $request->phone_number)->first();
         if (! $user) {
@@ -75,5 +75,18 @@ class UserTmpRepository extends BaseController implements UserTmpInterface
         }
 
         return false;
+    }
+
+    public function verifyCode($request)
+    {
+        $user = $this->userTmp->where([
+            ['phone_number', $request->phone_number],
+            ['sms_expried_datetime', '>', Carbon::now()],
+        ])->first();
+        if (! $user) {
+            return false;
+        }
+
+        return Hash::check($request->code, $user->sms_code);
     }
 }

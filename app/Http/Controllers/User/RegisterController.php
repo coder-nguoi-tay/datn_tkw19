@@ -107,7 +107,7 @@ class RegisterController extends BaseController
                 'message' => 'この電話番号は既に利用されています。SMSが利用可能な別の電話番号をご使用ください。',
             ], StatusCode::BAD_REQUEST);
         }
-        if ($this->userTmp->checkBlock($request)) {
+        if ($this->userTmp->checkLock($request)) {
             return response()->json([
                 'message' => '連続で3回以上の送信はできません。しばらく時間を空けて再度お試しください。',
             ], StatusCode::TOO_MANY_REQUEST);
@@ -128,12 +128,20 @@ class RegisterController extends BaseController
                     'body' => 'dinhtu test send mail code '.$code,
                 ]);
 
-            return response()->json([
-            ], StatusCode::OK);
+            return response()->json([], StatusCode::OK);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => $th->getMessage(),
             ], StatusCode::NOT_FOUND);
         }
+    }
+
+    public function verifyCode(PhoneNumberRequest $request)
+    {
+        if (! $this->userTmp->verifyCode($request)) {
+            return response()->json(['message' => 'code expired'], StatusCode::NOT_FOUND);
+        }
+
+        return response()->json([], StatusCode::OK);
     }
 }
