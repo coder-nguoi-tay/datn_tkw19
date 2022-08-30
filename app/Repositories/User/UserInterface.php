@@ -13,5 +13,6 @@ interface UserInterface
     public function update($request, $id);
 
     public function destroy($id);
+
     public function checkPhone($request);
 }

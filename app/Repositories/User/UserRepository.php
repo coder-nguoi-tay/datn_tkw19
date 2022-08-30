@@ -5,8 +5,8 @@ namespace App\Repositories\User;
 use App\Http\Controllers\BaseController;
 use App\Models\User;
 use App\Repositories\User\UserInterface;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository extends BaseController implements UserInterface
 {

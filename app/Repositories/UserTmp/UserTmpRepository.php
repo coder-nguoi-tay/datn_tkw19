@@ -2,12 +2,12 @@
 
 namespace App\Repositories\UserTmp;
 
-use Illuminate\Support\Facades\Hash;
-use Carbon\Carbon;
 use App\Http\Controllers\BaseController;
 use App\Models\UserTmp;
 use App\Repositories\UserTmp\UserTmpInterface;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserTmpRepository extends BaseController implements UserTmpInterface
 {
@@ -31,7 +31,7 @@ class UserTmpRepository extends BaseController implements UserTmpInterface
     public function store($request)
     {
         $user = $this->userTmp->where('phone_number', $request->phone_number)->first();
-        if (!$user) {
+        if (! $user) {
             $user = new $this->userTmp();
         }
         $user->phone_number = $request->phone_number;
@@ -47,6 +47,7 @@ class UserTmpRepository extends BaseController implements UserTmpInterface
         if ($user->sms_not_confirm_count >= env('MAX_SEND_CODE_ON_DAY')) {
             $user->block_expried_time = Carbon::now()->addDays(1)->format('Y/m/d');
         }
+
         return $user->save();
     }
 
@@ -63,7 +64,7 @@ class UserTmpRepository extends BaseController implements UserTmpInterface
     public function checkBlock($request)
     {
         $user = $this->userTmp->where('phone_number', $request->phone_number)->first();
-        if (!$user) {
+        if (! $user) {
             return false;
         }
         if (Carbon::parse($user->block_expried_time) > Carbon::now()) {
@@ -72,6 +73,7 @@ class UserTmpRepository extends BaseController implements UserTmpInterface
         if ($user->sms_not_confirm_count >= env('MAX_SEND_CODE_ON_DAY') && Carbon::parse($user->last_register)->format('Y/m/d') == Carbon::now()->format('Y/m/d')) {
             return true;
         }
+
         return false;
     }
 }

@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Repositories\User\UserInterface;
-use App\Repositories\UserTmp\UserTmpInterface;
+use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\PhoneNumberRequest;
-use App\Enums\StatusCode;
+use App\Repositories\User\UserInterface;
+use App\Repositories\UserTmp\UserTmpInterface;
 use Illuminate\Http\Request;
 use Twilio\Rest\Client;
 
 class RegisterController extends BaseController
 {
     private $user;
+
     private $userTmp;
 
     public function __construct(UserInterface $user, UserTmpInterface $userTmp)
@@ -20,6 +21,7 @@ class RegisterController extends BaseController
         $this->user = $user;
         $this->userTmp = $userTmp;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -100,21 +102,21 @@ class RegisterController extends BaseController
 
     public function sendCode(PhoneNumberRequest $request)
     {
-        if (!$this->user->checkPhone($request)) {
+        if (! $this->user->checkPhone($request)) {
             return response()->json([
-                'message' => 'この電話番号は既に利用されています。SMSが利用可能な別の電話番号をご使用ください。'
+                'message' => 'この電話番号は既に利用されています。SMSが利用可能な別の電話番号をご使用ください。',
             ], StatusCode::BAD_REQUEST);
         }
         if ($this->userTmp->checkBlock($request)) {
             return response()->json([
-                'message' => '連続で3回以上の送信はできません。しばらく時間を空けて再度お試しください。'
+                'message' => '連続で3回以上の送信はできません。しばらく時間を空けて再度お試しください。',
             ], StatusCode::TOO_MANY_REQUEST);
         }
         $code = random_int(100000, 999999);
         $request->code = $code;
-        if (!$this->userTmp->store($request)) {
+        if (! $this->userTmp->store($request)) {
             return response()->json([
-                'message' => 'error save data'
+                'message' => 'error save data',
             ], StatusCode::INTERNAL_ERR);
         }
         $client = new Client(getenv('TWILIO_SID'), getenv('TWILIO_AUTH_TOKEN'));
@@ -123,13 +125,14 @@ class RegisterController extends BaseController
                 (env('VN_MODE') ? '+84' : '+81').$request->phone_number,
                 [
                     'from' => getenv('TWILIO_NUMBER'),
-                    'body' => 'dinhtu test send mail code ' . $code,
+                    'body' => 'dinhtu test send mail code '.$code,
                 ]);
-                return response()->json([
+
+            return response()->json([
             ], StatusCode::OK);
         } catch (\Throwable $th) {
             return response()->json([
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ], StatusCode::NOT_FOUND);
         }
     }
