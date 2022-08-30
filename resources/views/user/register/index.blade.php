@@ -1,8 +1,12 @@
 @extends('layouts.userGuest')
 @section('content')
     <register
-        :data="{{json_encode([
-            'urlStep1' => route('register.step1_1')
+        :data="{{ json_encode([
+            'VN_MODE' => env('VN_MODE'),
+            'urlStore' => route('register.store'),
+            'urlSendCode' => route('register.sendCode'),
+            'GOOGLE_RECAPTCAR_V2' => env('GOOGLE_RECAPTCAR_V2'),
+            'GOOGLE_PUBLIC_KEY_V2' => env('GOOGLE_PUBLIC_KEY_V2'),
         ]) }}">
     </register>
 @endsection

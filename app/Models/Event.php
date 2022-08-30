@@ -15,10 +15,8 @@ use Kyslik\ColumnSortable\Sortable;
  * @property int $first_achiever_reward
  * @property int $second_achiever_reward
  * @property int $third_achiever_reward
- * @property string $event_tag
  * @property int $reward_amount
  * @property int $entry_fee
- * @property string $events_area
  * @property string $apply_method
  * @property string $event_organizer
  * @property string $publish_start_datetime
@@ -29,17 +27,17 @@ use Kyslik\ColumnSortable\Sortable;
  */
 class Event extends Model
 {
+    use HasFactory, SoftDeletes, Sortable;
+
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    use HasFactory, SoftDeletes, Sortable;
-
     protected $keyType = 'integer';
 
     /**
      * @var array
      */
-    protected $fillable = ['event_name', 'event_detail', 'achievement_conditions', 'first_achiever_reward', 'second_achiever_reward', 'third_achiever_reward', 'event_tag', 'reward_amount', 'entry_fee', 'events_area', 'apply_method', 'event_organizer', 'publish_start_datetime', 'publish_end_datetime', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['event_name', 'event_detail', 'achievement_conditions', 'first_achiever_reward', 'second_achiever_reward', 'third_achiever_reward', 'reward_amount', 'entry_fee', 'apply_method', 'event_organizer', 'publish_start_datetime', 'publish_end_datetime', 'created_at', 'updated_at', 'deleted_at'];
 }

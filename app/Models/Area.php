@@ -17,17 +17,17 @@ use Kyslik\ColumnSortable\Sortable;
  */
 class Area extends Model
 {
+    use HasFactory, SoftDeletes, Sortable;
+
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    use HasFactory, SoftDeletes, Sortable;
-
     protected $keyType = 'integer';
 
     /**
      * @var array
      */
-    protected $fillable = ['area_name', 'order_number', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['name', 'order_num', 'created_at', 'updated_at', 'deleted_at'];
 }

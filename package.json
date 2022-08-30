@@ -30,6 +30,7 @@
         "mini-css-extract-plugin": "^2.6.0",
         "vee-validate": "^4.5.10",
         "vue": "^3.2.31",
+        "vue-recaptcha": "^2.0.2",
         "vue-swal": "^1.0.0",
         "vue-sweetalert2": "^5.0.2",
         "vue3-carousel": "^0.1.40",

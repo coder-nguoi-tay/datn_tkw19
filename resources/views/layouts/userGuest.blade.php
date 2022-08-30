@@ -11,7 +11,7 @@
         <title>{{ $title }}</title>
     @endif
     <link href="{{ asset('css/userApp.css') }}?t={{ time() }}" rel="stylesheet">
-    <script src="{{ asset('js/userApp.js') }}?t={{ time() }}" defer></script>
+    <script src="{{ asset('js/guestApp.js') }}?t={{ time() }}" defer></script>
 
     @yield('css')
     <script>

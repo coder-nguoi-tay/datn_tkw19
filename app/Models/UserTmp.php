@@ -11,20 +11,24 @@ use Kyslik\ColumnSortable\Sortable;
  * @property int $id
  * @property string $phone_number
  * @property bool $sms_confirm_flag
+ * @property string $sms_code
+ * @property string $sms_expried_datetime
  * @property int $sms_not_confirm_count
  * @property int $sms_send_failed_count
  * @property string $block_expried_time
- * @property string $datetime
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $deleted_at
  */
 class UserTmp extends Model
 {
+    use HasFactory, SoftDeletes, Sortable;
+
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    use HasFactory, SoftDeletes, Sortable;
-
     protected $table = 'users_tmp';
 
     /**
@@ -37,5 +41,5 @@ class UserTmp extends Model
     /**
      * @var array
      */
-    protected $fillable = ['phone_number', 'sms_confirm_flag', 'sms_not_confirm_count', 'sms_send_failed_count', 'block_expried_time', 'datetime'];
+    protected $fillable = ['phone_number', 'sms_confirm_flag', 'sms_code', 'sms_expried_datetime', 'sms_not_confirm_count', 'sms_send_failed_count', 'block_expried_time', 'created_at', 'updated_at', 'deleted_at'];
 }

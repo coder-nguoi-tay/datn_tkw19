@@ -16,13 +16,13 @@ use Kyslik\ColumnSortable\Sortable;
  */
 class Tag extends Model
 {
+    use HasFactory, SoftDeletes, Sortable;
+
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    use HasFactory, SoftDeletes, Sortable;
-
     protected $keyType = 'integer';
 
     /**

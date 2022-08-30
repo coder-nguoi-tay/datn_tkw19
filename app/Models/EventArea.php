@@ -10,16 +10,12 @@ use Kyslik\ColumnSortable\Sortable;
 /**
  * @property int $id
  * @property int $event_id
- * @property int $user_credit_id
- * @property string $subcription_id
- * @property int $parent_event_credit_id
- * @property string $subcription_expried_datetimed
- * @property bool $using_complete_flag
+ * @property int $area_id
  * @property string $created_at
  * @property string $updated_at
  * @property string $deleted_at
  */
-class EventCredit extends Model
+class EventArea extends Model
 {
     use HasFactory, SoftDeletes, Sortable;
 
@@ -33,5 +29,5 @@ class EventCredit extends Model
     /**
      * @var array
      */
-    protected $fillable = ['event_id', 'user_credit_id', 'subcription_id', 'parent_event_credit_id', 'subcription_expried_datetimed', 'using_complete_flag', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['event_id', 'area_id', 'created_at', 'updated_at', 'deleted_at'];
 }

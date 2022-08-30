@@ -21,10 +21,8 @@ class CreateEventsTable extends Migration
             $table->integer('first_achiever_reward');
             $table->integer('second_achiever_reward');
             $table->integer('third_achiever_reward');
-            $table->json('event_tag');
             $table->integer('reward_amount');
             $table->integer('entry_fee');
-            $table->json('events_area');
             $table->text('apply_method');
             $table->string('event_organizer', 255);
             $table->dateTime('publish_start_datetime');

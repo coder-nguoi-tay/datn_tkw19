@@ -9,6 +9,7 @@ use Kyslik\ColumnSortable\Sortable;
 
 /**
  * @property int $id
+ * @property int $area_id
  * @property string $prefecture_name
  * @property int $order_number
  * @property string $created_at
@@ -17,17 +18,17 @@ use Kyslik\ColumnSortable\Sortable;
  */
 class Prefecture extends Model
 {
+    use HasFactory, SoftDeletes, Sortable;
+
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    use HasFactory, SoftDeletes, Sortable;
-
     protected $keyType = 'integer';
 
     /**
      * @var array
      */
-    protected $fillable = ['prefecture_name', 'order_number', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['area_id', 'prefecture_name', 'order_number', 'created_at', 'updated_at', 'deleted_at'];
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAreaPrefecturesTable extends Migration
+class CreateEventAreas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateAreaPrefecturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('area_prefectures', function (Blueprint $table) {
+        Schema::create('event_areas', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('event_id');
             $table->bigInteger('area_id');
-            $table->bigInteger('prefecture_id');
-            $table->integer('order_number');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +29,6 @@ class CreateAreaPrefecturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('area_prefectures');
+        Schema::dropIfExists('event_areas');
     }
 }
