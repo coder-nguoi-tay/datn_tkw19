@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -36,4 +37,16 @@ class News extends Model
      * @var array
      */
     protected $fillable = ['title', 'content', 'url', 'file_url', 'file_name', 'publish_start_datetime', 'publish_end_datetime', 'publish_status', 'created_at', 'updated_at', 'deleted_at'];
+
+    protected $appends = ['publish_start_date_format', 'publish_end_date_format'];
+
+    public function getPublishStartDateFormatAttribute()
+    {
+        return Carbon::parse($this->publish_start_datetime)->format('Y/m/d H:i');
+    }
+
+    public function getPublishEndDateFormatAttribute()
+    {
+        return Carbon::parse($this->publish_end_datetime)->format('Y/m/d H:i');
+    }
 }
