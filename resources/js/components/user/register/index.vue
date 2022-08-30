@@ -151,7 +151,7 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
       model: {
-        phone_number: '0368278668'
+        // phone_number: '0368278668'
       },
       step: 1,
       step1: 1,
