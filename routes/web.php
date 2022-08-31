@@ -1,15 +1,16 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\NewManagerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ForgotPasswordSuccessController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\PasswordResetExpiredController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\RegisterController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,5 @@ Route::group([
     Route::resource('dashboard', DashboardController::class, ['as' => 'admin']);
     Route::resource('user', UserController::class, ['as' => 'admin']);
     Route::post('check-email', [UserController::class, 'checkEmail'])->name('admin.user.checkEmail');
+    Route::resource('news', NewManagerController::class, ['as' => 'admin']);
 });

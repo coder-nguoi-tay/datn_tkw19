@@ -4,7 +4,7 @@ namespace App\Repositories\News;
 
 interface NewsInterface
 {
-    public function get($request);
+    public function getNews($request);
 
     public function getById($id);
 
