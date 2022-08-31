@@ -199,3 +199,12 @@ h6 {
   color: var(--cui-table-color);
   border-color: var(--cui-table-border-color);
 }
+.toggle-container {
+    margin-top: 6px;
+    .toggle {
+        min-width: 60px;
+        .toggle-label {
+            margin-right: 3px;
+        }
+    }
+}
