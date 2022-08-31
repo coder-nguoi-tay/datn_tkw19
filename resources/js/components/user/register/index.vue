@@ -4,7 +4,7 @@
       <h1 class="title text-center">会員登録</h1>
       <div class="form-content">
         <div class="register-form">
-          <div class="form-header d-flex">
+          <div class="form-header d-flex register-step">
             <span class="step-indicator" :class="{ active: step >= 1 }"
               >SMS認証</span
             >
@@ -123,7 +123,7 @@
               </template>
             </form>
           </VeeForm>
-          <step2 v-else-if="step==2"></step2>
+          <step2 :data="data" :data-model="model" v-else-if="step==2"></step2>
         </div>
       </div>
     </div>
@@ -165,7 +165,8 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
       model: {
-        phone_number: '0368278668'
+        phone_number: '0368278668',
+        gender: 1
       },
       step: 2,
       step1: 1,
@@ -230,6 +231,7 @@ export default {
     },
     handleOnComplete(val) {
       let that = this
+      that.model.code = val;
       $('.loading-div').removeClass('hidden')
       axios
         .post(this.data.urlVerifyCode, {

@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('name', 255)->nullable();
             $table->string('name_kana', 255)->nullable();
             $table->string('representative_name', 255)->nullable();
-            $table->date('birth_date');
+            $table->date('birthday');
             $table->tinyInteger('gender')->comment('"1: 男性 2: 女性, 3:その他"');
             $table->string('address_prefecture', 255)->nullable();
             $table->string('address_city', 255)->comment('"1: 即日 2: 一ヶ月以内 3: 2ヶ月以内  4: 3ヶ月以上 5: 検討中のため未確定"')->nullable();

@@ -208,3 +208,18 @@
     background-color: #e6958a !important;
     cursor: no-drop;
 }
+
+.form-step {
+    .form-group {
+        margin-top: 12px;
+        label.input-label {
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.register-step {
+    .active {
+        color: #E4422D;
+    }
+}

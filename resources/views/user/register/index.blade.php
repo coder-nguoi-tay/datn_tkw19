@@ -1,3 +1,7 @@
+@php
+use App\Enums\Gender;
+use App\Enums\UserType;
+@endphp
 @extends('layouts.userGuest')
 @section('content')
     <register
@@ -8,6 +12,8 @@
             'urlVerifyCode' => route('register.verifyCode'),
             'GOOGLE_RECAPTCAR_V2' => env('GOOGLE_RECAPTCAR_V2'),
             'GOOGLE_PUBLIC_KEY_V2' => env('GOOGLE_PUBLIC_KEY_V2'),
+            'genderOptions' => Gender::parseArray(),
+            'typeOptions' => UserType::parseArray(),
         ]) }}">
     </register>
 @endsection

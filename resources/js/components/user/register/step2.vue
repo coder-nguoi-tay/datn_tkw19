@@ -7,24 +7,96 @@
   >
     <form
       method="POST"
+      class="form-step"
       @submit="handleSubmit($event, onSubmit)"
       ref="formData"
     >
       <div class="step__container">
         <div class="step">
           <div class="input-label">アカウント情報</div>
-          <label class="input-label">表示名</label>
-          <div class="input-group">
+          <div class="form-group">
+            <label class="input-label">表示名</label>
             <Field
               name="show_name"
               type="text"
               v-model="model.show_name"
               rules="required|telephone"
-              class="form-control input-tel"
+              class="form-control"
               placeholder="ララプラ太郎"
             />
+            <ErrorMessage class="error-msg" name="show_name" />
           </div>
-          <ErrorMessage class="error-msg" name="show_name" />
+          <div class="form-group">
+            <label class="input-label">パスワード</label>
+            <Field
+              name="password"
+              type="text"
+              v-model="model.password"
+              rules="required|telephone"
+              class="form-control"
+              placeholder="●●●●●●●●"
+            />
+            <ErrorMessage class="error-msg" name="password" />
+          </div>
+          <div class="input-label m-t-30">利用者情報</div>
+          <div class="form-group">
+            <label class="input-label">登録タイプ</label>
+            <Field
+              name="type"
+              as="select"
+              v-model="model.type"
+              rules="required"
+              class="form-select"
+            >
+              <option value="" disabled selected>
+                -- 登録タイプを選択してください --
+              </option>
+              <option
+                v-for="item in data.typeOptions"
+                :key="item.value"
+                :value="item.value"
+              >
+                {{ item.label }}
+              </option>
+            </Field>
+            <ErrorMessage class="error-msg" name="type" />
+          </div>
+          <div class="form-group">
+            <label class="input-label">生年月日</label>
+            <Field
+              name="birthday"
+              type="text"
+              v-model="model.birthday"
+              rules="required|telephone"
+              class="form-control"
+              placeholder="1990 / 01 / 01"
+            />
+            <ErrorMessage class="error-msg" name="birthday" />
+          </div>
+          <div class="form-group">
+            <label class="input-label">性別</label>
+            <div>
+              <div
+                class="form-check form-check-inline"
+                :key="item.id"
+                v-for="(item, index) in data.genderOptions"
+              >
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  v-model="model.gender"
+                  :value="item.id"
+                  :id="'gender' + index"
+                />
+                <label class="form-check-label" :for="'gender' + index">
+                  {{ item.label }}
+                </label>
+              </div>
+            </div>
+
+            <ErrorMessage class="error-msg" name="type" />
+          </div>
         </div>
       </div>
     </form>
@@ -59,13 +131,11 @@ export default {
     VueRecaptcha,
     VOtpInput
   },
-  props: ['data'],
+  props: ['data', 'dataModel'],
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: {
-        // phone_number: '0368278668'
-      },
+      model: this.dataModel,
       step: 1,
       step1: 1,
       error: '',
