@@ -7,6 +7,7 @@ use App\Http\Controllers\ForgotPasswordSuccessController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\PasswordResetExpiredController;
+use App\Http\Controllers\User\EventController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\RegisterController;
@@ -33,6 +34,8 @@ Route::resource('forgot_password_complete', ForgotPasswordSuccessController::cla
 Route::resource('password_reset', PasswordResetController::class);
 Route::resource('password_reset_expired', PasswordResetExpiredController::class);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::resource('event', EventController::class);
 
 Route::group([
     'prefix' => 'admin',

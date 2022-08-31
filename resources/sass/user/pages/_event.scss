@@ -1,0 +1,27 @@
+  .label-event {
+      font-size: 12px;
+      font-weight: bold;
+  }
+  
+  .info-event {
+      font-size: 10px;
+      font-weight: 400;
+  }
+  
+  .input-event {
+      font-size: 10px;
+      font-weight: bold;
+  }
+  
+  .btn-box {
+      button {
+          font-size: 16px;
+          font-weight: bold;
+          border: 2px solid #E83928;
+          color: #E4422D;
+      }
+      button.btn-save {
+          background-color: #E5352B !important;
+          color: #FFFFFF !important;
+      }
+  }
