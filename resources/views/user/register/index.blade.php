@@ -1,6 +1,7 @@
 @php
 use App\Enums\Gender;
 use App\Enums\UserType;
+use App\Enums\JobType;
 @endphp
 @extends('layouts.userGuest')
 @section('content')
@@ -14,6 +15,9 @@ use App\Enums\UserType;
             'GOOGLE_PUBLIC_KEY_V2' => env('GOOGLE_PUBLIC_KEY_V2'),
             'genderOptions' => Gender::parseArray(),
             'typeOptions' => UserType::parseArray(),
+            'jobOptions' => JobType::parseArray(),
+            'prefectureOptions' => $prefectures,
+            'cityOptions' => $cities,
         ]) }}">
     </register>
 @endsection

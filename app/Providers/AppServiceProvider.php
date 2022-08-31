@@ -10,6 +10,10 @@ use App\Repositories\UserTmp\UserTmpInterface;
 use App\Repositories\UserTmp\UserTmpRepository;
 use App\Repositories\News\NewsInterface;
 use App\Repositories\News\NewsRepository;
+use App\Repositories\Prefecture\PrefectureInterface;
+use App\Repositories\Prefecture\PrefectureRepository;
+use App\Repositories\City\CityInterface;
+use App\Repositories\City\CityRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UserInterface::class, UserRepository::class);
         $this->app->bind(UserTmpInterface::class, UserTmpRepository::class);
         $this->app->bind(NewsInterface::class, NewsRepository::class);
+        $this->app->bind(PrefectureInterface::class, PrefectureRepository::class);
+        $this->app->bind(CityInterface::class, CityRepository::class);
     }
 
     /**

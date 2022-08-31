@@ -19,6 +19,9 @@ defineRule('password_rule', (value) => {
 defineRule('furigana', (value) => {
     return value.match(/[一-龥ぁ-ん]/) == null
 })
+defineRule('kata', (value) => {
+    return /^([ァ-ン]|ー)*$/i.test(value)
+})
 defineRule('telephone', (value) => {
     return (
         /^0(\d-\d{4}-\d{4})+$/i.test(value.trim()) ||

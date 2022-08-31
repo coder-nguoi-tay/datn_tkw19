@@ -214,6 +214,12 @@
         margin-top: 12px;
         label.input-label {
             margin-bottom: 5px;
+            font-size: 14px;
+            span {
+                font-size: 12px;
+                color: #9A9A9A;
+                margin-left: 5px;
+            }
         }
     }
 }
@@ -221,5 +227,8 @@
 .register-step {
     .active {
         color: #E4422D;
+    }
+    .active:not(.current)::after {
+        background-color: red !important;
     }
 }

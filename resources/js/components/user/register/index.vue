@@ -8,10 +8,14 @@
             <span class="step-indicator" :class="{ active: step >= 1 }"
               >SMS認証</span
             >
-            <span class="step-indicator" :class="{ active: step >= 2 }"
+            <span
+              class="step-indicator"
+              :class="{ active: step >= 2, current: (step == 2) }"
               >ユーザー情報登録</span
             >
-            <span class="step-indicator" :class="{ active: step >= 3 }"
+            <span
+              class="step-indicator"
+              :class="{ active: step >= 3, current: (step == 3) }"
               >完了</span
             >
           </div>
@@ -116,14 +120,20 @@
                   >
                     送信する
                   </button>
-                  <p class="txt-login">
+                  <p class="txt-login" @click="step1 = 1">
                     <a href="">認証コードを再送する</a>
                   </p>
                 </div>
               </template>
             </form>
           </VeeForm>
-          <step2 :data="data" :data-model="model" v-else-if="step==2"></step2>
+          <step2
+            @backStep="backStep"
+            :data="data"
+            :data-model="model"
+            v-else-if="step == 2"
+          ></step2>
+          <step3 v-else-if="step == 3"></step3>
         </div>
       </div>
     </div>
@@ -144,6 +154,7 @@ import $ from 'jquery'
 import axios from 'axios'
 import VOtpInput from 'vue3-otp-input'
 import step2 from './step2.vue'
+import step3 from './step3.vue'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -158,17 +169,19 @@ export default {
     ErrorMessage,
     VueRecaptcha,
     VOtpInput,
-    step2
+    step2,
+    step3
   },
   props: ['data'],
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
       model: {
-        phone_number: '0368278668',
-        gender: 1
+        phone_number: '',
+        gender: 1,
+        type: ''
       },
-      step: 2,
+      step: 1,
       step1: 1,
       error: '',
       showRecapchar: false,
@@ -199,10 +212,10 @@ export default {
     },
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0]
-      this.$el.querySelector('input[name=' + firstInputError + ']').focus()
+      this.$el.querySelector('[name=' + firstInputError + ']').focus()
       $('html, body').animate(
         {
-          scrollTop: $('input[name=' + firstInputError + ']').offset().top - 150
+          scrollTop: $('[name=' + firstInputError + ']').offset().top - 150
         },
         500
       )
@@ -231,7 +244,7 @@ export default {
     },
     handleOnComplete(val) {
       let that = this
-      that.model.code = val;
+      that.model.code = val
       $('.loading-div').removeClass('hidden')
       axios
         .post(this.data.urlVerifyCode, {
@@ -251,6 +264,10 @@ export default {
             that.showRecapchar = true
           }
         })
+    },
+    backStep() {
+      this.disabledCheckCode = true
+      this.step = 1
     }
   }
 }

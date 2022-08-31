@@ -7,6 +7,8 @@ use App\Http\Controllers\BaseController;
 use App\Http\Requests\PhoneNumberRequest;
 use App\Repositories\User\UserInterface;
 use App\Repositories\UserTmp\UserTmpInterface;
+use App\Repositories\Prefecture\PrefectureInterface;
+use App\Repositories\City\CityInterface;
 use Illuminate\Http\Request;
 use Twilio\Rest\Client;
 
@@ -15,11 +17,15 @@ class RegisterController extends BaseController
     private $user;
 
     private $userTmp;
+    private $prefecture;
+    private $city;
 
-    public function __construct(UserInterface $user, UserTmpInterface $userTmp)
+    public function __construct(UserInterface $user, UserTmpInterface $userTmp, CityInterface $city, PrefectureInterface $prefecture)
     {
         $this->user = $user;
         $this->userTmp = $userTmp;
+        $this->prefecture = $prefecture;
+        $this->city = $city;
     }
 
     /**
@@ -31,6 +37,8 @@ class RegisterController extends BaseController
     {
         return view('user.register.index', [
             'title' => '会員登録',
+            'prefectures' => $this->prefecture->get(),
+            'cities' => $this->city->get(),
         ]);
     }
 

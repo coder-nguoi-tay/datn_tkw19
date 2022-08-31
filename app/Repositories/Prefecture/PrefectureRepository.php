@@ -16,28 +16,11 @@ class PrefectureRepository extends BaseController implements PrefectureInterface
         $this->prefecture = $prefecture;
     }
 
-    public function get($request)
+    public function get()
     {
-        // TODO: Implement get() method.
+        return $this->prefecture->select('id', 'name as label')
+            ->orderBy('order_num')
+            ->get();
     }
 
-    public function getById($id)
-    {
-        // TODO: Implement getById() method.
-    }
-
-    public function store($request)
-    {
-        // TODO: Implement store() method.
-    }
-
-    public function update($request, $id)
-    {
-        // TODO: Implement update() method.
-    }
-
-    public function destroy($id)
-    {
-        // TODO: Implement destroy() method.
-    }
 }

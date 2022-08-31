@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 /**
  * @property int $id
@@ -18,8 +19,9 @@ use Kyslik\ColumnSortable\Sortable;
  */
 class Prefecture extends Model
 {
-    use HasFactory, SoftDeletes, Sortable;
+    use HasFactory, SoftDeletes, Sortable, QueryCacheable;
 
+    protected $cacheFor = 31536000; //1 year
     /**
      * The "type" of the auto-incrementing ID.
      *

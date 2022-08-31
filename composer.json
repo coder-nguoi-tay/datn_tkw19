@@ -19,6 +19,7 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "rennokki/laravel-eloquent-query-cache": "^3.3",
         "twilio/sdk": "^6.41",
         "tymon/jwt-auth": "^1.0"
     },
