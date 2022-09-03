@@ -1,0 +1,154 @@
+.post-event {
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &-img {
+    background-color: #f7f7f7;
+    border-radius: 4px 4px 0 0;
+    height: 37.873832vw;
+    overflow: hidden;
+    position: relative;
+  }
+  &-title{
+    font-weight: 700;
+    font-size: 14px;
+    color: #000;
+    line-height: 22px;
+    margin-bottom: 6px;
+    letter-spacing: 0;
+    &-note {
+      background-color: #E5352B;
+      border-radius: 5px;
+      font-size: 10px;
+      line-height: 16px;
+      width: 34px;
+      height: 18px;
+      color: #FFFFFF;
+      margin-right: 10px;
+    }
+  }
+  &-text{
+    padding: 15px 18px;
+    background-color: #FFFFFF;
+    border-radius: 0 0 4px 4px;
+  }
+  &-user{
+    margin-bottom: 5.1px;
+  }
+  &-avata{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 5px;
+  }
+  &-name{
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0;
+  }
+  &-meta{
+    &-icon{
+      width: 15.49px;
+      margin-right: 5.5px;
+      img{
+        height: auto;
+      }
+    }
+    &-name{
+      color: #777777;
+      font-size: 10px;
+      line-height: 16px;
+      letter-spacing: 0;
+      margin-right: 4.1px;
+      display: flex;
+      align-items: center;
+    }
+    &-des{
+      font-weight: 700;
+      line-height: 20px;
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+    }
+    &:first-child {
+      margin-right: 12.3px;
+    }
+  }
+  &-money{
+    &-post-event-meta:first-child{
+      margin-right: 29.7px;
+    }
+  }
+  &-tags{
+    font-size: 10px;
+    color: #CCCCCC;
+    line-height: 16px;
+    margin-top: 7.6px;
+  }
+  &:not(:first-child){
+    margin-top: 12px;
+  }
+  &-btn{
+    background-color: #FFE11D;
+    font-size: 10px;
+    color: #000;
+    letter-spacing: 0;
+    font-weight: 700;
+    border-radius: 4px;
+    height: 27px;
+    margin: 6px auto 0 auto;
+    width: 203px;
+    transition: 0.5s all;
+    position: relative;
+    &:hover{
+      opacity: 60%;
+      color: #000;
+    }
+    &-note::after{
+      content: "";
+      width: 13px;
+      height: 13px;
+      background-color: #E4422D;
+      border-radius: 50%;
+      position: absolute;
+      right: -7px;
+      top: -6px;
+    }
+  }
+  &-done{
+    .post-event-img{
+      &::after, &::before{
+        position: absolute;
+      }
+      &::after{
+        content: "";
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #000000;
+          opacity: 50%;
+          border-radius: 4px 4px 0 0;
+      }
+      &::before{
+        content: "このイベントは終了しました";
+        color: #FFFFFF;
+        font-size: 26px;
+        line-height: 42px;
+        font-weight: 700;
+        letter-spacing: 0;
+        transform: translateX(-50%) translateY(-50%);
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+      }
+    }
+  }
+}

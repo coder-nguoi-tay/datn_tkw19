@@ -1,0 +1,38 @@
+.my-event{
+  padding-bottom: 133.6px;
+}
+.tabs-event{
+  &-nav{
+    list-style: none;
+    padding: 12px 28px;
+    margin: 0;
+  }
+  &-link{
+    border-radius: 13px;
+    cursor: pointer;
+    transition: 0.5s all;
+    label{
+      padding: 4px 19px 4px 18px;
+      color: #000000;
+      cursor: pointer;
+      display: flex;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 18px;
+      letter-spacing: 0;
+      transition: 0.5s all;
+    }
+    &:hover{
+      background-color: #E4422D;
+      label {
+        color: #FFFFFF;
+      }
+    }
+  }
+  &-link-active{
+    background-color: #E4422D;
+    label {
+      color: #FFFFFF;
+    }
+  }
+}
