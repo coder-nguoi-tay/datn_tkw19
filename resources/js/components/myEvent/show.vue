@@ -111,95 +111,114 @@
             role="tabpanel"
             aria-labelledby="group-chat-tab"
           >
-            <div class="group-chat">
-              <div class="chat__header d-flex justify-content-between">
-                <span class="txt-all-people">すべての人</span>
-                <div>
-                  <span class="c-header__txt all-people">
-                    <img
-                      src="/assets/img/user/event/ic_people_black.svg"
-                      alt=""
-                    />120人
-                  </span>
-                  <span class="c-header__txt people-on-chat">
-                    <img
-                      src="/assets/img/user/event/ic_p_on_chat.svg"
-                      alt=""
-                    />{{ haveMessage ? '4' : '0' }}人
-                  </span>
+            <form action="" method="POST" name="" enctype="multipart/form-data">
+              <div class="group-chat">
+                <div class="chat__header d-flex justify-content-between">
+                  <span class="txt-all-people">すべての人</span>
+                  <div>
+                    <span class="c-header__txt all-people">
+                      <img
+                        src="/assets/img/user/event/ic_people_black.svg"
+                        alt=""
+                      />120人
+                    </span>
+                    <span class="c-header__txt people-on-chat">
+                      <img
+                        src="/assets/img/user/event/ic_p_on_chat.svg"
+                        alt=""
+                      />{{ haveMessage ? '4' : '0' }}人
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div class="chat__body">
-                <div class="message-box" v-if="haveMessage">
-                  <div class="chat__container">
-                    <p class="chat-datetime text-center">2021年11月5日</p>
-                    <div class="chat__item other-people d-flex">
-                      <div class="avatar">
-                        <img src="/assets/img/user/event/avatar_1.png" alt="" />
-                      </div>
-                      <div class="chat__right">
-                        <div class="chat__content">
-                          昨日、渋谷のハチ公前で煙草を吸っていた人がそっくりだったんですが、違う人でした...泣
+                <div class="chat__body">
+                  <div class="message-box" v-if="haveMessage">
+                    <div class="chat__container">
+                      <p class="chat-datetime text-center">2021年11月5日</p>
+                      <div class="chat__item other-people d-flex">
+                        <div class="avatar">
+                          <img
+                            src="/assets/img/user/event/avatar_1.png"
+                            alt=""
+                          />
                         </div>
-                        <div class="chat-time">11:22<span>・・・</span></div>
+                        <div class="chat__right">
+                          <div class="chat__content">
+                            昨日、渋谷のハチ公前で煙草を吸っていた人がそっくりだったんですが、違う人でした...泣
+                          </div>
+                          <div class="chat-time">11:22<span>・・・</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat__container">
+                      <p class="chat-datetime text-center">2021年12月5日</p>
+                      <div class="chat__item other-people d-flex">
+                        <div class="avatar">
+                          <img
+                            src="/assets/img/user/event/avatar_2.png"
+                            alt=""
+                          />
+                        </div>
+                        <div class="chat__right">
+                          <div class="chat__content">
+                            こんにちは。今日は渋谷周辺でジョギングをします。
+                          </div>
+                          <div class="chat-time">9:10<span>・・・</span></div>
+                        </div>
+                      </div>
+                      <div class="chat__item me d-flex">
+                        <div class="chat__right">
+                          <div class="chat__content">全然見つからん！！</div>
+                          <div class="chat-time">9:10<span>・・・</span></div>
+                        </div>
+                      </div>
+                      <div class="chat__item other-people d-flex">
+                        <div class="avatar">
+                          <img
+                            src="/assets/img/user/event/avatar_3.png"
+                            alt=""
+                          />
+                        </div>
+                        <div class="chat__right">
+                          <div class="chat__content">Who are u????</div>
+                          <div class="chat-time">9:22<span>・・・</span></div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div class="chat__container">
-                    <p class="chat-datetime text-center">2021年12月5日</p>
-                    <div class="chat__item other-people d-flex">
-                      <div class="avatar">
-                        <img src="/assets/img/user/event/avatar_2.png" alt="" />
-                      </div>
-                      <div class="chat__right">
-                        <div class="chat__content">
-                          こんにちは。今日は渋谷周辺でジョギングをします。
-                        </div>
-                        <div class="chat-time">9:10<span>・・・</span></div>
-                      </div>
-                    </div>
-                    <div class="chat__item me d-flex">
-                      <div class="chat__right">
-                        <div class="chat__content">全然見つからん！！</div>
-                        <div class="chat-time">9:10<span>・・・</span></div>
-                      </div>
-                    </div>
-                    <div class="chat__item other-people d-flex">
-                      <div class="avatar">
-                        <img src="/assets/img/user/event/avatar_3.png" alt="" />
-                      </div>
-                      <div class="chat__right">
-                        <div class="chat__content">Who are u????</div>
-                        <div class="chat-time">9:22<span>・・・</span></div>
-                      </div>
-                    </div>
+                  <div class="message-box none-message" v-else>
+                    このイベントにまだ投稿はありません。
+                  </div>
+                  <div class="message-input-group d-flex align-items-center">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder=""
+                      name="message"
+                    />
+                    <button class="btn-send-image">
+                      <img src="/assets/img/user/event/ic_camera.svg" alt="" />
+                    </button>
+                    <button class="btn-send-message">投稿</button>
                   </div>
                 </div>
-                <div class="message-box none-message" v-else>
-                  このイベントにまだ投稿はありません。
-                </div>
-                <div class="message-input-group d-flex align-items-center">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder=""
-                    name="message"
-                  />
-                  <button class="btn-send-image">
-                    <img src="/assets/img/user/event/ic_camera.svg" alt="" />
+                <div class="chat__footer">
+                  <p class="txt-updated-at text-end">
+                    最終更新日時：2021年12月10日 21:21
+                  </p>
+                  <button
+                    type="button"
+                    class="btn-join"
+                    :disabled="!isAllowRegister"
+                  >
+                    {{
+                      isAllowRegister
+                        ? 'イベントに参加する'
+                        : 'このイベントの参加は締め切られました'
+                    }}
                   </button>
-                  <button class="btn-send-message">投稿</button>
                 </div>
               </div>
-              <div class="chat__footer">
-                <p class="txt-updated-at text-end">
-                  最終更新日時：2021年12月10日 21:21
-                </p>
-                <button type="button" class="btn-join" :disabled="!isAllowRegister">
-                  {{ isAllowRegister ? 'イベントに参加する' : 'このイベントの参加は締め切られました' }}
-                </button>
-              </div>
-            </div>
+            </form>
           </div>
           <div
             class="tab-pane fade"
@@ -207,84 +226,96 @@
             role="tabpanel"
             aria-labelledby="private-chat-tab"
           >
-            <div class="group-chat private-chat">
-              <div class="chat__header d-flex justify-content-between">
-                <span class="txt-all-people">企画者（商社太郎）</span>
-                <div>
-                  <span class="c-header__txt all-people">
-                    <img
-                      src="/assets/img/user/event/ic_people_black.svg"
-                      alt=""
-                    />120人
-                  </span>
-                  <span class="c-header__txt people-on-chat">
-                    <img
-                      src="/assets/img/user/event/ic_p_on_chat.svg"
-                      alt=""
-                    />{{ haveMessage ? '4' : '0' }}人
-                  </span>
-                </div>
-              </div>
-              <div class="chat__body">
-                <div class="message-box" v-if="havePrivateMess">
-                  <div class="chat__container">
-                    <p class="chat-datetime text-center">2021年12月9日</p>
-                    <div class="chat__item me d-flex">
-                      <div class="chat__right">
-                        <div class="chat__content">是非参加させていただきたいです。</div>
-                        <div class="chat-time">18:22<span>・・・</span></div>
-                      </div>
-                    </div>
+            <form action="" method="POST" name="" enctype="multipart/form-data">
+              <div class="group-chat private-chat">
+                <div class="chat__header d-flex justify-content-between">
+                  <span class="txt-all-people">企画者（商社太郎）</span>
+                  <div>
+                    <span class="c-header__txt all-people">
+                      <img
+                        src="/assets/img/user/event/ic_people_black.svg"
+                        alt=""
+                      />120人
+                    </span>
+                    <span class="c-header__txt people-on-chat">
+                      <img
+                        src="/assets/img/user/event/ic_p_on_chat.svg"
+                        alt=""
+                      />{{ haveMessage ? '4' : '0' }}人
+                    </span>
                   </div>
-                  <div class="chat__container">
-                    <p class="chat-datetime text-center">2021年12月10日</p>
-                    <div class="chat__item other-people d-flex">
-                      <div class="avatar">
-                        <img src="/assets/img/user/event/avatar_2.png" alt="" />
-                      </div>
-                      <div class="chat__right">
-                        <div class="chat__content">
-                          参加を承諾させていただきます。
+                </div>
+                <div class="chat__body">
+                  <div class="message-box" v-if="havePrivateMess">
+                    <div class="chat__container">
+                      <p class="chat-datetime text-center">2021年12月9日</p>
+                      <div class="chat__item me d-flex">
+                        <div class="chat__right">
+                          <div class="chat__content">
+                            是非参加させていただきたいです。
+                          </div>
+                          <div class="chat-time">18:22<span>・・・</span></div>
                         </div>
-                        <div class="chat-time">9:10<span>・・・</span></div>
                       </div>
                     </div>
-                    <div class="chat__item other-people d-flex">
-                      <div class="avatar">
-                        <img src="/assets/img/user/event/avatar_4.png" alt="" />
+                    <div class="chat__container">
+                      <p class="chat-datetime text-center">2021年12月10日</p>
+                      <div class="chat__item other-people d-flex">
+                        <div class="avatar">
+                          <img
+                            src="/assets/img/user/event/avatar_2.png"
+                            alt=""
+                          />
+                        </div>
+                        <div class="chat__right">
+                          <div class="chat__content">
+                            参加を承諾させていただきます。
+                          </div>
+                          <div class="chat-time">9:10<span>・・・</span></div>
+                        </div>
                       </div>
-                      <div class="chat__right">
-                        <div class="chat__content">企画者が参加を承諾いたしました。イベント達成に向けて活動を開始してください。</div>
-                        <div class="chat-time">9:10<span>・・・</span></div>
+                      <div class="chat__item other-people d-flex">
+                        <div class="avatar">
+                          <img
+                            src="/assets/img/user/event/avatar_4.png"
+                            alt=""
+                          />
+                        </div>
+                        <div class="chat__right">
+                          <div class="chat__content">
+                            企画者が参加を承諾いたしました。イベント達成に向けて活動を開始してください。
+                          </div>
+                          <div class="chat-time">9:10<span>・・・</span></div>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div class="message-box none-message" v-else>
+                    チャット内にまだ投稿はありません。
+                  </div>
+                  <div class="message-input-group d-flex align-items-center">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder=""
+                      name="message"
+                    />
+                    <button class="btn-send-image">
+                      <img src="/assets/img/user/event/ic_camera.svg" alt="" />
+                    </button>
+                    <button class="btn-send-message">投稿</button>
+                  </div>
                 </div>
-                <div class="message-box none-message" v-else>
-                  チャット内にまだ投稿はありません。
-                </div>
-                <div class="message-input-group d-flex align-items-center">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder=""
-                    name="message"
-                  />
-                  <button class="btn-send-image">
-                    <img src="/assets/img/user/event/ic_camera.svg" alt="" />
+                <div class="chat__footer">
+                  <p class="txt-updated-at text-end">
+                    最終更新日時：2021年12月10日 21:21
+                  </p>
+                  <button type="button" class="btn-join btn-join-private">
+                    達成報告
                   </button>
-                  <button class="btn-send-message">投稿</button>
                 </div>
               </div>
-              <div class="chat__footer">
-                <p class="txt-updated-at text-end">
-                  最終更新日時：2021年12月10日 21:21
-                </p>
-                <button type="button" class="btn-join btn-join-private">
-                  達成報告
-                </button>
-              </div>
-            </div>
+            </form>
           </div>
           <div
             class="tab-pane fade"
@@ -307,7 +338,7 @@ export default {
     return {
       haveMessage: true,
       havePrivateMess: true,
-      isAllowRegister: true,
+      isAllowRegister: true
     }
   },
   created() {},
