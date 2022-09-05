@@ -11,6 +11,7 @@
           :conditions="'--- / 企画者により決定'"
           :period="'5日'"
           :tags="'# 娯楽　# 収益　# 探偵系'"
+          :eventDetail="data.urlDetail"
         >
         </PostEvent>
 
@@ -22,6 +23,7 @@
           :conditions="'--- / 企画者により決定'"
           :period="'6日'"
           :tags="'# 娯楽　# 収益　# 探偵系'"
+          :eventDetail="data.urlDetail"
         >
         </PostEvent>
       </template>

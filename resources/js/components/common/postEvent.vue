@@ -60,9 +60,9 @@
       </div>
       <div class="post-event-tags">{{ tags }}</div>
     </div>
-    <a 
-    v-if="hiddenBtn == false" 
-    href="#" 
+    <a
+    v-if="hiddenBtn == false"
+    :href="eventDetail"
     class="post-event-btn d-flex align-items-center justify-content-center"
     :class="(noteBtn == true ? 'post-event-btn-note' : '')"
     >
@@ -113,17 +113,22 @@ export default {
     hiddenBtn: {
       type: Boolean,
       default: false,
-      required: false 
+      required: false
     },
     noteBtn: {
       type: Boolean,
       default: false,
-      required: false 
+      required: false
     },
     eventDone: {
       type: Boolean,
       default: false,
-      required: false 
+      required: false
+    },
+    eventDetail: {
+      type: String,
+      default: '#',
+      required: false
     }
   },
   data() {

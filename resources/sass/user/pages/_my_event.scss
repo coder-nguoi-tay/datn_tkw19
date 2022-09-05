@@ -114,6 +114,10 @@
   }
 
   .event-tabs {
+    .tab-content {
+      padding: 0 9px;
+    }
+
     .nav-tabs {
       border-top: 1px solid #ECECEC;
       border-bottom: 1px solid $primary-color;
