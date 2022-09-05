@@ -8,42 +8,51 @@
         margin-right: 5px;
     }
 }
+
 .card-header {
     label {
         font-weight: bold;
         margin-bottom: 0px;
     }
 }
+
 .header-exits-btn {
     label {
         font-weight: bold;
         margin-top: 6px;
     }
 }
+
 .lbl-input {
     text-align: right;
     padding-top: 7px;
 }
+
 label.error {
     color: red;
     font-weight: 700;
 }
+
 .btn-default {
     background: #f5f5f5;
     color: #333;
     border-color: #ccc;
 }
+
 @media only screen and (max-width: 767px) {
     .lbl-input {
         text-align: left;
     }
 }
+
 .sweetalert-title {
     font-size: 22px !important;
 }
+
 .w-100 {
     width: 100px !important;
 }
+
 .musashi-pagination {
     display: flex;
     justify-content: flex-end;
@@ -54,22 +63,26 @@ label.error {
         align-items: center;
     }
 }
+
 .page-size-select {
     display: initial;
     width: auto;
 }
+
 .pull-right {
     float: right;
 }
+
 .searchFrom {
     padding-bottom: 10px;
     button {
         margin-left: 5px;
     }
     form {
-        flex-wrap:nowrap
+        flex-wrap: nowrap
     }
 }
+
 a {
     .fa {
         margin-right: 5px;
@@ -82,124 +95,172 @@ a {
 .error {
     color: red;
 }
+
 .btn-login {
     width: 100%;
     margin-top: 10px;
 }
+
 .card-login {
     padding: 50px 0 50px;
 }
+
 .group-back-login {
     text-align: center;
     margin-top: 20px;
 }
+
 .title-login {
- margin-bottom: 30px;
+    margin-bottom: 30px;
 }
+
 .title-forgot-password {
     font-weight: bold;
     white-space: nowrap;
     color: #555;
     margin-bottom: 15px;
 }
+
 table tbody tr td {
     vertical-align: middle !important;
 }
+
 .c-main {
     padding-top: 15px !important;
 }
+
 .searchFrom .checkbox {
     margin-right: 5px;
 }
+
 .swal2-title {
     font-size: 20px !important;
     line-height: 23px;
 }
+
 .input-group-file label {
     margin-bottom: 0px !important;
 }
+
 .input-group-file {
     padding: 0px !important;
     border: 0px !important;
 }
+
 .hidden {
     display: none;
 }
+
 .form-control[readonly] {
-    background-color:#eee;
+    background-color: #eee;
     opacity: 1;
     cursor: not-allowed;
 }
-.form-control[name=file_name], .start-date {
-    background-color:#fff !important;
+
+.form-control[name=file_name],
+.start-date {
+    background-color: #fff !important;
     opacity: 1;
     cursor: not-allowed;
 }
-.table th, .table td {
+
+.table th,
+.table td {
     word-break: break-all;
 }
+
 .btn-action-create {
     margin-left: 5px;
 }
+
 .title-page {
     font-size: 20px;
     margin-top: 15px;
+    margin-bottom: 15px;
 }
+
 .form-inline {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
 }
-@media (min-width: 576px)
-{
+
+@media (min-width: 576px) {
     .form-inline .form-control {
         display: inline-block;
         width: auto;
         vertical-align: middle;
     }
 }
+
 .cursor-point {
     cursor: pointer;
 }
+
 .pageSizeForm {
     .page-size-select {
         margin-left: 10px;
     }
 }
+
 .dropdown-item {
     padding: 0.5rem 1.25rem;
 }
+
 .dropdown-divider {
     height: 0;
     margin: 0.5rem 0;
     overflow: hidden;
     border-top: 1px solid #d8dbe0;
 }
+
 .swal2-styled.swal2-confirm {
     background-color: #2778c4 !important;
 }
+
 *[require]:after {
-    content: "\203B";
+    // content: "\203B";
+    // content: "\f069";
+    content: "*";
     color: red;
     font-size: 12px;
     position: absolute;
     margin-left: 3px;
 }
+
 .row {
     position: relative;
 }
+
 .btn-w-100 {
     min-width: 100px;
     margin-right: 5px;
 }
+
+.btn-100 {
+    width: 100%;
+}
+
 .card-footer {
     background-color: #fff !important;
     border-color: #d8dbe0 !important;
 }
+
 .btn-default:hover {
     border-color: #d8dbe0 !important;
 }
 
 .container {
     max-width: 100%;
+}
+
+.section-detail {
+    margin: 10px;
+}
+
+.nl2br {
+    white-space: pre-line;
+    br:first-child {
+        display: none;
+    }
 }

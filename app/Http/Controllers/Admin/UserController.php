@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\UserRequest;
+use App\Repositories\Admin\AdminInterface;
 use App\Repositories\User\UserInterface;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class UserController extends BaseController
 {
     private $userInterface;
 
-    public function __construct(UserInterface $userInterface)
+    public function __construct(AdminInterface $userInterface)
     {
         $this->userInterface = $userInterface;
     }

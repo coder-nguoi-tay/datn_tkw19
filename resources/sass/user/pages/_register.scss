@@ -25,6 +25,7 @@
     max-width: 60%;
     margin: 0 auto;
   }
+
   @include mq-xl() {
     max-width: 50%;
   }
@@ -232,3 +233,49 @@
         background-color: red !important;
     }
 }
+
+//step2
+.form-step2 {
+  width: 428px;
+  height: auto;
+  font-weight: 900;
+  margin: 0 auto;
+  max-width: 50%;
+
+  button {
+    width: 160px;
+    height: 45px;
+  }
+
+  .form-control {
+    margin-top: 5px;
+    width: 400px;
+  }
+
+  .lbl-input {
+    margin-left: 1px;
+  }
+
+  .text-center {
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .text-center a {
+    color: black;
+    font-size: 15px;
+  }
+
+  .radio {
+    margin-left: 5px;
+  }
+
+  h5 {
+    font-weight: 900;
+  }
+
+  .form-control::placeholder {
+    color: #dad9d9;
+  }
+}
+//end

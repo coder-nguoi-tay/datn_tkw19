@@ -87,6 +87,37 @@
                     }
                 ]
             }
+        },
+        "/api/v1/user_info": {
+            "get": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "get current user info",
+                "operationId": "35a4073e24763b4958b37bebf8d32389",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
