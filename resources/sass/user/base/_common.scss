@@ -30,7 +30,8 @@ a {
 
 .main-content {
   background-color: #F7F7F7;
-  min-height: calc(100vh - 100px);
+  height: calc(100vh - 100px);
+  overflow-y: scroll;
 }
 .hidden {
     display: none !important;
