@@ -129,6 +129,7 @@
           </VeeForm>
           <step2
             @backStep="backStep"
+            @nextStep="step++"
             :data="data"
             :data-model="model"
             v-else-if="step == 2"
@@ -177,12 +178,12 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
       model: {
-        phone_number: '',
+        phone_number: '0368278668',
         gender: 1,
         type: ''
       },
       step: 1,
-      step1: 1,
+      step1: 2,
       error: '',
       showRecapchar: false,
       disabledCheckCode: true

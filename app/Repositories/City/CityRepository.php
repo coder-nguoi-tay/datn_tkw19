@@ -18,7 +18,7 @@ class CityRepository extends BaseController implements CityInterface
 
     public function get()
     {
-        return $this->city->select('id', 'name as label', 'prefecture_id')
+        return $this->city->latest()->select('id', 'name as label', 'prefecture_id')
             ->orderBy('order_num')
             ->get();
     }

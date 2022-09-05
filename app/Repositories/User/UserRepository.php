@@ -51,4 +51,5 @@ class UserRepository extends BaseController implements UserInterface
             $query->where('phone_number', $request['phone_number']);
         })->exists();
     }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Enums\StatusCode;
+use App\Http\Requests\UserRegister;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\PhoneNumberRequest;
 use App\Repositories\City\CityInterface;
@@ -60,8 +61,9 @@ class RegisterController extends BaseController
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRegister $request)
     {
+        dd($request->all());
         //
     }
 

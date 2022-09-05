@@ -7,6 +7,7 @@
   >
     <form
       method="POST"
+      id="form-data"
       class="form-step"
       @submit="handleSubmit($event, onSubmit)"
       ref="formData"
@@ -16,6 +17,7 @@
           <div class="input-label">アカウント情報</div>
           <div class="form-group">
             <label class="input-label">表示名</label>
+            <Field type="hidden" :value="csrfToken" name="_token" />
             <Field
               name="show_name"
               type="text"
@@ -377,28 +379,17 @@ export default {
       )
     },
     onSubmit() {
-      //   let that = this
-      //   $('.loading-div').removeClass('hidden')
-      //   axios
-      //     .post(this.data.urlSendCode, {
-      //       _token: Laravel.csrfToken,
-      //       phone_number: this.model.phone_number
-      //     })
-      //     .then(function (response) {
-      //       $('.loading-div').addClass('hidden')
-      //       // response.data.valid
-      //       that.step1 = 2
-      //     })
-      //     .catch((error) => {
-      //       $('.loading-div').addClass('hidden')
-      //       const { status } = error.response || {}
-      //       if (status == 500 || status == 429 || status == 400) {
-      //         that.error = error.response.data.message
-      //         that.showRecapchar = true
-      //       }
-      //     })
-      //   this.flagShowLoader = true
-      //   this.$refs.formData.submit()
+      let that = this
+      $('.loading-div').removeClass('hidden')
+      axios
+        .post(this.data.urlStore, $('#form-data').serialize())
+        .then(function (response) {
+          $('.loading-div').addClass('hidden')
+          that.$emit('nextStep')
+        })
+        .catch((error) => {
+          $('.loading-div').addClass('hidden')
+        })
     }
   }
 }
