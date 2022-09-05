@@ -16,7 +16,7 @@
 
     label {
       padding: 4px 19px 4px 18px;
-      color: #000000;
+      color: $black;
       cursor: pointer;
       display: flex;
       font-weight: 700;
@@ -30,7 +30,7 @@
       background-color: #E4422D;
 
       label {
-        color: #FFFFFF;
+        color: $white;
       }
     }
   }
@@ -39,14 +39,14 @@
     background-color: #E4422D;
 
     label {
-      color: #FFFFFF;
+      color: $white;
     }
   }
 }
 
 .event-detail {
   .event-info {
-    background-color: #fff;
+    background-color: $white;
 
     .event__img {
       img {
