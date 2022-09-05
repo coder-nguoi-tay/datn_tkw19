@@ -14,18 +14,19 @@ const app = createApp({})
 
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
-import MyEvent from './components/myEvent/index.vue'
-
 app.use(VueSweetalert2)
-app.component('my-event', MyEvent)
 
-import Register from './components/user/register/index.vue'
-import EventCreate from './components/event/create.vue'
-import EventConfirm from './components/event/confirm.vue'
+import Register from './components/user/register/index.vue';
+import EventCreate from './components/event/create.vue';
+import EventConfirm from './components/event/confirm.vue';
+import MyEvent from './components/myEvent/index.vue'
+import MyEventShow from './components/myEvent/show.vue';
 
-app.component('nl2br', Nl2br)
-app.component('register', Register)
-app.component('event-create', EventCreate)
-app.component('event-confirm', EventConfirm)
+app.component('nl2br', Nl2br);
+app.component('register', Register);
+app.component('event-create', EventCreate);
+app.component('event-confirm', EventConfirm);
+app.component('my-event', MyEvent);
+app.component('my-event-show', MyEventShow);
 
 app.mount('#app')

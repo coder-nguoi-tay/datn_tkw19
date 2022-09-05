@@ -47,4 +47,17 @@ class MyEventController extends BaseController
     {
         return redirect(route('myEvent.index'));
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('myEvent.show', [
+            'title' => 'イベント詳細 – 参加者 – 公開チャット'
+        ]);
+    }
 }
