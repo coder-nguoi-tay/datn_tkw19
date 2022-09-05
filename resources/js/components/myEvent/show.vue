@@ -195,8 +195,8 @@
                 <p class="txt-updated-at text-end">
                   最終更新日時：2021年12月10日 21:21
                 </p>
-                <button type="button" class="btn-join">
-                  イベントに参加する
+                <button type="button" class="btn-join" :disabled="!isAllowRegister">
+                  {{ isAllowRegister ? 'イベントに参加する' : 'このイベントの参加は締め切られました' }}
                 </button>
               </div>
             </div>
@@ -307,6 +307,7 @@ export default {
     return {
       haveMessage: true,
       havePrivateMess: true,
+      isAllowRegister: true,
     }
   },
   created() {},

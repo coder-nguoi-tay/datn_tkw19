@@ -428,6 +428,9 @@
       line-height: 37px;
       border: unset;
       font-weight: bold;
+      &[disabled] {
+        background-color: #9A9A9A;
+      }
     }
   }
 }
