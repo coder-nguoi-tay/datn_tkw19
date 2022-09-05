@@ -207,7 +207,84 @@
             role="tabpanel"
             aria-labelledby="private-chat-tab"
           >
-            b
+            <div class="group-chat private-chat">
+              <div class="chat__header d-flex justify-content-between">
+                <span class="txt-all-people">企画者（商社太郎）</span>
+                <div>
+                  <span class="c-header__txt all-people">
+                    <img
+                      src="/assets/img/user/event/ic_people_black.svg"
+                      alt=""
+                    />120人
+                  </span>
+                  <span class="c-header__txt people-on-chat">
+                    <img
+                      src="/assets/img/user/event/ic_p_on_chat.svg"
+                      alt=""
+                    />{{ haveMessage ? '4' : '0' }}人
+                  </span>
+                </div>
+              </div>
+              <div class="chat__body">
+                <div class="message-box" v-if="havePrivateMess">
+                  <div class="chat__container">
+                    <p class="chat-datetime text-center">2021年12月9日</p>
+                    <div class="chat__item me d-flex">
+                      <div class="chat__right">
+                        <div class="chat__content">是非参加させていただきたいです。</div>
+                        <div class="chat-time">18:22<span>・・・</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="chat__container">
+                    <p class="chat-datetime text-center">2021年12月10日</p>
+                    <div class="chat__item other-people d-flex">
+                      <div class="avatar">
+                        <img src="/assets/img/user/event/avatar_2.png" alt="" />
+                      </div>
+                      <div class="chat__right">
+                        <div class="chat__content">
+                          参加を承諾させていただきます。
+                        </div>
+                        <div class="chat-time">9:10<span>・・・</span></div>
+                      </div>
+                    </div>
+                    <div class="chat__item other-people d-flex">
+                      <div class="avatar">
+                        <img src="/assets/img/user/event/avatar_4.png" alt="" />
+                      </div>
+                      <div class="chat__right">
+                        <div class="chat__content">企画者が参加を承諾いたしました。イベント達成に向けて活動を開始してください。</div>
+                        <div class="chat-time">9:10<span>・・・</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="message-box none-message" v-else>
+                  チャット内にまだ投稿はありません。
+                </div>
+                <div class="message-input-group d-flex align-items-center">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder=""
+                    name="message"
+                  />
+                  <button class="btn-send-image">
+                    <img src="/assets/img/user/event/ic_camera.svg" alt="" />
+                  </button>
+                  <button class="btn-send-message">投稿</button>
+                </div>
+              </div>
+              <div class="chat__footer">
+                <p class="txt-updated-at text-end">
+                  最終更新日時：2021年12月10日 21:21
+                </p>
+                <button type="button" class="btn-join btn-join-private">
+                  達成報告
+                </button>
+              </div>
+            </div>
           </div>
           <div
             class="tab-pane fade"
@@ -228,7 +305,8 @@ export default {
   props: ['data'],
   data: function () {
     return {
-      haveMessage: true
+      haveMessage: true,
+      havePrivateMess: true,
     }
   },
   created() {},
