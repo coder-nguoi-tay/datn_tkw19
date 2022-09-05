@@ -13,6 +13,9 @@ const app = createApp({})
 
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
+import MyEvent from './components/myEvent/index.vue'
+
 app.use(VueSweetalert2)
+app.component('my-event', MyEvent)
 
 app.mount('#app')
