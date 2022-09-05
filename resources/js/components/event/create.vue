@@ -130,15 +130,4 @@ export default {
   methods: {}
 }
 </script>
-<style>
-.error {
-  color: rgb(209, 41, 41);
-}
-
-.container {
-  border: 1px solid #ccc;
-  width: 426px;
-  height: auto;
-}
-</style>
 

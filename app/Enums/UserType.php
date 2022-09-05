@@ -7,7 +7,9 @@ use BenSampo\Enum\Enum;
 final class UserType extends Enum
 {
     const PERSON = 1;
+
     const COMPANY = 2;
+
     public static function getDescription($value): string
     {
         switch ($value) {
@@ -29,6 +31,7 @@ final class UserType extends Enum
         foreach (self::getValues() as $value) {
             $data[] = ['label' => self::getDescription($value), 'id' => $value];
         }
+
         return $data;
     }
 }

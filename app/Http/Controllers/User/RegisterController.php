@@ -5,10 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\PhoneNumberRequest;
+use App\Repositories\City\CityInterface;
+use App\Repositories\Prefecture\PrefectureInterface;
 use App\Repositories\User\UserInterface;
 use App\Repositories\UserTmp\UserTmpInterface;
-use App\Repositories\Prefecture\PrefectureInterface;
-use App\Repositories\City\CityInterface;
 use Illuminate\Http\Request;
 use Twilio\Rest\Client;
 
@@ -17,7 +17,9 @@ class RegisterController extends BaseController
     private $user;
 
     private $userTmp;
+
     private $prefecture;
+
     private $city;
 
     public function __construct(UserInterface $user, UserTmpInterface $userTmp, CityInterface $city, PrefectureInterface $prefecture)

@@ -22,6 +22,7 @@ class Prefecture extends Model
     use HasFactory, SoftDeletes, Sortable, QueryCacheable;
 
     protected $cacheFor = 31536000; //1 year
+
     /**
      * The "type" of the auto-incrementing ID.
      *

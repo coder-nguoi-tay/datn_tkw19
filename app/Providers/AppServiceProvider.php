@@ -4,16 +4,16 @@ namespace App\Providers;
 
 use App\Repositories\Admin\AdminInterface;
 use App\Repositories\Admin\AdminRepository;
-use App\Repositories\User\UserInterface;
-use App\Repositories\User\UserRepository;
-use App\Repositories\UserTmp\UserTmpInterface;
-use App\Repositories\UserTmp\UserTmpRepository;
+use App\Repositories\City\CityInterface;
+use App\Repositories\City\CityRepository;
 use App\Repositories\News\NewsInterface;
 use App\Repositories\News\NewsRepository;
 use App\Repositories\Prefecture\PrefectureInterface;
 use App\Repositories\Prefecture\PrefectureRepository;
-use App\Repositories\City\CityInterface;
-use App\Repositories\City\CityRepository;
+use App\Repositories\User\UserInterface;
+use App\Repositories\User\UserRepository;
+use App\Repositories\UserTmp\UserTmpInterface;
+use App\Repositories\UserTmp\UserTmpRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

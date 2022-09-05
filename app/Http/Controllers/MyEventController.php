@@ -24,7 +24,7 @@ class MyEventController extends BaseController
      */
     public function index(Request $request)
     {
-        return view("myEvent.index");
+        return view('myEvent.index');
     }
 
     /**

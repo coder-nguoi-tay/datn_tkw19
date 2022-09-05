@@ -2,14 +2,15 @@
 
 namespace App\Repositories\name;
 
-use App\Models\name;
 use App\Http\Controllers\BaseController;
+use App\Models\name;
 use App\Repositories\name\nameInterface;
 use Illuminate\Support\Facades\Auth;
 
 class nameRepository extends BaseController implements nameInterface
 {
     private name $name;
+
     public function __construct(name $name)
     {
         $this->name = $name;

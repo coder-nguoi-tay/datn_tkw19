@@ -40,7 +40,6 @@ import PopupAlert from './components/common/popupAlert.vue'
 import ForgotPasswordCreate from './components/forgotPassword/create.vue'
 import ForgotPasswordSuccess from './components/forgotPasswordSuccess/index.vue'
 import PasswordReset from './components/passwordReset/show.vue'
-import RegisterStep2 from './components/register/index.vue'
 
 app.use(VueSweetalert2)
 app.component('nl2br', Nl2br)
@@ -51,6 +50,5 @@ app.component('popup-alert', PopupAlert)
 app.component('forgot-password-create', ForgotPasswordCreate)
 app.component('forgot-password-success', ForgotPasswordSuccess)
 app.component('password-reset', PasswordReset)
-app.component('register-step2', RegisterStep2)
 
 app.mount('#app')

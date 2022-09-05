@@ -7,7 +7,9 @@ use BenSampo\Enum\Enum;
 final class Gender extends Enum
 {
     const MALE = 1;
+
     const FEMALE = 2;
+
     const OTHER = 3;
 
     public static function getDescription($value): string
@@ -34,6 +36,7 @@ final class Gender extends Enum
         foreach (self::getValues() as $value) {
             $data[] = ['label' => self::getDescription($value), 'id' => $value];
         }
+
         return $data;
     }
 }

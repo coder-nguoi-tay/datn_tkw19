@@ -4,12 +4,14 @@ namespace App\Enums;
 
 use BenSampo\Enum\Enum;
 
-
 final class JobType extends Enum
 {
     const Option1 = 1;
+
     const Option2 = 2;
+
     const Option3 = 3;
+
     const Option4 = 4;
 
     public static function getDescription($value): string

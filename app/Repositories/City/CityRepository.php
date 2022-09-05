@@ -2,14 +2,15 @@
 
 namespace App\Repositories\City;
 
-use App\Models\City;
 use App\Http\Controllers\BaseController;
+use App\Models\City;
 use App\Repositories\City\CityInterface;
 use Illuminate\Support\Facades\Auth;
 
 class CityRepository extends BaseController implements CityInterface
 {
     private City $city;
+
     public function __construct(City $city)
     {
         $this->city = $city;

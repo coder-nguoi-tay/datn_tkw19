@@ -22,5 +22,4 @@ class PrefectureRepository extends BaseController implements PrefectureInterface
             ->orderBy('order_num')
             ->get();
     }
-
 }
