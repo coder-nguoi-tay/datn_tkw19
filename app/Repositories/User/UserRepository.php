@@ -7,6 +7,7 @@ use App\Http\Controllers\BaseController;
 use App\Models\User;
 use App\Models\UserTmp;
 use App\Repositories\User\UserInterface;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -65,7 +66,7 @@ class UserRepository extends BaseController implements UserInterface
             // UserType
             $user = new $this->user;
             $user->show_name = $request->show_name;
-            $user->phone_number = $request->phone_number;
+            $user->phone_number = (env('VN_MODE') ? '+84' : '+81').$request->phone_number;
             $user->password = Hash::make($request->password);
             $user->type = $request->type;
             $user->prefecture_id = $request->prefecture_id;
@@ -101,5 +102,16 @@ class UserRepository extends BaseController implements UserInterface
         }
 
         return false;
+    }
+
+    public function updateLastLogin($id)
+    {
+        $currentUser = $this->user->where('id', $id)->first();
+        if (! $currentUser) {
+            return false;
+        }
+        $currentUser->last_login_at = Carbon::now();
+
+        return $currentUser->save();
     }
 }

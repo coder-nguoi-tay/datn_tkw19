@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Repositories\User\UserInterface;
+use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\UserLoginRequest;
+use App\Repositories\User\UserInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,7 +26,7 @@ class LoginController extends BaseController
     public function index(Request $request)
     {
         if (Auth::guard('user')->check()) {
-            return redirect(route('dashboard.index'));
+            return redirect(route('my-event.index'));
         }
 
         return view('user.login.index', [
@@ -50,9 +52,26 @@ class LoginController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserLoginRequest $request)
     {
-        //
+        $credentials = $request->only('email', 'password');
+        if (Auth::guard('user')->attempt($credentials, $request->remember_me ?? false)) {
+            if (! $this->user->updateLastLogin(Auth::guard('user')->user()->id)) {
+                Auth::guard('user')->logout();
+
+                return response()->json([
+                    'message' => 'メールアドレスとパスワードが一致しません。',
+                ], StatusCode::UNAUTHORIZED);
+            }
+
+            return response()->json([
+                'url_redirect' => $request->url_redirect ? $request->url_redirect : route('my-event.index'),
+            ], StatusCode::OK);
+        }
+
+        return response()->json([
+            'message' => 'メールアドレスとパスワードが一致しません。',
+        ], StatusCode::UNAUTHORIZED);
     }
 
     /**
@@ -98,5 +117,12 @@ class LoginController extends BaseController
     public function destroy($id)
     {
         //
+    }
+
+    public function logout()
+    {
+        Auth::guard('user')->logout();
+
+        return redirect(route('login.index'));
     }
 }

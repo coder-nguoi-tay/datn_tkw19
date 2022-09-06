@@ -14,7 +14,9 @@
               @submit="handleSubmit($event, onSubmit)"
               :action="data.urlStore"
               ref="formData"
+              id="form-data"
             >
+              <Field type="hidden" :value="csrfToken" name="_token" />
               <div class="step__container">
                 <div class="step">
                   <div class="input-label m-t-10">
@@ -47,9 +49,6 @@
                     />
                     <ErrorMessage class="error-msg" name="password" />
                   </div>
-                  <div class="error-msg" v-if="error">
-                    {{ error }}
-                  </div>
                 </div>
               </div>
               <div class="capcha text-center" v-if="showRecapchar">
@@ -68,6 +67,9 @@
                   @change="error = ''"
                 />
                 <ErrorMessage class="error-msg" name="recaptcha_token" />
+                <div class="error-msg text-center" v-if="error">
+                  {{ error }}
+                </div>
               </div>
               <div
                 class="submit__container"
@@ -80,7 +82,9 @@
                   >
                 </p>
                 <p class="txt-login">
-                  アカウントをお持ちでない方は<a href="/register">こちら</a>
+                  アカウントをお持ちでない方は<a :href="data.urlRegister"
+                    >こちら</a
+                  >
                 </p>
               </div>
             </form>
@@ -122,7 +126,8 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
       model: {},
-      showRecapchar: false
+      showRecapchar: false,
+      error: ''
     }
   },
   created() {
@@ -167,44 +172,15 @@ export default {
       let that = this
       $('.loading-div').removeClass('hidden')
       axios
-        .post(this.data.urlSendCode, {
-          _token: Laravel.csrfToken,
-          phone_number: this.model.phone_number
-        })
+        .post(this.data.urlStore, $('#form-data').serialize())
         .then(function (response) {
           $('.loading-div').addClass('hidden')
-          //   that.disabledCheckCode = false
+          location.href = response.data.url_redirect
         })
         .catch((error) => {
           $('.loading-div').addClass('hidden')
-          const { status } = error.response || {}
-          if (status == 500 || status == 429 || status == 400) {
-            that.error = error.response.data.message
-            that.showRecapchar = true
-          }
-        })
-    },
-    handleOnComplete(val) {
-      let that = this
-      that.model.code = val
-      $('.loading-div').removeClass('hidden')
-      axios
-        .post(this.data.urlVerifyCode, {
-          _token: Laravel.csrfToken,
-          phone_number: this.model.phone_number,
-          code: val
-        })
-        .then(function (response) {
-          $('.loading-div').addClass('hidden')
-          that.disabledCheckCode = false
-        })
-        .catch((error) => {
-          $('.loading-div').addClass('hidden')
-          const { status } = error.response || {}
-          if (status == 500 || status == 429 || status == 400) {
-            that.error = error.response.data.message
-            that.showRecapchar = true
-          }
+          that.error = error.response.data.message
+          that.showRecapchar = true
         })
     }
   }

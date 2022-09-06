@@ -17,4 +17,6 @@ interface UserInterface
     public function checkPhone($request);
 
     public function register($request);
+
+    public function updateLastLogin($id);
 }

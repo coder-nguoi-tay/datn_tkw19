@@ -38,12 +38,13 @@ Route::post('register/verify-code', [RegisterController::class, 'verifyCode'])->
 Route::resource('my-event', MyEventController::class);
 Route::resource('event', EventController::class);
 Route::resource('login', UserLoginController::class);
+Route::get('logout', [UserLoginController::class, 'logout'])->name('logout');
 
 Route::group([
     'prefix' => 'admin',
 ], function () {
     Route::resource('login', LoginController::class, ['as' => 'admin']);
-    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
     Route::resource('forgot_password', ForgotPasswordController::class, ['as' => 'admin']);
     Route::resource('forgot_password_complete', ForgotPasswordSuccessController::class, ['as' => 'admin']);
     Route::resource('password_reset', PasswordResetController::class, ['as' => 'admin']);

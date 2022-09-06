@@ -31,8 +31,10 @@ class CreateUsersTable extends Migration
             $table->string('address_building', 255)->nullable();
             $table->tinyInteger('job_type')->nullable();
             $table->text('job_descriptions')->nullable();
-            $table->string('reset_password_token', 255)->nullable();
-            $table->dateTime('reset_password_token_expire')->nullable();
+            $table->string('reset_password_token')->nullable();
+            $table->datetime('reset_password_token_expire')->nullable();
+            $table->datetime('last_login_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
 

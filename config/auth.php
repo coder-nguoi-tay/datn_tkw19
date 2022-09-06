@@ -82,8 +82,9 @@ return [
             'model' => App\Models\Admin::class,
         ],
         'user' => [
-            'driver' => 'eloquent',
+            'driver' => 'custom_user_auth',
             'model' => App\Models\User::class,
+            'hash' => false,
         ],
         'api' => [
             'driver' => 'eloquent',

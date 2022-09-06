@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Kyslik\ColumnSortable\Sortable;
 
 /**
@@ -32,7 +33,7 @@ use Kyslik\ColumnSortable\Sortable;
  * @property string $updated_at
  * @property string $deleted_at
  */
-class User extends Model
+class User extends Authenticatable
 {
     use HasFactory, SoftDeletes, Sortable;
 
