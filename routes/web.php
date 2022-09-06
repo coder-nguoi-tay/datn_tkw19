@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ForgotPasswordSuccessController;
 use App\Http\Controllers\Admin\PasswordResetController;
 use App\Http\Controllers\Admin\PasswordResetExpiredController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\User\LoginController as UserLoginController;
 use App\Http\Controllers\User\EventController;
 use App\Http\Controllers\MyEventController;
 use App\Http\Controllers\User\HomeController;
@@ -29,12 +30,14 @@ use Illuminate\Support\Facades\Route;
 //    return redirect(route('login.index'));
 //});
 
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+// Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/', [UserLoginController::class, 'index'])->name('home.index');
 Route::resource('register', RegisterController::class);
 Route::post('register/send-code', [RegisterController::class, 'sendCode'])->name('register.sendCode');
 Route::post('register/verify-code', [RegisterController::class, 'verifyCode'])->name('register.verifyCode');
 Route::resource('my-event', MyEventController::class);
 Route::resource('event', EventController::class);
+Route::resource('login', UserLoginController::class);
 
 Route::group([
     'prefix' => 'admin',

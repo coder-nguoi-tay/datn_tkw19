@@ -10,12 +10,12 @@
             >
             <span
               class="step-indicator"
-              :class="{ active: step >= 2, current: (step == 2) }"
+              :class="{ active: step >= 2, current: step == 2 }"
               >ユーザー情報登録</span
             >
             <span
               class="step-indicator"
-              :class="{ active: step >= 3, current: (step == 3) }"
+              :class="{ active: step >= 3, current: step == 3 }"
               >完了</span
             >
           </div>
@@ -79,7 +79,7 @@
                 >
                   <button type="submit" class="btn-submit">送信する</button>
                   <p class="txt-login">
-                    既にアカウントをお持ちの方は<a href="">こちら</a>
+                    既にアカウントをお持ちの方は<a href="/">こちら</a>
                   </p>
                 </div>
               </template>
@@ -232,7 +232,7 @@ export default {
         .then(function (response) {
           $('.loading-div').addClass('hidden')
           that.step1 = 2
-        //   that.disabledCheckCode = false
+          //   that.disabledCheckCode = false
         })
         .catch((error) => {
           $('.loading-div').addClass('hidden')

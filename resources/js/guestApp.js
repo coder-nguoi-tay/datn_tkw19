@@ -41,6 +41,8 @@ import ForgotPasswordCreate from './components/forgotPassword/create.vue'
 import ForgotPasswordSuccess from './components/forgotPasswordSuccess/index.vue'
 import PasswordReset from './components/passwordReset/show.vue'
 
+import UserLogin from './components/user/login/index.vue'
+
 app.use(VueSweetalert2)
 app.component('nl2br', Nl2br)
 app.component('register', Register)
@@ -50,5 +52,6 @@ app.component('popup-alert', PopupAlert)
 app.component('forgot-password-create', ForgotPasswordCreate)
 app.component('forgot-password-success', ForgotPasswordSuccess)
 app.component('password-reset', PasswordReset)
+app.component('user-login', UserLogin)
 
 app.mount('#app')
