@@ -201,12 +201,142 @@
         }
       }
     }
+
+    &.message-list {
+      .message__header {
+        margin: 10px 0 6px;
+
+        .mess__header-item {
+          width: calc(50% - 3px);
+          background-color: $white;
+          border-radius: 4px;
+          height: 70px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0 12px;
+          @include mq-xs() {
+            justify-content: space-between;
+          }
+
+          .txt-people {
+            font-size: 14px;
+            line-height: 22px;
+            font-weight: bold;
+            color: $black;
+
+            img {
+              margin-left: 4px;
+            }
+          }
+
+          .txt-number-people {
+            font-size: 18px;
+            line-height: 29px;
+            color: $black;
+            margin-right: 6px;
+            font-weight: bold;
+            margin-left: 12px;
+            white-space: nowrap;
+
+            span {
+              font-size: 10px;
+              line-height: 16px;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
   }
 
   .chat__body {
     padding: 0 4.5px 0 9px;
     border-radius: 4px;
     background-color: #ECECEC;
+
+    &.message__body {
+      height: 427px;
+      background-color: $white;
+      padding: 0 5px 0 10px;
+      margin-bottom: 9px;
+
+      .message-box {
+        padding-right: 5px;
+
+        a {
+          &:last-child {
+            .chat__item {
+              border-bottom: unset;
+            }
+          }
+        }
+      }
+
+      .chat__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #CFCFCF;
+        padding: 12px 8px 12px 5px;
+
+        .chat__left {
+          display: flex;
+          align-items: center;
+        }
+
+        .ic-mark {
+          margin-right: 15px;
+          display: inline-block;
+          min-width: 12px;
+
+          &.marked {
+            & * {
+              fill: #FF952A;
+            }
+          }
+
+          &.favorite {
+            & * {
+              fill: #FFDD00;
+            }
+          }
+        }
+
+        .avatar {
+          width: 40px;
+          height: 40px;
+          margin-right: 12px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+
+        .username {
+          font-size: 14px;
+          line-height: 22px;
+          font-weight: bold;
+          color: $black;
+          margin-bottom: 2px;
+        }
+
+        .last-mess {
+          font-size: 10px;
+          line-height: 16px;
+          color: $black;
+        }
+
+        .mess-status {
+          font-size: 10px;
+          line-height: 16px;
+          color: #CFCFCF;
+        }
+      }
+    }
 
     .message-box {
       padding-right: 4.5px;
@@ -428,6 +558,7 @@
       line-height: 37px;
       border: unset;
       font-weight: bold;
+
       &[disabled] {
         background-color: #9A9A9A;
       }
