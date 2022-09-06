@@ -178,12 +178,12 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
       model: {
-        phone_number: '0368278668',
+        phone_number: '',
         gender: 1,
         type: ''
       },
       step: 1,
-      step1: 2,
+      step1: 1,
       error: '',
       showRecapchar: false,
       disabledCheckCode: true
@@ -232,7 +232,7 @@ export default {
         .then(function (response) {
           $('.loading-div').addClass('hidden')
           that.step1 = 2
-          that.disabledCheckCode = false
+        //   that.disabledCheckCode = false
         })
         .catch((error) => {
           $('.loading-div').addClass('hidden')

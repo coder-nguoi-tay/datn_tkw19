@@ -2,14 +2,14 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Prefecture;
-use App\Models\City;
-use Carbon\Carbon;
-use App\Enums\UserType;
-use App\Enums\JobType;
 use App\Enums\Gender;
-use Illuminate\Validation\Rule;
+use App\Enums\JobType;
+use App\Enums\UserType;
+use App\Models\City;
+use App\Models\Prefecture;
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserRegister extends FormRequest
 {
@@ -47,7 +47,7 @@ class UserRegister extends FormRequest
             'type' => [
                 'required',
                 Rule::in(UserType::getValues()),
-            ]
+            ],
         ];
         $rule['prefecture_id'] = [
             'required',
@@ -78,6 +78,7 @@ class UserRegister extends FormRequest
             $rule['address_building'] = 'required|max:255';
             $rule['job_descriptions'] = 'required|max:1000';
         }
+
         return $rule;
     }
 }

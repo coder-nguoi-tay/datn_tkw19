@@ -15,4 +15,6 @@ interface UserInterface
     public function destroy($id);
 
     public function checkPhone($request);
+
+    public function register($request);
 }

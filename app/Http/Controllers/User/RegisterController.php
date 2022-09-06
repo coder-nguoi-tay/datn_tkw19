@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Enums\StatusCode;
-use App\Http\Requests\UserRegister;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\PhoneNumberRequest;
+use App\Http\Requests\UserRegister;
 use App\Repositories\City\CityInterface;
 use App\Repositories\Prefecture\PrefectureInterface;
 use App\Repositories\User\UserInterface;
@@ -63,8 +63,18 @@ class RegisterController extends BaseController
      */
     public function store(UserRegister $request)
     {
-        dd($request->all());
-        //
+        if (! $this->userTmp->verifyCode($request)) {
+            return response()->json(['message' => 'code expired'], StatusCode::INTERNAL_ERR);
+        }
+        if ($this->user->register($request)) {
+            return response()->json([
+                'status' => StatusCode::OK,
+            ], StatusCode::OK);
+        }
+
+        return response()->json([
+            'message' => 'エラーが発生しました。',
+        ], StatusCode::INTERNAL_ERR);
     }
 
     /**

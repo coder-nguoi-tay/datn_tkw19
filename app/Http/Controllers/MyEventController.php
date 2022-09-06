@@ -57,7 +57,7 @@ class MyEventController extends BaseController
     public function show($id)
     {
         return view('myEvent.show', [
-            'title' => 'イベント詳細 – 参加者 – 公開チャット'
+            'title' => 'イベント詳細 – 参加者 – 公開チャット',
         ]);
     }
 }
