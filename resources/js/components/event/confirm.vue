@@ -82,16 +82,44 @@
             </button>
           </div>
           <div class="col-4 ps-1 text-center btn-box p-0 my-0 mb-3">
-            <button type="submit" class="btn btn-100 btn-save btn-w-100">
+            <button
+              type="submit"
+              @click="registerCard"
+              class="btn btn-100 btn-save btn-w-100"
+            >
               投稿
             </button>
           </div>
         </div>
       </div>
+      <register-card
+        :flagShow="isShow"
+        @close="closePopupRegisterCard"
+      ></register-card>
+      <popup-success :flagShow="showPopup" @close="closeDialog"></popup-success>
     </div>
   </div>
 </template>
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      isShow: false,
+      showPopup: true
+    }
+  },
+  components: {},
+  methods: {
+    registerCard() {
+      this.isShow = true
+    },
+    closePopupRegisterCard() {
+      this.isShow = false
+    },
+    closeDialog() {
+      this.showPopup = false
+    }
+  }
+}
 </script>
 

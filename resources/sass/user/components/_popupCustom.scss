@@ -1,0 +1,26 @@
+.popup-custom {
+    position: fixed;
+    padding: 10px;
+    background: none;
+    top: 50%;
+    transform: translateY(-50%);
+    .popup__header {
+        color: #E5352B;
+    }
+    .popup__content {
+        img {
+            max-width: 60%;
+        }
+    }
+}
+
+.close-popup {
+    button {
+        font-size: 30px;
+        line-height: 0;
+        color: #FFFFFF;
+        border: none;
+        background: none;
+        outline: none;
+    }
+}
