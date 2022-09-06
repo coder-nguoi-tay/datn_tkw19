@@ -1,0 +1,78 @@
+.register-card {
+    position: fixed;
+    padding: 10px;
+    background: none;
+    top: 50%;
+    transform: translateY(-50%);
+    .container {
+        background-color: #FFFFFF;
+        .register-card__header {
+            p {
+                font-size: 24px;
+                font-weight: bold;
+            }
+        }
+        .register-card__desc {
+            p {
+                font-size: 14px;
+                font-weight: 400;
+            }
+        }
+        .register-card__body {
+            label {
+                font-size: 14px;
+                font-weight: bold;
+            }
+            .register-card__info {
+                border: 1px solid #1A58FF;
+                padding: 15px;
+                p {
+                    font-size: 10px;
+                    font-weight: bold;
+                }
+                span {
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+                &.disable {
+                    opacity: 0.3;
+                    border: 1px solid #9A9A9A !important;
+                }
+            }
+            .form-add-card {
+                input {
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: #000000;
+                    &::placeholder {
+                        color: #CFCFCF;
+                    }
+                }
+                .disable {
+                    color: #CFCFCF !important;
+                }
+            }
+        }
+    }
+}
+
+.register-card__btn {
+    .btn-cancel {
+        border: 1px solid #E5352B;
+        color: #E5352B;
+    }
+    .btn-confirm {
+        border: 1px solid #9A9A9A;
+        color: #9A9A9A;
+        &.active {
+            border: 1px solid #E5352B;
+            background-color: #E5352B !important;
+            color: #FFFFFF !important;
+        }
+    }
+    button {
+        min-width: 173px;
+        font-size: 12px;
+        font-weight: bold
+    }
+}

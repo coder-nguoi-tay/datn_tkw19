@@ -3,12 +3,12 @@
 @import "user/abstracts/variables";
 @import "user/base/common";
 @import "user/base/loader";
-
 @import "user/layout/header";
 @import "user/layout/footer";
 @import "user/components/buttons";
 @import "user/components/postEvent";
-
+@import "user/components/regisCard";
+@import "user/components/popupCustom";
 @import "user/pages/home";
 @import "user/pages/register";
 @import "user/pages/event";
