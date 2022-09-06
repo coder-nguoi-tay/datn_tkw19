@@ -147,7 +147,7 @@ class RegisterController extends BaseController
                 (env('VN_MODE') ? '+84' : '+81').$request->phone_number,
                 [
                     'from' => getenv('TWILIO_NUMBER'),
-                    'body' => 'dinhtu test send mail code '.$code,
+                    'body' => 'your code: '.$code,
                 ]);
 
             return response()->json([], StatusCode::OK);
