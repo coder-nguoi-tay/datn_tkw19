@@ -23,7 +23,7 @@ class Admin
     public function handle($request, Closure $next)
     {
         if (! Auth::guard('admin')->check()) {
-            return redirect('/login'.'?url_redirect='.url()->full());
+            return redirect(route('admin.login.index', ['url_redirect' => url()->full()]));
         }
 
         return $next($request);

@@ -12,7 +12,7 @@
             <form
               method="POST"
               @submit="handleSubmit($event, onSubmit)"
-              action="/login"
+              action="/admin/login"
               ref="formLogin"
             >
               <input type="hidden" :value="csrfToken" name="_token" />

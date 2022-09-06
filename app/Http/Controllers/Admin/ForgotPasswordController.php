@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\ForgotPassword as ForgotPasswordRequest;
 use App\Repositories\Admin\AdminInterface;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class ForgotPasswordController extends BaseController
      */
     public function create()
     {
-        return view('forgotPassword.create', [
+        return view('admin.forgotPassword.create', [
             'title' => 'パスワード再発行申請',
         ]);
     }
@@ -48,12 +49,12 @@ class ForgotPasswordController extends BaseController
         if (! $this->user->getByEmail($request)) {
             $this->setFlash(__('メールでユーザーを見つけることができません'), 'error');
 
-            return redirect(route('forgot_password.create'));
+            return redirect(route('admin.forgot_password.create'));
         }
         if (! $this->user->generalResetPass($request)) {
             $this->setFlash(__('メールが一致しません'), 'error');
         }
 
-        return redirect(route('forgot_password_complete.index'));
+        return redirect(route('admin.forgot_password_complete.index'));
     }
 }
