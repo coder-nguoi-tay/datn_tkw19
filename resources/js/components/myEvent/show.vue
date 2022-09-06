@@ -323,7 +323,452 @@
             role="tabpanel"
             aria-labelledby="chat-list-tab"
           >
-            c
+            <form action="" method="POST" name="" enctype="multipart/form-data">
+              <div class="group-chat message-list">
+                <div class="message__header d-flex justify-content-between">
+                  <div class="mess__header-item">
+                    <p class="txt-people">
+                      参加人数<img
+                        src="/assets/img/user/event/ic_people_grey.svg"
+                        alt=""
+                      />
+                    </p>
+                    <p class="txt-number-people">120<span>人</span></p>
+                  </div>
+                  <div class="mess__header-item">
+                    <p class="txt-people">
+                      達成人数<img
+                        src="/assets/img/user/event/ic_room_grey.svg"
+                        alt=""
+                      />
+                    </p>
+                    <p class="txt-number-people">4<span>人</span></p>
+                  </div>
+                </div>
+                <div class="chat__body message__body">
+                  <div class="message-box">
+                    <a href="">
+                      <div class="chat__item">
+                        <div class="chat__left">
+                          <span class="ic-mark">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="11.43"
+                              height="9"
+                              viewBox="0 0 11.43 9"
+                            >
+                              <g
+                                id="ic_mark"
+                                transform="translate(-332.37 -276.039)"
+                              >
+                                <path
+                                  id="Path_1408"
+                                  data-name="Path 1408"
+                                  d="M142.608,80.019h-10V73.45l2.429,2.855,2.57-2.855,2.57,2.855,2.429-2.855Z"
+                                  transform="translate(200.476 205.02)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_394"
+                                  data-name="Ellipse 394"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(332.37 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_395"
+                                  data-name="Ellipse 395"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(337.441 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_396"
+                                  data-name="Ellipse 396"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(342.513 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                              </g>
+                            </svg>
+                          </span>
+                          <div class="avatar">
+                            <img
+                              src="/assets/img/user/event/avatar_5.png"
+                              alt=""
+                            />
+                          </div>
+                          <div class="chat-info">
+                            <p class="username">ミラクルポン酢</p>
+                            <p class="last-mess">ゴッドファーザー</p>
+                          </div>
+                        </div>
+                        <p class="mess-status">達成者</p>
+                      </div>
+                    </a>
+                    <a href="">
+                      <div class="chat__item">
+                        <div class="chat__left">
+                          <span class="ic-mark marked">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="11.43"
+                              height="9"
+                              viewBox="0 0 11.43 9"
+                            >
+                              <g
+                                id="ic_mark"
+                                transform="translate(-332.37 -276.039)"
+                              >
+                                <path
+                                  id="Path_1408"
+                                  data-name="Path 1408"
+                                  d="M142.608,80.019h-10V73.45l2.429,2.855,2.57-2.855,2.57,2.855,2.429-2.855Z"
+                                  transform="translate(200.476 205.02)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_394"
+                                  data-name="Ellipse 394"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(332.37 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_395"
+                                  data-name="Ellipse 395"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(337.441 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_396"
+                                  data-name="Ellipse 396"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(342.513 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                              </g>
+                            </svg>
+                          </span>
+                          <div class="avatar">
+                            <img
+                              src="/assets/img/user/event/avatar_1.png"
+                              alt=""
+                            />
+                          </div>
+                          <div class="chat-info">
+                            <p class="username">酒井商事</p>
+                            <p class="last-mess">最速の賢者</p>
+                          </div>
+                        </div>
+                        <p class="mess-status">達成者</p>
+                      </div>
+                    </a>
+                    <a href="">
+                      <div class="chat__item">
+                        <div class="chat__left">
+                          <span class="ic-mark"></span>
+                          <div class="avatar">
+                            <img
+                              src="/assets/img/user/event/avatar_2.png"
+                              alt=""
+                            />
+                          </div>
+                          <div class="chat-info">
+                            <p class="username">まるる。</p>
+                            <p class="last-mess">スーパーバニー</p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="">
+                      <div class="chat__item">
+                        <div class="chat__left">
+                          <span class="ic-mark"></span>
+                          <div class="avatar">
+                            <img
+                              src="/assets/img/user/event/avatar_4.png"
+                              alt=""
+                            />
+                          </div>
+                          <div class="chat-info">
+                            <p class="username">🌹星のカビー🌹</p>
+                            <p class="last-mess">聖なるユニコーン</p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="">
+                      <div class="chat__item">
+                        <div class="chat__left">
+                          <span class="ic-mark favorite">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="11.43"
+                              height="9"
+                              viewBox="0 0 11.43 9"
+                            >
+                              <g
+                                id="ic_mark"
+                                transform="translate(-332.37 -276.039)"
+                              >
+                                <path
+                                  id="Path_1408"
+                                  data-name="Path 1408"
+                                  d="M142.608,80.019h-10V73.45l2.429,2.855,2.57-2.855,2.57,2.855,2.429-2.855Z"
+                                  transform="translate(200.476 205.02)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_394"
+                                  data-name="Ellipse 394"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(332.37 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_395"
+                                  data-name="Ellipse 395"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(337.441 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_396"
+                                  data-name="Ellipse 396"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(342.513 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                              </g>
+                            </svg>
+                          </span>
+                          <div class="avatar">
+                            <img
+                              src="/assets/img/user/event/avatar_1.png"
+                              alt=""
+                            />
+                          </div>
+                          <div class="chat-info">
+                            <p class="username">😀😀😀</p>
+                            <p class="last-mess">虹色のおじさん</p>
+                          </div>
+                        </div>
+                        <p class="mess-status">達成者</p>
+                      </div>
+                    </a>
+                    <a href="">
+                      <div class="chat__item">
+                        <div class="chat__left">
+                          <span class="ic-mark">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="11.43"
+                              height="9"
+                              viewBox="0 0 11.43 9"
+                            >
+                              <g
+                                id="ic_mark"
+                                transform="translate(-332.37 -276.039)"
+                              >
+                                <path
+                                  id="Path_1408"
+                                  data-name="Path 1408"
+                                  d="M142.608,80.019h-10V73.45l2.429,2.855,2.57-2.855,2.57,2.855,2.429-2.855Z"
+                                  transform="translate(200.476 205.02)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_394"
+                                  data-name="Ellipse 394"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(332.37 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_395"
+                                  data-name="Ellipse 395"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(337.441 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_396"
+                                  data-name="Ellipse 396"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(342.513 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                              </g>
+                            </svg>
+                          </span>
+                          <div class="avatar">
+                            <img
+                              src="/assets/img/user/event/avatar_2.png"
+                              alt=""
+                            />
+                          </div>
+                          <div class="chat-info">
+                            <p class="username">❤</p>
+                            <p class="last-mess">愉快な雀士</p>
+                          </div>
+                        </div>
+                        <p class="mess-status">達成者</p>
+                      </div>
+                    </a>
+                    <a href="">
+                      <div class="chat__item">
+                        <div class="chat__left">
+                          <span class="ic-mark"></span>
+                          <div class="avatar">
+                            <img
+                              src="/assets/img/user/event/avatar_2.png"
+                              alt=""
+                            />
+                          </div>
+                          <div class="chat-info">
+                            <p class="username">ミラクルポン酢</p>
+                            <p class="last-mess">ゴッドファーザー</p>
+                          </div>
+                        </div>
+                        <p class="mess-status">達成者</p>
+                      </div>
+                    </a>
+                    <a href="">
+                      <div class="chat__item">
+                        <div class="chat__left">
+                          <span class="ic-mark"></span>
+                          <div class="avatar">
+                            <img
+                              src="/assets/img/user/event/avatar_5.png"
+                              alt=""
+                            />
+                          </div>
+                          <div class="chat-info">
+                            <p class="username">ミラクルポン酢</p>
+                            <p class="last-mess">ゴッドファーザー</p>
+                          </div>
+                        </div>
+                        <p class="mess-status">達成者</p>
+                      </div>
+                    </a>
+                    <a href="">
+                      <div class="chat__item">
+                        <div class="chat__left">
+                          <span class="ic-mark"></span>
+                          <div class="avatar">
+                            <img
+                              src="/assets/img/user/event/avatar_4.png"
+                              alt=""
+                            />
+                          </div>
+                          <div class="chat-info">
+                            <p class="username">ミラクルポン酢</p>
+                            <p class="last-mess">ゴッドファーザー</p>
+                          </div>
+                        </div>
+                        <p class="mess-status">達成者</p>
+                      </div>
+                    </a>
+                    <a href="">
+                      <div class="chat__item">
+                        <div class="chat__left">
+                          <span class="ic-mark">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="11.43"
+                              height="9"
+                              viewBox="0 0 11.43 9"
+                            >
+                              <g
+                                id="ic_mark"
+                                transform="translate(-332.37 -276.039)"
+                              >
+                                <path
+                                  id="Path_1408"
+                                  data-name="Path 1408"
+                                  d="M142.608,80.019h-10V73.45l2.429,2.855,2.57-2.855,2.57,2.855,2.429-2.855Z"
+                                  transform="translate(200.476 205.02)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_394"
+                                  data-name="Ellipse 394"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(332.37 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_395"
+                                  data-name="Ellipse 395"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(337.441 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                                <circle
+                                  id="Ellipse_396"
+                                  data-name="Ellipse 396"
+                                  cx="0.644"
+                                  cy="0.644"
+                                  r="0.644"
+                                  transform="translate(342.513 276.039)"
+                                  fill="#cfcfcf"
+                                />
+                              </g>
+                            </svg>
+                          </span>
+                          <div class="avatar">
+                            <img
+                              src="/assets/img/user/event/avatar_5.png"
+                              alt=""
+                            />
+                          </div>
+                          <div class="chat-info">
+                            <p class="username">ミラクルポン酢</p>
+                            <p class="last-mess">ゴッドファーザー</p>
+                          </div>
+                        </div>
+                        <p class="mess-status">達成者</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="chat__footer">
+                  <button type="button" class="btn-join btn-join-private">
+                    達成報告
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
