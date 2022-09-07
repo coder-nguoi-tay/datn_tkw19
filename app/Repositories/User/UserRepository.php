@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserTmp;
 use App\Repositories\User\UserInterface;
 use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -26,22 +27,114 @@ class UserRepository extends BaseController implements UserInterface
 
     public function get($request)
     {
-        // TODO: Implement get() method.
+        $newSizeLimit = $this->newListLimit($request);
+        $userBuilder = $this->user;
+        if (isset($request['search_input'])) {
+            $userBuilder = $userBuilder->where(function ($q) use ($request) {
+                $q->orWhere($this->escapeLikeSentence('name', $request['search_input']));
+                $q->orWhere($this->escapeLikeSentence('email', $request['search_input']));
+            });
+        }
+        $users = $userBuilder->sortable(['created_at' => 'desc', 'status' => 'desc'])->paginate($newSizeLimit);
+        if ($this->checkPaginatorList($users)) {
+            Paginator::currentPageResolver(function () {
+                return 1;
+            });
+            $users = $userBuilder->paginate($newSizeLimit);
+        }
+
+        return $users;
     }
 
     public function getById($id)
     {
-        // TODO: Implement getById() method.
+        return $this->user->where('id', $id)->first();
     }
 
     public function store($request)
     {
-        // TODO: Implement store() method.
+        try {
+            DB::beginTransaction();
+            $user = new $this->user;
+            $user->show_name = $request->show_name;
+            $user->phone_number = $request->phone_number;
+            $user->email = $request->email ? $request->email : '';
+            $user->password = Hash::make($request->password);
+            $user->type = $request->type;
+            $user->prefecture_id = $request->prefecture_id;
+            $user->city_id = $request->city_id;
+            $user->job_type = $request->job_type;
+            if ($request->type == UserType::PERSON) {
+                $user->birthday = $request->birthday;
+                $user->gender = $request->gender;
+            } else {
+                $user->name = $request->name;
+                $user->name_kana = $request->name_kana;
+                $user->representative_name = $request->representative_name;
+                $user->address_building = $request->address_building;
+                $user->job_descriptions = $request->job_descriptions;
+            }
+            if (!$user->save()) {
+                DB::rollBack();
+
+                return false;
+            }
+            $userTmp = $this->userTmp->where('phone_number', $request->phone_number)->first();
+            if (isset($userTmp)) {
+                if (!$userTmp->delete()) {
+                    DB::rollBack();
+                    return false;
+                }
+            }
+
+            DB::commit();
+            return true;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+        }
+
+        return false;
     }
 
     public function update($request, $id)
     {
         // TODO: Implement update() method.
+        try {
+            DB::beginTransaction();
+            $userInfo = $this->user->where('id', $id)->first();
+            if (!$userInfo) {
+                DB::rollBack();
+                return false;
+            }
+            $userInfo->show_name = $request->show_name;
+            $userInfo->phone_number = $request->phone_number;
+            $userInfo->email = $request->email ? $request->email : '';
+            $userInfo->password = $request->password ? Hash::make($request->password) : $userInfo->password;
+            $userInfo->type = $request->type;
+            $userInfo->prefecture_id = $request->prefecture_id;
+            $userInfo->city_id = $request->city_id;
+            $userInfo->job_type = $request->job_type;
+            if ($request->type == UserType::PERSON) {
+                $userInfo->birthday = $request->birthday;
+                $userInfo->gender = $request->gender;
+            } else {
+                $userInfo->name = $request->name;
+                $userInfo->name_kana = $request->name_kana;
+                $userInfo->representative_name = $request->representative_name;
+                $userInfo->address_building = $request->address_building;
+                $userInfo->job_descriptions = $request->job_descriptions;
+            }
+            if (!$userInfo->save()) {
+                DB::rollBack();
+                return false;
+            }
+            DB::commit();
+            return true;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+        }
+
+        return false;
     }
 
     public function destroy($id)
@@ -51,7 +144,7 @@ class UserRepository extends BaseController implements UserInterface
 
     public function checkPhone($request)
     {
-        return ! $this->user->where(function ($query) use ($request) {
+        return !$this->user->where(function ($query) use ($request) {
             if (isset($request['id'])) {
                 $query->where('id', '!=', $request['id']);
             }
@@ -82,13 +175,13 @@ class UserRepository extends BaseController implements UserInterface
                 $user->address_building = $request->address_building;
                 $user->job_descriptions = $request->job_descriptions;
             }
-            if (! $user->save()) {
+            if (!$user->save()) {
                 DB::rollBack();
 
                 return false;
             }
             $userTmp = $this->userTmp->where('phone_number', $request->phone_number)->first();
-            if (! Hash::check($request->code, $userTmp->sms_code)) {
+            if (!Hash::check($request->code, $userTmp->sms_code)) {
                 DB::rollBack();
 
                 return false;
@@ -113,5 +206,14 @@ class UserRepository extends BaseController implements UserInterface
         $currentUser->last_login_at = Carbon::now();
 
         return $currentUser->save();
+    }
+    public function checkEmail($request)
+    {
+        return !$this->user->where(function ($query) use ($request) {
+            if (isset($request['id'])) {
+                $query->where('id', '!=', $request['id']);
+            }
+            $query->where(['email' => $request['value']]);
+        })->exists();
     }
 }

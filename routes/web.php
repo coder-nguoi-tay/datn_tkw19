@@ -55,6 +55,7 @@ Route::group([
         Route::resource('dashboard', DashboardController::class, ['as' => 'admin']);
         Route::resource('user', UserController::class, ['as' => 'admin']);
         Route::post('check-email', [UserController::class, 'checkEmail'])->name('admin.user.checkEmail');
+        Route::post('check-phone', [UserController::class, 'checkPhone'])->name('admin.user.checkPhone');
         Route::resource('news', NewManagerController::class, ['as' => 'admin']);
     });
 });

@@ -17,7 +17,18 @@ app.use(VueSweetalert2);
 defineRule('password_rule', value => {
     return /^[A-Za-z0-9]*$/i.test(value);
 });
-
+defineRule('telephone', (value) => {
+    return (
+        /^0(\d-\d{4}-\d{4})+$/i.test(value.trim()) ||
+        /^0(\d{3}-\d{2}-\d{4})+$/i.test(value.trim()) ||
+        /^(070|080|090|050)(-\d{4}-\d{4})+$/i.test(value.trim()) ||
+        /^0(\d{2}-\d{3}-\d{4})+$/i.test(value.trim()) ||
+        /^0(\d{9,10})+$/i.test(value.trim())
+    )
+});
+defineRule('kata', (value) => {
+    return /^([ァ-ン]|ー)*$/i.test(value)
+})
 import BtnDeleteConfirm from "./components/common/btnDeleteConfirm.vue";
 import DataEmpty from "./components/common/dataEmpty.vue";
 import PopupAlert from "./components/common/popupAlert.vue";

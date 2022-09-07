@@ -19,4 +19,7 @@ interface UserInterface
     public function register($request);
 
     public function updateLastLogin($id);
+
+    public function checkEmail($request);
+
 }
