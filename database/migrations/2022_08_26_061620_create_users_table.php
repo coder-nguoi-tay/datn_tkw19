@@ -38,7 +38,13 @@ class CreateUsersTable extends Migration
             $table->string('sms_code_change')->nullable();
             $table->string('sms_code_change')->nullable();
             $table->tinyInteger('display_info_flag')->default(0)->nullable();
+            $table->tinyInteger('display_info_flag')->default(0)->nullable();
             $table->text('memo')->nullable();
+            $table->tinyInteger('deal_noti_flag')->default(0)->nullable();
+            $table->tinyInteger('public_chat_noti')->default(0)->nullable();
+            $table->tinyInteger('join_event_noti')->default(0)->nullable();
+            $table->tinyInteger('receiving_noti_flag')->default(0)->nullable();
+            $table->string('email_noti', 255)->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
