@@ -8,7 +8,7 @@ use App\Enums\JobType;
     <register
         :data="{{ json_encode([
             'VN_MODE' => env('VN_MODE'),
-            'urlCheckPhone' => route('admin.user.checkPhone'),
+            'urlCheckPhone' => route('register.checkPhone'),
             'urlStore' => route('register.store'),
             'urlSendCode' => route('register.sendCode'),
             'urlVerifyCode' => route('register.verifyCode'),

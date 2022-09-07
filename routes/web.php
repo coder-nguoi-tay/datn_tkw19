@@ -35,6 +35,7 @@ Route::get('/', [UserLoginController::class, 'index'])->name('home.index');
 Route::resource('register', RegisterController::class);
 Route::post('register/send-code', [RegisterController::class, 'sendCode'])->name('register.sendCode');
 Route::post('register/verify-code', [RegisterController::class, 'verifyCode'])->name('register.verifyCode');
+Route::post('check-phone', [RegisterController::class, 'checkPhone'])->name('register.checkPhone');
 Route::resource('my-event', MyEventController::class);
 Route::resource('event', EventController::class);
 Route::resource('login', UserLoginController::class);

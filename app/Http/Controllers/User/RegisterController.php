@@ -166,4 +166,10 @@ class RegisterController extends BaseController
 
         return response()->json([], StatusCode::OK);
     }
+    public function checkPhone(Request $request)
+    {
+        return response()->json([
+            'valid' => $this->user->checkPhone($request),
+        ], StatusCode::OK);
+    }
 }
