@@ -31,13 +31,9 @@ class UserRegister extends FormRequest
     public function rules()
     {
         $data = $this->all();
+        $id = $this->user;
         $rule = [
             'show_name' => 'required|max:255',
-            'phone_number' => [
-                'required',
-                'max:50',
-                Rule::unique('users')->whereNull('deleted_at'),
-            ],
             'password' => [
                 'required',
                 'max:16',
@@ -48,6 +44,25 @@ class UserRegister extends FormRequest
                 'required',
                 Rule::in(UserType::getValues()),
             ],
+        ];
+        $rule['email'] = [
+            'nullable',
+            'max:50',
+            'email',
+            Rule::unique('users')->whereNull('deleted_at')->where(function ($q) use ($id) {
+                if ($id) {
+                    $q->where('id', '<>', $id);
+                }
+            }),
+        ];
+        $rule['phone_number'] = [
+            'required',
+            'max:50',
+            Rule::unique('users')->whereNull('deleted_at')->where(function ($q) use ($id) {
+                if ($id) {
+                    $q->where('id', '<>', $id);
+                }
+            }),
         ];
         $rule['prefecture_id'] = [
             'required',
@@ -62,7 +77,7 @@ class UserRegister extends FormRequest
             Rule::in(JobType::getValues()),
         ];
         if ($data['type'] == UserType::PERSON) {
-            $rule['birthday'] = 'required|date_format:Y/m/d|before_or_equal:'.Carbon::now()->format('Y/m/d');
+            $rule['birthday'] = 'required|date_format:Y/m/d|before_or_equal:' . Carbon::now()->format('Y/m/d');
             $rule['gender'] = [
                 'required',
                 Rule::in(Gender::getValues()),

@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
-use App\Http\Requests\UserRequest;
-use App\Repositories\Admin\AdminInterface;
+use App\Http\Requests\UserRegister;
+use App\Repositories\City\CityInterface;
+use App\Repositories\Prefecture\PrefectureInterface;
 use App\Repositories\User\UserInterface;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,14 @@ class UserController extends BaseController
 {
     private $userInterface;
 
-    public function __construct(AdminInterface $userInterface)
+    private $prefecture;
+
+    private $city;
+    public function __construct(UserInterface $userInterface, CityInterface $city, PrefectureInterface $prefecture)
     {
         $this->userInterface = $userInterface;
+        $this->prefecture = $prefecture;
+        $this->city = $city;
     }
 
     /**
@@ -35,7 +41,7 @@ class UserController extends BaseController
         return view('admin.user.index', [
             'title' => 'ユーザー一覧',
             'breadcrumbs' => $breadcrumbs,
-            'users' => $this->userInterface->getUsers($request),
+            'users' => $this->userInterface->get($request),
             'request' => $request,
             'newSizeLimit' => $newSizeLimit,
         ]);
@@ -59,6 +65,8 @@ class UserController extends BaseController
         return view('admin.user.create', [
             'title' => 'ユーザー作成',
             'breadcrumbs' => $breadcrumbs,
+            'prefectures' => $this->prefecture->get(),
+            'cities' => $this->city->get(),
         ]);
     }
 
@@ -68,7 +76,7 @@ class UserController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(UserRegister $request)
     {
         if ($this->userInterface->store($request)) {
             $this->setFlash(__('代理店の新規作成が完了しました。'));
@@ -107,7 +115,7 @@ class UserController extends BaseController
             'ユーザー編集',
         ];
         $user = $this->userInterface->getById($id);
-        if (! $user) {
+        if (!$user) {
             return redirect(session()->get('admin.user.list')[0] ?? route('admin.user.index'));
         }
 
@@ -162,6 +170,13 @@ class UserController extends BaseController
     {
         return response()->json([
             'valid' => $this->userInterface->checkEmail($request),
+        ], StatusCode::OK);
+    }
+
+    public function checkPhone(Request $request)
+    {
+        return response()->json([
+            'valid' => $this->userInterface->checkPhone($request),
         ], StatusCode::OK);
     }
 }
