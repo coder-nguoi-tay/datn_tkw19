@@ -8,6 +8,7 @@ use App\Enums\JobType;
 @section('content')
     <user-edit
         :data="{{ json_encode([
+            'VN_MODE' => env('VN_MODE'),
             'urlUpdate' => route('admin.user.update', $user->id),
             'urlCheckEmail' => route('admin.user.checkEmail'),
             'urlCheckPhone' => route('admin.user.checkPhone'),

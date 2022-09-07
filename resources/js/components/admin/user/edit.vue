@@ -49,6 +49,7 @@
                         v-model="model.phone_number"
                         rules="required|max:50|telephone|unique_telephone"
                         class="form-control"
+                        :placeholder="'0xxxxxxxxx'"
                       />
                       <ErrorMessage class="error" name="phone_number" />
                     </div>
@@ -152,7 +153,7 @@
                       <div class="col-sm-6">
                         <div>
                           <div
-                            class="form-check form-check-inline"
+                            class="form-check form-check-inline lbl-input"
                             :key="item.id"
                             v-for="(item, index) in data.genderOptions"
                           >
@@ -409,7 +410,7 @@ export default {
       flagShowLoader: false,
       model: {
         show_name: this.data.user.show_name,
-        phone_number: this.data.user.phone_number,
+        phone_number: this.data.user.phone_number.slice(3),
         email: this.data.user.email,
         type: this.data.user.type,
         birthday: this.data.user.birthday,
@@ -511,7 +512,7 @@ export default {
       return axios
         .post(that.data.urlCheckPhone, {
           _token: Laravel.csrfToken,
-          phone_number: value,
+          phone_number: (that.data.VN_MODE ? '+84' : '+81') + value,
           id: that.data.user.id
         })
         .then(function (response) {

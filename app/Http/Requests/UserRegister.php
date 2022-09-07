@@ -32,19 +32,15 @@ class UserRegister extends FormRequest
     {
         $data = $this->all();
         $id = $this->user;
+        $passwordRules = (!empty($id) ? 'nullable' : 'required') . '|max:16|min:8|regex:/^[A-Za-z0-9]*$/';
         $rule = [
             'show_name' => 'required|max:255',
-            'password' => [
-                'required',
-                'max:16',
-                'min:8',
-                'regex:/^[A-Za-z0-9]*$/',
-            ],
             'type' => [
                 'required',
                 Rule::in(UserType::getValues()),
             ],
         ];
+        $rule['password'] = $passwordRules;
         $rule['email'] = [
             'nullable',
             'max:50',
@@ -58,6 +54,7 @@ class UserRegister extends FormRequest
         $rule['phone_number'] = [
             'required',
             'max:50',
+            'regex:/^(0(\d-\d{4}-\d{4}))|(0(\d{3}-\d{2}-\d{4}))|((070|080|090|050)(-\d{4}-\d{4}))|(0(\d{2}-\d{3}-\d{4}))|(0(\d{9,10}))+$/',
             Rule::unique('users')->whereNull('deleted_at')->where(function ($q) use ($id) {
                 if ($id) {
                     $q->where('id', '<>', $id);

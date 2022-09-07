@@ -135,7 +135,7 @@ class UserController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRegister $request, $id)
     {
         if ($this->userInterface->update($request, $id)) {
             $this->setFlash(__('代理店の新規作成が完了しました。'));

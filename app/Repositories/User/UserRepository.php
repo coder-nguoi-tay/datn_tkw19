@@ -57,7 +57,7 @@ class UserRepository extends BaseController implements UserInterface
             DB::beginTransaction();
             $user = new $this->user;
             $user->show_name = $request->show_name;
-            $user->phone_number = $request->phone_number;
+            $user->phone_number = (env('VN_MODE') ? '+84' : '+81') . $request->phone_number;
             $user->email = $request->email ? $request->email : '';
             $user->password = Hash::make($request->password);
             $user->type = $request->type;
@@ -107,7 +107,7 @@ class UserRepository extends BaseController implements UserInterface
                 return false;
             }
             $userInfo->show_name = $request->show_name;
-            $userInfo->phone_number = $request->phone_number;
+            $userInfo->phone_number = (env('VN_MODE') ? '+84' : '+81') . $request->phone_number;
             $userInfo->email = $request->email ? $request->email : '';
             $userInfo->password = $request->password ? Hash::make($request->password) : $userInfo->password;
             $userInfo->type = $request->type;
@@ -140,6 +140,15 @@ class UserRepository extends BaseController implements UserInterface
     public function destroy($id)
     {
         // TODO: Implement destroy() method.
+        $userInfo = $this->user->where('id', $id)->first();
+        if (!$userInfo) {
+            return false;
+        }
+        if ($userInfo->delete()) {
+            return true;
+        }
+
+        return false;
     }
 
     public function checkPhone($request)
@@ -159,7 +168,7 @@ class UserRepository extends BaseController implements UserInterface
             // UserType
             $user = new $this->user;
             $user->show_name = $request->show_name;
-            $user->phone_number = (env('VN_MODE') ? '+84' : '+81').$request->phone_number;
+            $user->phone_number = (env('VN_MODE') ? '+84' : '+81') . $request->phone_number;
             $user->password = Hash::make($request->password);
             $user->type = $request->type;
             $user->prefecture_id = $request->prefecture_id;
@@ -200,7 +209,7 @@ class UserRepository extends BaseController implements UserInterface
     public function updateLastLogin($id)
     {
         $currentUser = $this->user->where('id', $id)->first();
-        if (! $currentUser) {
+        if (!$currentUser) {
             return false;
         }
         $currentUser->last_login_at = Carbon::now();
@@ -209,11 +218,14 @@ class UserRepository extends BaseController implements UserInterface
     }
     public function checkEmail($request)
     {
-        return !$this->user->where(function ($query) use ($request) {
-            if (isset($request['id'])) {
-                $query->where('id', '!=', $request['id']);
-            }
-            $query->where(['email' => $request['value']]);
-        })->exists();
+        if ($request['value'] != '') {
+            return !$this->user->where(function ($query) use ($request) {
+                if (isset($request['id'])) {
+                    $query->where('id', '!=', $request['id']);
+                }
+                $query->where(['email' => $request['value']]);
+            })->exists();
+        }
+        return true;
     }
 }

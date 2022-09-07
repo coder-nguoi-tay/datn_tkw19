@@ -8,6 +8,7 @@ use App\Enums\JobType;
 @section('content')
     <user-create
         :data="{{ json_encode([
+            'VN_MODE' => env('VN_MODE'),
             'urlStore' => route('admin.user.store'),
             'urlCheckEmail' => route('admin.user.checkEmail'),
             'urlCheckPhone' => route('admin.user.checkPhone'),

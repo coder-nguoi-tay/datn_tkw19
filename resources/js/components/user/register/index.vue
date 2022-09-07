@@ -44,7 +44,7 @@
                         type="text"
                         autocomplete="off"
                         v-model="model.phone_number"
-                        rules="required|telephone"
+                        rules="required|max:50|telephone|unique_telephone"
                         class="form-control input-tel"
                         @change="error = ''"
                         placeholder="000 0000 0000"
@@ -195,7 +195,8 @@ export default {
         fields: {
           phone_number: {
             required: '電話番号を入力してください。',
-            telephone: '電話番号が正しい形式ではありません。'
+            telephone: '電話番号が正しい形式ではありません。',
+            unique_telephone: 'このメールアドレスは既に登録されています'
           },
           recaptcha_token: {
             required: 'reCAPTCHAを入力してください。'
@@ -205,6 +206,18 @@ export default {
     }
     configure({
       generateMessage: localize(messError)
+    })
+    let that = this
+    defineRule('unique_telephone', (value) => {
+      return axios
+        .post(that.data.urlCheckPhone, {
+          _token: Laravel.csrfToken,
+          phone_number: (that.data.VN_MODE ? '+84' : '+81') + value
+        })
+        .then(function (response) {
+          return response.data.valid
+        })
+        .catch((error) => {})
     })
   },
   methods: {
