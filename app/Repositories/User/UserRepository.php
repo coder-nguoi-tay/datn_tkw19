@@ -47,7 +47,7 @@ class UserRepository extends BaseController implements UserInterface
 
     public function getById($id)
     {
-        // TODO: Implement getById() method.
+        return $this->user->where('id', $id)->first();
     }
 
     public function store($request)
@@ -98,6 +98,42 @@ class UserRepository extends BaseController implements UserInterface
     public function update($request, $id)
     {
         // TODO: Implement update() method.
+        try {
+            DB::beginTransaction();
+            $userInfo = $this->user->where('id', $id)->first();
+            if (!$userInfo) {
+                DB::rollBack();
+                return false;
+            }
+            $userInfo->show_name = $request->show_name;
+            $userInfo->phone_number = $request->phone_number;
+            $userInfo->email = $request->email ? $request->email : '';
+            $userInfo->password = $request->password ? Hash::make($request->password) : $userInfo->password;
+            $userInfo->type = $request->type;
+            $userInfo->prefecture_id = $request->prefecture_id;
+            $userInfo->city_id = $request->city_id;
+            $userInfo->job_type = $request->job_type;
+            if ($request->type == UserType::PERSON) {
+                $userInfo->birthday = $request->birthday;
+                $userInfo->gender = $request->gender;
+            } else {
+                $userInfo->name = $request->name;
+                $userInfo->name_kana = $request->name_kana;
+                $userInfo->representative_name = $request->representative_name;
+                $userInfo->address_building = $request->address_building;
+                $userInfo->job_descriptions = $request->job_descriptions;
+            }
+            if (!$userInfo->save()) {
+                DB::rollBack();
+                return false;
+            }
+            DB::commit();
+            return true;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+        }
+
+        return false;
     }
 
     public function destroy($id)

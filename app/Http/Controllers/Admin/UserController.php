@@ -123,6 +123,8 @@ class UserController extends BaseController
             'title' => 'ユーザー編集',
             'breadcrumbs' => $breadcrumbs,
             'user' => $user,
+            'prefectures' => $this->prefecture->get(),
+            'cities' => $this->city->get(),
         ]);
     }
 
@@ -133,7 +135,7 @@ class UserController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(Request $request, $id)
     {
         if ($this->userInterface->update($request, $id)) {
             $this->setFlash(__('代理店の新規作成が完了しました。'));
@@ -141,8 +143,7 @@ class UserController extends BaseController
             return redirect(session()->get('admin.user.list')[0] ?? route('admin.user.index'));
         }
         $this->setFlash(__('エラーが発生しました。'), 'error');
-
-        return redirect()->route('admin.user.update', $id);
+        return redirect()->route('admin.user.edit', $id);
     }
 
     /**
