@@ -20,6 +20,7 @@ import Register from './components/user/register/index.vue';
 import EventCreate from './components/event/create.vue';
 import EventConfirm from './components/event/confirm.vue';
 import MyEvent from './components/myEvent/index.vue'
+import MyPage from './components/myPage/index.vue'
 import MyEventShow from './components/myEvent/show.vue';
 
 app.component('nl2br', Nl2br);
@@ -27,6 +28,7 @@ app.component('register', Register);
 app.component('event-create', EventCreate);
 app.component('event-confirm', EventConfirm);
 app.component('my-event', MyEvent);
+app.component('my-page', MyPage);
 app.component('my-event-show', MyEventShow);
 
 app.mount('#app')

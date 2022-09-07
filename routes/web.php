@@ -7,6 +7,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ForgotPasswordSuccessController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MyEventController;
+use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\PasswordResetExpiredController;
 use App\Http\Controllers\User\EventController;
@@ -34,6 +35,7 @@ Route::post('register/send-code', [RegisterController::class, 'sendCode'])->name
 Route::post('register/verify-code', [RegisterController::class, 'verifyCode'])->name('register.verifyCode');
 Route::resource('login', LoginController::class);
 Route::resource('my-event', MyEventController::class);
+Route::resource('my-page', MyPageController::class);
 Route::resource('forgot_password', ForgotPasswordController::class);
 Route::resource('forgot_password_complete', ForgotPasswordSuccessController::class);
 Route::resource('password_reset', PasswordResetController::class);
