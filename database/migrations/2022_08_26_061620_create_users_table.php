@@ -34,6 +34,11 @@ class CreateUsersTable extends Migration
             $table->string('reset_password_token')->nullable();
             $table->datetime('reset_password_token_expire')->nullable();
             $table->datetime('last_login_at')->nullable();
+            $table->string('phone_number_change', 50)->nullable();
+            $table->string('sms_code_change')->nullable();
+            $table->string('sms_code_change')->nullable();
+            $table->tinyInteger('display_info_flag')->default(0)->nullable();
+            $table->text('memo')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
