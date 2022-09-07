@@ -36,7 +36,6 @@ class CreateUsersTable extends Migration
             $table->datetime('last_login_at')->nullable();
             $table->string('phone_number_change', 50)->nullable();
             $table->string('sms_code_change')->nullable();
-            $table->string('sms_code_change')->nullable();
             $table->tinyInteger('display_info_flag')->default(0)->nullable();
             $table->tinyInteger('display_info_flag')->default(0)->nullable();
             $table->text('memo')->nullable();
