@@ -2,6 +2,7 @@
 
 namespace App\Repositories\User;
 
+use App\Enums\DisplayInfoFlag;
 use App\Enums\UserType;
 use App\Http\Controllers\BaseController;
 use App\Models\User;
@@ -29,9 +30,11 @@ class UserRepository extends BaseController implements UserInterface
         // TODO: Implement get() method.
     }
 
-    public function getById($id)
+    public function getById($request)
     {
-        // TODO: Implement getById() method.
+        return $this->user
+            ->where('id', Auth::guard('user')->user()->id)
+            ->first();
     }
 
     public function store($request)
@@ -113,5 +116,20 @@ class UserRepository extends BaseController implements UserInterface
         $currentUser->last_login_at = Carbon::now();
 
         return $currentUser->save();
+    }
+
+    public function changeName($request)
+    {
+        $userInfo = $this->user
+            ->where('id', Auth::guard('user')->user()->id)
+            ->first();
+        if (! $userInfo) {
+            return false;
+        }
+        $userInfo->show_name = $request->show_name;
+        $userInfo->memo = $request->memo;
+        $userInfo->display_info_flag = $request->display_info_flag ? DisplayInfoFlag::SHOWFLAG : DisplayInfoFlag::DEFAULT;
+
+        return $userInfo->save();
     }
 }
