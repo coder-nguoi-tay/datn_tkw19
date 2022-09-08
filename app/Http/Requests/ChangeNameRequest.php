@@ -28,10 +28,6 @@ class ChangeNameRequest extends FormRequest
         return [
             'show_name' => 'required|max:255',
             'memo' => 'required|max:10000',
-            'display_info_flag' => [
-                'required',
-                Rule::in(DisplayInfoFlag::getValues()),
-            ],
         ];
     }
 }
