@@ -1,11 +1,79 @@
 .my-page {
   padding: 0;
-  padding-bottom: 133.6px;
+  padding-bottom: 9px;
   max-width: 100%;
   img{
     width: 100%;
   }
+  .modal.show{
+    display: flex!important;
+  }
+  .modal-dialog{
+    width: 100%;
+    margin: auto 6px;
+    @media only screen and (min-width: 766px) {
+      margin: auto;
+    }
+  }
   .profile{
+    &-modal{
+      letter-spacing: 0;
+      &-share{
+        width: 26.84px;
+        height: 30.68px;
+        position: absolute;
+        top: 17px;
+        left: 17px;
+      }
+      &-close{
+        position: absolute;
+        right: 0;
+        top: -24px;
+        width: 18px;
+        height: 18px;
+      }
+      &-content{
+        position: relative;
+        border: none;
+        border-radius: 4px;
+      }
+      &-body{
+        padding: 95px 28px 42px 29px;
+        position: relative;
+      }
+      &-img{
+        height: 164.23px;
+        margin-bottom: 38.8px;
+        text-align: center;
+      }
+      &-img img{
+        height: 100%;
+        width: auto;
+        max-width: 359px;
+      }
+      &-name{
+        font-size: 30px;
+        line-height: 48px;
+        height: 39px;
+        font-weight: 700;
+      }
+      &-des{
+        font-size: 12px;
+        line-height: 20px;
+        margin-top: 12px;
+        text-align: justify;
+      }
+      &-list{
+        margin-top: 20px;
+      }
+      &-row:not(:first-child){
+        margin-top: 6px;
+      }
+      &-info{
+        font-size: 14px;
+        font-weight: 700;
+      }
+    }
     &-banner{
       height: 46.728972vw;
       padding: 9px 11.6px 9.7px 15.5px;
@@ -71,10 +139,23 @@
       align-items: center;
       position: absolute;
       top: 6px;
+      left: 6px;
     }
     &-user{
       position: relative;
       padding: 81px 18px 18px 18px;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 110px;
+        height: 70px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url('../../../../public/assets/img/my_page/my_page_bg.png');
+      }
       &-avatar{
         background-color: #fff;
         position: absolute;
@@ -92,6 +173,19 @@
         width: 125px;
         height: 125px;
         box-shadow: 0 3px 6px rgba($color: #000000, $alpha: 0.16);
+      }
+      &-avatar-edit{
+        position: absolute;
+        right: 13.3px;
+        bottom: 11.4px;
+        background-color: #fff;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+      }
+      &-avatar-edit img{
+        width: 15.34px;
+        height: 13.3px;
       }
       &-name{
         font-weight: 700;
@@ -127,7 +221,7 @@
         letter-spacing: 0;
       }
     }
-    &-posts, &-rankings, &-collection{
+    &-posts, &-rankings, &-collection, &-info{
       background-color: #FFFFFF;
       border-radius: 4px;
       margin: 6px 9px 0 9px;
@@ -176,6 +270,90 @@
         display: flex;
         align-items: center;
         letter-spacing: 0;
+      }
+    }
+    &-rankings{
+      padding: 35px 16px 12px 16px;
+      &-row{
+        justify-content: center;
+        position: relative;
+      }
+      &-text{
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0;
+        display: flex;
+        line-height: 20px;
+        height: 16px;
+        align-items: center;
+      }
+      &-text:first-child{
+        margin-left: 0;
+        margin-right: auto;
+      }
+      &-text:nth-child(2){
+        position: absolute;
+        right: 50%;
+        transform: translateX(50%);
+        min-width: 84px;
+        justify-content: end;
+      }
+    }
+    &-collection{
+      padding: 35px 6px 6px 6px;
+      &-list{
+      }
+      &-row{
+        width: 100%;
+      }
+      &-row:not(:first-child){
+        padding-top: 12px;
+        margin-top: 12px;
+        border-top: #F7F7F7 1px solid;
+      }
+      &-item{
+        height: 27.55px;
+        min-width: 29px;
+        img{
+          width: auto;
+          height: 100%;
+        }
+      }
+      &-item:last-child{
+        text-align: right;
+      }
+      &-des{
+        font-size: 13px;
+        color: #CCCCCC;
+        margin-top: 11.1px;
+        display: flex;
+        height: 17px;
+        line-height: 21px;
+        justify-content: end;
+      }
+    }
+    &-info{
+      padding: 29px 12px 8px 12px;
+      &-row{
+        flex-wrap: wrap;
+        display: flex;
+      }
+      &-col{
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+      &-name, &-des{
+        display: flex;
+        height: 17px;
+        line-height: 21px;
+        letter-spacing: 0;
+        font-size: 13px;
+      }
+      &-name{
+        margin-bottom: 29px;
+      }
+      &-des:not(:last-child){
+        margin-bottom: 6px;
       }
     }
   }
