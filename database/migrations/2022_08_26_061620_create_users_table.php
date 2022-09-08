@@ -31,8 +31,19 @@ class CreateUsersTable extends Migration
             $table->string('address_building', 255)->nullable();
             $table->tinyInteger('job_type')->nullable();
             $table->text('job_descriptions')->nullable();
-            $table->string('reset_password_token', 255)->nullable();
-            $table->dateTime('reset_password_token_expire')->nullable();
+            $table->string('reset_password_token')->nullable();
+            $table->datetime('reset_password_token_expire')->nullable();
+            $table->datetime('last_login_at')->nullable();
+            $table->string('phone_number_change', 50)->nullable();
+            $table->string('sms_code_change')->nullable();
+            $table->tinyInteger('display_info_flag')->default(0)->nullable();
+            $table->text('memo')->nullable();
+            $table->tinyInteger('deal_noti_flag')->default(0)->nullable();
+            $table->tinyInteger('public_chat_noti')->default(0)->nullable();
+            $table->tinyInteger('join_event_noti')->default(0)->nullable();
+            $table->tinyInteger('receiving_noti_flag')->default(0)->nullable();
+            $table->string('email_noti', 255)->nullable();
+            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
 

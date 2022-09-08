@@ -123,7 +123,7 @@ class AdminRepository extends BaseController implements AdminInterface
         $mailContents = [
             'data' => [
                 'name' => $account->name,
-                'link' => route('password_reset.show', $account->reset_password_token),
+                'link' => route('admin.password_reset.show', $account->reset_password_token),
             ],
         ];
         Mail::to($account->email)->send(new ForgotPassword($mailContents));

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\LoginRequest;
 use App\Repositories\Admin\AdminInterface;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class LoginController extends BaseController
             return redirect(route('admin.dashboard.index'));
         }
 
-        return view('login.index', [
+        return view('admin.login.index', [
             'title' => '管理サイトログイン',
             'message' => $request->message,
             'request' => $request->all(),
@@ -64,13 +65,13 @@ class LoginController extends BaseController
             return redirect($request->url_redirect ? $request->url_redirect : route('admin.dashboard.index'));
         }
 
-        return redirect(route('login.index', ['message' => 'メールアドレスとパスワードが一致しません。']));
+        return redirect(route('admin.login.index', ['message' => 'メールアドレスとパスワードが一致しません。']));
     }
 
     public function logout()
     {
         Auth::guard('admin')->logout();
 
-        return redirect(route('login.index'));
+        return redirect(route('admin.login.index'));
     }
 }

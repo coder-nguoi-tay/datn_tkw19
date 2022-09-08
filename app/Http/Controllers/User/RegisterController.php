@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Enums\StatusCode;
-use App\Http\Requests\UserRegister;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\PhoneNumberRequest;
+use App\Http\Requests\UserRegister;
 use App\Repositories\City\CityInterface;
 use App\Repositories\Prefecture\PrefectureInterface;
 use App\Repositories\User\UserInterface;
@@ -63,8 +63,18 @@ class RegisterController extends BaseController
      */
     public function store(UserRegister $request)
     {
-        dd($request->all());
-        //
+        if (! $this->userTmp->verifyCode($request)) {
+            return response()->json(['message' => 'code expired'], StatusCode::INTERNAL_ERR);
+        }
+        if ($this->user->register($request)) {
+            return response()->json([
+                'status' => StatusCode::OK,
+            ], StatusCode::OK);
+        }
+
+        return response()->json([
+            'message' => 'エラーが発生しました。',
+        ], StatusCode::INTERNAL_ERR);
     }
 
     /**
@@ -137,7 +147,7 @@ class RegisterController extends BaseController
                 (env('VN_MODE') ? '+84' : '+81').$request->phone_number,
                 [
                     'from' => getenv('TWILIO_NUMBER'),
-                    'body' => 'dinhtu test send mail code '.$code,
+                    'body' => 'your code: '.$code,
                 ]);
 
             return response()->json([], StatusCode::OK);
@@ -155,5 +165,11 @@ class RegisterController extends BaseController
         }
 
         return response()->json([], StatusCode::OK);
+    }
+    public function checkPhone(Request $request)
+    {
+        return response()->json([
+            'valid' => $this->user->checkPhone($request),
+        ], StatusCode::OK);
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
-class ForgotPasswordSuccessController extends BaseController
+class PasswordResetExpiredController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class ForgotPasswordSuccessController extends BaseController
      */
     public function index()
     {
-        return view('forgotPasswordSuccess.index', [
-            'title' => 'パスワード再発行申請完了',
-            'loginUrl' => route('login.index'),
+        return view('passwordResetExpired.index', [
+            'title' => TITLE_RESET_PASS_EXPIRED,
         ]);
     }
 

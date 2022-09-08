@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\InitPassChange;
 use App\Repositories\Admin\AdminInterface;
 use Illuminate\Http\Request;
@@ -48,7 +49,7 @@ class PasswordResetController extends BaseController
             abort(404);
         }
 
-        return view('passwordReset.show', [
+        return view('admin.passwordReset.show', [
             'title' => 'パスワード再設定',
             'token' => $token,
         ]);
@@ -66,7 +67,7 @@ class PasswordResetController extends BaseController
         if ($this->user->updatePasswordByToken($request, $id)) {
             $this->setFlash(__('パスワード変更が完了しました'));
 
-            return redirect()->route('login.index');
+            return redirect()->route('admin.login.index');
         }
         abort(404);
     }

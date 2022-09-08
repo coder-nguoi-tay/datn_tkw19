@@ -15,4 +15,11 @@ interface UserInterface
     public function destroy($id);
 
     public function checkPhone($request);
+
+    public function register($request);
+
+    public function updateLastLogin($id);
+
+    public function checkEmail($request);
+
 }

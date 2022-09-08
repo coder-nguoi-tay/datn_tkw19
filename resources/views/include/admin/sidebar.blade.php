@@ -15,7 +15,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.dashboard.index') }}">
                                     <i class="nav-icon fa fa-home" aria-hidden="true"></i>
-                                    Dashboard
+                                    ホーム
                                 </a>
                             </li>
                         </div>
@@ -51,8 +51,7 @@
                 </div>
             </div>
             {{-- <div class="simplebar-placeholder" style="width: auto; height: 841px;"></div> --}}
-            {{--
-        </div>
+            {{-- </div>
         <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
             <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
         </div>

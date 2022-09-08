@@ -279,3 +279,23 @@
   }
 }
 //end
+.login-form {
+    .btn-submit {
+        width: 173px !important;
+        height: 23px !important;
+        font-size: 12px !important;
+        line-height: unset !important;
+        margin-bottom: 8px !important;
+        margin-top: 10px !important;
+    }
+    .txt-login {
+        font-size: 12px !important;
+        color: #E5352B !important;
+        line-height: unset !important;
+        margin-bottom: 5px;
+        a {
+            color: #E5352B !important;
+            font-weight: bold;
+        }
+    }
+}

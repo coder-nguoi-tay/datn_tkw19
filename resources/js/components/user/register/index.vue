@@ -10,12 +10,12 @@
             >
             <span
               class="step-indicator"
-              :class="{ active: step >= 2, current: (step == 2) }"
+              :class="{ active: step >= 2, current: step == 2 }"
               >ユーザー情報登録</span
             >
             <span
               class="step-indicator"
-              :class="{ active: step >= 3, current: (step == 3) }"
+              :class="{ active: step >= 3, current: step == 3 }"
               >完了</span
             >
           </div>
@@ -44,7 +44,7 @@
                         type="text"
                         autocomplete="off"
                         v-model="model.phone_number"
-                        rules="required|telephone"
+                        rules="required|max:50|telephone|unique_telephone"
                         class="form-control input-tel"
                         @change="error = ''"
                         placeholder="000 0000 0000"
@@ -79,7 +79,7 @@
                 >
                   <button type="submit" class="btn-submit">送信する</button>
                   <p class="txt-login">
-                    既にアカウントをお持ちの方は<a href="">こちら</a>
+                    既にアカウントをお持ちの方は<a href="/">こちら</a>
                   </p>
                 </div>
               </template>
@@ -178,12 +178,12 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
       model: {
-        phone_number: '0368278668',
+        phone_number: '',
         gender: 1,
         type: ''
       },
       step: 1,
-      step1: 2,
+      step1: 1,
       error: '',
       showRecapchar: false,
       disabledCheckCode: true
@@ -195,7 +195,8 @@ export default {
         fields: {
           phone_number: {
             required: '電話番号を入力してください。',
-            telephone: '電話番号が正しい形式ではありません。'
+            telephone: '電話番号が正しい形式ではありません。',
+            unique_telephone: 'このメールアドレスは既に登録されています'
           },
           recaptcha_token: {
             required: 'reCAPTCHAを入力してください。'
@@ -205,6 +206,18 @@ export default {
     }
     configure({
       generateMessage: localize(messError)
+    })
+    let that = this
+    defineRule('unique_telephone', (value) => {
+      return axios
+        .post(that.data.urlCheckPhone, {
+          _token: Laravel.csrfToken,
+          phone_number: (that.data.VN_MODE ? '+84' : '+81') + value
+        })
+        .then(function (response) {
+          return response.data.valid
+        })
+        .catch((error) => {})
     })
   },
   methods: {
@@ -232,7 +245,7 @@ export default {
         .then(function (response) {
           $('.loading-div').addClass('hidden')
           that.step1 = 2
-          that.disabledCheckCode = false
+          //   that.disabledCheckCode = false
         })
         .catch((error) => {
           $('.loading-div').addClass('hidden')
