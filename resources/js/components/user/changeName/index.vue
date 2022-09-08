@@ -29,7 +29,7 @@
                       type="text"
                       v-model="model.show_name"
                       autocomplete="off"
-                      rules="required"
+                      rules="required|max:255"
                       class="form-control input-bg placeholder"
                     />
                     <ErrorMessage class="error-msg" name="show_name" />
@@ -45,7 +45,7 @@
                       name="memo"
                       v-model.trim="model.memo"
                       autocomplete="off"
-                      rules="required"
+                      rules="required|max:10000"
                       class="form-control input-bg placeholder"
                     />
                     <ErrorMessage class="error-msg" name="memo" />
@@ -124,10 +124,12 @@ export default {
       en: {
         fields: {
           show_name: {
-            required: '表示名を入力してください。'
+            required: '表示名を入力してください。',
+            max: '表示名255文字を超えてはなりません。'
           },
           memo: {
-            required: 'を入力してください。'
+            required: '自己紹介文を入力してください。',
+            max: '自己紹介文10000文字を超えてはなりません。'
           }
         }
       }

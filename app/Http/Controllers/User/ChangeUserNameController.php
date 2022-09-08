@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\ChangeNameRequest;
 use App\Repositories\User\UserInterface;
 use Illuminate\Http\Request;
 
@@ -82,7 +83,7 @@ class ChangeUserNameController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ChangeNameRequest $request, $id)
     {
         if ($this->user->changeName($request)) {
             $this->setFlash(__('お知らせの編集が完了しました。'));
