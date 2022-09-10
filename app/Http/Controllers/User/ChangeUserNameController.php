@@ -24,7 +24,7 @@ class ChangeUserNameController extends BaseController
      */
     public function index(Request $request)
     {
-        $user = $this->user->getById($request);
+        $user = $this->user->getById(Auth::guard('user')->user()->id);
         if (! $user) {
             return redirect(route('home.index'));
         }
@@ -86,7 +86,7 @@ class ChangeUserNameController extends BaseController
      */
     public function update(ChangeNameRequest $request, $id)
     {
-        if ($this->user->changeName(Auth::guard('user')->user->id)) {
+        if ($this->user->changeName($request)) {
             $this->setFlash(__('お知らせの編集が完了しました。'));
 
             return redirect(route('home.index'));

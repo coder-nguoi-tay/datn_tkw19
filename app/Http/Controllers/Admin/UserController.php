@@ -17,6 +17,7 @@ class UserController extends BaseController
     private $prefecture;
 
     private $city;
+
     public function __construct(UserInterface $userInterface, CityInterface $city, PrefectureInterface $prefecture)
     {
         $this->userInterface = $userInterface;
@@ -115,7 +116,7 @@ class UserController extends BaseController
             'ユーザー編集',
         ];
         $user = $this->userInterface->getById($id);
-        if (!$user) {
+        if (! $user) {
             return redirect(session()->get('admin.user.list')[0] ?? route('admin.user.index'));
         }
 
@@ -143,6 +144,7 @@ class UserController extends BaseController
             return redirect(session()->get('admin.user.list')[0] ?? route('admin.user.index'));
         }
         $this->setFlash(__('エラーが発生しました。'), 'error');
+
         return redirect()->route('admin.user.edit', $id);
     }
 
