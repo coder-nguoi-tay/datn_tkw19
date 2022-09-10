@@ -6,6 +6,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Requests\ChangeNameRequest;
 use App\Repositories\User\UserInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChangeUserNameController extends BaseController
 {
@@ -85,7 +86,7 @@ class ChangeUserNameController extends BaseController
      */
     public function update(ChangeNameRequest $request, $id)
     {
-        if ($this->user->changeName($request)) {
+        if ($this->user->changeName(Auth::guard('user')->user->id)) {
             $this->setFlash(__('お知らせの編集が完了しました。'));
 
             return redirect(route('home.index'));
