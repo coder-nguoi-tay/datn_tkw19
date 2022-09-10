@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     @if (isset($title))
-        <title>{{ $title }}</title>
+    <title>{{ $title }}</title>
     @endif
     <link href="{{ asset('css/userApp.css') }}?t={{ time() }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
@@ -38,10 +38,10 @@
             @include('include.user.footer')
         </div>
         @if (session()->get('Message.flash'))
-            <popup-alert :data="{{ json_encode(session()->get('Message.flash')[0]) }}"></popup-alert>
+        <popup-alert :data="{{ json_encode(session()->get('Message.flash')[0]) }}"></popup-alert>
         @endif
         @php
-            session()->forget('Message.flash');
+        session()->forget('Message.flash');
         @endphp
     </div>
     <div class="loading-div hidden">

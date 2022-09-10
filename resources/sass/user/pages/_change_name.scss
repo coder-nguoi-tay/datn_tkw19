@@ -1,0 +1,113 @@
+.name {
+
+    .error-msg {
+        font-size: 10px;
+        line-height: 16px;
+        color: #E5352B;
+        margin-top: 8px;
+    }
+
+    .change-name {
+        margin-top: -36px;
+    }
+}
+
+.name-form {
+    @include mq-lg() {
+        max-width: 70%;
+        margin: 0 auto;
+    }
+
+    @include mq-xl() {
+        max-width: 70%;
+    }
+
+    .name__container {
+        margin-top: 50px;
+    }
+
+    .name {
+
+        .input-bg {
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background-color: white;
+
+            &.placeholder {
+                font-weight: bold;
+                color: black;
+                font-size: 14px;
+                opacity: 1.5;
+            }
+        }
+
+        .input-label {
+            font-size: 16px;
+            line-height: 26px;
+            color: black;
+            font-weight: bold;
+            margin-bottom: 6px;
+            position: relative;
+
+            .required {
+                background: #FD3434;
+                color: #fff;
+                padding: 3px 7px;
+                font-size: 12px;
+                border-radius: 5px;
+                line-height: 13px;
+                margin-left: 5px;
+                position: absolute;
+                margin-top: 3px;
+        
+                &.black {
+                    background-color: #000000;
+                }
+            }
+        }
+
+        .display-item {
+            width: 100%;
+            .input-text {
+                width: 30%;
+                font-size: 16px;
+                line-height: 26px;
+                color: black;
+                margin-bottom: 6px;
+            }
+            
+            .display-toogle {
+                justify-content: flex-end;
+                width: 70%;
+            }
+        }
+        
+    }
+
+    .submit-change {
+        margin-top: 10px;
+        text-align: center;
+
+        .btn-submit_nor {
+            border-radius: 4px;
+            border: 1px solid red;
+            min-width: 70px;
+            height: 30px;
+            font-size: 12px;
+            line-height: 16px;
+            background-color: red;
+            color: #FFFFFF;
+        }
+    
+        .btn-submit_ex {
+            border-radius: 4px;
+            border: 1px solid red;
+            min-width: 40px;
+            height: 30px;
+            line-height: 16px;
+            font-size: 12px;
+            margin-left: 10px;
+            color: red;
+        }
+    }
+}

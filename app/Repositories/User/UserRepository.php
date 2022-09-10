@@ -2,6 +2,7 @@
 
 namespace App\Repositories\User;
 
+use App\Enums\DisplayInfoFlag;
 use App\Enums\UserType;
 use App\Http\Controllers\BaseController;
 use App\Models\User;
@@ -213,19 +214,34 @@ class UserRepository extends BaseController implements UserInterface
             return false;
         }
         $currentUser->last_login_at = Carbon::now();
-
         return $currentUser->save();
     }
     public function checkEmail($request)
     {
         if ($request['value'] != '') {
-            return !$this->user->where(function ($query) use ($request) {
+            return ! $this->user->where(function ($query) use ($request) {
                 if (isset($request['id'])) {
                     $query->where('id', '!=', $request['id']);
                 }
                 $query->where(['email' => $request['value']]);
             })->exists();
         }
+
         return true;
+    }
+
+    public function changeName($request)
+    {
+        $userInfo = $this->user
+            ->where('id', Auth::guard('user')->user()->id)
+            ->first();
+        if (! $userInfo) {
+            return false;
+        }
+        $userInfo->show_name = $request->show_name;
+        $userInfo->memo = $request->memo;
+        $userInfo->display_info_flag = $request->display_info_flag ? DisplayInfoFlag::SHOWFLAG : DisplayInfoFlag::DEFAULT;
+
+        return $userInfo->save();
     }
 }
