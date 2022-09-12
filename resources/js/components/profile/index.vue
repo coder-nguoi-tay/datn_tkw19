@@ -10,7 +10,7 @@
     >
       <Field type="hidden" :value="csrfToken" name="_token" />
       <Field type="hidden" value="PUT" name="_method" />
-      <div class="container">
+      <div class="profile_container">
         <div class="profile">
           <div class="form-group">
             <label class="input-label">アカウント名</label>
