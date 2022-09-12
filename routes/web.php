@@ -64,3 +64,8 @@ Route::group([
         Route::resource('news', NewManagerController::class, ['as' => 'admin']);
     });
 });
+Route::group([
+    'middleware' => ['user'],
+], function () {
+
+});
