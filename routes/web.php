@@ -15,6 +15,9 @@ use App\Http\Controllers\User\EventController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\LoginController as UserLoginController;
 use App\Http\Controllers\User\RegisterController;
+use App\Http\Controllers\User\UserForgotPasswordController;
+use App\Http\Controllers\User\UserForgotPasswordSuccessController;
+use App\Http\Controllers\User\PasswordResetController as UserPasswordResetController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +47,9 @@ Route::resource('event', EventController::class);
 Route::resource('login', UserLoginController::class);
 Route::get('logout', [UserLoginController::class, 'logout'])->name('logout');
 Route::resource('change-user-name', ChangeUserNameController::class);
+Route::resource('forgot_password', UserForgotPasswordController::class);
+Route::resource('forgot_password_complete', UserForgotPasswordSuccessController::class);
+Route::resource('password_reset', UserPasswordResetController::class);
 
 Route::group([
     'prefix' => 'admin',

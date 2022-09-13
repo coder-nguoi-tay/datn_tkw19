@@ -56,7 +56,7 @@ class LoginController extends BaseController
     {
         $credentials = $request->only('email', 'password', 'type');
         if (Auth::guard('admin')->attempt($credentials, $request->remember_me ?? false)) {
-            if (! $this->user->updateLastLogin(Auth::guard('admin')->user()->id)) {
+            if (!$this->user->updateLastLogin(Auth::guard('admin')->user()->id)) {
                 Auth::guard('admin')->logout();
 
                 return redirect('/');
