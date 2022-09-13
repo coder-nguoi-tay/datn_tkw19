@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Repositories\User\UserInterface;
 use App\Http\Requests\ForgotPassword as ForgotPasswordRequest;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\UserForgotPasswordRequest;
+use App\Enums\StatusCode;
 
 class UserForgotPasswordController extends BaseController
 {
@@ -44,38 +45,20 @@ class UserForgotPasswordController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserForgotPasswordRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'info' => 'required|max:255',
-        ]);
-        if ($validator->fails()) {
-            $this->setFlash(__('Invalid input'), 'error');
-            return redirect(route('forgot_password.create'));
-        }
-
         if (is_numeric($request->info)) {
-            if (!$this->user->getUserByPhoneNumber($request->info)) {
-                $this->setFlash(__('Wrong phone number'), 'error');
-                return redirect(route('forgot_password.create'));
-            } else {
-                if (!$this->user->generalResetPass($request->info, 'phone')) {
-                    $this->setFlash(__('Invalid phone number'), 'error');
-                    return redirect(route('forgot_password.create'));
-                }
+            if (!$this->user->generalResetPass($request->info, 'phone_number')) {
+                // $this->setFlash(__('Wrong phone number'), 'error');
+                return response(['message' =>  'Wrong phone number'], StatusCode::BAD_REQUEST);
             }
         } else {
-            if (!$this->user->getByEmail($request->info)) {
-                $this->setFlash(__('メールでユーザーを見つけることができません'), 'error');
-                return redirect(route('forgot_password.create'));
-            } else {
-                if (!$this->user->generalResetPass($request->info, 'email')) {
-                    $this->setFlash(__('メールが一致しません'), 'error');
-                    return redirect(route('forgot_password.create'));
-                }
+            if (!$this->user->generalResetPass($request->info, 'email')) {
+                // $this->setFlash(__('メールが一致しません'), 'error');
+                return response(['message' =>  'メールが一致しません'], StatusCode::BAD_REQUEST);
             }
         }
-        return redirect(route('forgot_password_complete.index'));
+        return response(['url_redirect' =>  route('forgot_password_complete.index')], StatusCode::OK);
     }
 
     /**

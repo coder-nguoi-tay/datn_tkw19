@@ -20,16 +20,22 @@
                 <div class="card-body card-login">
                   <div class="row justify-content-center">
                     <div class="col-sm-8 text-center title-login">
-                      <h3>パスワードリセット</h3>
+                      <h3 style="font-size: 32px; font-weight: bold">
+                        パスワードリセット
+                      </h3>
                     </div>
                   </div>
                   <div class="row justify-content-center">
                     <div class="col-sm-8">
                       <div class="form-group">
-                        <label for="ccnumber"
-                          >新しいパスワード<span class="text-danger"
-                            >*</span
-                          ></label
+                        <label
+                          for="ccnumber"
+                          style="
+                            font-size: 14px;
+                            font-weight: bold;
+                            margin-bottom: 6px;
+                          "
+                          >新しいパスワード</label
                         >
                         <Field
                           name="password"
@@ -39,18 +45,27 @@
                           rules="required|max:15|min:8|password_rule"
                           class="form-control"
                           ref="password"
+                          placeholder="●●●●●●●●"
+                          style="font-size: 14px; color: #cfcfcf"
                         />
                         <ErrorMessage class="error" name="password" />
                       </div>
                     </div>
                   </div>
-                  <div class="row justify-content-center">
+                  <div
+                    class="row justify-content-center"
+                    style="margin-top: 12px"
+                  >
                     <div class="col-sm-8">
                       <div class="form-group">
-                        <label for="ccnumber"
-                          >新しいパスワード（確認用）<span class="text-danger"
-                            >*</span
-                          ></label
+                        <label
+                          for="ccnumber"
+                          style="
+                            font-size: 14px;
+                            font-weight: bold;
+                            margin-bottom: 6px;
+                          "
+                          >新しいパスワード（確認用）</label
                         >
                         <Field
                           name="password_confirmation"
@@ -59,6 +74,8 @@
                           v-model="model.password_confirmation"
                           rules="required|confirmed:@password"
                           class="form-control"
+                          placeholder="●●●●●●●●"
+                          style="font-size: 14px; color: #cfcfcf"
                         />
                         <ErrorMessage
                           class="error"
@@ -70,24 +87,27 @@
                   <div class="row justify-content-center">
                     <div class="col-sm-8 p-l-20 text-center">
                       <button
-                        class="btn px-4 btn-login"
+                        class="btn px-4 btn-confirm-password"
                         type="submit"
-                        style="
-                          background-color: #e5352b;
-                          color: white;
-                          width: 50%;
-                        "
                       >
                         パスワードを変更する
                       </button>
                     </div>
                   </div>
-                  <div class="row justify-content-center group-back-login">
+                  <div
+                    class="row justify-content-center group-back-login"
+                    style="margin: 0px; margin-top: 9px"
+                  >
                     <div class="col-sm-8 p-l-20">
                       <a
                         class="btn-link px-0"
                         :href="data.loginUrl"
-                        style="color: #e5352b"
+                        style="
+                          color: #e5352b;
+                          text-decoration: none;
+                          font-size: 12px;
+                          margin-top: 9px;
+                        "
                         >イベント一覧に戻る</a
                       ><br />
                     </div>
@@ -179,3 +199,19 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.btn-confirm-password {
+  background-color: #e5352b;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 23px;
+  width: 173px;
+  margin: 0px auto;
+  margin-top: 24px;
+}
+</style>
