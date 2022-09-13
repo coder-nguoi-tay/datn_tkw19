@@ -34,14 +34,11 @@ class ProfileController extends BaseController
 
     public function index()
     {
-        $user = Auth::guard('user')->user();
-        $date = date_create($user->birthday);
-        $user->birthday = date_format($date, "Y/m/d");
         return view('user.profile.index', [
             'title' => 'ユーザー情報設定',
             'prefectures' => $this->prefecture->get(),
             'cities' => $this->city->get(),
-            'user' => $user
+            'user' => Auth::guard('user')->user()
         ]);
     }
 

@@ -32,13 +32,10 @@
               v-model="dataUser.gender"
               as="select"
               name="gender"
-              class="form-control"
-              readonly
+              class="form-select"
             >
               <option
-                v-for="(item, index) in data.genderOptions.filter(
-                  (x) => x.id == dataUser.gender
-                )"
+                v-for="(item, index) in data.genderOptions"
                 :key="item.id"
                 :value="item.id"
                 :id="'gender' + index"
@@ -52,36 +49,27 @@
             <label class="input-label">生年月日</label>
             <span class="category">必須</span>
             <Field
-              v-model="dataUser.birthday"
+              as="div"
               name="birthday"
-              class="form-control"
+              v-model="dataUser.birthday"
               rules="required"
-              type="text"
-              readonly
-            />
-            <!--              <Field-->
-            <!--                  as="div"-->
-            <!--                  name="birthday"-->
-            <!--                  v-model="dataUser.birthday"-->
-            <!--                  rules="required"-->
-            <!--              >-->
-            <!--                  <datepicker-->
-            <!--                      autoApply-->
-            <!--                      keepActionRow-->
-            <!--                      :closeOnAutoApply="false"-->
-            <!--                      v-model="dataUser.birthday"-->
-            <!--                      :monthChangeOnScroll="false"-->
-            <!--                      :maxDate="new Date()"-->
-            <!--                      locale="ja"-->
-            <!--                      name="birthday"-->
-            <!--                      selectText="選択"-->
-            <!--                      cancelText="閉じる"-->
-            <!--                      format="yyyy/MM/dd"-->
-            <!--                      placeholder="1990 / 01 / 01"-->
-            <!--                      :enableTimePicker="false"-->
-            <!--                      readonly-->
-            <!--                  />-->
-            <!--              </Field>-->
+            >
+              <datepicker
+                autoApply
+                keepActionRow
+                :closeOnAutoApply="false"
+                v-model="dataUser.birthday"
+                :monthChangeOnScroll="false"
+                :maxDate="new Date()"
+                locale="ja"
+                name="birthday"
+                selectText="選択"
+                cancelText="閉じる"
+                format="yyyy/MM/dd"
+                placeholder="1990 / 01 / 01"
+                :enableTimePicker="false"
+              />
+            </Field>
             <ErrorMessage class="error-msg" name="birthday" />
           </div>
           <div class="form-group">
@@ -93,7 +81,7 @@
               v-model="dataUser.prefecture_id"
               rules="required"
               class="form-select"
-              @change="this.model.city_id = ''"
+              @change="this.dataUser.city_id = ''"
             >
               <option value="" disabled selected></option>
               <option
@@ -142,7 +130,6 @@
               as="select"
               name="job_type"
               type="select"
-              rules="required"
               class="form-select"
             >
               <option value="" disabled selected></option>
@@ -180,7 +167,6 @@ import Datepicker from '@vuepic/vue-datepicker'
 import $ from 'jquery'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
-import axios from 'axios'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -221,9 +207,6 @@ export default {
           },
           city_id: {
             required: '市を入力してください。'
-          },
-          job_type: {
-            required: '所在地を入力してください。'
           }
         }
       }

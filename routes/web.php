@@ -44,7 +44,7 @@ Route::resource('my-page', MyPageController::class);
 Route::resource('event', EventController::class);
 Route::resource('login', UserLoginController::class);
 Route::get('logout', [UserLoginController::class, 'logout'])->name('logout');
-Route::resource('profile', ProfileController::class );
+
 
 Route::group([
     'prefix' => 'admin',
@@ -64,4 +64,9 @@ Route::group([
         Route::post('check-phone', [UserController::class, 'checkPhone'])->name('admin.user.checkPhone');
         Route::resource('news', NewManagerController::class, ['as' => 'admin']);
     });
+});
+Route::group([
+    'middleware' => ['user'],
+], function () {
+    Route::resource('profile', ProfileController::class);
 });

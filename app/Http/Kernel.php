@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'assign.guard' => \App\Http\Middleware\AssignGuard::class,
         'jwt.verify' => \App\Http\Middleware\JwtVerify::class,
         'auth.jwt' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
+        'user' => \App\Http\Middleware\User::class,
     ];
 }
