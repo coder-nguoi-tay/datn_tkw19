@@ -1,5 +1,9 @@
 .my-event {
   padding-bottom: 133.6px;
+  @include mq-xs() {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
 }
 
 .tabs-event {

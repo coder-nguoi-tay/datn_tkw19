@@ -11,7 +11,7 @@
   .modal-dialog{
     width: 100%;
     margin: auto 6px;
-    @media only screen and (min-width: 766px) {
+    @include mq-md() {
       margin: auto;
     }
   }

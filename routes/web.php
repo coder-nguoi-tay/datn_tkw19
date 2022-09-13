@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\NewManagerController;
 use App\Http\Controllers\Admin\PasswordResetController;
 use App\Http\Controllers\Admin\PasswordResetExpiredController;
 use App\Http\Controllers\MyPageController;
+use App\Http\Controllers\EventReportController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\MyEventController;
 use App\Http\Controllers\User\ChangeUserNameController;
@@ -40,6 +41,7 @@ Route::post('register/verify-code', [RegisterController::class, 'verifyCode'])->
 Route::post('check-phone', [RegisterController::class, 'checkPhone'])->name('register.checkPhone');
 Route::resource('my-event', MyEventController::class);
 Route::resource('my-page', MyPageController::class);
+Route::resource('event-report', EventReportController::class);
 Route::resource('event', EventController::class);
 Route::resource('login', UserLoginController::class);
 Route::get('logout', [UserLoginController::class, 'logout'])->name('logout');
