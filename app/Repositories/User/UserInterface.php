@@ -29,4 +29,6 @@ interface UserInterface
     // public function getUserByToken($token);
 
     // public function updatePasswordByToken($request, $token);
+    public function updateSettingNotification($request, $id);
+
 }
