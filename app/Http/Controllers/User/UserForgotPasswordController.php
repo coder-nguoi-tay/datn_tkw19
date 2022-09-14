@@ -58,7 +58,7 @@ class UserForgotPasswordController extends BaseController
                 return response(['message' =>  'メールが一致しません'], StatusCode::BAD_REQUEST);
             }
         }
-        return response(['url_redirect' =>  route('forgot_password_complete.index')], StatusCode::OK);
+        return response(['message' =>  'success'], StatusCode::OK);
     }
 
     /**

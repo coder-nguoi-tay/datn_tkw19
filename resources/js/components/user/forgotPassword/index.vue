@@ -52,7 +52,10 @@
                     </div>
                   </div>
                   <div class="row justify-content-center">
-                    <div class="col-sm-8 text-center" style="max-width: 304px">
+                    <div
+                      class="text-center"
+                      style="max-width: 304px; margin-left: -20px"
+                    >
                       <div
                         class="capcha text-center"
                         v-if="showRecapchar"
@@ -127,6 +130,10 @@
       </div>
     </div>
     <loader :flag-show="flagShowLoader"></loader>
+    <popup-alert
+      :data="dataAlert"
+      @resetDataAlert="resetDataAlert"
+    ></popup-alert>
   </div>
 </template>
 
@@ -145,7 +152,8 @@ export default {
       csrfToken: Laravel.csrfToken,
       baseUrl: Laravel.baseUrl,
       showRecapchar: false,
-      error: ''
+      error: '',
+      dataAlert: null
     }
   },
   created() {
@@ -187,14 +195,30 @@ export default {
       axios
         .post(this.data.storeUrl, $('#form-data').serialize())
         .then(function (response) {
+          console.log(response)
           $('.loading-div').addClass('hidden')
-          location.href = response.data.url_redirect
+          // location.href = response.data.url_redirect
+          that.dataAlert = {
+            message: '変更メールを送信しました！！',
+            content:
+              'まだ変更手続きは完了していません。変更用のメールを送信いたしましたので、メールに記載の確認リンクにアクセスし、変更を完了させてください。',
+            mode: 'success',
+            urlRedirect: ''
+          }
         })
         .catch((error) => {
           $('.loading-div').addClass('hidden')
-          that.error = error.response.data.message
+          // that.error = error.response.data.message
+          that.dataAlert = {
+            message: error.response.data.message,
+            mode: 'error',
+            urlRedirect: ''
+          }
           that.showRecapchar = true
         })
+    },
+    resetDataAlert() {
+      this.dataAlert = null
     },
     verifyMethod(val) {
       this.model.recaptcha_token = val
@@ -219,5 +243,13 @@ export default {
 
 .capcha-center > div {
   width: 100% !important;
+}
+
+.capcha-center > span {
+  font-size: 10px;
+}
+
+.error {
+  font-size: 10px !important;
 }
 </style>

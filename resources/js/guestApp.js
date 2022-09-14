@@ -75,4 +75,5 @@ app.component('user-forgot-password-create', UserForgotPasswordCreate)
 app.component('user-forgot-password-success', UserForgotPasswordSuccess)
 app.component('vue-recaptcha', VueRecaptcha)
 
+
 app.mount('#app')
