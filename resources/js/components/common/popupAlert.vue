@@ -32,7 +32,7 @@ export default {
         if (urlRedirect != '') {
           window.location = urlRedirect
         }
-        this.$emit('resetDataAlert')
+        // this.$emit('resetDataAlert')
       })
     }
   },

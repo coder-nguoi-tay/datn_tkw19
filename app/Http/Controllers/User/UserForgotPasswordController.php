@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
+use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
-use App\Repositories\User\UserInterface;
 use App\Http\Requests\ForgotPassword as ForgotPasswordRequest;
 use App\Http\Requests\UserForgotPasswordRequest;
-use App\Enums\StatusCode;
+use App\Repositories\User\UserInterface;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserForgotPasswordController extends BaseController
 {
     private $user;
+
     public function __construct(UserInterface $user)
     {
         $this->user = $user;
@@ -22,7 +24,6 @@ class UserForgotPasswordController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
     }
@@ -45,20 +46,29 @@ class UserForgotPasswordController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserForgotPasswordRequest $request)
+    public function store(Request $request)
     {
-        if (is_numeric($request->info)) {
-            if (!$this->user->generalResetPass($request->info, 'phone_number')) {
-                // $this->setFlash(__('Wrong phone number'), 'error');
-                return response(['message' =>  'Wrong phone number'], StatusCode::BAD_REQUEST);
-            }
-        } else {
-            if (!$this->user->generalResetPass($request->info, 'email')) {
-                // $this->setFlash(__('メールが一致しません'), 'error');
-                return response(['message' =>  'メールが一致しません'], StatusCode::BAD_REQUEST);
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+        $isEmail = true;
+        if ($validator->fails()) {
+            $isEmail = false;
+            $validator = Validator::make($request->all(), [
+                'email' => ['required', 'regex:/^(0(\d-\d{4}-\d{4}))|(0(\d{3}-\d{2}-\d{4}))|((070|080|090|050)(-\d{4}-\d{4}))|(0(\d{2}-\d{3}-\d{4}))|(0(\d{9,10}))+$/'],
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'message' => 'invalid param',
+                    'status_code' => StatusCode::BAD_REQUEST,
+                ], StatusCode::OK);
             }
         }
-        return response(['message' =>  'success'], StatusCode::OK);
+        if (! $this->user->generalResetPass($request, $isEmail)) {
+            return response(['message' =>  'エラーが発生しました。'], StatusCode::BAD_REQUEST);
+        }
+
+        return response(['message' =>  'メールが一致しません'], StatusCode::OK);
     }
 
     /**

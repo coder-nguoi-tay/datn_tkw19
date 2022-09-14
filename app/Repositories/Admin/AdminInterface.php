@@ -19,10 +19,4 @@ interface AdminInterface
     public function updateLastLogin($id);
 
     public function getByEmail($request);
-
-    public function generalResetPass($request);
-
-    public function getUserByToken($token);
-
-    public function updatePasswordByToken($request, $token);
 }

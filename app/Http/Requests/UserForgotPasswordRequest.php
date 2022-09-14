@@ -29,8 +29,9 @@ class UserForgotPasswordRequest extends FormRequest
             is_numeric($this->info)
                 ?
                 'regex:/^(0(\d-\d{4}-\d{4}))|(0(\d{3}-\d{2}-\d{4}))|((070|080|090|050)(-\d{4}-\d{4}))|(0(\d{2}-\d{3}-\d{4}))|(0(\d{9,10}))+$/'
-                : 'email'
+                : 'email',
         ];
+
         return $rule;
     }
 }

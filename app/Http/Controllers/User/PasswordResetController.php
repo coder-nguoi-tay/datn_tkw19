@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\BaseController;
-use Illuminate\Http\Request;
-use App\Repositories\User\UserInterface;
 use App\Http\Requests\InitPassChange;
+use App\Repositories\User\UserInterface;
+use Illuminate\Http\Request;
 
 class PasswordResetController extends BaseController
 {
-
     private $user;
 
     public function __construct(UserInterface $user)
     {
         $this->user = $user;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -55,7 +55,7 @@ class PasswordResetController extends BaseController
      */
     public function show($token)
     {
-        if (!$this->user->getUserByToken($token)) {
+        if (! $this->user->getUserByToken($token)) {
             abort(404);
         }
 

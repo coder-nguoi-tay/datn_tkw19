@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
+use Illuminate\Http\Request;
 
 class UserForgotPasswordSuccessController extends BaseController
 {
