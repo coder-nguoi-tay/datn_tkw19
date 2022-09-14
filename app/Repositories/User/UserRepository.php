@@ -263,12 +263,7 @@ class UserRepository extends BaseController implements UserInterface
 
     public function generalResetPass($info, $type)
     {
-        $account = null;
-        if ($type === 'email') {
-            $account = $this->user->where('email', $info)->first();
-        } else {
-            $account = $this->user->where('phone_number', $info)->first();
-        }
+        $account = $this->user->where($type, $info)->first();
         if (!$account) {
             return false;
         }
@@ -297,7 +292,7 @@ class UserRepository extends BaseController implements UserInterface
                     ]
                 );
             } catch (\Throwable $th) {
-                return $th;
+                return false;
             }
         }
         return true;
