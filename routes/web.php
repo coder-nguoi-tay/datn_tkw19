@@ -13,6 +13,8 @@ use App\Http\Controllers\User\EventController;
 use App\Http\Controllers\MyEventController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\RegisterController;
+use App\Http\Controllers\User\ProfileController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,4 +61,13 @@ Route::group([
         Route::post('check-phone', [UserController::class, 'checkPhone'])->name('admin.user.checkPhone');
         Route::resource('news', NewManagerController::class, ['as' => 'admin']);
     });
+});
+Route::group([
+    'prefix' => 'profile',
+    // 'middleware' => ['auth'],
+], function () {
+    Route::resource('/', ProfileController::class);
+    Route::get('/setting-notification', [ProfileController::class, 'settingNotification']);
+    Route::post('/update-setting-notification/{id}', [ProfileController::class, 'updateSettingNotification'])->name('user.profile.notification');
+    
 });

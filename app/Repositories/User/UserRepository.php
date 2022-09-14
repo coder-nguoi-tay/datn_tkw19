@@ -228,4 +228,18 @@ class UserRepository extends BaseController implements UserInterface
         }
         return true;
     }
+    public function updateSettingNotification($request, $id)
+    {
+        
+     
+        $currentUser = $this->user->where('id', $id)->first();
+      
+        $currentUser->deal_noti_flag = $request->deal_noti_flag == 1 ? 1 : 0 ;
+        $currentUser->public_chat_noti =  $request->public_chat_noti == 1 ? 1 : 0;
+        $currentUser->join_event_noti = $request->join_event_noti == 1 ? 1 : 0;
+        $currentUser->receiving_noti_flag = $request->receiving_noti_flag == 1 ? 1 : 0;
+
+        $currentUser->save();
+        return $currentUser;
+    }
 }
