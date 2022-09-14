@@ -13,6 +13,7 @@ use App\Http\Controllers\MyEventController;
 use App\Http\Controllers\User\ChangeUserNameController;
 use App\Http\Controllers\User\EventController;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\LoginController as UserLoginController;
 use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\User\UserForgotPasswordController;
@@ -77,5 +78,4 @@ Route::group([
     Route::resource('/', ProfileController::class);
     Route::get('/setting-notification', [ProfileController::class, 'settingNotification']);
     Route::post('/update-setting-notification/{id}', [ProfileController::class, 'updateSettingNotification'])->name('user.profile.notification');
-
 });

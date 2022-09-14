@@ -4,7 +4,7 @@
 
     .card {
         height: auto;
-        width: 410px;
+        width: 100%;
         margin: auto;
         background: #F7F7F7;
         border: 1px solid #F7F7F7;
@@ -16,7 +16,12 @@
     }
 
     .col-sm-8 {
-        width: 400px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .col-sm-12 {
+        width: 100%;
         margin-top: 10px;
         height: auto;
     }
@@ -30,12 +35,12 @@
     }
 
     .left {
-        width: 300px;
+        width: 70%;
         float: left;
     }
 
     .right {
-        width: 80px;
+        width: 30%;
         float: right;
     }
 
@@ -46,7 +51,7 @@
 
     .right-title {
         width: 60px;
-        float: right;
+        float: left;
     }
 
     .btn-title {
@@ -93,7 +98,19 @@
         text-decoration: none;
         color: #e83928;
     }
-    .back-url:hover{
+    .toggle_status {
+        width: 60px;
+        margin-top: 20px;
+        float: right;
+
+    }
+
+    .back-url {
+        text-decoration: none;
+        color: #e83928;
+    }
+
+    .back-url:hover {
         text-decoration: underline;
         text-decoration: none;
         transition: 0s;

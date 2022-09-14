@@ -1,7 +1,7 @@
 <template>
   <div class="container container-setting">
     <div class="row justify-content-center">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="card">
           <VeeForm
             as="div"
@@ -17,7 +17,7 @@
               <Field type="hidden" :value="csrfToken" name="_token" />
 
               <div class="card-body card-login" style="margin-left: 15px">
-                <div class="col-sm-8" style="margin-top: -30px">
+                <div class="col-sm-12" style="margin-top: -30px">
                   <div class="left-title">
                     <div class="form-group text-left">
                       <h5 style="font-weight: 600">
@@ -37,12 +37,13 @@
                   placeholder="sample@example.com"
                   style="margin-top: 40px"
                   name="email"
+                  :value ="data.user.email"
                   v-model="model.email"
                   rules="required|email"
                 />
                 <ErrorMessage class="error" name="email" />
                 <!--Status-->
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                   <div class="left">
                     <div class="form-group text-left">
                       <h6 style="font-weight: 600">お得情報通知</h6>
@@ -63,7 +64,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                   <div class="left">
                     <div class="form-group text-left">
                       <h6 style="font-weight: 600">公開 チャット 通知</h6>
@@ -83,7 +84,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                   <div class="left">
                     <div class="form-group text-left">
                       <h6 style="font-weight: 600">
@@ -105,7 +106,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                   <div class="left">
                     <div class="form-group text">
                       <h6 style="font-weight: 600">
@@ -144,7 +145,7 @@
                    <a :href="data.urlMyevent" class="back-url">戻る</a>
                   </button>
                 </div>
-               
+
               </div>
             </form>
           </VeeForm>
@@ -233,7 +234,7 @@ export default {
     onSubmit() {
       this.$refs.formData.submit()
       this.flagShowLoader = true
-      
+
     }
   }
 }
