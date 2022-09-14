@@ -141,9 +141,10 @@
                     class="btn btn-outline-danger"
                     style="margin-top: 20px"
                   >
-                    戻る
+                   <a :href="data.urlMyevent" class="back-url">戻る</a>
                   </button>
                 </div>
+               
               </div>
             </form>
           </VeeForm>
@@ -233,8 +234,7 @@ export default {
       this.$refs.formData.submit()
       this.flagShowLoader = true
       console.log('123')
-    },
-   
+    }
   }
 }
 </script>

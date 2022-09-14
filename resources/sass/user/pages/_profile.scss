@@ -89,4 +89,13 @@
          margin-left: -30px;
          margin-top: 20px;
     }
+    .back-url{
+        text-decoration: none;
+        color: #e83928;
+    }
+    .back-url:hover{
+        text-decoration: underline;
+        text-decoration: none;
+        transition: 0s;
+    }
 }
