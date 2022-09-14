@@ -44,10 +44,11 @@ class ProfileRequest extends FormRequest
             'required',
             Rule::in(City::latest()->where('prefecture_id', $data['prefecture_id'])->pluck('id')),
         ];
-        $rule['job_type'] = [
-            'required',
-            Rule::in(JobType::getValues()),
-        ];
+        if (isset($data['job_type'])) {
+            $rule['job_type'] = [
+                Rule::in(JobType::getValues()),
+            ];
+        }
         return $rule;
     }
 }
