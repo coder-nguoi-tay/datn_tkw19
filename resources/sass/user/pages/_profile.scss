@@ -1,0 +1,105 @@
+.container-setting {
+    width: auto;
+    height: auto;
+
+    .card {
+        height: auto;
+        width: 100%;
+        margin: auto;
+        background: #F7F7F7;
+        border: 1px solid #F7F7F7;
+    }
+
+    .form-control {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .col-sm-12 {
+        width: 100%;
+        margin-top: 10px;
+        height: auto;
+    }
+
+    .col-sm-12 h6 {
+        margin-top: 10px;
+    }
+
+    .col-sm-12 label {
+        font-weight: 400;
+    }
+
+    .left {
+        width: 70%;
+        float: left;
+    }
+
+    .right {
+        width: 30%;
+        float: right;
+    }
+
+    .left-title {
+        width: 340px;
+        float: left;
+    }
+
+    .right-title {
+        width: 60px;
+        float: left;
+    }
+
+    .btn-title {
+        width: 40px;
+        height: 24px;
+        margin-left: -70px;
+        font-size: 13px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: transform 0.3 ease;
+        color: white;
+        background: #e83928;
+        position: absolute;
+        text-decoration: underline;
+        padding-left: 7px;
+        padding-top: 3px;
+    }
+
+    .btn-title:hover {
+        text-decoration: underline;
+        text-decoration: none;
+        color: white;
+    }
+
+    .status {
+        width: 300px;
+    }
+
+    .form-check-input {
+        margin-top: 15px;
+        height: 25px;
+    }
+
+    .btn {
+        height: 35px;
+
+    }
+
+    .toggle_status {
+        width: 60px;
+        margin-top: 20px;
+        float: right;
+
+    }
+
+    .back-url {
+        text-decoration: none;
+        color: #e83928;
+    }
+
+    .back-url:hover {
+        text-decoration: underline;
+        text-decoration: none;
+        transition: 0s;
+    }
+}

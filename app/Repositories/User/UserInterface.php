@@ -23,4 +23,8 @@ interface UserInterface
     public function checkEmail($request);
 
     public function changeName($request);
+
+    public function updateSettingNotification($request, $id);
+        
+
 }
