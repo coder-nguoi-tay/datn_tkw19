@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Enums\Gender;
+use App\Enums\JobType;
 use App\Models\City;
 use App\Models\Prefecture;
 use Carbon\Carbon;
@@ -42,6 +43,10 @@ class ProfileRequest extends FormRequest
         $rule['city_id'] = [
             'required',
             Rule::in(City::latest()->where('prefecture_id', $data['prefecture_id'])->pluck('id')),
+        ];
+        $rule['job_type'] = [
+            'required',
+            Rule::in(JobType::getValues()),
         ];
         return $rule;
     }

@@ -2,6 +2,7 @@
 
 namespace App\Repositories\User;
 
+use App\Enums\DisplayInfoFlag;
 use App\Enums\UserType;
 use App\Http\Controllers\BaseController;
 use App\Models\User;
@@ -12,6 +13,10 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ForgotPassword;
+use App\Mail\ForgotPassComplete;
+use Twilio\Rest\Client;
 
 class UserRepository extends BaseController implements UserInterface
 {
@@ -83,11 +88,13 @@ class UserRepository extends BaseController implements UserInterface
             if (isset($userTmp)) {
                 if (!$userTmp->delete()) {
                     DB::rollBack();
+
                     return false;
                 }
             }
 
             DB::commit();
+
             return true;
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -104,6 +111,7 @@ class UserRepository extends BaseController implements UserInterface
             $userInfo = $this->user->where('id', $id)->first();
             if (!$userInfo) {
                 DB::rollBack();
+
                 return false;
             }
             $userInfo->show_name = $request->show_name;
@@ -126,9 +134,11 @@ class UserRepository extends BaseController implements UserInterface
             }
             if (!$userInfo->save()) {
                 DB::rollBack();
+
                 return false;
             }
             DB::commit();
+
             return true;
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -227,6 +237,7 @@ class UserRepository extends BaseController implements UserInterface
                 $query->where(['email' => $request['value']]);
             })->exists();
         }
+
         return true;
     }
 
@@ -257,5 +268,101 @@ class UserRepository extends BaseController implements UserInterface
             DB::rollBack();
         }
         return false;
+    }
+
+    public function changeName($request)
+    {
+        $userInfo = $this->user
+            ->where('id', Auth::guard('user')->user()->id)
+            ->first();
+        if (!$userInfo) {
+            return false;
+        }
+        $userInfo->show_name = $request->show_name;
+        $userInfo->memo = $request->memo;
+        $userInfo->display_info_flag = $request->display_info_flag ? DisplayInfoFlag::SHOWFLAG : DisplayInfoFlag::DEFAULT;
+
+        return $userInfo->save();
+    }
+
+    public function getByEmail($email)
+    {
+        return $this->user->where('email', $email)->first();
+    }
+
+    public function generalResetPass($info, $type)
+    {
+        $account = null;
+        if ($type === 'email') {
+            $account = $this->user->where('email', $info)->first();
+        } else {
+            $account = $this->user->where('phone_number', $info)->first();
+        }
+        if (!$account) {
+            return false;
+        }
+        $account->reset_password_token = md5($info . random_bytes(25) . Carbon::now());
+        $account->reset_password_token_expire = Carbon::now()->addMinutes(env('EXPIRE_TOKEN', 30));
+        if (!$account->save()) {
+            return false;
+        }
+
+        if ($type === 'email') {
+            $mailContents = [
+                'data' => [
+                    'name' => $account->name,
+                    'link' => route('password_reset.show', $account->reset_password_token),
+                ],
+            ];
+            Mail::to($account->email)->send(new ForgotPassword($mailContents));
+        } else {
+            $client = new Client(getenv('TWILIO_SID'), getenv('TWILIO_AUTH_TOKEN'));
+            try {
+                $client->messages->create(
+                    (env('VN_MODE') ? '+84' : '+81') . $info,
+                    [
+                        'from' => getenv('TWILIO_NUMBER'),
+                        'body' => route('password_reset.show', $account->reset_password_token),
+                    ]
+                );
+            } catch (\Throwable $th) {
+                return $th;
+            }
+        }
+        return true;
+    }
+
+    public function updatePasswordByToken($request, $token)
+    {
+        $account = $this->getUserByToken($token);
+        if (!$account) {
+            return false;
+        }
+        $account->password = Hash::make($request->password);
+        $account->reset_password_token = null;
+        $account->reset_password_token_expire = null;
+        if (!$account->save()) {
+            return false;
+        }
+        $mailContents = [
+            'name' => $account->name,
+            'mail' => $account->email,
+        ];
+        Mail::to($account->email)->send(new ForgotPassComplete($mailContents));
+
+        return true;
+    }
+
+    public function getUserByToken($token)
+    {
+        return $this->user->where([
+            ['reset_password_token', $token],
+            ['reset_password_token_expire', '>=', Carbon::now()],
+        ])->first();
+    }
+
+    public function getUserByPhoneNumber($info)
+    {
+        return $this->user->where('phone_number', $info)->first();
     }
 }
