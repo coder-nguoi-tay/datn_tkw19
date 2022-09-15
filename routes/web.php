@@ -19,7 +19,6 @@ use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\User\UserForgotPasswordController;
 use App\Http\Controllers\User\UserForgotPasswordSuccessController;
 use App\Http\Controllers\User\PasswordResetController as UserPasswordResetController;
-use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +52,7 @@ Route::resource('forgot_password', UserForgotPasswordController::class);
 Route::resource('forgot_password_complete', UserForgotPasswordSuccessController::class);
 Route::resource('password_reset', UserPasswordResetController::class);
 
+
 Route::group([
     'prefix' => 'admin',
 ], function () {
@@ -78,4 +78,5 @@ Route::group([
     Route::resource('/', ProfileController::class);
     Route::get('/setting-notification', [ProfileController::class, 'settingNotification']);
     Route::post('/update-setting-notification/{id}', [ProfileController::class, 'updateSettingNotification'])->name('user.profile.notification');
+    Route::resource('profile', ProfileController::class);
 });

@@ -116,3 +116,96 @@
         transition: 0s;
     }
 }
+.profile_container {
+    margin: 34px;
+
+    .submit__container {
+        margin-top: 16px;
+
+        .btn-submit {
+            display: inline-block;
+            margin-right: 14px;
+            background-color: #e5352b;
+            color: white;
+            border-radius: 5px;
+            border: 1px;
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
+            width: 64px;
+            height: 23px;
+        }
+
+        .btn-submit-primary {
+            @extend .btn-submit;
+            background-color: white;
+            color: #e5352b;
+            border: 1px solid #e5352b;
+            width: 40px;
+            height: 23px;
+        }
+
+        a {
+            color: #e5352b;
+        }
+    }
+}
+
+.profile {
+    .form-group {
+        margin-top: 16px;
+        border: 2px;
+        line-height: 29px;
+
+        ::placeholder {
+            font-weight: bold;
+            font-size: 10px;
+        }
+    }
+
+    .form-select {
+        margin-bottom: 4px;
+    }
+
+    .form-control {
+        border: 1px solid #cccccc;
+    }
+
+    .form-control-b {
+        @extend .form-control;
+        background-color: #ececec;
+    }
+
+    .error-msg {
+        font-size: 10px;
+        line-height: 16px;
+        color: #e5352b;
+        margin-top: 8px;
+    }
+
+    .input-label {
+        font-size: 14px;
+        line-height: 22px;
+        color: #000000;
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+
+    .category {
+        min-width: 27px;
+        height: 13px;
+        border-radius: 5px;
+        background-color: #e5352b;
+        margin-left: 15px;
+        text-align: center;
+        color: $white;
+        font-weight: bold;
+        font-size: 10px;
+        padding: 1px 3.5px 1px 3.5px;
+    }
+
+    .category-b {
+        @extend .category;
+        background-color: #000000;
+    }
+}
