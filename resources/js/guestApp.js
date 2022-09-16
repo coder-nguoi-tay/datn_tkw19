@@ -31,6 +31,21 @@ defineRule('telephone', (value) => {
         /^0(\d{9,10})+$/i.test(value.trim())
     )
 })
+defineRule('required', (value) => {
+    return !!value
+})
+
+defineRule('telephone_or_email', (value) => {
+    return (
+        /^0(\d-\d{4}-\d{4})+$/i.test(value.trim()) ||
+        /^0(\d{3}-\d{2}-\d{4})+$/i.test(value.trim()) ||
+        /^(070|080|090|050)(-\d{4}-\d{4})+$/i.test(value.trim()) ||
+        /^0(\d{2}-\d{3}-\d{4})+$/i.test(value.trim()) ||
+        /^0(\d{9,10})+$/i.test(value.trim()) ||
+        /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i.test(value.trim())
+    )
+})
+
 const app = createApp({})
 
 import Register from './components/user/register/index.vue'
@@ -39,7 +54,10 @@ import Login from './components/login/index.vue'
 import PopupAlert from './components/common/popupAlert.vue'
 import ForgotPasswordCreate from './components/forgotPassword/create.vue'
 import ForgotPasswordSuccess from './components/forgotPasswordSuccess/index.vue'
-import PasswordReset from './components/passwordReset/show.vue'
+import UserForgotPasswordCreate from './components/user/forgotPassword/index.vue'
+import UserForgotPasswordSuccess from './components/user/forgotPasswordSuccess/index.vue'
+import PasswordReset from './components/user/passwordReset/show.vue'
+import { VueRecaptcha } from 'vue-recaptcha'
 
 import UserLogin from './components/user/login/index.vue'
 
@@ -51,7 +69,11 @@ app.component('login', Login)
 app.component('popup-alert', PopupAlert)
 app.component('forgot-password-create', ForgotPasswordCreate)
 app.component('forgot-password-success', ForgotPasswordSuccess)
-app.component('password-reset', PasswordReset)
+app.component('user-password-reset', PasswordReset)
 app.component('user-login', UserLogin)
+app.component('user-forgot-password-create', UserForgotPasswordCreate)
+app.component('user-forgot-password-success', UserForgotPasswordSuccess)
+app.component('vue-recaptcha', VueRecaptcha)
+
 
 app.mount('#app')

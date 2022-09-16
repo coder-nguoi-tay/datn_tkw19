@@ -1348,15 +1348,15 @@
   resolved "https://registry.npmjs.org/@vue/shared/-/shared-3.2.37.tgz"
   integrity sha512-4rSJemR2NQIo9Klm1vabqWjD8rs/ZaJSzMxkMNeJS6lHiUjjUeYFbooN19NgFjztubEKh3WlZUeOLVdbbUWHsw==
 
-"@vueform/toggle@^2.0.2":
+"@vueform/toggle@^2.1.1":
   version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@vueform/toggle/-/toggle-2.1.1.tgz#44dab4aa09c778224d427af50a11d7371bcfd003"
+  resolved "https://registry.npmjs.org/@vueform/toggle/-/toggle-2.1.1.tgz"
   integrity sha512-5o//0DkYMFSICD1ShT0CZN9RywtwX79FkeYfl0N6Xe/rpTLsqZ6g2b/jRFimU+0CUOiGCcA27hTrzSUx9p3Iiw==
 
 "@vuepic/vue-datepicker@^3.2.1":
-  version "3.4.6"
-  resolved "https://registry.yarnpkg.com/@vuepic/vue-datepicker/-/vue-datepicker-3.4.6.tgz#d0e35400b7861ac602adc90b7ae70e97c850d5a6"
-  integrity sha512-UHtQiHbx9dQSv8KXPQe/hk2bXoBJx6KTdGSNinCTFKjZWNN42B3aABvlsKQ5yHiHI1jm1JMOOSGfgAIF3NhRKg==
+  version "3.4.7"
+  resolved "https://registry.npmjs.org/@vuepic/vue-datepicker/-/vue-datepicker-3.4.7.tgz"
+  integrity sha512-hkr5PFXEzz+bjpZmEIaYp7fs7L+kEZd24hDYoxKFfoDGuXxbLyJiI1WIGus0s13nt7FcQuVSIy59OOVXPgxaxQ==
   dependencies:
     date-fns "^2.29.2"
 
@@ -2373,7 +2373,7 @@ csstype@^2.6.8:
 
 date-fns@^2.29.2:
   version "2.29.2"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.29.2.tgz#0d4b3d0f3dff0f920820a070920f0d9662c51931"
+  resolved "https://registry.npmjs.org/date-fns/-/date-fns-2.29.2.tgz"
   integrity sha512-0VNbwmWJDS/G3ySwFSJA3ayhbURMTJLtwM2DTxf9CWondCnh6DTNlO9JgRSq6ibf4eD0lfMJNBxUdEAHHix+bA==
 
 debug@2.6.9:
@@ -5185,7 +5185,7 @@ vm-browserify@^1.0.1:
 
 vue-demi@^0.12.1:
   version "0.12.5"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.12.5.tgz#8eeed566a7d86eb090209a11723f887d28aeb2d1"
+  resolved "https://registry.npmjs.org/vue-demi/-/vue-demi-0.12.5.tgz"
   integrity sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==
 
 vue-loader@^17.0.0:
@@ -5199,12 +5199,12 @@ vue-loader@^17.0.0:
 
 vue-multiselect@^2.1.6:
   version "2.1.6"
-  resolved "https://registry.yarnpkg.com/vue-multiselect/-/vue-multiselect-2.1.6.tgz#5be5d811a224804a15c43a4edbb7485028a89c7f"
+  resolved "https://registry.npmjs.org/vue-multiselect/-/vue-multiselect-2.1.6.tgz"
   integrity sha512-s7jmZPlm9FeueJg1RwJtnE9KNPtME/7C8uRWSfp9/yEN4M8XcS/d+bddoyVwVnvFyRh9msFo0HWeW0vTL8Qv+w==
 
 vue-recaptcha@^2.0.2:
   version "2.0.2"
-  resolved "https://registry.yarnpkg.com/vue-recaptcha/-/vue-recaptcha-2.0.2.tgz#22f323089ff15f4eacde26215ca61ac4806d009a"
+  resolved "https://registry.npmjs.org/vue-recaptcha/-/vue-recaptcha-2.0.2.tgz"
   integrity sha512-bE5WMz9jyiiY1PlaBOSUvsgTZ/ONoRV7Oq4Fn4JVz//ul+DJ0LHIJERfoF0NNEIDWXv6GjhwGLveGhoq0sEerg==
   dependencies:
     vue-demi "^0.12.1"
@@ -5243,7 +5243,7 @@ vue3-nl2br@^0.1.5:
 
 vue3-otp-input@^0.3.6:
   version "0.3.6"
-  resolved "https://registry.yarnpkg.com/vue3-otp-input/-/vue3-otp-input-0.3.6.tgz#49c71be7083f78b7dce44663426b5cc66643f48a"
+  resolved "https://registry.npmjs.org/vue3-otp-input/-/vue3-otp-input-0.3.6.tgz"
   integrity sha512-08A/33P3dvk8DBQ6ACJ6ajNCNdkJL2Di5CVVLxcYK7+izM4KFMeWsFnZsx2fD0VfLE7t6jpi+cNgNU83nP7/TQ==
 
 vue@^3.2.31:

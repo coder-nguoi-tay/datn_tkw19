@@ -22,5 +22,16 @@ interface UserInterface
 
     public function checkEmail($request);
 
+    public function updateProfile($request, $id);
+
     public function changeName($request);
+
+    public function generalResetPass($request, $isEmail);
+
+    // public function getUserByToken($token);
+
+    // public function updatePasswordByToken($request, $token);
+    public function updateSettingNotification($request, $id);
+
+
 }

@@ -14,12 +14,12 @@
 
 .name-form {
     @include mq-lg() {
-        max-width: 70%;
+        max-width: 100%;
         margin: 0 auto;
     }
 
     @include mq-xl() {
-        max-width: 70%;
+        max-width: 100%;
     }
 
     .name__container {
@@ -59,7 +59,7 @@
                 margin-left: 5px;
                 position: absolute;
                 margin-top: 3px;
-        
+
                 &.black {
                     background-color: #000000;
                 }
@@ -75,13 +75,13 @@
                 color: black;
                 margin-bottom: 6px;
             }
-            
+
             .display-toogle {
                 justify-content: flex-end;
                 width: 70%;
             }
         }
-        
+
     }
 
     .submit-change {
@@ -98,7 +98,7 @@
             background-color: red;
             color: #FFFFFF;
         }
-    
+
         .btn-submit_ex {
             border-radius: 4px;
             border: 1px solid red;

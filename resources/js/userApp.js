@@ -25,8 +25,10 @@ import EventConfirm from './components/event/confirm.vue'
 import MyEvent from './components/myEvent/index.vue'
 import MyEventShow from './components/myEvent/show.vue'
 import MyPage from './components/myPage/index.vue'
+import Profile from './components/profile/index.vue'
 import EventReport from './components/eventReport/index.vue'
 import ChangeName from './components/user/changeName/index.vue'
+import Notification from './components/user/profile/setting-notification.vue'
 
 app.component('nl2br', Nl2br)
 app.component('register', Register)
@@ -38,6 +40,8 @@ app.component('event-report', EventReport)
 app.component('my-event-show', MyEventShow)
 app.component('popup-success', Dialog)
 app.component('register-card', RegisterCard)
+app.component('profile', Profile)
 app.component('change-name', ChangeName)
+app.component('setting-notification', Notification)
 
 app.mount('#app')

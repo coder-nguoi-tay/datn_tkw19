@@ -77,7 +77,7 @@
               >
                 <button type="submit" class="btn-submit">ログインする</button>
                 <p class="txt-login">
-                  既にアカウントをお持ちの方は<a href="/forgot-password"
+                  既にアカウントをお持ちの方は<a href="/forgot_password/create"
                     >こちら</a
                   >
                 </p>
