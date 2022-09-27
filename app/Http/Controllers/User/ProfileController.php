@@ -33,7 +33,7 @@ class ProfileController extends BaseController
             'title' => 'ユーザー情報設定',
             'prefectures' => $this->prefecture->get(),
             'cities' => $this->city->get(),
-            'user' => Auth::guard('user')->user()
+            'user' => Auth::guard('user')->user(),
         ]);
     }
 
@@ -92,8 +92,10 @@ class ProfileController extends BaseController
 //        dd($request->all());
         if ($this->user->updateProfile($request, $id)) {
             $this->setFlash(__('代理店の新規作成が完了しました。'));
+
             return redirect(route('my-event.index'));
         }
+
         return back();
     }
 
@@ -107,14 +109,18 @@ class ProfileController extends BaseController
     {
         //
     }
+
     public function settingNotification()
     {
         $user = Auth::guard('user')->user();
+
         return view('user.profile.setting-notification', compact('user'));
     }
+
     public function updateSettingNotification(Request $request, $id)
     {
         $this->userInterface->updateSettingNotification($request, $id);
+
         return redirect(route('my-event.index'));
     }
 }

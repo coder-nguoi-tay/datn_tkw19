@@ -246,8 +246,9 @@ class UserRepository extends BaseController implements UserInterface
         try {
             DB::beginTransaction();
             $userInfo = $this->user->where('id', $id)->first();
-            if (!$userInfo) {
+            if (! $userInfo) {
                 DB::rollBack();
+
                 return false;
             }
             $userInfo->show_name = $request->show_name;
@@ -258,15 +259,18 @@ class UserRepository extends BaseController implements UserInterface
             if ($request['address_building']) {
                 $userInfo->address_building = $request->address_building;
             }
-            if (!$userInfo->save()) {
+            if (! $userInfo->save()) {
                 DB::rollBack();
+
                 return false;
             }
             DB::commit();
+
             return true;
         } catch (\Throwable $th) {
             DB::rollBack();
         }
+
         return false;
     }
 
@@ -285,19 +289,20 @@ class UserRepository extends BaseController implements UserInterface
         return $userInfo->save();
     }
 
-
     public function updateSettingNotification($request, $id)
     {
         $currentUser = $this->user->where('id', $id)->first();
 
         $currentUser->deal_noti_flag = $request->deal_noti_flag == 1 ? 1 : 0;
-        $currentUser->public_chat_noti =  $request->public_chat_noti == 1 ? 1 : 0;
+        $currentUser->public_chat_noti = $request->public_chat_noti == 1 ? 1 : 0;
         $currentUser->join_event_noti = $request->join_event_noti == 1 ? 1 : 0;
         $currentUser->receiving_noti_flag = $request->receiving_noti_flag == 1 ? 1 : 0;
 
         $currentUser->save();
+
         return $currentUser;
     }
+
     public function getByEmail($email)
     {
         return $this->user->where('email', $email)->first();

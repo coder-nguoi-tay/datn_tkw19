@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAreasTable extends Migration
+class CreateIndustryBroads extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateAreasTable extends Migration
      */
     public function up()
     {
-        Schema::create('areas', function (Blueprint $table) {
+        Schema::create('industry_broads', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
-            $table->integer('order_num');
+            $table->string('code', 5);
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
+            $table->index('code');
+            $table->index('name');
         });
     }
 
@@ -29,6 +31,6 @@ class CreateAreasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('areas');
+        Schema::dropIfExists('industry_broads');
     }
 }

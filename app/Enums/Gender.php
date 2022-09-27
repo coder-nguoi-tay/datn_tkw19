@@ -12,8 +12,6 @@ final class Gender extends Enum
 
     const OTHER = 3;
 
-   
-
     public static function getDescription($value): string
     {
         switch ($value) {
@@ -31,7 +29,6 @@ final class Gender extends Enum
                 break;
         }
     }
-   
 
     public static function parseArray()
     {
@@ -42,5 +39,4 @@ final class Gender extends Enum
 
         return $data;
     }
-  
 }

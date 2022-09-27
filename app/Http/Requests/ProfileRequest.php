@@ -35,7 +35,7 @@ class ProfileRequest extends FormRequest
             'required',
             Rule::in(Gender::getValues()),
         ];
-        $rule['birthday'] = 'required|date_format:Y/m/d|before_or_equal:' . Carbon::now()->format('Y/m/d');
+        $rule['birthday'] = 'required|date_format:Y/m/d|before_or_equal:'.Carbon::now()->format('Y/m/d');
         $rule['prefecture_id'] = [
             'required',
             Rule::in(Prefecture::latest()->pluck('id')),
@@ -49,6 +49,7 @@ class ProfileRequest extends FormRequest
                 Rule::in(JobType::getValues()),
             ];
         }
+
         return $rule;
     }
 }
