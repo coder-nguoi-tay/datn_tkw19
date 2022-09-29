@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewsTable extends Migration
+class CreateNews extends Migration
 {
     /**
      * Run the migrations.
@@ -25,7 +25,6 @@ class CreateNewsTable extends Migration
             $table->tinyInteger('publish_status')->nullable()->comment('"0: 非公開 1: 公開"');
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 

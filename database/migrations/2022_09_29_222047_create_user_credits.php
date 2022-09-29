@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserCreditsTable extends Migration
+class CreateUserCredits extends Migration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,7 @@ class CreateUserCreditsTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->string('card_id');
-            $table->tinyInteger('using_flag')->comment('"0: 未利用 1: 利用中"');
+            $table->tinyInteger('using_flag')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

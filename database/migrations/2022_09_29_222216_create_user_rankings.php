@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTagsTable extends Migration
+class CreateUserRankings extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('user_rankings', function (Blueprint $table) {
             $table->id();
-            $table->string('tag_name', 255);
+            $table->bigInteger('user_id');
+            $table->bigInteger('rank_number');
+            $table->bigInteger('rank_rewards');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +30,6 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('user_rankings');
     }
 }

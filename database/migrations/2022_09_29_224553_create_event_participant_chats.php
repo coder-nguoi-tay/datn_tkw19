@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEventCreditsTable extends Migration
+class CreateEventParticipantChats extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateEventCreditsTable extends Migration
      */
     public function up()
     {
-        Schema::create('event_credits', function (Blueprint $table) {
+        Schema::create('event_participant_chats', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('event_id');
-            $table->bigInteger('user_credit_id');
-            $table->string('subcription_id', 255);
-            $table->bigInteger('parent_event_credit_id');
-            $table->dateTime('subcription_expried_datetimed');
-            $table->tinyInteger('using_complete_flag');
+            $table->bigInteger('user_id');
+            $table->bigInteger('target_user_id');
+            $table->bigInteger('parent_id')->nullable();
+            $table->text('chat_content');
+            $table->tinyInteger('show_flag')->default(1);
+            $table->dateTime('send_datetime');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -33,6 +34,6 @@ class CreateEventCreditsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event_credits');
+        Schema::dropIfExists('event_participant_chats');
     }
 }
