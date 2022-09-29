@@ -16,6 +16,7 @@ use Kyslik\ColumnSortable\Sortable;
  * @property int $sms_not_confirm_count
  * @property int $sms_send_failed_count
  * @property string $block_expried_time
+ * @property string $last_register
  * @property string $created_at
  * @property string $updated_at
  * @property string $deleted_at
@@ -41,5 +42,5 @@ class UserTmp extends Model
     /**
      * @var array
      */
-    protected $fillable = ['phone_number', 'sms_confirm_flag', 'sms_code', 'sms_expried_datetime', 'sms_not_confirm_count', 'sms_send_failed_count', 'block_expried_time', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['phone_number', 'sms_confirm_flag', 'sms_code', 'sms_expried_datetime', 'sms_not_confirm_count', 'sms_send_failed_count', 'block_expried_time', 'last_register', 'created_at', 'updated_at', 'deleted_at'];
 }

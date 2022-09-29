@@ -9,16 +9,17 @@ use Kyslik\ColumnSortable\Sortable;
 
 /**
  * @property int $id
- * @property int $prefecture_id
- * @property string $code
- * @property string $name
- * @property bool $big_city_flag
+ * @property int $event_id
+ * @property string $chat_content
  * @property int $order_num
+ * @property string $achiever_reward_content
+ * @property string $achiever_reward_memo
+ * @property int $reward_amount
  * @property string $created_at
  * @property string $updated_at
  * @property string $deleted_at
  */
-class City extends Model
+class EventReward extends Model
 {
     use HasFactory, SoftDeletes, Sortable;
 
@@ -32,5 +33,5 @@ class City extends Model
     /**
      * @var array
      */
-    protected $fillable = ['prefecture_id', 'code', 'name', 'big_city_flag', 'order_num', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['event_id', 'chat_content', 'order_num', 'achiever_reward_content', 'achiever_reward_memo', 'reward_amount', 'created_at', 'updated_at', 'deleted_at'];
 }

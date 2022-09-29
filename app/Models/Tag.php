@@ -9,7 +9,7 @@ use Kyslik\ColumnSortable\Sortable;
 
 /**
  * @property int $id
- * @property string $tag_name
+ * @property string $name
  * @property string $created_at
  * @property string $updated_at
  * @property string $deleted_at
@@ -28,5 +28,5 @@ class Tag extends Model
     /**
      * @var array
      */
-    protected $fillable = ['tag_name', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['name', 'created_at', 'updated_at', 'deleted_at'];
 }

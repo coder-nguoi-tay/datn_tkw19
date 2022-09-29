@@ -13,7 +13,7 @@ use Kyslik\ColumnSortable\Sortable;
  * @property int $user_credit_id
  * @property string $subcription_id
  * @property int $parent_event_credit_id
- * @property string $subcription_expried_datetimed
+ * @property string $subcription_expried_datetime
  * @property bool $using_complete_flag
  * @property string $created_at
  * @property string $updated_at
@@ -33,5 +33,5 @@ class EventCredit extends Model
     /**
      * @var array
      */
-    protected $fillable = ['event_id', 'user_credit_id', 'subcription_id', 'parent_event_credit_id', 'subcription_expried_datetimed', 'using_complete_flag', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['event_id', 'user_credit_id', 'subcription_id', 'parent_event_credit_id', 'subcription_expried_datetime', 'using_complete_flag', 'created_at', 'updated_at', 'deleted_at'];
 }
