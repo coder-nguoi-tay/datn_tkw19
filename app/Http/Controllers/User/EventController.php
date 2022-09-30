@@ -16,7 +16,7 @@ class EventController extends Controller
     {
         //
         return view('event.index', [
-            'title'=>'イベント新規作成',
+            'title'=>'イベント企画',
         ]);
     }
 

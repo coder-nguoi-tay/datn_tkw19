@@ -1,27 +1,207 @@
-  .label-event {
-      font-size: 12px;
-      font-weight: bold;
+.label-event {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.info-event {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.input-event {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.btn-box {
+  button {
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid #E83928;
+    color: #E4422D;
   }
-  
-  .info-event {
-      font-size: 10px;
-      font-weight: 400;
+
+  button.btn-save {
+    background-color: #E5352B !important;
+    color: #FFFFFF !important;
   }
-  
-  .input-event {
-      font-size: 10px;
-      font-weight: bold;
+}
+
+.event-list {
+  margin-top: 16px;
+
+  .event-cat-title {
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 8px;
   }
-  
-  .btn-box {
-      button {
-          font-size: 16px;
+
+  .event-title {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .draft-list {
+    .event-item {
+      padding: 12px 9px;
+      background-color: #fff;
+      position: relative;
+      border-bottom: 1px solid #E9E9E9;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      .txt-draft {
+        font-size: 13px;
+        line-height: 21px;
+        color: #E5352B;
+        margin-bottom: 5px;
+      }
+
+      .last-save {
+        font-size: 10px;
+        line-height: 16px;
+        color: #000;
+        margin-bottom: 4px;
+      }
+
+      .event-link {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+  .ongoing-list {
+    margin-top: 20px;
+    .event-item__wrapper {
+      margin-bottom: 16px;
+      .btn__container {
+        text-align: right;
+        margin-top: 8px;
+      }
+      .btn-cancel {
+        font-size: 10px;
+        line-height: 16px;
+        display: inline-block;
+        color: #E5352B;
+      }
+    }
+    .event-item {
+      display: flex;
+      background-color: #fff;
+      border-radius: 4px;
+      .event-left {
+        position: relative;
+        .avatar {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          overflow: hidden;
+          position: absolute;
+          bottom: 5px;
+          left: 4px;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+        .event-img {
+          height: 100%;
+          img {
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+      }
+      .event-right {
+        padding: 10px 14px 4px;
+        position: relative;
+        flex: 1;
+        &__container {
+          padding-bottom: 8.5px;
+        }
+        .event-link {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          z-index: 10;
+        }
+        .cat-name {
+          font-size: 10px;
+          height: 16px;
+          color: #fff;
+          border-radius: 8px;
+          line-height: 16px;
           font-weight: bold;
-          border: 2px solid #E83928;
-          color: #E4422D;
+          background-color: #aaa;
+          padding: 0 7px;
+          text-align: center;
+          margin-bottom: 6px;
+        }
+        .event-title {
+          padding-bottom: 4px;
+          border-bottom: 1px solid #E4E4E4;
+        }
       }
-      button.btn-save {
-          background-color: #E5352B !important;
-          color: #FFFFFF !important;
+    }
+    .event-meta {
+      margin: 16px 0 0;
+      .meta-item {
+        max-width: 50%;
+        font-size: 10px;
+        line-height: 16px;
+        color: #000;
+        margin-right: 25px;
+        white-space: nowrap;
+        margin-bottom: 4px;
+        .txt-number {
+          font-size: 11px;
+        }
+        .txt-time {
+          font-size: 12px;
+        }
+        img {
+          margin-right: 6px;
+        }
       }
+    }
+    .event-tag {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 9px;
+
+      a {
+        font-size: 10px;
+        line-height: 16px;
+        color: #000;
+        display: inline-block;
+        margin-right: 10px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    .event-start {
+      font-size: 10px;
+      line-height: 16px;
+      color: #ccc;
+      text-align: right;
+      position: absolute;
+      right: 4px;
+      bottom: 4px;
+    }
   }
+}
