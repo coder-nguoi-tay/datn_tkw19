@@ -29,6 +29,7 @@ import Profile from './components/profile/index.vue'
 import EventReport from './components/eventReport/index.vue'
 import ChangeName from './components/user/changeName/index.vue'
 import Notification from './components/user/profile/setting-notification.vue'
+import EventList from './components/event/index.vue'
 
 app.component('nl2br', Nl2br)
 app.component('register', Register)
@@ -43,5 +44,6 @@ app.component('register-card', RegisterCard)
 app.component('profile', Profile)
 app.component('change-name', ChangeName)
 app.component('setting-notification', Notification)
+app.component('event-list', EventList)
 
 app.mount('#app')
