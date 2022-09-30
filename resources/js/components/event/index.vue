@@ -254,6 +254,37 @@
       </div>
     </div>
   </div>
+  <div
+    class="modal fade event-created-modal"
+    id="eventCreatedModal"
+    tabindex="-1"
+    aria-labelledby="eventCreatedModal"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="e-body-content">
+            <h2 class="e-modal-title">イベントが投稿されました！！</h2>
+            <div class="e-modal-img">
+              <img src="/assets/img/user/event/modal.png" alt="" />
+            </div>
+            <a href="#" class="btn-create-event e-modal-btn"
+              >イベントを企画する</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 export default {
@@ -261,10 +292,22 @@ export default {
   props: ['data'],
   data: function () {
     return {
-      haveDate: true
+      haveDate: true,
+      eventCreated: true
     }
   },
   created() {},
-  methods() {}
+  methods: {
+    showModal() {
+      let modalCreated = new bootstrap.Modal(
+        document.getElementById('eventCreatedModal')
+      )
+      if (this.eventCreated) {
+        modalCreated.show()
+      } else {
+        modalCreated.hide()
+      }
+    }
+  }
 }
 </script>

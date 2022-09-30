@@ -28,8 +28,9 @@
 }
 
 .event-list {
-  margin-top: 16px;
-
+  &__wrapper {
+    padding: 16px 0;
+  }
   .event-cat-title {
     font-size: 12px;
     line-height: 20px;
@@ -79,14 +80,18 @@
       }
     }
   }
+
   .ongoing-list {
     margin-top: 20px;
+
     .event-item__wrapper {
       margin-bottom: 16px;
+
       .btn__container {
         text-align: right;
         margin-top: 8px;
       }
+
       .btn-cancel {
         font-size: 10px;
         line-height: 16px;
@@ -94,12 +99,15 @@
         color: #E5352B;
       }
     }
+
     .event-item {
       display: flex;
       background-color: #fff;
       border-radius: 4px;
+
       .event-left {
         position: relative;
+
         .avatar {
           width: 25px;
           height: 25px;
@@ -108,6 +116,7 @@
           position: absolute;
           bottom: 5px;
           left: 4px;
+
           img {
             width: 100%;
             height: 100%;
@@ -115,8 +124,10 @@
             object-position: center;
           }
         }
+
         .event-img {
           height: 100%;
+
           img {
             height: 100%;
             object-fit: cover;
@@ -124,13 +135,16 @@
           }
         }
       }
+
       .event-right {
         padding: 10px 14px 4px;
         position: relative;
         flex: 1;
+
         &__container {
           padding-bottom: 8.5px;
         }
+
         .event-link {
           position: absolute;
           width: 100%;
@@ -139,6 +153,7 @@
           left: 0;
           z-index: 10;
         }
+
         .cat-name {
           font-size: 10px;
           height: 16px;
@@ -151,14 +166,17 @@
           text-align: center;
           margin-bottom: 6px;
         }
+
         .event-title {
           padding-bottom: 4px;
           border-bottom: 1px solid #E4E4E4;
         }
       }
     }
+
     .event-meta {
       margin: 16px 0 0;
+
       .meta-item {
         max-width: 50%;
         font-size: 10px;
@@ -167,17 +185,21 @@
         margin-right: 25px;
         white-space: nowrap;
         margin-bottom: 4px;
+
         .txt-number {
           font-size: 11px;
         }
+
         .txt-time {
           font-size: 12px;
         }
+
         img {
           margin-right: 6px;
         }
       }
     }
+
     .event-tag {
       display: flex;
       flex-wrap: wrap;
@@ -189,11 +211,13 @@
         color: #000;
         display: inline-block;
         margin-right: 10px;
+
         &:last-child {
           margin-right: 0;
         }
       }
     }
+
     .event-start {
       font-size: 10px;
       line-height: 16px;
@@ -202,6 +226,98 @@
       position: absolute;
       right: 4px;
       bottom: 4px;
+    }
+  }
+
+  .event-nodata__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .event-nodata {
+    display: inline-block;
+
+    .nodata-title {
+      font-size: 20px;
+      line-height: 32px;
+      font-weight: bold;
+      color: #9A9A9A;
+      text-align: center;
+      margin-bottom: 38px;
+    }
+
+    .btn-nodata {
+      text-align: center;
+      margin-top: 38px;
+    }
+
+    .img-nodata {
+      max-width: 407px;
+      width: 100%;
+      margin: 0 auto;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.btn-create-event {
+  width: 173px;
+  height: 23px;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  line-height: 23px;
+  font-weight: bold;
+  background-color: #E5352B;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.event-created-modal {
+  .btn-close {
+    background: transparent url('/../assets/img/user/event/ic_close.svg') center/1em auto no-repeat;
+    position: absolute;
+    top: -26px;
+    right: 0;
+  }
+
+  .modal-header {
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .modal-content {
+    border-radius: 4px;
+  }
+
+  .modal-body {
+    min-height: 512px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .e-modal-title {
+      font-size: 24px;
+      line-height: 39px;
+      font-weight: bold;
+      color: #E5352B;
+      margin-bottom: 35px;
+    }
+
+    .e-modal-img {
+      max-width: 237px;
+      width: 100%;
+      margin: 0 auto 58px;
+
+      img {
+        width: 100%;
+      }
     }
   }
 }
