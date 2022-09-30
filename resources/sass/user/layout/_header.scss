@@ -25,5 +25,13 @@
       text-align: center;
       font-weight: bold;
     }
+    .h-btn-close {
+      font-size: 12px;
+      line-height: 20px;
+      color: #fff;
+      position: absolute;
+      right: 14px;
+      top: calc(50% - 10px);
+    }
   }
 }
