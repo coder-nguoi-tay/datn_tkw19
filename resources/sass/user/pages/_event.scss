@@ -31,6 +31,7 @@
   &__wrapper {
     padding: 16px 0;
   }
+
   .event-cat-title {
     font-size: 12px;
     line-height: 20px;
@@ -147,7 +148,7 @@
           position: absolute;
           top: 0;
           left: 0;
-          background-color: rgba(0,0,0,50%);
+          background-color: rgba(0, 0, 0, 50%);
           display: flex;
           justify-content: center;
           align-items: center;
@@ -291,7 +292,7 @@
   font-size: 12px;
   line-height: 23px;
   font-weight: bold;
-  background-color: #E5352B;
+  background-color: $primary-color;
   border-radius: 5px;
   display: inline-block;
 }
@@ -325,7 +326,7 @@
       font-size: 24px;
       line-height: 39px;
       font-weight: bold;
-      color: #E5352B;
+      color: $primary-color;
       margin-bottom: 35px;
     }
 
@@ -338,5 +339,189 @@
         width: 100%;
       }
     }
+  }
+}
+
+.event-create {
+  .mt-16 {
+    margin-top: 16px;
+  }
+
+  .mb-16 {
+    margin-bottom: 16px;
+  }
+
+  &__wrapper {
+    padding: 12px 16px;
+  }
+
+  .create-note {
+    font-size: 14px;
+    line-height: 22px;
+    color: #777;
+    margin-bottom: 16px;
+  }
+
+  .input-section {
+    .input-title {
+      font-size: 18px;
+      line-height: 1;
+      color: #000;
+      border-bottom: 2px solid #ccc;
+      margin: 0 -16px;
+      padding: 0 16px 4px;
+      font-weight: bold;
+    }
+  }
+
+  .form-group {
+    &:first-of-type {
+      margin-top: 12px;
+    }
+
+    .form-label {
+      font-size: 14px;
+      line-height: 22px;
+      color: #777;
+      font-weight: bold;
+      margin-bottom: 8px;
+
+      &:after {
+        height: 15px;
+        line-height: 15px;
+        padding: 0 4px;
+        font-size: 10px;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 4px;
+        margin-left: 7px;
+        display: inline-block;
+        color: #fff;
+      }
+
+      &[require] {
+        &:after {
+          content: "必須";
+          background-color: $primary-color;
+        }
+      }
+
+      &[optional] {
+        &:after {
+          content: "任意";
+          background-color: $black;
+        }
+      }
+    }
+
+    .form-control {
+      &::placeholder {
+        font-size: 10px;
+        color: #CFCFCF;
+        font-weight: bold;
+      }
+    }
+
+    input {
+      &.form-control {
+        min-height: 29px;
+      }
+    }
+
+    .form-text {
+      font-size: 10px;
+      line-height: 16px;
+      color: #CFCFCF;
+      margin-top: 4px;
+    }
+  }
+
+  .form-add-file {
+    .btn-add-file {
+      height: 29px;
+      border: 1px solid $primary-color;
+      color: $primary-color;
+      text-align: center;
+      font-size: 10px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 0 8px;
+      outline: none;
+      background-color: $white;
+      margin: 10px 0;
+    }
+
+    .form-text {
+      color: #777;
+    }
+  }
+
+  .file-list {
+    .file-item {
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px;
+      margin-bottom: 4px;
+      background-color: #F2F2F2;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .file-name {
+        font-size: 12px;
+        line-height: 20px;
+        font-weight: bold;
+        color: #6B6EE2;
+        margin-left: 9px;
+      }
+    }
+
+    &.img-list {
+      display: flex;
+      flex-wrap: wrap;
+
+      .img-item {
+        width: 55px;
+        height: 55px;
+        border-radius: 4px;
+        position: relative;
+        border: 1px solid #ccc;
+        margin-right: 11px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        & > img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+
+      .ic-remove {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: -6px;
+        right: -6px;
+        z-index: 5;
+
+        img {
+          vertical-align: top;
+        }
+      }
+    }
+  }
+
+  .btn-add-img {
+    border: none;
+    margin-right: 11px;
   }
 }

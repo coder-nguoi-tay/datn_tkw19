@@ -27,7 +27,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('event.create', [
+            'title'=>'イベント新規作成',
+        ]);
     }
 
     /**
