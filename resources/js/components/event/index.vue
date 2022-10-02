@@ -42,6 +42,10 @@
                     width="25"
                   />
                 </div>
+                <div class="txt-finished" v-if="isFinished">
+                  このイベントは<br />
+                  終了しました
+                </div>
               </div>
               <div class="event-right">
                 <div class="event-right__container">
@@ -293,7 +297,8 @@ export default {
   data: function () {
     return {
       haveDate: true,
-      eventCreated: true
+      eventCreated: true,
+      isFinished: true
     }
   },
   created() {},
