@@ -386,6 +386,9 @@
 
   &__wrapper {
     padding: 12px 16px 85px;
+    @include mq-xs() {
+      padding: 12px 0 85px;
+    }
   }
 
   .event-btn {
@@ -481,6 +484,8 @@
         margin-left: 7px;
         display: inline-block;
         color: #fff;
+        position: relative;
+        bottom: 1px;
       }
 
       &[require] {
@@ -503,6 +508,7 @@
       font-size: 10px;
       line-height: 16px;
       font-weight: bold;
+      border: 1px solid #ccc;
 
       &:not(textarea) {
         height: 29px;
@@ -672,11 +678,21 @@
     input[type="checkbox"] {
       width: 10px;
       height: 10px;
+
+      &:checked {
+        background-color: $primary-color;
+        border-color: $primary-color;
+      }
     }
 
     input[type="radio"] {
       width: 10px;
       height: 10px;
+
+      &:checked {
+        background-color: $primary-color;
+        border-color: $primary-color;
+      }
     }
 
     input[name="total_reward_amount"] {
@@ -869,6 +885,58 @@
         height: 11px;
       }
     }
+  }
 
+  .delete-confirm-modal {
+    .modal-body {
+      padding: 86px 52px;
+    }
+
+    .ic-warning {
+      margin-bottom: 40px;
+    }
+
+    .warning-title {
+      font-size: 24px;
+      line-height: 39px;
+      font-weight: bold;
+      color: $primary-color;
+      margin-bottom: 16px;
+    }
+
+    .warning-desc {
+      font-size: 10px;
+      line-height: 16px;
+      color: $primary-color;
+      margin-bottom: 24px;
+    }
+
+    .warning-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .btn-modal {
+        display: block;
+        width: 173px;
+        height: 23px;
+        border: 1px solid $primary-color;
+        border-radius: 5px;
+        font-size: 12px;
+        line-height: 21px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .btn-continue-edit {
+        color: $white;
+        margin-bottom: 12px;
+        background-color: $primary-color;
+      }
+
+      .btn-delete {
+        color: $primary-color;
+      }
+    }
   }
 }

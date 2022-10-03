@@ -686,12 +686,20 @@
           </div>
         </div>
         <div class="event-btn btn-container">
-          <button class="btn-event-outline btn-cancel">削除</button>
+          <button
+            class="btn-event-outline btn-cancel"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteConfirmModal"
+          >
+            削除
+          </button>
           <button class="btn-confirm">確認</button>
         </div>
       </form>
     </div>
     <AdditionModal></AdditionModal>
+    <ConfirmModal></ConfirmModal>
   </div>
 </template>
 
@@ -699,7 +707,8 @@
 import $ from 'jquery'
 import { Form as VeeForm, Field, ErrorMessage } from 'vee-validate'
 import Multiselect from 'vue-multiselect'
-import AdditionModal from './eventCreateModal'
+import AdditionModal from './createAdditionModal'
+import ConfirmModal from './deleteConfirmModal'
 
 export default {
   components: {
@@ -707,7 +716,8 @@ export default {
     VeeForm,
     Field,
     ErrorMessage,
-    AdditionModal
+    AdditionModal,
+    ConfirmModal
   },
   data() {
     return {
@@ -761,4 +771,9 @@ export default {
   }
 }
 </script>
+<style>
+.main-content {
+  overflow-x: hidden;
+}
+</style>
 
