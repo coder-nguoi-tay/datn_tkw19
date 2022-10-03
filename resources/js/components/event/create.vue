@@ -4,7 +4,11 @@
       <form action="" method="POST" ref="formData">
         <div class="event-create__wrapper">
           <p class="create-note">
-            こちらから自由にイベントを開催することができます。ただし、すべてのイベントは<a href="#"><b>利用規約</b></a>及び<a href="#"><b>プライバシーポリシー</b></a>に準じたもののみといたします。
+            こちらから自由にイベントを開催することができます。ただし、すべてのイベントは<a
+              href="#"
+              ><b>利用規約</b></a
+            >及び<a href="#"><b>プライバシーポリシー</b></a
+            >に準じたもののみといたします。
           </p>
           <div class="input-section">
             <h2 class="input-title">基本情報</h2>
@@ -23,12 +27,14 @@
                 class="form-control"
                 rows="11"
                 maxlength="2000"
+                name="event_detail"
+                :placeholder="detailPlace"
               ></textarea>
               <div class="form-text text-end">0 / 40文字中</div>
             </div>
             <div class="form-group mb-16">
               <div class="form-add-file">
-                <label class="form-label" optional>イベントの詳細</label>
+                <label class="form-label" optional>添付資料</label>
                 <div class="form-text">
                   イベントに関する画像や資料を最大3つまで添付することができます。
                 </div>
@@ -156,12 +162,18 @@
             </div>
             <div class="form-group mb-16">
               <label class="form-label" optional>実施地域</label>
-              <input
-                class="form-control"
-                type="text"
-                name=""
-                placeholder="東京都、埼玉県、千葉県、群馬県、大阪府、宮城県、熊本県、大分県、... 他"
-              />
+              <div class="custom-input">
+                <input
+                  class="form-control place-black"
+                  type="text"
+                  name=""
+                  placeholder="東京都、埼玉県、千葉県、群馬県、大阪府、宮城県、熊本県、大分県、... 他"
+                  @click="showAdditionModal"
+                />
+                <span class="ic-arrow ic-duplicate">
+                  <img src="/assets/img/user/event/ic_copy.svg" alt="" />
+                </span>
+              </div>
               <input
                 class="form-control"
                 type="text"
@@ -341,10 +353,10 @@
               <div class="form-group">
                 <div class="input-container d-flex">
                   <label class="label">～</label>
-                  <div>
+                  <div class="ml-8">
                     <label class="label d-block">最大参加可能人数</label>
                     <input
-                      class="form-control w-160 d-inline-block ml-8"
+                      class="form-control w-160 d-inline-block"
                       type="number"
                       placeholder="9,999"
                     />
@@ -404,6 +416,8 @@
                 class="form-control"
                 rows="11"
                 maxlength="2000"
+                name="other_participation_conditions"
+                :placeholder="conditionsPlace"
               ></textarea>
               <div class="form-text text-end">0 / 2,000文字中</div>
             </div>
@@ -447,6 +461,8 @@
                     class="form-control"
                     rows="11"
                     maxlength="10000"
+                    name="special_notes"
+                    :placeholder="specialNotePlace"
                   ></textarea>
                   <div class="form-text text-end">0 / 10,000文字中</div>
                 </div>
@@ -492,6 +508,8 @@
                 class="form-control"
                 rows="14"
                 maxlength="2000"
+                name="accomplishment_condition"
+                :placeholder="accomplishmentConditionPlace"
               ></textarea>
               <div class="form-text text-end">0 / 2,000文字中</div>
             </div>
@@ -504,7 +522,9 @@
               </div>
               <div class="input-item-container">
                 <div class="input-item">
-                  <p class="input-sub-title">報酬 1</p>
+                  <p class="input-sub-title">
+                    報酬 1<span class="ic-minus"></span>
+                  </p>
                   <div class="input-item-group">
                     <div class="form-group">
                       <label class="form-label">報酬名</label>
@@ -520,7 +540,7 @@
                         <div class="input-container">
                           <input
                             type="number"
-                            class="form-control"
+                            class="form-control text-end"
                             placeholder="100,000"
                           />
                           <label class="label">円</label>
@@ -531,7 +551,7 @@
                         <div class="input-container">
                           <input
                             type="number"
-                            class="form-control"
+                            class="form-control text-end"
                             placeholder="2"
                           />
                           <label class="label">枠</label>
@@ -545,14 +565,23 @@
                           type="number"
                           class="form-control"
                           placeholder="200,000"
+                          name="total_reward_amount"
                         />
                         <label class="label">円</label>
                       </div>
                     </div>
+                    <p class="ic-group-dot text-center mt-8">
+                      <img
+                        src="/assets/img/user/event/ic_group_dot.svg"
+                        alt=""
+                      />
+                    </p>
                   </div>
                 </div>
                 <div class="input-item mt-8">
-                  <p class="input-sub-title">報酬 2</p>
+                  <p class="input-sub-title">
+                    報酬 2<span class="ic-minus"></span>
+                  </p>
                   <div class="input-item-group">
                     <div class="form-group">
                       <label class="form-label">報酬名</label>
@@ -568,7 +597,7 @@
                         <div class="input-container">
                           <input
                             type="number"
-                            class="form-control"
+                            class="form-control text-end"
                             placeholder="100,000"
                           />
                           <label class="label">円</label>
@@ -579,7 +608,7 @@
                         <div class="input-container">
                           <input
                             type="number"
-                            class="form-control"
+                            class="form-control text-end"
                             placeholder="2"
                           />
                           <label class="label">枠</label>
@@ -592,11 +621,18 @@
                         <input
                           type="number"
                           class="form-control"
-                          placeholder="200,000"
+                          placeholder="0"
+                          name="total_reward_amount"
                         />
                         <label class="label">円</label>
                       </div>
                     </div>
+                    <p class="ic-group-dot text-center mt-8">
+                      <img
+                        src="/assets/img/user/event/ic_group_dot.svg"
+                        alt=""
+                      />
+                    </p>
                   </div>
                 </div>
                 <button class="btn-event-outline btn-add-reward mt-8">
@@ -612,13 +648,18 @@
               <div class="form-text mt-0 mb-8">
                 開催期間は最大7日間ですが、開始後にイベント設定で延長することが可能です。
               </div>
-              <select name="category" class="form-control">
-                <option>-- 開催期間を選択してください --</option>
-                <option value="">qaz</option>
-                <option value="">wsx</option>
-              </select>
+              <div class="custom-input">
+                <select name="category" class="form-control">
+                  <option>-- 開催期間を選択してください --</option>
+                  <option value="">qaz</option>
+                  <option value="">wsx</option>
+                </select>
+                <span class="ic-arrow"
+                  ><img src="/assets/img/user/event/ic_arrow_down.svg" alt=""
+                /></span>
+              </div>
             </div>
-            <div class="form-group">
+            <div class="form-group form-datetime">
               <label class="form-label" require>開始日時</label>
               <div class="form-text mt-0 mb-8">
                 本日以降で開始日時を設定することができます。
@@ -630,11 +671,16 @@
                   name=""
                   placeholder="2022 / 12 / 3"
                 />
-                <select name="" class="form-control mt-8">
-                  <option>18:00頃</option>
-                  <option value="">qaz</option>
-                  <option value="">wsx</option>
-                </select>
+                <div class="custom-input">
+                  <select name="" class="form-control">
+                    <option>18:00頃</option>
+                    <option value="">qaz</option>
+                    <option value="">wsx</option>
+                  </select>
+                  <span class="ic-arrow"
+                    ><img src="/assets/img/user/event/ic_arrow_down.svg" alt=""
+                  /></span>
+                </div>
               </div>
             </div>
           </div>
@@ -645,6 +691,7 @@
         </div>
       </form>
     </div>
+    <AdditionModal></AdditionModal>
   </div>
 </template>
 
@@ -652,15 +699,47 @@
 import $ from 'jquery'
 import { Form as VeeForm, Field, ErrorMessage } from 'vee-validate'
 import Multiselect from 'vue-multiselect'
+import AdditionModal from './eventCreateModal'
+
 export default {
   components: {
     Multiselect,
     VeeForm,
     Field,
-    ErrorMessage
+    ErrorMessage,
+    AdditionModal
   },
   data() {
-    return {}
+    return {
+      detailPlace:
+        '例）\n' +
+        '世界中を飛び回っている私が期間限定で近畿エリアを中心に飛び回ります！！\n' +
+        '\n' +
+        '前回関東でのイベントではなんと達成者0人！今回は前回の報酬に加え大幅報酬アップ！！キャリーオーバー中のこの大人気企画でぜひ私を見つけてください！！\n' +
+        '\n' +
+        '来週には近畿を離れて再びヨーロッパへ！みんなの参加費が報酬になるこの企画に奮ってご応募ください！',
+      conditionsPlace:
+        '参加のための条件が他にある場合はこちらに記入ください。\n' +
+        '本フォーム内での改行は適用されます。\n' +
+        '例）\n' +
+        '※近畿圏内在住の利用規約に反していない方\n' +
+        '※大学生の方を優遇します！\n' +
+        '※容姿に自信のある方を優遇します♡',
+      specialNotePlace:
+        'ひな形に記載のない個別の記載事項がある場合はこちらに記入ください。\n' +
+        '本フォーム内での改行は適用されます。',
+      accomplishmentConditionPlace:
+        'イベントの達成条件をこちらに記入ください。\n' +
+        '本フォーム内での改行は適用されます。\n' +
+        '例）\n' +
+        '1等賞：\n' +
+        '初回報告で全問正解\n' +
+        '2等賞：\n' +
+        '初回報告で10問中8問以上正解または、2回目以降の報告で全問正解\n' +
+        '3等賞：\n' +
+        '初回報告で10問中5問以上正解または、2回目以降の報告で10問中7問正解\n' +
+        '※なお、3等賞での当選を望まない場合、『2以上』と記載ください。'
+    }
   },
   props: ['data'],
   methods: {
@@ -672,6 +751,12 @@ export default {
     },
     addImage2() {
       $('#image_2').click()
+    },
+    showAdditionModal() {
+      let additionModal = new bootstrap.Modal(
+        document.getElementById('additionModal')
+      )
+      additionModal.show()
     }
   }
 }

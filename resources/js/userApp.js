@@ -1,6 +1,6 @@
 require('./bootstrap')
 import { createApp } from 'vue'
-import $ from 'jquery'
+// import $ from 'jquery'
 import { configure, defineRule } from 'vee-validate'
 import Nl2br from 'vue3-nl2br'
 
