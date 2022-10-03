@@ -343,16 +343,73 @@
 }
 
 .event-create {
+  .w-160 {
+    width: 160px !important;
+  }
+
+  .ml-6 {
+    margin-left: 6px !important;
+  }
+
+  .mt-8 {
+    margin-top: 8px !important;
+  }
+
+  .mb-8 {
+    margin-bottom: 8px !important;
+  }
+
+  .ml-8 {
+    margin-left: 8px !important;
+  }
+
   .mt-16 {
-    margin-top: 16px;
+    margin-top: 16px !important;
   }
 
   .mb-16 {
-    margin-bottom: 16px;
+    margin-bottom: 16px !important;
+  }
+
+  .btn-event-outline {
+    color: $primary-color;
+    border-color: $primary-color;
+    text-align: center;
+    font-weight: bold;
+    background-color: #fff;
+  }
+
+  .txt-desc {
+    font-size: 10px;
+    line-height: 16px;
   }
 
   &__wrapper {
     padding: 12px 16px;
+  }
+
+  .event-btn {
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    background-color: #fff;
+
+    button {
+      width: 112px;
+      height: 37px;
+      border-radius: 5px;
+      border: 2px solid $primary-color;
+      font-size: 16px;
+      line-height: 26px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .btn-confirm {
+      background-color: $primary-color;
+      color: $white;
+      margin-left: 10px;
+    }
   }
 
   .create-note {
@@ -363,6 +420,12 @@
   }
 
   .input-section {
+    margin-bottom: 40px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
     .input-title {
       font-size: 18px;
       line-height: 1;
@@ -375,6 +438,12 @@
   }
 
   .form-group {
+    margin-bottom: 8px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
     &:first-of-type {
       margin-top: 12px;
     }
@@ -415,17 +484,29 @@
     }
 
     .form-control {
+      font-size: 12px;
+      line-height: 1;
+
+      &:not(textarea) {
+        height: 29px;
+        padding: 0 8px;
+      }
+
       &::placeholder {
         font-size: 10px;
         color: #CFCFCF;
         font-weight: bold;
+        transform: translateY(-1px);
+      }
+
+      &[name="detail_location"] {
+        margin-top: 6px;
       }
     }
 
-    input {
-      &.form-control {
-        min-height: 29px;
-      }
+    textarea {
+      resize: none;
+      padding: 8px;
     }
 
     .form-text {
@@ -433,6 +514,119 @@
       line-height: 16px;
       color: #CFCFCF;
       margin-top: 4px;
+    }
+
+    .label {
+      font-size: 10px;
+      line-height: 16px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .form-check {
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .label {
+        margin-left: 8px;
+      }
+    }
+
+    .form-radio {
+      .label {
+        font-size: 12px;
+        line-height: 24px;
+        color: #000;
+        font-weight: bold;
+      }
+    }
+
+    &.form-multiple {
+      margin-bottom: 24px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    .input-container {
+      display: flex;
+      align-items: center;
+
+      label {
+        margin-left: 6px;
+
+        &:first-child {
+          margin-left: 0;
+          margin-right: 6px;
+        }
+      }
+    }
+
+    .custom-input {
+      position: relative;
+
+      .ic-arrow {
+        position: absolute;
+        right: 8px;
+        top: 1px;
+      }
+    }
+
+    .form-note {
+
+      .txt-desc {
+        background-color: $white;
+        padding: 12px 16px;
+      }
+    }
+
+    .input-item-container {
+      margin-top: 12px;
+      background-color: #fff;
+      padding: 14px 15px;
+      border-radius: 4px;
+
+      .input-item {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .input-sub-title {
+        height: 20px;
+        font-size: 10px;
+        line-height: 16px;
+        background-color: $primary-color;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .input-item-group {
+        padding: 8px;
+      }
+
+      .form-control {
+        &::placeholder {
+          color: #000;
+        }
+      }
+
+      .input-col-half {
+        width: calc(50% - 4px);
+      }
+
+      .btn-add-reward {
+        font-size: 10px;
+        line-height: 16px;
+        border: 2px solid;
+        width: 100%;
+        height: 25px;
+        border-radius: 5px;
+      }
     }
   }
 
@@ -523,5 +717,61 @@
   .btn-add-img {
     border: none;
     margin-right: 11px;
+  }
+
+  .form-group-tag {
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+
+      .tag-item {
+        min-height: 21px;
+        font-size: 10px;
+        line-height: 16px;
+        color: #000;
+        font-weight: bold;
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 9px;
+        background-color: #FFE11D;
+        border-radius: 11px;
+        margin-right: 8px;
+        margin-bottom: 5px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        .ic-close {
+          margin-left: 6px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .form-add-tag {
+      margin-top: 4px;
+
+      .form-control {
+        flex: 1;
+      }
+
+      .btn-add-tag {
+        height: 29px;
+        font-size: 10px;
+        line-height: 16px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 8px;
+        border: 1px solid $primary-color;
+        color: $primary-color;
+        font-weight: bold;
+        background-color: $white;
+        margin-left: 8px;
+        border-radius: 4px;
+      }
+    }
   }
 }
