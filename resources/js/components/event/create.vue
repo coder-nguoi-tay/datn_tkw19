@@ -128,24 +128,49 @@
                   <div class="form-text">
                     ホームや関連イベントに表示されるときのサムネイルになります。正方形より少し縦に長いの画像の設定を推奨しています。1枚のみ設定できます。
                   </div>
-                  <input
-                    type="file"
-                    name="image_1"
-                    id="image_1"
+                  <Field
                     class="hidden"
+                    type="file"
+                    readonly
+                    name="avatar"
+                    id="avatar"
+                    ref="fileAvatar"
+                    v-model="model.avatar"
+                    @change="changeFile($event, 2)"
+                    :rules="
+                      data.isEdit
+                        ? 'image|size:10240'
+                        : 'required|image|size:10240'
+                    "
+                  />
+                  <Field
+                    type="hidden"
+                    name="image_url"
+                    v-model="model.image_url"
+                    :rules="'required'"
                   />
                 </div>
                 <div class="file-list img-list">
-                  <div class="img-item">
-                    <img src="/assets/img/user/event/animal.png" alt="" />
+                  <div class="img-item" v-if="model.image_url">
+                    <img :src="model.image_path" alt="" />
                     <span class="ic-remove">
-                      <img src="/assets/img/user/event/ic_remove.svg" alt="" />
+                      <img
+                        src="/assets/img/user/event/ic_remove.svg"
+                        @click="model.image_url = ''"
+                      />
                     </span>
                   </div>
-                  <button class="btn-add-img" @click.prevent="addImage1">
+                  <button
+                    v-else
+                    class="btn-add-img"
+                    type="button"
+                    @click="$refs.fileAvatar.$el.click()"
+                  >
                     <img src="/assets/img/user/event/ic_add.svg" alt="" />
                   </button>
                 </div>
+                <ErrorMessage class="error-msg" name="avatar" />
+                <ErrorMessage class="error-msg" name="image_url" />
               </div>
               <div class="form-group mb-16">
                 <div class="form-add-file mb-16">
@@ -917,23 +942,35 @@ export default {
         .post(that.data.urlUploadFile, formData)
         .then(function (response) {
           $('.loading-div').addClass('hidden')
-          that.attachment_files.push({
-            type: type,
-            file_name: evt.target.files[0].name,
-            file_url: response.data.path,
-            path: response.data.path
-          })
+          switch (type) {
+            case 1:
+              that.attachment_files.push({
+                type: type,
+                file_name: evt.target.files[0].name,
+                file_url: response.data.path,
+                path: response.data.path
+              })
+              break
+            case 2:
+              that.model.image_url = response.data.path
+              that.model.image_path = response.data.full_url
+              break
+            default:
+              break
+          }
         })
-        .catch((error) => {})
+        .catch((error) => {
+          $('.loading-div').addClass('hidden')
+        })
     },
     removeFile(index, type) {
-        switch (type) {
-            case 1:
-                this.attachment_files.splice(index, 1)
-                break;
-            default:
-                break;
-        }
+      switch (type) {
+        case 1:
+          this.attachment_files.splice(index, 1)
+          break
+        default:
+          break
+      }
     },
     addAttachment() {
       $('#attachment').click()

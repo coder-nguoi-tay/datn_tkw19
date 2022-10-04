@@ -16,7 +16,8 @@ class CreateEvents extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('detail')->nullable();
+            $table->text('detail');
+            $table->string('image_url');
             $table->text('achievement_conditions')->nullable();
             $table->bigInteger('reward_amount')->nullable();
             $table->tinyInteger('entry_type')->default(1);
