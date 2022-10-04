@@ -371,6 +371,14 @@
     margin-bottom: 16px !important;
   }
 
+  .pl-20 {
+    padding-left: 20px !important;
+  }
+
+  .color-gray {
+    color: #777 !important;
+  }
+
   .btn-event-outline {
     color: $primary-color;
     border-color: $primary-color;
@@ -519,11 +527,22 @@
         font-size: 10px;
         color: #CFCFCF;
         font-weight: bold;
-        transform: translateY(-1px);
+        transform: translateY(1px);
       }
 
       &[name="detail_location"] {
         margin-top: 6px;
+      }
+
+      &.select-placeholder {
+        color: #CFCFCF;
+      }
+    }
+
+    select {
+      color: #000;
+      option {
+        color: #000;
       }
     }
 
@@ -539,8 +558,11 @@
     .form-text {
       font-size: 10px;
       line-height: 16px;
-      color: #CFCFCF;
+      color: #777;
       margin-top: 4px;
+      &.txt-validate {
+        color: #cfcfcf;
+      }
     }
 
     .label {
@@ -548,6 +570,13 @@
       line-height: 16px;
       font-weight: bold;
       color: #000;
+      .txt-require {
+        color: $primary-color;
+      }
+
+      &.sub-label {
+        color: #777;
+      }
     }
 
     .form-check {

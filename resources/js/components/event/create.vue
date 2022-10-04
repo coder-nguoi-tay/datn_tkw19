@@ -19,7 +19,7 @@
                 class="form-control"
                 placeholder="例）参加費1,000円で、世界中を飛び回る私を見つけたら賞金!!"
               />
-              <div class="form-text text-end">0 / 40文字中</div>
+              <div class="form-text txt-validate text-end">0 / 40文字中</div>
             </div>
             <div class="form-group">
               <label class="form-label" require>イベントの詳細</label>
@@ -30,7 +30,7 @@
                 name="event_detail"
                 :placeholder="detailPlace"
               ></textarea>
-              <div class="form-text text-end">0 / 40文字中</div>
+              <div class="form-text txt-validate text-end">0 / 2,000文字中</div>
             </div>
             <div class="form-group mb-16">
               <div class="form-add-file">
@@ -150,10 +150,14 @@
                 イベント内容に該当するカテゴリを選択してください。
               </div>
               <div class="custom-input">
-                <select name="category" class="form-control">
-                  <option>-- カテゴリを選択してください --</option>
-                  <option value="">qaz</option>
-                  <option value="">wsx</option>
+                <select
+                  name="category"
+                  class="form-control select-placeholder"
+                  @change="selectPlaceholder($event)"
+                >
+                  <option value="">-- カテゴリを選択してください --</option>
+                  <option value="1">qaz</option>
+                  <option value="2">wsx</option>
                 </select>
                 <span class="ic-arrow"
                   ><img src="/assets/img/user/event/ic_arrow_down.svg" alt=""
@@ -285,7 +289,6 @@
                     id="target_age_1"
                     name="target_age"
                     value=""
-                    checked
                   />
                   <label class="form-check-label label" for="target_age_1"
                     >すべて</label
@@ -298,6 +301,7 @@
                     id="target_age_2"
                     name="target_age"
                     value=""
+                    checked
                   />
                   <label class="form-check-label label" for="target_age_2"
                     >年齢を詳細指定</label
@@ -331,7 +335,6 @@
                     id="participant_1"
                     name="participant"
                     value=""
-                    checked
                   />
                   <label class="form-check-label label" for="participant_1"
                     >何人でも参加可能</label
@@ -344,6 +347,7 @@
                     id="participant_2"
                     name="participant"
                     value=""
+                    checked
                   />
                   <label class="form-check-label label" for="participant_2"
                     >人数制限有り</label
@@ -351,12 +355,12 @@
                 </div>
               </div>
               <div class="form-group">
+                <label class="label pl-20">最大参加可能人数</label>
                 <div class="input-container d-flex">
                   <label class="label">～</label>
                   <div class="ml-8">
-                    <label class="label d-block">最大参加可能人数</label>
                     <input
-                      class="form-control w-160 d-inline-block"
+                      class="form-control w-160 d-inline-block text-end"
                       type="number"
                       placeholder="9,999"
                     />
@@ -372,12 +376,13 @@
                   <input
                     type="radio"
                     class="form-check-input"
-                    id="target_age_1"
-                    name="target_age"
+                    id="participation_fee_1"
+                    name="participation_fee"
                     value=""
-                    checked
                   />
-                  <label class="form-check-label label" for="target_age_1"
+                  <label
+                    class="form-check-label label"
+                    for="participation_fee_1"
                     >参加費無料（\0）</label
                   >
                 </div>
@@ -385,11 +390,14 @@
                   <input
                     type="radio"
                     class="form-check-input"
-                    id="target_age_2"
-                    name="target_age"
+                    id="participation_fee_2"
+                    name="participation_fee"
                     value=""
+                    checked
                   />
-                  <label class="form-check-label label" for="target_age_2"
+                  <label
+                    class="form-check-label label"
+                    for="participation_fee_2"
                     >参加費を設定する</label
                   >
                 </div>
@@ -397,7 +405,7 @@
               <div class="form-group">
                 <div class="input-container">
                   <input
-                    class="form-control w-160 d-inline-block"
+                    class="form-control w-160 d-inline-block text-end"
                     type="number"
                     placeholder="500"
                   />
@@ -419,7 +427,7 @@
                 name="other_participation_conditions"
                 :placeholder="conditionsPlace"
               ></textarea>
-              <div class="form-text text-end">0 / 2,000文字中</div>
+              <div class="form-text txt-validate text-end">0 / 2,000文字中</div>
             </div>
             <div class="form-group">
               <label class="form-label" require>イベント参加規約</label>
@@ -432,12 +440,13 @@
                   <input
                     type="radio"
                     class="form-check-input"
-                    id=""
-                    name=""
+                    id="participation_term_1"
+                    name="participation_term"
                     value=""
-                    checked
                   />
-                  <label class="form-check-label label" for=""
+                  <label
+                    class="form-check-label label"
+                    for="participation_term_1"
                     >ひな形をそのまま使用する</label
                   >
                 </div>
@@ -445,17 +454,20 @@
                   <input
                     type="radio"
                     class="form-check-input"
-                    id=""
-                    name=""
+                    id="participation_term_2"
+                    name="participation_term"
                     value=""
+                    checked
                   />
-                  <label class="form-check-label label" for=""
+                  <label
+                    class="form-check-label label"
+                    for="participation_term_2"
                     >ひな形を変更する</label
                   >
                 </div>
               </div>
               <div class="form-group">
-                <label class="label">特記事項（任意）</label>
+                <label class="label sub-label">特記事項（任意）</label>
                 <div>
                   <textarea
                     class="form-control"
@@ -464,7 +476,9 @@
                     name="special_notes"
                     :placeholder="specialNotePlace"
                   ></textarea>
-                  <div class="form-text text-end">0 / 10,000文字中</div>
+                  <div class="form-text txt-validate text-end">
+                    0 / 10,000文字中
+                  </div>
                 </div>
               </div>
               <div class="form-group">
@@ -489,7 +503,7 @@
                 />
               </div>
               <div class="form-note">
-                <label class="label">※ 参加者への表示</label>
+                <label class="label color-gray">※ 参加者への表示</label>
                 <div class="txt-desc note-txt">
                   甲および乙は、本契約に定めのない事項または本契約の条項の解釈に疑義が生じたときは、本契約締結の趣旨に則り、甲乙誠意をもって協議の上解決するものとする。<br /><br />
                   第14条（特記事項）<br />
@@ -511,7 +525,7 @@
                 name="accomplishment_condition"
                 :placeholder="accomplishmentConditionPlace"
               ></textarea>
-              <div class="form-text text-end">0 / 2,000文字中</div>
+              <div class="form-text txt-validate text-end">0 / 2,000文字中</div>
             </div>
             <div class="form-group mb-16">
               <label class="form-label" require>報酬</label>
@@ -649,10 +663,10 @@
                 開催期間は最大7日間ですが、開始後にイベント設定で延長することが可能です。
               </div>
               <div class="custom-input">
-                <select name="category" class="form-control">
-                  <option>-- 開催期間を選択してください --</option>
-                  <option value="">qaz</option>
-                  <option value="">wsx</option>
+                <select name="category" class="form-control select-placeholder">
+                  <option value="">-- 開催期間を選択してください --</option>
+                  <option value="1">qaz</option>
+                  <option value="2">wsx</option>
                 </select>
                 <span class="ic-arrow"
                   ><img src="/assets/img/user/event/ic_arrow_down.svg" alt=""
@@ -672,10 +686,10 @@
                   placeholder="2022 / 12 / 3"
                 />
                 <div class="custom-input">
-                  <select name="" class="form-control">
-                    <option>18:00頃</option>
-                    <option value="">qaz</option>
-                    <option value="">wsx</option>
+                  <select name="" class="form-control select-placeholder">
+                    <option value="">18:00頃</option>
+                    <option value="1">qaz</option>
+                    <option value="2">wsx</option>
                   </select>
                   <span class="ic-arrow"
                     ><img src="/assets/img/user/event/ic_arrow_down.svg" alt=""
@@ -718,6 +732,9 @@ export default {
     ErrorMessage,
     AdditionModal,
     ConfirmModal
+  },
+  created() {
+    this.selectPlaceholder()
   },
   data() {
     return {
@@ -767,6 +784,16 @@ export default {
         document.getElementById('additionModal')
       )
       additionModal.show()
+    },
+    selectPlaceholder(event) {
+      $('select.form-control').each(function () {
+        let selectVal = event.target.value
+        if (selectVal != '') {
+          $(this).removeClass('select-placeholder')
+        } else {
+          $(this).addClass('select-placeholder')
+        }
+      })
     }
   }
 }
