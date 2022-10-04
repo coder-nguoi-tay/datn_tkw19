@@ -1,4 +1,9 @@
 @extends('layouts.user')
 @section('content')
-    <event-create></event-create>
+    <event-create
+        :data="{{ json_encode([
+            'urlStore' => route('event.store'),
+            'urlUploadFile' => route('upload'),
+        ]) }}">
+    </event-create>
 @endsection

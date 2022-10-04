@@ -31,9 +31,9 @@ defineRule('telephone', (value) => {
         /^0(\d{9,10})+$/i.test(value.trim())
     )
 })
-defineRule('required', (value) => {
-    return !!value
-})
+// defineRule('required', (value) => {
+//     return !!value
+// })
 
 defineRule('telephone_or_email', (value) => {
     return (
@@ -74,6 +74,5 @@ app.component('user-login', UserLogin)
 app.component('user-forgot-password-create', UserForgotPasswordCreate)
 app.component('user-forgot-password-success', UserForgotPasswordSuccess)
 app.component('vue-recaptcha', VueRecaptcha)
-
 
 app.mount('#app')

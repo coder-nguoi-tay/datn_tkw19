@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEventRewards extends Migration
+class CreateEventFiles extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateEventRewards extends Migration
      */
     public function up()
     {
-        Schema::create('event_rewards', function (Blueprint $table) {
+        Schema::create('event_files', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('event_id');
-            $table->string('name');
-            $table->bigInteger('reward_amount');
-            $table->bigInteger('quantity');
+            $table->string('file_name');
+            $table->string('file_url');
+            $table->tinyInteger('type')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +31,6 @@ class CreateEventRewards extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event_rewards');
+        Schema::dropIfExists('event_files');
     }
 }

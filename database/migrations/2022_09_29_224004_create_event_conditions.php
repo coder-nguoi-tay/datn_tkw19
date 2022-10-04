@@ -23,6 +23,11 @@ class CreateEventConditions extends Migration
             $table->text('other_conditions')->nullable();
             $table->tinyInteger('limit_number_of_participants_flag')->nullable();
             $table->bigInteger('limit_number_of_participants')->nullable();
+            $table->tinyInteger('participation_terms_type')->nullable();
+            $table->text('special_notes')->nullable();
+            $table->string('address')->nullable();
+            $table->string('company_name')->nullable();
+            $table->text('meet_condition')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -21,6 +21,16 @@ class CommonComponent
         return true;
     }
 
+    public static function fileExist($path)
+    {
+        return Storage::disk('public')->has($path);
+    }
+
+    public static function copyFile($newPath, $pathOld)
+    {
+        return Storage::disk('public')->put($newPath, Storage::disk('public')->get($pathOld));
+    }
+
     public static function uploadFileName($extension = '')
     {
         return sha1(time().rand(0, 9999999)).'.'.$extension;

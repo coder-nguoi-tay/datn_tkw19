@@ -19,6 +19,7 @@ use App\Http\Controllers\User\LoginController as UserLoginController;
 use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\User\UserForgotPasswordController;
 use App\Http\Controllers\User\UserForgotPasswordSuccessController;
+use App\Http\Controllers\User\UpLoadFileController;
 use App\Http\Controllers\User\PasswordResetController as UserPasswordResetController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,8 @@ Route::resource('my-event', MyEventController::class);
 Route::resource('my-page', MyPageController::class);
 Route::resource('event-report', EventReportController::class);
 Route::resource('event', EventController::class);
+Route::post('upload', [UpLoadFileController::class, 'upload'])->name('upload');
+
 Route::resource('login', UserLoginController::class);
 Route::get('logout', [UserLoginController::class, 'logout'])->name('logout');
 Route::resource('change-user-name', ChangeUserNameController::class);

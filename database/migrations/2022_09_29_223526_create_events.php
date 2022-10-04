@@ -19,8 +19,8 @@ class CreateEvents extends Migration
             $table->text('detail')->nullable();
             $table->text('achievement_conditions')->nullable();
             $table->bigInteger('reward_amount')->nullable();
-            $table->tinyInteger('entry_type')->default(0);
-            $table->integer('entry_fee')->nullable();
+            $table->tinyInteger('entry_type')->default(1);
+            $table->bigInteger('entry_fee')->nullable();
             $table->json('events_area')->nullable();
             $table->tinyInteger('apply_method')->nullable();
             $table->string('event_organizer')->nullable();
