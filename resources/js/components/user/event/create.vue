@@ -287,39 +287,36 @@
                 <label class="form-label" optional>実施地域</label>
                 <div class="custom-input">
                   <input
-                    class="form-control place-black"
+                    class="form-control"
                     type="text"
-                    name=""
                     placeholder="東京都、埼玉県、千葉県、群馬県、大阪府、宮城県、熊本県、大分県、... 他"
+                    v-model="placePref"
                     @click="showAdditionModal"
                   />
                   <span class="ic-arrow ic-duplicate">
                     <img src="/assets/img/user/event/ic_copy.svg" />
                   </span>
                 </div>
-                <input
-                  class="form-control"
-                  type="text"
+                <Field
                   name="detail_location"
+                  type="text"
+                  v-model="model.detail_location"
+                  rules="max:255"
+                  class="form-control"
                   placeholder="詳細な場所"
                 />
+                <ErrorMessage class="error-msg" name="detail_location" />
               </div>
               <div class="form-group form-group-tag mb-16">
                 <label class="form-label" optional>タグ</label>
                 <div class="tag-list">
-                  <p class="tag-item">
-                    # 探偵系
-                    <span class="ic-close">
-                      <img
-                        src="/assets/img/user/event/ic_close.svg"
-                        alt=""
-                        width="5"
-                      />
-                    </span>
-                  </p>
-                  <p class="tag-item">
-                    # だれでも参加可
-                    <span class="ic-close">
+                  <p
+                    class="tag-item"
+                    v-for="(item, index) in tags"
+                    :key="index"
+                  >
+                    # {{ item.name }}
+                    <span class="ic-close" @click="removeTag(index)">
                       <img
                         src="/assets/img/user/event/ic_close.svg"
                         alt=""
@@ -329,16 +326,24 @@
                   </p>
                 </div>
                 <div class="form-add-tag d-flex">
-                  <input
+                  <Field
+                    name="tag_name"
+                    ref="tag_name"
                     type="text"
-                    name="tag"
+                    v-model="model.tag_name"
+                    rules="max:255"
                     class="form-control"
                     placeholder="追加したいタグを入力"
                   />
-                  <button class="btn-event-outline btn-add-tag">
+                  <button
+                    type="button"
+                    @click="addTag"
+                    class="btn-event-outline btn-add-tag"
+                  >
                     追加する
                   </button>
                 </div>
+                <ErrorMessage class="error-msg" name="tag_name" />
               </div>
             </div>
             <div class="input-section">
@@ -346,63 +351,35 @@
               <div class="form-group form-multiple">
                 <label class="form-label" require>対象の性別</label>
                 <div class="form-inline d-flex flex-wrap">
-                  <div class="form-check">
-                    <input
+                  <div
+                    class="form-check"
+                    v-for="item in GENDER_OPTIONS"
+                    :key="item.value"
+                  >
+                    <Field
+                      v-slot="{ field }"
+                      name="target_gender"
                       type="checkbox"
-                      class="form-check-input"
-                      id="check1"
-                      name="participation_condition_1"
-                      value=""
-                    />
-                    <label class="form-check-label label" for="check1"
-                      >すべて</label
+                      rules="required"
+                      :value="item.value"
                     >
-                  </div>
-                  <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      id="check2"
-                      name="participation_condition_2"
-                    />
-                    <label class="form-check-label label" for="check2"
-                      >男</label
-                    >
-                  </div>
-                  <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      id="check3"
-                      name="participation_condition_3"
-                    />
-                    <label class="form-check-label label" for="check3"
-                      >女</label
-                    >
-                  </div>
-                  <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      id="check4"
-                      name="participation_condition_4"
-                    />
-                    <label class="form-check-label label" for="check4"
-                      >その他</label
-                    >
-                  </div>
-                  <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      id="check5"
-                      name="participation_condition_5"
-                    />
-                    <label class="form-check-label label" for="check5"
-                      >事業者</label
-                    >
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        :id="'gender_' + item.value"
+                        name="target_gender"
+                        v-bind="field"
+                        :value="item.value"
+                      />
+                      <label
+                        class="form-check-label label"
+                        :for="'gender_' + item.value"
+                        >{{ item.text }}</label
+                      >
+                    </Field>
                   </div>
                 </div>
+                <ErrorMessage class="error-msg" name="target_gender" />
               </div>
               <div class="form-group form-multiple">
                 <label class="form-label" require>対象の年齢</label>
@@ -410,10 +387,12 @@
                   <div class="form-check">
                     <input
                       type="radio"
+                      v-model="model.target_age_type"
                       class="form-check-input"
                       id="target_age_1"
                       name="target_age"
-                      value=""
+                      value="0"
+                      checked
                     />
                     <label class="form-check-label label" for="target_age_1"
                       >すべて</label
@@ -422,26 +401,30 @@
                   <div class="form-check">
                     <input
                       type="radio"
+                      v-model="model.target_age_type"
                       class="form-check-input"
                       id="target_age_2"
                       name="target_age"
-                      value=""
-                      checked
+                      value="1"
                     />
                     <label class="form-check-label label" for="target_age_2"
                       >年齢を詳細指定</label
                     >
                   </div>
                 </div>
-                <div class="form-group mt-8">
+                <div class="form-group mt-8" v-if="model.target_age_type == 1">
                   <div class="input-container">
-                    <input
+                    <Field
+                      name="target_age_from"
+                      type="text"
+                      v-model="model.target_age_from"
+                      rules="required"
                       class="form-control w-160 d-inline-block"
-                      type="number"
                       placeholder="例）8,10-20,50-65"
                     />
                     <label class="label ml-6">歳</label>
                   </div>
+                  <ErrorMessage class="error-msg" name="target_age_from" />
                   <div class="form-text mt-8">
                     10歳以上20歳未満の場合は、例のように半角英数字と『-（半角ハイフン）』を使用ください。なお、複数ある場合は『,（半角カンマ）』を区切り文字として使用ください。
                   </div>
@@ -457,9 +440,11 @@
                     <input
                       type="radio"
                       class="form-check-input"
+                      v-model="model.limit_number_of_participants_flag"
                       id="participant_1"
                       name="participant"
-                      value=""
+                      value="0"
+                      checked
                     />
                     <label class="form-check-label label" for="participant_1"
                       >何人でも参加可能</label
@@ -468,30 +453,40 @@
                   <div class="form-check">
                     <input
                       type="radio"
+                      v-model="model.limit_number_of_participants_flag"
                       class="form-check-input"
                       id="participant_2"
                       name="participant"
-                      value=""
-                      checked
+                      value="1"
                     />
                     <label class="form-check-label label" for="participant_2"
                       >人数制限有り</label
                     >
                   </div>
                 </div>
-                <div class="form-group">
+                <div
+                  class="form-group"
+                  v-if="model.limit_number_of_participants_flag == 1"
+                >
                   <label class="label pl-20">最大参加可能人数</label>
                   <div class="input-container d-flex">
                     <label class="label">～</label>
                     <div class="ml-8">
-                      <input
-                        class="form-control w-160 d-inline-block text-end"
+                      <Field
+                        name="limit_number_of_participants"
                         type="number"
+                        v-model="model.limit_number_of_participants"
+                        rules="required"
+                        class="form-control w-160 d-inline-block text-end"
                         placeholder="9,999"
                       />
                     </div>
                     <label class="label ml-8">名</label>
                   </div>
+                  <ErrorMessage
+                    class="error-msg"
+                    name="limit_number_of_participants"
+                  />
                 </div>
               </div>
               <div class="form-group form-multiple mb-16">
@@ -501,13 +496,13 @@
                     <input
                       type="radio"
                       class="form-check-input"
-                      id="participation_fee_1"
-                      name="participation_fee"
-                      value=""
+                      id="entry_type_1"
+                      name="entry_type"
+                      v-model="model.entry_type"
+                      value="0"
+                      checked
                     />
-                    <label
-                      class="form-check-label label"
-                      for="participation_fee_1"
+                    <label class="form-check-label label" for="entry_type_1"
                       >参加費無料（\0）</label
                     >
                   </div>
@@ -515,46 +510,52 @@
                     <input
                       type="radio"
                       class="form-check-input"
-                      id="participation_fee_2"
-                      name="participation_fee"
-                      value=""
-                      checked
+                      v-model="model.entry_type"
+                      id="entry_type_2"
+                      name="entry_type"
+                      value="1"
                     />
-                    <label
-                      class="form-check-label label"
-                      for="participation_fee_2"
+                    <label class="form-check-label label" for="entry_type_2"
                       >参加費を設定する</label
                     >
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="model.entry_type == 1">
                   <div class="input-container">
-                    <input
-                      class="form-control w-160 d-inline-block text-end"
+                    <Field
+                      name="entry_fee"
                       type="number"
+                      v-model="model.entry_fee"
+                      rules="required"
+                      class="form-control w-160 d-inline-block text-end"
                       placeholder="500"
                     />
                     <label class="label ml-6">円</label>
                   </div>
+                  <ErrorMessage class="error-msg" name="entry_fee" />
                   <div class="form-text mt-8">
                     1名の参加者に対し参加する際に必要な参加費を設定します。参加費の入金タイミングは<b
                       ><a href="#">こちら</a></b
                     >からご確認ください。
                   </div>
+                  <ErrorMessage class="error-msg" name="entry_fee" />
                 </div>
               </div>
               <div class="form-group mb-16">
                 <label class="form-label" optional="">その他の参加条件</label>
-                <textarea
+                <Field
+                  as="textarea"
+                  name="other_conditions"
+                  rules="max:2000"
+                  v-model="model.other_conditions"
                   class="form-control"
-                  rows="11"
-                  maxlength="2000"
-                  name="other_participation_conditions"
                   :placeholder="conditionsPlace"
-                ></textarea>
+                  rows="11"
+                />
                 <div class="form-text txt-validate text-end">
-                  0 / 2,000文字中
+                  {{ model.other_conditions.length }} / 2,000文字中
                 </div>
+                <ErrorMessage class="error-msg" name="other_conditions" />
               </div>
               <div class="form-group">
                 <label class="form-label" require>イベント参加規約</label>
@@ -567,13 +568,14 @@
                     <input
                       type="radio"
                       class="form-check-input"
-                      id="participation_term_1"
-                      name="participation_term"
-                      value=""
+                      id="participation_terms_type_1"
+                      name="participation_terms_type"
+                      value="0"
+                      checked
                     />
                     <label
                       class="form-check-label label"
-                      for="participation_term_1"
+                      for="participation_terms_type_1"
                       >ひな形をそのまま使用する</label
                     >
                   </div>
@@ -581,14 +583,13 @@
                     <input
                       type="radio"
                       class="form-check-input"
-                      id="participation_term_2"
-                      name="participation_term"
-                      value=""
-                      checked
+                      id="participation_terms_type_2"
+                      name="participation_terms_type"
+                      value="1"
                     />
                     <label
                       class="form-check-label label"
-                      for="participation_term_2"
+                      for="participation_terms_type_2"
                       >ひな形を変更する</label
                     >
                   </div>
@@ -596,38 +597,49 @@
                 <div class="form-group">
                   <label class="label sub-label">特記事項（任意）</label>
                   <div>
-                    <textarea
-                      class="form-control"
-                      rows="11"
-                      maxlength="10000"
+                    <Field
+                      as="textarea"
                       name="special_notes"
+                      rules="max:10000"
+                      v-model="model.special_notes"
+                      class="form-control"
                       :placeholder="specialNotePlace"
-                    ></textarea>
+                      rows="11"
+                    />
                     <div class="form-text txt-validate text-end">
-                      0 / 10,000文字中
+                      {{ model.special_notes.length }} / 10,000文字中
                     </div>
+                    <ErrorMessage class="error-msg" name="special_notes" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="label sub-label"
                     >住所（<span class="txt-require">必須</span>）</label
                   >
-                  <input
+                  <Field
+                    name="address"
                     type="text"
+                    v-model="model.address"
+                    rules="required|max:255"
                     class="form-control"
                     placeholder="東京都千代田区永田町"
                   />
+                  <ErrorMessage class="error-msg" name="address" />
                 </div>
                 <div class="form-group">
                   <label class="label sub-label"
                     >氏名または会社名（<span class="txt-require">必須</span
                     >）</label
                   >
-                  <input
+                  <Field
+                    name="company_name"
                     type="text"
+                    v-model="model.company_name"
+                    rules="required|max:255"
                     class="form-control"
                     placeholder="商社太郎丸"
                   />
+                  <ErrorMessage class="error-msg" name="company_name" />
                 </div>
                 <div class="form-note">
                   <label class="label color-gray">※ 参加者への表示</label>
@@ -645,16 +657,19 @@
               <h2 class="input-title">達成条件と報酬</h2>
               <div class="form-group mb-16">
                 <label class="form-label" require>達成条件</label>
-                <textarea
+                <Field
+                  as="textarea"
+                  name="meet_condition"
+                  rules="required|max:2000"
+                  v-model="model.meet_condition"
                   class="form-control"
-                  rows="14"
-                  maxlength="2000"
-                  name="accomplishment_condition"
                   :placeholder="accomplishmentConditionPlace"
-                ></textarea>
+                  rows="11"
+                />
                 <div class="form-text txt-validate text-end">
-                  0 / 2,000文字中
+                  {{ model.meet_condition.length }} / 2,000文字中
                 </div>
+                <ErrorMessage class="error-msg" name="meet_condition" />
               </div>
               <div class="form-group mb-16">
                 <label class="form-label" require>報酬</label>
@@ -844,10 +859,15 @@
             </button>
             <button class="btn-confirm">確認</button>
           </div>
+          <AdditionModal
+            @updateArea="updateArea"
+            :data="data"
+            :event-area="model.events_area"
+          ></AdditionModal>
         </form>
       </VeeForm>
     </div>
-    <AdditionModal></AdditionModal>
+
     <ConfirmModal></ConfirmModal>
   </div>
 </template>
@@ -867,7 +887,15 @@ import axios from 'axios'
 import Multiselect from 'vue-multiselect'
 import AdditionModal from './createAdditionModal'
 import ConfirmModal from './deleteConfirmModal'
+import { join } from 'lodash'
 const MAX_FILE_SIZE_IN_MB = 10
+const GENDER_OPTIONS = [
+  { value: 0, text: 'すべて' },
+  { value: 1, text: '男' },
+  { value: 2, text: '女' },
+  { value: 3, text: 'その他' },
+  { value: 4, text: '事業者' }
+]
 export default {
   components: {
     Multiselect,
@@ -884,7 +912,7 @@ export default {
         fields: {
           name: {
             required: 'タイトルを入力してください。',
-            max: 'タイトルは255文字を超えてはなりません。'
+            max: 'タイトルは40文字を超えてはなりません。'
           },
           detail: {
             required: 'イベントの詳細を入力してください。',
@@ -892,6 +920,53 @@ export default {
           },
           attachment: {
             size: '10MB以内ファイルをアップロードしてください。'
+          },
+          avatar: {
+            required: '一覧表示用画像を入力してください。',
+            size: '10MB以内ファイルをアップロードしてください。'
+          },
+          imageFile: {
+            required: '詳細表示用画像を入力してください。',
+            size: '10MB以内ファイルをアップロードしてください。'
+          },
+          category_id: {
+            required: 'カテゴリを入力してください。'
+          },
+          detail_location: {
+            max: '実施地域は255文字を超えてはなりません。'
+          },
+          tag_name: {
+            max: 'タグは255文字を超えてはなりません。'
+          },
+          target_gender: {
+            required: '対象の性別を入力してください。'
+          },
+          target_age_from: {
+            required: '年齢を詳細指定を入力してください。'
+          },
+          limit_number_of_participants: {
+            required: '最大参加可能人数を入力してください。'
+          },
+          entry_fee: {
+            required: '参加費を設定するを入力してください。'
+          },
+          other_conditions: {
+            max: 'その他の参加条件は2000文字を超えてはなりません。'
+          },
+          special_notes: {
+            max: '特記事項（任意）は10000文字を超えてはなりません。'
+          },
+          address: {
+            required: '住所を入力してください。',
+            max: '住所は255文字を超えてはなりません。'
+          },
+          company_name: {
+            required: '氏名を入力してください。',
+            max: '氏名は255文字を超えてはなりません。'
+          },
+          meet_condition: {
+            required: '達成条件を入力してください。',
+            max: '達成条件は2000文字を超えてはなりません。'
           }
         }
       }
@@ -951,11 +1026,21 @@ export default {
         '※なお、3等賞での当選を望まない場合、『2以上』と記載ください。',
       model: {
         name: '',
-        detail: ''
+        detail: '',
+        events_area: {
+          area_id: [],
+          pref_id: []
+        },
+        other_conditions: '',
+        special_notes: '',
+        meet_condition: ''
       },
       attachment_files: [],
       image_details: [],
-      csrfToken: Laravel.csrfToken
+      csrfToken: Laravel.csrfToken,
+      placePref: '',
+      tags: [],
+      GENDER_OPTIONS
     }
   },
   props: ['data'],
@@ -1054,14 +1139,28 @@ export default {
           break
       }
     },
-    addAttachment() {
-      $('#attachment').click()
+    removeTag(index) {
+      this.tags.splice(index, 1)
     },
-    addImage1() {
-      $('#image_1').click()
+    updateArea(data) {
+      let tmp = []
+      let that = this
+      data.pref_id.forEach(function (item) {
+        tmp.push(that.data.prefectures.find((x) => x.id == item).label)
+      })
+      tmp = join(tmp, '、')
+      this.placePref = tmp.length < 40 ? tmp : tmp.substring(0, 40) + '... 他'
     },
-    addImage2() {
-      $('#image_2').click()
+    async addTag() {
+      if (
+        (await this.$refs.tag_name.validate()).valid &&
+        !this.tags.find((x) => x.name == this.model.tag_name)
+      ) {
+        this.tags.push({
+          name: this.model.tag_name
+        })
+        this.model.tag_name = ''
+      }
     },
     showAdditionModal() {
       let additionModal = new bootstrap.Modal(

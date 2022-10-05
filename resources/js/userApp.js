@@ -20,8 +20,8 @@ import 'sweetalert2/dist/sweetalert2.min.css'
 app.use(VueSweetalert2)
 
 import Register from './components/user/register/index.vue'
-import EventCreate from './components/event/create.vue'
-import EventConfirm from './components/event/confirm.vue'
+import EventCreate from './components/user/event/create.vue'
+import EventConfirm from './components/user/event/confirm.vue'
 import MyEvent from './components/myEvent/index.vue'
 import MyEventShow from './components/myEvent/show.vue'
 import MyPage from './components/myPage/index.vue'
@@ -29,7 +29,7 @@ import Profile from './components/profile/index.vue'
 import EventReport from './components/eventReport/index.vue'
 import ChangeName from './components/user/changeName/index.vue'
 import Notification from './components/user/profile/setting-notification.vue'
-import EventList from './components/event/index.vue'
+import EventList from './components/user/event/index.vue'
 
 app.component('nl2br', Nl2br)
 app.component('register', Register)

@@ -19,11 +19,14 @@ class CreateEvents extends Migration
             $table->text('detail');
             $table->string('image_url');
             $table->integer('category_id');
+            $table->json('events_area')->nullable();
+            $table->text('detail_location')->nullable();
+            $table->string('address');
+
             $table->text('achievement_conditions')->nullable();
             $table->bigInteger('reward_amount')->nullable();
             $table->tinyInteger('entry_type')->default(1);
             $table->bigInteger('entry_fee')->nullable();
-            $table->json('events_area')->nullable();
             $table->tinyInteger('apply_method')->nullable();
             $table->string('event_organizer')->nullable();
             $table->dateTime('publish_start_datetime')->nullable();

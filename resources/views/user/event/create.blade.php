@@ -5,6 +5,8 @@
             'urlStore' => route('event.store'),
             'urlUploadFile' => route('upload'),
             'categories' => $categories,
+            'areas' => $areas,
+            'prefectures' => $prefectures,
         ]) }}">
     </event-create>
 @endsection
