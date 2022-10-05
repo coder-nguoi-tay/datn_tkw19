@@ -10,13 +10,13 @@ use Rennokki\QueryCache\Traits\QueryCacheable;
 
 /**
  * @property int $id
- * @property string $name
+ * @property string $category_name
  * @property int $order_num
  * @property string $created_at
  * @property string $updated_at
  * @property string $deleted_at
  */
-class Area extends Model
+class Category extends Model
 {
     use HasFactory, SoftDeletes, Sortable, QueryCacheable;
 
@@ -32,10 +32,5 @@ class Area extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'order_num', 'created_at', 'updated_at', 'deleted_at'];
-
-    public function prefectures()
-    {
-        return $this->hasMany(Prefecture::class, 'area_id', 'id');
-    }
+    protected $fillable = ['category_name', 'order_num', 'created_at', 'updated_at', 'deleted_at'];
 }

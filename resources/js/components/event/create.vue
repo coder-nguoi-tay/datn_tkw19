@@ -74,7 +74,7 @@
                     name="attachment"
                     id="attachment"
                     ref="fileAttachment"
-                    v-model="model.attachment"
+                    multiple
                     @change="changeFile($event, 1)"
                     :rules="'size:10240'"
                   />
@@ -88,7 +88,7 @@
                   >
                     <div>
                       <span class="ic-link">
-                        <img src="/assets/img/user/event/ic_link.svg" alt="" />
+                        <img src="/assets/img/user/event/ic_link.svg" />
                       </span>
                       <input
                         type="hidden"
@@ -103,8 +103,8 @@
                       />
                       <input
                         type="hidden"
-                        :name="'event_files[' + index + '][file_url]'"
-                        :value="item.file_url"
+                        :name="'event_files[' + index + '][path]'"
+                        :value="item.path"
                       />
                       <input
                         type="hidden"
@@ -135,7 +135,7 @@
                     name="avatar"
                     id="avatar"
                     ref="fileAvatar"
-                    v-model="model.avatar"
+                    accept="image/*"
                     @change="changeFile($event, 2)"
                     :rules="
                       data.isEdit
@@ -145,14 +145,14 @@
                   />
                   <Field
                     type="hidden"
-                    name="image_url"
-                    v-model="model.image_url"
+                    name="image_path"
+                    v-model="model.image_path"
                     :rules="'required'"
                   />
                 </div>
                 <div class="file-list img-list">
                   <div class="img-item" v-if="model.image_url">
-                    <img :src="model.image_path" alt="" />
+                    <img :src="model.image_url" />
                     <span class="ic-remove">
                       <img
                         src="/assets/img/user/event/ic_remove.svg"
@@ -166,7 +166,7 @@
                     type="button"
                     @click="$refs.fileAvatar.$el.click()"
                   >
-                    <img src="/assets/img/user/event/ic_add.svg" alt="" />
+                    <img src="/assets/img/user/event/ic_add.svg" />
                   </button>
                 </div>
                 <ErrorMessage class="error-msg" name="avatar" />
@@ -178,30 +178,81 @@
                   <div class="form-text mt-0">
                     イベント詳細の表示時に表示されるカバー画像です。横長の画像を推奨しています。最大で5枚まで設定することが可能です。
                   </div>
-                  <input
-                    type="file"
-                    name="image_2[]"
-                    id="image_2"
+                  <Field
                     class="hidden"
+                    type="file"
+                    readonly
+                    name="imageFile"
+                    id="imageFile"
+                    ref="imageFile"
+                    accept="image/*"
+                    multiple
+                    @change="changeFile($event, 3)"
+                    :rules="
+                      data.isEdit
+                        ? 'image|size:10240'
+                        : 'required|image|size:10240'
+                    "
                   />
                 </div>
                 <div class="file-list img-list">
-                  <div class="img-item">
-                    <img src="/assets/img/user/event/hands.png" alt="" />
-                    <span class="ic-remove">
-                      <img src="/assets/img/user/event/ic_remove.svg" alt="" />
+                  <div
+                    class="img-item"
+                    v-for="(item, index) in image_details"
+                    :key="index"
+                  >
+                    <input
+                      type="hidden"
+                      :name="
+                        'event_files[' +
+                        (index + attachment_files.length) +
+                        '][file_name]'
+                      "
+                      :value="item.file_name"
+                    />
+                    <input
+                      type="hidden"
+                      v-if="item.id"
+                      :name="
+                        'event_files[' +
+                        (index + attachment_files.length) +
+                        '][id]'
+                      "
+                      :value="item.id"
+                    />
+                    <input
+                      type="hidden"
+                      :name="
+                        'event_files[' +
+                        (index + attachment_files.length) +
+                        '][path]'
+                      "
+                      :value="item.path"
+                    />
+                    <input
+                      type="hidden"
+                      :name="
+                        'event_files[' +
+                        (index + attachment_files.length) +
+                        '][type]'
+                      "
+                      value="2"
+                    />
+                    <img :src="item.file_url" />
+                    <span class="ic-remove" @click="removeFile(index, 3)">
+                      <img src="/assets/img/user/event/ic_remove.svg" />
                     </span>
                   </div>
-                  <div class="img-item">
-                    <img src="/assets/img/user/event/hands.png" alt="" />
-                    <span class="ic-remove">
-                      <img src="/assets/img/user/event/ic_remove.svg" alt="" />
-                    </span>
-                  </div>
-                  <button class="btn-add-img" @click.prevent="addImage2">
-                    <img src="/assets/img/user/event/ic_add.svg" alt="" />
+                  <button
+                    class="btn-add-img"
+                    type="button"
+                    v-if="image_details.length < 10"
+                    @click="$refs.imageFile.$el.click()"
+                  >
+                    <img src="/assets/img/user/event/ic_add.svg" />
                   </button>
                 </div>
+                <ErrorMessage class="error-msg" name="imageFile" />
               </div>
               <div class="form-group mb-16">
                 <label class="form-label" require>カテゴリ</label>
@@ -209,19 +260,28 @@
                   イベント内容に該当するカテゴリを選択してください。
                 </div>
                 <div class="custom-input">
-                  <select
-                    name="category"
+                  <Field
+                    as="select"
+                    name="category_id"
+                    rules="required"
                     class="form-control select-placeholder"
+                    v-model="model.category_id"
                     @change="selectPlaceholder($event)"
                   >
                     <option value="">-- カテゴリを選択してください --</option>
-                    <option value="1">qaz</option>
-                    <option value="2">wsx</option>
-                  </select>
+                    <option
+                      :value="item.value"
+                      v-for="item in data.categories"
+                      :key="item.value"
+                    >
+                      {{ item.label }}
+                    </option>
+                  </Field>
                   <span class="ic-arrow"
                     ><img src="/assets/img/user/event/ic_arrow_down.svg" alt=""
                   /></span>
                 </div>
+                <ErrorMessage class="error-msg" name="category_id" />
               </div>
               <div class="form-group mb-16">
                 <label class="form-label" optional>実施地域</label>
@@ -234,7 +294,7 @@
                     @click="showAdditionModal"
                   />
                   <span class="ic-arrow ic-duplicate">
-                    <img src="/assets/img/user/event/ic_copy.svg" alt="" />
+                    <img src="/assets/img/user/event/ic_copy.svg" />
                   </span>
                 </div>
                 <input
@@ -807,7 +867,7 @@ import axios from 'axios'
 import Multiselect from 'vue-multiselect'
 import AdditionModal from './createAdditionModal'
 import ConfirmModal from './deleteConfirmModal'
-
+const MAX_FILE_SIZE_IN_MB = 10
 export default {
   components: {
     Multiselect,
@@ -894,6 +954,7 @@ export default {
         detail: ''
       },
       attachment_files: [],
+      image_details: [],
       csrfToken: Laravel.csrfToken
     }
   },
@@ -934,39 +995,60 @@ export default {
       if (evt.target.files.length == 0) {
         return
       }
-      const formData = new FormData()
-      formData.append('file', evt.target.files[0])
-      $('.loading-div').removeClass('hidden')
-      let that = this
-      axios
-        .post(that.data.urlUploadFile, formData)
-        .then(function (response) {
-          $('.loading-div').addClass('hidden')
-          switch (type) {
-            case 1:
-              that.attachment_files.push({
-                type: type,
-                file_name: evt.target.files[0].name,
-                file_url: response.data.path,
-                path: response.data.path
-              })
-              break
-            case 2:
-              that.model.image_url = response.data.path
-              that.model.image_path = response.data.full_url
-              break
-            default:
-              break
-          }
-        })
-        .catch((error) => {
-          $('.loading-div').addClass('hidden')
-        })
+      for (const file of evt.target.files) {
+        if (file.size > MAX_FILE_SIZE_IN_MB * Math.pow(2, 20)) {
+          continue
+        }
+        if (type == 3 && this.image_details.length >= 10) {
+          continue
+        }
+        $('.loading-div').removeClass('hidden')
+        const formData = new FormData()
+        formData.append('file', file)
+        let that = this
+        axios
+          .post(that.data.urlUploadFile, formData)
+          .then(function (response) {
+            $('.loading-div').addClass('hidden')
+            switch (type) {
+              case 1:
+                that.attachment_files.push({
+                  type: type,
+                  file_name: file.name,
+                  file_url: response.data.full_url,
+                  path: response.data.path
+                })
+                break
+              case 2:
+                that.model.image_url = response.data.full_url
+                that.model.image_path = response.data.path
+                break
+              case 3:
+                if (that.image_details.length < 10) {
+                  that.image_details.push({
+                    type: type,
+                    file_name: evt.target.files[0].name,
+                    file_url: response.data.full_url,
+                    path: response.data.path
+                  })
+                }
+                break
+              default:
+                break
+            }
+          })
+          .catch((error) => {
+            $('.loading-div').addClass('hidden')
+          })
+      }
     },
     removeFile(index, type) {
       switch (type) {
         case 1:
           this.attachment_files.splice(index, 1)
+          break
+        case 3:
+          this.image_details.splice(index, 1)
           break
         default:
           break

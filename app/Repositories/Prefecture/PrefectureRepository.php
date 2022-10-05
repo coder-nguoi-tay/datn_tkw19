@@ -18,7 +18,7 @@ class PrefectureRepository extends BaseController implements PrefectureInterface
 
     public function get()
     {
-        return $this->prefecture->latest()->select('id', 'name as label')
+        return $this->prefecture->latest()->select('id', 'name as label', 'area_id')
             ->orderBy('order_num')
             ->get();
     }

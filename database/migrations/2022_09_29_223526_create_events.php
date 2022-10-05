@@ -18,6 +18,7 @@ class CreateEvents extends Migration
             $table->string('name');
             $table->text('detail');
             $table->string('image_url');
+            $table->integer('category_id');
             $table->text('achievement_conditions')->nullable();
             $table->bigInteger('reward_amount')->nullable();
             $table->tinyInteger('entry_type')->default(1);

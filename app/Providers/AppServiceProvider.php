@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use App\Repositories\Admin\AdminInterface;
 use App\Repositories\Admin\AdminRepository;
+use App\Repositories\Area\AreaInterface;
+use App\Repositories\Area\AreaRepository;
+use App\Repositories\Category\CategoryInterface;
+use App\Repositories\Category\CategoryRepository;
 use App\Repositories\City\CityInterface;
 use App\Repositories\City\CityRepository;
 use App\Repositories\News\NewsInterface;
@@ -31,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(NewsInterface::class, NewsRepository::class);
         $this->app->bind(PrefectureInterface::class, PrefectureRepository::class);
         $this->app->bind(CityInterface::class, CityRepository::class);
+        $this->app->bind(CategoryInterface::class, CategoryRepository::class);
+        $this->app->bind(AreaInterface::class, AreaRepository::class);
     }
 
     /**

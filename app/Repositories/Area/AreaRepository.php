@@ -16,28 +16,10 @@ class AreaRepository extends BaseController implements AreaInterface
         $this->area = $area;
     }
 
-    public function get($request)
+    public function get()
     {
-        // TODO: Implement get() method.
-    }
-
-    public function getById($id)
-    {
-        // TODO: Implement getById() method.
-    }
-
-    public function store($request)
-    {
-        // TODO: Implement store() method.
-    }
-
-    public function update($request, $id)
-    {
-        // TODO: Implement update() method.
-    }
-
-    public function destroy($id)
-    {
-        // TODO: Implement destroy() method.
+        return $this->area->latest()->select('id', 'name as label')
+            ->orderBy('order_num')
+            ->get();
     }
 }

@@ -23,11 +23,10 @@
               <input
                 type="checkbox"
                 class="form-check-input"
-                id=""
-                name=""
-                value=""
+                id="check-all"
+                value="1"
               />
-              <label class="form-check-label label" for="">全国</label>
+              <label class="form-check-label label" for="check-all">全国</label>
             </div>
           </div>
           <div class="form-group">

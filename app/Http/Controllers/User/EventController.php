@@ -3,10 +3,26 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Area\AreaInterface;
+use App\Repositories\Category\CategoryInterface;
+use App\Repositories\Prefecture\PrefectureInterface;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+    private $category;
+
+    private $prefecture;
+
+    private $area;
+
+    public function __construct(CategoryInterface $category, PrefectureInterface $prefecture, AreaInterface $area)
+    {
+        $this->category = $category;
+        $this->prefecture = $prefecture;
+        $this->area = $area;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +31,7 @@ class EventController extends Controller
     public function index()
     {
         //
-        return view('event.index', [
+        return view('user.event.index', [
             'title'=>'イベント企画',
         ]);
     }
@@ -27,8 +43,11 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('event.create', [
+        return view('user.event.create', [
             'title'=>'イベント新規作成',
+            'categories' => $this->category->getOption(),
+            'areas' => $this->area->get(),
+            'prefectures' => $this->prefecture->get(),
         ]);
     }
 

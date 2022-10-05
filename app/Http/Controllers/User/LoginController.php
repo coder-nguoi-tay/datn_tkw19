@@ -65,7 +65,7 @@ class LoginController extends BaseController
             }
 
             return response()->json([
-                'url_redirect' => $request->url_redirect ? $request->url_redirect : route('my-event.index'),
+                'url_redirect' => $request->url_redirect ? $request->url_redirect : route('event.index'),
             ], StatusCode::OK);
         }
 

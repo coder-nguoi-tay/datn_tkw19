@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(JobMiddlesTableSeeder::class);
         $this->call(IndustryBroadsTableSeeder::class);
         $this->call(IndustryMiddlesTableSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(CategorySeeder::class);
     }
 }

@@ -26,7 +26,7 @@ class UpLoadFileController extends Controller
         $extension = $file->getClientOriginalExtension();
         $fileName = CommonComponent::uploadFileName($extension);
         $path = CommonComponent::uploadFile('file-tmp', $file, $fileName);
-        if (!$path) {
+        if (! $path) {
             return response()->json([
                 'message' => 'エラーが発生しました。',
             ], StatusCode::BAD_REQUEST);

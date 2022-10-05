@@ -47,8 +47,6 @@ Route::post('check-phone', [RegisterController::class, 'checkPhone'])->name('reg
 Route::resource('my-event', MyEventController::class);
 Route::resource('my-page', MyPageController::class);
 Route::resource('event-report', EventReportController::class);
-Route::resource('event', EventController::class);
-Route::post('upload', [UpLoadFileController::class, 'upload'])->name('upload');
 
 Route::resource('login', UserLoginController::class);
 Route::get('logout', [UserLoginController::class, 'logout'])->name('logout');
@@ -84,4 +82,6 @@ Route::group([
     Route::get('/setting-notification', [ProfileController::class, 'settingNotification']);
     Route::post('/update-setting-notification/{id}', [ProfileController::class, 'updateSettingNotification'])->name('user.profile.notification');
     Route::resource('profile', ProfileController::class);
+    Route::resource('event', EventController::class);
+    Route::post('upload', [UpLoadFileController::class, 'upload'])->name('upload');
 });
