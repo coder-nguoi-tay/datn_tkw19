@@ -34,7 +34,7 @@
                     <label
                       class="title-forgot-password m-0"
                       style="font-size: 14px"
-                      >電話番号 / メールアドレス</label
+                      >電話番号またはメールアドレス</label
                     >
                     <Field
                       name="email"
@@ -91,7 +91,7 @@
                     class="btn px-4 btn-submit btn-sms-email"
                     type="submit"
                   >
-                    SMSを送信する
+                    リセットリンクを受け取る
                   </button>
                 </div>
               </div>
@@ -128,12 +128,26 @@
 
 <script>
 import Loader from '../../common/loader.vue'
-import { Form as VeeForm, Field, ErrorMessage, configure } from 'vee-validate'
+import {
+  Form as VeeForm,
+  Field,
+  ErrorMessage,
+  defineRule,
+  configure
+} from 'vee-validate'
+import * as rules from '@vee-validate/rules'
 import { localize } from '@vee-validate/i18n'
 import axios from 'axios'
 import $ from 'jquery'
 
 export default {
+  setup() {
+    Object.keys(rules).forEach((rule) => {
+      if (rule != 'default') {
+        defineRule(rule, rules[rule])
+      }
+    })
+  },
   data() {
     return {
       flagShowLoader: false,
@@ -150,7 +164,7 @@ export default {
         fields: {
           email: {
             required: '電話番号 / メールアドレスを入力してください。',
-            telephone_or_email: 'Invalid format'
+            telephone_or_email: '電話番号またはメール形式を入力してください。'
           },
           recaptcha_token: {
             required: 'reCAPTCHAを入力してください。'
@@ -176,8 +190,6 @@ export default {
       this.$el.querySelector('input[name=' + firstInputError + ']').focus()
     },
     onSubmit() {
-      // this.flagShowLoader = true
-      // this.$refs.formLogin.submit()
       let that = this
       $('.loading-div').removeClass('hidden')
       axios
@@ -185,18 +197,16 @@ export default {
         .then(function (response) {
           console.log(response)
           $('.loading-div').addClass('hidden')
-          // location.href = response.data.url_redirect
           that.dataAlert = {
-            message: '変更メールを送信しました！！',
+            message: 'リセットリンクを送信しました！！',
             content:
-              'まだ変更手続きは完了していません。変更用のメールを送信いたしましたので、メールに記載の確認リンクにアクセスし、変更を完了させてください。',
+              'まだ変更手続きは完了していません。パスワードリセット用のリンクを送信いたしましたので、SMSまたはメールに記載のリンクにアクセスし、変更を完了させてください。',
             mode: 'success',
             urlRedirect: ''
           }
         })
         .catch((error) => {
           $('.loading-div').addClass('hidden')
-          // that.error = error.response.data.message
           that.dataAlert = {
             message: error.response.data.message,
             mode: 'error',

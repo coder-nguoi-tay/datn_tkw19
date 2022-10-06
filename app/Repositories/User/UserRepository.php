@@ -183,16 +183,21 @@ class UserRepository extends BaseController implements UserInterface
             $user->type = $request->type;
             $user->prefecture_id = $request->prefecture_id;
             $user->city_id = $request->city_id;
-            $user->job_type = $request->job_type;
             if ($request->type == UserType::PERSON) {
                 $user->birthday = $request->birthday;
                 $user->gender = $request->gender;
+                $user->job_type = $request->job_type;
+                $user->currently_member = $request->currently_member;
+                $user->university_of = $request->university_of;
+                $user->born_in_college = $request->born_in_college;
+                $user->born_in_middle_schoole = $request->born_in_middle_schoole;
             } else {
                 $user->name = $request->name;
                 $user->name_kana = $request->name_kana;
                 $user->representative_name = $request->representative_name;
                 $user->address_building = $request->address_building;
-                $user->job_descriptions = $request->job_descriptions;
+                $user->industry_id = $request->industry_id;
+                $user->industry_content = $request->industry_content;
             }
             if (! $user->save()) {
                 DB::rollBack();

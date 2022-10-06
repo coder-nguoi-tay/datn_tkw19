@@ -417,7 +417,6 @@ export default {
       csrfToken: Laravel.csrfToken,
       model: this.dataModel,
       step: 1,
-      step1: 2,
       error: '',
       showRecapchar: false
     }
@@ -489,7 +488,8 @@ export default {
             required: '業種を入力してください。'
           },
           industry_content: {
-            required: '事業内容を入力してください。'
+            required: '事業内容を入力してください。',
+            max: '1000文字以内で入力してください。'
           }
         }
       }

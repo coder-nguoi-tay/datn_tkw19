@@ -182,7 +182,7 @@ export default {
         gender: 1,
         type: ''
       },
-      step: 2,
+      step: 1,
       step1: 1,
       error: '',
       showRecapchar: false,

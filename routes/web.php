@@ -54,7 +54,6 @@ Route::resource('change-user-name', ChangeUserNameController::class);
 Route::resource('forgot_password', UserForgotPasswordController::class);
 Route::resource('forgot_password_complete', UserForgotPasswordSuccessController::class);
 Route::resource('password_reset', UserPasswordResetController::class);
-Route::resource('event', EventController::class);
 
 Route::group([
     'prefix' => 'admin',
@@ -82,6 +81,6 @@ Route::group([
     Route::get('/setting-notification', [ProfileController::class, 'settingNotification']);
     Route::post('/update-setting-notification/{id}', [ProfileController::class, 'updateSettingNotification'])->name('user.profile.notification');
     Route::resource('profile', ProfileController::class);
-
+    Route::resource('event', EventController::class);
     Route::post('upload', [UpLoadFileController::class, 'upload'])->name('upload');
 });

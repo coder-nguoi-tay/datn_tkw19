@@ -7,6 +7,8 @@ use App\Enums\JobType;
 use App\Enums\UserType;
 use App\Models\City;
 use App\Models\Prefecture;
+use App\Models\JobBroad;
+use App\Models\IndustryBroad;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -39,18 +41,16 @@ class UserRegister extends FormRequest
                 'required',
                 Rule::in(UserType::getValues()),
             ],
+            'job_type' => [
+                'nullable',
+                 Rule::in(JobBroad::latest()->pluck('id')),
+            ],
+            'currently_member' => 'nullable|max:255',
+            'university_of' => 'nullable|max:255',
+            'born_in_college' => 'nullable|max:255',
+            'born_in_middle_schoole' => 'nullable|max:255',
         ];
         $rule['password'] = $passwordRules;
-        $rule['email'] = [
-            'nullable',
-            'max:50',
-            'email',
-            Rule::unique('users')->whereNull('deleted_at')->where(function ($q) use ($id) {
-                if ($id) {
-                    $q->where('id', '<>', $id);
-                }
-            }),
-        ];
         $rule['phone_number'] = [
             'required',
             'max:50',
@@ -69,10 +69,7 @@ class UserRegister extends FormRequest
             'required',
             Rule::in(City::latest()->where('prefecture_id', $data['prefecture_id'])->pluck('id')),
         ];
-        $rule['job_type'] = [
-            'required',
-            Rule::in(JobType::getValues()),
-        ];
+
         if ($data['type'] == UserType::PERSON) {
             $rule['birthday'] = 'required|date_format:Y/m/d|before_or_equal:'.Carbon::now()->format('Y/m/d');
             $rule['gender'] = [
@@ -88,7 +85,11 @@ class UserRegister extends FormRequest
             ];
             $rule['representative_name'] = 'required|max:255';
             $rule['address_building'] = 'required|max:255';
-            $rule['job_descriptions'] = 'required|max:1000';
+            $rule['industry_content'] = 'required|max:1000';
+            $rule['industry_id'] = [
+                'required',
+                Rule::in(IndustryBroad::latest()->pluck('id')),
+            ];
         }
 
         return $rule;
