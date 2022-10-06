@@ -8,13 +8,19 @@ final class UserType extends Enum
 {
     const PERSON = 1;
 
-    const COMPANY = 2;
+    const BESINESS = 2;
+
+    const COMPANY = 3;
 
     public static function getDescription($value): string
     {
         switch ($value) {
             case self::PERSON:
                 return '個人';
+                break;
+
+            case self::BESINESS:
+                return '個人事業主';
                 break;
             case self::COMPANY:
                 return '法人';

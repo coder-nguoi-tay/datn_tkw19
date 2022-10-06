@@ -10,6 +10,8 @@ use App\Repositories\Category\CategoryInterface;
 use App\Repositories\Category\CategoryRepository;
 use App\Repositories\City\CityInterface;
 use App\Repositories\City\CityRepository;
+use App\Repositories\JobBroad\JobBroadInterface;
+use App\Repositories\JobBroad\JobBroadRepository;
 use App\Repositories\News\NewsInterface;
 use App\Repositories\News\NewsRepository;
 use App\Repositories\Prefecture\PrefectureInterface;
@@ -37,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CityInterface::class, CityRepository::class);
         $this->app->bind(CategoryInterface::class, CategoryRepository::class);
         $this->app->bind(AreaInterface::class, AreaRepository::class);
+        $this->app->bind(JobBroadInterface::class, JobBroadRepository::class);
     }
 
     /**

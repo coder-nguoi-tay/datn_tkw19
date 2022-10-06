@@ -17,11 +17,9 @@ class CreateUsers extends Migration
             $table->id();
             $table->string('phone_number', 50);
             $table->string('email')->nullable();
+            $table->string('show_name');
             $table->string('password');
             $table->tinyInteger('type')->comment('"1: 個人 2: 法人"');
-            $table->string('show_name')->nullable();
-            $table->text('self_introduction')->nullable();
-            $table->tinyInteger('show_name_description_flag')->nullable();
             $table->string('name')->nullable();
             $table->string('name_kana')->nullable();
             $table->string('representative_name')->nullable();
@@ -32,7 +30,12 @@ class CreateUsers extends Migration
             $table->string('address_street')->nullable();
             $table->string('address_building')->nullable();
             $table->tinyInteger('job_type')->nullable();
-            $table->text('job_descriptions')->nullable();
+            $table->string('currently_member')->nullable();
+            $table->string('university_of')->nullable();
+            $table->string('born_in_college')->nullable();
+            $table->string('born_in_middle_schoole')->nullable();
+            $table->integer('industry_id')->nullable();
+            $table->text('industry_content')->nullable();
             $table->string('user_avatar')->nullable();
             $table->integer('account_id')->nullable();
             $table->tinyInteger('account_id_show_flag')->nullable();

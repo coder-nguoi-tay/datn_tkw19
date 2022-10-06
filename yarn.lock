@@ -2198,6 +2198,11 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
+countup.js@^2.1.0:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/countup.js/-/countup.js-2.3.2.tgz#9a91d95780be1c908d1e6feb548625f353f57988"
+  integrity sha512-dQ7F/CmKGjaO6cDfhtEXwsKVlXIpJ89dFs8PvkaZH9jBVJ2Z8GU4iwG/qP7MgY8qwr+1skbwR6qecWWQLUzB8Q==
+
 create-ecdh@^4.0.0:
   version "4.0.4"
   resolved "https://registry.npmjs.org/create-ecdh/-/create-ecdh-4.0.4.tgz"
@@ -5182,6 +5187,13 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.npmjs.org/vm-browserify/-/vm-browserify-1.1.2.tgz"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+
+vue-countup-v3@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/vue-countup-v3/-/vue-countup-v3-1.0.14.tgz#36612e15d860841e7758079afa0f24fb74b2a877"
+  integrity sha512-U0FxBRQn4FJuFWj37MVTBviqTKhVy+Ctl/9x3x4zYyEV1LsRCVYI01a72fGo20dTKzzPrP4BIS1givXbOnFqrg==
+  dependencies:
+    countup.js "^2.1.0"
 
 vue-demi@^0.12.1:
   version "0.12.5"

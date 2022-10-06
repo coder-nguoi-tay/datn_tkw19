@@ -361,6 +361,7 @@
                       name="target_gender"
                       type="checkbox"
                       rules="required"
+                      v-model="model.event_condition.target_gender"
                       :value="item.value"
                     >
                       <input
@@ -387,7 +388,7 @@
                   <div class="form-check">
                     <input
                       type="radio"
-                      v-model="model.target_age_type"
+                      v-model="model.event_condition.target_age_type"
                       class="form-check-input"
                       id="target_age_1"
                       name="target_age"
@@ -401,7 +402,7 @@
                   <div class="form-check">
                     <input
                       type="radio"
-                      v-model="model.target_age_type"
+                      v-model="model.event_condition.target_age_type"
                       class="form-check-input"
                       id="target_age_2"
                       name="target_age"
@@ -412,12 +413,15 @@
                     >
                   </div>
                 </div>
-                <div class="form-group mt-8" v-if="model.target_age_type == 1">
+                <div
+                  class="form-group mt-8"
+                  v-if="model.event_condition.target_age_type == 1"
+                >
                   <div class="input-container">
                     <Field
                       name="target_age_from"
                       type="text"
-                      v-model="model.target_age_from"
+                      v-model="model.event_condition.target_age_from"
                       rules="required"
                       class="form-control w-160 d-inline-block"
                       placeholder="例）8,10-20,50-65"
@@ -440,7 +444,9 @@
                     <input
                       type="radio"
                       class="form-check-input"
-                      v-model="model.limit_number_of_participants_flag"
+                      v-model="
+                        model.event_condition.limit_number_of_participants_flag
+                      "
                       id="participant_1"
                       name="participant"
                       value="0"
@@ -453,7 +459,9 @@
                   <div class="form-check">
                     <input
                       type="radio"
-                      v-model="model.limit_number_of_participants_flag"
+                      v-model="
+                        model.event_condition.limit_number_of_participants_flag
+                      "
                       class="form-check-input"
                       id="participant_2"
                       name="participant"
@@ -466,7 +474,9 @@
                 </div>
                 <div
                   class="form-group"
-                  v-if="model.limit_number_of_participants_flag == 1"
+                  v-if="
+                    model.event_condition.limit_number_of_participants_flag == 1
+                  "
                 >
                   <label class="label pl-20">最大参加可能人数</label>
                   <div class="input-container d-flex">
@@ -475,7 +485,9 @@
                       <Field
                         name="limit_number_of_participants"
                         type="number"
-                        v-model="model.limit_number_of_participants"
+                        v-model="
+                          model.event_condition.limit_number_of_participants
+                        "
                         rules="required"
                         class="form-control w-160 d-inline-block text-end"
                         placeholder="9,999"
@@ -547,13 +559,14 @@
                   as="textarea"
                   name="other_conditions"
                   rules="max:2000"
-                  v-model="model.other_conditions"
+                  v-model="model.event_condition.other_conditions"
                   class="form-control"
                   :placeholder="conditionsPlace"
                   rows="11"
                 />
                 <div class="form-text txt-validate text-end">
-                  {{ model.other_conditions.length }} / 2,000文字中
+                  {{ model.event_condition.other_conditions.length }} /
+                  2,000文字中
                 </div>
                 <ErrorMessage class="error-msg" name="other_conditions" />
               </div>
@@ -570,6 +583,7 @@
                       class="form-check-input"
                       id="participation_terms_type_1"
                       name="participation_terms_type"
+                      v-model="model.event_condition.participation_terms_type"
                       value="0"
                       checked
                     />
@@ -585,6 +599,7 @@
                       class="form-check-input"
                       id="participation_terms_type_2"
                       name="participation_terms_type"
+                      v-model="model.event_condition.participation_terms_type"
                       value="1"
                     />
                     <label
@@ -601,13 +616,14 @@
                       as="textarea"
                       name="special_notes"
                       rules="max:10000"
-                      v-model="model.special_notes"
+                      v-model="model.event_condition.special_notes"
                       class="form-control"
                       :placeholder="specialNotePlace"
                       rows="11"
                     />
                     <div class="form-text txt-validate text-end">
-                      {{ model.special_notes.length }} / 10,000文字中
+                      {{ model.event_condition.special_notes.length }} /
+                      10,000文字中
                     </div>
                     <ErrorMessage class="error-msg" name="special_notes" />
                   </div>
@@ -619,7 +635,7 @@
                   <Field
                     name="address"
                     type="text"
-                    v-model="model.address"
+                    v-model="model.event_condition.address"
                     rules="required|max:255"
                     class="form-control"
                     placeholder="東京都千代田区永田町"
@@ -634,7 +650,7 @@
                   <Field
                     name="company_name"
                     type="text"
-                    v-model="model.company_name"
+                    v-model="model.event_condition.company_name"
                     rules="required|max:255"
                     class="form-control"
                     placeholder="商社太郎丸"
@@ -661,13 +677,14 @@
                   as="textarea"
                   name="meet_condition"
                   rules="required|max:2000"
-                  v-model="model.meet_condition"
+                  v-model="model.event_condition.meet_condition"
                   class="form-control"
                   :placeholder="accomplishmentConditionPlace"
                   rows="11"
                 />
                 <div class="form-text txt-validate text-end">
-                  {{ model.meet_condition.length }} / 2,000文字中
+                  {{ model.event_condition.meet_condition.length }} /
+                  2,000文字中
                 </div>
                 <ErrorMessage class="error-msg" name="meet_condition" />
               </div>
@@ -679,52 +696,89 @@
                   >でご確認ください。
                 </div>
                 <div class="input-item-container">
-                  <div class="input-item">
+                  <div
+                    class="input-item mt-8"
+                    v-for="(item, index) in model.event_rewards"
+                    :key="index"
+                  >
                     <p class="input-sub-title">
-                      報酬 1<span class="ic-minus"></span>
+                      報酬 {{ index + 1
+                      }}<span
+                        @click="removeReward(index)"
+                        class="ic-minus"
+                      ></span>
                     </p>
                     <div class="input-item-group">
                       <div class="form-group">
                         <label class="form-label">報酬名</label>
-                        <input
+                        <Field
+                          :name="'event_rewards[' + index + '][name]'"
                           type="text"
+                          v-model="item.name"
+                          rules="required|max:255"
                           class="form-control"
                           placeholder="例）1等賞　”ニュージェネレーション!!!”"
+                        />
+                        <ErrorMessage
+                          class="error-msg"
+                          :name="'event_rewards[' + index + '][name]'"
                         />
                       </div>
                       <div class="form-group d-flex justify-content-between">
                         <div class="input-col-half">
                           <label class="form-label">報酬額</label>
                           <div class="input-container">
-                            <input
+                            <Field
+                              :name="
+                                'event_rewards[' + index + '][reward_amount]'
+                              "
                               type="number"
+                              v-model="item.reward_amount"
+                              rules="required|min_value:0"
                               class="form-control text-end"
                               placeholder="100,000"
                             />
                             <label class="label">円</label>
                           </div>
+                          <ErrorMessage
+                            class="error-msg"
+                            :name="
+                              'event_rewards[' + index + '][reward_amount]'
+                            "
+                          />
                         </div>
                         <div class="input-col-half">
                           <label class="form-label">達成者枠数</label>
                           <div class="input-container">
-                            <input
+                            <Field
+                              :name="'event_rewards[' + index + '][quantity]'"
                               type="number"
+                              v-model="item.quantity"
+                              rules="required|min_value:1"
                               class="form-control text-end"
                               placeholder="2"
                             />
                             <label class="label">枠</label>
                           </div>
+                          <ErrorMessage
+                            class="error-msg"
+                            :name="'event_rewards[' + index + '][quantity]'"
+                          />
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="form-label">報酬額合計</label>
                         <div class="input-container">
-                          <input
-                            type="number"
-                            class="form-control"
-                            placeholder="200,000"
-                            name="total_reward_amount"
-                          />
+                          <count-up
+                            class="form-control text-end count-group"
+                            :end-val="
+                              item.reward_amount && item.quantity
+                                ? item.reward_amount * item.quantity < 0
+                                  ? 0
+                                  : item.reward_amount * item.quantity
+                                : 0
+                            "
+                          ></count-up>
                           <label class="label">円</label>
                         </div>
                       </div>
@@ -736,64 +790,11 @@
                       </p>
                     </div>
                   </div>
-                  <div class="input-item mt-8">
-                    <p class="input-sub-title">
-                      報酬 2<span class="ic-minus"></span>
-                    </p>
-                    <div class="input-item-group">
-                      <div class="form-group">
-                        <label class="form-label">報酬名</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="例）1等賞　”ニュージェネレーション!!!”"
-                        />
-                      </div>
-                      <div class="form-group d-flex justify-content-between">
-                        <div class="input-col-half">
-                          <label class="form-label">報酬額</label>
-                          <div class="input-container">
-                            <input
-                              type="number"
-                              class="form-control text-end"
-                              placeholder="100,000"
-                            />
-                            <label class="label">円</label>
-                          </div>
-                        </div>
-                        <div class="input-col-half">
-                          <label class="form-label">達成者枠数</label>
-                          <div class="input-container">
-                            <input
-                              type="number"
-                              class="form-control text-end"
-                              placeholder="2"
-                            />
-                            <label class="label">枠</label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="form-label">報酬額合計</label>
-                        <div class="input-container">
-                          <input
-                            type="number"
-                            class="form-control"
-                            placeholder="0"
-                            name="total_reward_amount"
-                          />
-                          <label class="label">円</label>
-                        </div>
-                      </div>
-                      <p class="ic-group-dot text-center mt-8">
-                        <img
-                          src="/assets/img/user/event/ic_group_dot.svg"
-                          alt=""
-                        />
-                      </p>
-                    </div>
-                  </div>
-                  <button class="btn-event-outline btn-add-reward mt-8">
+                  <button
+                    type="button"
+                    @click="addReward"
+                    class="btn-event-outline btn-add-reward mt-8"
+                  >
                     報酬を追加する
                   </button>
                 </div>
@@ -802,22 +803,40 @@
             <div class="input-section">
               <h2 class="input-title">開催情報</h2>
               <div class="form-group mb-16">
-                <label class="form-label" require>開催期間</label>
-                <div class="form-text mt-0 mb-8">
+                <label class="form-label" require>公開期間</label>
+                <!-- <div class="form-text mt-0 mb-8">
                   開催期間は最大7日間ですが、開始後にイベント設定で延長することが可能です。
-                </div>
+                </div> -->
                 <div class="custom-input">
-                  <select
-                    name="category"
-                    class="form-control select-placeholder"
+                  <Field
+                    as="div"
+                    name="publish_start_datetime"
+                    v-model="model.publish_start_datetime"
+                    rules="required"
                   >
-                    <option value="">-- 開催期間を選択してください --</option>
-                    <option value="1">qaz</option>
-                    <option value="2">wsx</option>
-                  </select>
-                  <span class="ic-arrow"
-                    ><img src="/assets/img/user/event/ic_arrow_down.svg" alt=""
-                  /></span>
+                    <datepicker
+                      autoApply
+                      keepActionRow
+                      :closeOnAutoApply="false"
+                      v-model="model.publish_start_datetime"
+                      :monthChangeOnScroll="false"
+                      locale="ja"
+                      :maxDate="
+                        model.publish_end_datetime
+                          ? new Date(model.publish_end_datetime)
+                          : null
+                      "
+                      :maxTime="setMaxTime()"
+                      name="publish_start_datetime"
+                      selectText="選択"
+                      cancelText="閉じる"
+                      format="yyyy/MM/dd HH:mm"
+                    />
+                  </Field>
+                  <ErrorMessage
+                    class="error-msg"
+                    name="publish_start_datetime"
+                  />
                 </div>
               </div>
               <div class="form-group form-datetime">
@@ -826,24 +845,32 @@
                   本日以降で開始日時を設定することができます。
                 </div>
                 <div class="input-container d-block">
-                  <input
-                    class="form-control d-block"
-                    type="date"
-                    name=""
-                    placeholder="2022 / 12 / 3"
-                  />
-                  <div class="custom-input">
-                    <select name="" class="form-control select-placeholder">
-                      <option value="">18:00頃</option>
-                      <option value="1">qaz</option>
-                      <option value="2">wsx</option>
-                    </select>
-                    <span class="ic-arrow"
-                      ><img
-                        src="/assets/img/user/event/ic_arrow_down.svg"
-                        alt=""
-                    /></span>
-                  </div>
+                  <Field
+                    as="div"
+                    name="publish_end_datetime"
+                    v-model="model.publish_end_datetime"
+                    rules="required"
+                  >
+                    <datepicker
+                      autoApply
+                      keepActionRow
+                      :closeOnAutoApply="false"
+                      v-model="model.publish_end_datetime"
+                      :monthChangeOnScroll="false"
+                      locale="ja"
+                      name="publish_end_datetime"
+                      :minTime="setMinTime()"
+                      :minDate="
+                        model.publish_start_datetime
+                          ? new Date(model.publish_start_datetime)
+                          : null
+                      "
+                      selectText="選択"
+                      cancelText="閉じる"
+                      format="yyyy/MM/dd HH:mm"
+                    />
+                  </Field>
+                  <ErrorMessage class="error-msg" name="publish_end_datetime" />
                 </div>
               </div>
             </div>
@@ -887,7 +914,9 @@ import axios from 'axios'
 import Multiselect from 'vue-multiselect'
 import AdditionModal from './createAdditionModal'
 import ConfirmModal from './deleteConfirmModal'
-import { join } from 'lodash'
+import CountUp from 'vue-countup-v3'
+import Datepicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
 const MAX_FILE_SIZE_IN_MB = 10
 const GENDER_OPTIONS = [
   { value: 0, text: 'すべて' },
@@ -903,7 +932,9 @@ export default {
     Field,
     ErrorMessage,
     AdditionModal,
-    ConfirmModal
+    ConfirmModal,
+    CountUp,
+    Datepicker
   },
   created() {
     this.selectPlaceholder()
@@ -967,6 +998,12 @@ export default {
           meet_condition: {
             required: '達成条件を入力してください。',
             max: '達成条件は2000文字を超えてはなりません。'
+          },
+          publish_start_datetime: {
+            required: '公開期間を入力してください。'
+          },
+          publish_end_datetime: {
+            required: '開始日時を入力してください。'
           }
         }
       }
@@ -986,6 +1023,7 @@ export default {
         })
         .catch((error) => {})
     })
+    this.setMessageError()
   },
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -1031,9 +1069,19 @@ export default {
           area_id: [],
           pref_id: []
         },
-        other_conditions: '',
-        special_notes: '',
-        meet_condition: ''
+        event_condition: {
+          target_gender: [],
+          other_conditions: '',
+          special_notes: '',
+          meet_condition: ''
+        },
+        event_rewards: [
+          {
+            name: '',
+            reward_amount: '',
+            quantity: ''
+          }
+        ]
       },
       attachment_files: [],
       image_details: [],
@@ -1142,6 +1190,9 @@ export default {
     removeTag(index) {
       this.tags.splice(index, 1)
     },
+    removeReward(index) {
+      this.model.event_rewards.splice(index, 1)
+    },
     updateArea(data) {
       let tmp = []
       let that = this
@@ -1176,6 +1227,73 @@ export default {
         } else {
           $(this).addClass('select-placeholder')
         }
+      })
+    },
+    addReward() {
+      this.model.event_rewards.push({})
+      this.setMessageError()
+    },
+    setMaxTime() {
+      if (
+        this.model.publish_end_datetime &&
+        this.model.publish_start_datetime
+      ) {
+        let dateStart = new Date(this.model.publish_start_datetime)
+        let dateEnd = new Date(this.model.publish_end_datetime)
+        if (
+          dateStart.getFullYear() == dateEnd.getFullYear() &&
+          dateStart.getMonth() == dateEnd.getMonth() &&
+          dateStart.getDate() == dateEnd.getDate()
+        ) {
+          return {
+            hours: dateEnd.getHours(),
+            minutes: dateEnd.getMinutes()
+          }
+        }
+      }
+      return null
+    },
+    setMinTime() {
+      if (
+        this.model.publish_end_datetime &&
+        this.model.publish_start_datetime
+      ) {
+        let dateStart = new Date(this.model.publish_start_datetime)
+        let dateEnd = new Date(this.model.publish_end_datetime)
+        if (
+          dateStart.getFullYear() == dateEnd.getFullYear() &&
+          dateStart.getMonth() == dateEnd.getMonth() &&
+          dateStart.getDate() == dateEnd.getDate()
+        ) {
+          return {
+            hours: dateStart.getHours(),
+            minutes: dateStart.getMinutes()
+          }
+        }
+      }
+      return null
+    },
+    setMessageError() {
+      let messError = {
+        en: {
+          fields: {}
+        }
+      }
+      this.model.event_rewards.map(function (item, index) {
+        messError.en.fields['event_rewards[' + index + '][name]'] = {
+          required: '報酬名を選択してください。'
+        }
+        messError.en.fields['event_rewards[' + index + '][reward_amount]'] = {
+          required: '報酬額を選択してください。',
+          min_value: '最小値は0です'
+        }
+        messError.en.fields['event_rewards[' + index + '][quantity]'] = {
+          required: '達成者枠数を選択してください。',
+          min_value: '最小値は1です'
+        }
+      })
+      configure({
+        generateMessage: localize(messError)
       })
     }
   }

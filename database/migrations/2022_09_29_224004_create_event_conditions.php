@@ -16,7 +16,7 @@ class CreateEventConditions extends Migration
         Schema::create('event_conditions', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('event_id');
-            $table->tinyInteger('target_gender')->default(1);
+            $table->json('target_gender');
             $table->tinyInteger('target_age_type')->nullable();
             $table->integer('target_age_from')->nullable();
             $table->integer('target_age_to')->nullable();

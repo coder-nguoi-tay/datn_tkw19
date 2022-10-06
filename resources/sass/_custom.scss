@@ -269,3 +269,42 @@ table tbody tr td {
     font-size: 24px;
     font-weight: bold;
 }
+.input-label[require]:after {
+    content: "必須";
+    background-color: #E5352B;
+}
+
+.input-label:after {
+    height: 15px;
+    line-height: 15px;
+    padding: 0 4px;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    margin-left: 7px;
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    bottom: 1px;
+}
+.input-label[optional]:after {
+    content: "任意";
+    background-color: #000;
+}
+.form-group input[type=checkbox] {
+    width: 12px;
+    height: 12px;
+}
+.form-group input[type=checkbox]:checked {
+    background-color: #E5352B;
+    border-color: #E5352B;
+}
+.form-group input[type=radio]:checked {
+    background-color: #E5352B;
+    border-color: #E5352B;
+}
+.form-group input[type=radio] {
+    width: 10px;
+    height: 10px;
+}
