@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Enums\StatusCode;
 use App\Http\Controllers\Controller;
 use App\Repositories\Area\AreaInterface;
 use App\Repositories\Category\CategoryInterface;
 use App\Repositories\Prefecture\PrefectureInterface;
+use App\Repositories\Tag\TagInterface;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -16,11 +18,15 @@ class EventController extends Controller
 
     private $area;
 
-    public function __construct(CategoryInterface $category, PrefectureInterface $prefecture, AreaInterface $area)
+    private $tag;
+
+    public function __construct(CategoryInterface $category, PrefectureInterface $prefecture, AreaInterface $area,
+        TagInterface $tag)
     {
         $this->category = $category;
         $this->prefecture = $prefecture;
         $this->area = $area;
+        $this->tag = $tag;
     }
 
     /**
@@ -48,6 +54,7 @@ class EventController extends Controller
             'categories' => $this->category->getOption(),
             'areas' => $this->area->get(),
             'prefectures' => $this->prefecture->get(),
+            'suggestTags' => $this->tag->get(),
         ]);
     }
 
@@ -105,5 +112,12 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function tag(Request $request)
+    {
+        return response()->json([
+            'data' => $this->tag->searchTag($request),
+        ], StatusCode::OK);
     }
 }

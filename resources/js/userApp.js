@@ -11,6 +11,8 @@ configure({
     validateOnModelUpdate: false
 })
 const app = createApp({})
+// app.config.errorHandler = () => null
+// app.config.warnHandler = () => null
 
 import Dialog from './components/common/popupSuccess.vue'
 import RegisterCard from './components/common/registerCard.vue'
@@ -20,7 +22,7 @@ import 'sweetalert2/dist/sweetalert2.min.css'
 app.use(VueSweetalert2)
 
 import Register from './components/user/register/index.vue'
-import EventCreate from './components/user/event/create.vue'
+import EventForm from './components/user/event/form.vue'
 import EventConfirm from './components/user/event/confirm.vue'
 import MyEvent from './components/myEvent/index.vue'
 import MyEventShow from './components/myEvent/show.vue'
@@ -33,7 +35,7 @@ import EventList from './components/user/event/index.vue'
 
 app.component('nl2br', Nl2br)
 app.component('register', Register)
-app.component('event-create', EventCreate)
+app.component('event-form', EventForm)
 app.component('event-confirm', EventConfirm)
 app.component('my-event', MyEvent)
 app.component('my-page', MyPage)

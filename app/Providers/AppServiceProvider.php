@@ -16,6 +16,8 @@ use App\Repositories\News\NewsInterface;
 use App\Repositories\News\NewsRepository;
 use App\Repositories\Prefecture\PrefectureInterface;
 use App\Repositories\Prefecture\PrefectureRepository;
+use App\Repositories\Tag\TagInterface;
+use App\Repositories\Tag\TagRepository;
 use App\Repositories\User\UserInterface;
 use App\Repositories\User\UserRepository;
 use App\Repositories\UserTmp\UserTmpInterface;
@@ -40,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CategoryInterface::class, CategoryRepository::class);
         $this->app->bind(AreaInterface::class, AreaRepository::class);
         $this->app->bind(JobBroadInterface::class, JobBroadRepository::class);
+        $this->app->bind(TagInterface::class, TagRepository::class);
     }
 
     /**

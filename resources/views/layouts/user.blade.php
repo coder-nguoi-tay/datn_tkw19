@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     @if (isset($title))
-    <title>{{ $title }}</title>
+        <title>{{ $title }}</title>
     @endif
     <link href="{{ asset('css/userApp.css') }}?t={{ time() }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
@@ -19,29 +19,29 @@
     @yield('css')
     <script>
         window.Laravel = {!! json_encode(
-    [
-        'csrfToken' => csrf_token(),
-        'baseUrl' => url('/'),
-    ],
-    JSON_UNESCAPED_UNICODE,
-) !!};
+            [
+                'csrfToken' => csrf_token(),
+                'baseUrl' => url('/'),
+            ],
+            JSON_UNESCAPED_UNICODE,
+        ) !!};
     </script>
 </head>
 
 <body class="c-app">
     <div id="app">
         <div class="wrapper d-flex flex-column min-vh-100 overflow-hidden">
-            @include('include.user.header')
+            {{-- @include('include.user.header') --}}
             <div class="main-content">
                 @yield('content')
             </div>
             @include('include.user.footer')
         </div>
         @if (session()->get('Message.flash'))
-        <popup-alert :data="{{ json_encode(session()->get('Message.flash')[0]) }}"></popup-alert>
+            <popup-alert :data="{{ json_encode(session()->get('Message.flash')[0]) }}"></popup-alert>
         @endif
         @php
-        session()->forget('Message.flash');
+            session()->forget('Message.flash');
         @endphp
     </div>
     <div class="loading-div hidden">

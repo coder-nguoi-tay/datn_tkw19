@@ -26,7 +26,13 @@ mix.copy(
     'public/js'
 )
 mix.webpackConfig({
-    stats: {
-        children: true
-    }
+    // stats: {
+    //     children: true
+    // }
+    // resolve: {
+    //     symlinks: false,
+    //     alias: {
+    //         vue: path.resolve(`./node_modules/vue`)
+    //     }
+    // }
 })

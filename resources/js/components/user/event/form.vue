@@ -1,4 +1,12 @@
 <template>
+  <UserHeader
+    :data="{
+      prev: {
+        url: data.urlEventList
+      },
+      page_name: 'イベント新規作成'
+    }"
+  ></UserHeader>
   <div class="event-create">
     <div class="container event-create__container">
       <VeeForm
@@ -13,7 +21,7 @@
           ref="formData"
         >
           <input type="hidden" :value="csrfToken" name="_token" />
-          <div class="event-create__wrapper">
+          <div class="event-create__wrapper" v-show="step == 1">
             <p class="create-note">
               こちらから自由にイベントを開催することができます。ただし、すべてのイベントは<a
                 href="#"
@@ -236,7 +244,7 @@
                         (index + attachment_files.length) +
                         '][type]'
                       "
-                      value="2"
+                      value="3"
                     />
                     <img :src="item.file_url" />
                     <span class="ic-remove" @click="removeFile(index, 3)">
@@ -290,7 +298,7 @@
                     class="form-control"
                     type="text"
                     placeholder="東京都、埼玉県、千葉県、群馬県、大阪府、宮城県、熊本県、大分県、... 他"
-                    v-model="placePref"
+                    v-model="model.placePref"
                     @click="showAdditionModal"
                   />
                   <span class="ic-arrow ic-duplicate">
@@ -312,10 +320,11 @@
                 <div class="tag-list">
                   <p
                     class="tag-item"
-                    v-for="(item, index) in tags"
+                    v-for="(item, index) in model.event_tags"
                     :key="index"
                   >
-                    # {{ item.name }}
+                    # {{ item }}
+                    <input type="hidden" name="tags[]" :value="item" />
                     <span class="ic-close" @click="removeTag(index)">
                       <img
                         src="/assets/img/user/event/ic_close.svg"
@@ -326,15 +335,31 @@
                   </p>
                 </div>
                 <div class="form-add-tag d-flex">
-                  <Field
-                    name="tag_name"
-                    ref="tag_name"
-                    type="text"
-                    v-model="model.tag_name"
-                    rules="max:255"
-                    class="form-control"
+                  <Multiselect
+                    v-model="model.tags"
+                    mode="tags"
                     placeholder="追加したいタグを入力"
-                  />
+                    track-by="name"
+                    label="name"
+                    :createTag="true"
+                    :close-on-select="false"
+                    :searchable="true"
+                    :object="true"
+                    :searchStart="true"
+                    :resolve-on-load="false"
+                    :delay="0"
+                    :min-chars="1"
+                    @select="selectTag"
+                    noOptionsText="リストが空です"
+                    noResultsText="結果が見つかりません"
+                    :options="
+                      async (query) => {
+                        return await getTags(query)
+                      }
+                    "
+                  >
+                    <!-- :options="data.suggestTags" -->
+                  </Multiselect>
                   <button
                     type="button"
                     @click="addTag"
@@ -664,7 +689,7 @@
                     第14条（特記事項）<br />
                     甲：東京都千代田区永田町<br />
                     　　商社太郎丸<br />
-                    乙：　　
+                    乙：
                   </div>
                 </div>
               </div>
@@ -875,8 +900,16 @@
               </div>
             </div>
           </div>
+          <FormConfirm
+            v-show="step == 2"
+            :model="model"
+            :data="data"
+            :attachmentFiles="attachment_files"
+            :imageDetails="image_details"
+          ></FormConfirm>
           <div class="event-btn btn-container">
             <button
+              v-if="step == 1 && data.isEdit"
               class="btn-event-outline btn-cancel"
               type="button"
               data-bs-toggle="modal"
@@ -911,12 +944,15 @@ import {
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 import axios from 'axios'
-import Multiselect from 'vue-multiselect'
+import UserHeader from '../../common/userHeader.vue'
 import AdditionModal from './createAdditionModal'
 import ConfirmModal from './deleteConfirmModal'
+import FormConfirm from './form-confirm.vue'
+import Multiselect from '@vueform/multiselect'
 import CountUp from 'vue-countup-v3'
 import Datepicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
+
 const MAX_FILE_SIZE_IN_MB = 10
 const GENDER_OPTIONS = [
   { value: 0, text: 'すべて' },
@@ -934,7 +970,9 @@ export default {
     AdditionModal,
     ConfirmModal,
     CountUp,
-    Datepicker
+    Datepicker,
+    UserHeader,
+    FormConfirm
   },
   created() {
     this.selectPlaceholder()
@@ -1034,6 +1072,7 @@ export default {
   },
   data() {
     return {
+      step: 1,
       detailPlace:
         '例）\n' +
         '世界中を飛び回っている私が期間限定で近畿エリアを中心に飛び回ります！！\n' +
@@ -1063,7 +1102,8 @@ export default {
         '初回報告で10問中5問以上正解または、2回目以降の報告で10問中7問正解\n' +
         '※なお、3等賞での当選を望まない場合、『2以上』と記載ください。',
       model: {
-        name: '',
+        tags: [],
+        name: 'aaaa',
         detail: '',
         events_area: {
           area_id: [],
@@ -1081,14 +1121,16 @@ export default {
             reward_amount: '',
             quantity: ''
           }
-        ]
+        ],
+        event_tags: [],
+      placePref: '',
       },
       attachment_files: [],
       image_details: [],
       csrfToken: Laravel.csrfToken,
-      placePref: '',
       tags: [],
-      GENDER_OPTIONS
+      GENDER_OPTIONS,
+      lastSearch: ''
     }
   },
   props: ['data'],
@@ -1105,24 +1147,25 @@ export default {
     },
     onSubmit() {
       let that = this
-      $('.loading-div').removeClass('hidden')
-      axios
-        .post(this.data.urlSendCode, {
-          _token: Laravel.csrfToken,
-          phone_number: this.model.phone_number
-        })
-        .then(function (response) {
-          $('.loading-div').addClass('hidden')
-          //   that.disabledCheckCode = false
-        })
-        .catch((error) => {
-          $('.loading-div').addClass('hidden')
-          const { status } = error.response || {}
-          if (status == 500 || status == 429 || status == 400) {
-            that.error = error.response.data.message
-            that.showRecapchar = true
-          }
-        })
+      this.step = 2
+      //   $('.loading-div').removeClass('hidden')
+      //   axios
+      //     .post(this.data.urlSendCode, {
+      //       _token: Laravel.csrfToken,
+      //       phone_number: this.model.phone_number
+      //     })
+      //     .then(function (response) {
+      //       $('.loading-div').addClass('hidden')
+      //       //   that.disabledCheckCode = false
+      //     })
+      //     .catch((error) => {
+      //       $('.loading-div').addClass('hidden')
+      //       const { status } = error.response || {}
+      //       if (status == 500 || status == 429 || status == 400) {
+      //         that.error = error.response.data.message
+      //         that.showRecapchar = true
+      //       }
+      //     })
     },
     changeFile(evt, type) {
       if (evt.target.files.length == 0) {
@@ -1188,7 +1231,7 @@ export default {
       }
     },
     removeTag(index) {
-      this.tags.splice(index, 1)
+      this.model.event_tags.splice(index, 1)
     },
     removeReward(index) {
       this.model.event_rewards.splice(index, 1)
@@ -1200,17 +1243,15 @@ export default {
         tmp.push(that.data.prefectures.find((x) => x.id == item).label)
       })
       tmp = join(tmp, '、')
-      this.placePref = tmp.length < 40 ? tmp : tmp.substring(0, 40) + '... 他'
+      this.model.placePref = tmp.length < 40 ? tmp : tmp.substring(0, 40) + '... 他'
     },
     async addTag() {
       if (
-        (await this.$refs.tag_name.validate()).valid &&
-        !this.tags.find((x) => x.name == this.model.tag_name)
+        this.lastSearch &&
+        !this.model.event_tags.find((x) => x == this.lastSearch)
       ) {
-        this.tags.push({
-          name: this.model.tag_name
-        })
-        this.model.tag_name = ''
+        this.model.event_tags.push(this.lastSearch)
+        this.lastSearch = ''
       }
     },
     showAdditionModal() {
@@ -1295,7 +1336,36 @@ export default {
       configure({
         generateMessage: localize(messError)
       })
+    },
+    // addTag(newTag) {
+    //   const tag = {
+    //     name: newTag,
+    //     id: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+    //   }
+    //   this.optionTags.push(tag)
+    //   this.model.tag_name.push(tag)
+    // },
+    async getTags(query) {
+      this.lastSearch = query
+      const formData = new FormData()
+      formData.append('_token', this.csrfToken)
+      this.model.event_tags.forEach(function (item, index) {
+        formData.append(`tags[${index}]`, item)
+      })
+      const res = await fetch(this.data.urlSearchTag, {
+        method: 'post',
+        body: formData
+      })
+      const dataRes = await res.json()
+      return dataRes.data
+    },
+    selectTag(option) {
+      if (!this.model.event_tags.find((x) => x == option.name)) {
+        this.model.event_tags.push(option.name)
+      }
+      this.model.tags = []
     }
+    // removeTag(option) {}
   }
 }
 </script>
@@ -1305,3 +1375,4 @@ export default {
 }
 </style>
 
+<style src="@vueform/multiselect/themes/default.css"></style>

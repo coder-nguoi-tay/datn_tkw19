@@ -6,9 +6,9 @@ use App\Enums\Gender;
 use App\Enums\JobType;
 use App\Enums\UserType;
 use App\Models\City;
-use App\Models\Prefecture;
-use App\Models\JobBroad;
 use App\Models\IndustryBroad;
+use App\Models\JobBroad;
+use App\Models\Prefecture;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -43,7 +43,7 @@ class UserRegister extends FormRequest
             ],
             'job_type' => [
                 'nullable',
-                 Rule::in(JobBroad::latest()->pluck('id')),
+                Rule::in(JobBroad::latest()->pluck('id')),
             ],
             'currently_member' => 'nullable|max:255',
             'university_of' => 'nullable|max:255',

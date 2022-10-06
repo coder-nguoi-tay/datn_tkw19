@@ -24,6 +24,7 @@
         "@coreui/vue": "^4.1.0",
         "@vee-validate/i18n": "^4.5.10",
         "@vee-validate/rules": "^4.5.10",
+        "@vueform/multiselect": "^2.1.0",
         "@vueform/toggle": "^2.1.1",
         "@vuepic/vue-datepicker": "^3.2.1",
         "bootstrap": "^5.1.3",

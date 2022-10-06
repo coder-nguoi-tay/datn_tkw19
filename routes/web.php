@@ -82,5 +82,6 @@ Route::group([
     Route::post('/update-setting-notification/{id}', [ProfileController::class, 'updateSettingNotification'])->name('user.profile.notification');
     Route::resource('profile', ProfileController::class);
     Route::resource('event', EventController::class);
+    Route::post('search-tag', [EventController::class, 'tag'])->name('search-tag');
     Route::post('upload', [UpLoadFileController::class, 'upload'])->name('upload');
 });
