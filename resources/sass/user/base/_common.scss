@@ -71,4 +71,7 @@ a {
 
 .nl2br {
   white-space: pre-line;
+  br:first-child {
+    display: none;
+  }
 }

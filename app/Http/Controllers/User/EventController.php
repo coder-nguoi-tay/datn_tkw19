@@ -4,10 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Enums\StatusCode;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EventRequest;
 use App\Repositories\Area\AreaInterface;
 use App\Repositories\Category\CategoryInterface;
 use App\Repositories\Prefecture\PrefectureInterface;
 use App\Repositories\Tag\TagInterface;
+use App\Repositories\UserCredit\UserCreditInterface;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -20,13 +22,16 @@ class EventController extends Controller
 
     private $tag;
 
+    private $userCredit;
+
     public function __construct(CategoryInterface $category, PrefectureInterface $prefecture, AreaInterface $area,
-        TagInterface $tag)
+        TagInterface $tag, UserCreditInterface $userCredit)
     {
         $this->category = $category;
         $this->prefecture = $prefecture;
         $this->area = $area;
         $this->tag = $tag;
+        $this->userCredit = $userCredit;
     }
 
     /**
@@ -55,6 +60,7 @@ class EventController extends Controller
             'areas' => $this->area->get(),
             'prefectures' => $this->prefecture->get(),
             'suggestTags' => $this->tag->get(),
+            'userCredit' => $this->userCredit->getLastUsing(),
         ]);
     }
 
@@ -64,8 +70,9 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
+        dd($request->all());
         //
     }
 

@@ -17,13 +17,16 @@
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.49.9",
         "sass-loader": "^12.1.0",
-        "vue-loader": "^17.0.0"
+        "vue-loader": "^17.0.0",
+        "vue-stripe-js": "^1.0.1"
     },
     "dependencies": {
         "@coreui/coreui": "^4.1.0",
         "@coreui/vue": "^4.1.0",
         "@vee-validate/i18n": "^4.5.10",
         "@vee-validate/rules": "^4.5.10",
+        "@vue-stripe/vue-stripe": "4.2.9",
+        "@vue/compiler-sfc": "^3.2.40",
         "@vueform/multiselect": "^2.1.0",
         "@vueform/toggle": "^2.1.1",
         "@vuepic/vue-datepicker": "^3.2.1",

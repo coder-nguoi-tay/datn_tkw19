@@ -20,6 +20,8 @@ use App\Repositories\Tag\TagInterface;
 use App\Repositories\Tag\TagRepository;
 use App\Repositories\User\UserInterface;
 use App\Repositories\User\UserRepository;
+use App\Repositories\UserCredit\UserCreditInterface;
+use App\Repositories\UserCredit\UserCreditRepository;
 use App\Repositories\UserTmp\UserTmpInterface;
 use App\Repositories\UserTmp\UserTmpRepository;
 use Illuminate\Support\ServiceProvider;
@@ -43,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AreaInterface::class, AreaRepository::class);
         $this->app->bind(JobBroadInterface::class, JobBroadRepository::class);
         $this->app->bind(TagInterface::class, TagRepository::class);
+        $this->app->bind(UserCreditInterface::class, UserCreditRepository::class);
     }
 
     /**

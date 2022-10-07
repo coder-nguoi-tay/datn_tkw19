@@ -13,4 +13,6 @@ interface UserCreditInterface
     public function update($request, $id);
 
     public function destroy($id);
+
+    public function getLastUsing();
 }

@@ -40,4 +40,14 @@ class UserCreditRepository extends BaseController implements UserCreditInterface
     {
         // TODO: Implement destroy() method.
     }
+
+    public function getLastUsing()
+    {
+        return $this->userCredit->where([
+            ['user_id', Auth::guard('user')->user()->id],
+            ['using_flag', 1],
+        ])
+            ->select(['id', 'branch', 'last4', 'exp_month', 'exp_year'])
+            ->first();
+    }
 }

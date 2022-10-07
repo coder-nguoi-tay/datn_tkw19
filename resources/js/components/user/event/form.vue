@@ -19,6 +19,7 @@
           @submit="handleSubmit($event, onSubmit)"
           :action="data.urlStore"
           ref="formData"
+          id="formData"
         >
           <input type="hidden" :value="csrfToken" name="_token" />
           <div class="event-create__wrapper" v-show="step == 1">
@@ -383,9 +384,10 @@
                   >
                     <Field
                       v-slot="{ field }"
-                      name="target_gender"
+                      name="target_gender[]"
                       type="checkbox"
                       rules="required"
+                      @change="changeGender"
                       v-model="model.event_condition.target_gender"
                       :value="item.value"
                     >
@@ -405,7 +407,7 @@
                     </Field>
                   </div>
                 </div>
-                <ErrorMessage class="error-msg" name="target_gender" />
+                <ErrorMessage class="error-msg" name="target_gender[]" />
               </div>
               <div class="form-group form-multiple">
                 <label class="form-label" require>対象の年齢</label>
@@ -473,7 +475,7 @@
                         model.event_condition.limit_number_of_participants_flag
                       "
                       id="participant_1"
-                      name="participant"
+                      name="limit_number_of_participants_flag"
                       value="0"
                       checked
                     />
@@ -489,7 +491,7 @@
                       "
                       class="form-check-input"
                       id="participant_2"
-                      name="participant"
+                      name="limit_number_of_participants_flag"
                       value="1"
                     />
                     <label class="form-check-label label" for="participant_2"
@@ -635,7 +637,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="label sub-label">特記事項（任意）</label>
+                  <label class="form-label" optional>特記事項（任意）</label>
                   <div>
                     <Field
                       as="textarea"
@@ -654,9 +656,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="label sub-label"
-                    >住所（<span class="txt-require">必須</span>）</label
-                  >
+                  <label class="form-label" require>住所</label>
                   <Field
                     name="address"
                     type="text"
@@ -668,10 +668,7 @@
                   <ErrorMessage class="error-msg" name="address" />
                 </div>
                 <div class="form-group">
-                  <label class="label sub-label"
-                    >氏名または会社名（<span class="txt-require">必須</span
-                    >）</label
-                  >
+                  <label class="form-label" require>氏名または会社名</label>
                   <Field
                     name="company_name"
                     type="text"
@@ -835,6 +832,40 @@
                 <div class="custom-input">
                   <Field
                     as="div"
+                    name="publish_end_datetime"
+                    v-model="model.publish_end_datetime"
+                    rules="required"
+                  >
+                    <datepicker
+                      autoApply
+                      keepActionRow
+                      :closeOnAutoApply="false"
+                      v-model="model.publish_end_datetime"
+                      :monthChangeOnScroll="false"
+                      locale="ja"
+                      name="publish_end_datetime"
+                      :minTime="setMinTime()"
+                      :minDate="
+                        model.publish_start_datetime
+                          ? new Date(model.publish_start_datetime)
+                          : null
+                      "
+                      selectText="選択"
+                      cancelText="閉じる"
+                      format="yyyy/MM/dd HH:mm"
+                    />
+                  </Field>
+                  <ErrorMessage class="error-msg" name="publish_end_datetime" />
+                </div>
+              </div>
+              <div class="form-group form-datetime">
+                <label class="form-label" require>開始日時</label>
+                <div class="form-text mt-0 mb-8">
+                  本日以降で開始日時を設定することができます。
+                </div>
+                <div class="input-container d-block">
+                  <Field
+                    as="div"
                     name="publish_start_datetime"
                     v-model="model.publish_start_datetime"
                     rules="required"
@@ -864,48 +895,17 @@
                   />
                 </div>
               </div>
-              <div class="form-group form-datetime">
-                <label class="form-label" require>開始日時</label>
-                <div class="form-text mt-0 mb-8">
-                  本日以降で開始日時を設定することができます。
-                </div>
-                <div class="input-container d-block">
-                  <Field
-                    as="div"
-                    name="publish_end_datetime"
-                    v-model="model.publish_end_datetime"
-                    rules="required"
-                  >
-                    <datepicker
-                      autoApply
-                      keepActionRow
-                      :closeOnAutoApply="false"
-                      v-model="model.publish_end_datetime"
-                      :monthChangeOnScroll="false"
-                      locale="ja"
-                      name="publish_end_datetime"
-                      :minTime="setMinTime()"
-                      :minDate="
-                        model.publish_start_datetime
-                          ? new Date(model.publish_start_datetime)
-                          : null
-                      "
-                      selectText="選択"
-                      cancelText="閉じる"
-                      format="yyyy/MM/dd HH:mm"
-                    />
-                  </Field>
-                  <ErrorMessage class="error-msg" name="publish_end_datetime" />
-                </div>
-              </div>
             </div>
           </div>
           <FormConfirm
-            v-show="step == 2"
+            v-if="step == 2"
+            ref="formConfirm"
             :model="model"
             :data="data"
             :attachmentFiles="attachment_files"
             :imageDetails="image_details"
+            @updateCreateCard="updateCreateCard"
+            @getTokenComplete="getTokenComplete"
           ></FormConfirm>
           <div class="event-btn btn-container">
             <button
@@ -917,7 +917,23 @@
             >
               削除
             </button>
-            <button class="btn-confirm">確認</button>
+            <button
+              v-if="step == 2"
+              class="btn-event-outline btn-cancel"
+              type="button"
+              @click="step = 1"
+            >
+              編集
+            </button>
+            <button
+              type="button"
+              v-if="isCreateCard && step == 2"
+              class="btn-confirm"
+              @click="getTokenCard"
+            >
+              確認create
+            </button>
+            <button v-else class="btn-confirm">確認</button>
           </div>
           <AdditionModal
             @updateArea="updateArea"
@@ -952,6 +968,7 @@ import Multiselect from '@vueform/multiselect'
 import CountUp from 'vue-countup-v3'
 import Datepicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
+// import { StripeElementCard } from '@vue-stripe/vue-stripe'
 
 const MAX_FILE_SIZE_IN_MB = 10
 const GENDER_OPTIONS = [
@@ -1073,6 +1090,7 @@ export default {
   data() {
     return {
       step: 1,
+      isCreateCard: this.data.userCredit ? false : true,
       detailPlace:
         '例）\n' +
         '世界中を飛び回っている私が期間限定で近畿エリアを中心に飛び回ります！！\n' +
@@ -1103,7 +1121,7 @@ export default {
         '※なお、3等賞での当選を望まない場合、『2以上』と記載ください。',
       model: {
         tags: [],
-        name: 'aaaa',
+        name: '',
         detail: '',
         events_area: {
           area_id: [],
@@ -1123,7 +1141,8 @@ export default {
           }
         ],
         event_tags: [],
-      placePref: '',
+        placePref: '',
+        targetGenderText: ''
       },
       attachment_files: [],
       image_details: [],
@@ -1135,37 +1154,65 @@ export default {
   },
   props: ['data'],
   methods: {
+    getTokenComplete() {
+      this.$refs.formData.submit()
+    },
+    getTokenCard() {
+      this.$refs.formConfirm.tokenCreated()
+    },
+    updateCreateCard(val) {
+      this.isCreateCard = val
+    },
+    changeGender() {
+      let that = this
+      let tmp = []
+      this.model.event_condition.target_gender.forEach(function (item) {
+        tmp.push(that.GENDER_OPTIONS.find((x) => x.value == item).text)
+      })
+      this.model.targetGenderText = tmp.join(', ')
+    },
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0]
-      this.$el.querySelector('[name=' + firstInputError + ']').focus()
+      let ele = $('[name="' + firstInputError + '"]')
+      if (
+        $('[name="' + firstInputError + '"]').hasClass('hidden') ||
+        $('[name="' + firstInputError + '"]').attr('type') == 'hidden'
+      ) {
+        ele = $('[name="' + firstInputError + '"]').closest('div')
+      }
+      ele.focus()
       $('html, body').animate(
         {
-          scrollTop: $('[name=' + firstInputError + ']').offset().top - 150
+          scrollTop: ele.offset().top - 150 + 'px'
         },
         500
       )
     },
     onSubmit() {
       let that = this
-      this.step = 2
-      //   $('.loading-div').removeClass('hidden')
-      //   axios
-      //     .post(this.data.urlSendCode, {
-      //       _token: Laravel.csrfToken,
-      //       phone_number: this.model.phone_number
-      //     })
-      //     .then(function (response) {
-      //       $('.loading-div').addClass('hidden')
-      //       //   that.disabledCheckCode = false
-      //     })
-      //     .catch((error) => {
-      //       $('.loading-div').addClass('hidden')
-      //       const { status } = error.response || {}
-      //       if (status == 500 || status == 429 || status == 400) {
-      //         that.error = error.response.data.message
-      //         that.showRecapchar = true
-      //       }
-      //     })
+      if (this.step == 1) {
+        this.step = 2
+        $('.title-group').click()
+      } else {
+        $('.loading-div').removeClass('hidden')
+        axios
+          .post(this.data.urlSendCode, {
+            _token: Laravel.csrfToken,
+            phone_number: this.model.phone_number
+          })
+          .then(function (response) {
+            $('.loading-div').addClass('hidden')
+            //   that.disabledCheckCode = false
+          })
+          .catch((error) => {
+            $('.loading-div').addClass('hidden')
+            const { status } = error.response || {}
+            if (status == 500 || status == 429 || status == 400) {
+              that.error = error.response.data.message
+              that.showRecapchar = true
+            }
+          })
+      }
     },
     changeFile(evt, type) {
       if (evt.target.files.length == 0) {
@@ -1242,8 +1289,9 @@ export default {
       data.pref_id.forEach(function (item) {
         tmp.push(that.data.prefectures.find((x) => x.id == item).label)
       })
-      tmp = join(tmp, '、')
-      this.model.placePref = tmp.length < 40 ? tmp : tmp.substring(0, 40) + '... 他'
+      tmp = tmp.join('、')
+      this.model.placePref =
+        tmp.length < 40 ? tmp : tmp.substring(0, 40) + '... 他'
     },
     async addTag() {
       if (
@@ -1372,6 +1420,8 @@ export default {
 <style>
 .main-content {
   overflow-x: hidden;
+  height: 100%;
+  width: 100%;
 }
 </style>
 

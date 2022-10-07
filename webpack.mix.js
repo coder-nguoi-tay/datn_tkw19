@@ -25,14 +25,16 @@ mix.copy(
     'node_modules/@coreui/coreui/dist/js/coreui.bundle.min.js',
     'public/js'
 )
+const path = require('path')
+
 mix.webpackConfig({
-    // stats: {
-    //     children: true
-    // }
-    // resolve: {
-    //     symlinks: false,
-    //     alias: {
-    //         vue: path.resolve(`./node_modules/vue`)
-    //     }
-    // }
+    stats: {
+        children: true
+    },
+    resolve: {
+        symlinks: false,
+        alias: {
+            vue: path.resolve(`./node_modules/vue`)
+        }
+    }
 })
