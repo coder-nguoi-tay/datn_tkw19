@@ -931,7 +931,7 @@
               class="btn-confirm"
               @click="getTokenCard"
             >
-              確認create
+              確認
             </button>
             <button v-else class="btn-confirm">確認</button>
           </div>
@@ -1024,7 +1024,7 @@ export default {
           tag_name: {
             max: 'タグは255文字を超えてはなりません。'
           },
-          target_gender: {
+          'target_gender[]': {
             required: '対象の性別を入力してください。'
           },
           target_age_from: {
@@ -1089,7 +1089,7 @@ export default {
   },
   data() {
     return {
-      step: 1,
+      step: 2,
       isCreateCard: this.data.userCredit ? false : true,
       detailPlace:
         '例）\n' +

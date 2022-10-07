@@ -17,6 +17,7 @@ class CreateUsers extends Migration
             $table->id();
             $table->string('phone_number', 50);
             $table->string('email')->nullable();
+            $table->string('customer_id')->nullable();
             $table->string('show_name');
             $table->string('password');
             $table->tinyInteger('type')->comment('"1: 個人 2: 法人"');

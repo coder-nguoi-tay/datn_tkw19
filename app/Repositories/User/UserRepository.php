@@ -386,4 +386,12 @@ class UserRepository extends BaseController implements UserInterface
     {
         return $this->user->where('phone_number', $info)->first();
     }
+
+    public function updateCustomerId($id)
+    {
+        $user = $this->user->where('id', Auth::guard('user')->user()->id)->first();
+        $user->customer_id = $id;
+
+        return $user->save();
+    }
 }

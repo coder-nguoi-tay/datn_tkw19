@@ -8,7 +8,7 @@ interface UserCreditInterface
 
     public function getById($id);
 
-    public function store($request);
+    public function store($data);
 
     public function update($request, $id);
 

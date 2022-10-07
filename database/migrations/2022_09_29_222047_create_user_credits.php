@@ -17,7 +17,7 @@ class CreateUserCredits extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->string('card_id');
-            $table->string('branch', 10);
+            $table->string('brand', 10);
             $table->string('last4', 4);
             $table->integer('exp_month');
             $table->integer('exp_year');

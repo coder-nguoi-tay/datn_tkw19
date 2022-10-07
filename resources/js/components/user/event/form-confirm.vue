@@ -419,7 +419,7 @@ export default {
       this.$refs.elm.instance
         .createToken(this.$refs.card.stripeElement)
         .then((result) => {
-          that.card_id = result.token.card.id
+          that.card_id = result.token.id
           if (that.card_id) {
             $('.loading-div').removeClass('hidden')
             setTimeout(function () {

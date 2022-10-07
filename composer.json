@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.5",
         "orangehill/iseed": "^3.0",
         "rennokki/laravel-eloquent-query-cache": "^3.3",
+        "stripe/stripe-php": "^9.6",
         "twilio/sdk": "^6.41",
         "tymon/jwt-auth": "^1.0"
     },

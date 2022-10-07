@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Components\StripeComponent;
 use App\Enums\StatusCode;
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
 use App\Repositories\Area\AreaInterface;
 use App\Repositories\Category\CategoryInterface;
 use App\Repositories\Prefecture\PrefectureInterface;
 use App\Repositories\Tag\TagInterface;
+use App\Repositories\User\UserInterface;
 use App\Repositories\UserCredit\UserCreditInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class EventController extends Controller
+class EventController extends BaseController
 {
     private $category;
 
@@ -24,14 +28,17 @@ class EventController extends Controller
 
     private $userCredit;
 
+    private $user;
+
     public function __construct(CategoryInterface $category, PrefectureInterface $prefecture, AreaInterface $area,
-        TagInterface $tag, UserCreditInterface $userCredit)
+        TagInterface $tag, UserCreditInterface $userCredit, UserInterface $user)
     {
         $this->category = $category;
         $this->prefecture = $prefecture;
         $this->area = $area;
         $this->tag = $tag;
         $this->userCredit = $userCredit;
+        $this->user = $user;
     }
 
     /**
@@ -72,8 +79,35 @@ class EventController extends Controller
      */
     public function store(EventRequest $request)
     {
+        $customerId = Auth::guard('user')->user()->customer_id;
+        if (! $customerId) {
+            $customer = StripeComponent::createCustomer(Auth::guard('user')->user()->email, Auth::guard('user')->user()->show_name);
+            if (! $customer) {
+                $this->setFlash(__('エラーが発生しました。'), 'error');
+
+                return redirect()->route('event.create');
+            }
+            $customerId = $customer->id;
+            if (! $this->user->updateCustomerId($customerId)) {
+                $this->setFlash(__('エラーが発生しました。'), 'error');
+
+                return redirect()->route('event.create');
+            }
+        }
+        if ($request->card_id) {
+            $cardInfo = StripeComponent::addCustomerCard($customerId, $request->card_id);
+            if (! $cardInfo) {
+                $this->setFlash(__('エラーが発生しました。'), 'error');
+
+                return redirect()->route('event.create');
+            }
+            if (! $this->userCredit->store($cardInfo)) {
+                $this->setFlash(__('エラーが発生しました。'), 'error');
+
+                return redirect()->route('event.create');
+            }
+        }
         dd($request->all());
-        //
     }
 
     /**

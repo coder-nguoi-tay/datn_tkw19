@@ -32,8 +32,10 @@ import EventReport from './components/eventReport/index.vue'
 import ChangeName from './components/user/changeName/index.vue'
 import Notification from './components/user/profile/setting-notification.vue'
 import EventList from './components/user/event/index.vue'
+import PopupAlert from './components/common/popupAlert.vue'
 
 app.component('nl2br', Nl2br)
+app.component('popup-alert', PopupAlert)
 app.component('register', Register)
 app.component('event-form', EventForm)
 app.component('event-confirm', EventConfirm)
