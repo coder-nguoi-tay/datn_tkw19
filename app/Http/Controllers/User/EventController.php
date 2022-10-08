@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
 use App\Repositories\Area\AreaInterface;
 use App\Repositories\Category\CategoryInterface;
+use App\Repositories\Event\EventInterface;
 use App\Repositories\Prefecture\PrefectureInterface;
 use App\Repositories\Tag\TagInterface;
 use App\Repositories\User\UserInterface;
@@ -30,8 +31,10 @@ class EventController extends BaseController
 
     private $user;
 
+    private $event;
+
     public function __construct(CategoryInterface $category, PrefectureInterface $prefecture, AreaInterface $area,
-        TagInterface $tag, UserCreditInterface $userCredit, UserInterface $user)
+        TagInterface $tag, UserCreditInterface $userCredit, UserInterface $user, EventInterface $event)
     {
         $this->category = $category;
         $this->prefecture = $prefecture;
@@ -39,6 +42,7 @@ class EventController extends BaseController
         $this->tag = $tag;
         $this->userCredit = $userCredit;
         $this->user = $user;
+        $this->event = $event;
     }
 
     /**
@@ -101,13 +105,22 @@ class EventController extends BaseController
 
                 return redirect()->route('event.create');
             }
-            if (! $this->userCredit->store($cardInfo)) {
+            $userCreditCard = $this->userCredit->store($cardInfo);
+            if (! $userCreditCard) {
                 $this->setFlash(__('エラーが発生しました。'), 'error');
 
                 return redirect()->route('event.create');
             }
+            $request['event_credit']['user_credit_id'] = $userCreditCard->id;
         }
-        dd($request->all());
+        if (! $this->event->store($request)) {
+            $this->setFlash(__('エラーが発生しました。'), 'error');
+
+            return redirect()->route('event.create');
+        }
+        $this->setFlash(__('success'), 'success');
+
+        return redirect()->route('event.index');
     }
 
     /**

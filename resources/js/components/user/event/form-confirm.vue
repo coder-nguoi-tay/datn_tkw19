@@ -313,6 +313,31 @@
                 >前回使用したカードを使用する</label
               >
             </div>
+            <div class="form-group mt-8">
+              <table style="width: 100%">
+                <thead>
+                  <tr>
+                    <th>カード番号</th>
+                    <th class="text-center">有効期限</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      {{ data.userCredit.brand }}
+                      {{ '**** **** **** ' + data.userCredit.last4 }}
+                    </td>
+                    <td class="text-center">
+                      {{
+                        data.userCredit.exp_month +
+                        '/' +
+                        data.userCredit.exp_year
+                      }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <div class="form-check">
               <input
                 type="radio"

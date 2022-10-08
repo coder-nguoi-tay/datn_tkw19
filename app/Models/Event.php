@@ -39,4 +39,13 @@ class Event extends Model
      * @var array
      */
     protected $fillable = ['name', 'detail', 'achievement_conditions', 'reward_amount', 'entry_type', 'entry_fee', 'events_area', 'apply_method', 'event_organizer', 'publish_start_datetime', 'publish_end_datetime', 'created_at', 'updated_at', 'deleted_at'];
+
+    protected $casts = [
+        'events_area' => 'array',
+    ];
+
+    protected function asJson($value)
+    {
+        return json_encode($value, JSON_UNESCAPED_UNICODE);
+    }
 }

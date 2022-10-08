@@ -1,8 +1,8 @@
 @extends('layouts.user')
 @php
-if (isset($errors) && count($errors)) {
-    dd($errors);
-}
+// if (isset($errors) && count($errors)) {
+//     dd($errors);
+// }
 @endphp
 @section('content')
     <event-form

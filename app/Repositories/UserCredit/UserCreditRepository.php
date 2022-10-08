@@ -42,8 +42,6 @@ class UserCreditRepository extends BaseController implements UserCreditInterface
         $credit->using_flag = 1;
 
         return $credit->save();
-
-        // TODO: Implement store() method.
     }
 
     public function update($request, $id)

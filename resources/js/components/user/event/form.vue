@@ -418,7 +418,7 @@
                       v-model="model.event_condition.target_age_type"
                       class="form-check-input"
                       id="target_age_1"
-                      name="target_age"
+                      name="target_age_type"
                       value="0"
                       checked
                     />
@@ -432,7 +432,7 @@
                       v-model="model.event_condition.target_age_type"
                       class="form-check-input"
                       id="target_age_2"
-                      name="target_age"
+                      name="target_age_type"
                       value="1"
                     />
                     <label class="form-check-label label" for="target_age_2"
@@ -931,7 +931,7 @@
               class="btn-confirm"
               @click="getTokenCard"
             >
-              確認
+              確認credit
             </button>
             <button v-else class="btn-confirm">確認</button>
           </div>
@@ -1089,7 +1089,7 @@ export default {
   },
   data() {
     return {
-      step: 2,
+      step: 1,
       isCreateCard: this.data.userCredit ? false : true,
       detailPlace:
         '例）\n' +
@@ -1195,23 +1195,7 @@ export default {
         $('.title-group').click()
       } else {
         $('.loading-div').removeClass('hidden')
-        axios
-          .post(this.data.urlSendCode, {
-            _token: Laravel.csrfToken,
-            phone_number: this.model.phone_number
-          })
-          .then(function (response) {
-            $('.loading-div').addClass('hidden')
-            //   that.disabledCheckCode = false
-          })
-          .catch((error) => {
-            $('.loading-div').addClass('hidden')
-            const { status } = error.response || {}
-            if (status == 500 || status == 429 || status == 400) {
-              that.error = error.response.data.message
-              that.showRecapchar = true
-            }
-          })
+        this.$refs.formData.submit()
       }
     },
     changeFile(evt, type) {

@@ -93,7 +93,7 @@ class EventRequest extends FormRequest
             'target_gender' => [
                 'required',
             ],
-            'target_age' => [
+            'target_age_type' => [
                 'required',
                 Rule::in([0, 1]),
             ],
@@ -124,7 +124,7 @@ class EventRequest extends FormRequest
             'event_rewards.*.reward_amount' => 'required|integer|min:1',
             'event_rewards.*.quantity' => 'required|integer|min:1',
         ];
-        if (isset($data['target_age']) && $data['target_age']) {
+        if (isset($data['target_age_type']) && $data['target_age_type']) {
             $rule['target_age_from'] = 'required|max:255';
         }
         if (isset($data['limit_number_of_participants_flag']) && $data['limit_number_of_participants_flag']) {
