@@ -40,7 +40,9 @@
         </div>
         <div class="profile-banner-center">tanaka_tarou</div>
         <div class="profile-banner-right">
-          <img src="/assets/img/my_page/icon_settings.png" class="icon_settings" alt="">
+          <a href="#" @click.prevent="showSettingSidebar" class="btn-setting">
+            <img src="/assets/img/my_page/icon_settings.png" class="icon_settings" alt="">
+          </a>
         </div>
       </div>
       <div class="profile-banner-bottom d-flex justify-content-between">
@@ -183,10 +185,12 @@
       </div>
     </div>
   </div>
+  <SettingSidebar :data="data"></SettingSidebar>
 </template>
 
 <script>
-// import PostEvent from '../common/postEvent.vue';
+import $ from 'jquery';
+import SettingSidebar from "./settingSidebar";
 export default {
   created: function () {},
   data() {
@@ -195,7 +199,20 @@ export default {
   },
   mounted() {},
   props: ['data'],
-  components: {},
-  methods: {}
+  components: {
+    SettingSidebar,
+  },
+  methods: {
+    showSettingSidebar() {
+      $(document).ready(function() {
+        let sidebar = $('.setting-sidebar');
+        if (sidebar.hasClass('close-sidebar')) {
+          sidebar.removeClass('close-sidebar').addClass('open-sidebar');
+        } else {
+          sidebar.removeClass('open-sidebar').addClass('close-sidebar');
+        }
+      });
+    },
+  }
 };
 </script>
