@@ -160,6 +160,7 @@
       .e-detail-row {
         display: flex;
         text-align: right;
+        min-height: 16px;
 
         .col-title {
           display: inline-block;
