@@ -60,4 +60,10 @@ class MyPageController extends BaseController
             'title' => 'イベント詳細 – 参加者 – 公開チャット',
         ]);
     }
+
+    public function earn() {
+        return view('mypage.earn', [
+            'title' => '入金（稼ぎ）一覧',
+        ]);
+    }
 }

@@ -35,7 +35,7 @@
     <div class="profile-banner d-flex justify-content-between" style="background-image: url('/assets/img/my_page/my_page_banner.png');">
       <div class="profile-banner-top d-flex align-items-center justify-content-center">
         <div class="profile-banner-left d-flex align-items-center">
-          <img src="/assets/img/my_page/icon_pig.png" class="icon_pig" alt="">
+          <a :href="data.urlEarn"><img src="/assets/img/my_page/icon_pig.png" class="icon_pig" alt=""></a>
           <img src="/assets/img/my_page/icon_metro_profile.png" class="icon_metro_profile" alt="">
         </div>
         <div class="profile-banner-center">tanaka_tarou</div>
