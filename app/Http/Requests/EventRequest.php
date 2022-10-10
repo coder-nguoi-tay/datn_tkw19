@@ -105,6 +105,10 @@ class EventRequest extends FormRequest
                 'required',
                 Rule::in([0, 1]),
             ],
+            'publish_flag' => [
+                'required',
+                Rule::in([0, 1]),
+            ],
             'other_conditions' => 'nullable|max:2000',
             'participation_terms_type' => [
                 'required',

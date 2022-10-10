@@ -4,11 +4,13 @@ namespace App\Repositories\Event;
 
 interface EventInterface
 {
-    public function get($request);
+    public function get();
 
     public function getById($id);
 
-    public function store($request);
+    public function tmp($id);
+
+    public function store($request, $userCardId);
 
     public function update($request, $id);
 

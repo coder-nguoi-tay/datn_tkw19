@@ -41,7 +41,11 @@ class UserCreditRepository extends BaseController implements UserCreditInterface
         $credit->exp_year = $data->exp_year;
         $credit->using_flag = 1;
 
-        return $credit->save();
+        if (! $credit->save()) {
+            return false;
+        }
+
+        return $credit;
     }
 
     public function update($request, $id)

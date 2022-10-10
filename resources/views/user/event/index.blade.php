@@ -1,4 +1,8 @@
 @extends('layouts.user')
 @section('content')
-    <event-list></event-list>
+    <event-list :data="{{ json_encode([
+        'events' => $events,
+        'showName' => $showName,
+    ]) }}">
+    </event-list>
 @endsection

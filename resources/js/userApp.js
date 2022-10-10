@@ -1,6 +1,6 @@
 require('./bootstrap')
 import { createApp } from 'vue'
-// import $ from 'jquery'
+import $ from 'jquery'
 import { configure, defineRule } from 'vee-validate'
 import Nl2br from 'vue3-nl2br'
 
@@ -13,6 +13,18 @@ configure({
 const app = createApp({})
 // app.config.errorHandler = () => null
 // app.config.warnHandler = () => null
+defineRule(
+    'compareValueLeftThan',
+    (value, [target], ctx) => {
+        if (ctx.form[target] != '') {
+            return parseInt(value) < parseInt(ctx.form[target])
+        }
+        return true
+    },
+    {
+        hasTarget: true
+    }
+)
 
 import Dialog from './components/common/popupSuccess.vue'
 import RegisterCard from './components/common/registerCard.vue'

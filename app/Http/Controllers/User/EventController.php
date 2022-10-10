@@ -52,9 +52,12 @@ class EventController extends BaseController
      */
     public function index()
     {
-        //
+        $events = $this->event->get();
+        // dd($events->toArray());
         return view('user.event.index', [
             'title'=>'イベント企画',
+            'events' => $events,
+            'showName' => Auth::guard('user')->user()->show_name,
         ]);
     }
 
@@ -98,6 +101,7 @@ class EventController extends BaseController
                 return redirect()->route('event.create');
             }
         }
+        $userCardId = $request->event_credit['user_credit_id'];
         if ($request->card_id) {
             $cardInfo = StripeComponent::addCustomerCard($customerId, $request->card_id);
             if (! $cardInfo) {
@@ -111,9 +115,9 @@ class EventController extends BaseController
 
                 return redirect()->route('event.create');
             }
-            $request['event_credit']['user_credit_id'] = $userCreditCard->id;
+            $userCardId = $userCreditCard->id;
         }
-        if (! $this->event->store($request)) {
+        if (! $this->event->store($request, $userCardId)) {
             $this->setFlash(__('エラーが発生しました。'), 'error');
 
             return redirect()->route('event.create');
@@ -173,5 +177,14 @@ class EventController extends BaseController
         return response()->json([
             'data' => $this->tag->searchTag($request),
         ], StatusCode::OK);
+    }
+
+    public function tmp($id)
+    {
+        if (! $this->event->tmp($id)) {
+            $this->setFlash(__('エラーが発生しました。'), 'error');
+
+            return redirect()->route('event.create');
+        }
     }
 }

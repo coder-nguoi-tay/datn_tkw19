@@ -447,15 +447,29 @@
                   <div class="input-container">
                     <Field
                       name="target_age_from"
-                      type="text"
+                      type="number"
+                      ref="target_age_from"
                       v-model="model.event_condition.target_age_from"
-                      rules="required"
+                      rules="required|min_value:1|max_value:100|compareValueLeftThan:target_age_to"
                       class="form-control w-160 d-inline-block"
-                      placeholder="例）8,10-20,50-65"
                     />
-                    <label class="label ml-6">歳</label>
+                    <label class="label ml-6 mr-6">~</label>
+                    <Field
+                      name="target_age_to"
+                      type="number"
+                      id="target_age_to"
+                      ref="target_age_to"
+                      v-model="model.event_condition.target_age_to"
+                      rules="required|min_value:1|max_value:100"
+                      class="form-control w-160 d-inline-block"
+                    />
                   </div>
                   <ErrorMessage class="error-msg" name="target_age_from" />
+                  <ErrorMessage
+                    class="error-msg"
+                    v-if="validFrom"
+                    name="target_age_to"
+                  />
                   <div class="form-text mt-8">
                     10歳以上20歳未満の場合は、例のように半角英数字と『-（半角ハイフン）』を使用ください。なお、複数ある場合は『,（半角カンマ）』を区切り文字として使用ください。
                   </div>
@@ -825,36 +839,27 @@
             <div class="input-section">
               <h2 class="input-title">開催情報</h2>
               <div class="form-group mb-16">
-                <label class="form-label" require>公開期間</label>
-                <!-- <div class="form-text mt-0 mb-8">
+                <label class="form-label" require>開催期間</label>
+                <div class="form-text mt-0 mb-8">
                   開催期間は最大7日間ですが、開始後にイベント設定で延長することが可能です。
-                </div> -->
+                </div>
                 <div class="custom-input">
                   <Field
-                    as="div"
-                    name="publish_end_datetime"
-                    v-model="model.publish_end_datetime"
+                    as="select"
+                    name="day_end"
                     rules="required"
+                    class="form-control select-placeholder"
+                    v-model="model.day_end"
+                    @change="selectPlaceholder($event)"
                   >
-                    <datepicker
-                      autoApply
-                      keepActionRow
-                      :closeOnAutoApply="false"
-                      v-model="model.publish_end_datetime"
-                      :monthChangeOnScroll="false"
-                      locale="ja"
-                      name="publish_end_datetime"
-                      :minTime="setMinTime()"
-                      :minDate="
-                        model.publish_start_datetime
-                          ? new Date(model.publish_start_datetime)
-                          : null
-                      "
-                      selectText="選択"
-                      cancelText="閉じる"
-                      format="yyyy/MM/dd HH:mm"
-                    />
+                    <option value="">-- カテゴリを選択してください --</option>
+                    <option :value="item" v-for="item in 7" :key="item">
+                      {{ item + '日' }}
+                    </option>
                   </Field>
+                  <span class="ic-arrow"
+                    ><img src="/assets/img/user/event/ic_arrow_down.svg" alt=""
+                  /></span>
                   <ErrorMessage class="error-msg" name="publish_end_datetime" />
                 </div>
               </div>
@@ -925,13 +930,24 @@
             >
               編集
             </button>
+            <template v-if="step == 2">
+              <button
+                type="button"
+                v-if="isCreateCard"
+                class="btn-confirm"
+                @click="getTokenCard(0)"
+              >
+                下書き保存
+              </button>
+              <button v-else class="btn-confirm">下書き保存</button>
+            </template>
             <button
               type="button"
               v-if="isCreateCard && step == 2"
               class="btn-confirm"
-              @click="getTokenCard"
+              @click="getTokenCard(1)"
             >
-              確認credit
+              確認
             </button>
             <button v-else class="btn-confirm">確認</button>
           </div>
@@ -940,6 +956,11 @@
             :data="data"
             :event-area="model.events_area"
           ></AdditionModal>
+          <input
+            type="hidden"
+            name="publish_flag"
+            v-model="model.publish_flag"
+          />
         </form>
       </VeeForm>
     </div>
@@ -1028,7 +1049,15 @@ export default {
             required: '対象の性別を入力してください。'
           },
           target_age_from: {
-            required: '年齢を詳細指定を入力してください。'
+            required: '年齢を詳細指定を入力してください。',
+            compareValueLeftThan: '開始年齢が終了年齢より若い',
+            min_value: '0 ～ 100 の値',
+            max_value: '0 ～ 100 の値'
+          },
+          target_age_to: {
+            required: '年齢を詳細指定を入力してください。',
+            min_value: '0 ～ 100 の値',
+            max_value: '0 ～ 100 の値'
           },
           limit_number_of_participants: {
             required: '最大参加可能人数を入力してください。'
@@ -1054,11 +1083,14 @@ export default {
             required: '達成条件を入力してください。',
             max: '達成条件は2000文字を超えてはなりません。'
           },
-          publish_start_datetime: {
-            required: '公開期間を入力してください。'
-          },
+          //   publish_start_datetime: {
+          //     required: '公開期間を入力してください。'
+          //   },
           publish_end_datetime: {
             required: '開始日時を入力してください。'
+          },
+          day_end: {
+            required: '開催期間を入力してください。'
           }
         }
       }
@@ -1127,6 +1159,7 @@ export default {
           area_id: [],
           pref_id: []
         },
+        publish_flag: 1,
         event_condition: {
           target_gender: [],
           other_conditions: '',
@@ -1149,7 +1182,8 @@ export default {
       csrfToken: Laravel.csrfToken,
       tags: [],
       GENDER_OPTIONS,
-      lastSearch: ''
+      lastSearch: '',
+      validFrom: false
     }
   },
   props: ['data'],
@@ -1157,7 +1191,8 @@ export default {
     getTokenComplete() {
       this.$refs.formData.submit()
     },
-    getTokenCard() {
+    getTokenCard(type) {
+      this.model.publish_flag = type
       this.$refs.formConfirm.tokenCreated()
     },
     updateCreateCard(val) {
@@ -1397,7 +1432,11 @@ export default {
       }
       this.model.tags = []
     }
-    // removeTag(option) {}
+  },
+  watch: {
+    async 'model.target_age_from'() {
+      this.validFrom = (await this.$refs.target_age_from.validate()).valid
+    }
   }
 }
 </script>

@@ -22,6 +22,16 @@ class BaseController extends Controller
         ]);
     }
 
+    public function setFlashUser($message, $mode = 'success', $urlRedirect = '')
+    {
+        session()->forget('Message.flashPage');
+        session()->push('Message.flashPage', [
+            'message' => $message,
+            'mode' => $mode,
+            'urlRedirect' => $urlRedirect,
+        ]);
+    }
+
     public static function newListLimit($query)
     {
         $newSizeLimit = 20;

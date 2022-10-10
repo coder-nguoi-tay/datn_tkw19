@@ -3,44 +3,44 @@
     <div class="container event-list__container h-100">
       <div class="event-list__wrapper" v-if="haveDate">
         <div class="cat-list draft-list">
-          <h3 class="event-cat-title">下書き中(2)</h3>
+          <h3 class="event-cat-title">
+            下書き中({{
+              data.events.filter((x) => x.publish_flag == 0).length
+            }})
+          </h3>
           <div class="event-item__container">
-            <div class="event-item">
+            <div
+              class="event-item"
+              v-for="item in data.events.filter((x) => x.publish_flag == 0)"
+              :key="item.id"
+            >
               <div class="txt-draft">(下書き)</div>
-              <div class="last-save">最終保存日 20222/10/1</div>
+              <div class="last-save">
+                最終保存日 {{ item.reservation_date }}
+              </div>
               <h2 class="event-title">
-                取引先の50周年祝いの品を選んでください!! - 第2回 -
+                {{ item.name }}
               </h2>
-              <a href="" class="event-link"></a>
-            </div>
-            <div class="event-item">
-              <div class="txt-draft">(下書き)</div>
-              <div class="last-save">最終保存日 20222/9/25</div>
-              <h2 class="event-title">
-                取引先の50周年祝いの品を選んでください!!2
-              </h2>
-              <a href="" class="event-link"></a>
+              <a :href="'event/' + item.id" class="event-link"></a>
             </div>
           </div>
         </div>
         <div class="cat-list ongoing-list">
-          <h3 class="event-cat-title">開催中(1)</h3>
-          <div class="event-item__container">
+          <h3 class="event-cat-title">
+            開催中({{ data.events.filter((x) => x.is_publish).length }})
+          </h3>
+          <div
+            class="event-item__container"
+            v-for="item in data.events.filter((x) => x.is_publish)"
+            :key="item.id"
+          >
             <div class="event-item">
               <div class="event-left">
                 <div class="event-img">
-                  <img
-                    src="/assets/img/user/event/hand_2.png"
-                    alt=""
-                    width="140"
-                  />
+                  <img :src="item.image_full_url" width="140" />
                 </div>
                 <div class="avatar">
-                  <img
-                    src="/assets/img/user/event/avatar_6.png"
-                    alt=""
-                    width="25"
-                  />
+                  <img src="/assets/img/user/event/avatar_6.png" width="25" />
                 </div>
                 <div class="txt-finished" v-if="isFinished">
                   このイベントは<br />
@@ -49,51 +49,60 @@
               </div>
               <div class="event-right">
                 <div class="event-right__container">
-                  <a href="" class="cat-name">お助け</a>
+                  <a href="" class="cat-name">{{
+                    item.category?.category_name
+                  }}</a>
                   <h2 class="event-title">
-                    取引先の50周年祝いの品を選んでください!! - 第2回 -
+                    {{ item.name }}
                   </h2>
                   <div class="event-meta d-flex align-items-center flex-wrap">
                     <span class="meta-item">
-                      <img
-                        src="/assets/img/user/event/ic_period_2.svg"
-                        alt=""
-                      /><span>残り...</span
+                      <img src="/assets/img/user/event/ic_period_2.svg" /><span
+                        >残り...</span
                       ><b
-                        >5日と<span class="txt-time">12</span>時間<span
-                          class="txt-time"
-                          >32</span
+                        >{{ item.remaining_day }}日と<span class="txt-time">{{
+                          item.remaining_hour
+                        }}</span
+                        >時間<span class="txt-time">{{
+                          item.remaining_minute
+                        }}</span
                         >分</b
                       >
                     </span>
                     <span class="meta-item">
-                      <img
-                        src="/assets/img/user/event/ic_people_2.svg"
-                        alt=""
-                      /><b><span class="txt-number">3</span>人</b>
+                      <img src="/assets/img/user/event/ic_people_2.svg" /><b
+                        ><span class="txt-number">{{ item.reward_person }}</span
+                        >人</b
+                      >
                     </span>
                     <span class="meta-item">
-                      <img
-                        src="/assets/img/user/event/ic_coin_2.svg"
-                        alt=""
-                      /><b>無料</b>
+                      <img src="/assets/img/user/event/ic_coin_2.svg" /><b>{{
+                        item.entry_type == 0
+                          ? '無料'
+                          : new Intl.NumberFormat().format(item.entry_fee) +
+                            '円'
+                      }}</b>
                     </span>
                     <span class="meta-item">
-                      <img
-                        src="/assets/img/user/event/ic_reward_2.svg"
-                        alt=""
-                      /><b><span class="txt-number">40,000</span>円</b>
+                      <img src="/assets/img/user/event/ic_reward_2.svg" /><b
+                        >{{
+                          new Intl.NumberFormat().format(item.reward_amount)
+                        }}円</b
+                      >
                     </span>
                   </div>
                   <div class="event-tag">
-                    <a href=""># 企業</a>
-                    <a href=""># 記念日</a>
-                    <a href=""># 上場企業</a>
-                    <a href=""># お中元</a>
+                    <a
+                      v-for="tag in item.event_tags.filter((x) => x.tag)"
+                      :key="tag.id"
+                      href=""
+                      ># {{ tag.tag.name }}</a
+                    >
                   </div>
                 </div>
                 <div class="event-start">
-                  started 2021/10/4 16:00 by <b>@tanaka_osmu</b>
+                  started {{ item.publish_start_datetime
+                  }}<b>@{{ data.showName }}</b>
                 </div>
                 <a href="" class="event-link"></a>
               </div>
@@ -101,136 +110,83 @@
           </div>
         </div>
         <div class="cat-list ongoing-list reserved-list">
-          <h3 class="event-cat-title">予約中(2)</h3>
+          <h3 class="event-cat-title">
+            予約中({{ data.events.filter((x) => x.waiting_publish).length }})
+          </h3>
           <div class="event-item__container">
-            <div class="event-item__wrapper">
+            <div
+              class="event-item__wrapper"
+              v-for="item in data.events.filter((x) => x.waiting_publish)"
+              :key="item.id"
+            >
               <div class="event-item">
                 <div class="event-left">
                   <div class="event-img">
-                    <img
-                      src="/assets/img/user/event/animal.png"
-                      alt=""
-                      width="140"
-                    />
+                    <img :src="item.image_full_url" width="140" />
                   </div>
                   <div class="avatar">
-                    <img
-                      src="/assets/img/user/event/avatar_6.png"
-                      alt=""
-                      width="25"
-                    />
+                    <img src="/assets/img/user/event/avatar_6.png" width="25" />
                   </div>
                 </div>
                 <div class="event-right">
                   <div class="event-right__container">
-                    <a href="" class="cat-name">お役立ち情報</a>
+                    <a href="" class="cat-name">{{
+                      item.category?.category_name
+                    }}</a>
                     <h2 class="event-title">
-                      お忍びデートスポットをリサーチしてください!!
+                      {{ item.name }}
                     </h2>
                     <div class="event-meta d-flex align-items-center flex-wrap">
                       <span class="meta-item">
                         <img
                           src="/assets/img/user/event/ic_period_2.svg"
-                          alt=""
                         /><span>残り...</span
-                        ><b><span class="txt-time">3</span>日</b>
+                        ><b
+                          >{{ item.remaining_day }}日と<span class="txt-time">{{
+                            item.remaining_hour
+                          }}</span
+                          >時間<span class="txt-time">{{
+                            item.remaining_minute
+                          }}</span
+                          >分</b
+                        >
                       </span>
                       <span class="meta-item">
-                        <img
-                          src="/assets/img/user/event/ic_people_2.svg"
-                          alt=""
-                        /><b><span class="txt-number">0</span>人</b>
+                        <img src="/assets/img/user/event/ic_people_2.svg" /><b
+                          ><span class="txt-number">{{
+                            item.reward_person
+                          }}</span
+                          >人</b
+                        >
                       </span>
                       <span class="meta-item">
-                        <img
-                          src="/assets/img/user/event/ic_coin_2.svg"
-                          alt=""
-                        /><b><span class="txt-number">1,000</span>円</b>
+                        <img src="/assets/img/user/event/ic_coin_2.svg" /><b>{{
+                          item.entry_type == 0
+                            ? '無料'
+                            : new Intl.NumberFormat().format(item.entry_fee) +
+                              '円'
+                        }}</b>
                       </span>
                       <span class="meta-item">
-                        <img
-                          src="/assets/img/user/event/ic_reward_2.svg"
-                          alt=""
-                        /><b><span class="txt-number">100,000,000</span>円</b>
+                        <img src="/assets/img/user/event/ic_reward_2.svg" /><b
+                          >{{
+                            new Intl.NumberFormat().format(item.reward_amount)
+                          }}円</b
+                        >
                       </span>
                     </div>
                     <div class="event-tag">
-                      <a href=""># 企業</a>
-                      <a href=""># 記念日</a>
-                      <a href=""># 上場企業</a>
-                      <a href=""># お中元</a>
+                      <a
+                        v-for="tag in item.event_tags.filter((x) => x.tag)"
+                        :key="tag.id"
+                        href=""
+                        ># {{ tag.tag.name }}</a
+                      >
                     </div>
                   </div>
                   <div class="event-start">
-                    started 2021/10/4 16:00 by <b>@tanaka_osmu</b>
-                  </div>
-                  <a href="" class="event-link"></a>
-                </div>
-              </div>
-              <div class="btn__container">
-                <a href="" class="btn-cancel">予約を取り消し下書きにする</a>
-              </div>
-            </div>
-            <div class="event-item__wrapper">
-              <div class="event-item">
-                <div class="event-left">
-                  <div class="event-img">
-                    <img
-                      src="/assets/img/user/event/adventure.png"
-                      alt=""
-                      width="140"
-                    />
-                  </div>
-                  <div class="avatar">
-                    <img
-                      src="/assets/img/user/event/avatar_6.png"
-                      alt=""
-                      width="25"
-                    />
-                  </div>
-                </div>
-                <div class="event-right">
-                  <div class="event-right__container">
-                    <a href="" class="cat-name">アドベンチャー</a>
-                    <h2 class="event-title">
-                      参加費1,000円で、世界中を飛び回る私を見つけたら賞金!!
-                    </h2>
-                    <div class="event-meta d-flex align-items-center flex-wrap">
-                      <span class="meta-item">
-                        <img
-                          src="/assets/img/user/event/ic_period_2.svg"
-                          alt=""
-                        /><span>残り...</span
-                        ><b><span class="txt-time">7</span>日</b>
-                      </span>
-                      <span class="meta-item">
-                        <img
-                          src="/assets/img/user/event/ic_people_2.svg"
-                          alt=""
-                        /><b><span class="txt-number">0</span>人</b>
-                      </span>
-                      <span class="meta-item">
-                        <img
-                          src="/assets/img/user/event/ic_coin_2.svg"
-                          alt=""
-                        /><b><span class="txt-number">1,000</span>円</b>
-                      </span>
-                      <span class="meta-item">
-                        <img
-                          src="/assets/img/user/event/ic_reward_2.svg"
-                          alt=""
-                        /><b><span class="txt-number">9,999,999</span>円</b>
-                      </span>
-                    </div>
-                    <div class="event-tag">
-                      <a href=""># 企業</a>
-                      <a href=""># 記念日</a>
-                      <a href=""># 上場企業</a>
-                      <a href=""># お中元</a>
-                    </div>
-                  </div>
-                  <div class="event-start">
-                    started 2021/10/4 16:00 by <b>@tanaka_osmu</b>
+                    started {{ item.publish_start_datetime
+                    }}<b>@{{ data.showName }}</b>
                   </div>
                   <a href="" class="event-link"></a>
                 </div>
@@ -248,9 +204,7 @@
             まだ企画されたイベントがありません。<br />
             早速あなたの企画を作成しましょう。
           </p>
-          <div class="img-nodata text-center">
-            <img src="/assets/img/user/event/no_data.png" alt="" />
-          </div>
+          <div class="img-nodata text-center"></div>
           <div class="btn-nodata">
             <a href="#" class="btn-create-event">イベントを企画する</a>
           </div>
@@ -278,9 +232,7 @@
         <div class="modal-body text-center">
           <div class="e-body-content">
             <h2 class="e-modal-title">イベントが投稿されました！！</h2>
-            <div class="e-modal-img">
-              <img src="/assets/img/user/event/modal.png" alt="" />
-            </div>
+            <div class="e-modal-img"></div>
             <a href="#" class="btn-create-event e-modal-btn"
               >イベントを企画する</a
             >
@@ -291,8 +243,11 @@
   </div>
 </template>
 <script>
+import CountUp from 'vue-countup-v3'
 export default {
-  components: {},
+  components: {
+    CountUp
+  },
   props: ['data'],
   data: function () {
     return {

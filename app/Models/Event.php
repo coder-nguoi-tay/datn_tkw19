@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Components\CommonComponent;
+use App\Enums\PublishStatus;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -42,10 +45,68 @@ class Event extends Model
 
     protected $casts = [
         'events_area' => 'array',
+        'reservation_date' => 'datetime:Y/m/d',
+        'publish_start_datetime' => 'datetime:Y/m/d H:i',
     ];
 
     protected function asJson($value)
     {
         return json_encode($value, JSON_UNESCAPED_UNICODE);
+    }
+
+    protected $appends = ['is_publish', 'waiting_publish', 'image_full_url', 'remaining_day', 'remaining_hour', 'remaining_minute'];
+
+    public function getIsPublishAttribute()
+    {
+        return $this->publish_flag == PublishStatus::PUBLISH && $this->publish_start_datetime < Carbon::now();
+    }
+
+    public function getWaitingPublishAttribute()
+    {
+        return $this->publish_flag == PublishStatus::PUBLISH && $this->publish_start_datetime > Carbon::now();
+    }
+
+    public function getImageFullUrlAttribute()
+    {
+        return CommonComponent::fullUrl('events/'.$this->id.'/'.$this->image_url);
+    }
+
+    public function getRemainingDayAttribute()
+    {
+        $totalMinute = Carbon::now()->diffInMinutes(Carbon::parse($this->publish_start_datetime));
+        $day = floor($totalMinute / (24 * 60));
+
+        return $day;
+    }
+
+    public function getRemainingHourAttribute()
+    {
+        $totalMinute = Carbon::now()->diffInMinutes(Carbon::parse($this->publish_start_datetime));
+        $day = floor($totalMinute / (24 * 60));
+        $totalMinute -= $day * 24 * 60;
+        $hour = floor($totalMinute / 60);
+
+        return $hour;
+    }
+
+    public function getRemainingMinuteAttribute()
+    {
+        $totalMinute = Carbon::now()->diffInMinutes(Carbon::parse($this->publish_start_datetime));
+        $day = floor($totalMinute / (24 * 60));
+        $totalMinute -= $day * 24 * 60;
+        $hour = floor($totalMinute / 60);
+        $totalMinute -= $hour * 60;
+
+        return $totalMinute;
+    }
+
+    public function category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
+
+    public function eventTags()
+    {
+        return $this->hasMany(EventTag::class, 'event_id', 'id');
     }
 }

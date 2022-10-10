@@ -3,6 +3,7 @@
 namespace App\Repositories\Event;
 
 use App\Components\CommonComponent;
+use App\Enums\PublishStatus;
 use App\Http\Controllers\BaseController;
 use App\Models\Event;
 use App\Models\EventCondition;
@@ -44,8 +45,24 @@ class EventRepository extends BaseController implements EventInterface
         $this->eventTag = $eventTag;
     }
 
-    public function get($request)
+    public function get()
     {
+        return $this->event
+        ->with([
+            'category',
+            'eventTags',
+            'eventTags.tag',
+        ])
+        ->where(function ($q) {
+            $q->orWhere(function ($q) {
+                $q->where('publish_flag', PublishStatus::UNPUBLISH);
+                $q->whereDate('reservation_date', '>=', Carbon::now());
+            });
+            $q->orWhere(function ($q) {
+                $q->where('publish_flag', PublishStatus::PUBLISH);
+                $q->where('publish_end_datetime', '>=', PublishStatus::PUBLISH);
+            });
+        })->orderBy('publish_end_datetime', 'DESC')->get();
         // TODO: Implement get() method.
     }
 
@@ -54,7 +71,7 @@ class EventRepository extends BaseController implements EventInterface
         // TODO: Implement getById() method.
     }
 
-    public function store($request)
+    public function store($request, $userCardId)
     {
         try {
             DB::beginTransaction();
@@ -63,6 +80,10 @@ class EventRepository extends BaseController implements EventInterface
             $eventNew->detail = $request->detail;
             $eventNew->image_url = $request->image_path;
             $eventNew->category_id = $request->category_id;
+            $eventNew->publish_flag = $request->publish_flag;
+            if (! $request->publish_flag) {
+                $eventNew->reservation_date = Carbon::now()->addWeek(1);
+            }
             $eventNew->events_area = [
                 'area_id' => $request->area_id ?? [],
                 'pref_id' => $request->pref_id ?? [],
@@ -73,10 +94,13 @@ class EventRepository extends BaseController implements EventInterface
                 $eventNew->entry_fee = $request->entry_fee;
             }
             $total = 0;
+            $totalPerson = 0;
             foreach ($request->event_rewards as $key => $value) {
                 $total += $value['reward_amount'] * $value['quantity'];
+                $totalPerson += $value['quantity'];
             }
             $eventNew->reward_amount = $total;
+            $eventNew->reward_person = $totalPerson;
             $eventNew->publish_start_datetime = $request->publish_start_datetime;
             $eventNew->publish_end_datetime = $request->publish_end_datetime;
             $eventNew->address = $request->address;
@@ -88,6 +112,12 @@ class EventRepository extends BaseController implements EventInterface
             $extension = pathinfo($request->image_path, PATHINFO_EXTENSION);
             $fileName = CommonComponent::uploadFileName($extension);
             if (! CommonComponent::copyFile('events/'.$eventNew->id.'/'.$fileName, $request->image_path)) {
+                DB::rollBack();
+
+                return false;
+            }
+            $eventNew->image_url = $fileName;
+            if (! $eventNew->save()) {
                 DB::rollBack();
 
                 return false;
@@ -115,7 +145,7 @@ class EventRepository extends BaseController implements EventInterface
             }
             $eventCredit = new $this->eventCredit();
             $eventCredit->event_id = $eventNew->id;
-            $eventCredit->user_credit_id = $request->event_credit['user_credit_id'];
+            $eventCredit->user_credit_id = $userCardId;
             $eventCredit->subcription_id = 'aaa';
             $eventCredit->subcription_expried_datetime = Carbon::now();
             if (! $eventCredit->save()) {
@@ -195,5 +225,20 @@ class EventRepository extends BaseController implements EventInterface
     public function destroy($id)
     {
         // TODO: Implement destroy() method.
+    }
+
+    public function tmp($id)
+    {
+        $event = $this->event->where([
+            ['created_user_id', Auth::guard('user')->user()->id],
+            ['id', $id],
+        ])->first();
+        if (! $event) {
+            return false;
+        }
+        $event->publish_flag = PublishStatus::UNPUBLISH;
+        $event->reservation_date = Carbon::now()->addWeek(1);
+
+        return $event->save();
     }
 }

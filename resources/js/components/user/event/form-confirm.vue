@@ -313,7 +313,7 @@
                 >前回使用したカードを使用する</label
               >
             </div>
-            <div class="form-group mt-8">
+            <div v-if="data.userCredit" class="form-group mt-8">
               <table style="width: 100%">
                 <thead>
                   <tr>

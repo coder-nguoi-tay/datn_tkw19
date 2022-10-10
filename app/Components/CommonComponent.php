@@ -31,6 +31,11 @@ class CommonComponent
         return Storage::disk('public')->put($newPath, Storage::disk('public')->get($pathOld));
     }
 
+    public static function fullUrl($path)
+    {
+        return Storage::disk('public')->url($path);
+    }
+
     public static function uploadFileName($extension = '')
     {
         return sha1(time().rand(0, 9999999)).'.'.$extension;

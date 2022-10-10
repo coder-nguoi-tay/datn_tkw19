@@ -15,6 +15,7 @@ class CreateEvents extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('created_user_id');
             $table->string('name');
             $table->text('detail');
             $table->string('image_url');
@@ -22,7 +23,8 @@ class CreateEvents extends Migration
             $table->json('events_area')->nullable();
             $table->text('detail_location')->nullable();
             $table->string('address');
-
+            $table->tinyInteger('publish_flag')->default(0);
+            $table->date('reservation_date')->nullable();
             $table->text('achievement_conditions')->nullable();
             $table->bigInteger('reward_amount')->nullable();
             $table->tinyInteger('entry_type')->default(1);

@@ -30,4 +30,9 @@ class EventTag extends Model
      * @var array
      */
     protected $fillable = ['event_id', 'tag_id', 'created_at', 'updated_at', 'deleted_at'];
+
+    public function tag()
+    {
+        return $this->hasOne(Tag::class, 'id', 'tag_id');
+    }
 }
