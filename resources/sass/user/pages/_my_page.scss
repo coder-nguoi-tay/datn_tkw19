@@ -358,3 +358,129 @@
     }
   }
 }
+
+.setting-sidebar {
+  width: 100%;
+  background-color: #F7F7F7;
+  color: #fff;
+  position: fixed;
+  height: 100vh;
+  overflow-y: scroll;
+  top: 0;
+  right: 0;
+  transform: translateX(0);
+  -webkit-overflow-scrolling: touch;
+  transition: .5s transform ease-in-out;
+  z-index: 9999;
+
+  &.close-sidebar {
+    transform: translateX(150%);
+  }
+
+  &.open-sidebar {
+    transform: translateX(0);
+  }
+
+  .setting-container {
+    padding: 16px;
+
+    .setting-item {
+      margin-bottom: 16px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .setting-title {
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 8px;
+      }
+
+      .setting-nav {
+        background-color: #fff;
+        border-radius: 4px;
+
+        .s-nav-link {
+          padding: 11px 20px 12px;
+          font-size: 14px;
+          line-height: 22px;
+          color: #000;
+          border-bottom: 1px solid #ECECEC;
+          display: block;
+          position: relative;
+
+          &:last-child {
+            border-bottom: unset;
+          }
+
+          &:after {
+            content: url("/assets/img/my_page/ic_arrow_right_black.svg");
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+      }
+
+      &.app-info {
+        .setting-nav {
+          .s-nav-link {
+            &:after {
+              content: url("/assets/img/my_page/ic_feather.svg");
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .navbar-icon {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    &.open {
+      .ic-bar {
+        position: absolute;
+
+        &:first-child {
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+          position: absolute;
+          top: 20px;
+          left: 0;
+        }
+
+        &:nth-child(2) {
+          background-color: transparent;
+        }
+
+        &:nth-child(3) {
+          transform: rotate(-135deg);
+          -webkit-transform: rotate(-135deg);
+          position: absolute;
+          top: 20px;
+          left: 0;
+        }
+      }
+    }
+
+    .ic-bar {
+      display: inline-block;
+      height: 2px;
+      width: 37px;
+      background-color: #000;
+      margin-bottom: 10px;
+      transition: .3s;
+
+      &:last-of-type {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

@@ -1,10 +1,9 @@
 @extends('layouts.user')
 
 @section('content')
-    <my-page
+    <my-page-earn
         :data="{{ json_encode([
-            'urlEarn' => route('myPage.earn'),
             'urlMyPage' => route('my-page.index'),
         ]) }}">
-    </my-page>
+    </my-page-earn>
 @endsection

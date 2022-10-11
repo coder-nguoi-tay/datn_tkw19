@@ -45,6 +45,7 @@ Route::post('register/send-code', [RegisterController::class, 'sendCode'])->name
 Route::post('register/verify-code', [RegisterController::class, 'verifyCode'])->name('register.verifyCode');
 Route::post('check-phone', [RegisterController::class, 'checkPhone'])->name('register.checkPhone');
 Route::resource('my-event', MyEventController::class);
+Route::get('/my-page/earn', [MyPageController::class, 'earn'])->name('myPage.earn');
 Route::resource('my-page', MyPageController::class);
 Route::resource('event-report', EventReportController::class);
 

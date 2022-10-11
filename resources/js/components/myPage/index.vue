@@ -35,12 +35,14 @@
     <div class="profile-banner d-flex justify-content-between" style="background-image: url('/assets/img/my_page/my_page_banner.png');">
       <div class="profile-banner-top d-flex align-items-center justify-content-center">
         <div class="profile-banner-left d-flex align-items-center">
-          <img src="/assets/img/my_page/icon_pig.png" class="icon_pig" alt="">
+          <a :href="data.urlEarn"><img src="/assets/img/my_page/icon_pig.png" class="icon_pig" alt=""></a>
           <img src="/assets/img/my_page/icon_metro_profile.png" class="icon_metro_profile" alt="">
         </div>
         <div class="profile-banner-center">tanaka_tarou</div>
         <div class="profile-banner-right">
-          <img src="/assets/img/my_page/icon_settings.png" class="icon_settings" alt="">
+          <a href="#" @click.prevent="showSettingSidebar" class="btn-setting">
+            <img src="/assets/img/my_page/icon_settings.png" class="icon_settings" alt="">
+          </a>
         </div>
       </div>
       <div class="profile-banner-bottom d-flex justify-content-between">
@@ -183,10 +185,12 @@
       </div>
     </div>
   </div>
+  <SettingSidebar :data="data"></SettingSidebar>
 </template>
 
 <script>
-// import PostEvent from '../common/postEvent.vue';
+import $ from 'jquery';
+import SettingSidebar from "./settingSidebar";
 export default {
   created: function () {},
   data() {
@@ -195,7 +199,20 @@ export default {
   },
   mounted() {},
   props: ['data'],
-  components: {},
-  methods: {}
+  components: {
+    SettingSidebar,
+  },
+  methods: {
+    showSettingSidebar() {
+      $(document).ready(function() {
+        let sidebar = $('.setting-sidebar');
+        if (sidebar.hasClass('close-sidebar')) {
+          sidebar.removeClass('close-sidebar').addClass('open-sidebar');
+        } else {
+          sidebar.removeClass('open-sidebar').addClass('close-sidebar');
+        }
+      });
+    },
+  }
 };
 </script>

@@ -45,6 +45,7 @@ import ChangeName from './components/user/changeName/index.vue'
 import Notification from './components/user/profile/setting-notification.vue'
 import EventList from './components/user/event/index.vue'
 import PopupAlert from './components/common/popupAlert.vue'
+import MyPageEarn from './components/myPage/earn.vue'
 
 app.component('nl2br', Nl2br)
 app.component('popup-alert', PopupAlert)
@@ -61,5 +62,6 @@ app.component('profile', Profile)
 app.component('change-name', ChangeName)
 app.component('setting-notification', Notification)
 app.component('event-list', EventList)
+app.component('my-page-earn', MyPageEarn)
 
 app.mount('#app')
