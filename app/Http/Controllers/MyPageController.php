@@ -61,7 +61,8 @@ class MyPageController extends BaseController
         ]);
     }
 
-    public function earn() {
+    public function earn()
+    {
         return view('mypage.earn', [
             'title' => '入金（稼ぎ）一覧',
         ]);

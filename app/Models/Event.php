@@ -54,7 +54,7 @@ class Event extends Model
         return json_encode($value, JSON_UNESCAPED_UNICODE);
     }
 
-    protected $appends = ['is_publish', 'waiting_publish', 'image_full_url', 'remaining_day', 'remaining_hour', 'remaining_minute'];
+    protected $appends = ['is_publish', 'waiting_publish', 'image_full_url', 'remaining_day', 'remaining_hour', 'remaining_minute', 'path'];
 
     public function getIsPublishAttribute()
     {
@@ -69,6 +69,11 @@ class Event extends Model
     public function getImageFullUrlAttribute()
     {
         return CommonComponent::fullUrl('events/'.$this->id.'/'.$this->image_url);
+    }
+
+    public function getPathAttribute()
+    {
+        return 'events/'.$this->id.'/'.$this->image_url;
     }
 
     public function getRemainingDayAttribute()
@@ -105,8 +110,28 @@ class Event extends Model
         return $this->hasOne(Category::class, 'id', 'category_id');
     }
 
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'created_user_id');
+    }
+
+    public function eventCondition()
+    {
+        return $this->hasOne(EventCondition::class, 'event_id', 'id');
+    }
+
     public function eventTags()
     {
         return $this->hasMany(EventTag::class, 'event_id', 'id');
+    }
+
+    public function eventRewards()
+    {
+        return $this->hasMany(EventReward::class, 'event_id', 'id');
+    }
+
+    public function eventFiles()
+    {
+        return $this->hasMany(EventFile::class, 'event_id', 'id');
     }
 }

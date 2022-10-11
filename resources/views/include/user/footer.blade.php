@@ -1,6 +1,6 @@
 @php
 $routeName = \Route::currentRouteName();
-$routeEvent = ['event.index', 'event.create'];
+$routeEvent = ['event.index', 'event.create', 'event.close'];
 @endphp
 <footer class="footer">
     <div class="container footer__container">
@@ -16,7 +16,7 @@ $routeEvent = ['event.index', 'event.create'];
                 </a>
             </div>
             <div class="nav__item {{ in_array($routeName, $routeEvent) ? 'active' : '' }}">
-                <a href="" class="nav__link">
+                <a href="{{ route('event.index') }}" class="nav__link">
                     <p class="nav-ic">
                         <img class="ic-brown" src="{{ asset('assets/img/user/common/ic_fire.svg') }}" alt="">
                         <img class="ic-white" src="{{ asset('assets/img/user/common/ic_fire_white.svg') }}"

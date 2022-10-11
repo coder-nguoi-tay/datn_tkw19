@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Components\CommonComponent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -32,4 +33,16 @@ class EventFile extends Model
      * @var array
      */
     protected $fillable = ['event_id', 'file_name', 'file_url', 'type', 'created_at', 'updated_at', 'deleted_at'];
+
+    protected $appends = ['path', 'full_url'];
+
+    public function getPathAttribute()
+    {
+        return 'events/'.$this->event_id.'/'.$this->file_url;
+    }
+
+    public function getFullUrlAttribute()
+    {
+        return CommonComponent::fullUrl('events/'.$this->event_id.'/'.$this->file_url);
+    }
 }

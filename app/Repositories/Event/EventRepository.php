@@ -52,7 +52,10 @@ class EventRepository extends BaseController implements EventInterface
             'category',
             'eventTags',
             'eventTags.tag',
+            'user',
+            'eventCondition',
         ])
+        ->where('created_user_id', Auth::guard('user')->user()->id)
         ->where(function ($q) {
             $q->orWhere(function ($q) {
                 $q->where('publish_flag', PublishStatus::UNPUBLISH);
@@ -60,15 +63,44 @@ class EventRepository extends BaseController implements EventInterface
             });
             $q->orWhere(function ($q) {
                 $q->where('publish_flag', PublishStatus::PUBLISH);
-                $q->where('publish_end_datetime', '>=', PublishStatus::PUBLISH);
+                $q->where('publish_end_datetime', '>=', Carbon::now());
             });
         })->orderBy('publish_end_datetime', 'DESC')->get();
-        // TODO: Implement get() method.
+    }
+
+    public function close()
+    {
+        return $this->event
+        ->with([
+            'category',
+            'eventTags',
+            'eventTags.tag',
+            'user',
+            'eventCondition',
+        ])
+        ->where('created_user_id', Auth::guard('user')->user()->id)
+        ->where(function ($q) {
+            $q->where('publish_flag', PublishStatus::PUBLISH);
+            $q->where('publish_end_datetime', '<', Carbon::now());
+        })->orderBy('publish_end_datetime', 'DESC')->get();
     }
 
     public function getById($id)
     {
         // TODO: Implement getById() method.
+    }
+
+    public function eventOfUser($id)
+    {
+        return $this->event
+            ->with([
+                'eventRewards',
+                'eventCondition',
+                'eventFiles',
+            ])->where([
+                ['created_user_id', Auth::guard('user')->user()->id],
+                ['id', $id],
+            ])->first();
     }
 
     public function store($request, $userCardId)
@@ -81,6 +113,7 @@ class EventRepository extends BaseController implements EventInterface
             $eventNew->image_url = $request->image_path;
             $eventNew->category_id = $request->category_id;
             $eventNew->publish_flag = $request->publish_flag;
+            $eventNew->created_user_id = Auth::guard('user')->user()->id;
             if (! $request->publish_flag) {
                 $eventNew->reservation_date = Carbon::now()->addWeek(1);
             }
@@ -94,15 +127,12 @@ class EventRepository extends BaseController implements EventInterface
                 $eventNew->entry_fee = $request->entry_fee;
             }
             $total = 0;
-            $totalPerson = 0;
             foreach ($request->event_rewards as $key => $value) {
                 $total += $value['reward_amount'] * $value['quantity'];
-                $totalPerson += $value['quantity'];
             }
             $eventNew->reward_amount = $total;
-            $eventNew->reward_person = $totalPerson;
             $eventNew->publish_start_datetime = $request->publish_start_datetime;
-            $eventNew->publish_end_datetime = $request->publish_end_datetime;
+            $eventNew->publish_end_datetime = Carbon::parse($request->publish_start_datetime)->addDays($request->day_end);
             $eventNew->address = $request->address;
             if (! $eventNew->save()) {
                 DB::rollBack();
@@ -128,6 +158,7 @@ class EventRepository extends BaseController implements EventInterface
             $eventCondition->target_age_type = $request->target_age_type;
             if ($request->target_age_type) {
                 $eventCondition->target_age_from = $request->target_age_from;
+                $eventCondition->target_age_to = $request->target_age_to;
             }
             $eventCondition->limit_number_of_participants_flag = $request->limit_number_of_participants_flag;
             if ($request->limit_number_of_participants_flag) {

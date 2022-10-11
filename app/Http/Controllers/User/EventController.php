@@ -52,12 +52,10 @@ class EventController extends BaseController
      */
     public function index()
     {
-        $events = $this->event->get();
-        // dd($events->toArray());
+        // $events = $this->event->get();
         return view('user.event.index', [
             'title'=>'イベント企画',
-            'events' => $events,
-            'showName' => Auth::guard('user')->user()->show_name,
+            'events' => $this->event->get(),
         ]);
     }
 
@@ -122,7 +120,7 @@ class EventController extends BaseController
 
             return redirect()->route('event.create');
         }
-        $this->setFlash(__('success'), 'success');
+        $this->setFlashUser(__('イベントが投稿されました！！'), 'success');
 
         return redirect()->route('event.index');
     }
@@ -146,7 +144,20 @@ class EventController extends BaseController
      */
     public function edit($id)
     {
-        //
+        $event = $this->event->eventOfUser($id);
+        if (! $event) {
+            return redirect(route('event.index'));
+        }
+
+        return view('user.event.edit', [
+            'title'=>'イベント新規作成',
+            'categories' => $this->category->getOption(),
+            'areas' => $this->area->get(),
+            'prefectures' => $this->prefecture->get(),
+            'suggestTags' => $this->tag->get(),
+            'userCredit' => $this->userCredit->getLastUsing(),
+            'event' => $event,
+        ]);
     }
 
     /**
@@ -183,8 +194,16 @@ class EventController extends BaseController
     {
         if (! $this->event->tmp($id)) {
             $this->setFlash(__('エラーが発生しました。'), 'error');
-
-            return redirect()->route('event.create');
         }
+
+        return redirect()->route('event.index');
+    }
+
+    public function close()
+    {
+        return view('user.event.close', [
+            'title'=>'イベント企画',
+            'events' => $this->event->close(),
+        ]);
     }
 }

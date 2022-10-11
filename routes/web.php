@@ -83,7 +83,8 @@ Route::group([
     Route::post('/update-setting-notification/{id}', [ProfileController::class, 'updateSettingNotification'])->name('user.profile.notification');
     Route::resource('profile', ProfileController::class);
     Route::resource('event', EventController::class);
-    Route::post('event-tmp/{id}', [EventController::class, 'tmp']);
+    Route::get('event-tmp/{id}', [EventController::class, 'tmp']);
+    Route::get('event-close', [EventController::class, 'close'])->name('event.close');
     Route::post('search-tag', [EventController::class, 'tag'])->name('search-tag');
     Route::post('upload', [UpLoadFileController::class, 'upload'])->name('upload');
 });

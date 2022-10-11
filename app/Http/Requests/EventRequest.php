@@ -33,13 +33,12 @@ class EventRequest extends FormRequest
     public function rules()
     {
         Validator::extend('exist_file', function ($attribute, $value, $parameters, $validator) {
-            // $data = $validator->getData();
-            // $nameExp = explode('.', $attribute);
-            // if (isset($data[$nameExp[0]][$nameExp[1]][$parameters[0]]) && ! empty($data[$nameExp[0]][$nameExp[1]][$parameters[0]])) {
-            //     return Storage::disk('public')->has('bukken-image/'.$bukken->id.'/'.$value);
-            // }
-
             return CommonComponent::fileExist($value);
+        });
+        Validator::extend('compareValueLeftThan', function ($attribute, $value, $parameters, $validator) {
+            $data = $validator->getData();
+
+            return $value <= $data[$parameters[0]];
         });
         $data = $this->all();
         // dd($data);
@@ -119,7 +118,8 @@ class EventRequest extends FormRequest
             'company_name' => 'required|max:255',
             'meet_condition' => 'required|max:2000',
             'publish_start_datetime' => 'required|date_format:Y/m/d H:i',
-            'publish_end_datetime' => 'required|date_format:Y/m/d H:i|after_or_equal:publish_start_datetime',
+            'day_end' => 'required|integer|between:1,7',
+            // 'publish_end_datetime' => 'required|date_format:Y/m/d H:i|after_or_equal:publish_start_datetime',
             'event_rewards' => [
                 'required',
                 'array',
@@ -129,7 +129,26 @@ class EventRequest extends FormRequest
             'event_rewards.*.quantity' => 'required|integer|min:1',
         ];
         if (isset($data['target_age_type']) && $data['target_age_type']) {
-            $rule['target_age_from'] = 'required|max:255';
+            $rule['target_age_from'] = [
+                'nullable',
+                'required_if:target_age_to,==,""',
+                'integer',
+                'between:1,100',
+            ];
+            $rule['target_age_to'] = 'nullable|integer|between:1,100';
+            if (! isset($data['target_age_from']) || ! $data['target_age_from']) {
+                $rule['target_age_to'] = 'required|integer|between:1,100';
+            }
+            if (! isset($data['target_age_to']) || ! $data['target_age_to']) {
+                $rule['target_age_from'] = [
+                    'required',
+                    'integer',
+                    'between:1,100',
+                ];
+            }
+            if (isset($data['target_age_from']) && $data['target_age_from'] && isset($data['target_age_to']) && $data['target_age_to']) {
+                $rule['target_age_from'][] = 'compareValueLeftThan:target_age_to';
+            }
         }
         if (isset($data['limit_number_of_participants_flag']) && $data['limit_number_of_participants_flag']) {
             $rule['limit_number_of_participants'] = 'required|integer|min:1';
@@ -147,7 +166,7 @@ class EventRequest extends FormRequest
                 ];
             }
         }
-
+        // dd($rule);
         return $rule;
     }
 }

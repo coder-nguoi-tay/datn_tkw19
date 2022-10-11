@@ -1,14 +1,11 @@
 @extends('layouts.user')
 @section('content')
-    <event-list
+    <event-close
         :data="{{ json_encode([
             'events' => $events,
-            'flashPage' => session()->has('Message.flashPage') ? session()->get('Message.flashPage')[0] : null,
+            'urlList' => route('event.index'),
             'urlCreate' => route('event.create'),
             'urlClose' => route('event.close'),
         ]) }}">
-    </event-list>
-    @php
-        session()->forget('Message.flashPage');
-    @endphp
+    </event-close>
 @endsection

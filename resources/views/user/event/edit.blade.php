@@ -7,10 +7,12 @@ if (isset($errors) && count($errors)) {
 @section('content')
     <event-form
         :data="{{ json_encode([
+            'editMode' => true,
             'urlStore' => route('event.store'),
             'urlEventList' => route('event.index'),
             'urlUploadFile' => route('upload'),
             'urlSearchTag' => route('search-tag'),
+            'event' => $event,
             'categories' => $categories,
             'areas' => $areas,
             'prefectures' => $prefectures,

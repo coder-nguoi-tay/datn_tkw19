@@ -16,10 +16,19 @@ const app = createApp({})
 defineRule(
     'compareValueLeftThan',
     (value, [target], ctx) => {
-        if (ctx.form[target] != '') {
+        if (value && ctx.form[target]) {
             return parseInt(value) < parseInt(ctx.form[target])
         }
         return true
+    },
+    {
+        hasTarget: true
+    }
+)
+defineRule(
+    'required_if',
+    (value, [target], ctx) => {
+        return !ctx.form[target] && !value ? false : true
     },
     {
         hasTarget: true
@@ -44,6 +53,7 @@ import EventReport from './components/eventReport/index.vue'
 import ChangeName from './components/user/changeName/index.vue'
 import Notification from './components/user/profile/setting-notification.vue'
 import EventList from './components/user/event/index.vue'
+import EventClose from './components/user/event/close.vue'
 import PopupAlert from './components/common/popupAlert.vue'
 import MyPageEarn from './components/myPage/earn.vue'
 
@@ -62,6 +72,7 @@ app.component('profile', Profile)
 app.component('change-name', ChangeName)
 app.component('setting-notification', Notification)
 app.component('event-list', EventList)
+app.component('event-close', EventClose)
 app.component('my-page-earn', MyPageEarn)
 
 app.mount('#app')

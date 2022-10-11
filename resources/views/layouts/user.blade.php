@@ -29,12 +29,17 @@
         ) !!};
     </script>
 </head>
+@php
+$routeName = \Route::currentRouteName();
+$routeEvent = ['event.index', 'event.create'];
+@endphp
 
 <body class="c-app">
     <div id="app">
         <div class="wrapper d-flex flex-column min-vh-100 overflow-hidden">
             {{-- @include('include.user.header') --}}
-            <div class="main-content">
+            <div
+                class="main-content {{ $routeName == 'event.create' || $routeName == 'event.edit' ? 'main-content-event' : '' }}">
                 @yield('content')
             </div>
             @include('include.user.footer')

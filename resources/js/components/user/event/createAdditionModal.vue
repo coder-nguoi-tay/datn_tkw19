@@ -38,6 +38,7 @@
                   class="form-check-input chk-area"
                   :id="'area_id_' + area.id"
                   :value="area.id"
+                  :checked="areaIds.find((x) => x == area.id) ? true : false"
                 />
                 <label
                   class="form-check-label label"
@@ -81,7 +82,10 @@ export default {
   components: {},
   props: ['data', 'eventArea'],
   data: function () {
-    return {}
+    return {
+      areaIds: [],
+      prefIds: []
+    }
   },
   created() {
     let that = this
@@ -126,6 +130,10 @@ export default {
       }
       that.updateArea()
     })
+    if (this.editMode) {
+      this.areaIds = this.data.event.events_area.area_id
+      this.prefIds = this.data.event.events_area.pref_id
+    }
   },
   methods: {
     updateArea() {

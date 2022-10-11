@@ -6,7 +6,11 @@ interface EventInterface
 {
     public function get();
 
+    public function close();
+
     public function getById($id);
+
+    public function eventOfUser($id);
 
     public function tmp($id);
 

@@ -83,7 +83,7 @@
   }
 
   .ongoing-list {
-    margin-top: 20px;
+    margin-bottom: 20px;
 
     .event-item__wrapper {
       margin-bottom: 16px;
@@ -406,7 +406,7 @@
     padding: 8px;
     background-color: #fff;
     position: fixed;
-    bottom: 65px;
+    bottom: 48px;
     width: 100%;
     left: 0;
     z-index: 999;
@@ -999,5 +999,23 @@
         position: absolute;
         right: 10px;
         bottom: 7px;
+    }
+}
+.btn-create-event:hover {
+    color:white !important
+}
+
+.d-btn-create-event {
+    position: fixed;
+    bottom: 100px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    bottom: 60px;
+    .btn-create-event {
+        width: 230px;
+        height: 37px;
+        font-size: 16px;
+        line-height: 37px;
     }
 }

@@ -147,7 +147,7 @@
                     accept="image/*"
                     @change="changeFile($event, 2)"
                     :rules="
-                      data.isEdit
+                      model.image_path
                         ? 'image|size:10240'
                         : 'required|image|size:10240'
                     "
@@ -198,7 +198,7 @@
                     multiple
                     @change="changeFile($event, 3)"
                     :rules="
-                      data.isEdit
+                      image_details.length != 0
                         ? 'image|size:10240'
                         : 'required|image|size:10240'
                     "
@@ -273,7 +273,8 @@
                     as="select"
                     name="category_id"
                     rules="required"
-                    class="form-control select-placeholder"
+                    class="form-control"
+                    :class="{ 'select-placeholder': !model.category_id }"
                     v-model="model.category_id"
                     @change="selectPlaceholder($event)"
                   >
@@ -450,7 +451,7 @@
                       type="number"
                       ref="target_age_from"
                       v-model="model.event_condition.target_age_from"
-                      rules="required|min_value:1|max_value:100|compareValueLeftThan:target_age_to"
+                      rules="required_if:target_age_to|min_value:1|max_value:100|compareValueLeftThan:target_age_to"
                       class="form-control w-160 d-inline-block"
                     />
                     <label class="label ml-6 mr-6">~</label>
@@ -460,7 +461,7 @@
                       id="target_age_to"
                       ref="target_age_to"
                       v-model="model.event_condition.target_age_to"
-                      rules="required|min_value:1|max_value:100"
+                      rules="required_if:target_age_from|min_value:1|max_value:100"
                       class="form-control w-160 d-inline-block"
                     />
                   </div>
@@ -470,6 +471,7 @@
                     v-if="validFrom"
                     name="target_age_to"
                   />
+
                   <div class="form-text mt-8">
                     10歳以上20歳未満の場合は、例のように半角英数字と『-（半角ハイフン）』を使用ください。なお、複数ある場合は『,（半角カンマ）』を区切り文字として使用ください。
                   </div>
@@ -860,7 +862,7 @@
                   <span class="ic-arrow"
                     ><img src="/assets/img/user/event/ic_arrow_down.svg" alt=""
                   /></span>
-                  <ErrorMessage class="error-msg" name="publish_end_datetime" />
+                  <ErrorMessage class="error-msg" name="day_end" />
                 </div>
               </div>
               <div class="form-group form-datetime">
@@ -1083,12 +1085,12 @@ export default {
             required: '達成条件を入力してください。',
             max: '達成条件は2000文字を超えてはなりません。'
           },
-          //   publish_start_datetime: {
-          //     required: '公開期間を入力してください。'
-          //   },
-          publish_end_datetime: {
-            required: '開始日時を入力してください。'
+          publish_start_datetime: {
+            required: '公開期間を入力してください。'
           },
+          //   publish_end_datetime: {
+          //     required: '開始日時を入力してください。'
+          //   },
           day_end: {
             required: '開催期間を入力してください。'
           }
@@ -1110,6 +1112,23 @@ export default {
         })
         .catch((error) => {})
     })
+    if (this.editMode) {
+      this.model = this.data.event
+      this.data.event.event_files.map(function (item) {
+        item.file_url = item.full_url
+        return item
+      })
+      this.model.target_gender = this.data.event.event_condition.target_gender
+      this.attachment_files = this.data.event.event_files.filter(
+        (x) => x.type == 1
+      )
+      this.image_details = this.data.event.event_files.filter(
+        (x) => x.type == 3
+      )
+      console.log(this.image_details)
+      this.model.image_url = this.data.event.image_full_url
+      this.model.image_path = this.data.event.path
+    }
     this.setMessageError()
   },
   setup() {
@@ -1183,7 +1202,8 @@ export default {
       tags: [],
       GENDER_OPTIONS,
       lastSearch: '',
-      validFrom: false
+      validFrom: false,
+      editMode: this.data.editMode
     }
   },
   props: ['data'],
@@ -1441,7 +1461,7 @@ export default {
 }
 </script>
 <style>
-.main-content {
+.main-content-event {
   overflow-x: hidden;
   height: 100%;
   width: 100%;
