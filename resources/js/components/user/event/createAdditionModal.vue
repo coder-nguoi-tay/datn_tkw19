@@ -23,8 +23,10 @@
               <input
                 type="checkbox"
                 class="form-check-input"
+                name="check_all"
                 id="check-all"
                 value="1"
+                :checked="data.event.events_area.check_all == 1"
               />
               <label class="form-check-label label" for="check-all">全国</label>
             </div>
@@ -62,6 +64,7 @@
                   name="pref_id[]"
                   :data-area-id="area.id"
                   :value="pref.id"
+                  :checked="prefIds.find((x) => x == pref.id) ? true : false"
                 />
                 <label
                   class="form-check-label label"
@@ -130,9 +133,12 @@ export default {
       }
       that.updateArea()
     })
-    if (this.editMode) {
+    if (this.data.editMode) {
       this.areaIds = this.data.event.events_area.area_id
       this.prefIds = this.data.event.events_area.pref_id
+      setTimeout(function () {
+        that.updateArea()
+      }, 500)
     }
   },
   methods: {

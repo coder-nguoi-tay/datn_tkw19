@@ -33,6 +33,7 @@
         "bootstrap": "^5.1.3",
         "coc-php-cs-fixer": "^0.7.1",
         "core-js": "^3.19.0",
+        "dayjs": "^1.11.5",
         "jquery": "^3.6.0",
         "mini-css-extract-plugin": "^2.6.0",
         "vee-validate": "^4.5.10",

@@ -47,6 +47,7 @@ class Event extends Model
         'events_area' => 'array',
         'reservation_date' => 'datetime:Y/m/d',
         'publish_start_datetime' => 'datetime:Y/m/d H:i',
+        'publish_end_datetime' => 'datetime:Y/m/d H:i',
     ];
 
     protected function asJson($value)
@@ -54,7 +55,12 @@ class Event extends Model
         return json_encode($value, JSON_UNESCAPED_UNICODE);
     }
 
-    protected $appends = ['is_publish', 'waiting_publish', 'image_full_url', 'remaining_day', 'remaining_hour', 'remaining_minute', 'path'];
+    protected $appends = ['is_publish', 'waiting_publish', 'image_full_url', 'remaining_day', 'remaining_hour', 'remaining_minute', 'path', 'day_end'];
+
+    public function getDayEndAttribute()
+    {
+        return $this->publish_end_datetime->diffInDays($this->publish_start_datetime);
+    }
 
     public function getIsPublishAttribute()
     {

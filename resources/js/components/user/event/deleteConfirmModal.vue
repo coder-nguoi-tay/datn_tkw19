@@ -27,7 +27,9 @@
               >
                 編集を続ける
               </button>
-              <a href="#" class="btn-modal btn-delete">下書きを削除する</a>
+              <button @click="deleteEvent" class="btn-modal btn-delete">
+                下書きを削除する
+              </button>
             </div>
           </div>
         </div>
@@ -35,3 +37,32 @@
     </div>
   </div>
 </template>
+
+<script>
+import $ from 'jquery'
+import axios from 'axios'
+export default {
+  components: {},
+  props: ['data', 'eventArea'],
+  data: function () {
+    return {
+      areaIds: [],
+      prefIds: []
+    }
+  },
+  created() {},
+  methods: {
+    deleteEvent() {
+      $('.loading-div').removeClass('hidden')
+      axios
+        .delete(this.data.urlDelete)
+        .then(function (response) {
+          location.reload()
+        })
+        .catch((error) => {
+          $('.loading-div').addClass('hidden')
+        })
+    }
+  }
+}
+</script>

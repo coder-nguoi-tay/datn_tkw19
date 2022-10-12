@@ -11,7 +11,7 @@
   <div class="event-list h-100">
     <div class="container event-list__container h-100">
       <div class="event-list__wrapper" v-if="data.events.length">
-        <div class="cat-list draft-list">
+        <div class="cat-list draft-list mb-16">
           <h3 class="event-cat-title">
             下書き中({{
               data.events.filter((x) => x.publish_flag == 0).length
@@ -44,7 +44,7 @@
             開催中({{ data.events.filter((x) => x.is_publish).length }})
           </h3>
           <div
-            class="event-item__container"
+            class="event-item__container mb-16"
             v-for="item in data.events.filter((x) => x.is_publish)"
             :key="item.id"
           >
@@ -128,7 +128,7 @@
             </div>
           </div>
         </div>
-        <div class="cat-list ongoing-list reserved-list">
+        <div class="cat-list ongoing-list reserved-list mb-50">
           <h3 class="event-cat-title">
             予約中({{ data.events.filter((x) => x.waiting_publish).length }})
           </h3>

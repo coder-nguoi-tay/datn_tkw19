@@ -16,7 +16,7 @@ interface EventInterface
 
     public function store($request, $userCardId);
 
-    public function update($request, $id);
+    public function update($request, $id, $userCardId);
 
     public function destroy($id);
 }

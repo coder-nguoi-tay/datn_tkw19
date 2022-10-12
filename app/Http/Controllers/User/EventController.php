@@ -52,7 +52,7 @@ class EventController extends BaseController
      */
     public function index()
     {
-        // $events = $this->event->get();
+        // dd($this->event->get()->toArray());
         return view('user.event.index', [
             'title'=>'イベント企画',
             'events' => $this->event->get(),
@@ -167,8 +167,47 @@ class EventController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EventRequest $request, $id)
     {
+        $customerId = Auth::guard('user')->user()->customer_id;
+        if (! $customerId) {
+            $customer = StripeComponent::createCustomer(Auth::guard('user')->user()->email, Auth::guard('user')->user()->show_name);
+            if (! $customer) {
+                $this->setFlash(__('エラーが発生しました。'), 'error');
+
+                return redirect()->route('event.create');
+            }
+            $customerId = $customer->id;
+            if (! $this->user->updateCustomerId($customerId)) {
+                $this->setFlash(__('エラーが発生しました。'), 'error');
+
+                return redirect()->route('event.create');
+            }
+        }
+        $userCardId = $request->event_credit['user_credit_id'];
+        if ($request->card_id) {
+            $cardInfo = StripeComponent::addCustomerCard($customerId, $request->card_id);
+            if (! $cardInfo) {
+                $this->setFlash(__('エラーが発生しました。'), 'error');
+
+                return redirect()->route('event.create');
+            }
+            $userCreditCard = $this->userCredit->store($cardInfo);
+            if (! $userCreditCard) {
+                $this->setFlash(__('エラーが発生しました。'), 'error');
+
+                return redirect()->route('event.create');
+            }
+            $userCardId = $userCreditCard->id;
+        }
+        if (! $this->event->update($request, $id, $userCardId)) {
+            $this->setFlash(__('エラーが発生しました。'), 'error');
+
+            return redirect()->route('event.create');
+        }
+        $this->setFlashUser(__('イベントが投稿されました！！'), 'success');
+
+        return redirect()->route('event.index');
         //
     }
 
@@ -180,7 +219,9 @@ class EventController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        return response()->json([
+            'data' => $this->event->destroy($id),
+        ], StatusCode::OK);
     }
 
     public function tag(Request $request)

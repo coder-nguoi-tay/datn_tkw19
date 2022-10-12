@@ -22,6 +22,12 @@
           id="formData"
         >
           <input type="hidden" :value="csrfToken" name="_token" />
+          <input
+            type="hidden"
+            v-if="data.editMode"
+            value="PUT"
+            name="_method"
+          />
           <div class="event-create__wrapper" v-show="step == 1">
             <p class="create-note">
               こちらから自由にイベントを開催することができます。ただし、すべてのイベントは<a
@@ -389,12 +395,11 @@
                       type="checkbox"
                       rules="required"
                       @change="changeGender"
-                      v-model="model.event_condition.target_gender"
                       :value="item.value"
                     >
                       <input
                         type="checkbox"
-                        class="form-check-input"
+                        class="form-check-input check-gender"
                         :id="'gender_' + item.value"
                         name="target_gender"
                         v-bind="field"
@@ -676,7 +681,7 @@
                   <Field
                     name="address"
                     type="text"
-                    v-model="model.event_condition.address"
+                    v-model="model.address"
                     rules="required|max:255"
                     class="form-control"
                     placeholder="東京都千代田区永田町"
@@ -850,7 +855,8 @@
                     as="select"
                     name="day_end"
                     rules="required"
-                    class="form-control select-placeholder"
+                    class="form-control"
+                    :class="{ 'select-placeholder': !model.day_end }"
                     v-model="model.day_end"
                     @change="selectPlaceholder($event)"
                   >
@@ -884,12 +890,6 @@
                       v-model="model.publish_start_datetime"
                       :monthChangeOnScroll="false"
                       locale="ja"
-                      :maxDate="
-                        model.publish_end_datetime
-                          ? new Date(model.publish_end_datetime)
-                          : null
-                      "
-                      :maxTime="setMaxTime()"
                       name="publish_start_datetime"
                       selectText="選択"
                       cancelText="閉じる"
@@ -916,7 +916,7 @@
           ></FormConfirm>
           <div class="event-btn btn-container">
             <button
-              v-if="step == 1 && data.isEdit"
+              v-if="step == 1 && data.editMode"
               class="btn-event-outline btn-cancel"
               type="button"
               data-bs-toggle="modal"
@@ -967,7 +967,7 @@
       </VeeForm>
     </div>
 
-    <ConfirmModal></ConfirmModal>
+    <ConfirmModal :data="data"></ConfirmModal>
   </div>
 </template>
 
@@ -995,7 +995,7 @@ import '@vuepic/vue-datepicker/dist/main.css'
 
 const MAX_FILE_SIZE_IN_MB = 10
 const GENDER_OPTIONS = [
-  { value: 0, text: 'すべて' },
+  { value: 5, text: 'すべて' },
   { value: 1, text: '男' },
   { value: 2, text: '女' },
   { value: 3, text: 'その他' },
@@ -1051,13 +1051,13 @@ export default {
             required: '対象の性別を入力してください。'
           },
           target_age_from: {
-            required: '年齢を詳細指定を入力してください。',
+            required_if: '年齢を詳細指定を入力してください。',
             compareValueLeftThan: '開始年齢が終了年齢より若い',
             min_value: '0 ～ 100 の値',
             max_value: '0 ～ 100 の値'
           },
           target_age_to: {
-            required: '年齢を詳細指定を入力してください。',
+            required_if: '年齢を詳細指定を入力してください。',
             min_value: '0 ～ 100 の値',
             max_value: '0 ～ 100 の値'
           },
@@ -1101,33 +1101,36 @@ export default {
       generateMessage: localize(messError)
     })
     let that = this
-    defineRule('unique_telephone', (value) => {
-      return axios
-        .post(that.data.urlCheckPhone, {
-          _token: Laravel.csrfToken,
-          phone_number: (that.data.VN_MODE ? '+84' : '+81') + value
-        })
-        .then(function (response) {
-          return response.data.valid
-        })
-        .catch((error) => {})
-    })
     if (this.editMode) {
       this.model = this.data.event
       this.data.event.event_files.map(function (item) {
         item.file_url = item.full_url
         return item
       })
-      this.model.target_gender = this.data.event.event_condition.target_gender
+      //   this.model.target_gender = this.data.event.event_condition.target_gender
+      setTimeout(function () {
+        $('.check-gender').each(function () {
+          if (
+            that.data.event.event_condition.target_gender.find(
+              (x) => x == $(this).attr('value')
+            )
+          ) {
+            $(this).click()
+          }
+        })
+      }, 1000)
+
       this.attachment_files = this.data.event.event_files.filter(
         (x) => x.type == 1
       )
       this.image_details = this.data.event.event_files.filter(
         (x) => x.type == 3
       )
-      console.log(this.image_details)
       this.model.image_url = this.data.event.image_full_url
       this.model.image_path = this.data.event.path
+      this.model.event_tags = this.data.event.event_tags.map(function (item) {
+        return item.tag.name
+      })
     }
     this.setMessageError()
   },
@@ -1216,6 +1219,7 @@ export default {
       this.$refs.formConfirm.tokenCreated()
     },
     updateCreateCard(val) {
+      console.log(val)
       this.isCreateCard = val
     },
     changeGender() {

@@ -8,7 +8,8 @@ if (isset($errors) && count($errors)) {
     <event-form
         :data="{{ json_encode([
             'editMode' => true,
-            'urlStore' => route('event.store'),
+            'urlDelete' => route('event.destroy', $event->id),
+            'urlStore' => route('event.update', $event->id),
             'urlEventList' => route('event.index'),
             'urlUploadFile' => route('upload'),
             'urlSearchTag' => route('search-tag'),

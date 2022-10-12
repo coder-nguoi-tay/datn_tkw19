@@ -275,18 +275,16 @@
       </h2>
       <div class="d-group">
         <div class="form-group">
-          <label class="form-label">公開期間</label>
+          <label class="form-label">開催期間</label>
           <div>
-            <label class="lbl-value">
-              {{ model.publish_end_datetime }}
-            </label>
+            <label class="lbl-value"> {{ model.day_end }}日 </label>
           </div>
         </div>
         <div class="form-group">
           <label class="form-label">開始日時</label>
           <div>
             <label class="lbl-value">
-              {{ model.publish_start_datetime }}
+              {{ formatDate(model.publish_start_datetime) }}
             </label>
           </div>
         </div>
@@ -383,6 +381,7 @@
 </template>
 <script>
 import $ from 'jquery'
+import dayjs from 'dayjs'
 import { StripeElements, StripeElement } from 'vue-stripe-js'
 import { Form as VeeForm, Field, ErrorMessage, configure } from 'vee-validate'
 import { localize } from '@vee-validate/i18n'
@@ -452,10 +451,15 @@ export default {
             }, 500)
           }
         })
+    },
+    formatDate(dateString) {
+      const date = dayjs(dateString)
+      // Then specify how you want your dates to be formatted
+      return date.format('YYYY/MM/DD HH:mm')
     }
   },
   watch: {
-    card_id() {
+    credit_id() {
       this.$emit('updateCreateCard', this.card_id == 0)
     }
   }
