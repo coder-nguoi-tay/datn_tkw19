@@ -1,16 +1,41 @@
 <template>
   <div class="container my-page">
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content profile-modal-content">
-          <img src="/assets/img/my_page/icon_modal_close.png" class="profile-modal-close" alt="" data-bs-dismiss="modal" aria-label="Close">
+          <img
+            src="/assets/img/my_page/icon_modal_close.png"
+            class="profile-modal-close"
+            alt=""
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          />
           <div class="modal-body profile-modal-body">
-            <img src="/assets/img/my_page/icon_share_black.png" class="profile-modal-share" alt="">
+            <img
+              src="/assets/img/my_page/icon_share_black.png"
+              class="profile-modal-share"
+              alt=""
+            />
             <div class="profile-modal-img">
-              <img src="/assets/img/my_page/my_page_modal.png" alt="">
+              <img src="/assets/img/my_page/my_page_modal.png" alt="" />
             </div>
-            <div class="profile-modal-name d-flex align-items-center justify-content-center">秘密の地図</div>
+            <div
+              class="
+                profile-modal-name
+                d-flex
+                align-items-center
+                justify-content-center
+              "
+            >
+              秘密の地図
+            </div>
             <div class="profile-modal-des">
               #アドベンチャータグ が付けたイベントを2回以上企画したユー
               ザーへの記念アイテム。地図には宝の在処が記されているという
@@ -32,42 +57,87 @@
     </div>
     <!-- /Modal -->
 
-    <div class="profile-banner d-flex justify-content-between" style="background-image: url('/assets/img/my_page/my_page_banner.png');">
-      <div class="profile-banner-top d-flex align-items-center justify-content-center">
+    <div
+      class="profile-banner d-flex justify-content-between"
+      style="background-image: url('/assets/img/my_page/my_page_banner.png')"
+    >
+      <div
+        class="
+          profile-banner-top
+          d-flex
+          align-items-center
+          justify-content-center
+        "
+      >
         <div class="profile-banner-left d-flex align-items-center">
-          <a :href="data.urlEarn"><img src="/assets/img/my_page/icon_pig.png" class="icon_pig" alt=""></a>
-          <img src="/assets/img/my_page/icon_metro_profile.png" class="icon_metro_profile" alt="">
+          <a :href="data.urlEarn"
+            ><img
+              src="/assets/img/my_page/icon_pig.png"
+              class="icon_pig"
+              alt=""
+          /></a>
+          <img
+            src="/assets/img/my_page/icon_metro_profile.png"
+            class="icon_metro_profile"
+            alt=""
+          />
         </div>
         <div class="profile-banner-center">tanaka_tarou</div>
         <div class="profile-banner-right">
           <a href="#" @click.prevent="showSettingSidebar" class="btn-setting">
-            <img src="/assets/img/my_page/icon_settings.png" class="icon_settings" alt="">
+            <img
+              src="/assets/img/my_page/icon_settings.png"
+              class="icon_settings"
+              alt=""
+            />
           </a>
         </div>
       </div>
       <div class="profile-banner-bottom d-flex justify-content-between">
-        <div class="profile-banner-share d-flex" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          <img src="/assets/img/my_page/icon_share.png" class="icon_share" alt="">
+        <div
+          class="profile-banner-share d-flex"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          <img
+            src="/assets/img/my_page/icon_share.png"
+            class="icon_share"
+            alt=""
+          />
         </div>
         <div class="profile-banner-edit d-flex">
-          <img src="/assets/img/my_page/icon_edit_banner.png" class="icon_edit_banner" alt="">
+          <img
+            src="/assets/img/my_page/icon_edit_banner.png"
+            class="icon_edit_banner"
+            alt=""
+          />
         </div>
       </div>
     </div>
 
     <div class="profile-user">
       <div class="profile-user-avatar">
-        <img src="/assets/img/avatars/avatar_1.png" alt="">
-        <div class="profile-user-avatar-edit d-flex justify-content-center align-items-center">
-          <img src="/assets/img/my_page/icon_edit_avatar.png" class="icon_edit_avatar" alt="">
+        <img src="/assets/img/avatars/avatar_1.png" alt="" />
+        <div
+          class="
+            profile-user-avatar-edit
+            d-flex
+            justify-content-center
+            align-items-center
+          "
+        >
+          <img
+            src="/assets/img/my_page/icon_edit_avatar.png"
+            class="icon_edit_avatar"
+            alt=""
+          />
         </div>
       </div>
       <div class="profile-user-name">田中 太郎</div>
       <div class="profile-user-subname">ゴッドファーザー</div>
       <div class="profile-user-des">
         私はイベントを企画するのが大好きです😳😈面白いイベント
-        にたくさんチャレンジ👑するので、ぜひ参加ご応募お願いい
-        たします😮🙋😮😮
+        にたくさんチャレンジ👑するので、ぜひ参加ご応募お願いい たします😮🙋😮😮
       </div>
     </div>
 
@@ -113,54 +183,54 @@
       <div class="profile-collection-list">
         <div class="d-flex profile-collection-row justify-content-between">
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_01.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_01.png" alt="" />
           </div>
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_02.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_02.png" alt="" />
           </div>
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_03.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_03.png" alt="" />
           </div>
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_04.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_04.png" alt="" />
           </div>
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_05.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_05.png" alt="" />
           </div>
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_06.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_06.png" alt="" />
           </div>
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_07.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_07.png" alt="" />
           </div>
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_08.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_08.png" alt="" />
           </div>
         </div>
         <div class="d-flex profile-collection-row justify-content-between">
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_09.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_09.png" alt="" />
           </div>
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_10.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_10.png" alt="" />
           </div>
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_11.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_11.png" alt="" />
           </div>
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_12.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_12.png" alt="" />
           </div>
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_13.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_13.png" alt="" />
           </div>
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_14.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_14.png" alt="" />
           </div>
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_15.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_15.png" alt="" />
           </div>
           <div class="profile-collection-item">
-            <img src="/assets/img/my_page/icon_collection_16.png" alt="">
+            <img src="/assets/img/my_page/icon_collection_16.png" alt="" />
           </div>
         </div>
       </div>
@@ -171,13 +241,13 @@
       <div class="profile-heading">USER INFO</div>
       <div class="profile-info-row">
         <div class="profile-info-col">
-          <div class="profile-info-name">アカウント名</div>
+          <div class="profile-info-des">アカウント名</div>
           <div class="profile-info-des">性別</div>
           <div class="profile-info-des">活動地域</div>
           <div class="profile-info-des">活動形態</div>
         </div>
         <div class="profile-info-col">
-          <div class="profile-info-name">tanaka_tarou</div>
+          <div class="profile-info-des">tanaka_tarou</div>
           <div class="profile-info-des">男</div>
           <div class="profile-info-des">大阪府</div>
           <div class="profile-info-des">個人</div>
@@ -189,30 +259,29 @@
 </template>
 
 <script>
-import $ from 'jquery';
-import SettingSidebar from "./settingSidebar";
+import $ from 'jquery'
+import SettingSidebar from './settingSidebar'
 export default {
   created: function () {},
   data() {
-    return {
-    };
+    return {}
   },
   mounted() {},
   props: ['data'],
   components: {
-    SettingSidebar,
+    SettingSidebar
   },
   methods: {
     showSettingSidebar() {
-      $(document).ready(function() {
-        let sidebar = $('.setting-sidebar');
+      $(document).ready(function () {
+        let sidebar = $('.setting-sidebar')
         if (sidebar.hasClass('close-sidebar')) {
-          sidebar.removeClass('close-sidebar').addClass('open-sidebar');
+          sidebar.removeClass('close-sidebar').addClass('open-sidebar')
         } else {
-          sidebar.removeClass('open-sidebar').addClass('close-sidebar');
+          sidebar.removeClass('open-sidebar').addClass('close-sidebar')
         }
-      });
-    },
+      })
+    }
   }
-};
+}
 </script>

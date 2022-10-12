@@ -46,7 +46,6 @@ Route::post('register/verify-code', [RegisterController::class, 'verifyCode'])->
 Route::post('check-phone', [RegisterController::class, 'checkPhone'])->name('register.checkPhone');
 Route::resource('my-event', MyEventController::class);
 Route::get('/my-page/earn', [MyPageController::class, 'earn'])->name('myPage.earn');
-Route::resource('my-page', MyPageController::class);
 Route::resource('event-report', EventReportController::class);
 
 Route::resource('login', UserLoginController::class);
@@ -87,4 +86,5 @@ Route::group([
     Route::get('event-close', [EventController::class, 'close'])->name('event.close');
     Route::post('search-tag', [EventController::class, 'tag'])->name('search-tag');
     Route::post('upload', [UpLoadFileController::class, 'upload'])->name('upload');
+    Route::resource('my-page', MyPageController::class);
 });

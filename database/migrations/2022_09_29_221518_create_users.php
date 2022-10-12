@@ -45,6 +45,8 @@ class CreateUsers extends Migration
             $table->datetime('last_login_at')->nullable();
             $table->string('phone_number_change', 50)->nullable();
             $table->string('sms_code_change')->nullable();
+            $table->string('user_infor_display_flag')->default(1)->nullable();
+            $table->text('self_introduction')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
