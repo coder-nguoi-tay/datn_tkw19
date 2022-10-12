@@ -209,3 +209,27 @@
         background-color: #000000;
     }
 }
+.profile-container {
+    .form-group {
+        margin-bottom: 15px;
+    }
+    p.note {
+        font-size: 10px;
+        color: #777777;
+        margin-bottom: 8px;
+    }
+    .form-label {
+        margin-bottom: 3px !important;
+    }
+    .display-flag {
+        display: flex;
+        justify-content: space-between;
+    }
+    .btn-submit {
+        background: #E5352B;
+        color: #FFFFFF;
+        font-size: 12px;
+        height: 23px;
+        line-height: 0px;
+    }
+}

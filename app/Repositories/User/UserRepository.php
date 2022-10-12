@@ -248,35 +248,19 @@ class UserRepository extends BaseController implements UserInterface
 
     public function updateProfile($request, $id)
     {
-        try {
-            DB::beginTransaction();
-            $userInfo = $this->user->where('id', $id)->first();
-            if (! $userInfo) {
-                DB::rollBack();
-
-                return false;
-            }
-            $userInfo->show_name = $request->show_name;
-            $userInfo->gender = $request->gender;
-            $userInfo->birthday = $request->birthday;
-            $userInfo->prefecture_id = $request->prefecture_id;
-            $userInfo->city_id = $request->city_id;
-            if ($request['address_building']) {
-                $userInfo->address_building = $request->address_building;
-            }
-            if (! $userInfo->save()) {
-                DB::rollBack();
-
-                return false;
-            }
-            DB::commit();
-
-            return true;
-        } catch (\Throwable $th) {
-            DB::rollBack();
+        $userInfo = $this->user->where('id', Auth::guard('user')->user()->id)->first();
+        if (! $userInfo) {
+            return false;
         }
+        $userInfo->show_name = $request->show_name;
+        $userInfo->name = $request->name;
+        $userInfo->self_introduction = $request->self_introduction;
+        $userInfo->prefecture_id = $request->prefecture_id;
+        $userInfo->city_id = $request->city_id;
+        $userInfo->address_building = $request->address_building;
+        $userInfo->user_infor_display_flag = $request->user_infor_display_flag ? 1 : 0;
 
-        return false;
+        return $userInfo->save();
     }
 
     public function changeName($request)

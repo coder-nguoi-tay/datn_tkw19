@@ -30,26 +30,20 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         $data = $this->all();
-        $rule['show_name'] = ['required', 'max:255'];
-        $rule['gender'] = [
-            'required',
-            Rule::in(Gender::getValues()),
-        ];
-        $rule['birthday'] = 'required|date_format:Y/m/d|before_or_equal:'.Carbon::now()->format('Y/m/d');
-        $rule['prefecture_id'] = [
-            'required',
-            Rule::in(Prefecture::latest()->pluck('id')),
-        ];
-        $rule['city_id'] = [
-            'required',
-            Rule::in(City::latest()->where('prefecture_id', $data['prefecture_id'])->pluck('id')),
-        ];
-        if (isset($data['job_type'])) {
-            $rule['job_type'] = [
-                Rule::in(JobType::getValues()),
-            ];
-        }
 
-        return $rule;
+        return [
+            'show_name' => 'required|max:255',
+            'name' => 'required|max:255',
+            'self_introduction' => 'nullable|max:1000',
+            'address_building' => 'nullable|max:255',
+            'prefecture_id' => [
+                'nullable',
+                Rule::in(Prefecture::latest()->pluck('id')),
+            ],
+            'city_id' => [
+                'nullable',
+                Rule::in(City::latest()->where('prefecture_id', $data['prefecture_id'])->pluck('id')),
+            ],
+        ];
     }
 }

@@ -30,7 +30,7 @@ class ProfileController extends BaseController
     public function index()
     {
         return view('user.profile.index', [
-            'title' => 'ユーザー情報設定',
+            'title' => 'プロフィール設定',
             'prefectures' => $this->prefecture->get(),
             'cities' => $this->city->get(),
             'user' => Auth::guard('user')->user(),
@@ -89,14 +89,12 @@ class ProfileController extends BaseController
      */
     public function update(ProfileRequest $request, $id)
     {
-//        dd($request->all());
-        if ($this->user->updateProfile($request, $id)) {
-            $this->setFlash(__('代理店の新規作成が完了しました。'));
-
-            return redirect(route('my-event.index'));
+        if (! $this->user->updateProfile($request, $id)) {
+            $this->setFlash(__('更新できませんでした...'), 'error');
         }
+        $this->setFlash(__('更新されました！！'));
 
-        return back();
+        return redirect(route('profile.index'));
     }
 
     /**

@@ -26,7 +26,9 @@
                 name="check_all"
                 id="check-all"
                 value="1"
-                :checked="data.event.events_area.check_all == 1"
+                :checked="
+                  data.editMode && data.event.events_area.check_all == 1
+                "
               />
               <label class="form-check-label label" for="check-all">全国</label>
             </div>

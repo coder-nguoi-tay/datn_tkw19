@@ -2,17 +2,18 @@
   <div class="setting-sidebar close-sidebar">
     <UserHeader
       :data="{
-      prev: {
-        url: data.urlMyPage
-      },
-      page_name: 'システム設定'
-    }"
+        prev: {
+          url: data.urlMyPage,
+          closeModel: true
+        },
+        page_name: 'システム設定'
+      }"
     ></UserHeader>
     <div class="setting-container">
       <div class="setting-item">
         <p class="setting-title">アカウント設定</p>
         <div class="setting-nav">
-          <a href="#" class="s-nav-link">プロフィール設定</a>
+          <a href="/profile" class="s-nav-link">プロフィール設定</a>
           <a href="#" class="s-nav-link">ユーザー情報設定</a>
           <a href="#" class="s-nav-link">登録電話番号設定</a>
           <a href="#" class="s-nav-link">メールアドレス設定</a>
@@ -38,8 +39,12 @@
         <div class="setting-nav">
           <a href="#" class="s-nav-link" target="_blank">運営会社情報</a>
           <a href="#" class="s-nav-link" target="_blank">利用規約</a>
-          <a href="#" class="s-nav-link" target="_blank">プライバシーポリシー</a>
-          <a href="#" class="s-nav-link" target="_blank">特定商取引法に基づく表記</a>
+          <a href="#" class="s-nav-link" target="_blank"
+            >プライバシーポリシー</a
+          >
+          <a href="#" class="s-nav-link" target="_blank"
+            >特定商取引法に基づく表記</a
+          >
           <a href="#" class="s-nav-link" target="_blank">リリース最新情報</a>
           <a href="#" class="s-nav-link" target="_blank">リリース最新情報</a>
         </div>
@@ -48,10 +53,10 @@
   </div>
 </template>
 <script>
-import UserHeader from "../common/userHeader";
+import UserHeader from '../common/userHeader'
 export default {
   components: {
-    UserHeader,
+    UserHeader
   },
   props: ['data'],
   data: function () {
