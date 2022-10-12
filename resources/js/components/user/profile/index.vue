@@ -139,6 +139,7 @@
                   <Toggle
                     name="user_infor_display_flag"
                     v-model="model.user_infor_display_flag"
+                    class="toggle-flag"
                     on-label=""
                     off-label=""
                   />
