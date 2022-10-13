@@ -59,6 +59,10 @@ class UserSettingRequest extends FormRequest
                 'required',
                 Rule::in(Gender::getValues()),
             ];
+            $rule['industry_id'] = [
+                'nullable',
+                Rule::in(IndustryBroad::latest()->pluck('id')),
+            ];
         } else {
             $rule['name'] = 'required|max:255';
             $rule['name_kana'] = [

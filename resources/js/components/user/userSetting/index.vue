@@ -277,37 +277,38 @@
                   />
                 </div>
               </template>
-              <template v-else-if="data.user.type == 2 || data.user.type == 3">
-                <div class="form-group">
-                  <label class="form-label" require>業種</label>
-                  <div class="custom-input">
-                    <Field
-                      name="industry_id"
-                      rules="required"
-                      as="select"
-                      v-model="model.industry_id"
-                      class="form-control"
-                      :class="{ 'select-placeholder': !model.industry_id }"
+              <div class="form-group">
+                <label class="form-label" v-if="data.user.type == 1" optional
+                  >業種</label
+                >
+                <label class="form-label" v-else require>業種</label>
+                <div class="custom-input">
+                  <Field
+                    name="industry_id"
+                    :rules="data.user.type == 1 ? '' : 'required'"
+                    as="select"
+                    v-model="model.industry_id"
+                    class="form-control"
+                    :class="{ 'select-placeholder': !model.industry_id }"
+                  >
+                    <option value="" disabled selected>
+                      -- 業種を選択してください --
+                    </option>
+                    <option
+                      v-for="item in data.industries"
+                      :key="item.id"
+                      :value="item.id"
                     >
-                      <option value="" disabled selected>
-                        -- 業種を選択してください --
-                      </option>
-                      <option
-                        v-for="item in data.industries"
-                        :key="item.id"
-                        :value="item.id"
-                      >
-                        {{ item.label }}
-                      </option>
-                    </Field>
-                    <span class="ic-arrow"
-                      ><img
-                        src="/assets/img/user/event/ic_arrow_down.svg"
-                        alt=""
-                    /></span>
-                    <ErrorMessage class="error-msg" name="industry_id" />
-                  </div>
+                      {{ item.label }}
+                    </option>
+                  </Field>
+                  <span class="ic-arrow"
+                    ><img src="/assets/img/user/event/ic_arrow_down.svg" alt=""
+                  /></span>
+                  <ErrorMessage class="error-msg" name="industry_id" />
                 </div>
+              </div>
+              <template v-if="data.user.type == 2 || data.user.type == 3">
                 <div class="form-group">
                   <label class="form-label" require>事業内容</label>
                   <Field

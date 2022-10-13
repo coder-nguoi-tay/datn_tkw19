@@ -407,6 +407,7 @@ class UserRepository extends BaseController implements UserInterface
         $user = $this->user->where('id', Auth::guard('user')->user()->id)->first();
         $user->prefecture_id = $request->prefecture_id;
         $user->city_id = $request->city_id;
+        $user->industry_id = $request->industry_id;
         if ($user->type == UserType::PERSON) {
             $user->birthday = $request->birthday;
             $user->gender = $request->gender;
@@ -420,7 +421,6 @@ class UserRepository extends BaseController implements UserInterface
             $user->name_kana = $request->name_kana;
             $user->representative_name = $request->representative_name;
             $user->address_building = $request->address_building;
-            $user->industry_id = $request->industry_id;
             $user->industry_content = $request->industry_content;
         }
 
