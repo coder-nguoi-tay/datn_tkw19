@@ -1,7 +1,7 @@
 @php
 $routeName = \Route::currentRouteName();
 $routeEvent = ['event.index', 'event.create', 'event.close'];
-$routeMyPage = ['my-page.index', 'profile.index'];
+$routeMyPage = ['my-page.index', 'profile.index', 'notification-setting.index'];
 $routeSearch = ['search.index'];
 @endphp
 <footer class="footer">

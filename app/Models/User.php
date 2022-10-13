@@ -71,24 +71,32 @@ class User extends Authenticatable
         'last_login_at',
         'change_password_token',
         'change_email_token_expired',
-        'customer_id'
+        'customer_id',
     ];
 
     public function eventApplications()
     {
         return $this->hasMany(EventApplication::class, 'user_id', 'id');
     }
+
     public function events()
     {
         return $this->hasMany(Event::class, 'created_user_id', 'id');
     }
+
     public function prefecture()
     {
         return $this->hasOne(Prefecture::class, 'id', 'prefecture_id');
     }
+
     public function city()
     {
         return $this->hasOne(City::class, 'id', 'city_id');
+    }
+
+    public function userNotificationSetting()
+    {
+        return $this->hasOne(UserNotificationSetting::class, 'user_id', 'id');
     }
 
     protected $appends = ['gender_text'];

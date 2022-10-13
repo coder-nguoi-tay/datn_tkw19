@@ -24,7 +24,7 @@ class SettingNotificationRequest extends FormRequest
     public function rules()
     {
         return [
-            'notcie_email' => 'required|email',
+            'notice_email' => 'nullable|email',
         ];
     }
 }

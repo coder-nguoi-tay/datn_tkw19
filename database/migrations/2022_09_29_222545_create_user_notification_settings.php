@@ -16,7 +16,7 @@ class CreateUserNotificationSettings extends Migration
         Schema::create('user_notification_settings', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->string('notcie_email');
+            $table->string('notice_email')->nullable();
             $table->tinyInteger('deals_notification_flag')->default(1);
             $table->tinyInteger('publish_chat_notification_flag')->default(1);
             $table->tinyInteger('participant_chat_notification_flag')->default(1);

@@ -2,9 +2,9 @@
 @section('content')
     <notification-setting
         :data="{{ json_encode([
-            'user' => $user,
-            'urlMyevent' => route('my-event.index'),
-            'urlStore' => route('user.profile.notification', $user->id),
+            'urlBack' => route('my-page.index'),
+            'userNotification' => $user->userNotificationSetting,
+            'urlUpdate' => route('notification-setting.update', $user->id),
         ]) }}">
     </notification-setting>
 @endsection

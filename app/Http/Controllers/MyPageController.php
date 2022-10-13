@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-
 class MyPageController extends BaseController
 {
     private $user;
@@ -26,7 +25,7 @@ class MyPageController extends BaseController
     public function index(Request $request)
     {
         return view('myPage.index', [
-            'userInfo' => $this->user->getInfoMypage(Auth::guard('user')->user()->id)
+            'userInfo' => $this->user->getInfoMypage(Auth::guard('user')->user()->id),
         ]);
     }
 

@@ -80,8 +80,7 @@ Route::group([
     'middleware' => ['user'],
 ], function () {
     Route::resource('/', ProfileController::class);
-    Route::get('/notification-setting', [NotificationController::class, 'notificationSetting']);
-    Route::post('/update-notification/{id}', [NotificationController::class, 'updateNotification'])->name('user.profile.notification');
+    Route::resource('notification-setting', NotificationController::class);
     Route::resource('profile', ProfileController::class);
     Route::resource('event', EventController::class);
     Route::get('event-tmp/{id}', [EventController::class, 'tmp']);

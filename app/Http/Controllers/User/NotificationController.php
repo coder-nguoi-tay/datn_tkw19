@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SettingNotificationRequest;
 use App\Models\User;
 use App\Models\UserNotificationSetting;
-
 use App\Repositories\User\UserInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,10 +18,7 @@ class NotificationController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-
     private $user;
-
-
 
     public function __construct(UserInterface $user)
     {
@@ -31,7 +27,10 @@ class NotificationController extends BaseController
 
     public function index()
     {
-        //
+        return view('user.profile.notification-setting', [
+            'title'=>'イベント企画',
+            'user' => Auth::guard('user')->user(),
+        ]);
     }
 
     /**
@@ -84,9 +83,14 @@ class NotificationController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SettingNotificationRequest $request, $id)
     {
-        //
+        if (! $this->user->updateNotification($request, $id)) {
+            $this->setFlash(__('保存できませんでした...'), 'error');
+        }
+        $this->setFlash(__('保存されました！！'));
+
+        return redirect(route('notification-setting.index'));
     }
 
     /**
@@ -98,44 +102,5 @@ class NotificationController extends BaseController
     public function destroy($id)
     {
         //
-    }
-
-    public function notificationSetting()
-    {
-
-        if (UserNotificationSetting::where('user_id', Auth::guard('user')->user()->id)->first() == null) {
-            $user = Auth::guard('user')->user();
-            return view(
-                'user.profile.notification-setting',
-                compact('user'),
-                [
-                    'title' => '通知受信設定'
-
-                ]
-            );
-        } else {
-            $user = User::select('*', 'user_notification_settings.notcie_email as email_notification')
-                ->join('user_notification_settings', 'user_notification_settings.user_id', '=', 'users.id')
-                ->where('user_notification_settings.user_id', Auth::guard('user')->user()->id)
-                ->first();
-            return view(
-                'user.profile.notification-setting',
-                compact('user'),
-                [
-                    'title' => '通知受信設定'
-
-                ]
-            );
-        }
-    }
-    public function updateNotification(SettingNotificationRequest $request, $id)
-    {
-
-        if (!$this->user->updateNotification($request, $id)) {
-            $this->setFlash(__('保存できませんでした...'), 'error');
-        }
-        $this->setFlash(__('保存されました！！'));
-
-        return redirect()->back();
     }
 }

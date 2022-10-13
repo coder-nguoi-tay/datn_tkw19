@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchRequest;
 use App\Repositories\Admin\AdminInterface;
+use App\Repositories\Area\AreaInterface;
+use App\Repositories\Category\CategoryInterface;
 use App\Repositories\Event\EventInterface;
+use App\Repositories\Prefecture\PrefectureInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Repositories\Category\CategoryInterface;
-use App\Repositories\Prefecture\PrefectureInterface;
-use App\Repositories\Area\AreaInterface;
 
 class SearchController extends BaseController
 {
     private $category;
+
     private $user;
+
     private $prefecture;
 
     private $area;
