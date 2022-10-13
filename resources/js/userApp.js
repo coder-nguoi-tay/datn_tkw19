@@ -51,12 +51,13 @@ import MyPage from './components/myPage/index.vue'
 import Profile from './components/user/profile/index.vue'
 import EventReport from './components/eventReport/index.vue'
 import ChangeName from './components/user/changeName/index.vue'
-import Notification from './components/user/profile/setting-notification.vue'
+// import Notification from './components/user/profile/setting-notification.vue'
 import EventList from './components/user/event/index.vue'
 import EventClose from './components/user/event/close.vue'
 import PopupAlert from './components/common/popupAlert.vue'
 import MyPageEarn from './components/myPage/earn.vue'
 import SearchPage from './components/search/index.vue'
+import NotificationSetting from './components/user/profile/notification-setting.vue'
 
 app.component('nl2br', Nl2br)
 app.component('popup-alert', PopupAlert)
@@ -71,7 +72,7 @@ app.component('popup-success', Dialog)
 app.component('register-card', RegisterCard)
 app.component('profile', Profile)
 app.component('change-name', ChangeName)
-app.component('setting-notification', Notification)
+app.component('notification-setting', NotificationSetting)
 app.component('event-list', EventList)
 app.component('event-close', EventClose)
 app.component('my-page-earn', MyPageEarn)

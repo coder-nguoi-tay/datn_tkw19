@@ -31,7 +31,8 @@ interface UserInterface
     // public function getUserByToken($token);
 
     // public function updatePasswordByToken($request, $token);
-    public function updateSettingNotification($request, $id);
+    // public function updateSettingNotification($request, $id);
+    public function updateNotification($request, $id);
 
     public function updateCustomerId($id);
 
