@@ -56,6 +56,7 @@ import EventList from './components/user/event/index.vue'
 import EventClose from './components/user/event/close.vue'
 import PopupAlert from './components/common/popupAlert.vue'
 import MyPageEarn from './components/myPage/earn.vue'
+import SearchPage from './components/search/index.vue'
 
 app.component('nl2br', Nl2br)
 app.component('popup-alert', PopupAlert)
@@ -74,5 +75,6 @@ app.component('setting-notification', Notification)
 app.component('event-list', EventList)
 app.component('event-close', EventClose)
 app.component('my-page-earn', MyPageEarn)
+app.component('search-page', SearchPage)
 
 app.mount('#app')

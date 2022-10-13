@@ -11,6 +11,7 @@ use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\EventReportController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\MyEventController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\User\ChangeUserNameController;
 use App\Http\Controllers\User\EventController;
 use App\Http\Controllers\User\HomeController;
@@ -48,6 +49,7 @@ Route::resource('my-event', MyEventController::class);
 Route::get('/my-page/earn', [MyPageController::class, 'earn'])->name('myPage.earn');
 Route::resource('my-page', MyPageController::class);
 Route::resource('event-report', EventReportController::class);
+Route::resource('search', SearchController::class);
 
 Route::resource('login', UserLoginController::class);
 Route::get('logout', [UserLoginController::class, 'logout'])->name('logout');
