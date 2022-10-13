@@ -9,7 +9,6 @@
             'categories' => $categories,
             'areas' => $areas,
             'prefectures' => $prefectures,
-            'suggestTags' => $suggestTags,
             'userCredit' => $userCredit,
             'STRIPE_PUBLISH_KEY' => env('STRIPE_PUBLISH_KEY'),
         ]) }}">

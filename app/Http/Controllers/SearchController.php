@@ -8,14 +8,24 @@ use App\Repositories\Event\EventInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Repositories\Category\CategoryInterface;
+use App\Repositories\Prefecture\PrefectureInterface;
+use App\Repositories\Area\AreaInterface;
 
 class SearchController extends BaseController
 {
+    private $category;
     private $user;
+    private $prefecture;
 
-    public function __construct(EventInterface $event)
+    private $area;
+
+    public function __construct(CategoryInterface $category, EventInterface $event, PrefectureInterface $prefecture, AreaInterface $area)
     {
         $this->event = $event;
+        $this->category = $category;
+        $this->prefecture = $prefecture;
+        $this->area = $area;
     }
 
     /**
@@ -27,7 +37,10 @@ class SearchController extends BaseController
     {
         return view('search.index', [
             'title'=>'イベント企画',
+            'categories' => $this->category->getOption(),
             'events' => $this->event->get(),
+            'areas' => $this->area->get(),
+            'prefectures' => $this->prefecture->get(),
         ]);
     }
 

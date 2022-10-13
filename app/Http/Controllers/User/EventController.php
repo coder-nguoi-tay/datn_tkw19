@@ -71,7 +71,6 @@ class EventController extends BaseController
             'categories' => $this->category->getOption(),
             'areas' => $this->area->get(),
             'prefectures' => $this->prefecture->get(),
-            'suggestTags' => $this->tag->get(),
             'userCredit' => $this->userCredit->getLastUsing(),
         ]);
     }
