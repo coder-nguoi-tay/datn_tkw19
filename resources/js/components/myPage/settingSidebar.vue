@@ -25,7 +25,7 @@
       <div class="setting-item">
         <p class="setting-title">通知設定</p>
         <div class="setting-nav">
-          <a href="#" class="s-nav-link">通知受信設定</a>
+          <a href="/notification-setting" class="s-nav-link">通知受信設定</a>
         </div>
       </div>
       <div class="setting-item">

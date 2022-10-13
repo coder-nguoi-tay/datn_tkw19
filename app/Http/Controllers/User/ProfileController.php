@@ -5,6 +5,9 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\SettingNotificationRequest;
+use App\Models\User;
+use App\Models\UserNotificationSetting;
 use App\Repositories\City\CityInterface;
 use App\Repositories\Prefecture\PrefectureInterface;
 use App\Repositories\User\UserInterface;
@@ -89,7 +92,7 @@ class ProfileController extends BaseController
      */
     public function update(ProfileRequest $request, $id)
     {
-        if (! $this->user->updateProfile($request, $id)) {
+        if (!$this->user->updateProfile($request, $id)) {
             $this->setFlash(__('更新できませんでした...'), 'error');
         }
         $this->setFlash(__('更新されました！！'));
@@ -108,17 +111,7 @@ class ProfileController extends BaseController
         //
     }
 
-    public function settingNotification()
-    {
-        $user = Auth::guard('user')->user();
+    
 
-        return view('user.profile.setting-notification', compact('user'));
-    }
-
-    public function updateSettingNotification(Request $request, $id)
-    {
-        $this->userInterface->updateSettingNotification($request, $id);
-
-        return redirect(route('my-event.index'));
-    }
+    
 }

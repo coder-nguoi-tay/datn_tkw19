@@ -1,121 +1,104 @@
-.container-setting {
-    width: auto;
+.notification-container {
+    width: 100%;
     height: auto;
+    margin: auto;
 
-    .card {
+    @include mq-lg() {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    @include mq-xl() {
+        max-width: 100%;
+    }
+
+    .notification-card {
         height: auto;
         width: 100%;
-        margin: auto;
+        margin: 20px 10px 0 10px;
         background: #F7F7F7;
         border: 1px solid #F7F7F7;
+
+        .input-bg {
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background-color: white;
+
+            &.placeholder {
+                font-weight: bold;
+                color: black;
+                font-size: 14px;
+                opacity: 1.5;
+            }
+        }
+
+        .input-label {
+            font-size: 16px;
+            line-height: 26px;
+            color: black;
+            font-weight: bold;
+            margin-bottom: 6px;
+            position: relative;
+
+            .required {
+                background: #FD3434;
+                color: #fff;
+                padding: 3px 7px;
+                font-size: 12px;
+                border-radius: 5px;
+                line-height: 13px;
+                margin-left: 5px;
+                position: absolute;
+                margin-top: 3px;
+
+                &.black {
+                    background-color: #000000;
+                }
+            }
+        }
+
+        .display-item {
+            width: 100%;
+
+            .input-text {
+                width: 30%;
+                font-size: 16px;
+                line-height: 26px;
+                color: black;
+                // margin-bottom: 6px;
+            }
+
+            .display-toggle {
+                justify-content: flex-end;
+                width: 100%;
+            }
+        }
+
+        .submit-change {
+            margin-top: 10px;
+            text-align: center;
+
+            .btn-submit_nor {
+                border-radius: 4px;
+                border: 1px solid #CCCCCC;
+                min-width: 70px;
+                height: 30px;
+                font-size: 12px;
+                line-height: 16px;
+                background-color: #CCCCCC;
+                color: #FFFFFF;
+            }
+            .btn-submit_nor:hover{
+                background-color: red;
+                order: 1px solid red;
+            }
+            
+        }
     }
 
-    .form-control {
-        width: 380px;
-        margin-top: 20px;
-    }
 
-    .col-sm-8 {
-        width: 100%;
-        margin-top: 20px;
-    }
-
-    .col-sm-12 {
-        width: 100%;
-        margin-top: 10px;
-        height: auto;
-    }
-
-    .col-sm-8 h6 {
-        margin-top: 10px;
-    }
-
-    .col-sm-8 label {
-        font-weight: 400;
-    }
-
-    .left {
-        width: 70%;
-        float: left;
-    }
-
-    .right {
-        width: 30%;
-        float: right;
-    }
-
-    .left-title {
-        width: 340px;
-        float: left;
-    }
-
-    .right-title {
-        width: 60px;
-        float: left;
-    }
-
-    .btn-title {
-        width: 40px;
-        height: 24px;
-        margin-left: -70px;
-        font-size: 13px;
-        border-radius: 6px;
-        text-decoration: none;
-        transition: transform 0.3 ease;
-        color: white;
-        background: #e83928;
-        position: absolute;
-        text-decoration: underline;
-        padding-left: 7px;
-        padding-top: 3px;
-    }
-
-    .btn-title:hover {
-        text-decoration: underline;
-        text-decoration: none;
-        color: white;
-    }
-
-    .status {
-        width: 300px;
-    }
-
-    .form-check-input {
-        margin-top: 15px;
-        height: 25px;
-    }
-
-    .btn {
-        height: 35px;
-
-    }
-    .toggle_status{
-        width: 60px;
-         margin-left: -30px;
-         margin-top: 20px;
-    }
-    .back-url{
-        text-decoration: none;
-        color: #e83928;
-    }
-    .toggle_status {
-        width: 60px;
-        margin-top: 20px;
-        float: right;
-
-    }
-
-    .back-url {
-        text-decoration: none;
-        color: #e83928;
-    }
-
-    .back-url:hover {
-        text-decoration: underline;
-        text-decoration: none;
-        transition: 0s;
-    }
 }
+
 .profile_container {
     margin: 34px;
 
@@ -209,22 +192,27 @@
         background-color: #000000;
     }
 }
+
 .profile-container {
     .form-group {
         margin-bottom: 15px;
     }
+
     p.note {
         font-size: 10px;
         color: #777777;
         margin-bottom: 8px;
     }
+
     .form-label {
         margin-bottom: 3px !important;
     }
+
     .display-flag {
         display: flex;
         justify-content: space-between;
     }
+
     .btn-submit {
         background: #E5352B;
         color: #FFFFFF;
