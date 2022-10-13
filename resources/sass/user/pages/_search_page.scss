@@ -1,0 +1,293 @@
+.search-page{
+    .header-search{
+        flex: 1;
+        height: 28px;
+        border-radius: 6px;
+        border: none;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 20px;
+        letter-spacing: 0;
+        &::placeholder{
+            color: #CCCCCC;
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: inherit;
+        }
+    }
+    .header-filter-icon{
+        min-width: 24.94px;
+        width: 24.94px;
+        height: 22.09px;
+        margin-left: 8.6px;
+    }
+    .search-tags{
+        &-list{
+            padding-top: 8px;
+            padding-bottom: 8px;
+            overflow-x: auto;
+        }
+        &-item{
+            border-radius: 11px;
+            background-color: #FFE11D;
+            height: 21px;
+            padding: 0 8px;
+            &:not(:first-child){
+                margin-left: 6px;
+            }
+        }
+        &-item-name{
+            color: #000000;
+            font-size: 10px;
+            line-height: 16px;
+            letter-spacing: 0;
+            font-weight: bold;
+            height: 13px;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+        &-item-button{
+            margin-left: 8.5px;
+            color: #FFFFFF;
+        }
+    }
+    .event-item__wrapper{
+        margin-bottom: 8px;
+    }
+}
+
+.search-filter-sidebar{
+    width: 100%;
+    background-color: #FFFFFF;
+    padding-bottom: 120px;
+    // color: #fff;
+    position: fixed;
+    height: 100vh;
+    overflow-y: scroll;
+    top: 0;
+    right: 0;
+    transform: translateX(0);
+    -webkit-overflow-scrolling: touch;
+    transition: 0.5s transform ease-in-out;
+    z-index: 9999;
+    &.open-sidebar {
+        transform: translateX(0);
+    }
+    &.close-sidebar {
+        transform: translateX(150%);
+    }
+    .header-search::placeholder{
+        color: #707070;
+        font-family: unset;
+    }
+    .header-filter-close{
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 20px;
+        letter-spacing: 0;
+        height: 16px;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        margin-left: 9px;
+    }
+    .search-filter{
+        &-container{
+            padding: 16px;
+            background: #FFFFFF;
+        }
+        &-item{
+            margin-bottom: 16px;
+        }
+        &-item span{
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 20px;
+            letter-spacing: 0;
+            color: #000;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+        &-item-fee{
+            .form-control{
+                margin: 0 6px 0 8px;
+            }
+            .form-control::placeholder{
+                text-align: right;
+            }
+            .search-filter-label{
+                padding-left: 20px;
+            }
+            .search-filter-label-radio:last-child{
+                margin-top: 9px;
+            }
+        }
+        &-prize-input span:nth-child(2){
+            margin: 0 8px 0 6px;
+        }
+        &-item-age .col-6:nth-child(2),
+        &-item-prize .col-6:nth-child(2){
+            padding-left: 12px;
+        }
+        &-item-prize input::placeholder{
+            text-align: right;
+        }
+        &-item-age .form-select{
+            text-align: right;
+            padding-right: 22px;
+            color: #AAAAAA;
+        }
+        &-item-implementation{
+            margin-bottom: 32px;
+        }
+        &-item-condition{
+            margin-bottom: 17px;
+        }
+        &-title{
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            height: 21px;
+            display: flex;
+            align-items: center;
+            line-height: 26px;
+            letter-spacing: 0;
+            color: #000;
+        }
+        &-heading{
+            color: #777777;
+            padding-bottom: 4px;
+            border-bottom: #E9E9E9 1px solid;
+            font-size: 12px;
+            line-height: 20px;
+            font-weight: bold;
+            letter-spacing: 0;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 9px;
+        }
+        &-select{
+            position: relative;
+            width: 100%;
+            .icon-select-01{
+                width: 10.73px;
+                height: 9px;
+            }
+            .icon-select-02 {
+                width: 6px;
+                height: 19px;
+            }
+        }
+        &-select img{
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+        }
+        &-select select {
+            background-image: none;
+        }
+        &-datepicker .dp__input{
+            width: 112px;
+        }
+        &-datepicker span{
+            margin-left: 8px;
+        }
+        &-label{
+            color: #777777;
+            font-size: 10px;
+            letter-spacing: 0;
+            line-height: 16px;
+            height: 13px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+        &-date .search-filter-label:nth-of-type(2){
+            margin-top: 9px;
+        }
+        &-radio-label{
+            margin-left: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 20px;
+            letter-spacing: 0;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            color: #000000;
+        }
+        &-label-radio{
+            margin-bottom: 9px;
+            &:last-child{
+                margin-bottom: 0;
+            }
+        }
+        &-item-implementation .search-filter-select:last-child{
+            margin-top: 4px;
+        }
+        &-footer {
+            position: -webkit-sticky;
+            position: sticky;
+            width: 100%;
+            height: 61px;
+            bottom: 0;
+            left: 0;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .btn-submit, .btn-submit-primary{
+                width: 112px;
+                height: 37px;
+                border: 1px;
+                font-weight: bold;
+                font-size: 16px;
+                border-radius: 5px;
+                text-align: center;
+            }
+            .btn-submit{
+                display: inline-block;
+                margin-left: 10px;
+                background-color: #e5352b;
+                color: white;
+            }
+            .btn-submit-primary{
+                background-color: white;
+                color: #e5352b;
+                border: 1px solid #e5352b;
+            }
+        }
+    }
+    .form-control, .form-select, .dp__input{
+        height: 29px;
+        border: 1px solid #AAAAAA;
+        font-size: 12px;
+        font-weight: bold;
+        // line-height: 20px;
+        letter-spacing: 0;
+        color: #000;
+        border-radius: 4px;
+    }
+    .dp__input_wrap svg{
+        display: none;
+    }
+    .form-check-input{
+        width: 10px;
+        height: 10px;
+        border-color: #707070;
+        &:checked{
+            background-color: unset;
+            border-color: #707070;
+            background-size: 80%;
+            background-image: url("/assets/img/user/common/icon_checked_radio.png")
+        }
+    }
+}
