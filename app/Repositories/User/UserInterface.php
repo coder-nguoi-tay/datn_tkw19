@@ -34,6 +34,8 @@ interface UserInterface
     // public function updateSettingNotification($request, $id);
     public function updateNotification($request, $id);
 
+    public function userSetting($request, $id);
+
     public function updateCustomerId($id);
 
     public function getInfoMypage($id);

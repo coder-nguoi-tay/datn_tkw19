@@ -22,6 +22,7 @@ use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\User\UserForgotPasswordController;
 use App\Http\Controllers\User\UserForgotPasswordSuccessController;
 use App\Http\Controllers\User\UpLoadFileController;
+use App\Http\Controllers\User\UserSettingController;
 use App\Http\Controllers\User\PasswordResetController as UserPasswordResetController;
 use Illuminate\Support\Facades\Route;
 
@@ -89,4 +90,5 @@ Route::group([
     Route::post('upload', [UpLoadFileController::class, 'upload'])->name('upload');
     Route::resource('my-page', MyPageController::class);
     Route::resource('search', SearchController::class);
+    Route::resource('user-setting', UserSettingController::class);
 });

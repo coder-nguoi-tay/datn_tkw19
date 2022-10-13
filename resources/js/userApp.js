@@ -34,6 +34,24 @@ defineRule(
         hasTarget: true
     }
 )
+defineRule('password_rule', (value) => {
+    return /^[A-Za-z0-9]*$/i.test(value)
+})
+defineRule('furigana', (value) => {
+    return value.match(/[一-龥ぁ-ん]/) == null
+})
+defineRule('kata', (value) => {
+    return /^([ァ-ン]|ー)*$/i.test(value)
+})
+defineRule('telephone', (value) => {
+    return (
+        /^0(\d-\d{4}-\d{4})+$/i.test(value.trim()) ||
+        /^0(\d{3}-\d{2}-\d{4})+$/i.test(value.trim()) ||
+        /^(070|080|090|050)(-\d{4}-\d{4})+$/i.test(value.trim()) ||
+        /^0(\d{2}-\d{3}-\d{4})+$/i.test(value.trim()) ||
+        /^0(\d{9,10})+$/i.test(value.trim())
+    )
+})
 
 import Dialog from './components/common/popupSuccess.vue'
 import RegisterCard from './components/common/registerCard.vue'
@@ -58,6 +76,7 @@ import PopupAlert from './components/common/popupAlert.vue'
 import MyPageEarn from './components/myPage/earn.vue'
 import SearchPage from './components/search/index.vue'
 import NotificationSetting from './components/user/profile/notification-setting.vue'
+import UserSetting from './components/user/userSetting/index.vue'
 
 app.component('nl2br', Nl2br)
 app.component('popup-alert', PopupAlert)
@@ -77,5 +96,6 @@ app.component('event-list', EventList)
 app.component('event-close', EventClose)
 app.component('my-page-earn', MyPageEarn)
 app.component('search-page', SearchPage)
+app.component('user-setting', UserSetting)
 
 app.mount('#app')

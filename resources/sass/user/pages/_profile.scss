@@ -231,3 +231,33 @@
     font-weight: 500 !important;
     color: #000000 !important;
 }
+.user-setting {
+    .title-page {
+        font-size: 14px;
+        color: #777777;
+    }
+    .form-label {
+        color: #000000 !important;
+        font-size: 14px !important;
+        font-weight: bold !important;
+        margin-bottom: 3px !important;
+    }
+    .note {
+        font-size: 10px;
+        color: #707070;
+    }
+    .form-check-inline {
+        display: inline-block !important;
+    }
+    .form-check-label {
+        font-size: 14px;
+    }
+    .btn-submit {
+        background: #E5352B;
+        color: #FFFFFF;
+        font-size: 12px;
+        height: 23px;
+        line-height: 0px;
+        margin-top: 20px;
+    }
+}

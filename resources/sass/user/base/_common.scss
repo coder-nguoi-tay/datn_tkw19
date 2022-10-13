@@ -30,7 +30,7 @@ a {
 
 .main-content {
   background-color: #F7F7F7;
-  height: 100vh;
+  min-height: 100vh;
   overflow-y: scroll;
   padding-bottom: 50px;
 }

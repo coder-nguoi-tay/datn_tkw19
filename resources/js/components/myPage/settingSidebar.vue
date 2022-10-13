@@ -14,7 +14,7 @@
         <p class="setting-title">アカウント設定</p>
         <div class="setting-nav">
           <a href="/profile" class="s-nav-link">プロフィール設定</a>
-          <a href="#" class="s-nav-link">ユーザー情報設定</a>
+          <a href="/user-setting" class="s-nav-link">ユーザー情報設定</a>
           <a href="#" class="s-nav-link">登録電話番号設定</a>
           <a href="#" class="s-nav-link">メールアドレス設定</a>
           <a href="#" class="s-nav-link">パスワード設定</a>

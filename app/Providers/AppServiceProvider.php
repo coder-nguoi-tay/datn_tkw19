@@ -12,6 +12,8 @@ use App\Repositories\City\CityInterface;
 use App\Repositories\City\CityRepository;
 use App\Repositories\Event\EventInterface;
 use App\Repositories\Event\EventRepository;
+use App\Repositories\IndustryBroad\IndustryBroadInterface;
+use App\Repositories\IndustryBroad\IndustryBroadRepository;
 use App\Repositories\JobBroad\JobBroadInterface;
 use App\Repositories\JobBroad\JobBroadRepository;
 use App\Repositories\News\NewsInterface;
@@ -49,6 +51,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(TagInterface::class, TagRepository::class);
         $this->app->bind(UserCreditInterface::class, UserCreditRepository::class);
         $this->app->bind(EventInterface::class, EventRepository::class);
+        $this->app->bind(IndustryBroadInterface::class, IndustryBroadRepository::class);
     }
 
     /**
