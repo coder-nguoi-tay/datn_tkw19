@@ -48,7 +48,6 @@ Route::post('check-phone', [RegisterController::class, 'checkPhone'])->name('reg
 Route::resource('my-event', MyEventController::class);
 Route::get('/my-page/earn', [MyPageController::class, 'earn'])->name('myPage.earn');
 Route::resource('event-report', EventReportController::class);
-Route::resource('search', SearchController::class);
 
 Route::resource('login', UserLoginController::class);
 Route::get('logout', [UserLoginController::class, 'logout'])->name('logout');
@@ -89,4 +88,5 @@ Route::group([
     Route::post('search-tag', [EventController::class, 'tag'])->name('search-tag');
     Route::post('upload', [UpLoadFileController::class, 'upload'])->name('upload');
     Route::resource('my-page', MyPageController::class);
+    Route::resource('search', SearchController::class);
 });

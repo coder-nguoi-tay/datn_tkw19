@@ -82,7 +82,7 @@
             alt=""
           />
         </div>
-        <div class="profile-banner-center">tanaka_tarou</div>
+        <div class="profile-banner-center">{{ data.userInfo.show_name }}</div>
         <div class="profile-banner-right">
           <a href="#" @click.prevent="showSettingSidebar" class="btn-setting">
             <img
@@ -133,11 +133,15 @@
           />
         </div>
       </div>
-      <div class="profile-user-name">田中 太郎</div>
-      <div class="profile-user-subname">ゴッドファーザー</div>
+      <div class="profile-user-name">{{ data.userInfo.name }}</div>
+      <div class="profile-user-subname">{{ data.userInfo.name_kana }}</div>
       <div class="profile-user-des">
-        私はイベントを企画するのが大好きです😳😈面白いイベント
-        にたくさんチャレンジ👑するので、ぜひ参加ご応募お願いい たします😮🙋😮😮
+        <nl2br
+          tag="p"
+          v-if="data.userInfo.self_introduction"
+          class="nl2br"
+          :text="data.userInfo.self_introduction"
+        />
       </div>
     </div>
 
@@ -145,11 +149,17 @@
       <div class="profile-heading">POSTS</div>
       <div class="profile-posts-box d-flex">
         <div class="profile-posts-name">イベント参加数</div>
-        <div class="profile-posts-number justify-content-center">0</div>
+        <div class="profile-posts-number justify-content-center">
+          <count-up
+            :end-val="data.userInfo.event_applications_count"
+          ></count-up>
+        </div>
       </div>
       <div class="profile-posts-box">
         <div class="profile-posts-name">イベント企画数</div>
-        <div class="profile-posts-number justify-content-center">3</div>
+        <div class="profile-posts-number justify-content-center">
+          <count-up :end-val="data.userInfo.events_count"></count-up>
+        </div>
       </div>
       <div class="profile-posts-des">もっと見る</div>
     </div>
@@ -247,10 +257,14 @@
           <div class="profile-info-des">活動形態</div>
         </div>
         <div class="profile-info-col">
-          <div class="profile-info-des">tanaka_tarou</div>
-          <div class="profile-info-des">男</div>
-          <div class="profile-info-des">大阪府</div>
-          <div class="profile-info-des">個人</div>
+          <div class="profile-info-des">{{ data.userInfo.show_name }}</div>
+          <div class="profile-info-des">{{ data.userInfo.gender_text }}</div>
+          <div class="profile-info-des">
+            {{ data.userInfo.prefecture ? data.userInfo.prefecture.name : '' }}
+          </div>
+          <div class="profile-info-des">
+            {{ data.userInfo.city ? data.userInfo.city.name : '' }}
+          </div>
         </div>
       </div>
     </div>
@@ -261,6 +275,7 @@
 <script>
 import $ from 'jquery'
 import SettingSidebar from './settingSidebar'
+import CountUp from 'vue-countup-v3'
 export default {
   created: function () {},
   data() {
@@ -269,7 +284,8 @@ export default {
   mounted() {},
   props: ['data'],
   components: {
-    SettingSidebar
+    SettingSidebar,
+    CountUp
   },
   methods: {
     showSettingSidebar() {

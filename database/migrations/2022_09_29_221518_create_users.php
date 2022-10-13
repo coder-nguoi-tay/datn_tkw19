@@ -38,8 +38,6 @@ class CreateUsers extends Migration
             $table->integer('industry_id')->nullable();
             $table->text('industry_content')->nullable();
             $table->string('user_avatar')->nullable();
-            $table->integer('account_id')->nullable();
-            $table->tinyInteger('account_id_show_flag')->nullable();
             $table->string('reset_password_token')->nullable();
             $table->datetime('reset_password_token_expire')->nullable();
             $table->datetime('last_login_at')->nullable();

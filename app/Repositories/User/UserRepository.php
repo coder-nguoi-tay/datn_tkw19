@@ -4,6 +4,7 @@ namespace App\Repositories\User;
 
 use App\Enums\DisplayInfoFlag;
 use App\Enums\UserType;
+use App\Enums\PublishStatus;
 use App\Http\Controllers\BaseController;
 use App\Mail\ForgotPassComplete;
 use App\Mail\ForgotPassword;
@@ -377,5 +378,22 @@ class UserRepository extends BaseController implements UserInterface
         $user->customer_id = $id;
 
         return $user->save();
+    }
+
+    public function getInfoMypage($id)
+    {
+        return $this->user->where('id', $id)
+        ->with(['prefecture', 'city'])
+        ->withCount([
+            'events' => function($q) {
+                $q->where('publish_end_datetime', '>', Carbon::now());
+                $q->where('publish_flag', PublishStatus::PUBLISH);
+            },
+            'eventApplications' => function($q) {
+                $q->join('events', 'events.id', '=', 'event_applications.event_id');
+                $q->where('publish_end_datetime', '>', Carbon::now());
+                $q->where('publish_flag', PublishStatus::PUBLISH);
+            },
+        ])->first();
     }
 }

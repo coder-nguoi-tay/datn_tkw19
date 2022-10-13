@@ -2,12 +2,13 @@
 $routeName = \Route::currentRouteName();
 $routeEvent = ['event.index', 'event.create', 'event.close'];
 $routeMyPage = ['my-page.index', 'profile.index'];
+$routeSearch = ['search.index'];
 @endphp
 <footer class="footer">
     <div class="container footer__container">
         <div class="footer__nav">
-            <div class="nav__item">
-                <a href="" class="nav__link">
+            <div class="nav__item {{ in_array($routeName, $routeSearch) ? 'active' : '' }}">
+                <a href="{{ route('search.index') }}" class="nav__link">
                     <p class="nav-ic">
                         <img class="ic-brown" src="{{ asset('assets/img/user/common/ic_search.svg') }}" alt="">
                         <img class="ic-white" src="{{ asset('assets/img/user/common/ic_search_white.svg') }}"
@@ -39,7 +40,8 @@ $routeMyPage = ['my-page.index', 'profile.index'];
             <div class="nav__item">
                 <a href="" class="nav__link">
                     <p class="nav-ic">
-                        <img class="ic-brown" src="{{ asset('assets/img/user/common/ic_message.svg') }}" alt="">
+                        <img class="ic-brown" src="{{ asset('assets/img/user/common/ic_message.svg') }}"
+                            alt="">
                         <img class="ic-white" src="{{ asset('assets/img/user/common/ic_message_white.svg') }}"
                             alt="">
                     </p>

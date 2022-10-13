@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MyPageRequest;
-use App\Repositories\Admin\AdminInterface;
+use App\Repositories\User\UserInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 class MyPageController extends BaseController
 {
     private $user;
 
-    public function __construct(AdminInterface $user)
+    public function __construct(UserInterface $user)
     {
         $this->user = $user;
     }
@@ -24,7 +25,9 @@ class MyPageController extends BaseController
      */
     public function index(Request $request)
     {
-        return view('myPage.index');
+        return view('myPage.index', [
+            'userInfo' => $this->user->getInfoMypage(Auth::guard('user')->user()->id)
+        ]);
     }
 
     /**
