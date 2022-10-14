@@ -1,7 +1,7 @@
 .header {
   height: 48px;
   background-color: #E83928;
-  color: #fff;
+//   color: #fff;
 
   .header__wrapper {
     position: relative;
@@ -24,6 +24,7 @@
       line-height: 48px;
       text-align: center;
       font-weight: bold;
+      color: #fff;
     }
     .h-btn-close {
       font-size: 12px;

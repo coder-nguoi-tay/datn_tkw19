@@ -1440,6 +1440,7 @@ export default {
       this.lastSearch = query
       const formData = new FormData()
       formData.append('_token', this.csrfToken)
+      formData.append('name', query)
       this.model.event_tags.forEach(function (item, index) {
         formData.append(`tags[${index}]`, item)
       })

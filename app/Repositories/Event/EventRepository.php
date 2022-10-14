@@ -136,6 +136,7 @@ class EventRepository extends BaseController implements EventInterface
             }
             $eventNew->reward_amount = $total;
             $eventNew->publish_start_datetime = $request->publish_start_datetime;
+            $eventNew->day_end = $request->day_end;
             $eventNew->publish_end_datetime = Carbon::parse($request->publish_start_datetime)->addDays($request->day_end);
             $eventNew->address = $request->address;
             if (! $eventNew->save()) {
@@ -304,6 +305,7 @@ class EventRepository extends BaseController implements EventInterface
             }
             $eventNew->reward_amount = $total;
             $eventNew->publish_start_datetime = $request->publish_start_datetime;
+            $eventNew->day_end = $request->day_end;
             $eventNew->publish_end_datetime = Carbon::parse($request->publish_start_datetime)->addDays($request->day_end);
             $eventNew->address = $request->address;
             if (! $eventNew->save()) {
@@ -448,5 +450,81 @@ class EventRepository extends BaseController implements EventInterface
         $event->reservation_date = Carbon::now()->addWeek(1);
 
         return $event->save();
+    }
+
+    public function search($request)
+    {
+        $builder = $this->event
+            ->with([
+                'category',
+                'eventTags',
+                'eventTags.tag',
+                'user',
+                'eventCondition',
+            ])
+            ->where([
+                ['publish_flag', PublishStatus::PUBLISH],
+                ['publish_start_datetime', '<=', Carbon::now()],
+            ]);
+        if ($request->free_input) {
+            $builder->where(function ($q) {
+                $q->orWhere($this->escapeLikeSentence('name', $request->free_input));
+                $q->orWhere($this->escapeLikeSentence('detail', $request->free_input));
+            });
+        }
+        // dd($builder->get()->toArray());
+        // if ($request->category_id) {
+        //     $builder->where('category_id', $request->category_id);
+        // }
+        // if ($request->publish_start_datetime) {
+        //     $builder->where('publish_start_datetime', $request->publish_start_datetime);
+        // }
+        // if ($request->day_end) {
+        //     $builder->where('day_end', $request->day_end);
+        // }
+        // if (isset($request->entry_type)) {
+        //     $builder->where('entry_type', $request->entry_type);
+        // }
+        // if ($request->entry_fee) {
+        //     $builder->where('entry_fee', $request->entry_fee);
+        // }
+        // $builder->join('event_conditions as con', 'events.id', '=', 'con.event_id');
+        // if (isset($request->reward_type) || isset($request->target_age_type)) {
+        //     $builder->where('con.limit_number_of_participants_flag', $request->reward_type);
+        //     $builder->where('con.target_age_type', $request->target_age_type);
+        //     if ($request->target_age_from) {
+        //         $builder->where('con.target_age_from', '>=', $request->target_age_from);
+        //     }
+        //     if ($request->target_age_to) {
+        //         $builder->where('con.target_age_to', '<=', $request->target_age_to);
+        //     }
+        // }
+        // if ($request->reward_price_start) {
+        //     $builder->where('reward_amount', '>=', $request->reward_price_start);
+        // }
+        // if ($request->reward_price_end) {
+        //     $builder->where('reward_amount', '<=', $request->reward_price_end);
+        // }
+        // if ($request->area_id) {
+        //     $builder->where('events_area', ['area_id' => $request->area_id]);
+        // }
+        // if ($request->prefecture_id) {
+        //     $builder->where('events_area', ['pref_id' => $request->prefecture_id]);
+        // }
+        // if ($request->target_gender) {
+        //     $builder->whereJsonContains('con.target_gender', $request->target_gender);
+        // }
+        if ($request->tags) {
+            $builder->join('event_tags as et', 'events.id', '=', 'et.event_id');
+            $builder->where(function ($q) use ($request) {
+                foreach ($request->tags as $key => $value) {
+                    $q->orWhere('tag_id', $value['value']);
+                }
+            });
+        }
+
+        return $builder->select(['events.*'])->groupBy('events.id')->get();
+
+        return [];
     }
 }

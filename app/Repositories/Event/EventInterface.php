@@ -6,6 +6,8 @@ interface EventInterface
 {
     public function get();
 
+    public function search($request);
+
     public function close();
 
     public function getById($id);

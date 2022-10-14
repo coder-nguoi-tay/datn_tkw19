@@ -4,15 +4,29 @@
       <div class="container header__container">
         <div class="header__wrapper">
           <form action="" class="form-inline">
-            <input
-              name="heaeder_search"
-              class="form-control header-search"
-              placeholder="&#xF002;&ensp;検索"
-              value=""
-              autocomplete="off"
-              type="control"
-              id="heaeder_search"
-            />
+            <Multiselect
+              v-model="tags"
+              mode="tags"
+              class="header-search"
+              placeholder="検索"
+              track-by="name"
+              label="name"
+              :close-on-select="false"
+              :searchable="true"
+              :object="true"
+              :searchStart="true"
+              :resolve-on-load="false"
+              :delay="0"
+              :min-chars="1"
+              noOptionsText="リストが空です"
+              noResultsText="結果が見つかりません"
+              :options="
+                async (query) => {
+                  return await getTags(query)
+                }
+              "
+            >
+            </Multiselect>
             <button type="submit" hidden class="btn btn-primary w-100">
               <i class="fa fa-search"></i> &nbsp; 検索
             </button>
@@ -51,7 +65,7 @@
             <div class="event-item__container">
               <div
                 class="event-item__wrapper"
-                v-for="item in data.events.filter((x) => x.waiting_publish)"
+                v-for="item in data.events"
                 :key="item.id"
               >
                 <div class="event-item">
@@ -169,19 +183,24 @@
         </div>
       </div>
     </div>
-    <SearchFilter :data="data"></SearchFilter>
+    <SearchFilter ref="searchDetail" :data="data" :tags="tags"></SearchFilter>
   </div>
 </template>
 <script>
 import $ from 'jquery'
 import SearchFilter from './searchFilter'
+import Multiselect from '@vueform/multiselect'
 export default {
   components: {
-    SearchFilter
+    SearchFilter,
+    Multiselect
   },
   props: ['data'],
   data: function () {
-    return {}
+    return {
+      tags: this.data.request.tags ?? [],
+      csrfToken: Laravel.csrfToken
+    }
   },
   created() {},
   methods: {
@@ -197,6 +216,28 @@ export default {
           sidebar.removeClass('open-sidebar').addClass('close-sidebar')
         }
       })
+    },
+    async getTags(query) {
+      const formData = new FormData()
+      formData.append('_token', this.csrfToken)
+      formData.append('name', query)
+      this.tags.forEach(function (item, index) {
+        formData.append(`tags[${index}]`, item.name)
+      })
+      const res = await fetch(this.data.urlSearchTag, {
+        method: 'post',
+        body: formData
+      })
+      const dataRes = await res.json()
+      return dataRes.data
+    }
+  },
+  watch: {
+    tags: function () {
+      $('.loading-div').removeClass('hidden')
+      setTimeout(function () {
+        $('#searchDetail').submit()
+      }, 100)
     }
   }
 }

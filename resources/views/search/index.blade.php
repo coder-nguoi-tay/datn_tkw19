@@ -6,7 +6,9 @@
             'events' => $events,
             'categories' => $categories,
             'areas' => $areas,
+            'request' => $request,
             'prefectures' => $prefectures,
+            'urlSearchTag' => route('search-tag'),
         ]) }}">
     </search-page>
 @endsection

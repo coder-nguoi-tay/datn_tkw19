@@ -39,8 +39,9 @@ class SearchController extends BaseController
     {
         return view('search.index', [
             'title'=>'イベント企画',
+            'request' => $request->all(),
             'categories' => $this->category->getOption(),
-            'events' => $this->event->get(),
+            'events' => $this->event->search($request),
             'areas' => $this->area->get(),
             'prefectures' => $this->prefecture->get(),
         ]);

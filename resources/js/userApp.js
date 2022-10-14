@@ -74,7 +74,7 @@ import EventList from './components/user/event/index.vue'
 import EventClose from './components/user/event/close.vue'
 import PopupAlert from './components/common/popupAlert.vue'
 import MyPageEarn from './components/myPage/earn.vue'
-import SearchPage from './components/search/index.vue'
+import SearchPage from './components/user/search/index.vue'
 import NotificationSetting from './components/user/profile/notification-setting.vue'
 import UserSetting from './components/user/userSetting/index.vue'
 
