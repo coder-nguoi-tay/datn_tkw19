@@ -26,6 +26,7 @@ class CreateEvents extends Migration
             $table->tinyInteger('publish_flag')->default(0);
             $table->date('reservation_date')->nullable();
             $table->text('achievement_conditions')->nullable();
+            $table->integer('day_end')->nullable();
             $table->bigInteger('reward_amount')->nullable();
             $table->tinyInteger('entry_type')->default(1);
             $table->bigInteger('entry_fee')->nullable();

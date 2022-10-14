@@ -131,7 +131,7 @@
           </template>
           <template v-else-if="model.type == 2 || model.type == 3">
             <div class="form-group">
-              <label class="input-label">{{
+              <label class="input-label" require>{{
                 model.type == 2 ? '屋号' : '法人名'
               }}</label>
               <Field
@@ -145,7 +145,7 @@
               <ErrorMessage class="error-msg" name="name" />
             </div>
             <div class="form-group">
-              <label class="input-label">{{
+              <label class="input-label" require>{{
                 model.type == 2 ? '屋号（カナ）' : '法人名（カナ）'
               }}</label>
               <Field
@@ -161,7 +161,7 @@
               <ErrorMessage class="error-msg" name="name_kana" />
             </div>
             <div class="form-group">
-              <label class="input-label">代表者名</label>
+              <label class="input-label" require>代表者名</label>
               <Field
                 name="representative_name"
                 type="text"
@@ -316,7 +316,7 @@
                     -- 業種を選択してください --
                   </option>
                   <option
-                    v-for="item in data.jobOptions"
+                    v-for="item in data.industries"
                     :key="item.id"
                     :value="item.id"
                   >
@@ -457,14 +457,14 @@ export default {
           },
           name: {
             required:
-              this.model.type == 2 ? '屋号' : '法人名' + 'を入力してください。',
+              (this.model.type == 2 ? '屋号' : '法人名') +
+              'を入力してください。',
             max: '255文字以内で入力してください。'
           },
           name_kana: {
             required:
-              this.model.type == 2
-                ? '屋号（カナ）'
-                : '法人名（カナ）' + 'を入力してください。',
+              (this.model.type == 2 ? '屋号（カナ）' : '法人名（カナ）') +
+              'を入力してください。',
             max: '255文字以内で入力してください。',
             kata: 'カタカナで入力してください'
           },

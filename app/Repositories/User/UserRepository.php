@@ -180,7 +180,6 @@ class UserRepository extends BaseController implements UserInterface
     {
         try {
             DB::beginTransaction();
-            // UserType
             $user = new $this->user;
             $user->show_name = $request->show_name;
             $user->phone_number = (env('VN_MODE') ? '+84' : '+81').$request->phone_number;
@@ -401,5 +400,30 @@ class UserRepository extends BaseController implements UserInterface
                 $q->where('publish_flag', PublishStatus::PUBLISH);
             },
         ])->first();
+    }
+
+    public function userSetting($request, $id)
+    {
+        $user = $this->user->where('id', Auth::guard('user')->user()->id)->first();
+        $user->prefecture_id = $request->prefecture_id;
+        $user->city_id = $request->city_id;
+        $user->industry_id = $request->industry_id;
+        if ($user->type == UserType::PERSON) {
+            $user->birthday = $request->birthday;
+            $user->gender = $request->gender;
+            $user->job_type = $request->job_type;
+            $user->currently_member = $request->currently_member;
+            $user->university_of = $request->university_of;
+            $user->born_in_college = $request->born_in_college;
+            $user->born_in_middle_schoole = $request->born_in_middle_schoole;
+        } else {
+            $user->name = $request->name;
+            $user->name_kana = $request->name_kana;
+            $user->representative_name = $request->representative_name;
+            $user->address_building = $request->address_building;
+            $user->industry_content = $request->industry_content;
+        }
+
+        return $user->save();
     }
 }

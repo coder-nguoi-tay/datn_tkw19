@@ -7,6 +7,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Requests\PhoneNumberRequest;
 use App\Http\Requests\UserRegister;
 use App\Repositories\City\CityInterface;
+use App\Repositories\IndustryBroad\IndustryBroadInterface;
 use App\Repositories\JobBroad\JobBroadInterface;
 use App\Repositories\Prefecture\PrefectureInterface;
 use App\Repositories\User\UserInterface;
@@ -26,14 +27,17 @@ class RegisterController extends BaseController
 
     private $job;
 
+    private $industry;
+
     public function __construct(UserInterface $user, UserTmpInterface $userTmp, CityInterface $city,
-        PrefectureInterface $prefecture, JobBroadInterface $job)
+        PrefectureInterface $prefecture, JobBroadInterface $job, IndustryBroadInterface $industry)
     {
         $this->user = $user;
         $this->userTmp = $userTmp;
         $this->prefecture = $prefecture;
         $this->city = $city;
         $this->job = $job;
+        $this->industry = $industry;
     }
 
     /**
@@ -48,6 +52,7 @@ class RegisterController extends BaseController
             'prefectures' => $this->prefecture->get(),
             'cities' => $this->city->get(),
             'jobs' => $this->job->get(),
+            'industries' => $this->industry->get(),
         ]);
     }
 

@@ -1,29 +1,30 @@
 <template>
   <div class="search-filter-sidebar close-sidebar">
-    <header class="header d-flex align-items-center">
-      <div class="container header__container">
-        <div class="header__wrapper">
-          <form action="" class="form-inline">
-            <input
-              name="free_input"
-              class="form-control header-search"
-              placeholder="詳細条件を設定中..."
-              autocomplete="off"
-              type="control"
-              id="free_input"
-              v-model="model.free_input"
-            />
-            <button type="submit" hidden class="btn btn-primary w-100">
-              <i class="fa fa-search"></i> &nbsp; 検索
-            </button>
-            <div class="header-filter-close" @click="hiddenSearchSidebar">
-              キャンセル
+    <form action="" class="" id="searchDetail">
+      <header class="header d-flex align-items-center">
+        <div class="container header__container">
+          <div class="header__wrapper">
+            <div class="form-inline">
+              <input
+                name="free_input"
+                class="form-control header-search"
+                placeholder="詳細条件を設定中..."
+                autocomplete="off"
+                type="control"
+                id="free_input"
+                v-model="model.free_input"
+              />
+              <button type="submit" hidden class="btn btn-primary w-100">
+                <i class="fa fa-search"></i> &nbsp; 検索
+              </button>
+              <div class="header-filter-close" @click="hiddenSearchSidebar">
+                キャンセル
+              </div>
             </div>
-          </form>
+          </div>
         </div>
-      </div>
-    </header>
-    <form action="" class="">
+      </header>
+
       <div class="search-filter-container">
         <div class="search-filter-title">絞り込み条件</div>
         <div class="search-filter-item">
@@ -35,9 +36,10 @@
                 class="icon-select-01"
                 alt=""
               />
-              <select
-                class="form-select"
+              <Field
+                as="select"
                 name="category_id"
+                class="form-select"
                 v-model="model.category_id"
               >
                 <option value="">すべてのカテゴリ</option>
@@ -48,7 +50,7 @@
                 >
                   {{ item.label }}
                 </option>
-              </select>
+              </Field>
             </div>
           </div>
         </div>
@@ -59,20 +61,21 @@
             <div class="col-6">
               <div class="search-filter-select">
                 <img
-                  src="/assets/img/user/common/icon_select_02.png"
-                  class="icon-select-02"
+                  src="/assets/img/user/common/icon_select_01.png"
+                  class="icon-select-01"
                   alt=""
                 />
-                <select
-                  class="form-select"
+                <Field
+                  as="select"
                   name="day_end"
+                  class="form-select"
                   v-model="model.day_end"
                 >
                   <option value="">すべての応募期間</option>
                   <option :value="item" v-for="item in 7" :key="item">
                     {{ item + '日' }}
                   </option>
-                </select>
+                </Field>
               </div>
             </div>
             <label class="search-filter-label">応募開始日</label>
@@ -81,7 +84,6 @@
                 as="div"
                 name="publish_start_datetime"
                 v-model="model.publish_start_datetime"
-                rules="required"
               >
                 <datepicker
                   autoApply
@@ -143,7 +145,6 @@
               name="entry_type"
               v-model="model.entry_type"
               value="0"
-              checked
             />
             <label class="search-filter-radio-label" for="entry_type_1">
               無料のみ表示
@@ -185,6 +186,7 @@
               <div class="search-filter-prize-input d-flex align-items-center">
                 <Field
                   name="reward_price_start"
+                  v-model="model.reward_price_start"
                   type="number"
                   min="0"
                   class="form-control"
@@ -199,6 +201,7 @@
               <div class="search-filter-prize-input d-flex align-items-center">
                 <Field
                   name="reward_price_end"
+                  v-model="model.reward_price_end"
                   type="number"
                   min="0"
                   class="form-control"
@@ -215,11 +218,13 @@
             <input
               class="form-check-input mt-0"
               type="radio"
-              name="radio-gender"
-              id="radio-gender1"
+              name="target_gender"
+              v-model="model.target_gender"
+              id="target_gender1"
               checked=""
+              value="5"
             />
-            <label class="search-filter-radio-label" for="radio-gender1">
+            <label class="search-filter-radio-label" for="target_gender1">
               すべて
             </label>
           </div>
@@ -227,10 +232,12 @@
             <input
               class="form-check-input mt-0"
               type="radio"
-              name="radio-gender"
-              id="radio-gender2"
+              name="target_gender"
+              v-model="model.target_gender"
+              id="target_gender2"
+              value="1"
             />
-            <label class="search-filter-radio-label" for="radio-gender2">
+            <label class="search-filter-radio-label" for="target_gender2">
               男性のみ
             </label>
           </div>
@@ -238,10 +245,12 @@
             <input
               class="form-check-input mt-0"
               type="radio"
-              name="radio-gender"
-              id="radio-gender3"
+              name="target_gender"
+              v-model="model.target_gender"
+              id="target_gender3"
+              value="2"
             />
-            <label class="search-filter-radio-label" for="radio-gender3">
+            <label class="search-filter-radio-label" for="target_gender3">
               女性のみ
             </label>
           </div>
@@ -249,10 +258,12 @@
             <input
               class="form-check-input mt-0"
               type="radio"
-              name="radio-gender"
-              id="radio-gender4"
+              name="target_gender"
+              v-model="model.target_gender"
+              id="target_gender4"
+              value="3"
             />
-            <label class="search-filter-radio-label" for="radio-gender4">
+            <label class="search-filter-radio-label" for="target_gender4">
               事業者のみ
             </label>
           </div>
@@ -260,10 +271,12 @@
             <input
               class="form-check-input mt-0"
               type="radio"
-              name="radio-gender"
-              id="radio-gender5"
+              name="target_gender"
+              v-model="model.target_gender"
+              id="target_gender5"
+              value="4"
             />
-            <label class="search-filter-radio-label" for="radio-gender5">
+            <label class="search-filter-radio-label" for="target_gender5">
               その他可
             </label>
           </div>
@@ -274,11 +287,13 @@
             <input
               class="form-check-input mt-0"
               type="radio"
-              name="radio-age"
-              id="radio-age1"
+              name="target_age_type"
+              v-model="model.target_age_type"
+              id="target_age_type1"
               checked=""
+              value="0"
             />
-            <label class="search-filter-radio-label" for="radio-age1">
+            <label class="search-filter-radio-label" for="target_age_type1">
               すべて
             </label>
           </div>
@@ -286,28 +301,30 @@
             <input
               class="form-check-input mt-0"
               type="radio"
-              name="radio-age"
-              id="radio-age2"
+              name="target_age_type"
+              v-model="model.target_age_type"
+              id="target_age_type2"
+              value="1"
             />
-            <label class="search-filter-radio-label" for="radio-age2">
+            <label class="search-filter-radio-label" for="target_age_type2">
               年齢制限有り（～を対象としているものを含む）
             </label>
           </div>
-          <div class="d-flex">
+          <div class="d-flex" v-if="model.target_age_type == 1">
             <div class="col-6">
               <label class="search-filter-label">最少年齢</label>
               <div class="search-filter-prize-input d-flex align-items-center">
                 <div class="search-filter-select">
-                  <img
-                    src="/assets/img/user/common/icon_select_02.png"
-                    class="icon-select-02"
-                    alt=""
+                  <input
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    placeholder="1"
+                    max="100"
+                    name="target_age_from"
+                    v-model="model.target_age_from"
                   />
-                  <select class="form-select">
-                    <option>1</option>
-                  </select>
                 </div>
-                <!-- <ErrorMessage class="error-msg" name="address_building" /> -->
                 <span>歳</span>
                 <span>～</span>
               </div>
@@ -316,16 +333,16 @@
               <label class="search-filter-label">最高年齢</label>
               <div class="search-filter-prize-input d-flex align-items-center">
                 <div class="search-filter-select">
-                  <img
-                    src="/assets/img/user/common/icon_select_02.png"
-                    class="icon-select-02"
-                    alt=""
+                  <input
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    placeholder="100"
+                    v-model="model.target_age_to"
+                    max="100"
+                    name="target_age_to"
                   />
-                  <select class="form-select">
-                    <option>200</option>
-                  </select>
                 </div>
-                <!-- <ErrorMessage class="error-msg" name="address_building" /> -->
                 <span>歳</span>
               </div>
             </div>
@@ -343,9 +360,10 @@
                 class="icon-select-01"
                 alt=""
               />
-              <select
-                class="form-select"
+              <Field
+                as="select"
                 name="area_id"
+                class="form-select"
                 v-model="model.area_id"
               >
                 <option value="">すべての都道府県</option>
@@ -356,7 +374,7 @@
                 >
                   {{ item.label }}
                 </option>
-              </select>
+              </Field>
             </div>
             <div class="search-filter-select">
               <img
@@ -364,22 +382,23 @@
                 class="icon-select-01"
                 alt=""
               />
-              <select
-                class="form-select"
+              <Field
+                as="select"
                 name="prefecture_id"
+                class="form-select"
                 v-model="model.prefecture_id"
               >
                 <option value="">すべての都道府県</option>
                 <option
                   :value="item.id"
-                  v-for="item in data.prefectures.filter(
-                    (x) => x.area_id == model.area_id
-                  )"
+                  v-for="item in model.area_id
+                    ? data.prefectures.filter((x) => x.area_id == model.area_id)
+                    : data.prefectures"
                   :key="item.id"
                 >
                   {{ item.label }}
                 </option>
-              </select>
+              </Field>
             </div>
           </div>
         </div>
@@ -389,11 +408,11 @@
             <input
               class="form-check-input mt-0"
               type="radio"
-              name="radio-condition"
-              id="radio-condition1"
+              name="order_by"
+              id="order_by1"
               checked=""
             />
-            <label class="search-filter-radio-label" for="radio-condition1">
+            <label class="search-filter-radio-label" for="order_by1">
               おすすめ順
             </label>
           </div>
@@ -401,10 +420,10 @@
             <input
               class="form-check-input mt-0"
               type="radio"
-              name="radio-condition"
-              id="radio-condition2"
+              name="order_by"
+              id="order_by2"
             />
-            <label class="search-filter-radio-label" for="radio-condition2">
+            <label class="search-filter-radio-label" for="order_by2">
               最新順
             </label>
           </div>
@@ -412,10 +431,10 @@
             <input
               class="form-check-input mt-0"
               type="radio"
-              name="radio-condition"
-              id="radio-condition3"
+              name="order_by"
+              id="order_by3"
             />
-            <label class="search-filter-radio-label" for="radio-condition3">
+            <label class="search-filter-radio-label" for="order_by3">
               参加期限が近い順
             </label>
           </div>
@@ -423,10 +442,10 @@
             <input
               class="form-check-input mt-0"
               type="radio"
-              name="radio-condition"
-              id="radio-condition4"
+              name="order_by"
+              id="order_by4"
             />
-            <label class="search-filter-radio-label" for="radio-condition4">
+            <label class="search-filter-radio-label" for="order_by4">
               参加人数が多い順
             </label>
           </div>
@@ -434,10 +453,10 @@
             <input
               class="form-check-input mt-0"
               type="radio"
-              name="radio-condition"
-              id="radio-condition5"
+              name="order_by"
+              id="order_by5"
             />
-            <label class="search-filter-radio-label" for="radio-condition5">
+            <label class="search-filter-radio-label" for="order_by5">
               参加人数が少ない順
             </label>
           </div>
@@ -445,21 +464,39 @@
             <input
               class="form-check-input mt-0"
               type="radio"
-              name="radio-condition"
-              id="radio-condition6"
+              name="order_by"
+              id="order_by6"
             />
-            <label class="search-filter-radio-label" for="radio-condition6">
+            <label class="search-filter-radio-label" for="order_by6">
               総合報酬金額が多い順
             </label>
           </div>
         </div>
       </div>
       <footer class="search-filter-footer">
-        <button type="submit" class="btn-submit-primary">
-          <a :href="data.urlBack">戻る</a>
+        <button
+          type="button"
+          @click="hiddenSearchSidebar"
+          class="btn-submit-primary"
+        >
+          戻る
         </button>
         <button type="submit" class="btn-submit">保存する</button>
       </footer>
+      <input
+        type="hidden"
+        :name="'tags[' + index + '][value]'"
+        :value="item.value"
+        v-for="(item, index) in tags"
+        :key="item.value"
+      />
+      <input
+        type="hidden"
+        :name="'tags[' + index + '][name]'"
+        :value="item.name"
+        v-for="(item, index) in tags"
+        :key="item.value"
+      />
     </form>
   </div>
 </template>
@@ -473,10 +510,10 @@ export default {
     ErrorMessage,
     Datepicker
   },
-  props: ['data'],
+  props: ['data', 'tags'],
   data: function () {
     return {
-      model: {
+      model: this.data.request ?? {
         category_id: '',
         day_end: '',
         area_id: '',

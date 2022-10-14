@@ -23,6 +23,6 @@ class TagRepository extends BaseController implements TagInterface
 
     public function searchTag($request)
     {
-        return $this->tag->whereNotIn('name', $request->tags ?? [])->select(['id as value', 'name'])->get();
+        return $this->tag->where($this->escapeLikeSentence('name', $request->name))->whereNotIn('name', $request->tags ?? [])->select(['id as value', 'name'])->get();
     }
 }

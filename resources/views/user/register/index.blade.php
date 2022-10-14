@@ -18,6 +18,7 @@ use App\Enums\UserType;
             'prefectureOptions' => $prefectures,
             'cityOptions' => $cities,
             'jobOptions' => $jobs,
+            'industries' => $industries,
         ]) }}">
     </register>
 @endsection
