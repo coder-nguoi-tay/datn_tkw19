@@ -50,6 +50,7 @@ import MyEventShow from './components/myEvent/show.vue'
 import MyPage from './components/myPage/index.vue'
 import Profile from './components/user/profile/index.vue'
 import EventReport from './components/eventReport/index.vue'
+import DeleteAccount from './components/deleteAccount/index.vue'
 import ChangeName from './components/user/changeName/index.vue'
 // import Notification from './components/user/profile/setting-notification.vue'
 import EventList from './components/user/event/index.vue'
@@ -77,5 +78,6 @@ app.component('event-list', EventList)
 app.component('event-close', EventClose)
 app.component('my-page-earn', MyPageEarn)
 app.component('search-page', SearchPage)
+app.component('delete-account', DeleteAccount)
 
 app.mount('#app')
