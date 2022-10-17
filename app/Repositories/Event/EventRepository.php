@@ -131,6 +131,7 @@ class EventRepository extends BaseController implements EventInterface
                 $eventNew->entry_fee = $request->entry_fee;
             }
             $total = 0;
+            $totalPerson = 0;
             foreach ($request->event_rewards as $key => $value) {
                 $total += $value['reward_amount'] * $value['quantity'];
             }
@@ -472,48 +473,50 @@ class EventRepository extends BaseController implements EventInterface
                 $q->orWhere($this->escapeLikeSentence('detail', $request->free_input));
             });
         }
-        // dd($builder->get()->toArray());
-        // if ($request->category_id) {
-        //     $builder->where('category_id', $request->category_id);
-        // }
-        // if ($request->publish_start_datetime) {
-        //     $builder->where('publish_start_datetime', $request->publish_start_datetime);
-        // }
-        // if ($request->day_end) {
-        //     $builder->where('day_end', $request->day_end);
-        // }
-        // if (isset($request->entry_type)) {
-        //     $builder->where('entry_type', $request->entry_type);
-        // }
-        // if ($request->entry_fee) {
-        //     $builder->where('entry_fee', $request->entry_fee);
-        // }
-        // $builder->join('event_conditions as con', 'events.id', '=', 'con.event_id');
-        // if (isset($request->reward_type) || isset($request->target_age_type)) {
-        //     $builder->where('con.limit_number_of_participants_flag', $request->reward_type);
-        //     $builder->where('con.target_age_type', $request->target_age_type);
-        //     if ($request->target_age_from) {
-        //         $builder->where('con.target_age_from', '>=', $request->target_age_from);
-        //     }
-        //     if ($request->target_age_to) {
-        //         $builder->where('con.target_age_to', '<=', $request->target_age_to);
-        //     }
-        // }
-        // if ($request->reward_price_start) {
-        //     $builder->where('reward_amount', '>=', $request->reward_price_start);
-        // }
-        // if ($request->reward_price_end) {
-        //     $builder->where('reward_amount', '<=', $request->reward_price_end);
-        // }
-        // if ($request->area_id) {
-        //     $builder->where('events_area', ['area_id' => $request->area_id]);
-        // }
-        // if ($request->prefecture_id) {
-        //     $builder->where('events_area', ['pref_id' => $request->prefecture_id]);
-        // }
-        // if ($request->target_gender) {
-        //     $builder->whereJsonContains('con.target_gender', $request->target_gender);
-        // }
+        if ($request->category_id) {
+            $builder->where('category_id', $request->category_id);
+        }
+        if ($request->publish_start_datetime) {
+            $builder->whereDate('publish_start_datetime', $request->publish_start_datetime);
+        }
+        if ($request->day_end) {
+            $builder->where('day_end', $request->day_end);
+        }
+        $builder->where('entry_type', $request->entry_type ?? 0);
+        if ($request->entry_fee) {
+            $builder->where('entry_fee', '<=', $request->entry_fee);
+        }
+        $builder->join('event_conditions as con', 'events.id', '=', 'con.event_id');
+        if ($request->reward_type) {
+            if ($request->reward_price_start != '') {
+                $builder->where('reward_amount', '>=', $request->reward_price_start);
+            }
+            if ($request->reward_price_end != '') {
+                $builder->where('reward_amount', '<=', $request->reward_price_end);
+            }
+        }
+        if ($request->target_gender && $request->target_gender != 5) {
+            $builder->where(function ($q) use ($request) {
+                $q->orWhereJsonContains('con.target_gender', $request->target_gender);
+                $q->orWhereJsonContains('con.target_gender', '5');
+            });
+        }
+        if ($request->target_age_type) {
+            $builder->where('con.target_age_type', $request->target_age_type);
+            if ($request->target_age_from != '') {
+                $builder->where('target_age_from', '>=', $request->target_age_from);
+            }
+            if ($request->target_age_to != '') {
+                $builder->where('target_age_to', '<=', $request->target_age_to);
+            }
+        }
+        if ($request->area_id) {
+            $builder->whereJsonContains('events_area', ['area_id' => $request->area_id]);
+        }
+        if ($request->prefecture_id) {
+            $builder->whereJsonContains('events_area', ['pref_id' => $request->prefecture_id]);
+        }
+
         if ($request->tags) {
             $builder->join('event_tags as et', 'events.id', '=', 'et.event_id');
             $builder->where(function ($q) use ($request) {
@@ -522,9 +525,26 @@ class EventRepository extends BaseController implements EventInterface
                 }
             });
         }
+        switch ($request->order_by) {
+            case 1:
+                // code...
+                break;
+            case 2:
+                $builder->orderBy('updated_at', 'DESC');
+                break;
+            case 3:
+                $builder->orderBy('publish_end_datetime');
+                break;
+            case 4:
+                $builder->orderBy('limit_number_of_participants_flag')->orderBy('limit_number_of_participants', 'DESC');
+                break;
+            case 5:
+                break;
+            case 6:
+                $builder->orderBy('reward_amount', 'DESC');
+                break;
+        }
 
-        return $builder->select(['events.*'])->groupBy('events.id')->get();
-
-        return [];
+        return $builder->select(['events.*', 'con.limit_number_of_participants_flag', 'con.limit_number_of_participants'])->groupBy(['events.id', 'con.limit_number_of_participants_flag', 'con.limit_number_of_participants'])->get();
     }
 }

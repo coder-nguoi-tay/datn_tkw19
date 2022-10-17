@@ -111,9 +111,9 @@
             <input
               type="radio"
               class="form-check-input"
-              v-model="model.entry_type"
               id="entry_type_2"
               name="entry_type"
+              v-model="model.entry_type"
               value="1"
             />
             <label class="search-filter-radio-label" for="entry_type_2">
@@ -409,8 +409,10 @@
               class="form-check-input mt-0"
               type="radio"
               name="order_by"
+              v-model="model.order_by"
               id="order_by1"
               checked=""
+              value="1"
             />
             <label class="search-filter-radio-label" for="order_by1">
               おすすめ順
@@ -422,6 +424,8 @@
               type="radio"
               name="order_by"
               id="order_by2"
+              v-model="model.order_by"
+              value="2"
             />
             <label class="search-filter-radio-label" for="order_by2">
               最新順
@@ -433,6 +437,8 @@
               type="radio"
               name="order_by"
               id="order_by3"
+              v-model="model.order_by"
+              value="3"
             />
             <label class="search-filter-radio-label" for="order_by3">
               参加期限が近い順
@@ -444,6 +450,8 @@
               type="radio"
               name="order_by"
               id="order_by4"
+              v-model="model.order_by"
+              value="4"
             />
             <label class="search-filter-radio-label" for="order_by4">
               参加人数が多い順
@@ -455,6 +463,8 @@
               type="radio"
               name="order_by"
               id="order_by5"
+              v-model="model.order_by"
+              value="5"
             />
             <label class="search-filter-radio-label" for="order_by5">
               参加人数が少ない順
@@ -466,6 +476,8 @@
               type="radio"
               name="order_by"
               id="order_by6"
+              v-model="model.order_by"
+              value="6"
             />
             <label class="search-filter-radio-label" for="order_by6">
               総合報酬金額が多い順
@@ -513,15 +525,20 @@ export default {
   props: ['data', 'tags'],
   data: function () {
     return {
-      model: this.data.request ?? {
-        category_id: '',
-        day_end: '',
-        area_id: '',
-        prefecture_id: ''
-      }
+      model: Array.isArray(this.data.request)
+        ? {
+            category_id: '',
+            day_end: '',
+            area_id: '',
+            prefecture_id: '',
+            entry_type: 0
+          }
+        : this.data.request
     }
   },
-  created() {},
+  created() {
+    console.log(this.data.request, this.model)
+  },
   methods: {
     hiddenSearchSidebar() {
       $(document).ready(function () {

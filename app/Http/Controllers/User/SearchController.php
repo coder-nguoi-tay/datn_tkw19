@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\SearchRequest;
 use App\Repositories\Admin\AdminInterface;
 use App\Repositories\Area\AreaInterface;

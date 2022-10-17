@@ -12,7 +12,7 @@ use App\Http\Controllers\DeleteAccountController;
 use App\Http\Controllers\EventReportController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\MyEventController;
-use App\Http\Controllers\SearchController;
+use App\Http\Controllers\User\SearchController;
 use App\Http\Controllers\User\ChangePasswordController;
 use App\Http\Controllers\User\ChangeUserNameController;
 use App\Http\Controllers\User\EventController;
