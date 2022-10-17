@@ -1,10 +1,31 @@
 <template>
   <div class="event-detail">
-    <div class="container event-detail__container">
-      <div class="event-info">
-        <div class="event__img">
-          <img src="/assets/img/user/event/hands.png" alt="" />
+    <header class="header">
+      <div class="container header__container">
+        <div class="header__wrapper d-flex align-items-center justify-content-between">
+          <a href="/my-event" class="btn-back position-relative">
+            <img class="ic-back" src="/assets/img/user/common/ic_back.svg" />
+          </a>
+          <p class="header-title">イベント詳細</p>
+          <div class="header_option d-flex">
+            <img src="/assets/img/my_page/icon_share.png" class="icon_share" alt="" />
+            <img src="/assets/img/user/common/icon_refresh.png" class="icon_refresh" alt="" />
+          </div>
         </div>
+      </div>
+    </header>
+    <div class="event-detail__container">
+      <div class="event-info">
+        <Carousel :autoplay="3000" :wrap-around="true">
+          <Slide v-for="slide in 3" :key="slide">
+            <div class="event__img carousel__item">
+              <img src="/assets/img/user/event/hands.png" alt="" />
+            </div>
+          </Slide>
+          <template #addons>
+            <Pagination />
+          </template>
+        </Carousel>
         <div class="info-box">
           <div class="event-desc d-flex align-items-center flex-wrap">
             <span class="event__category">新着</span>
@@ -17,18 +38,28 @@
           </div>
           <div class="event-meta d-flex align-items-center flex-wrap">
             <span class="meta-item">
-              <img src="/assets/img/user/event/ic_fee.svg" alt="" />1,000円
+              <div class="d-flex flex-column align-items-center">
+                <img src="/assets/img/user/event/ic_fee.svg" alt="" /><span>参加費</span>
+              </div>
+              1,000円
             </span>
             <span class="meta-item">
-              <img src="/assets/img/user/event/ic_reward.svg" alt="" />500,000円
+              <div class="d-flex flex-column align-items-center">
+                <img src="/assets/img/user/event/ic_reward.svg" alt="" /><span>総額報酬金</span>
+              </div>
+              9,999,999円
             </span>
-            <span class="meta-item">
-              <img src="/assets/img/user/event/ic_period.svg" alt="" />残り5日
+            <span class="meta-item fw-bold">
+              <div class="d-flex flex-column align-items-center">
+                <img src="/assets/img/user/event/ic_period.svg" alt="" /><span>残り時間</span>
+              </div>
+              1日と12時間32分
             </span>
-            <span class="meta-item">
-              <img src="/assets/img/user/event/ic_noti.svg" alt="" /><b
-                >商社太郎</b
-              >
+            <span class="meta-item meta-item-avatar fw-bold">
+              <div class="d-flex flex-column align-items-center">
+                <img src="/assets/img/user/event/avatar_2.png" alt="" /><span>主催者</span>
+              </div>
+              商社太郎
             </span>
           </div>
         </div>
@@ -104,7 +135,7 @@
             </button>
           </div>
         </nav>
-        <div class="tab-content" id="nav-tabContent">
+        <div class="container tab-content" id="nav-tabContent">
           <div
             class="tab-pane fade show active"
             id="group-chat-tab"
@@ -113,9 +144,9 @@
           >
             <form action="" method="POST" name="" enctype="multipart/form-data">
               <div class="group-chat">
-                <div class="chat__header d-flex justify-content-between">
+                <div class="chat__header d-flex justify-content-between align-items-center">
                   <span class="txt-all-people">すべての人</span>
-                  <div>
+                  <div class="d-flex">
                     <span class="c-header__txt all-people">
                       <img
                         src="/assets/img/user/event/ic_people_black.svg"
@@ -311,7 +342,7 @@
                     最終更新日時：2021年12月10日 21:21
                   </p>
                   <button type="button" class="btn-join btn-join-private">
-                    達成報告
+                    イベントに参加する
                   </button>
                 </div>
               </div>
@@ -764,7 +795,7 @@
                 </div>
                 <div class="chat__footer">
                   <button type="button" class="btn-join btn-join-private">
-                    達成報告
+                    イベントに参加する
                   </button>
                 </div>
               </div>
@@ -773,11 +804,18 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 <script>
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide, Pagination } from 'vue3-carousel'
 export default {
-  components: {},
+  components: {
+    Carousel,
+    Slide,
+    Pagination,
+  },
   props: ['data'],
   data: function () {
     return {
