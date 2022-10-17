@@ -42,19 +42,152 @@
     </header>
     <div class="container">
       <div class="search-tags-list d-flex align-items-center">
-        <div class="search-tags-item d-flex align-items-center">
-          <span class="search-tags-item-name">参加費: ~ 3,000円</span>
-          <div class="search-tags-item-button">
+        <div
+          class="search-tags-item d-flex align-items-center"
+          v-if="data.request.category_id"
+        >
+          <span class="search-tags-item-name"
+            >カテゴリ:
+            {{
+              data.categories.find((x) => x.value == data.request.category_id)
+                .label
+            }}</span
+          >
+          <div
+            class="search-tags-item-button"
+            @click="clearSearch('category_id', '')"
+          >
             <i class="fa fa-times" aria-hidden="true"></i>
           </div>
         </div>
-        <div class="search-tags-item d-flex align-items-center">
-          <span class="search-tags-item-name">性別: 男性限定</span>
-          <div class="search-tags-item-button">+</div>
+        <div
+          class="search-tags-item d-flex align-items-center"
+          v-if="data.request.day_end"
+        >
+          <span class="search-tags-item-name"
+            >応募期間: {{ data.request.day_end + '日' }}</span
+          >
+          <div
+            class="search-tags-item-button"
+            @click="clearSearch('day_end', '')"
+          >
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
         </div>
-        <div class="search-tags-item d-flex align-items-center">
-          <span class="search-tags-item-name"># 探偵系</span>
-          <div class="search-tags-item-button">+</div>
+        <div
+          class="search-tags-item d-flex align-items-center"
+          v-if="data.request.publish_start_datetime"
+        >
+          <span class="search-tags-item-name"
+            >応募開始日: {{ data.request.publish_start_datetime + '～' }}</span
+          >
+          <div
+            class="search-tags-item-button"
+            @click="clearSearch('publish_start_datetime', '')"
+          >
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div
+          class="search-tags-item d-flex align-items-center"
+          v-if="data.request.entry_type == 1"
+        >
+          <span class="search-tags-item-name"
+            >参加費: 有料イベントも含める
+            {{
+              data.request.entry_fee
+                ? '(～' + data.request.entry_fee + '円)'
+                : ''
+            }}</span
+          >
+          <div
+            class="search-tags-item-button"
+            @click="clearSearch('entry_type', 0)"
+          >
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div
+          class="search-tags-item d-flex align-items-center"
+          v-if="data.request.reward_type == 1"
+        >
+          <span class="search-tags-item-name"
+            >報酬: 総合報酬金の範囲で表示
+            {{
+              data.request.reward_price_start || data.request.reward_price_end
+                ? '(' +
+                  (data.request.reward_price_start
+                    ? data.request.reward_price_start + '円'
+                    : '') +
+                  '～' +
+                  (data.request.reward_price_end
+                    ? data.request.reward_price_end + '円'
+                    : '') +
+                  ')'
+                : ''
+            }}</span
+          >
+          <div
+            class="search-tags-item-button"
+            @click="clearSearch('reward_type', 0)"
+          >
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div
+          class="search-tags-item d-flex align-items-center"
+          v-if="data.request.target_gender && data.request.target_gender != 5"
+        >
+          <span class="search-tags-item-name"
+            >対象の性別: {{ genderTxt() }}
+          </span>
+          <div
+            class="search-tags-item-button"
+            @click="clearSearch('target_gender', 5)"
+          >
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div
+          class="search-tags-item d-flex align-items-center"
+          v-if="data.request.target_age_type == 1"
+        >
+          <span class="search-tags-item-name"
+            >対象年齢: 年齢制限有り
+            {{
+              data.request.target_age_from || data.request.target_age_to
+                ? '(' +
+                  (data.request.target_age_from
+                    ? data.request.target_age_from + '歳'
+                    : '') +
+                  '～' +
+                  (data.request.target_age_to
+                    ? data.request.target_age_to + '歳'
+                    : '') +
+                  ')'
+                : ''
+            }}</span
+          >
+          <div
+            class="search-tags-item-button"
+            @click="clearSearch('target_age_type', 0)"
+          >
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div
+          class="search-tags-item d-flex align-items-center"
+          v-if="data.request.area_id || data.request.prefecture_id"
+        >
+          <span class="search-tags-item-name"
+            >対象の実施地域: {{ getPref() }}
+          </span>
+          <div
+            class="search-tags-item-button"
+            @click="clearSearch('area_id', '')"
+          >
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
         </div>
       </div>
     </div>
@@ -230,6 +363,58 @@ export default {
       })
       const dataRes = await res.json()
       return dataRes.data
+    },
+    genderTxt() {
+      switch (parseInt(this.data.request.target_gender)) {
+        case 1:
+          return '男性のみ'
+        case 2:
+          return '女性のみ'
+        case 3:
+          return '事業者のみ'
+        case 4:
+          return 'その他可'
+      }
+    },
+    getPref() {
+      if (this.data.request.area_id && !this.data.request.prefecture_id) {
+        return this.data.areas.find((x) => x.id == this.data.request.area_id)
+          .label
+      }
+      if (!this.data.request.area_id && this.data.request.prefecture_id) {
+        return this.data.prefectures.find(
+          (x) => x.id == this.data.request.prefecture_id
+        ).label
+      }
+      return (
+        this.data.areas.find((x) => x.id == this.data.request.area_id).label +
+        '/' +
+        this.data.prefectures.find(
+          (x) => x.id == this.data.request.prefecture_id
+        ).label
+      )
+    },
+    clearSearch(name, val) {
+      $("[name='" + name + "']").val(val)
+      if (name == 'entry_type') {
+        $('[name="entry_fee"]').val('')
+      }
+      if (name == 'reward_type') {
+        $('[name="reward_price_start"]').val('')
+        $('[name="reward_price_end"]').val('')
+      }
+      if (name == 'target_age_type') {
+        $('[name="target_age_from"]').val('')
+        $('[name="target_age_to"]').val('')
+      }
+      if (name == 'area_id') {
+        $('[name="area_id"]').val('')
+        $('[name="prefecture_id"]').val('')
+      }
+      $('.loading-div').removeClass('hidden')
+      setTimeout(function () {
+        $('#searchDetail').submit()
+      }, 200)
     }
   },
   watch: {

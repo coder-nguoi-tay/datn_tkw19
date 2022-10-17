@@ -493,7 +493,9 @@
         >
           戻る
         </button>
-        <button type="submit" class="btn-submit">保存する</button>
+        <button type="submit" @click="showLoader" class="btn-submit">
+          保存する
+        </button>
       </footer>
       <input
         type="hidden"
@@ -536,10 +538,11 @@ export default {
         : this.data.request
     }
   },
-  created() {
-    console.log(this.data.request, this.model)
-  },
+  created() {},
   methods: {
+    showLoader() {
+      $('.loading-div').removeClass('hidden')
+    },
     hiddenSearchSidebar() {
       $(document).ready(function () {
         let sidebar = $('.search-filter-sidebar')
