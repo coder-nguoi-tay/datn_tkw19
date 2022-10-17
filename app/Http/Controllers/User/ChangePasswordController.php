@@ -29,17 +29,11 @@ class ChangePasswordController extends BaseController
 
     public function update(ChangePasswordRequest $request)
     {
-        if ($this->user->changePassword($request)) {
-            return response()->json([
-                'message' => '成功した操作 ！',
-                'content' => 'あなたのパスワードは変更されました。',
-                'mode' => 'success',
-                'status' => StatusCode::OK,
-            ], StatusCode::OK);
+        if (! $this->user->changePassword($request)) {
+            $this->setFlash(__('更新できませんでした...'), 'error');
         }
+        $this->setFlash(__('更新されました！！'));
 
-        return response()->json([
-            'message' => '現在のパスワードが間違っています。',
-        ], StatusCode::INTERNAL_ERR);
+        return redirect()->route('change-password.index');
     }
 }

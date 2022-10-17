@@ -288,14 +288,12 @@ class UserRepository extends BaseController implements UserInterface
             ->where('id', Auth::guard('user')->user()->id)
             ->first();
 
-        if (Hash::check($request->current_password, $userInfo->password)) {
-            $userInfo->password = Hash::make($request->new_password);
-            $userInfo->save();
-
-            return true;
-        } else {
+        if (! Hash::check($request->password_old, $userInfo->password)) {
             return false;
         }
+        $userInfo->password = Hash::make($request->password_new);
+
+        return $userInfo->save();
     }
 
     public function updateNotification($request, $id)

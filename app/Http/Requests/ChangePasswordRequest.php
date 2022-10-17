@@ -26,12 +26,10 @@ class ChangePasswordRequest extends FormRequest
      */
     public function rules()
     {
-        $rule = [
-            'current_password' => 'required|max:16',
-            'new_password' => 'required|different:current_password|max:16|min:8|regex:/^[A-Za-z0-9]*$/',
-            'confirm_password' => 'required|max:16|same:new_password',
+        return [
+            'password_old' => 'required|max:16|min:8|regex:/^[A-Za-z0-9]*$/',
+            'password_new' => 'required|max:16|min:8|regex:/^[A-Za-z0-9]*$/',
+            'confirm_password' => 'required|same:password_new',
         ];
-
-        return $rule;
     }
 }

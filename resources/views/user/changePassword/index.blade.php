@@ -2,9 +2,8 @@
 @section('content')
     <change-password
         :data="{{ json_encode([
-            'urlUpdate' => route('change-password.update'),
+            'urlUpdate' => route('change-password.update', $user->id),
             'urlBack' => route('my-page.index'),
-            'user' => $user,
         ]) }}">
     </change-password>
 @endsection
