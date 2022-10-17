@@ -89,7 +89,7 @@ class ProfileController extends BaseController
      */
     public function update(ProfileRequest $request, $id)
     {
-        if (! $this->user->updateProfile($request, $id)) {
+        if (!$this->user->updateProfile($request, $id)) {
             $this->setFlash(__('更新できませんでした...'), 'error');
         }
         $this->setFlash(__('更新されました！！'));

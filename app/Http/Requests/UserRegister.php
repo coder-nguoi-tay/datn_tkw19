@@ -34,7 +34,7 @@ class UserRegister extends FormRequest
     {
         $data = $this->all();
         $id = $this->user;
-        $passwordRules = (! empty($id) ? 'nullable' : 'required').'|max:16|min:8|regex:/^[A-Za-z0-9]*$/';
+        $passwordRules = (!empty($id) ? 'nullable' : 'required') . '|max:16|min:8|regex:/^[A-Za-z0-9]*$/';
         $rule = [
             'show_name' => 'required|max:255',
             'type' => [
@@ -71,7 +71,7 @@ class UserRegister extends FormRequest
         ];
 
         if ($data['type'] == UserType::PERSON) {
-            $rule['birthday'] = 'required|date_format:Y/m/d|before_or_equal:'.Carbon::now()->format('Y/m/d');
+            $rule['birthday'] = 'required|date_format:Y/m/d|before_or_equal:' . Carbon::now()->format('Y/m/d');
             $rule['gender'] = [
                 'required',
                 Rule::in(Gender::getValues()),

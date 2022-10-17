@@ -7,7 +7,6 @@ use App\Models\OperationLog;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Routing\Controller;
-use Illuminate\Routing\Route;
 use Log;
 
 class BaseController extends Controller
@@ -37,10 +36,10 @@ class BaseController extends Controller
         $newSizeLimit = 20;
         $arrPageSize = [20, 50, 100];
         if (isset($query['limit_page'])) {
-            $newSizeLimit = (($query['limit_page'] === '') || ! in_array($query['limit_page'], $arrPageSize)) ? $newSizeLimit : $query['limit_page'];
+            $newSizeLimit = (($query['limit_page'] === '') || !in_array($query['limit_page'], $arrPageSize)) ? $newSizeLimit : $query['limit_page'];
         }
-        if (((isset($query['limit_page']))) && (! empty($query->query('limit_page')))) {
-            $newSizeLimit = (! in_array($query->query('limit_page'), $arrPageSize)) ? $newSizeLimit : $query->query('limit_page');
+        if (((isset($query['limit_page']))) && (!empty($query->query('limit_page')))) {
+            $newSizeLimit = (!in_array($query->query('limit_page'), $arrPageSize)) ? $newSizeLimit : $query->query('limit_page');
         }
 
         return $newSizeLimit;
@@ -59,7 +58,7 @@ class BaseController extends Controller
         $result = str_replace('%', '\%', $result); // % -> \%
         $result = str_replace('_', '\_', $result); // _ -> \_
 
-        return [[$column, 'LIKE', (($before) ? '%' : '').$result.(($after) ? '%' : '')]];
+        return [[$column, 'LIKE', (($before) ? '%' : '') . $result . (($after) ? '%' : '')]];
     }
 
     public function handleSearchQuery($str, $before = true, $after = true)
@@ -68,7 +67,7 @@ class BaseController extends Controller
         $result = str_replace('%', '\%', $result); // % -> \%
         $result = str_replace('_', '\_', $result); // _ -> \_
 
-        return (($before) ? '%' : '').$result.(($after) ? '%' : '');
+        return (($before) ? '%' : '') . $result . (($after) ? '%' : '');
     }
 
     public function checkPaginatorList($query)
@@ -106,7 +105,7 @@ class BaseController extends Controller
         $ret = 0;
         if ($column == '') {
             $ret = 1; // Blank OR NULL
-        } elseif (! $this->checkRfidCode($column)) {
+        } elseif (!$this->checkRfidCode($column)) {
             $ret = 2; // Error formart
         }
 
