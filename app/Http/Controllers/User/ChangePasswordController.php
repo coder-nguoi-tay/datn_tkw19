@@ -7,8 +7,8 @@ use App\Http\Controllers\BaseController;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Repositories\City\CityInterface;
 use App\Repositories\Prefecture\PrefectureInterface;
-use Illuminate\Support\Facades\Auth;
 use App\Repositories\User\UserInterface;
+use Illuminate\Support\Facades\Auth;
 
 class ChangePasswordController extends BaseController
 {
@@ -26,6 +26,7 @@ class ChangePasswordController extends BaseController
             'user' => Auth::guard('user')->user(),
         ]);
     }
+
     public function update(ChangePasswordRequest $request)
     {
         if ($this->user->changePassword($request)) {

@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Enums\DisplayInfoFlag;
+use App\Enums\UserType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use App\Enums\UserType;
 
 class ChangePasswordRequest extends FormRequest
 {
@@ -26,7 +26,6 @@ class ChangePasswordRequest extends FormRequest
      */
     public function rules()
     {
-
         $rule = [
             'current_password' => 'required|max:16',
             'new_password' => 'required|different:current_password|max:16|min:8|regex:/^[A-Za-z0-9]*$/',

@@ -25,7 +25,7 @@ class ChangeUserNameController extends BaseController
     public function index(Request $request)
     {
         $user = $this->user->getById(Auth::guard('user')->user()->id);
-        if (!$user) {
+        if (! $user) {
             return redirect(route('home.index'));
         }
 

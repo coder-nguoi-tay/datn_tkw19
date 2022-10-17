@@ -67,7 +67,7 @@ class UserRepository extends BaseController implements UserInterface
             DB::beginTransaction();
             $user = new $this->user;
             $user->show_name = $request->show_name;
-            $user->phone_number = (env('VN_MODE') ? '+84' : '+81') . $request->phone_number;
+            $user->phone_number = (env('VN_MODE') ? '+84' : '+81').$request->phone_number;
             $user->email = $request->email ? $request->email : '';
             $user->password = Hash::make($request->password);
             $user->type = $request->type;
@@ -84,14 +84,14 @@ class UserRepository extends BaseController implements UserInterface
                 $user->address_building = $request->address_building;
                 $user->job_descriptions = $request->job_descriptions;
             }
-            if (!$user->save()) {
+            if (! $user->save()) {
                 DB::rollBack();
 
                 return false;
             }
             $userTmp = $this->userTmp->where('phone_number', $request->phone_number)->first();
             if (isset($userTmp)) {
-                if (!$userTmp->delete()) {
+                if (! $userTmp->delete()) {
                     DB::rollBack();
 
                     return false;
@@ -114,13 +114,13 @@ class UserRepository extends BaseController implements UserInterface
         try {
             DB::beginTransaction();
             $userInfo = $this->user->where('id', $id)->first();
-            if (!$userInfo) {
+            if (! $userInfo) {
                 DB::rollBack();
 
                 return false;
             }
             $userInfo->show_name = $request->show_name;
-            $userInfo->phone_number = (env('VN_MODE') ? '+84' : '+81') . $request->phone_number;
+            $userInfo->phone_number = (env('VN_MODE') ? '+84' : '+81').$request->phone_number;
             $userInfo->email = $request->email ? $request->email : '';
             $userInfo->password = $request->password ? Hash::make($request->password) : $userInfo->password;
             $userInfo->type = $request->type;
@@ -137,7 +137,7 @@ class UserRepository extends BaseController implements UserInterface
                 $userInfo->address_building = $request->address_building;
                 $userInfo->job_descriptions = $request->job_descriptions;
             }
-            if (!$userInfo->save()) {
+            if (! $userInfo->save()) {
                 DB::rollBack();
 
                 return false;
@@ -156,7 +156,7 @@ class UserRepository extends BaseController implements UserInterface
     {
         // TODO: Implement destroy() method.
         $userInfo = $this->user->where('id', $id)->first();
-        if (!$userInfo) {
+        if (! $userInfo) {
             return false;
         }
         if ($userInfo->delete()) {
@@ -168,7 +168,7 @@ class UserRepository extends BaseController implements UserInterface
 
     public function checkPhone($request)
     {
-        return !$this->user->where(function ($query) use ($request) {
+        return ! $this->user->where(function ($query) use ($request) {
             if (isset($request['id'])) {
                 $query->where('id', '!=', $request['id']);
             }
@@ -182,7 +182,7 @@ class UserRepository extends BaseController implements UserInterface
             DB::beginTransaction();
             $user = new $this->user;
             $user->show_name = $request->show_name;
-            $user->phone_number = (env('VN_MODE') ? '+84' : '+81') . $request->phone_number;
+            $user->phone_number = (env('VN_MODE') ? '+84' : '+81').$request->phone_number;
             $user->password = Hash::make($request->password);
             $user->type = $request->type;
             $user->prefecture_id = $request->prefecture_id;
@@ -203,13 +203,13 @@ class UserRepository extends BaseController implements UserInterface
                 $user->industry_id = $request->industry_id;
                 $user->industry_content = $request->industry_content;
             }
-            if (!$user->save()) {
+            if (! $user->save()) {
                 DB::rollBack();
 
                 return false;
             }
             $userTmp = $this->userTmp->where('phone_number', $request->phone_number)->first();
-            if (!Hash::check($request->code, $userTmp->sms_code)) {
+            if (! Hash::check($request->code, $userTmp->sms_code)) {
                 DB::rollBack();
 
                 return false;
@@ -228,7 +228,7 @@ class UserRepository extends BaseController implements UserInterface
     public function updateLastLogin($id)
     {
         $currentUser = $this->user->where('id', $id)->first();
-        if (!$currentUser) {
+        if (! $currentUser) {
             return false;
         }
         $currentUser->last_login_at = Carbon::now();
@@ -239,7 +239,7 @@ class UserRepository extends BaseController implements UserInterface
     public function checkEmail($request)
     {
         if ($request['value'] != '') {
-            return !$this->user->where(function ($query) use ($request) {
+            return ! $this->user->where(function ($query) use ($request) {
                 if (isset($request['id'])) {
                     $query->where('id', '!=', $request['id']);
                 }
@@ -253,7 +253,7 @@ class UserRepository extends BaseController implements UserInterface
     public function updateProfile($request, $id)
     {
         $userInfo = $this->user->where('id', Auth::guard('user')->user()->id)->first();
-        if (!$userInfo) {
+        if (! $userInfo) {
             return false;
         }
         $userInfo->show_name = $request->show_name;
@@ -272,7 +272,7 @@ class UserRepository extends BaseController implements UserInterface
         $userInfo = $this->user
             ->where('id', Auth::guard('user')->user()->id)
             ->first();
-        if (!$userInfo) {
+        if (! $userInfo) {
             return false;
         }
         $userInfo->show_name = $request->show_name;
@@ -291,6 +291,7 @@ class UserRepository extends BaseController implements UserInterface
         if (Hash::check($request->current_password, $userInfo->password)) {
             $userInfo->password = Hash::make($request->new_password);
             $userInfo->save();
+
             return true;
         } else {
             return false;
@@ -320,13 +321,13 @@ class UserRepository extends BaseController implements UserInterface
 
     public function generalResetPass($request, $isEmail)
     {
-        $account = $this->user->where($isEmail ? 'email' : 'phone_number', $isEmail ? $request->email : ((env('VN_MODE') ? '+84' : '+81') . $request->email))->first();
-        if (!$account) {
+        $account = $this->user->where($isEmail ? 'email' : 'phone_number', $isEmail ? $request->email : ((env('VN_MODE') ? '+84' : '+81').$request->email))->first();
+        if (! $account) {
             return false;
         }
-        $account->reset_password_token = md5($request->email . random_bytes(25) . Carbon::now());
+        $account->reset_password_token = md5($request->email.random_bytes(25).Carbon::now());
         $account->reset_password_token_expire = Carbon::now()->addMinutes(env('EXPIRE_TOKEN', 30));
-        if (!$account->save()) {
+        if (! $account->save()) {
             return false;
         }
 
@@ -345,7 +346,7 @@ class UserRepository extends BaseController implements UserInterface
         $client = new Client(getenv('TWILIO_SID'), getenv('TWILIO_AUTH_TOKEN'));
         try {
             $client->messages->create(
-                (env('VN_MODE') ? '+84' : '+81') . $request->email,
+                (env('VN_MODE') ? '+84' : '+81').$request->email,
                 [
                     'from' => getenv('TWILIO_NUMBER'),
                     'body' => route('password_reset.show', $account->reset_password_token),
@@ -361,13 +362,13 @@ class UserRepository extends BaseController implements UserInterface
     public function updatePasswordByToken($request, $token)
     {
         $account = $this->getUserByToken($token);
-        if (!$account) {
+        if (! $account) {
             return false;
         }
         $account->password = Hash::make($request->password);
         $account->reset_password_token = null;
         $account->reset_password_token_expire = null;
-        if (!$account->save()) {
+        if (! $account->save()) {
             return false;
         }
         $mailContents = [

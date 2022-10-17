@@ -74,7 +74,7 @@ class RegisterController extends BaseController
      */
     public function store(UserRegister $request)
     {
-        if (!$this->userTmp->verifyCode($request)) {
+        if (! $this->userTmp->verifyCode($request)) {
             return response()->json(['message' => 'code expired'], StatusCode::INTERNAL_ERR);
         }
         if ($this->user->register($request)) {
@@ -135,7 +135,7 @@ class RegisterController extends BaseController
 
     public function sendCode(PhoneNumberRequest $request)
     {
-        if (!$this->user->checkPhone($request)) {
+        if (! $this->user->checkPhone($request)) {
             return response()->json([
                 'message' => 'この電話番号は既に利用されています。SMSが利用可能な別の電話番号をご使用ください。',
             ], StatusCode::BAD_REQUEST);
@@ -147,7 +147,7 @@ class RegisterController extends BaseController
         }
         $code = random_int(100000, 999999);
         $request->code = $code;
-        if (!$this->userTmp->store($request)) {
+        if (! $this->userTmp->store($request)) {
             return response()->json([
                 'message' => 'error save data',
             ], StatusCode::INTERNAL_ERR);
@@ -155,10 +155,10 @@ class RegisterController extends BaseController
         $client = new Client(getenv('TWILIO_SID'), getenv('TWILIO_AUTH_TOKEN'));
         try {
             $client->messages->create(
-                (env('VN_MODE') ? '+84' : '+81') . $request->phone_number,
+                (env('VN_MODE') ? '+84' : '+81').$request->phone_number,
                 [
                     'from' => getenv('TWILIO_NUMBER'),
-                    'body' => 'your code: ' . $code,
+                    'body' => 'your code: '.$code,
                 ]
             );
 
@@ -172,7 +172,7 @@ class RegisterController extends BaseController
 
     public function verifyCode(PhoneNumberRequest $request)
     {
-        if (!$this->userTmp->verifyCode($request)) {
+        if (! $this->userTmp->verifyCode($request)) {
             return response()->json(['message' => 'code expired'], StatusCode::NOT_FOUND);
         }
 
