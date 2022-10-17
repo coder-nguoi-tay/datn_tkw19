@@ -4,17 +4,18 @@
 
 <script>
 export default {
-  mounted() {},
+  mounted() { },
   created: function () {
     if (this.data) {
       this.showNotification()
     }
   },
   props: ['data'],
-  mounted() {},
+  mounted() { },
   methods: {
     showNotification() {
       let urlRedirect = this.data.urlRedirect
+      const that = this;
       this.$swal({
         position: 'center-center',
         icon: this.data.mode,
@@ -29,10 +30,12 @@ export default {
         },
         confirmButtonText: '閉じる'
       }).then(function () {
-        if (urlRedirect != '') {
+        if (urlRedirect && urlRedirect != '') {
           window.location = urlRedirect
         }
-        // this.$emit('resetDataAlert')
+        else {
+          that.$emit('resetDataAlert')
+        }
       })
     }
   },
@@ -57,6 +60,7 @@ export default {
   color: #9a9a9a;
   margin-top: 16px !important;
 }
+
 .swal2-success {
   margin-bottom: 24px;
 }

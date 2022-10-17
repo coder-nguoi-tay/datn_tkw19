@@ -13,6 +13,7 @@ use App\Http\Controllers\EventReportController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\MyEventController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\User\ChangePasswordController;
 use App\Http\Controllers\User\ChangeUserNameController;
 use App\Http\Controllers\User\EventController;
 use App\Http\Controllers\User\HomeController;
@@ -91,6 +92,8 @@ Route::group([
     Route::post('search-tag', [EventController::class, 'tag'])->name('search-tag');
     Route::post('upload', [UpLoadFileController::class, 'upload'])->name('upload');
     Route::resource('my-page', MyPageController::class);
+    Route::get('my-page', [MyPageController::class, 'index'])->name('my-page.index');
     Route::resource('search', SearchController::class);
     Route::resource('user-setting', UserSettingController::class);
+    Route::resource('change-password', ChangePasswordController::class);
 });
