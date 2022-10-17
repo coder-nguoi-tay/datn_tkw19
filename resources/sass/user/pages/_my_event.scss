@@ -4,6 +4,29 @@
     padding-left: 9px;
     padding-right: 9px;
   }
+  .event-list{
+    .event-new{
+      background-color: #E5352B!important;
+      margin-right: 4px;
+    }
+    .event-img img{
+      height: 180px;
+    }
+    .event-right__container{
+      padding-bottom: 0!important;
+    }
+    .event-tag{
+      margin-bottom: 0;
+    }
+    .event-item__container{
+      &:not(:first-child){
+        margin-top: 16px;
+      }
+    }
+    .post-event-btn{
+      margin-top: 9px;
+    }
+  }
 }
 
 .tabs-event {
