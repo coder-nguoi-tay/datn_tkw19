@@ -9,7 +9,7 @@ $ composer install
 $ install php >=7.3
 $ install node v14.17.0
 
-$ cp env.example .env
+$ cp .env.example .env
 
 # edit connect database
 
