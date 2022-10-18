@@ -15,6 +15,7 @@ use App\Http\Controllers\MyEventController;
 use App\Http\Controllers\User\SearchController;
 use App\Http\Controllers\User\ChangePasswordController;
 use App\Http\Controllers\User\ChangeUserNameController;
+use App\Http\Controllers\User\ChangeEmailController;
 use App\Http\Controllers\User\EventController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\ProfileController;
@@ -95,4 +96,6 @@ Route::group([
     Route::resource('search', SearchController::class);
     Route::resource('user-setting', UserSettingController::class);
     Route::resource('change-password', ChangePasswordController::class);
+    Route::resource('change-email', ChangeEmailController::class);
+    Route::post('check-email', [ChangeEmailController::class, 'checkEmail'])->name('check-email');
 });

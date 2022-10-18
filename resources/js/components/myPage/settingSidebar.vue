@@ -16,7 +16,7 @@
           <a href="/profile" class="s-nav-link">プロフィール設定</a>
           <a href="/user-setting" class="s-nav-link">ユーザー情報設定</a>
           <a href="#" class="s-nav-link">登録電話番号設定</a>
-          <a href="#" class="s-nav-link">メールアドレス設定</a>
+          <a href="/change-email" class="s-nav-link">メールアドレス設定</a>
           <a href="/change-password" class="s-nav-link">パスワード設定</a>
           <a href="#" class="s-nav-link">個人/個人事業主または法人設定</a>
           <a href="#" class="s-nav-link">アカウントを削除する</a>

@@ -28,6 +28,8 @@ interface UserInterface
 
     public function changePassword($request);
 
+    public function changeEmail($request);
+
     public function generalResetPass($request, $isEmail);
 
     // public function getUserByToken($token);

@@ -68,6 +68,7 @@ import MyEventShow from './components/myEvent/show.vue'
 import MyPage from './components/myPage/index.vue'
 import Profile from './components/user/profile/index.vue'
 import ChangePassword from './components/user/changePassword/index.vue'
+import ChangeEmail from './components/user/changeEmail/index.vue'
 import EventReport from './components/eventReport/index.vue'
 import DeleteAccount from './components/deleteAccount/index.vue'
 import ChangeName from './components/user/changeName/index.vue'
@@ -93,6 +94,7 @@ app.component('popup-success', Dialog)
 app.component('register-card', RegisterCard)
 app.component('profile', Profile)
 app.component('change-password', ChangePassword)
+app.component('change-email', ChangeEmail)
 app.component('change-name', ChangeName)
 app.component('notification-setting', NotificationSetting)
 app.component('event-list', EventList)

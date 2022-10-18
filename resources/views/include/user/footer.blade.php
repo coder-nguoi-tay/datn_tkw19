@@ -1,8 +1,8 @@
 @php
-$routeName = \Route::currentRouteName();
-$routeEvent = ['event.index', 'event.create', 'event.close'];
-$routeMyPage = ['my-page.index', 'profile.index', 'notification-setting.index', 'change-password.index', 'user-setting.index'];
-$routeSearch = ['search.index'];
+    $routeName = \Route::currentRouteName();
+    $routeEvent = ['event.index', 'event.create', 'event.close'];
+    $routeMyPage = ['my-page.index', 'profile.index', 'notification-setting.index', 'change-password.index', 'user-setting.index', 'change-email.index'];
+    $routeSearch = ['search.index'];
 @endphp
 <footer class="footer">
     <div class="container footer__container">

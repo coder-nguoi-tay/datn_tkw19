@@ -5,8 +5,6 @@ namespace App\Http\Controllers\User;
 use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\ChangePasswordRequest;
-use App\Repositories\City\CityInterface;
-use App\Repositories\Prefecture\PrefectureInterface;
 use App\Repositories\User\UserInterface;
 use Illuminate\Support\Facades\Auth;
 

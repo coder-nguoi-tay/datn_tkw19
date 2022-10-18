@@ -440,4 +440,12 @@ class UserRepository extends BaseController implements UserInterface
 
         return $user->save();
     }
+
+    public function changeEmail($request)
+    {
+        $user = $this->user->where('id', Auth::guard('user')->user()->id)->first();
+        $user->email = $request->email;
+
+        return $user->save();
+    }
 }
