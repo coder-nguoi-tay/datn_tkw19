@@ -41,4 +41,5 @@ final class StatusCode extends Enum
     const SUCCESS = 'success';
 
     const WARNING = 'warning';
+    
 }

@@ -50,7 +50,7 @@ return [
         ],
         'api' => [
             'driver' => 'jwt',
-            'provider' => 'api',
+            'provider' => 'users',
             'hash' => false,
         ],
     ],
@@ -77,24 +77,15 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+
         'admin' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
+            'driver' => 'database',
+            'table' => 'admin',
         ],
         'user' => [
-            'driver' => 'custom_user_auth',
-            'model' => App\Models\User::class,
-            'hash' => false,
+            'driver' => 'database',
+            'table' => 'users',
         ],
-        'api' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-            'hash' => false,
-        ],
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
@@ -132,6 +123,6 @@ return [
     |
     */
 
-    'password_timeout' => 10800,
+    'password_timeout' => 100000,
 
 ];

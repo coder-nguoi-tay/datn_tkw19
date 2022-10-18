@@ -30,7 +30,7 @@ class ForgotPassComplete extends Mailable
      */
     public function build()
     {
-        return $this->subject('パスワード変更完了')
+        return $this->subject('Đã hoàn tất thay đổi mật khẩu')
             ->view('mails.forgotPasswordComplete')
             ->with([
                 'data' => $this->mailData,

@@ -3,37 +3,31 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Requests\LoginRequest;
-use App\Repositories\Admin\AdminInterface;
+use App\Http\Requests\CheckLoginRequest;
+use App\Models\Admin;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
 class LoginController extends BaseController
 {
-    private $user;
-
-    public function __construct(AdminInterface $user)
-    {
-        $this->user = $user;
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         if (Auth::guard('admin')->check()) {
-            return redirect(route('admin.dashboard.index'));
+            return redirect(route('admin.index'));
         }
-
-        return view('admin.login.index', [
-            'title' => '管理サイトログイン',
-            'message' => $request->message,
-            'request' => $request->all(),
+        return view('auth.login', [
+            'title' => 'Đăng nhập'
         ]);
+    }
+    public function resset_pass()
+    {
+        return view('auth.resset_pass');
     }
 
     /**
@@ -41,9 +35,8 @@ class LoginController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
     }
 
     /**
@@ -52,26 +45,71 @@ class LoginController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LoginRequest $request)
+    public function store(CheckLoginRequest $request)
     {
-        $credentials = $request->only('email', 'password', 'type');
-        if (Auth::guard('admin')->attempt($credentials, $request->remember_me ?? false)) {
-            if (! $this->user->updateLastLogin(Auth::guard('admin')->user()->id)) {
-                Auth::guard('admin')->logout();
-
-                return redirect('/');
+        $credentials = $request->only('email', 'password');
+        if ($request->save == 'on') {
+            if (Auth::guard('admin')->attempt($credentials, $request->save)) {
+                return redirect($request->url_redirect ? $request->url_redirect : route('admin.index'));
             }
-
-            return redirect($request->url_redirect ? $request->url_redirect : route('admin.dashboard.index'));
+            return view('auth.login', [
+                'message' => 'Tài khoản và mật khẩu không đúng'
+            ]);
         }
-
-        return redirect(route('admin.login.index', ['message' => 'メールアドレスとパスワードが一致しません。']));
+        if (Auth::guard('admin')->attempt($credentials)) {
+            return redirect($request->url_redirect ? $request->url_redirect : route('admin.index'));
+        }
+        return view('auth.login', [
+            'message' => 'Tài khoản và mật khẩu không đúng'
+        ]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+    }
     public function logout()
     {
         Auth::guard('admin')->logout();
-
-        return redirect(route('admin.login.index'));
+        return redirect(route('index'));
     }
 }

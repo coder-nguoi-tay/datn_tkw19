@@ -30,7 +30,7 @@ class ForgotPassword extends Mailable
      */
     public function build()
     {
-        return $this->subject('パスワード再設定のお願い')
+        return $this->subject('yêu cầu đặt lại mật khẩu')
             ->view('mails.forgotPassword')
             ->with([
                 'data' => $this->mailData['data'],

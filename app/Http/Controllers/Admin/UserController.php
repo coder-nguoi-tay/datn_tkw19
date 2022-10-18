@@ -3,48 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\StatusCode;
-use App\Http\Controllers\BaseController;
-use App\Http\Requests\UserRegister;
-use App\Repositories\City\CityInterface;
-use App\Repositories\Prefecture\PrefectureInterface;
-use App\Repositories\User\UserInterface;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
-class UserController extends BaseController
+class UserController extends Controller
 {
-    private $userInterface;
-
-    private $prefecture;
-
-    private $city;
-
-    public function __construct(UserInterface $userInterface, CityInterface $city, PrefectureInterface $prefecture)
-    {
-        $this->userInterface = $userInterface;
-        $this->prefecture = $prefecture;
-        $this->city = $city;
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $breadcrumbs = [
-            'ユーザー一覧',
-        ];
-        $newSizeLimit = $this->newListLimit($request);
-        session()->forget('admin.user.list');
-        session()->push('admin.user.list', url()->full());
-
-        return view('admin.user.index', [
-            'title' => 'ユーザー一覧',
-            'breadcrumbs' => $breadcrumbs,
-            'users' => $this->userInterface->get($request),
-            'request' => $request,
-            'newSizeLimit' => $newSizeLimit,
+        $Users = User::select('id', 'name', 'email', 'created_at')->get();
+        return view('admin.users.index', [
+            'Users' => $Users
         ]);
     }
 
@@ -55,20 +29,6 @@ class UserController extends BaseController
      */
     public function create()
     {
-        $breadcrumbs = [
-            [
-                'url' => session()->get('admin.user.list')[0] ?? route('admin.user.index'),
-                'name' => 'ユーザー一覧',
-            ],
-            'ユーザー作成',
-        ];
-
-        return view('admin.user.create', [
-            'title' => 'ユーザー作成',
-            'breadcrumbs' => $breadcrumbs,
-            'prefectures' => $this->prefecture->get(),
-            'cities' => $this->city->get(),
-        ]);
     }
 
     /**
@@ -77,16 +37,9 @@ class UserController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRegister $request)
+    public function store(Request $request)
     {
-        if ($this->userInterface->store($request)) {
-            $this->setFlash(__('代理店の新規作成が完了しました。'));
-
-            return redirect(session()->get('admin.user.list')[0] ?? route('admin.user.index'));
-        }
-        $this->setFlash(__('エラーが発生しました。'), 'error');
-
-        return redirect()->route('admin.user.create');
+        //
     }
 
     /**
@@ -108,25 +61,7 @@ class UserController extends BaseController
      */
     public function edit($id)
     {
-        $breadcrumbs = [
-            [
-                'url' => session()->get('admin.user.list')[0] ?? route('admin.user.index'),
-                'name' => 'ユーザー一覧',
-            ],
-            'ユーザー編集',
-        ];
-        $user = $this->userInterface->getById($id);
-        if (! $user) {
-            return redirect(session()->get('admin.user.list')[0] ?? route('admin.user.index'));
-        }
-
-        return view('admin.user.edit', [
-            'title' => 'ユーザー編集',
-            'breadcrumbs' => $breadcrumbs,
-            'user' => $user,
-            'prefectures' => $this->prefecture->get(),
-            'cities' => $this->city->get(),
-        ]);
+        //
     }
 
     /**
@@ -136,16 +71,9 @@ class UserController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRegister $request, $id)
+    public function update(Request $request, $id)
     {
-        if ($this->userInterface->update($request, $id)) {
-            $this->setFlash(__('代理店の新規作成が完了しました。'));
-
-            return redirect(session()->get('admin.user.list')[0] ?? route('admin.user.index'));
-        }
-        $this->setFlash(__('エラーが発生しました。'), 'error');
-
-        return redirect()->route('admin.user.edit', $id);
+        //
     }
 
     /**
@@ -156,30 +84,15 @@ class UserController extends BaseController
      */
     public function destroy($id)
     {
-        if ($this->userInterface->destroy($id)) {
+        if (User::destroy($id)) {
             return response()->json([
-                'message' => 'お知らせの削除が完了しました。',
+                'message' => 'Xóa tài khoản thành công',
                 'status' => StatusCode::OK,
             ], StatusCode::OK);
         }
-
         return response()->json([
-            'message' => 'エラーが発生しました。',
+            'message' => 'một lỗi đã xảy ra',
             'status' => StatusCode::OK,
         ], StatusCode::INTERNAL_ERR);
-    }
-
-    public function checkEmail(Request $request)
-    {
-        return response()->json([
-            'valid' => $this->userInterface->checkEmail($request),
-        ], StatusCode::OK);
-    }
-
-    public function checkPhone(Request $request)
-    {
-        return response()->json([
-            'valid' => $this->userInterface->checkPhone($request),
-        ], StatusCode::OK);
     }
 }

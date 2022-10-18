@@ -8,7 +8,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <div class="avatar avatar-md">
-                        <img class="avatar-img" src="{{ url('/assets/img/avatars/6.jpeg') }}">
+                        <img class="avatar-img" src="">
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
@@ -20,7 +20,7 @@
                         Updates
                         <span class="badge badge-sm bg-info ms-2">42</span>
                     </a>
-                    <a class="dropdown-item" href="{{route('logout')}}">
+                    <a class="dropdown-item" href="">
                         <i class="icon me-2 fa fa-sign-out" aria-hidden="true"></i>
                         ログアウト
                     </a>
@@ -32,7 +32,7 @@
     <div class="container-fluid">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb border-0 m-0">
-                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard.index') }}">ホーム</a></li>
+                <li class="breadcrumb-item"><a href="">ホーム</a></li>
                 @if (isset($breadcrumbs))
                     @foreach ($breadcrumbs as $key => $breadcrumb)
                         @if ($key != count($breadcrumbs) - 1)

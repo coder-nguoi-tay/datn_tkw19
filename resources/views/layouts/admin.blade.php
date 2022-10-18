@@ -29,14 +29,6 @@
                 @yield('content')
             </div>
         </div>
-        {{-- <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-            <div class="body">
-                <main class="c-main">
-                    @yield('content')
-                </main>
-                {{-- @include('include.footer') --}}
-            {{-- </div>
-        </div> --}}
         @if (session()->get('Message.flash'))
             <popup-alert :data="{{json_encode(session()->get('Message.flash')[0])}}"></popup-alert>
         @endif

@@ -13,7 +13,7 @@
                     <div class="simplebar-content-wrapper">
                         <div class="simplebar-content">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.dashboard.index') }}">
+                                <a class="nav-link" href="">
                                     <i class="nav-icon fa fa-home" aria-hidden="true"></i>
                                     ホーム
                                 </a>
@@ -27,38 +27,15 @@
                     <div class="simplebar-content-wrapper">
                         <div class="simplebar-content">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.user.index') }}">
+                                <a class="nav-link" href="{{ route('new.index') }}">
                                     <i class="nav-icon fa fa-user" aria-hidden="true"></i>
-                                    ユーザー一覧
+                                    Tin tuyển dụng
                                 </a>
                             </li>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="simplebar-mask">
-                <div class="simplebar-offset">
-                    <div class="simplebar-content-wrapper">
-                        <div class="simplebar-content">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.news.index') }}">
-                                    <i class="nav-icon fa fa-bell" aria-hidden="true"></i>
-                                    お知らせ管理
-                                </a>
-                            </li>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{-- <div class="simplebar-placeholder" style="width: auto; height: 841px;"></div> --}}
-            {{-- </div>
-        <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
-            <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
-        </div>
-        <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
-            <div class="simplebar-scrollbar"
-                style="height: 93px; transform: translate3d(0px, 0px, 0px); display: block;"></div>
-        </div> --}}
     </ul>
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
 </div>
