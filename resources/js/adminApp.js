@@ -44,6 +44,18 @@ app.component('btn-delete-admin', btnDeleteAdmin)
 import CreateNew from './components/new/create.vue';
 app.component('create-new', CreateNew);
 
+
+//employer
+import CreateNewEmployer from './components/employer/new/create.vue';
+app.component('create-new-employer', CreateNewEmployer);
+
+import DatePickerCustom from "./components/common/datePickerCustom.vue";
+app.component('picker-new-employer', DatePickerCustom);
+
+
+
+
+
 app.mount('#app');
 
 

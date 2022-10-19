@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('job-seeker', function (Blueprint $table) {
             $table->id();
-            $table->string('Address');
-            $table->string('Phone');
-            $table->string('Images');
+            $table->string('address');
+            $table->string('phone');
+            $table->string('images');
             $table->integer('user_role');
             $table->integer('skill_id');
             $table->integer('experience_id');

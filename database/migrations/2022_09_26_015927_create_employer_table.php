@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('workplace');
             $table->string('address');
             $table->integer('id_company')->nullable();
-            $table->integer('role_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

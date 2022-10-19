@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('address');
             $table->string('Introduce');
             $table->string('Desceibe');
-            $table->integer('number_member');    
+            $table->integer('number_member');
+            $table->string('email');
+            $table->string('logo');
             $table->timestamps();
         });
     }

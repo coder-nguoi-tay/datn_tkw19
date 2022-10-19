@@ -6,7 +6,8 @@
         </button>
         <ul class="header-nav ms-3">
             <li class="nav-item dropdown">
-                <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">
                     <div class="avatar avatar-md">
                         <img class="avatar-img" src="">
                     </div>
@@ -22,7 +23,7 @@
                     </a>
                     <a class="dropdown-item" href="">
                         <i class="icon me-2 fa fa-sign-out" aria-hidden="true"></i>
-                        ログアウト
+                        ADMIN
                     </a>
                 </div>
             </li>
@@ -32,7 +33,7 @@
     <div class="container-fluid">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb border-0 m-0">
-                <li class="breadcrumb-item"><a href="">ホーム</a></li>
+                <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
                 @if (isset($breadcrumbs))
                     @foreach ($breadcrumbs as $key => $breadcrumb)
                         @if ($key != count($breadcrumbs) - 1)

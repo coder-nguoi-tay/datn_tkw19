@@ -286,7 +286,51 @@ class BaseController extends Controller
     }
     public function gettimeoffer()
     {
-        return $this->timeoffer->latest()->select('id', 'name as label')
+        return $this->timeoffer->latest()->select('id', 'name as label')->get();
+    }
+    public function getlever()
+    {
+        return $this->lever->latest()->select('id', 'name as label')
+            ->get();
+    }
+    public function getexperience()
+    {
+        return $this->experience->latest()->select('id', 'name as label')
+            ->get();
+    }
+    public function getwage()
+    {
+        return $this->wage->latest()->select('id', 'name as label')
+            ->get();
+    }
+    public function getskill()
+    {
+        return $this->skill->latest()->select('id', 'name as label')
+            ->get();
+    }
+    public function gettimework()
+    {
+        return $this->timework->latest()->select('id', 'name as label')
+            ->get();
+    }
+    public function getprofession()
+    {
+        return $this->profession->latest()->select('id', 'name as label')
+            ->get();
+    }
+    public function getmajors()
+    {
+        return $this->majors->latest()->select('id', 'name as label')
+            ->get();
+    }
+    public function getlocation()
+    {
+        return $this->location->latest()->select('id', 'name as label')
+            ->get();
+    }
+    public function getworkingform()
+    {
+        return $this->workingform->latest()->select('id', 'name as label')
             ->get();
     }
 }

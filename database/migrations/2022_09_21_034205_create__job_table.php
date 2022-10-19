@@ -16,21 +16,23 @@ return new class extends Migration
         Schema::create('job', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->integer('Quatity');
+            $table->integer('quatity');
             $table->string('sex');
             $table->string('describe');
             $table->integer('level_id');
             $table->integer('experience_id');
-            $table->integer('Wage_id');
+            $table->integer('wage_id');
             $table->integer('skill_id');
             $table->string('benefit');
             $table->integer('profession_id');
-            $table->string('Address');
-            $table->string('time_job');
+            $table->string('address');
             $table->integer('time_work_id');
             $table->integer('employer_id');
-            $table->string('Candidate_requirements');
-      
+            $table->string('candidate_requirements');
+            $table->integer('wk_form_id');
+            $table->integer('location_id');
+            $table->date('job_time');
+            $table->date('end_job_time');
             $table->timestamps();
         });
     }

@@ -1,0 +1,63 @@
+.main-new {
+    width: 100%;
+
+    .col-img img {
+        width: 100%;
+    }
+
+    .col-2 i {
+        height: 20px;
+    }
+
+    .title-number {
+        margin-left: 5px;
+    }
+
+    .fa-calendar-times {
+        margin-right: 3px;
+    }
+
+    .title-crossbar {
+        margin-left: 3px;
+    }
+
+    .date-new {
+        margin-top: 3px;
+    }
+
+    .title-skill {
+        margin-top: 3px;
+    }
+}
+
+.btn-submit-recuitment {
+    font-family: arial;
+    cursor: pointer;
+    padding: 0 23px;
+    border-radius: 2px;
+    height: 40px;
+    border: none;
+    font-size: 14px;
+    display: inline-block;
+    font-weight: 700;
+    line-height: 40px;
+    border-color: #d43f3a;
+    color: #fff;
+    background: #d43f3a;
+}
+
+.icon-save {
+    margin-right: 5px;
+}
+
+.abc {
+    border: 1px solid #ccc !important;
+}
+
+.label-container {
+    margin-right: 10px;
+}
+
+.text-skill {
+    margin-left: 5px;
+}

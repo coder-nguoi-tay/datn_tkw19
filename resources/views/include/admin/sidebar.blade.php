@@ -15,7 +15,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="">
                                     <i class="nav-icon fa fa-home" aria-hidden="true"></i>
-                                    ホーム
+                                    Admin
                                 </a>
                             </li>
                         </div>

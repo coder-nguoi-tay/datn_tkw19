@@ -1,6 +1,4 @@
 @import "~bootstrap/scss/bootstrap";
-@import "user/abstracts/mixins";
-@import "user/abstracts/variables";
 @import "user/base/common";
 @import "user/base/loader";
 @import "user/layout/header";
@@ -9,18 +7,5 @@
 @import "user/components/postEvent";
 @import "user/components/regisCard";
 @import "user/components/popupCustom";
-@import "user/pages/home";
-@import "user/pages/register";
-@import "user/pages/event";
-@import "user/pages/my_event";
-@import "user/pages/my_page";
-@import "user/pages/event_report";
-@import "user/pages/change_name";
-@import "user/pages/profile";
-@import "user/pages/search_page";
-@import "user/pages/delete_account";
-@import "user/pages/change_password";
-// @import "user/pages/myEvent";
+
 @import "custom";
-@import "user/pages/profile";
-@import "user/pages/earn";
