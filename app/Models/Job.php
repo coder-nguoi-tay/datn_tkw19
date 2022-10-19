@@ -24,7 +24,6 @@ class Job extends Model
         'Address',
         'majors_id',
         'wk_form_id',
-        'time_job',
         'job_time',
         'end_job_time',
         'time_work_id',

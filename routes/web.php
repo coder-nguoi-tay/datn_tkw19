@@ -36,9 +36,13 @@ Route::resource('/', LoginController::class);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::resource('resset_pass', ResetPasswordController::class);
 Route::resource('forgotPasswordSuccess', forgotPasswordSuccessController::class);
-Route::group([
-    'prefix' => 'employer'
-], function () {
+
+
+////
+Route::name('employer.')->prefix('employer')->group(function () {
     Route::resource('', HomeEmployerController::class);
-    Route::resource('new', NewEmployerController::class);
+    // Route::resource('new', NewEmployerController::class);
+    Route::post('new/store', [NewEmployerController::class, 'store'])->name('new.store');
+    Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');
+    Route::get('new/create', [NewEmployerController::class, 'create'])->name('new.create');
 });

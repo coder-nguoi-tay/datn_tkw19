@@ -18,7 +18,6 @@ class Employer extends Model
         'workplace',
         'address',
         'id_company',
-        'role_id',
-        'email'
+        'user_id'
     ];
 }

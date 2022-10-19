@@ -19,7 +19,8 @@
                                                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>
                                                     &nbsp; Tìm kiếm</button>
                                             </div>
-                                            <a href="{{ route('new.create') }}" class="btn btn-primary btn-action-create">
+                                            <a href="{{ route('employer.new.create') }}"
+                                                class="btn btn-primary btn-action-create">
                                                 <i class="fa fa-plus"></i>Thêm
                                             </a>
                                         </form>

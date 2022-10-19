@@ -14,15 +14,15 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group([
-    'middleware' => ['assign.guard:api'],
-    'prefix' => 'v1',
-], function () {
-    Route::post('login', [AuthController::class, 'login']);
-    Route::group([
-        'middleware' => ['jwt.verify', 'auth.jwt'],
-    ], function () {
-        Route::get('user_info', [AuthController::class, 'user']);
-        Route::post('logout', [AuthController::class, 'logout']);
-    });
-});
+// Route::group([
+//     'middleware' => ['assign.guard:api'],
+//     'prefix' => 'v1',
+// ], function () {
+//     Route::post('login', [AuthController::class, 'login']);
+//     Route::group([
+//         'middleware' => ['jwt.verify', 'auth.jwt'],
+//     ], function () {
+//         Route::get('user_info', [AuthController::class, 'user']);
+//         Route::post('logout', [AuthController::class, 'logout']);
+//     });
+// });

@@ -20,8 +20,9 @@
                                     'majors' => $majors,
                                     'location' => $location,
                                     'workingform' => $workingform,
-                                    'urlStore' => route('new.store'),
-                                    'urlBack' => route('new.index'),
+                                    'user' => $user,
+                                    'urlStore' => route('employer.new.store'),
+                                    'urlBack' => route('employer.new.index'),
                                 ]) }}">
                             </create-new-employer>
                         </div>

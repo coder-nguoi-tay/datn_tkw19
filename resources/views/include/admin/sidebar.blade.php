@@ -27,7 +27,7 @@
                     <div class="simplebar-content-wrapper">
                         <div class="simplebar-content">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('new.index') }}">
+                                <a class="nav-link" href="{{ route('employer.new.index') }}">
                                     <i class="nav-icon fa fa-user" aria-hidden="true"></i>
                                     Tin tuyển dụng
                                 </a>

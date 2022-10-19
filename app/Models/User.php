@@ -33,6 +33,6 @@ class User  extends Authenticatable implements JWTSubject
     }
     public function getProfile()
     {
-        return $this->hasOne(Employer::class, 'role_id', 'id');
+        return $this->hasOne(Employer::class, 'user_id', 'id');
     }
 }
