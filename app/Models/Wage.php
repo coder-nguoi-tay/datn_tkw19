@@ -13,7 +13,4 @@ class Wage extends Model
         'id',
         'name'
     ];
-    public function getjob(){
-        return $this->belongsTo(Job::class, 'Wage_id', 'id');
-    }
 }

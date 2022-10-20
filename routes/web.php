@@ -45,4 +45,5 @@ Route::name('employer.')->prefix('employer')->group(function () {
     Route::post('new/store', [NewEmployerController::class, 'store'])->name('new.store');
     Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');
     Route::get('new/create', [NewEmployerController::class, 'create'])->name('new.create');
+    Route::get('new/destroy/{id}', [NewEmployerController::class, 'destroy'])->name('new.destroy');
 });

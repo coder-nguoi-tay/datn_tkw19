@@ -220,7 +220,9 @@
                                 <div class="filter-topic">
                                     <label class="label-container" v-for="item in data.skill" :key="item.id"
                                         :value="item.id">
-                                        <input type="checkbox" v-model="model.skill_id" />
+                                        <!-- <input type="checkbox" v-model="model.skill_id" /> -->
+                                        <input type="checkbox" v-for="(item, index) in data.skill" :key="index"
+                                            :label="item.name" :id="index" @change="onChange" />
                                         <span class="text-skill">{{ item.label }}</span>
                                     </label>
                                 </div>
@@ -393,6 +395,9 @@ export default {
         Field,
         ErrorMessage,
     },
+    props: {
+        isChecked: true ?? false,
+    },
     props: ["data"],
     data: function () {
         return {
@@ -481,6 +486,7 @@ export default {
             )
         },
         onSubmit() {
+
             console.log(this.model);
             axios.post('/employer/new/store', {
                 ...this.model,
@@ -498,9 +504,9 @@ export default {
 };
 </script>
 <style>
-.form-control {
+/* .form-control {
     margin-top: 15px;
-}
+} */
 
 .date-time {
     margin-top: 15px;

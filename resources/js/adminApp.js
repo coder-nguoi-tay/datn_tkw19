@@ -43,8 +43,11 @@ app.component('btn-delete-admin', btnDeleteAdmin)
 // new
 import CreateNew from './components/new/create.vue';
 app.component('create-new', CreateNew);
-
-
+$(document).ready(function () {
+    $('.select2').select2({
+        multiple: true,
+    })
+})
 //employer
 import CreateNewEmployer from './components/employer/new/create.vue';
 app.component('create-new-employer', CreateNewEmployer);

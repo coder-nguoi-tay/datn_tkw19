@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Employer;
 
+use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployerCreateRequest;
@@ -65,7 +66,15 @@ class NewEmployerController extends BaseController
     }
     public function index()
     {
-        return view('employer.new.index');
+        $job = $this->job->where('employer_id', 1)
+            ->with(['getWage', 'getlocation', 'getskill'])
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->select('job.*', 'company.logo as logo')
+            ->get();
+        return view('employer.new.index', [
+            'job' => $job
+        ]);
     }
 
     /**
@@ -86,7 +95,10 @@ class NewEmployerController extends BaseController
             'location' => $this->getlocation(),
             'workingform' => $this->getworkingform(),
             'user' =>  $this->user->join('employer', 'employer.user_id', '=', 'users.id')
-                ->where('users.id', 1)->get()
+                ->where('users.id', 1)
+                ->join('company', 'company.id', '=', 'employer.id_company')
+                ->select('users.*', 'employer.*', 'company.name as nameCompany', 'company.address as addressCompany', 'company.Desceibe as desceibeCompany', 'company.number_member as number_member', 'company.email as emailCompany', 'company.logo as logo')
+                ->get()
         ]);
     }
 
@@ -98,7 +110,6 @@ class NewEmployerController extends BaseController
      */
     public function store(Request $request) //EmployerCreateRequest
     {
-        return $request->all();
         try {
             //create to job
             $job = new $this->job();
@@ -108,7 +119,7 @@ class NewEmployerController extends BaseController
             $job->describe = $request->describe;
             $job->level_id = $request->level_id;
             $job->experience_id = $request->experience_id;
-            $job->wage_id = $request->Wage_id;
+            $job->wage_id = $request->wage_id;
             $job->skill_id = 1;
             $job->benefit = $request->benefit;
             $job->profession_id = $request->profession_id;
@@ -120,7 +131,7 @@ class NewEmployerController extends BaseController
             $job->end_job_time = $request->end_job_time;
             $job->time_work_id = $request->time_work_id;
             $job->candidate_requirements = $request->candidate_requirements;
-            $job->employer_id = Auth::guard('user')->user()->id;
+            $job->employer_id = 1; //Auth::guard('user')->user()->id
             $job->save();
             //create to jobskill
             if ($request->skill_id) {
@@ -131,27 +142,36 @@ class NewEmployerController extends BaseController
                     ])->save();
                 }
             }
+            //update email user
+            $user = $this->user->where('id', 1)->first();
+            $user->email = $request->email;
+            $user->save();
             //create to company
-            // $company = new $this->company();
-            // $company->name = $request->name;
-            // $company->address = $request->address;
-            // $company->Introduce = 1;
-            // $company->Desceibe = $request->Desceibe;
-            // $company->number_member = $request->number_member;
-            // $company->email = $request->emailCompany;
-            // $company->logo = $request->logo;
-            // $company->save();
+
+            if (!$this->employer->where('id', 1)->with('getCompany')->first()) {
+                $company = new $this->company();
+            }
+            $company->name = $request->nameCompany;
+            $company->address = $request->addressCompany;
+            $company->Introduce = 1;
+            $company->Desceibe = $request->desceibeCompany;
+            $company->number_member = $request->number_member;
+            $company->email = $request->emailCompany;
+            $company->logo = $request->logo;
+            $company->save();
             // update employer
-            // $employer = $this->employer->where('id', $request->id_Employer)->first();
-            // $employer->name = $request->nameEmployer;
-            // $employer->phone = $request->phone;
-            // $employer->address = $request->address;
-            // $employer->id_company = $company->id;
-            // $employer->save();
-            $this->setFlash(__('Thêm Tin thành công'));
-            return redirect()->back();
+            $employer = $this->employer->where('id', 1)->first(); //Auth::guard('user')->user()->id
+            $employer->name = $request->nameEmployer;
+            $employer->phone = $request->phoneEmployer;
+            $employer->address = $request->addressEmployer;
+            $employer->id_company = $company->id;
+            $employer->save();
+            $this->setFlash(__('Thêm thành công'));
+            return redirect()->route('employer.new.index');
         } catch (\Throwable $th) {
-            return DB::rollback();
+            DB::rollback();
+            $this->setFlash(__('Thêm Thất bại'), 'error');
+            return redirect()->route('employer.new.index');
         }
     }
 
@@ -195,6 +215,18 @@ class NewEmployerController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        try {
+            $jobskill = $this->jobskill->where('job_id', $id)->get();
+            foreach ($jobskill as $value) {
+                Jobskill::destroy($value->id);
+            }
+            $this->job->find($id)->delete();
+            $this->setFlash(__('Xóa thành công'));
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->setFlash(__('Đã có một lỗi sảy ra'), 'error');
+            return redirect()->back();
+        }
     }
 }

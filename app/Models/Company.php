@@ -18,6 +18,5 @@ class Company extends Model
         'number_member',
         'email',
         'logo',
-        'job_id'
     ];
 }

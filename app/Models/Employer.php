@@ -20,4 +20,8 @@ class Employer extends Model
         'id_company',
         'user_id'
     ];
+    public function getCompany()
+    {
+        return $this->hasOne(Employer::class, 'id_company', 'id');
+    }
 }

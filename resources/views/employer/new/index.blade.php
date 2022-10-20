@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 @extends('layouts.admin')
 @section('content')
     <div class="container">
@@ -39,82 +42,53 @@
                                 </div>
                             </div>
                             <div class="row gy-3">
-                                <div class="main-new">
-                                    <div class="row">
-                                        <div class="col-2 border col-img"><img
-                                                src="https://d1hjkbq40fs2x4.cloudfront.net/2016-01-31/files/1045.jpg"
-                                                alt=""></div>
-                                        <div class="col-10 border ">
-                                            <div class="row" style="padding: 10px">
-                                                <div class="col-10">
-                                                    <div class="title-new">
-                                                        <h4>[HCM] 02 Solution Architects-Up to $2000</h4>
-                                                    </div>
-                                                    <div class="title-location"><span>Fpt Software</span>|<span><i
-                                                                class="fa-solid fa-location-dot"></i>Đà Nắng</span></div>
-                                                    <div class="title-skill">
-                                                        <span><i class="fa fa-code" aria-hidden="true"></i>Java</span><span
-                                                            class="title-crossbar">|</span>
-                                                        <span class="title-number"><i class="fas fa-wallet fa-fw"></i>15 -
-                                                            35
-                                                            Triệu</span><span class="title-crossbar">|</span>
-                                                        <span class="title-number"><i class="far fa-calendar-times"></i>Hạn
-                                                            nộp:
-                                                            31/10/2022</span>
-                                                        <div class="date-new">
-                                                            <h5>Thời gian còn lại: 30 ngày</h5>
+                                @foreach ($job as $items)
+                                    <div class="main-new">
+                                        <div class="row">
+                                            <div class="col-2 border col-img"><img src="{{ $items->logo }}" alt="">
+                                            </div>
+                                            <div class="col-10 border ">
+                                                <div class="row" style="padding: 10px">
+                                                    <div class="col-10">
+                                                        <div class="title-new">
+                                                            <h4>[{{ $items->getlocation->name }}] {{ $items->title }}</h4>
+                                                        </div>
+                                                        <div class="title-location"><span>Fpt Software</span>|<span><i
+                                                                    class="fa-solid fa-location-dot"></i>{{ $items->getlocation->name }}</span>
+                                                        </div>
+                                                        <div class="title-skill">
+                                                            <span><i class="fa fa-code" aria-hidden="true"></i>
+                                                                @foreach ($items->getskill as $item)
+                                                                    {{ $item->name }},
+                                                                @endforeach
+                                                            </span><span class="title-crossbar">|</span>
+                                                            {{-- {{ dd($job[0]->getWage->name) }} --}}
+                                                            <span class="title-number"><i
+                                                                    class="fas fa-wallet fa-fw"></i>{{ $items->getWage->name }}</span><span
+                                                                class="title-crossbar">|</span>
+                                                            <span class="title-number"><i
+                                                                    class="far fa-calendar-times"></i>Hạn
+                                                                nộp:
+                                                                {{ Carbon::parse($items->end_job_time)->format('d/m/Y') }}
+                                                            </span>
+                                                            <div class="date-new">
+                                                                <h5>Thời gian còn lại: 30 ngày</h5>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-2 text-center" style="margin-top: 25px">
-                                                    <div class="title-buttom">
-                                                        <a href=""><i class="fas fa-trash btn-delete"></i></a>
-                                                        <br>
-                                                        <a href=""><i class="fas fa-tools"></i></a>
+                                                    <div class="col-2 text-center" style="margin-top: 25px">
+                                                        <div class="title-buttom">
+                                                            <a href="{{ route('employer.new.destroy', $items->id) }}"><i
+                                                                    class="fas fa-trash btn-delete"></i></a>
+                                                            <br>
+                                                            <a href=""><i class="fas fa-tools"></i></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="main-new">
-                                    <div class="row">
-                                        <div class="col-2 border col-img"><img
-                                                src="https://d1hjkbq40fs2x4.cloudfront.net/2016-01-31/files/1045.jpg"
-                                                alt=""></div>
-                                        <div class="col-10 border ">
-                                            <div class="row" style="padding: 10px">
-                                                <div class="col-10">
-                                                    <div class="title-new">
-                                                        <h4>[HCM] 02 Solution Architects-Up to $2000</h4>
-                                                    </div>
-                                                    <div class="title-location"><span>Fpt Software</span>|<span><i
-                                                                class="fa-solid fa-location-dot"></i>Đà Nắng</span></div>
-                                                    <div class="title-skill">
-                                                        <span><i class="fa fa-code" aria-hidden="true"></i>Java</span><span
-                                                            class="title-crossbar">|</span>
-                                                        <span class="title-number"><i class="fas fa-wallet fa-fw"></i>15 -
-                                                            35
-                                                            Triệu</span><span class="title-crossbar">|</span>
-                                                        <span class="title-number"><i class="far fa-calendar-times"></i>Hạn
-                                                            nộp:
-                                                            31/10/2022</span>
-                                                        <div class="date-new">
-                                                            <h5>Thời gian còn lại: 30 ngày</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-2 text-center" style="margin-top: 25px">
-                                                    <div class="title-buttom">
-                                                        <a href=""><i class="fas fa-trash btn-delete"></i></a>
-                                                        <br>
-                                                        <a href=""><i class="fas fa-tools"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                             <div class="group-paginate">
                                 {{-- {{ $news->appends(SearchQueryComponent::alterQuery($request))->links('pagination.admin') }} --}}

@@ -11,23 +11,23 @@ class Job extends Model
     protected $table = 'job';
     protected $fillable = [
         'title',
-        'Quatity',
+        'quatity',
         'sex',
         'describe',
         'level_id',
         'experience_id',
-        'Wage_id',
+        'wage_id',
         'skill_id',
         'benefit',
         'profession_id',
         'location_id',
-        'Address',
+        'address',
         'majors_id',
         'wk_form_id',
         'job_time',
         'end_job_time',
         'time_work_id',
-        'Candidate_requirements',
+        'candidate_requirements',
         'employer_id',
     ];
     public function getLevel()
@@ -40,7 +40,7 @@ class Job extends Model
     }
     public function getWage()
     {
-        return $this->belongsTo(Wage::class, 'Wage_id', 'id');
+        return $this->belongsTo(Wage::class, 'wage_id', 'id');
     }
     public function getprofession()
     {
@@ -59,6 +59,10 @@ class Job extends Model
         return $this->belongsTo(WorkingForm::class, 'wk_form_id', 'id');
     }
     public function getTime_work()
+    {
+        return $this->belongsTo(Timework::class, 'time_work_id', 'id');
+    }
+    public function getEndTimeJob()
     {
         return $this->belongsTo(Timework::class, 'time_work_id', 'id');
     }

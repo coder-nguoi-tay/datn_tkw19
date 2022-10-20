@@ -1,6 +1,6 @@
 <template>
   <datepicker autoApply keepActionRow :closeOnAutoApply="false" v-model="date" :monthChangeOnScroll="false" locale="vi"
-    name="date" selectText="chọn" cancelText="đóng lại" format="dd/MM/yyyy" />
+    name="date" selectText="chọn" cancelText="đóng lại" format="yyyy-MM-dd" />
 </template>
 
 <script>
