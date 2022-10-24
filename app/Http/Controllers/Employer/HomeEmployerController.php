@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeEmployerController extends Controller
 {
@@ -81,5 +82,10 @@ class HomeEmployerController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function logout()
+    {
+        Auth::guard('user')->logout();
+        return redirect()->route('owner.index');
     }
 }

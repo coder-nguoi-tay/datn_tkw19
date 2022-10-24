@@ -1,11 +1,13 @@
 import './bootstrap';
 import { configure, defineRule } from 'vee-validate'
 import { createApp } from 'vue';
+import $ from "jquery";
 import CoreuiVue from "@coreui/vue";
 
 defineRule('password_rule', (value) => {
     return /^[A-Za-z0-9]*$/i.test(value)
 })
+
 configure({
     validateOnBlur: false,
     validateOnChange: false,
@@ -43,22 +45,25 @@ app.component('btn-delete-admin', btnDeleteAdmin)
 // new
 import CreateNew from './components/new/create.vue';
 app.component('create-new', CreateNew);
-$(document).ready(function () {
-    $('.select2').select2({
-        multiple: true,
-    })
-})
+
 //employer
 import CreateNewEmployer from './components/employer/new/create.vue';
 app.component('create-new-employer', CreateNewEmployer);
+import EditNewEmployer from './components/employer/new/edit.vue';
+app.component('edit-new-employer', EditNewEmployer);
 
 import DatePickerCustom from "./components/common/datePickerCustom.vue";
 app.component('picker-new-employer', DatePickerCustom);
 
 
-
-
-
+// client
+import clientLogin from "./components/client/login/index.vue";
+app.component('client-login', clientLogin);
+import clientRegister from "./components/client/register/create.vue";
+app.component('client-register', clientRegister);
+// home
+import homeClient from "./components/client/home/index.vue";
+app.component('home-client', homeClient);
 app.mount('#app');
 
 

@@ -66,12 +66,13 @@ class NewEmployerController extends BaseController
     }
     public function index()
     {
-        $job = $this->job->where('employer_id', 1)
+        $job = $this->job->where('employer_id', Auth::guard('user')->user()->id)
             ->with(['getWage', 'getlocation', 'getskill'])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->select('job.*', 'company.logo as logo')
             ->get();
+        // dd($job);
         return view('employer.new.index', [
             'job' => $job
         ]);
@@ -94,10 +95,12 @@ class NewEmployerController extends BaseController
             'majors' => $this->getmajors(),
             'location' => $this->getlocation(),
             'workingform' => $this->getworkingform(),
-            'user' =>  $this->user->join('employer', 'employer.user_id', '=', 'users.id')
-                ->where('users.id', 1)
+            'user' =>  $this->user
+                ->join('employer', 'employer.user_id', '=', 'users.id')
+                ->where('users.id', Auth::guard('user')->user()->id)
+                ->get(),
+            'company' => $this->employer->where('user_id', Auth::guard('user')->user()->id)
                 ->join('company', 'company.id', '=', 'employer.id_company')
-                ->select('users.*', 'employer.*', 'company.name as nameCompany', 'company.address as addressCompany', 'company.Desceibe as desceibeCompany', 'company.number_member as number_member', 'company.email as emailCompany', 'company.logo as logo')
                 ->get()
         ]);
     }
@@ -108,10 +111,10 @@ class NewEmployerController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) //EmployerCreateRequest
+    public function store(EmployerCreateRequest $request) //EmployerCreateRequest
     {
         try {
-            //create to job
+            // create to job
             $job = new $this->job();
             $job->title = $request->title;
             $job->quatity = $request->quatity;
@@ -131,7 +134,7 @@ class NewEmployerController extends BaseController
             $job->end_job_time = $request->end_job_time;
             $job->time_work_id = $request->time_work_id;
             $job->candidate_requirements = $request->candidate_requirements;
-            $job->employer_id = 1; //Auth::guard('user')->user()->id
+            $job->employer_id = Auth::guard('user')->user()->id; //
             $job->save();
             //create to jobskill
             if ($request->skill_id) {
@@ -143,14 +146,32 @@ class NewEmployerController extends BaseController
                 }
             }
             //update email user
-            $user = $this->user->where('id', 1)->first();
+            $user = $this->user->where('id', Auth::guard('user')->user()->id)->first();
             $user->email = $request->email;
             $user->save();
-            //create to company
 
-            if (!$this->employer->where('id', 1)->with('getCompany')->first()) {
+            //create to company
+            if (!$request->id) {
                 $company = new $this->company();
+                $company->name = $request->nameCompany;
+                $company->address = $request->addressCompany;
+                $company->Introduce = 1;
+                $company->Desceibe = $request->desceibeCompany;
+                $company->number_member = $request->number_member;
+                $company->email = $request->emailCompany;
+                $company->logo = $request->logo;
+                $company->save();
+                // update employer
+                $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first(); //Auth::guard('user')->user()->id
+                $employer->name = $request->nameEmployer;
+                $employer->phone = $request->phoneEmployer;
+                $employer->address = $request->addressEmployer;
+                $employer->id_company = $company->id;
+                $employer->save();
+                $this->setFlash(__('Thêm thành công'));
+                return redirect()->route('employer.new.index');
             }
+            $company = $this->company->where('id', $request->id)->first();
             $company->name = $request->nameCompany;
             $company->address = $request->addressCompany;
             $company->Introduce = 1;
@@ -160,7 +181,7 @@ class NewEmployerController extends BaseController
             $company->logo = $request->logo;
             $company->save();
             // update employer
-            $employer = $this->employer->where('id', 1)->first(); //Auth::guard('user')->user()->id
+            $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first(); //Auth::guard('user')->user()->id
             $employer->name = $request->nameEmployer;
             $employer->phone = $request->phoneEmployer;
             $employer->address = $request->addressEmployer;
@@ -191,8 +212,27 @@ class NewEmployerController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Job $job)
     {
+        return view('employer.new.edit', [
+            'job' => $job->with('getskill')->get(),
+            'lever' => $this->getlever(),
+            'experience' => $this->getexperience(),
+            'wage' => $this->getwage(),
+            'skill' => $this->getskill(),
+            'timework' => $this->gettimework(),
+            'profession' => $this->getprofession(),
+            'majors' => $this->getmajors(),
+            'location' => $this->getlocation(),
+            'workingform' => $this->getworkingform(),
+            'user' =>  $this->user
+                ->join('employer', 'employer.user_id', '=', 'users.id')
+                ->where('users.id', 1)
+                ->get(),
+            'company' => $this->employer->where('user_id', 1)
+                ->join('company', 'company.id', '=', 'employer.id_company')
+                ->get()
+        ]);
     }
 
     /**

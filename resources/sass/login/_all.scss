@@ -1,0 +1,142 @@
+.form-login-user {
+    input[type=text] {
+        border: 2px solid rgb(183, 180, 187);
+        width: 450px;
+        height: 40px;
+        border-radius: 4px;
+    }
+
+    input[type=password] {
+        border: 2px solid rgb(183, 180, 187);
+        width: 450px;
+        height: 40px;
+        border-radius: 4px;
+    }
+
+    .btn-success {
+        width: 450px;
+        margin-top: 10px;
+    }
+
+    .d-grid {
+        width: 450px;
+    }
+
+    .register {
+        padding-top: 10px;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+}
+
+
+.d-grid .btn {
+    width: 147px;
+}
+
+.right .images img {
+    width: 650px;
+    padding-bottom: -300px;
+
+}
+
+.logo img {
+    width: 130px;
+
+}
+
+.starbucks {
+    padding: 100px 0 0 120px;
+}
+
+.left,
+.right {
+    box-sizing: border-box;
+}
+
+.right {
+
+    height: 700px;
+    background: rgb(255, 253, 253);
+}
+
+.left .text h3 {
+    text-decoration: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.bodyLeft {
+    width: 400px;
+}
+
+.bodyLeft .text_a {
+    margin-top: 10px;
+    margin-left: 200px;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+.thumb li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.thumb li:hover {
+    transform: translateY(-15px);
+}
+
+.thumb li img {
+    max-width: 60px;
+}
+
+@media screen and (min-width: 900px) {
+
+    .row::before,
+    .row::after {
+        display: table;
+        content: "";
+        clear: both;
+
+    }
+
+    .row {
+        max-width: 100%;
+    }
+
+    .left {
+        float: left;
+        width: 40%;
+    }
+
+    .right {
+        float: left;
+        width: 60%;
+    }
+
+    .thumb {
+
+        margin-left: 200px;
+        position: absolute;
+        left: 50%;
+        margin: 60px 0 0 250px;
+        transform: translate(-50%);
+        display: flex;
+    }
+
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        max-width: 1280px;
+        margin: 20px auto;
+    }
+
+}

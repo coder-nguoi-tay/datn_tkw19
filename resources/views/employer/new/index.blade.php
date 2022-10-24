@@ -81,7 +81,8 @@
                                                             <a href="{{ route('employer.new.destroy', $items->id) }}"><i
                                                                     class="fas fa-trash btn-delete"></i></a>
                                                             <br>
-                                                            <a href=""><i class="fas fa-tools"></i></a>
+                                                            <a href="{{ route('employer.new.edit', $items) }}"><i
+                                                                    class="fas fa-tools"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>

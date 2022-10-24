@@ -24,9 +24,9 @@ class UserRegisterRequest extends FormRequest
      */
     public function rules(Request $request)
     {
-        if ($request->id == 1) {
+        if ($request->form == 1) {
             return [
-                'fullName' => 'required|max:255',
+                'name' => 'required|max:255',
                 'email' => 'required|email',
                 'password' => 'required|min:8|max:16|regex:/^[A-Za-z0-9]*$/'
             ];
@@ -35,10 +35,10 @@ class UserRegisterRequest extends FormRequest
             'fullName' => 'required|max:255',
             'phone' => 'required|integer',
             // 'sex' => 'required',
-            'namecompany'=>'required|max:255',
-            'workplace'=>'required|max:255',
-            'address'=>'required|max:255',
-            'namecompany'=>'required|max:255'
+            'namecompany' => 'required|max:255',
+            'workplace' => 'required|max:255',
+            'address' => 'required|max:255',
+            'namecompany' => 'required|max:255'
         ];
     }
 }

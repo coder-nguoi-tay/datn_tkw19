@@ -12,6 +12,7 @@
     @endif
     <link href="{{ asset('css/userApp.css') }}?t={{ time() }}" rel="stylesheet">
     <script src="{{ asset('js/guestApp.js') }}?t={{ time() }}" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     @yield('css')
     <script>

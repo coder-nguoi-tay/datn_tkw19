@@ -145,6 +145,7 @@
 
                                                     </div>
                                                 </div>
+                                                <br>
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label text-right label">Hình thức làm
                                                         việc<span class="pl-2">*</span></label>
@@ -210,12 +211,11 @@
                                                         <span class="error" name="">
                                                     </div>
                                                 </div>
-
+                                                <br>
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label text-right label">Nơi làm
                                                         việc</label>
                                                     <div class="col-sm-9">
-
                                                         <select name="location_id" as="select" class="form-control">
                                                             <option value disabled selected>Nơi làm việc</option>
                                                             @foreach ($location as $item)
@@ -245,7 +245,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            {{-- {{ dd($company[0]) }} --}}
                                             {{-- employrer --}}
                                             <div class="card recuitment-card">
                                                 <div class="card-header recuitment-card-header" id="headingThree">
@@ -258,6 +258,7 @@
                                                 <div id="collapseThree" class="collapse show"
                                                     aria-labelledby="headingThree" data-parent="#accordionExample">
                                                     <div class="card-body recuitment-body">
+
                                                         <div class="form-group row">
                                                             <label class="col-sm-3 col-form-label text-right label">Tên
                                                                 người liên hệ</label>
@@ -313,13 +314,15 @@
                                                 <div id="collapse4" class="collapse show" aria-labelledby="heading4"
                                                     data-parent="#collapse4">
                                                     <div class="card-body recuitment-body">
+                                                        <input type="hidden" name="id"
+                                                            value="{{ $company[0]->id ?? '' }}" />
                                                         <div class="form-group row">
                                                             <label class="col-sm-3 col-form-label text-right label">Tên
                                                                 công ty<span class="pl-2">*</span></label>
                                                             <div class="col-sm-9">
                                                                 <input type="text" name="nameCompany"
                                                                     class="form-control"
-                                                                    value="{{ $user[0]->nameCompany ?? '' }}"
+                                                                    value="{{ $company[0]->name ?? '' }}"
                                                                     placeholder="Tên công ty" />
                                                                 <span class="error" name="name">
                                                             </div>
@@ -329,7 +332,8 @@
                                                                 chỉ<span class="pl-2">*</span></label>
                                                             <div class="col-sm-9">
                                                                 <input type="text" name="addressCompany"
-                                                                    class="form-control"value="{{ $user[0]->addressCompany ?? '' }}"
+                                                                    class="form-control"
+                                                                    value="{{ $company[0]->address ?? '' }}"
                                                                     placeholder="địa
                                                                     chỉ" />
                                                                 <span class="error" name="addressCompany">
@@ -343,7 +347,7 @@
                                                             <div class="col-sm-9">
                                                                 <input type="text" name="emailCompany"
                                                                     class="form-control"
-                                                                    value="{{ $user[0]->emailCompany ?? '' }}"
+                                                                    value="{{ $company[0]->email ?? '' }}"
                                                                     placeholder="Email" />
                                                                 <span class="error" name="emailCompany">
                                                             </div>
@@ -354,7 +358,7 @@
                                                             <div class="col-sm-9">
                                                                 <input type="text" name="number_member"
                                                                     class="form-control"
-                                                                    value="{{ $user[0]->number_member ?? '' }}"
+                                                                    value="{{ $company[0]->number_member ?? '' }}"
                                                                     placeholder="số lượng nhân viên" />
                                                                 <span class="error" name="number_member">
                                                             </div>
@@ -364,7 +368,7 @@
                                                                 class="col-sm-3 col-form-label text-right label">Logo</label>
                                                             <div class="col-sm-9">
                                                                 <input type="text" name="logo"
-                                                                    value="{{ $user[0]->logo ?? '' }}"
+                                                                    value="{{ $company[0]->logo ?? '' }}"
                                                                     class="form-control" placeholder="logo" />
                                                                 <span class="error" name="logo">
                                                             </div>
@@ -373,7 +377,7 @@
                                                             <label class="col-sm-3 col-form-label text-right label">Sơ lược
                                                                 về công ty<span class="pl-2">*</span></label>
                                                             <div class="col-sm-9">
-                                                                <textarea name="desceibeCompany" value="{{ $user[0]->desceibeCompany ?? '' }}" id="" cols="10"
+                                                                <textarea name="desceibeCompany" value="{{ $company[0]->Desceibe ?? '' }}" id="" cols="10"
                                                                     rows="5" class="form-control"></textarea>
                                                             </div>
                                                         </div>
@@ -396,4 +400,11 @@
         </div>
     </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                multiple: true,
+            })
+        })
+    </script>
 @endsection

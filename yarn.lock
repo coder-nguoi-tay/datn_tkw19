@@ -906,6 +906,13 @@
   "resolved" "https://registry.npmjs.org/@colors/colors/-/colors-1.5.0.tgz"
   "version" "1.5.0"
 
+"@coreui/coreui-pro@^4.3.4":
+  "integrity" "sha512-9tnvgwBGZjy3a7YuevvgF0Yi34EX0LY+HyOhV8CIm++yiHslLwFb5gT8wrN7E5Bbv9ABLYsZX//IyLc2/RX+CQ=="
+  "resolved" "https://registry.npmjs.org/@coreui/coreui-pro/-/coreui-pro-4.3.4.tgz"
+  "version" "4.3.4"
+  dependencies:
+    "postcss-combine-duplicated-selectors" "^10.0.3"
+
 "@coreui/coreui@^4.1.0":
   "integrity" "sha512-gcdinzX37nTOfMYMNkxnkeirGPB6H2NexBuekU7PZHQq1hEqor329SKRKB0g2ApcgtMlk76LkWtkwtb1H3G6Aw=="
   "resolved" "https://registry.npmjs.org/@coreui/coreui/-/coreui-4.2.1.tgz"

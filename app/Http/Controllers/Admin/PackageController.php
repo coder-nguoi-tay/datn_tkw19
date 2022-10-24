@@ -113,8 +113,6 @@ class PackageController extends BaseController
      */
     public function destroy($id)
     {
-        //Packageoffer::destroy($id);
-        //Packageoffer::find($id)->delete();
         if ($this->package->destroy($id)) {
             return response()->json([
                 'message' => 'Xóa gói cước thành công',

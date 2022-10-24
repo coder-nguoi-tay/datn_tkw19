@@ -180,7 +180,7 @@ class BaseController extends Controller
     {
         if ($request['email'] != '') {
             return !$this->user->where(function ($query) use ($request) {
-                if (isset($request['abc'])) {
+                if (isset($request['id'])) {
                     $query->where('id', '!=', $request['id']);
                 }
                 $query->where(['email' => $request['email']]);

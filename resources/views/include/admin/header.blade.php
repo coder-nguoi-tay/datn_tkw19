@@ -9,7 +9,7 @@
                 <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                     aria-expanded="false">
                     <div class="avatar avatar-md">
-                        <img class="avatar-img" src="">
+                        <img class="avatar-img" src="/images/Logo.png">
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
@@ -21,9 +21,9 @@
                         Updates
                         <span class="badge badge-sm bg-info ms-2">42</span>
                     </a>
-                    <a class="dropdown-item" href="">
+                    <a class="dropdown-item" href="{{ route('employer.logout') }}">
                         <i class="icon me-2 fa fa-sign-out" aria-hidden="true"></i>
-                        ADMIN
+                        logout
                     </a>
                 </div>
             </li>
