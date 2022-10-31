@@ -68,7 +68,7 @@ class HomeController extends BaseController
      */
     public function showDetail($name, $id)
     {
-        $job = $this->job
+           $job = $this->job
             ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getExperience', 'getLevel', 'getTime_work', 'getwk_form', 'getMajors'])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
