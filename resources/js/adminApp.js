@@ -1,9 +1,7 @@
 import './bootstrap';
 import { configure, defineRule } from 'vee-validate'
 import { createApp } from 'vue';
-import $ from "jquery";
 import CoreuiVue from "@coreui/vue";
-
 defineRule('password_rule', (value) => {
     return /^[A-Za-z0-9]*$/i.test(value)
 })
@@ -14,6 +12,8 @@ configure({
     validateOnInput: true,
     validateOnModelUpdate: false
 })
+
+window.YubinBango = require('yubinbango-core')
 
 const app = createApp({});
 app.use(CoreuiVue);
@@ -64,6 +64,10 @@ app.component('client-register', clientRegister);
 // home
 import homeClient from "./components/client/home/index.vue";
 app.component('home-client', homeClient);
+
+// paginate
+import Paginate from './components/common/customPaginate.vue'
+app.component('paginate', Paginate);
 app.mount('#app');
 
 

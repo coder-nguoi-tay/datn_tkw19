@@ -72,7 +72,29 @@
                                                                 {{ Carbon::parse($items->end_job_time)->format('d/m/Y') }}
                                                             </span>
                                                             <div class="date-new">
-                                                                <h5>Thời gian còn lại: 30 ngày</h5>
+                                                                @if (Carbon::parse($items->end_job_time)->format('m') == $m)
+                                                                    <h5>Thời gian còn lại:
+                                                                        @if (Carbon::parse($items->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
+                                                                            Hết hạn
+                                                                        @else
+                                                                            {{ Carbon::parse($items->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') }}
+                                                                            ngày
+                                                                        @endif
+                                                                    @else
+                                                                        @if ($all_day -
+                                                                            Carbon::parse($items->job_time)->format('d') +
+                                                                            ($mon - ($mon - Carbon::parse($items->end_job_time)->format('d'))) <=
+                                                                            0)
+                                                                            <h5>Thời gian còn lại:
+                                                                                Hết hạn
+                                                                            @else
+                                                                                <h5>Thời gian còn lại:
+                                                                                    {{ $all_day -
+                                                                                        Carbon::parse(Carbon::now())->format('d') +
+                                                                                        ($mon + 1 - ($mon - Carbon::parse($items->end_job_time)->format('d'))) }}
+                                                                                    ngày
+                                                                        @endif
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
+use App\Models\Company;
+use App\Models\Employer;
 use App\Models\Job;
+use App\Models\Jobskill;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,18 +18,24 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public Job $job;
-    public function __construct(Job $job)
+    public Company $company;
+    public Employer $employer;
+    public Jobskill $jobskill;
+    public function __construct(Job $job, Company $company, Employer $employer, Jobskill $jobskill)
     {
         $this->job = $job;
+        $this->company = $company;
+        $this->employer = $employer;
+        $this->jobskill = $jobskill;
     }
     public function index()
     {
         return view('client.index', [
-            'job' => $this->job->with(['getWage', 'getlocation', 'getskill'])
+            'job' => $this->job->with(['getWage', 'getlocation', 'getskill', 'getEndTimeJob', 'getwk_form', 'getExperience', 'getprofession'])
                 ->join('employer', 'employer.id', '=', 'job.employer_id')
                 ->join('company', 'company.id', '=', 'employer.id_company')
                 ->select('job.*', 'company.logo as logo')
-                ->paginate(8)
+                ->paginate(5)
         ]);
     }
 
@@ -56,9 +66,60 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showDetail($name, $id)
     {
-        //
+        $job = $this->job
+            ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getExperience', 'getLevel', 'getTime_work', 'getwk_form', 'getMajors'])
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany', 'company.address as addressCompany', 'company.Desceibe as desceibeCompany', 'company.number_member as number_member', 'company.email as emailCompany')
+            ->where('job.id', $id)
+            ->first();
+        $rules = array();
+        foreach ($job->getskill as $value) {
+            $relate = $this->jobskill
+                ->where('skill_id', $value->pivot->skill_id)
+                ->get();
+            foreach ($relate as $item) {
+                $test = $this->jobskill
+                    ->where('job_id', $item->job_id)
+                    ->get();
+
+                foreach ($test as $item) {
+                    $abc = $this->job
+                        ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getExperience', 'getLevel', 'getTime_work', 'getwk_form', 'getMajors'])
+                        ->join('employer', 'employer.id', '=', 'job.employer_id')
+                        ->join('company', 'company.id', '=', 'employer.id_company')
+                        ->select('job.*', 'company.logo as logo')
+                        ->where('job.id', $item->job_id)
+                        ->get();
+                }
+                array_push($rules, $abc);
+            }
+        }
+        $title = $this->convert_name($job->title);
+        $getMajors = $this->convert_name($job->getMajors->name);
+        $location = $this->convert_name($job->getlocation->name);
+        $jobCompany = $this->job
+            ->select('job.id as idjob', 'company.*', 'employer.*')
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->where('company.id', $job->idCompany)
+            ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getExperience', 'getLevel', 'getTime_work', 'getwk_form', 'getMajors'])
+            ->get();
+        $breadcrumbs = [
+            $job->title
+        ];
+        dd($jobCompany);
+        return view('client.detai-job', [
+            'job' => $job,
+            'jobCompany' => $jobCompany,
+            'title' => $title,
+            'getMajors' => $getMajors,
+            'location' => $location,
+            'rules' => $rules,
+            'breadcrumbs' => $breadcrumbs,
+        ]);
     }
 
     /**
@@ -93,5 +154,31 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function searchLocation($name, $id)
+    {
+        $job =  $this->job->where('location_id', $id)
+            ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getExperience', 'getLevel', 'getTime_work', 'getwk_form', 'getMajors'])
+            ->paginate(10);
+        $breadcrumbs = [
+            'Tìm kiếm việc làm'
+        ];
+        return view('client.search', [
+            'job' => $job,
+            'breadcrumbs' => $breadcrumbs,
+        ]);
+    }
+    public function searchMajors($name, $id)
+    {
+        $job =  $this->job->where('majors_id', $id)
+            ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getExperience', 'getLevel', 'getTime_work', 'getwk_form', 'getMajors'])
+            ->paginate(10);
+        $breadcrumbs = [
+            'Tìm kiếm việc làm'
+        ];
+        return view('client.search', [
+            'job' => $job,
+            'breadcrumbs' => $breadcrumbs,
+        ]);
     }
 }

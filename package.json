@@ -35,11 +35,14 @@
         "coc-php-cs-fixer": "^0.7.1",
         "core-js": "^3.19.0",
         "dayjs": "^1.11.5",
+        "debug3": "^1.0.8",
         "jquery": "^3.6.0",
+        "jw-vue-pagination": "^1.0.3",
         "mini-css-extract-plugin": "^2.6.0",
         "vee-validate": "^4.5.10",
         "vue": "^3.2.31",
         "vue-countup-v3": "^1.0.14",
+        "vue-moment": "^4.1.0",
         "vue-multiselect": "^2.1.6",
         "vue-recaptcha": "^2.0.2",
         "vue-swal": "^1.0.0",
@@ -47,6 +50,9 @@
         "vue3-carousel": "^0.1.40",
         "vue3-nl2br": "^0.1.5",
         "vue3-otp-input": "^0.3.6",
+        "vuejs-paginate": "^2.1.0",
+        "yubinbango-core": "^0.6.3",
+        "yubinbango-core2": "^0.6.3",
         "yup": "^0.32.11"
     }
 }

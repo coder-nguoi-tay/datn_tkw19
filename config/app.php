@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIME_ZONE', 'Asia/Tokyo'),
+    'timezone' => env('APP_TIME_ZONE', 'Asia/Ho_Chi_Minh'),
 
     /*
     |--------------------------------------------------------------------------
@@ -175,7 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-       
+
 
 
     ],

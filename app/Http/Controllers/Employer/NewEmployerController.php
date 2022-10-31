@@ -66,15 +66,25 @@ class NewEmployerController extends BaseController
     }
     public function index()
     {
+        $date = getdate();
+        $m = $date['mon'];
+        $y = $date['year'];
+        $all_day = cal_days_in_month(CAL_GREGORIAN, $m, $y);
+        $mon = Carbon::parse(new Carbon('last day of last month'))->format('d');
+        // dd($mon);
         $job = $this->job->where('employer_id', Auth::guard('user')->user()->id)
             ->with(['getWage', 'getlocation', 'getskill'])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->select('job.*', 'company.logo as logo')
+            ->Orderby('created_at', 'DESC')
             ->get();
-        // dd($job);
         return view('employer.new.index', [
-            'job' => $job
+            'job' => $job,
+            'all_day' => $all_day,
+            'm' => $m,
+            'mon' => $mon,
+
         ]);
     }
 

@@ -59,3 +59,7 @@ Route::resource('owner', ClientLoginController::class);
 Route::post('owner/update/register', [ClientLoginController::class, 'updateRegister'])->name('owner.update.register');
 // });
 Route::resource('home', ClientHomeController::class);
+
+Route::get('home/detail/{title}-{id}', [ClientHomeController::class, 'showDetail'])->name('home.detail.show');
+Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 'searchLocation'])->name('home.search.location');
+Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
