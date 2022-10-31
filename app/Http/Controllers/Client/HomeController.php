@@ -101,7 +101,21 @@ class HomeController extends BaseController
         $getMajors = $this->convert_name($job->getMajors->name);
         $location = $this->convert_name($job->getlocation->name);
         $jobCompany = $this->job
-            ->select('job.id as idjob', 'company.*', 'employer.*')
+            ->select(
+                'job.id as idjob',
+                'job.level_id as level_id',
+                'job.experience_id as experience_id',
+                'job.wage_id as wage_id',
+                'job.profession_id as profession_id',
+                'job.time_work_id as time_work_id',
+                'job.employer_id as employer_id',
+                'job.wk_form_id as wk_form_id',
+                'job.location_id as location_id',
+                'job.majors_id as majors_id',
+                'job.title as title',
+                'company.*',
+                'employer.*'
+            )
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->where('company.id', $job->idCompany)
@@ -110,7 +124,7 @@ class HomeController extends BaseController
         $breadcrumbs = [
             $job->title
         ];
-        dd($jobCompany);
+        // dd($jobCompany);
         return view('client.detai-job', [
             'job' => $job,
             'jobCompany' => $jobCompany,
