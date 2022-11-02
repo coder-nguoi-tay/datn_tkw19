@@ -13,6 +13,7 @@ use App\Http\Controllers\Client\HomeController as ClientHomeController;
 use App\Http\Controllers\Client\LoginController as ClientLoginController;
 use App\Http\Controllers\Employer\HomeEmployerController;
 use App\Http\Controllers\Employer\NewEmployerController;
+use App\Http\Controllers\Seeker\HomeController as SeekerHomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,11 +54,18 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::get('new/edit/{job}', [NewEmployerController::class, 'edit'])->name('new.edit');
     Route::post('new/update/{id}', [NewEmployerController::class, 'update'])->name('new.update');
 });
+// seeker
+Route::resource('profile', SeekerHomeController::class);
+Route::get('user/profile/{token}', [SeekerHomeController::class, 'userProfile'])->name('user.profile');
+Route::get('user/new/favourite', [SeekerHomeController::class, 'userFavourite'])->name('user.favourite');
+Route::get('user/logout', [SeekerHomeController::class, 'logout'])->name('user.logout');
 // Route::group(function () {
+// login
 Route::resource('owner', ClientLoginController::class);
 // Route::get('owner/register', [ClientLoginController::class, 'showRegister'])->name('owner.show.register');
 Route::post('owner/update/register', [ClientLoginController::class, 'updateRegister'])->name('owner.update.register');
 // });
+//client
 Route::resource('home', ClientHomeController::class);
 
 Route::get('home/detail/{title}-{id}', [ClientHomeController::class, 'showDetail'])->name('home.detail.show');

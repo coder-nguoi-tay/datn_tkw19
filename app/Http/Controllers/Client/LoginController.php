@@ -54,7 +54,7 @@ class LoginController extends BaseController
             if (Auth::guard('user')->user()->role_id == 2) {
                 return redirect($request->url_redirect ? $request->url_redirect : route('employer.index'));
             }
-            // return redirect($request->url_redirect ? $request->url_redirect : route('employer.new.index'));
+            return redirect($request->url_redirect ? $request->url_redirect : route('home.index'));
         }
         return view('client.login.index', [
             'message' => 'Tài khoản và mật khẩu không đúng'

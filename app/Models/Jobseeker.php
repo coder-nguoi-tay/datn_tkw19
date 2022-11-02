@@ -11,9 +11,9 @@ class Jobseeker extends Model
     protected $table = 'job-seeker';
     protected $fillable = [
         'id',
-        'Address',
-        'Phone',
-        'Images',
+        'address',
+        'phone',
+        'images',
         'user_role',
         'skill_id',
         'experience_id',

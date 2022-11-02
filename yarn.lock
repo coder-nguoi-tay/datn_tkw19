@@ -1426,7 +1426,7 @@
   "resolved" "https://registry.npmjs.org/@vue/shared/-/shared-3.2.40.tgz"
   "version" "3.2.40"
 
-"@vueform/multiselect@^2.1.0":
+"@vueform/multiselect@^2.5.6":
   "integrity" "sha512-pmGwd/6d4dzdi1mp0uqizmpdkakSXZuYIG+aIEs/9UcaDB+6NlnhvFwrlQ8enSIo0kiCERC48WyfVZ7CscHSYQ=="
   "resolved" "https://registry.npmjs.org/@vueform/multiselect/-/multiselect-2.5.6.tgz"
   "version" "2.5.6"
@@ -3622,7 +3622,7 @@
     "merge-stream" "^2.0.0"
     "supports-color" "^8.0.0"
 
-"jquery@^3.6.0":
+"jquery@^3.3.1", "jquery@^3.6.0":
   "integrity" "sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw=="
   "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.6.0.tgz"
   "version" "3.6.0"
@@ -5193,6 +5193,11 @@
   "resolved" "https://registry.npmjs.org/select-hose/-/select-hose-2.0.0.tgz"
   "version" "2.0.0"
 
+"select2@^4.0.7-rc.0":
+  "integrity" "sha512-1JeB87s6oN/TDxQQYCvS5EFoQyvV6eYMZZ0AeA4tdFDYWN3BAGZ8npr17UBFddU0lgAt3H0yjX3X6/ekOj1yjw=="
+  "resolved" "https://registry.npmjs.org/select2/-/select2-4.0.13.tgz"
+  "version" "4.0.13"
+
 "selfsigned@^2.0.1":
   "integrity" "sha512-LmME957M1zOsUhG+67rAjKfiWFox3SBxE/yymatMZsAx+oMrJ0YQ8AToOnyCm7xbeg2ep37IHLxdu0o2MavQOQ=="
   "resolved" "https://registry.npmjs.org/selfsigned/-/selfsigned-2.0.1.tgz"
@@ -5930,6 +5935,14 @@
   "integrity" "sha512-08A/33P3dvk8DBQ6ACJ6ajNCNdkJL2Di5CVVLxcYK7+izM4KFMeWsFnZsx2fD0VfLE7t6jpi+cNgNU83nP7/TQ=="
   "resolved" "https://registry.npmjs.org/vue3-otp-input/-/vue3-otp-input-0.3.6.tgz"
   "version" "0.3.6"
+
+"vue3-select2-component@^0.1.7":
+  "integrity" "sha512-8UPZmFl02I47XwW+j8ICmHyAND8wfbavlvMrqh10wwdSVER1aF2kI9XCmfIrNlVQvxSbvc0mJjWQAHHSCW9dkw=="
+  "resolved" "https://registry.npmjs.org/vue3-select2-component/-/vue3-select2-component-0.1.7.tgz"
+  "version" "0.1.7"
+  dependencies:
+    "jquery" "^3.3.1"
+    "select2" "^4.0.7-rc.0"
 
 "vuejs-paginate@^2.1.0":
   "integrity" "sha512-gnwyXlmCiDOu9MLWxN5UJ4PGijKGNOMpHG8ujsrynCzTJljn/rp7Jq0WiDGDAMi5/u0AHuYIHhced+tUW4jblA=="

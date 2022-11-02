@@ -3998,15 +3998,15 @@ ul.jbd-social li a {
 /*-------------- Form Elements ----------------*/
 .form-control,
 select.form-control {
-    height: 52px !important;
-    padding: 10px 15px;
+    height: 32px !important;
+    /* padding: 10px 15px; */
     font-size: 15px;
     border-radius: 1px;
     border-color: #e5e5e5;
 }
 
 .form-control.form-control.lg {
-    height: 60px !important;
+    height: 20px !important;
     padding: 10px 15px;
 }
 

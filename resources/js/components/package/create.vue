@@ -1,35 +1,76 @@
 <template>
   <div class="container container_package content-wrapper">
-    <VeeForm as="div" v-slot="{ handleSubmit }" @invalid-submit="onInvalidSubmit">
-      <form method="POST" @submit="handleSubmit($event, onSubmit)" ref="formData" :action="data.urlStore">
+    <VeeForm
+      as="div"
+      v-slot="{ handleSubmit }"
+      @invalid-submit="onInvalidSubmit"
+    >
+      <form
+        method="POST"
+        @submit="handleSubmit($event, onSubmit)"
+        ref="formData"
+        :action="data.urlStore"
+      >
         <input type="hidden" :value="csrfToken" name="_token" />
         <div class="col">
           <label class="form-label">Tên gói cước</label>
-          <Field type="text" name="name" rules="required|max:255" v-model="model.name" class="form-control" />
+          <Field
+            type="text"
+            name="name"
+            rules="required|max:255"
+            v-model="model.name"
+            class="form-control"
+          />
           <ErrorMessage class="error" name="name" />
         </div>
         <div class="col">
           <label class="form-label">Giá gói cước</label>
-          <Field type="text" name="price" rules="required|integer" v-model="model.price" class="form-control" />
+          <Field
+            type="text"
+            name="price"
+            rules="required|integer"
+            v-model="model.price"
+            class="form-control"
+          />
           <ErrorMessage class="error" name="price" />
         </div>
         <div class="col">
           <label class="form-label">Mô tả gói cước</label>
-          <Field type="text" name="describe" rules="required|max:255" v-model="model.describe" class="form-control" />
+          <Field
+            type="text"
+            name="describe"
+            rules="required|max:255"
+            v-model="model.describe"
+            class="form-control"
+          />
           <ErrorMessage class="error" name="describe" />
         </div>
         <div class="col">
           <label class="form-label">Thời gian gói cước</label>
-          <Field name="time_offer_id" as="select" v-model="model.time_offer_id" rules="required" class="form-control">
+          <Field
+            name="time_offer_id"
+            as="select"
+            v-model="model.time_offer_id"
+            rules="required"
+            class="form-control"
+          >
             <option value disabled selected>Chọn thời gian</option>
-            <option v-for="item in data.timeoffer" :key="item.id" :value="item.id">
+            <option
+              v-for="item in data.timeoffer"
+              :key="item.id"
+              :value="item.id"
+            >
               {{ item.label }}
             </option>
           </Field>
           <ErrorMessage class="error" name="time_offer_id" />
         </div>
         <div class="text-center text-1">
-          <a :href="data.urlBack" class="btn btn-danger" style="margin-right: 10px;">
+          <a
+            :href="data.urlBack"
+            class="btn btn-danger"
+            style="margin-right: 10px"
+          >
             Cancel
           </a>
           <button class="btn btn-info">Thực hiện</button>
@@ -44,73 +85,72 @@ import {
   Field,
   ErrorMessage,
   defineRule,
-  configure,
-} from "vee-validate";
-import { localize } from "@vee-validate/i18n";
-import * as rules from "@vee-validate/rules";
+  configure
+} from 'vee-validate'
+import { localize } from '@vee-validate/i18n'
+import * as rules from '@vee-validate/rules'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
-      if (rule != "default") {
-        defineRule(rule, rules[rule]);
+      if (rule != 'default') {
+        defineRule(rule, rules[rule])
       }
-    });
+    })
   },
   components: {
     VeeForm,
     Field,
-    ErrorMessage,
+    ErrorMessage
   },
-  props: ["data"],
+  props: ['data'],
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: {},
-    };
+      model: {}
+    }
   },
   created() {
     let messError = {
       en: {
         fields: {
           name: {
-            required: "Tên  không được để trống",
-            max: "Tên không được vượt qua 255 ký tự",
+            required: 'Tên  không được để trống',
+            max: 'Tên không được vượt qua 255 ký tự'
           },
           price: {
-            required: "Giá tiền không được để trống",
-            integer: "Giá tiền phải là số",
+            required: 'Giá tiền không được để trống',
+            integer: 'Giá tiền phải là số'
           },
           describe: {
-            required: "Mô tả không được để trống",
-            max: "Mô tả không được quá 255 ký tự",
+            required: 'Mô tả không được để trống',
+            max: 'Mô tả không được quá 255 ký tự'
           },
           time_offer_id: {
-            required: "Thời gian không được để trống",
-          },
-        },
-      },
-    };
+            required: 'Thời gian không được để trống'
+          }
+        }
+      }
+    }
     configure({
-      generateMessage: localize(messError),
-    });
+      generateMessage: localize(messError)
+    })
   },
   methods: {
     onInvalidSubmit({ values, errors, results }) {
-      let firstInputError = Object.entries(errors)[0][0];
-      this.$el.querySelector("input[name=" + firstInputError + "]").focus();
-      $("html, body").animate(
+      let firstInputError = Object.entries(errors)[0][0]
+      this.$el.querySelector('input[name=' + firstInputError + ']').focus()
+      $('html, body').animate(
         {
-          scrollTop:
-            $("input[name=" + firstInputError + "]").offset().top - 150,
+          scrollTop: $('input[name=' + firstInputError + ']').offset().top - 150
         },
         500
-      );
+      )
     },
     onSubmit() {
-      this.$refs.formData.submit();
-    },
-  },
-};
+      this.$refs.formData.submit()
+    }
+  }
+}
 </script>
 <style>
 .container_package {

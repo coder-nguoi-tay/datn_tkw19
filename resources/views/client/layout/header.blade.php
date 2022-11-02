@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 <div class="header header-light dark-text">
     <div class="container">
         <nav id="navigation" class="navigation navigation-landscape">
@@ -99,16 +102,32 @@
                 </ul>
 
                 <ul class="nav-menu nav-menu-social align-to-right">
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#login" class="ft-medium">
-                            <i class="lni lni-user mr-2"></i>Sign In
-                        </a>
-                    </li>
-                    <li class="add-listing theme-bg">
-                        <a href="dashboard-post-job.html">
-                            <i class="lni lni-circle-plus mr-1"></i> Post a Job
-                        </a>
-                    </li>
+
+                    @if (Auth::check())
+                        <li>
+                            <a href="{{ route('owner.index') }}" class="ft-medium">
+                                <i class="lni lni-user mr-2"></i>Sign In
+                            </a>
+                        </li>
+                        <li class="add-listing theme-bg">
+                            <a href="dashboard-post-job.html">
+                                <i class="lni lni-circle-plus mr-1"></i> Post a Job
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
+                                aria-expanded="false">
+                                {{ Auth::guard('user')->user()->name }}
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ route('profile.index') }} ">Profile</a>
+                                <a class="dropdown-item" href="#">Quản lý CV</a>
+                                <a class="dropdown-item" href="#">Bài tuyển dụng đã yêu thích</a>
+                            </div>
+                        </li>
+                    @endif
+
                 </ul>
             </div>
         </nav>
