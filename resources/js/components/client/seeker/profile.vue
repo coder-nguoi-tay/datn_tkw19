@@ -32,12 +32,24 @@
                     name="images"
                   />
                 </div>
-                <img
-                  v-if="filePreview"
-                  :value="data.user.images ?? ''"
-                  :src="filePreview"
-                  class="img"
-                />
+                <img v-if="!filePreview" :src="data.user.images" class="img" />
+                <div
+                  class="img-display_author d-flex"
+                  id="img-preview"
+                  @click="chooseImage()"
+                  role="button"
+                >
+                  <div style="display: none">
+                    <input
+                      type="file"
+                      @change="onChange"
+                      ref="fileInput"
+                      accept="image/*"
+                      name="images"
+                    />
+                  </div>
+                  <img v-if="filePreview" :src="filePreview" class="img" />
+                </div>
               </div>
             </div>
           </div>
@@ -222,6 +234,7 @@
                   placeholder="Chọn kỹ năng"
                   name="skill_id[]"
                   rules="required"
+                  class="form-control"
                 />
                 <ErrorMessage class="error" name="skill_id" />
               </div>
@@ -335,11 +348,6 @@ export default {
     })
   },
   methods: {
-    chooseImage(i) {
-      i == 1
-        ? this.$refs['fileInput'].click()
-        : this.$refs['fileInput1'].click()
-    },
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0]
       this.$el.querySelector('input[name=' + firstInputError + ']').focus()
@@ -377,9 +385,6 @@ export default {
   color: rgb(255, 80, 80);
   margin-left: 5px;
   margin-top: 5px;
-}
-.form-control {
-  padding: none !important;
 }
 .display-div_custom {
   border: solid 1px;

@@ -5,24 +5,39 @@
     <div class="container">
         <nav id="navigation" class="navigation navigation-landscape">
             <div class="nav-header">
-                <a class="nav-brand" href="#">
+                <a class="nav-brand" href="{{ route('home.index') }}">
                     <img src="assets/img/logo.png" class="logo" alt="" />
                 </a>
                 <div class="nav-toggle"></div>
                 <div class="mobile_nav">
                     <ul>
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#login" class="theme-cl fs-lg">
-                                <i class="lni lni-user"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="dashboard-post-job.html" class="crs_yuo12 w-auto text-white theme-bg">
-                                <span class="embos_45"><i class="fas fa-plus-circle mr-1 mr-1"></i>Post
-                                    Job</span>
-                            </a>
-                        </li>
+                        @if (!Auth::guard('user')->check())
+                            <li>
+                                <a href="{{ route('owner.index') }}" class="theme-cl fs-lg">
+                                    <i class="lni lni-user"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="dashboard-post-job.html" class="crs_yuo12 w-auto text-white theme-bg">
+                                    <span class="embos_45"><i class="fas fa-plus-circle mr-1 mr-1"></i>Post
+                                        Job</span>
+                                </a>
+                            </li>
+                        @else
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    {{ Auth::guard('user')->user()->name }}
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{{ route('profile.index') }} ">Profile</a>
+                                    <a class="dropdown-item" href="#">Quản lý CV</a>
+                                    <a class="dropdown-item" href="#">Bài tuyển dụng đã yêu thích</a>
+                                </div>
+                            </li>
+                        @endif
                     </ul>
+
                 </div>
             </div>
             <div class="nav-menus-wrapper" style="transition-property: none;">
@@ -103,14 +118,14 @@
 
                 <ul class="nav-menu nav-menu-social align-to-right">
 
-                    @if (Auth::check())
+                    @if (!Auth::guard('user')->check())
                         <li>
                             <a href="{{ route('owner.index') }}" class="ft-medium">
                                 <i class="lni lni-user mr-2"></i>Sign In
                             </a>
                         </li>
                         <li class="add-listing theme-bg">
-                            <a href="dashboard-post-job.html">
+                            <a href="">
                                 <i class="lni lni-circle-plus mr-1"></i> Post a Job
                             </a>
                         </li>

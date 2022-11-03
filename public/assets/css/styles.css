@@ -40,7 +40,7 @@
 /*------------------------------------------------------------
 	Page Loader
 -------------------------------------------------------------*/
-.no-js #loader {
+/* .no-js #loader {
     display: none;
 }
 
@@ -49,9 +49,9 @@
     position: absolute;
     left: 100px;
     top: 0;
-}
+} */
 
-.preloader {
+/* .preloader {
     position: fixed;
     left: 0px;
     top: 0px;
@@ -59,7 +59,7 @@
     height: 100%;
     z-index: 9999999;
     background: url(../img/loader.gif) center no-repeat #ffffff;
-}
+} */
 
 /*------------------------------------------------------------
 	Global Settings
@@ -97,7 +97,7 @@ html {
 
 a {
     color: #111111;
-    text-decoration: none;
+    text-decoration: none !important;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
 }
@@ -254,7 +254,7 @@ h6 {
 
 h1 {
     line-height: 40px;
-    font-size: 36px;
+    font-size: 30px;
 }
 
 h2 {
@@ -510,6 +510,9 @@ ul.icons_lists.colors li:before {
 
 .ft-bold {
     font-weight: 600;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 25px;
 }
 
 .ab-left {
@@ -520,10 +523,11 @@ ul.icons_lists.colors li:before {
 }
 
 .ab-right {
-    right: 0.7rem;
+    right: 1.5rem;
     left: auto;
     top: 0.7rem;
     z-index: 1;
+    margin-right: -10px;
 }
 
 .line-through {
@@ -547,6 +551,8 @@ ul.icons_lists.colors li:before {
     font-size: 82%;
     border-radius: .15rem;
     letter-spacing: 0.08rem;
+    margin-bottom: 20px;
+    margin-left: 10px;
 }
 
 /*------------ Global Settings: Cutom Height ----------------*/
@@ -655,6 +661,12 @@ ul.icons_lists.colors li:before {
 
 .text-dark {
     color: #172228 !important;
+
+}
+
+.text-dark:focus {
+    color: #172228 !important;
+
 }
 
 .bg-img-holder {
@@ -1418,7 +1430,7 @@ button.close {
 
 /*----------- GLobal Settings: Pagination ------------------*/
 .pagination {
-    display: table;
+    display: table !important;
     padding-left: 0;
     border-radius: 4px;
     margin: 20px auto 0 !important;
@@ -3998,15 +4010,15 @@ ul.jbd-social li a {
 /*-------------- Form Elements ----------------*/
 .form-control,
 select.form-control {
-    height: 32px !important;
-    /* padding: 10px 15px; */
+    height: 52px !important;
+    padding: 10px 15px;
     font-size: 15px;
     border-radius: 1px;
     border-color: #e5e5e5;
 }
 
 .form-control.form-control.lg {
-    height: 20px !important;
+    height: 60px !important;
     padding: 10px 15px;
 }
 
@@ -6565,4 +6577,84 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 #back2Top:hover {
     background-color: #ffffff;
     color: #333c56;
+}
+
+.box-not-share-location {
+    background: #fceceb;
+    border-left: 4px solid #de4637;
+    border-radius: 5px;
+    color: #de4637;
+    display: none;
+    font-size: 15px;
+    margin-bottom: 16px;
+    padding: 14px 20px;
+    transition: .3s
+}
+
+.header-box {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 0
+}
+
+.header-box-description {
+    font-size: 15px;
+}
+
+.container-header-box {
+    margin-top: 10px;
+}
+
+.search-book {
+    margin-top: 30px;
+}
+
+.ml-20 {
+    margin-left: -20px;
+}
+
+.title-name {
+    margin-top: 20px;
+}
+
+.job_grid_footer {
+    margin-left: 10px;
+}
+
+.box-showdow {
+    box-shadow: 2px 2px 12px #8c96b5;
+    border-radius: 10px;
+}
+
+a:hover {
+    text-decoration: initial !important;
+}
+
+.text-mute-footer {
+    /* height: 30px !important; */
+    margin-bottom: -10px !important;
+}
+
+.bg-secondary:hover {
+    color: #ffffff;
+    background-color: #0055ff !important;
+}
+
+.bg-location:hover {
+    color: #ffffff;
+    background-color: #0dcaf0 !important;
+}
+
+.bg-location {
+    background-color: #6c757d;
+}
+
+.bg-location:checked+.btn,
+.bg-location.active,
+.bg-location.show,
+.bg-location:first-child:active,
+:not(.bg-location)+.bg-location:active {
+    color: #ffffff;
+    background-color: #0dcaf0 !important;
+
 }

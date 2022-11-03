@@ -110,7 +110,7 @@ class HomeController extends BaseController
      */
     public function store(Request $request)
     {
-        // dd($request->skill_id);
+        dd($request->all());
         $images = 'http://vn.blog.kkday.com/wp-content/uploads/chup-anh-dep-bang-dien-thoai-25.jpg';
         try {
             $Jobseeker = $this->Jobseeker->create([
@@ -171,7 +171,6 @@ class HomeController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
     }
 
     /**
@@ -190,7 +189,7 @@ class HomeController extends BaseController
     public function logout()
     {
         Auth::guard('user')->logout();
-        return redirect()->route('user.index');
+        return redirect()->route('owner.index');
     }
     public function userFavourite()
     {
