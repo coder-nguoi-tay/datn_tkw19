@@ -6,8 +6,17 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Employer;
+use App\Models\Experience;
 use App\Models\Job;
 use App\Models\Jobskill;
+use App\Models\Lever;
+use App\Models\location;
+use App\Models\Majors;
+use App\Models\Profession;
+use App\Models\Skill;
+use App\Models\Timework;
+use App\Models\Wage;
+use App\Models\WorkingForm;
 use Illuminate\Http\Request;
 
 class HomeController extends BaseController
@@ -21,21 +30,54 @@ class HomeController extends BaseController
     public Company $company;
     public Employer $employer;
     public Jobskill $jobskill;
-    public function __construct(Job $job, Company $company, Employer $employer, Jobskill $jobskill)
+    public Majors $majors;
+    public location $location;
+    public WorkingForm $workingform;
+    public Lever $lever;
+    public Experience $experience;
+    public Wage $wage;
+    public Skill $skill;
+    public Timework $timework;
+    public Profession $profession;
+
+    public function __construct(Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
     {
         $this->job = $job;
         $this->company = $company;
         $this->employer = $employer;
         $this->jobskill = $jobskill;
+        $this->majors = $majors;
+        $this->lever = $lever;
+        $this->experience = $experience;
+        $this->wage = $wage;
+        $this->skill = $skill;
+        $this->timework = $timework;
+        $this->profession = $profession;
+        $this->job = $job;
+        $this->jobskill = $jobskill;
+        $this->majors = $majors;
+        $this->employer = $employer;
+        $this->location = $location;
+        $this->workingform = $workingform;
     }
     public function index()
     {
         return view('client.index', [
-            'job' => $this->job->with(['getWage', 'getlocation', 'getskill', 'getEndTimeJob', 'getwk_form', 'getExperience', 'getprofession'])
+            'job' => $this->job
+                // ->with(['getWage', 'getlocation', 'getskill', 'getEndTimeJob', 'getwk_form', 'getExperience', 'getprofession'])
                 ->join('employer', 'employer.id', '=', 'job.employer_id')
                 ->join('company', 'company.id', '=', 'employer.id_company')
                 ->select('job.*', 'company.logo as logo')
-                ->paginate(5)
+                ->paginate(5),
+            'profestion' => $this->getprofession(),
+            'lever' => $this->getlever(),
+            'experience' => $this->getexperience(),
+            'wage' => $this->getwage(),
+            'skill' => $this->getskill(),
+            'timework' => $this->gettimework(),
+            'profession' => $this->getprofession(),
+            'majors' => $this->getmajors(),
+            'workingform' => $this->getworkingform(),
         ]);
     }
 
@@ -69,7 +111,7 @@ class HomeController extends BaseController
     public function showDetail($name, $id)
     {
         $job = $this->job
-            ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getExperience', 'getLevel', 'getTime_work', 'getwk_form', 'getMajors'])
+            // ->with(['getWage', 'getlocation', 'getskill', 'getMajors'])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany', 'company.address as addressCompany', 'company.Desceibe as desceibeCompany', 'company.number_member as number_member', 'company.email as emailCompany')
@@ -87,12 +129,12 @@ class HomeController extends BaseController
 
                 foreach ($test as $item) {
                     $abc = $this->job
-                        ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getExperience', 'getLevel', 'getTime_work', 'getwk_form', 'getMajors'])
+                        // ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getMajors'])
                         ->join('employer', 'employer.id', '=', 'job.employer_id')
                         ->join('company', 'company.id', '=', 'employer.id_company')
                         ->select('job.*', 'company.logo as logo')
                         ->where('job.id', $item->job_id)
-                        ->get();
+                        ->paginate(20);
                 }
                 array_push($rules, $abc);
             }
@@ -114,13 +156,13 @@ class HomeController extends BaseController
                 'job.majors_id as majors_id',
                 'job.title as title',
                 'company.*',
-                'employer.*'
+
             )
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->where('company.id', $job->idCompany)
-            ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getExperience', 'getLevel', 'getTime_work', 'getwk_form', 'getMajors'])
-            ->get();
+            // ->with(['getWage', 'getlocation', 'getMajors'])
+            ->paginate(4);
         $breadcrumbs = [
             $job->title
         ];
@@ -193,5 +235,10 @@ class HomeController extends BaseController
             'job' => $job,
             'breadcrumbs' => $breadcrumbs,
         ]);
+    }
+    public function searcAll(Request $request)
+    {
+
+        dd($request->all());
     }
 }

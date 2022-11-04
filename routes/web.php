@@ -71,3 +71,4 @@ Route::resource('home', ClientHomeController::class);
 Route::get('home/detail/{title}-{id}', [ClientHomeController::class, 'showDetail'])->name('home.detail.show');
 Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 'searchLocation'])->name('home.search.location');
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
+Route::get('serach', [ClientHomeController::class, 'searcAll'])->name('home.search.all');

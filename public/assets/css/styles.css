@@ -1434,6 +1434,7 @@ button.close {
     padding-left: 0;
     border-radius: 4px;
     margin: 20px auto 0 !important;
+    margin-bottom: 10px !important;
 }
 
 .pagination>li>a,
@@ -1496,22 +1497,13 @@ button.close {
 }
 
 /*----------- Global Settings: Custom Checkbox & Radio Button ----------------*/
-.checkbox-custom,
+
 .radio-custom {
     opacity: 0;
     position: absolute;
 }
 
-.checkbox-custom,
-.checkbox-custom-label,
-.radio-custom,
-.radio-custom-label {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 5px;
-    cursor: pointer;
-    margin-left: 0;
-}
+
 
 .checkbox-custom-label,
 .radio-custom-label {
@@ -6592,9 +6584,10 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 }
 
 .header-box {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 700;
-    margin-bottom: 0
+    margin-bottom: 0;
+    margin-top: 10px;
 }
 
 .header-box-description {
@@ -6603,6 +6596,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 
 .container-header-box {
     margin-top: 10px;
+    box-shadow: 2px 2px 12px #8c96b5;
 }
 
 .search-book {
@@ -6622,8 +6616,13 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 }
 
 .box-showdow {
-    box-shadow: 2px 2px 12px #8c96b5;
+    box-shadow: 1px 1px 5px #8c96b5;
     border-radius: 10px;
+}
+
+.box-showdow-company {
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px #f8f9fa;
 }
 
 a:hover {
@@ -6657,4 +6656,99 @@ a:hover {
     color: #ffffff;
     background-color: #0dcaf0 !important;
 
+}
+
+.nav-tabs {
+    --bs-nav-tabs-border-width: 0px !important;
+}
+
+.text-interesting {
+    background: #ffffff;
+    padding: 3px;
+    /* border: 1px solid #ccc; */
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.text-title-header {
+    color: #28b662;
+}
+
+.box-title {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 16px;
+    background: rgba(40, 182, 97, 0.11) !important;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.box-name {
+    border-left: 7px solid #00b14f;
+    font-size: 20px;
+    margin-top: 5px;
+
+}
+
+.box-link {
+    /* font-size: 20px; */
+    margin-top: 5px;
+}
+
+.box-item {
+    align-items: flex-start;
+    display: flex;
+    margin-bottom: 16px
+}
+
+.title {
+    margin-left: 5px !important;
+    font-weight: 600;
+}
+
+.content {
+    font-size: 15px;
+}
+
+.icon-item {
+    width: 160px !important;
+
+}
+
+.container-company-detai {
+    background: #f0f2f5 !important;
+}
+
+.container-detai {
+    background: #ffffff !important;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: -50px;
+}
+
+.text-name-company {
+    margin-left: 20px !important;
+}
+
+.text-wage-company {
+    font-size: 12px;
+    background: rgba(40, 182, 97, 0.11);
+    padding: 2px;
+    margin-left: -5px !important;
+    color: black;
+    border-radius: 5px;
+}
+
+.text-time {
+    margin-left: 5px !important;
+    color: black !important;
+}
+
+.container-relate {
+    /* border: 1px solid red; */
+    padding: 25px;
+}
+
+.box-text-search {
+    border: 1px solid #C6C7C7;
 }

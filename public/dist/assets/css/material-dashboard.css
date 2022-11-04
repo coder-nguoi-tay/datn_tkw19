@@ -4545,7 +4545,7 @@ fieldset:disabled .btn {
 }
 
 .nav-tabs {
-  --bs-nav-tabs-border-width: 1px;
+  --bs-nav-tabs-border-width: 0px !important;
   --bs-nav-tabs-border-color: #dee2e6;
   --bs-nav-tabs-border-radius: 0.375rem;
   --bs-nav-tabs-link-hover-border-color: #f0f2f5 #f0f2f5 #dee2e6;
