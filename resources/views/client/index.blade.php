@@ -125,87 +125,14 @@
 
                 </div>
                 <!-- row -->
-                <div class="search-book">
-                    <h2 class="ft-bold">Tin tuyển dụng, việc làm tốt nhất</h2>
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a href="#" id="home-tab" class="badge bg-location active" data-toggle="tab">Hà
-                                Nội</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" id="home-tab" class="badge bg-location" data-toggle="tab">Hà Nội</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="badge bg-location" id="contact-tab" data-toggle="tab" href="#contact"
-                                role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="badge bg-location" id="contact-tab" data-toggle="tab" href="#contact"
-                                role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="badge bg-location" id="contact-tab" data-toggle="tab" href="#contact"
-                                role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="badge bg-location" id="contact-tab" data-toggle="tab" href="#contact"
-                                role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="container">
-                        <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
-                            @foreach ($job->all() as $item)
-                                <div class="col">
-                                    <div class="p-3 border bg-light box-showdow">
-                                        <div class="position-absolute ab-right"><button type="button"
-                                                class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"
-                                                title="123123213"><i
-                                                    class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button>
-                                        </div>
-                                        <div class="row">
-                                            <div class="job_grid_thumb mb-3 title-name px-3 col-4">
-                                                <a href="{{ route('home.detail.show', [$item->title, $item->id]) }}"
-                                                    class="d-block m-auto"><img src="{{ $item->logo }}"
-                                                        class="img-fluid" alt="" /></a>
-                                            </div>
-                                            <div class="job_grid_caption title-name px-3 col-8 g-1">
-                                                <h4 class="mb-0 ft-medium medium ml-20"><a
-                                                        href="{{ route('home.detail.show', [$item->title, $item->id]) }}"
-                                                        class="text-dark fs-md " data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Tooltip on top">
-                                                        <p style="width: 200px !important; overflow: hidden !important;text-overflow: ellipsis !important; white-space: nowrap;"
-                                                            title="{{ $item->title }}">
-                                                            {{ $item->title }}</p>
-                                                    </a></h4>
-                                                {{-- <i class="lni lni-map-marker mr-1"></i> --}}
-                                                <div class="jbl_location ml-20" style="margin-top: -10px"><a
-                                                        href="" class="text-dark fs-md">Tên công
-                                                        ty</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
-                                            <div class="df-1 text-muted"><i
-                                                    class="lni lni-wallet mr-1"></i>{{ $item->getWage->name }}
-                                            </div>
-                                            <div class="df-1 text-muted ml-2"><i
-                                                    class="lni lni-timer mr-1"></i>{{ Carbon::parse($item->end_job_time)->format('d/m/Y') }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <span class="page-item text-center">{{ $job->links() }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                <show-new
+                    :data="{{ json_encode([
+                        'url' => 'http://127.0.0.1:8000/',
+                        'locations' => $location,
+                        'checkLogin' => Auth::guard('user')->check(),
+                    ]) }}">
+                </show-new>
                 <!-- paginate -->
 
                 <!-- end -->
@@ -476,7 +403,7 @@
 
                         <!-- row -->
                         <div class="text-interesting border">
-                            <h2 class="ft-bold">Tin tuyển dụng, việc làm tốt nhất</h2>
+                            <h2 class="ft-bold">Việc làm hấp dẫn</h2>
                         </div>
                         <div class="row align-items-center">
 

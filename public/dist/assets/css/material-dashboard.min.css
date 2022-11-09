@@ -5525,10 +5525,10 @@ fieldset:disabled .btn {
 
 .active>.page-link,
 .page-link.active {
-    z-index: 3;
+    /* z-index: 3;
     color: var(--bs-pagination-active-color);
     background-color: var(--bs-pagination-active-bg);
-    border-color: var(--bs-pagination-active-border-color)
+    border-color: var(--bs-pagination-active-border-color) */
 }
 
 .disabled>.page-link,

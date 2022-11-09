@@ -31,4 +31,15 @@ app.use(VueSweetalert2)
 
 import userProfile from "./components/client/seeker/profile.vue";
 app.component('user-profile', userProfile);
+import userUploadCv from "./components/client/seeker/uploadcv.vue";
+app.component('user-uploadcv', userUploadCv);
+import showNew from "./components/client/home/show-new.vue";
+app.component('show-new', showNew);
+import Paginate from "./components/common/customPaginate.vue";
+app.component('paginate', Paginate);
+// import test from "./components/client/seeker/test.vue";
+// app.component('user-uploadcv', test);
+
+
+
 app.mount('#app')

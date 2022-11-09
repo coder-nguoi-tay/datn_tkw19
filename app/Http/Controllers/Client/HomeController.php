@@ -63,12 +63,6 @@ class HomeController extends BaseController
     public function index()
     {
         return view('client.index', [
-            'job' => $this->job
-                // ->with(['getWage', 'getlocation', 'getskill', 'getEndTimeJob', 'getwk_form', 'getExperience', 'getprofession'])
-                ->join('employer', 'employer.id', '=', 'job.employer_id')
-                ->join('company', 'company.id', '=', 'employer.id_company')
-                ->select('job.*', 'company.logo as logo')
-                ->paginate(5),
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),
             'experience' => $this->getexperience(),
@@ -78,6 +72,7 @@ class HomeController extends BaseController
             'profession' => $this->getprofession(),
             'majors' => $this->getmajors(),
             'workingform' => $this->getworkingform(),
+            'location' => $this->getlocation(),
         ]);
     }
 
@@ -240,5 +235,23 @@ class HomeController extends BaseController
     {
 
         dd($request->all());
+    }
+    public function showNew()
+    {
+        return response()->json([
+            'job' => $this->job
+                ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
+                ->join('employer', 'employer.id', '=', 'job.employer_id')
+                ->join('company', 'company.id', '=', 'employer.id_company')
+                ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+                ->paginate(2)
+        ]);
+    }
+    public function userFavourite($id)
+    {
+        return response()->json([
+            'job' => $this->job
+                ->where('id', $id)->select('id')->first()
+        ]);
     }
 }
