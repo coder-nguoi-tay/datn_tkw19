@@ -39,6 +39,8 @@ import Paginate from "./components/common/customPaginate.vue";
 app.component('paginate', Paginate);
 // import test from "./components/client/seeker/test.vue";
 // app.component('user-uploadcv', test);
+import UserFavourite from "./components/client/seeker/favourite.vue";
+app.component('user-favourite', UserFavourite);
 
 
 

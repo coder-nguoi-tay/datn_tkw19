@@ -200,4 +200,12 @@ class HomeController extends BaseController
             'breadcrumbs' => $breadcrumbs,
         ]);
     }
+    public function userFavouriteId($id)
+    {
+        return response()->json([
+            'job' => $this->job
+                ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
+                ->where('id', $id)->first()
+        ]);
+    }
 }

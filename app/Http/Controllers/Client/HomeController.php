@@ -247,11 +247,4 @@ class HomeController extends BaseController
                 ->paginate(2)
         ]);
     }
-    public function userFavourite($id)
-    {
-        return response()->json([
-            'job' => $this->job
-                ->where('id', $id)->select('id')->first()
-        ]);
-    }
 }

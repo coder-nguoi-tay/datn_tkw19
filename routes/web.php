@@ -71,7 +71,7 @@ Route::post('owner/update/register', [ClientLoginController::class, 'updateRegis
 //client
 Route::resource('home', ClientHomeController::class);
 Route::get('show-new', [ClientHomeController::class, 'showNew']); // api
-Route::get('favourite/{id}', [ClientHomeController::class, 'userFavourite']); // api
+Route::get('favourite/{id}', [SeekerHomeController::class, 'userFavouriteId']); // api
 Route::get('home/detail/{title}-{id}', [ClientHomeController::class, 'showDetail'])->name('home.detail.show');
 Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 'searchLocation'])->name('home.search.location');
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');

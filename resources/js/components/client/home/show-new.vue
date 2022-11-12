@@ -292,17 +292,18 @@ export default {
       this.panigate = panigate
     },
     favourite(id) {
-      let array = [id]
+      let array = {
+        id: id
+      }
       if (localStorage.getItem('job_id') == null) {
-        localStorage.setItem('job_id', [id])
+        localStorage.setItem('job_id', '[]')
       }
       var old_data = JSON.parse(localStorage.getItem('job_id'))
       var machet = $.grep(old_data, function (obj) {
-        return obj == id
+        return obj.id == id
       })
       console.log(machet[0])
-      if (id == machet[0]) {
-        console.log(1)
+      if (machet.length) {
         var remove = old_data.splice(machet[0])
         localStorage.removeItem(remove)
       }
