@@ -20,5 +20,5 @@ class UploadCv extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'file_cv', 'created_at', 'updated_at'];
+    protected $fillable = ['title', 'user_id', 'file_cv', 'created_at', 'updated_at'];
 }

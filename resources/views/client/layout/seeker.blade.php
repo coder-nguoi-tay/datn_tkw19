@@ -72,7 +72,11 @@
                         session()->forget('Message.flash');
                     @endphp
                 </div>
+
                 <!-- footer -->
+            </div>
+            <div class="loading-div hidden">
+                <div class="loader-img"></div>
             </div>
         </div>
         <!-- ======================= dashboard Detail End ======================== -->

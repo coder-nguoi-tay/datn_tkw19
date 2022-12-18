@@ -25,6 +25,23 @@ defineRule('telephone', (value) => {
     )
 })
 
+$(document).ready(function () {
+    $(".select2").select2({
+        multiple: true,
+
+    });
+});
+$(document).ready(function () {
+    $(".select2-location").select2({
+        MaximumSelectionLength: 2
+    });
+    $('#exampleModalcheckSeeker').click(function () {
+        $('#exampleModalcheckSeeker').removeClass('show')
+        this.removeAttribute('style')
+    })
+});
+
+
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 app.use(VueSweetalert2)
@@ -37,10 +54,15 @@ import showNew from "./components/client/home/show-new.vue";
 app.component('show-new', showNew);
 import Paginate from "./components/common/customPaginate.vue";
 app.component('paginate', Paginate);
-// import test from "./components/client/seeker/test.vue";
-// app.component('user-uploadcv', test);
-import UserFavourite from "./components/client/seeker/favourite.vue";
-app.component('user-favourite', UserFavourite);
+import ChangePassword from "./components/client/seeker/change-password.vue";
+app.component('change-password', ChangePassword);
+import popup from './components/common/popupAlert.vue'
+app.component('popup-alert', popup)
+import Upcv from './components/client/home/upcv.vue';
+app.component('up-cv', Upcv)
+import clientLogin from "./components/client/login/index.vue";
+app.component('client-login', clientLogin);
+
 
 
 

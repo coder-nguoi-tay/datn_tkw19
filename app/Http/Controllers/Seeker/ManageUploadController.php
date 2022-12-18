@@ -61,6 +61,7 @@ class ManageUploadController extends Controller
     {
         $upload = new $this->upload();
         $upload->user_id = Auth::guard('user')->user()->id;
+        $upload->title = 'Triệu Việt Đức';
         if ($request->hasFile('file_cv')) {
             $upload->file_cv = $request->file_cv->storeAs('images/cv', $request->file_cv->hashName());
         }

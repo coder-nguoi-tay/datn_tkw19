@@ -3,19 +3,11 @@
 @endphp
 @extends('client.layout.index')
 @section('client')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <div id="main-wrapper">
-
-        <!-- ============================================================== -->
-        <!-- Top header  -->
-        <!-- ============================================================== -->
-        <!-- Start Navigation -->
-        <!-- End Navigation -->
         <div class="clearfix"></div>
-        <!-- ============================================================== -->
-        <!-- Top header  -->
-        {{-- {{ dd($rules) }} --}}
-        <!-- ============================================================== -->
-        <!-- ======================= Searchbar Banner ======================== -->
+
         <div class="py-5" style="background:#03343b url(assets/img/landing-bg.png) no-repeat;" data-overlay="0">
             <div class="container">
                 <div class="row justify-content-center">
@@ -53,9 +45,6 @@
                 </div>
             </div>
         </div>
-        <!-- ======================= Searchbar Banner ======================== --
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   <!-- ============================ Job Details Start ================================== -->
         <section class="bg-light py-5 position-relative" style="background: #f0f2f5 !important">
             <div class="container">
                 <div class="row">
@@ -87,7 +76,11 @@
                         </div>
                     </div>
                     <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
-
+                        @if (Session::has('thongbao'))
+                            <div class="alert alert-danger thongbao">
+                                {{ Session::get('thongbao') }}
+                            </div>
+                        @endif
                         <div class="bg-white rounded px-3 py-4 mb-4">
                             <div class="jbd-01 d-flex align-items-center justify-content-between">
                                 <div class="jbd-flex d-flex align-items-center justify-content-start">
@@ -112,8 +105,9 @@
                                     </div>
                                 </div>
                                 <div class="jbd-01-right text-right hide-1023">
-                                    <div class="jbl_button mb-2"><a href="javascript:void(0);"
-                                            class="btn rounded theme-bg-light theme-cl fs-sm ft-medium">Nộp đơn</a>
+                                    <div class="jbl_button mb-2"><a href="javascript:void(0);" data-toggle="modal"
+                                            data-target="#exampleModal"
+                                            class="btn rounded theme-bg-light theme-cl fs-sm ft-medium">Ứng tuyển ngay</a>
                                     </div>
                                     <div class="jbl_button"><a href="javascript:void(0);"
                                             class="btn rounded bg-white border fs-sm ft-medium">Xem công ty</a></div>
@@ -195,7 +189,8 @@
                                             <a href="#" class="btn btn-md rounded gray fs-sm ft-medium mr-2">lưu
                                                 Job</a>
                                             <a href="#"
-                                                class="btn btn-md rounded theme-bg text-light fs-sm ft-medium">Nộp đơn</a>
+                                                class="btn btn-md rounded theme-bg text-light fs-sm ft-medium">Ứng tuyển
+                                                ngay</a>
                                         </div>
                                     </div>
                                 </div>
@@ -361,29 +356,29 @@
                         <div class="job_grid d-block border rounded px-3 pt-3 pb-2">
                             <div class="jb-list01-flex d-flex align-items-start justify-content-start">
                                 <div class="jb-list01-thumb">
-                                    <img src="{{ $item[0]->logo }}" class="img-fluid circle" width="90"
+                                    <img src="{{ $item->logo }}" class="img-fluid circle" width="90"
                                         alt="">
                                 </div>
 
                                 <div class="jb-list01 pl-3">
                                     <div class="jb-list-01-title">
                                         <h5 class="ft-medium mb-1"><a
-                                                href="{{ route('home.detail.show', [$item[0]->title, $item[0]->id]) }}">{{ $item[0]->title }}<img
+                                                href="{{ route('home.detail.show', [$item->title, $item->id]) }}">{{ $item->title }}<img
                                                     src="assets/img/verify.svg" class="ml-1" width="12"
                                                     alt=""></a></h5>
                                     </div>
                                     <div class="jb-list-01-info d-block mb-3">
                                         <span class="text-muted mr-2"><i
-                                                class="lni lni-map-marker mr-1"></i>{{ $item[0]->getlocation->name }}</span>
+                                                class="lni lni-map-marker mr-1"></i>{{ $item->getlocation->name }}</span>
                                         <span class="text-muted mr-2"><i
-                                                class="lni lni-tag mr-1"></i>{{ $item[0]->getprofession->name }}</span>
+                                                class="lni lni-tag mr-1"></i>{{ $item->getprofession->name }}</span>
                                         <span class="text-muted mr-2"><i
-                                                class="lni lni-briefcase mr-1"></i>{{ $item[0]->getTime_work->name }}</span>
+                                                class="lni lni-briefcase mr-1"></i>{{ $item->getTime_work->name }}</span>
                                         <span class="text-muted mr-2"><i
-                                                class="lni lni-graduation mr-1"></i>{{ $item[0]->getExperience->name }}</span>
+                                                class="lni lni-graduation mr-1"></i>{{ $item->getExperience->name }}</span>
                                     </div>
                                     <div class="jb-list-01-title d-inline">
-                                        @foreach ($item[0]->getskill as $item)
+                                        @foreach ($item->getskill as $item)
                                             <span
                                                 class="mr-2 mb-2 d-inline-flex px-2 py-1 rounded theme-cl theme-bg-light">{{ $item->name }}</span>
                                         @endforeach
@@ -537,7 +532,27 @@
         <!-- End Modal -->
 
         <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
-
-
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ứng Tuyền {{ $job->title }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                    </div>
+                    <up-cv
+                        :data="{{ json_encode([
+                            'checkLogin' => Auth::guard('user')->check(),
+                            'cv' => $cv,
+                            'urlStore' => route('home.detail.upcv'),
+                            'urlStoreCv' => route('quan-ly-cv.create'),
+                            'jobId' => $job->id,
+                        ]) }}">
+                    </up-cv>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

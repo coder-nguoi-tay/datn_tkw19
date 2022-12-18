@@ -13,9 +13,14 @@
                     <ul>
                         @if (!Auth::guard('user')->check())
                             <li>
-                                <a href="{{ route('owner.index') }}" class="theme-cl fs-lg">
+                                {{-- <a href="{{ route('owner.index') }}" class="theme-cl fs-lg" data-toggle="modal"
+                                    data-target="#exampleModallogin">
                                     <i class="lni lni-user"></i>
-                                </a>
+                                </a> --}}
+                                <button class="theme-cl fs-lg" data-toggle="modal"
+                                    data-target="#exampleModalcheckSeeker">
+                                    <i class="lni lni-user"></i>Đăng
+                                    nhập</button>
                             </li>
                             <li>
                                 <a href="dashboard-post-job.html" class="crs_yuo12 w-auto text-white theme-bg">
@@ -33,6 +38,7 @@
                                     <a class="dropdown-item" href="{{ route('profile.index') }} ">Profile</a>
                                     <a class="dropdown-item" href="#">Quản lý CV</a>
                                     <a class="dropdown-item" href="#">Bài tuyển dụng đã yêu thích</a>
+                                    <a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a>
                                 </div>
                             </li>
                         @endif
@@ -120,9 +126,8 @@
 
                     @if (!Auth::guard('user')->check())
                         <li>
-                            <a href="{{ route('owner.index') }}" class="ft-medium">
-                                <i class="lni lni-user mr-2"></i>Sign In
-                            </a>
+                            <button class="theme-cl fs-lg btn" data-toggle="modal" data-target="#exampleModallogin">
+                                Đăng nhập</button>
                         </li>
                         <li class="add-listing theme-bg">
                             <a href="">
@@ -139,6 +144,7 @@
                                 <a class="dropdown-item" href="{{ route('profile.index') }} ">Profile</a>
                                 <a class="dropdown-item" href="#">Quản lý CV</a>
                                 <a class="dropdown-item" href="#">Bài tuyển dụng đã yêu thích</a>
+                                <a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a>
                             </div>
                         </li>
                     @endif

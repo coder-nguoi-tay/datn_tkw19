@@ -36,6 +36,34 @@
                     </div>
                 </div>
             </div>
+            <div class="simplebar-mask">
+                <div class="simplebar-offset">
+                    <div class="simplebar-content-wrapper">
+                        <div class="simplebar-content">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('employer.package.index') }}">
+                                    <i class="nav-icon fa fa-user" aria-hidden="true"></i>
+                                    Gói cước
+                                </a>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="simplebar-mask">
+                <div class="simplebar-offset">
+                    <div class="simplebar-content-wrapper">
+                        <div class="simplebar-content">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('employer.quan-ly-cv.index') }}">
+                                    <i class="nav-icon fa fa-user" aria-hidden="true"></i>
+                                    Quản lý cv
+                                </a>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </ul>
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
 </div>

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Seeker;
 
+use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Models\Company;
 use App\Models\Employer;
 use App\Models\Experience;
+use App\Models\Favourite;
 use App\Models\Job;
 use App\Models\Jobseeker;
 use App\Models\Jobskill;
@@ -22,6 +24,7 @@ use App\Models\WorkingForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends BaseController
 {
@@ -73,11 +76,11 @@ class HomeController extends BaseController
             'Thông tin cá nhân'
         ];
         $user =  $this->user
-            ->join('job-seeker', 'job-seeker.user_role', '=', 'users.id')
+            ->with('seeker')
             ->where('users.id', Auth::guard('user')->user()->id)
-            ->with('getskill')
             ->first();
-        // dd($user);
+        $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
+
         return view('client.seeker.profile', [
             'user' => $user,
             'breadcrumbs' => $breadcrumbs,
@@ -89,7 +92,8 @@ class HomeController extends BaseController
             'profession' => $this->getprofession(),
             'majors' => $this->getmajors(),
             'location' => $this->getlocation(),
-            'workingform' => $this->getworkingform()
+            'workingform' => $this->getworkingform(),
+            'getskill' => $getskill
         ]);
     }
 
@@ -189,23 +193,63 @@ class HomeController extends BaseController
     public function logout()
     {
         Auth::guard('user')->logout();
-        return redirect()->route('owner.index');
+        return redirect()->route('home.index');
     }
     public function userFavourite()
     {
         $breadcrumbs = [
             'Tin tuyển dụng yêu thích'
         ];
+        $job = Job::join('favourite', 'favourite.job_id', '=', 'job.id')
+            ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
+            ->get();
         return view('client.seeker.favourite', [
             'breadcrumbs' => $breadcrumbs,
+            'job' => $job,
         ]);
     }
-    public function userFavouriteId($id)
+    public function userShowFavouriteId($id)
     {
         return response()->json([
             'job' => $this->job
+                ->join('employer', 'employer.id', '=', 'job.employer_id')
+                ->join('company', 'company.id', '=', 'employer.id_company')
+                ->select('job.*', 'company.logo as logo')
                 ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
-                ->where('id', $id)->first()
+                ->where('job.id', $id)->first()
         ]);
+    }
+    public function userFavouriteId(Request $request)
+    {
+        $favourite = Favourite::select('*')->get();
+        if ($favourite->whereIn('job_id', $request->id)->first()) {
+            Favourite::where('job_id', $request->id)->delete();
+            return response()->json([
+                'status' => 'xóa thanh công'
+            ]);
+        }
+        Favourite::create([
+            'job_id' => $request->id
+        ])->save();
+        return response()->json([
+            'status' => 'thêm thanh công'
+        ]);
+    }
+    public function deleteFavourite($id)
+    {
+        Favourite::where('id', $id)->delete();
+        return redirect()->back();
+    }
+    public function changePassword()
+    {
+        return view('client.seeker.change-password');
+    }
+    public function changePasswordSucsses(Request $request)
+    {
+        $user = $this->user->where('id', Auth::guard('user')->user()->id)->first();
+        $user->password = Hash::make($request->password);
+        $user->save();
+        $this->setFlash(_('Đổi mật khẩu thành công'));
+        return redirect()->route('user.changepass');
     }
 }

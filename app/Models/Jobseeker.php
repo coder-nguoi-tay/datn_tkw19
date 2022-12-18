@@ -22,4 +22,12 @@ class Jobseeker extends Model
         'profession_id',
         'time_work_id'
     ];
+    public function user()
+    {
+        return $this->hasOne(User::class, 'user_role', 'id');
+    }
+    public function getskill()
+    {
+        return $this->belongsToMany(Skill::class, SeekerSkill::class,  'job-seeker_id', 'skill_id', 'id');
+    }
 }

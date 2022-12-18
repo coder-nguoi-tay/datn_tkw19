@@ -43,4 +43,8 @@ class User  extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany(Skill::class, SeekerSkill::class,  'job-seeker_id', 'skill_id', 'id');
     }
+    public function seeker()
+    {
+        return $this->hasOne(Jobseeker::class, 'user_role', 'id');
+    }
 }

@@ -52,13 +52,20 @@ class LoginController extends BaseController
         $credentials = $request->only('email', 'password');
         if (Auth::guard('user')->attempt($credentials, $request->save ?? '')) {
             if (Auth::guard('user')->user()->role_id == 2) {
-                return redirect($request->url_redirect ? $request->url_redirect : route('employer.index'));
+                return response()->json([
+                    'data' => 2,
+                    'status' => StatusCode::OK
+                ], StatusCode::OK);
             }
-            return redirect($request->url_redirect ? $request->url_redirect : route('home.index'));
+            return response()->json([
+                'data' => 1,
+                'status' => StatusCode::OK
+            ], StatusCode::OK);
         }
-        return view('client.login.index', [
-            'message' => 'Tài khoản và mật khẩu không đúng'
-        ]);
+        return response()->json([
+            'data' => 'Tài khoản và mật khẩu không đúng',
+            'status' => StatusCode::FORBIDDEN
+        ], StatusCode::OK);
     }
 
     /**
@@ -69,7 +76,6 @@ class LoginController extends BaseController
      */
     public function show($id)
     {
-        //
     }
 
     /**

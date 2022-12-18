@@ -20,10 +20,10 @@
                                                     src="{{ asset($item->file_cv) }}" alt="">
                                                 <div class="hover-overlay"></div>
                                                 <div class="hover-2-content px-5 py-4">
-                                                    <h3 class="hover-2-title text-uppercase font-weight-bold mb-0"> <span
-                                                            class="font-weight-light">dmM </span>Cu đức</h3>
+
                                                     <div class="hover-2-description ">
-                                                        <h6 class="text-left px-3 py-4">Được apdate ngày dm cu đức</h6>
+                                                        <h6 class="text-left px-3 py-4">Được apdate ngày
+                                                            {{ $item->created_at }}</h6>
                                                         <a class="btn btn-search">
                                                             <span class="material-symbols-outlined">
                                                                 ios_share

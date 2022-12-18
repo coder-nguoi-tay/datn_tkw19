@@ -14,11 +14,10 @@
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
     <script src="{{ asset('js/userApp.js') }}" defer></script>
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <script>
         window.Laravel = {!! json_encode(
@@ -46,6 +45,15 @@
         <!-- End Navigation -->
         <div class="clearfix"></div>
         @yield('client')
+        @if (session()->get('Message.flash'))
+            <popup-alert :data="{{ json_encode(session()->get('Message.flash')[0]) }}"></popup-alert>
+        @endif
+        @php
+            session()->forget('Message.flash');
+        @endphp
+    </div>
+    <div class="loading-div hidden">
+        <div class="loader-img"></div>
     </div>
     @include('client.layout.footer')
 

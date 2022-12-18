@@ -1,5 +1,8 @@
 <template>
   <VeeForm as="div" v-slot="{ handleSubmit }" @invalid-submit="onInvalidSubmit">
+    <div class="error text-center" role="alert" v-if="msgLogin">
+      {{ msgLogin }}
+    </div>
     <form
       class="pt-3"
       @submit="handleSubmit($event, onSubmit)"
@@ -16,6 +19,7 @@
           v-model="model.email"
           rules="required|email"
           placeholder="Email"
+          class="form-control"
         />
         <ErrorMessage class="error" name="email" />
         <p>Password</p>
@@ -25,14 +29,17 @@
           v-model="model.password"
           rules="required|min:8|max:16"
           placeholder="Password"
+          class="form-control"
         />
         <ErrorMessage class="error" name="password" />
         <div class="d-flex">
-          <input
+          <Field
             name="save"
+            v-model="model.save"
             class="form-check-input text-checkbok"
             type="checkbox"
             id="rememberMe"
+            value="on"
           />
           <label
             class="form-check-label mb-0 ms-3 text-rememberMe"
@@ -41,12 +48,11 @@
           >
           <a href="" class="text-danger ms-auto">Quên mật khẩu</a>
         </div>
-        <Button class="btn btn-success">Đăng nhập</Button>
+        <div class="text-center mt-5">
+          <Button class="btn btn-success btn-login">Đăng nhập</Button>
+        </div>
       </div>
     </form>
-    <div class="error text-center" role="alert" v-if="data.message">
-      {{ data.message }}
-    </div>
   </VeeForm>
 </template>
 <script>
@@ -60,6 +66,7 @@ import {
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 import $ from 'jquery'
+import axios from 'axios'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -77,9 +84,11 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: {}
+      model: {},
+      msgLogin: ''
     }
   },
+  mounted() {},
   created() {
     let messError = {
       en: {
@@ -111,8 +120,30 @@ export default {
         500
       )
     },
+
     onSubmit() {
-      this.$refs.formData.submit()
+      let that = this
+      let url = this.data.urlStore
+      axios
+        .post(url, {
+          email: this.model.email,
+          password: this.model.password,
+          save: this.model.save
+        })
+        .then(function (data) {
+          if (data.data.status == 403) {
+            that.msgLogin = data.data.data
+          }
+          if (data.data.data == 1) {
+            window.location.href = '/profile'
+          } else if (data.data.data == 2) {
+            window.location.href = '/employer'
+          }
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+      // this.$refs.formData.submit()
     }
   }
 }

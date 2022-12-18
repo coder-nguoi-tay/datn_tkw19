@@ -6868,3 +6868,47 @@ a:hover {
     color: #ea2b33 !important;
     font-size: 15px !important;
 }
+
+.pink {
+    color: #f13f97 !important;
+}
+
+.btn-default {
+    /* height: 30px !important; */
+    padding: 5px !important;
+}
+
+.mt-custom-modal {
+    margin-top: -50px;
+    margin-bottom: 20px;
+}
+
+/* .btn-custom-cv:hover {
+    color: #fff !important;
+    background-color: #8c96b5 !important;
+} */
+
+.custom-text {
+    font-weight: 600;
+}
+
+.btn-custom-cv.active {
+    color: #fff !important;
+    background-color: #8c96b5 !important;
+}
+
+* .selection {
+    height: audio !important;
+}
+
+.select2-selection {
+    height: 37px !important;
+}
+
+.input-custom {
+    /* height: 37px !important; */
+}
+
+.test {
+    width: 100% !important;
+}

@@ -3,14 +3,10 @@
 @endphp
 @extends('client.layout.index')
 @section('client')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
     <body>
-        {{-- <home-client
-            :data="{{ json_encode([
-                'job' => $job,
-                'paginate' => $job->links(),
-            ]) }}">
-            <home-client> --}}
         <div class="home-banner margin-bottom-0" style="background:#00ab46 url(assets/img/banner-5.jpg) no-repeat;"
             data-overlay="5">
             <div class="container">
@@ -18,47 +14,109 @@
                     <div class="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
 
                         <div class="banner_caption text-center mb-5">
-                            <h1 class="banner_title ft-bold mb-1">Explore More Than 10K+ Jobs</h1>
-                            <p class="fs-md ft-medium">Hi Friends, Your Dream Jobs is Waiting in Your Local City</p>
+                            <h1 class="banner_title ft-bold mb-1">Khám phá hơn 10k+ việc làm</h1>
+                            <p class="fs-md ft-medium">Xin chào các bạn, Công việc mơ ước của bạn đang chờ đợi ở thành phố
+                                địa phương của bạn</p>
                         </div>
 
-                        <form class="bg-white rounded p-1">
-                            <div class="row no-gutters">
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                                    <div class="form-group mb-0 position-relative">
-                                        <input type="text" class="form-control lg left-ico"
-                                            placeholder="Job Title, Keyword or Company" />
-                                        <i class="bnc-ico lni lni-search-alt"></i>
+                        <div class="container">
+                            <form action="{{ route('home.search') }}" method="GET">
+                                <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 p-3">
+                                    <div class="col test">
+                                        <div class="p-1">
+                                            <input type="text" class="form-control input-custom" name="key"
+                                                id="" placeholder="Tìm kiếm....">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-1"><select class="form-select" name="lever"
+                                                aria-label="Default select example">
+                                                <option selected disabled>Trình độ</option>
+                                                @foreach ($lever as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->label }}
+                                                    </option>
+                                                @endforeach
+                                            </select></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-1"><select class="form-select" name="experience"
+                                                aria-label="Default select example">
+                                                <option selected disabled>Kinh nghiệm</option>
+                                                @foreach ($experience as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->label }}
+                                                    </option>
+                                                @endforeach
+                                            </select></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-1"><select class="form-select" name="majors"
+                                                aria-label="Default select example">
+                                                <option selected disabled>Mức lương</option>
+                                                @foreach ($majors as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->label }}
+                                                    </option>
+                                                @endforeach
+                                            </select></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-1"><select class="form-select" name="timework"
+                                                aria-label="Default select example">
+                                                <option selected disabled>Thời gian làm việc</option>
+                                                @foreach ($timework as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->label }}
+                                                    </option>
+                                                @endforeach
+                                            </select></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-1"><select class="form-select" name="profession"
+                                                aria-label="Default select example">
+                                                <option selected disabled>Vị trí ứng tuyển</option>
+                                                @foreach ($profession as $item)
+                                                    <option value="{{ $item->id }}">
+                                                        {{ $item->label }}</option>
+                                                @endforeach
+                                            </select></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-1"><select class="form-select select2" name="skill[]"
+                                                aria-label="Default select example">
+                                                @foreach ($skill as $item)
+                                                    <option value="{{ $item->id }}">
+                                                        {{ $item->label }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-1"><select class="form-select select2-location" name="location"
+                                                aria-label="Default select example">
+                                                <option selected disabled>Địa chỉ</option>
+                                                @foreach ($location as $item)
+                                                    <option value="{{ $item->id }}">
+                                                        {{ $item->label }}</option>
+                                                @endforeach
+                                            </select></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-1"><select class="form-select" name="workingform"
+                                                aria-label="Default select example">
+                                                <option selected disabled>Hình thức làm việc</option>
+                                                @foreach ($workingform as $item)
+                                                    <option value="{{ $item->id }}">
+                                                        {{ $item->label }}</option>
+                                                @endforeach
+                                            </select></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-1"><button type="submit"
+                                                class="btn theme-bg text-light">Lọc</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                                    <div class="form-group mb-0 position-relative">
-                                        <input type="text" class="form-control lg left-ico"
-                                            placeholder="Job Title, Keyword or Company" />
-                                        <i class="bnc-ico lni lni-target"></i>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                                    <div class="form-group mb-0 position-relative">
-                                        <select class="custom-select lg b-0">
-                                            <option value="1">Choose Location</option>
-                                            <option value="2">Los Angeles</option>
-                                            <option value="3">San Francisco</option>
-                                            <option value="4">San Diego</option>
-                                            <option value="5">Philadelphia</option>
-                                            <option value="6">Denver</option>
-                                            <option value="7">Houston</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
-                                    <div class="form-group mb-0 position-relative">
-                                        <button class="btn full-width custom-height-lg theme-bg text-white fs-md"
-                                            type="button">Find Job</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
 
                     </div>
                 </div>
@@ -387,7 +445,8 @@
 
                                         <div class="form-group filter_button pt-2 pb-4 px-4">
                                             <button type="submit"
-                                                class="btn btn-md theme-bg text-light rounded full-width">Tìm kiếm</button>
+                                                class="btn btn-md theme-bg text-light rounded full-width">Tìm kiếm
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
@@ -411,9 +470,11 @@
 
                             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                                 <div class="job_grid border rounded ">
-                                    <div class="position-absolute ab-left"><button type="button"
-                                            class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
-                                                class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button>
+                                    <div class="position-absolute ab-left">
+                                        <button type="button"
+                                            class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray">
+                                            <i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
+                                        </button>
                                     </div>
                                     <div class="position-absolute ab-right"><span
                                             class="medium bg-light-danger text-danger px-2 py-1 rounded">Enternship</span>
@@ -425,7 +486,8 @@
                                     </div>
                                     <div class="job_grid_caption text-center pb-3 px-3">
                                         <h4 class="mb-0 ft-medium medium"><a href="job-detail.html"
-                                                class="text-dark fs-md">UI/UX Web Designer</a></h4>
+                                                class="text-dark fs-md">UI/UX Web Designer</a>
+                                        </h4>
                                         <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San
                                                 Francisco</span></div>
                                     </div>
@@ -449,9 +511,11 @@
                             <!-- Single -->
                             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                                 <div class="job_grid border rounded ">
-                                    <div class="position-absolute ab-left"><button type="button"
-                                            class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
-                                                class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button>
+                                    <div class="position-absolute ab-left">
+                                        <button type="button"
+                                            class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray">
+                                            <i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
+                                        </button>
                                     </div>
                                     <div class="position-absolute ab-right"><span
                                             class="medium bg-light-warning text-warning px-2 py-1 rounded">Part Time</span>
@@ -463,7 +527,8 @@
                                     </div>
                                     <div class="job_grid_caption text-center pb-3 px-3">
                                         <h4 class="mb-0 ft-medium medium"><a href="job-detail.html"
-                                                class="text-dark fs-md">UI/UX Web Designer</a></h4>
+                                                class="text-dark fs-md">UI/UX Web Designer</a>
+                                        </h4>
                                         <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San
                                                 Francisco</span></div>
                                     </div>
@@ -487,9 +552,11 @@
                             <!-- Single -->
                             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                                 <div class="job_grid border rounded ">
-                                    <div class="position-absolute ab-left"><button type="button"
-                                            class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
-                                                class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button>
+                                    <div class="position-absolute ab-left">
+                                        <button type="button"
+                                            class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray">
+                                            <i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
+                                        </button>
                                     </div>
                                     <div class="position-absolute ab-right"><span
                                             class="medium bg-light-purple text-purple px-2 py-1 rounded">Contract</span>
@@ -501,7 +568,8 @@
                                     </div>
                                     <div class="job_grid_caption text-center pb-3 px-3">
                                         <h4 class="mb-0 ft-medium medium"><a href="job-detail.html"
-                                                class="text-dark fs-md">UI/UX Web Designer</a></h4>
+                                                class="text-dark fs-md">UI/UX Web Designer</a>
+                                        </h4>
                                         <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San
                                                 Francisco</span></div>
                                     </div>
@@ -525,9 +593,11 @@
                             <!-- Single -->
                             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                                 <div class="job_grid border rounded ">
-                                    <div class="position-absolute ab-left"><button type="button"
-                                            class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
-                                                class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button>
+                                    <div class="position-absolute ab-left">
+                                        <button type="button"
+                                            class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray">
+                                            <i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
+                                        </button>
                                     </div>
                                     <div class="position-absolute ab-right"><span
                                             class="medium theme-cl theme-bg-light px-2 py-1 rounded">Full Time</span></div>
@@ -538,7 +608,8 @@
                                     </div>
                                     <div class="job_grid_caption text-center pb-3 px-3">
                                         <h4 class="mb-0 ft-medium medium"><a href="job-detail.html"
-                                                class="text-dark fs-md">UI/UX Web Designer</a></h4>
+                                                class="text-dark fs-md">UI/UX Web Designer</a>
+                                        </h4>
                                         <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San
                                                 Francisco</span></div>
                                     </div>
@@ -562,9 +633,11 @@
                             <!-- Single -->
                             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                                 <div class="job_grid border rounded ">
-                                    <div class="position-absolute ab-left"><button type="button"
-                                            class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
-                                                class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button>
+                                    <div class="position-absolute ab-left">
+                                        <button type="button"
+                                            class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray">
+                                            <i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
+                                        </button>
                                     </div>
                                     <div class="position-absolute ab-right"><span
                                             class="medium bg-light-danger text-danger px-2 py-1 rounded">Enternship</span>
@@ -576,7 +649,8 @@
                                     </div>
                                     <div class="job_grid_caption text-center pb-3 px-3">
                                         <h4 class="mb-0 ft-medium medium"><a href="job-detail.html"
-                                                class="text-dark fs-md">UI/UX Web Designer</a></h4>
+                                                class="text-dark fs-md">UI/UX Web Designer</a>
+                                        </h4>
                                         <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San
                                                 Francisco</span></div>
                                     </div>
@@ -600,9 +674,11 @@
                             <!-- Single -->
                             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                                 <div class="job_grid border rounded ">
-                                    <div class="position-absolute ab-left"><button type="button"
-                                            class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
-                                                class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button>
+                                    <div class="position-absolute ab-left">
+                                        <button type="button"
+                                            class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray">
+                                            <i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
+                                        </button>
                                     </div>
                                     <div class="position-absolute ab-right"><span
                                             class="medium bg-light-warning text-warning px-2 py-1 rounded">Part Time</span>
@@ -614,7 +690,8 @@
                                     </div>
                                     <div class="job_grid_caption text-center pb-3 px-3">
                                         <h4 class="mb-0 ft-medium medium"><a href="job-detail.html"
-                                                class="text-dark fs-md">UI/UX Web Designer</a></h4>
+                                                class="text-dark fs-md">UI/UX Web Designer</a>
+                                        </h4>
                                         <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San
                                                 Francisco</span></div>
                                     </div>
@@ -1161,7 +1238,8 @@
                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
                                     <div class="form-group mb-0 position-relative">
                                         <button class="btn full-width custom-height-lg theme-bg text-light fs-md"
-                                            type="button">Subscribe</button>
+                                            type="button">Subscribe
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -1171,14 +1249,30 @@
 
             </div>
         </section>
-        <!-- ======================= Newsletter Start ============================ -->
-
-        <!-- ============================ Footer Start ================================== -->
-
-        <!-- ============================ Footer End ================================== -->
-
-        <!-- Log In Modal -->
         <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
+        <!-- Button trigger modal -->
+        <!-- Modal login -->
+        <div class="modal fade" id="exampleModallogin" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Đăng nhập</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <client-login
+                            :data="{{ json_encode([
+                                'urlStore' => route('owner.store'),
+                                'message' => $message ?? '',
+                            ]) }}">
+                            <client-login>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 
     </html>

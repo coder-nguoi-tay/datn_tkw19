@@ -13,11 +13,15 @@ use App\Models\Lever;
 use App\Models\location;
 use App\Models\Majors;
 use App\Models\Profession;
+use App\Models\SaveCv;
 use App\Models\Skill;
 use App\Models\Timework;
+use App\Models\UploadCv;
 use App\Models\Wage;
 use App\Models\WorkingForm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends BaseController
 {
@@ -39,8 +43,10 @@ class HomeController extends BaseController
     public Skill $skill;
     public Timework $timework;
     public Profession $profession;
+    public UploadCv $upload;
+    public SaveCv $savecv;
 
-    public function __construct(Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
+    public function __construct(SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
     {
         $this->job = $job;
         $this->company = $company;
@@ -59,6 +65,8 @@ class HomeController extends BaseController
         $this->employer = $employer;
         $this->location = $location;
         $this->workingform = $workingform;
+        $this->upload = $upload;
+        $this->savecv = $savecv;
     }
     public function index()
     {
@@ -96,6 +104,10 @@ class HomeController extends BaseController
     {
         //
     }
+    public function show(Request $request)
+    {
+        dd($request->all());
+    }
 
     /**
      * Display the specified resource.
@@ -112,31 +124,23 @@ class HomeController extends BaseController
             ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany', 'company.address as addressCompany', 'company.Desceibe as desceibeCompany', 'company.number_member as number_member', 'company.email as emailCompany')
             ->where('job.id', $id)
             ->first();
-        $rules = array();
-        foreach ($job->getskill as $value) {
-            $relate = $this->jobskill
-                ->where('skill_id', $value->pivot->skill_id)
-                ->get();
-            foreach ($relate as $item) {
-                $test = $this->jobskill
-                    ->where('job_id', $item->job_id)
-                    ->get();
-
-                foreach ($test as $item) {
-                    $abc = $this->job
-                        // ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getMajors'])
-                        ->join('employer', 'employer.id', '=', 'job.employer_id')
-                        ->join('company', 'company.id', '=', 'employer.id_company')
-                        ->select('job.*', 'company.logo as logo')
-                        ->where('job.id', $item->job_id)
-                        ->paginate(20);
-                }
-                array_push($rules, $abc);
-            }
-        }
+        //tin liên quan
+        $data = $this->jobskill
+            ->whereIn('skill_id', $job->getskill->pluck('id'))
+            ->whereNotIn('job_id', [$id])
+            ->get()
+            ->pluck('job_id');
+        $relate = $this->job
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->whereIn('job.id', $data)
+            ->select('job.*', 'company.logo as logo')
+            ->get();
+        //
         $title = $this->convert_name($job->title);
         $getMajors = $this->convert_name($job->getMajors->name);
         $location = $this->convert_name($job->getlocation->name);
+        // tin cùng cty
         $jobCompany = $this->job
             ->select(
                 'job.id as idjob',
@@ -158,6 +162,10 @@ class HomeController extends BaseController
             ->where('company.id', $job->idCompany)
             // ->with(['getWage', 'getlocation', 'getMajors'])
             ->paginate(4);
+        // tất cả cv của người tìm việc
+        // dd(Auth::guard('user'));
+        $cv = $this->upload->where('user_id', Auth::guard('user')->user()->id)->get();
+        // dd($cv);
         $breadcrumbs = [
             $job->title
         ];
@@ -167,8 +175,9 @@ class HomeController extends BaseController
             'title' => $title,
             'getMajors' => $getMajors,
             'location' => $location,
-            'rules' => $rules,
+            'rules' => $relate,
             'breadcrumbs' => $breadcrumbs,
+            'cv' => $cv,
         ]);
     }
 
@@ -234,7 +243,53 @@ class HomeController extends BaseController
     public function searcAll(Request $request)
     {
 
-        dd($request->all());
+        try {
+            $that = $request;
+            $data = $this->job
+                ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
+                ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
+                ->Where(function ($q) use ($that) {
+                    if (isset($that->key) && !isset($that->skill_id) && !isset($that->location_id)) {
+                        $q->orWhere($this->escapeLikeSentence('job.title', $that->key));
+                        $q->orWhere($this->escapeLikeSentence('skill.name', $that->key));
+                    } else
+                    if (isset($that->skill_id) && isset($that->location_id)) {
+                        $q->orWhere('job_skill.skill_id', $that->skill_id)
+                            ->orWhere('job.location_id', $that->location_id);
+                    } else
+                    if (isset($that->skill_id) && isset($that->location_id) && isset($that->key)) {
+                        $q->orWhere($this->escapeLikeSentence('job.title', $that->key))
+                            ->orWhere('job_skill.skill_id', $that->skill_id)
+                            ->orWhere('job.location_id', $that->location_id);
+                    } else 
+                    if (isset($that->skill_id)) {
+                        $q->Where('job_skill.skill_id', $that->skill_id);
+                    } else 
+                    if (isset($that->location_id)) {
+                        $q->Where('job.location_id', $that->location_id);
+                    }
+                    $q->distinct();
+                    $q->select('job.*');
+                    return true;
+                })
+                ->distinct()
+                ->select('job.*')
+                ->get();
+            if ($data) {
+                return response()->json([
+                    'data' => $data,
+                    'count' => "Tìm thấy " . count($data) . " việc làm phù hợp với yêu cầu của bạn."
+                ]);
+            }
+            return response()->json([
+                'data' => [],
+                'count' => "Không tìm thấy việc làm phù hợp với yêu cầu của bạn."
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'msg' => 'Tìm kiếm không thành công'
+            ]);
+        }
     }
     public function showNew()
     {
@@ -246,5 +301,58 @@ class HomeController extends BaseController
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                 ->paginate(2)
         ]);
+    }
+    public function upCv(Request $request)
+    {
+        $checkJob = $this->savecv->where('id_job', $request->id_job)->first();
+        if ($checkJob) {
+            return back()->with('thongbao', 'Bạn đã nộp đơn vào công việc này rồi, vui lòng thử lại cho những công việc khác');
+        }
+
+        if (isset($request->file_cv)) {
+            if ($request->save_cv) {
+                try {
+                    $cvSave = new $this->upload();
+                    $cvSave->title = $request->title;
+                    $cvSave->user_id = Auth::guard('user')->user()->id;
+                    if ($request->hasFile('file_cv')) {
+                        $cvSave->file_cv = $request->file_cv->storeAs('images/cv', $request->file_cv->hashName());
+                    }
+                    $cvSave->save();
+                    //
+                    $cvUpload = new $this->savecv();
+                    $cvUpload->title = $request->title;
+                    $cvUpload->user_id = Auth::guard('user')->user()->id;
+                    if ($request->hasFile('file_cv')) {
+                        $cvUpload->file_cv = $request->file_cv->storeAs('images/cv', $request->file_cv->hashName());
+                    }
+                    $cvUpload->id_job = $request->id_job;
+                    $cvUpload->save();
+                } catch (\Throwable $th) {
+                    DB::rollBack();
+                    return back();
+                }
+            } else {
+                $cv = new $this->savecv();
+                $cv->title = $request->title;
+                $cv->user_id = Auth::guard('user')->user()->id;
+                if ($request->hasFile('file_cv')) {
+                    $cv->file_cv = $request->file_cv->storeAs('images/cv', $request->file_cv->hashName());
+                }
+                $cv->id_job = $request->id_job;
+                $cv->save();
+            }
+        } else {
+            $cvSave = $this->upload->where('id', $request->cv_for_save)->first();
+            if ($cvSave) {
+                $cvUpload = new $this->savecv();
+                $cvUpload->title = $cvSave->title;
+                $cvUpload->user_id = $cvSave->user_id;
+                $cvUpload->file_cv = $cvSave->file_cv;
+                $cvUpload->id_job = $request->id_job;
+                $cvUpload->save();
+            }
+        }
+        return back();
     }
 }

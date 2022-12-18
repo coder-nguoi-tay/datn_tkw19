@@ -115,7 +115,8 @@
                 "
                 v-if="data.checkLogin == true"
                 title="Yêu thích"
-                @click="favourite(jobs.id)"
+                @click="add(jobs.id)"
+                :class="{ pink: favourite == 1 && idjob == jobs.id }"
               >
                 <i
                   class="
@@ -250,7 +251,6 @@
 <script>
 import moment from 'moment'
 import axios from 'axios'
-import { forEach } from 'lodash'
 export default {
   props: {
     data: {
@@ -260,9 +260,12 @@ export default {
   },
   data: function () {
     return {
+      csrfToken: Laravel.csrfToken,
       job: [],
       panigate: [],
-      locations: this.data.locations
+      locations: this.data.locations,
+      favourite: false,
+      idjob: []
     }
   },
   created() {
@@ -291,24 +294,19 @@ export default {
       }
       this.panigate = panigate
     },
-    favourite(id) {
-      let array = {
-        id: id
-      }
-      if (localStorage.getItem('job_id') == null) {
-        localStorage.setItem('job_id', '[]')
-      }
-      var old_data = JSON.parse(localStorage.getItem('job_id'))
-      var machet = $.grep(old_data, function (obj) {
-        return obj.id == id
-      })
-      console.log(machet[0])
-      if (machet.length) {
-        var remove = old_data.splice(machet[0])
-        localStorage.removeItem(remove)
-      }
-      old_data.push(array)
-      localStorage.setItem('job_id', JSON.stringify(old_data))
+    add(id) {
+      console.log(id)
+      this.favourite = 1
+      this.idjob = id
+      let url = 'favourite/' + id
+      axios
+        .post(url, {
+          id: id
+        })
+        .then(function (data) {
+          console.log(data.data)
+        })
+        .catch(function (error) {})
     }
   }
 }

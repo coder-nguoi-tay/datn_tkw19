@@ -23,6 +23,11 @@
                 @click="chooseImage()"
                 role="button"
               >
+                <img
+                  v-if="data.user.seeker === null"
+                  src="https://i.pinimg.com/236x/15/46/2e/15462ed447e25356837b32a7e22e538f.jpg"
+                  alt=""
+                />
                 <div style="display: none">
                   <input
                     type="file"
@@ -32,7 +37,11 @@
                     name="images"
                   />
                 </div>
-                <img v-if="!filePreview" :src="data.user.images" class="img" />
+                <img
+                  v-if="!filePreview && data.user.seeker.images"
+                  :src="data.user.seeker.images"
+                  class="img"
+                />
                 <div
                   class="img-display_author d-flex"
                   id="img-preview"
@@ -64,7 +73,6 @@
                 <Field
                   type="text"
                   class="form-control rounded"
-                  :value="data.user.name"
                   name="name"
                   rules="required|max:255"
                   v-model="model.name"
@@ -78,7 +86,6 @@
                 <Field
                   type="email"
                   class="form-control rounded"
-                  :value="data.user.email"
                   v-model="model.email"
                   rules="required|email|max:255"
                   name="email"
@@ -92,7 +99,7 @@
                 <Field
                   type="text"
                   class="form-control rounded"
-                  v-model="model.phone"
+                  v-model="model.seeker.phone"
                   name="phone"
                   rules="required|telephone"
                 />
@@ -104,7 +111,7 @@
                 <label class="text-dark ft-medium">Địa chỉ</label>
                 <Field
                   type="text"
-                  v-model="model.address"
+                  v-model="model.seeker.address"
                   class="form-control rounded"
                   name="address"
                   rules="required|max:255"
@@ -118,7 +125,7 @@
                 <Field
                   name="experience_id"
                   as="select"
-                  v-model="model.experience_id"
+                  v-model="model.seeker.experience_id"
                   rules="required"
                   class="form-control"
                 >
@@ -140,7 +147,7 @@
                 <Field
                   name="lever_id"
                   as="select"
-                  v-model="model.lever_id"
+                  v-model="model.seeker.lever_id"
                   rules="required"
                   class="form-control"
                 >
@@ -162,7 +169,7 @@
                 <Field
                   name="wage_id"
                   as="select"
-                  v-model="model.wage_id"
+                  v-model="model.seeker.wage_id"
                   rules="required"
                   class="form-control"
                 >
@@ -184,7 +191,7 @@
                 <Field
                   name="profession_id"
                   as="select"
-                  v-model="model.profession_id"
+                  v-model="model.seeker.profession_id"
                   rules="required"
                   class="form-control"
                 >
@@ -206,7 +213,7 @@
                 <Field
                   name="time_work_id"
                   as="select"
-                  v-model="model.time_work_id"
+                  v-model="model.seeker.time_work_id"
                   rules="required"
                   class="form-control"
                 >
@@ -226,19 +233,14 @@
               <div class="form-group">
                 <label class="text-dark ft-medium">Kỹ năng</label>
                 <Select2
-                  v-model="model.skill_id"
-                  :options="myOptions"
-                  :settings="{
-                    multiple: true
-                  }"
-                  placeholder="Chọn kỹ năng"
-                  name="skill_id[]"
-                  rules="required"
-                  class="form-control"
-                />
+                  :options="data.skill"
+                  multiple="true"
+                  name="skill[]"
+                ></Select2>
                 <ErrorMessage class="error" name="skill_id" />
               </div>
             </div>
+
             <div class="col-xl-12 col-lg-12">
               <div class="form-group">
                 <button
@@ -263,10 +265,11 @@ import {
   defineRule,
   configure
 } from 'vee-validate'
+
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
-import Select2 from 'vue3-select2-component'
 import $ from 'jquery'
+import Select2 from 'vue3-select2-component'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -286,11 +289,13 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
       model: this.data.user ?? '',
+      getskill: this.data.getskill,
       myOptions: [],
       filePreview: '',
       loading: false
     }
   },
+
   created() {
     this.data.skill.map((e) => {
       this.myOptions.push({
@@ -299,6 +304,7 @@ export default {
         selected: true
       })
     })
+    console.log(this.getskill)
     let messError = {
       en: {
         fields: {
@@ -357,6 +363,9 @@ export default {
         },
         500
       )
+    },
+    mySelectEvent(id) {
+      console.log(id)
     },
     onSubmit() {
       this.$refs.formData.submit()

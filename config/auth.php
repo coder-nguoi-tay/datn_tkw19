@@ -46,7 +46,7 @@ return [
         ],
         'user' => [
             'driver' => 'session',
-            'provider' => 'user',
+            'provider' => 'users',
         ],
         'api' => [
             'driver' => 'jwt',
@@ -84,7 +84,7 @@ return [
         ],
         'user' => [
             'driver' => 'database',
-            'table' => 'users',
+            'table' => 'user',
         ],
     ],
 

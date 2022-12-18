@@ -86,6 +86,6 @@ class HomeEmployerController extends Controller
     public function logout()
     {
         Auth::guard('user')->logout();
-        return redirect()->route('owner.index');
+        return redirect()->route('home.index');
     }
 }
