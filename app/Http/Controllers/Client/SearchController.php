@@ -18,6 +18,7 @@ use App\Models\WorkingForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
+use stdClass;
 
 class SearchController extends BaseController
 {
@@ -72,13 +73,13 @@ class SearchController extends BaseController
             'Tìm kiếm việc làm ' . $request->key
         ];
         try {
-
+            $newSizeLimit = $this->newListLimit($request);
             $that = $request;
             $data = $this->job
                 ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
                 ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
                 ->Where(function ($q) use ($that) {
-                    return $q->orWhere($this->escapeLikeSentence('job.title', $that->key))
+                    $q->orWhere($this->escapeLikeSentence('job.title', $that->key))
                         ->orWhere(function ($q) use ($that) {
                             $q->whereIn('job_skill.skill_id', $that->skill);
                         })
@@ -113,14 +114,12 @@ class SearchController extends BaseController
                         ->orWhere(
                             'job.majors_id',
                             $that->majors
-                        )
-                        ->distinct();
+                        );
                 })
                 ->distinct()
                 ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
                 ->select('job.*')
-                ->paginate(2);
-            // dd($data);
+                ->get();
             return view('client.search', [
                 'job' => $data,
                 'breadcrumbs' => $breadcrumbs,
@@ -134,7 +133,7 @@ class SearchController extends BaseController
                 'majors' => $this->getmajors(),
                 'workingform' => $this->getworkingform(),
                 'location' => $this->getlocation(),
-                'request' => $request->all(),
+                'request' => $request->all() ?? new stdClass,
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();

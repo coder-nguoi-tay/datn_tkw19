@@ -191,32 +191,35 @@
 
                     <!-- All jobs -->
                     <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" id="paginated-list">
 
                             <!-- Single job -->
                             @foreach ($job as $item)
-                                <div class="job_grid d-block border rounded px-3 pt-3 pb-2">
-                                    <div class="jb-list01">
-                                        <div class="jb-list-01-title">
-                                            <h5 class="ft-medium mb-1"><a href="job-detail.html">{{ $item->title }}</a>
-                                            </h5>
-                                        </div>
-                                        <div class="jb-list-01-info d-block mb-3">
-                                            <span class="text-muted mr-2"><i
-                                                    class="lni lni-map-marker mr-1"></i>{{ $item->getlocation->name }}</span>
-                                            <span class="text-muted mr-2"><i
-                                                    class="lni lni-briefcase mr-1"></i>{{ $item->getTime_work->name }}</span>
-                                            <span class="text-muted mr-2"><i
-                                                    class="lni lni-star-filled mr-1"></i>{{ $item->getMajors->name }}</span>
-                                            <span class="text-muted mr-2"><i
-                                                    class="lni lni-money-protection mr-1"></i>{{ $item->getWage->name }}</span>
-                                        </div>
-                                        <div class="jb-list-01-title">
-                                            @foreach ($item->getskill as $value)
-                                                <span
-                                                    class="mr-2 mb-2 d-inline-flex px-2 py-1 rounded theme-cl theme-bg-light">{{ $value->name }}</span>
-                                            @endforeach
+                                <div class="render-job-search">
+                                    <div class="job_grid d-block border rounded px-3 pt-3 pb-2">
+                                        <div class="jb-list01">
+                                            <div class="jb-list-01-title">
+                                                <h5 class="ft-medium mb-1"><a
+                                                        href="job-detail.html">{{ $item->title }}</a>
+                                                </h5>
+                                            </div>
+                                            <div class="jb-list-01-info d-block mb-3">
+                                                <span class="text-muted mr-2"><i
+                                                        class="lni lni-map-marker mr-1"></i>{{ $item->getlocation->name }}</span>
+                                                <span class="text-muted mr-2"><i
+                                                        class="lni lni-briefcase mr-1"></i>{{ $item->getTime_work->name }}</span>
+                                                <span class="text-muted mr-2"><i
+                                                        class="lni lni-star-filled mr-1"></i>{{ $item->getMajors->name }}</span>
+                                                <span class="text-muted mr-2"><i
+                                                        class="lni lni-money-protection mr-1"></i>{{ $item->getWage->name }}</span>
+                                            </div>
+                                            <div class="jb-list-01-title">
+                                                @foreach ($item->getskill as $value)
+                                                    <span
+                                                        class="mr-2 mb-2 d-inline-flex px-2 py-1 rounded theme-cl theme-bg-light">{{ $value->name }}</span>
+                                                @endforeach
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -226,9 +229,18 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <span class="page-item">
-                                {{ $job->appends(SearchQueryComponent::alterQuery($request))->links() }}
+                        <div class="col-lg-12 col-md-12 col-sm-12"> <br><br>
+                            <span class="page-item text-center pagination-container">
+                                <button class="pagination-button" id="prev-button" aria-label="Previous page"
+                                    title="Previous page">
+                                    &lt;
+                                </button>
+                                <div id="pagination-numbers">
+                                </div>
+                                <button class="pagination-button" id="next-button" aria-label="Next page"
+                                    title="Next page">
+                                    &gt;
+                                </button>
                             </span>
                         </div>
                     </div>
@@ -277,65 +289,9 @@
 
             </div>
         </section>
-        <!-- Log In Modal -->
-        <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginmodal"
-            aria-hidden="true">
-            <div class="modal-dialog modal-xl login-pop-form" role="document">
-                <div class="modal-content" id="loginmodal">
-                    <div class="modal-headers">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span class="ti-close"></span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body p-5">
-                        <div class="text-center mb-4">
-                            <h2 class="m-0 ft-regular">Login</h2>
-                        </div>
-
-                        <form>
-                            <div class="form-group">
-                                <label>User Name</label>
-                                <input type="text" class="form-control" placeholder="Username*">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" class="form-control" placeholder="Password*">
-                            </div>
-
-                            <div class="form-group">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="flex-1">
-                                        <input id="dd" class="checkbox-custom" name="dd" type="checkbox">
-                                        <label for="dd" class="checkbox-custom-label">Remember Me</label>
-                                    </div>
-                                    <div class="eltio_k2">
-                                        <a href="#" class="theme-cl">Lost Your Password?</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <button type="submit"
-                                    class="btn btn-md full-width theme-bg text-light fs-md ft-medium">Login</button>
-                            </div>
-
-                            <div class="form-group text-center mb-0">
-                                <p class="extra">Not a member?<a href="#et-register-wrap" class="text-dark">
-                                        Register</a></p>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- End Modal -->
 
         <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
-
-
     </div>
-
 
 @endsection
