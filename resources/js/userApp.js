@@ -33,8 +33,6 @@ $(document).ready(function () {
     $(".select2-location").select2({
         MaximumSelectionLength: 2
     });
-});
-$(document).ready(function () {
     const paginationNumbers = document.getElementById("pagination-numbers");
     const paginatedList = document.getElementById("paginated-list");
     const listItems = paginatedList.querySelectorAll(".render-job-search");
@@ -135,6 +133,7 @@ $(document).ready(function () {
         });
     });
 });
+
 
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
