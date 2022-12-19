@@ -6940,7 +6940,6 @@ h1 {
 
 .pagination-container {
     width: calc(100% - 2rem);
-    display: flex;
     align-items: center;
     position: absolute;
     bottom: 0;
@@ -6951,23 +6950,27 @@ h1 {
 .pagination-number,
 .pagination-button {
     font-size: 1.1rem;
-    background-color: transparent;
     border: none;
     margin: 0.25rem 0.25rem;
     cursor: pointer;
-    height: 2.5rem;
-    width: 2.5rem;
-    border-radius: .2rem;
+    border-radius: .9rem;
+    font-size: 0;
+    line-height: 0;
+    /* display: block; */
+    padding: 5px;
+    color: transparent;
+    outline: none;
+    background: #ccc
 }
 
 .pagination-number:hover,
 .pagination-button:not(.disabled):hover {
-    background: #fff;
+    background: #ccc;
 }
 
 .pagination-number.active {
     color: #fff;
-    background: #0085b6;
+    background: black;
 }
 
 footer {

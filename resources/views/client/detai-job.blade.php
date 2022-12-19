@@ -105,10 +105,20 @@
                                     </div>
                                 </div>
                                 <div class="jbd-01-right text-right hide-1023">
-                                    <div class="jbl_button mb-2"><a href="javascript:void(0);" data-toggle="modal"
-                                            data-target="#exampleModal"
-                                            class="btn rounded theme-bg-light theme-cl fs-sm ft-medium">Ứng tuyển ngay</a>
-                                    </div>
+                                    @if (Auth::guard('user')->check())
+                                        <div class="jbl_button mb-2"><a href="javascript:void(0);" data-toggle="modal"
+                                                data-target="#exampleModal"
+                                                class="btn rounded theme-bg-light theme-cl fs-sm ft-medium">Ứng tuyển
+                                                ngay</a>
+                                        </div>
+                                    @else
+                                        <div class="jbl_button mb-2"><a href="javascript:void(0);" data-toggle="modal"
+                                                data-target="#exampleModallogin"
+                                                class="btn rounded theme-bg-light theme-cl fs-sm ft-medium">Ứng tuyển
+                                                ngay</a>
+                                        </div>
+                                    @endif
+
                                     <div class="jbl_button"><a href="javascript:void(0);"
                                             class="btn rounded bg-white border fs-sm ft-medium">Xem công ty</a></div>
                                 </div>
@@ -555,4 +565,5 @@
             </div>
         </div>
     </div>
+    <div id="editor"></div>
 @endsection

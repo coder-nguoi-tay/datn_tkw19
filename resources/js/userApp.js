@@ -37,46 +37,10 @@ $(document).ready(function () {
     if (paginationNumbers) {
         const paginatedList = document.getElementById("paginated-list");
         const listItems = paginatedList.querySelectorAll(".render-job-search");
-        const nextButton = document.getElementById("next-button");
-        const prevButton = document.getElementById("prev-button");
 
-        const paginationLimit = 2;
+        const paginationLimit = 4;
         const pageCount = Math.ceil(listItems.length / paginationLimit);
         let currentPage = 1;
-
-        const disableButton = (button) => {
-            button.classList.add("disabled");
-            button.setAttribute("disabled", true);
-        };
-
-        const enableButton = (button) => {
-            button.classList.remove("disabled");
-            button.removeAttribute("disabled");
-        };
-
-        const handlePageButtonsStatus = () => {
-            if (currentPage === 1) {
-                disableButton(prevButton);
-            } else {
-                enableButton(prevButton);
-            }
-
-            if (pageCount === currentPage) {
-                disableButton(nextButton);
-            } else {
-                enableButton(nextButton);
-            }
-        };
-
-        const handleActivePageNumber = () => {
-            document.querySelectorAll(".pagination-number").forEach((button) => {
-                button.classList.remove("active");
-                const pageIndex = Number(button.getAttribute("page-index"));
-                if (pageIndex == currentPage) {
-                    button.classList.add("active");
-                }
-            });
-        };
 
         const appendPageNumber = (index) => {
             const pageNumber = document.createElement("button");
@@ -94,11 +58,19 @@ $(document).ready(function () {
             }
         };
 
+        const handleActivePageNumber = () => {
+            document.querySelectorAll(".pagination-number").forEach((button) => {
+                button.classList.remove("active");
+                const pageIndex = Number(button.getAttribute("page-index"));
+                if (pageIndex == currentPage) {
+                    button.classList.add("active");
+                }
+            });
+        };
+
         const setCurrentPage = (pageNum) => {
             currentPage = pageNum;
-
             handleActivePageNumber();
-            handlePageButtonsStatus();
 
             const prevRange = (pageNum - 1) * paginationLimit;
             const currRange = pageNum * paginationLimit;
@@ -115,14 +87,6 @@ $(document).ready(function () {
             getPaginationNumbers();
             setCurrentPage(1);
 
-            prevButton.addEventListener("click", () => {
-                setCurrentPage(currentPage - 1);
-            });
-
-            nextButton.addEventListener("click", () => {
-                setCurrentPage(currentPage + 1);
-            });
-
             document.querySelectorAll(".pagination-number").forEach((button) => {
                 const pageIndex = Number(button.getAttribute("page-index"));
 
@@ -134,6 +98,11 @@ $(document).ready(function () {
             });
         });
     }
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
 });
 
 

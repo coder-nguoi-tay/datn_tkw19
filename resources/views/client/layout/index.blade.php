@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
 
     <script>
         window.Laravel = {!! json_encode(
@@ -51,11 +52,13 @@
         @php
             session()->forget('Message.flash');
         @endphp
+        @include('client.layout.modal')
     </div>
     <div class="loading-div hidden">
         <div class="loader-img"></div>
     </div>
     @include('client.layout.footer')
+
 
 </div>
 

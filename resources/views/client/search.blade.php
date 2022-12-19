@@ -230,17 +230,10 @@
 
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12"> <br><br>
-                            <span class="page-item text-center pagination-container">
-                                <button class="pagination-button" id="prev-button" aria-label="Previous page"
-                                    title="Previous page">
-                                    &lt;
-                                </button>
+                            <span class="page-item text-center pagination-container d-flex">
                                 <div id="pagination-numbers">
                                 </div>
-                                <button class="pagination-button" id="next-button" aria-label="Next page"
-                                    title="Next page">
-                                    &gt;
-                                </button>
+
                             </span>
                         </div>
                     </div>
