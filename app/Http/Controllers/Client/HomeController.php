@@ -17,6 +17,7 @@ use App\Models\SaveCv;
 use App\Models\Skill;
 use App\Models\Timework;
 use App\Models\UploadCv;
+use App\Models\User;
 use App\Models\Wage;
 use App\Models\WorkingForm;
 use Illuminate\Http\Request;
@@ -45,8 +46,9 @@ class HomeController extends BaseController
     public Profession $profession;
     public UploadCv $upload;
     public SaveCv $savecv;
+    public User $user;
 
-    public function __construct(SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
+    public function __construct(User $user, SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
     {
         $this->job = $job;
         $this->company = $company;
@@ -67,9 +69,12 @@ class HomeController extends BaseController
         $this->workingform = $workingform;
         $this->upload = $upload;
         $this->savecv = $savecv;
+        $this->user = $user;
     }
     public function index()
     {
+        $user = $this->user->with('getProfileUse')->where('id', Auth::guard('user')->user()->id)->first();
+        // dd($user->getProfileUse);
         return view('client.index', [
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),
@@ -81,6 +86,7 @@ class HomeController extends BaseController
             'majors' => $this->getmajors(),
             'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
+            'user' => $user,
         ]);
     }
 

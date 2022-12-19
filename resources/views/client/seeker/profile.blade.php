@@ -10,7 +10,6 @@
                             </h4>
                         </div>
                     </div>
-
                     <user-profile
                         :data="{{ json_encode([
                             'lever' => $lever,
@@ -25,7 +24,7 @@
                             'user' => $user,
                             'urlStore' => route('profile.store'),
                             'urlBack' => route('profile.index'),
-                            'getskill' => $getskill->getskill,
+                            'getskill' => $getskill->getskill ?? '',
                         ]) }}">
                     </user-profile>
                 </div>

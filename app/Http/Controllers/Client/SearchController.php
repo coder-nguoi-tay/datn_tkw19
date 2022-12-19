@@ -78,7 +78,7 @@ class SearchController extends BaseController
                 ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
                 ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
                 ->Where(function ($q) use ($that) {
-                    $q->orWhere($this->escapeLikeSentence('job.title', $that->key))
+                    return $q->orWhere($this->escapeLikeSentence('job.title', $that->key))
                         ->orWhere(function ($q) use ($that) {
                             $q->whereIn('job_skill.skill_id', $that->skill);
                         })
@@ -113,21 +113,14 @@ class SearchController extends BaseController
                         ->orWhere(
                             'job.majors_id',
                             $that->majors
-                        );
-                    $q->distinct();
-                    $q->select('job.*');
-                    return true;
+                        )
+                        ->distinct();
                 })
                 ->distinct()
                 ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
                 ->select('job.*')
                 ->paginate(2);
-            if ($this->checkPaginatorList($data)) {
-                Paginator::currentPageResolver(function () {
-                    return 1;
-                });
-                $data = $data->paginate(['20', '50', '100']);
-            }
+            // dd($data);
             return view('client.search', [
                 'job' => $data,
                 'breadcrumbs' => $breadcrumbs,

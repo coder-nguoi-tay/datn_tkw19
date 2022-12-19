@@ -23,10 +23,10 @@
                             <form action="{{ route('home.search') }}" method="GET">
                                 <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 p-3">
                                     <div class="col test">
-                                        <div class="p-1">
+                                        {{-- <div class="p-1">
                                             <input type="text" class="form-control input-custom" name="key"
                                                 id="" placeholder="Tìm kiếm....">
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="col">
                                         <div class="p-1"><select class="form-select" name="lever"
@@ -166,7 +166,7 @@
                         doanh nghiệp uy tín tại Việt Nam</p>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         Hệ thống mong muốn bạn đăng nhập để có thể
-                        hiển thị các việc làm phù hợp nhất!, <strong><a href="{{ route('owner.index') }}"
+                        hiển thị các việc làm phù hợp nhất!, <strong><a href="{{ route('home.index') }}"
                                 class="show-turn-on-location">Đăng
                                 nhập tại đây!</a></strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -175,7 +175,7 @@
                     </div>
                     <div class="alert alert-info alert-dismissible fade show" role="alert">
                         Hãy báo cáo cho tôi nếu bạn gặp phải sự cố hoặc bạn phát hiện ai đó có hành vi lừa đảo!, <strong><a
-                                href="{{ route('owner.index') }}" class="show-turn-on-location">Liên hệ!</a></strong>
+                                href="{{ route('home.index') }}" class="show-turn-on-location">Liên hệ!</a></strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -1273,6 +1273,47 @@
                 </div>
             </div>
         </div>
+        {{-- {{ dd($skill) }} --}}
+        @if (!$user->getProfileUse == null)
+            <div class="modal fade" id="checkmodalProfile" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">profile</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <user-profile
+                                :data="{{ json_encode([
+                                    'lever' => $lever,
+                                    'experience' => $experience,
+                                    'wage' => $wage,
+                                    'skill' => $skill,
+                                    'timework' => $timework,
+                                    'profession' => $profession,
+                                    // 'majors' => $majors,
+                                    'location' => $location,
+                                    'workingform' => $workingform,
+                                    'user' => $user,
+                                    'urlStore' => route('profile.store'),
+                                    'urlBack' => route('profile.index'),
+                                    'getskill' => '',
+                                ]) }}">
+                            </user-profile>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#checkmodalProfile").modal('show');
+            });
+        </script>
     </body>
 
     </html>

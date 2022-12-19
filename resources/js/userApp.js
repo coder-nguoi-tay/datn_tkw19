@@ -30,15 +30,9 @@ $(document).ready(function () {
         multiple: true,
 
     });
-});
-$(document).ready(function () {
     $(".select2-location").select2({
         MaximumSelectionLength: 2
     });
-    $('#exampleModalcheckSeeker').click(function () {
-        $('#exampleModalcheckSeeker').removeClass('show')
-        this.removeAttribute('style')
-    })
 });
 
 
@@ -62,8 +56,5 @@ import Upcv from './components/client/home/upcv.vue';
 app.component('up-cv', Upcv)
 import clientLogin from "./components/client/login/index.vue";
 app.component('client-login', clientLogin);
-
-
-
 
 app.mount('#app')

@@ -76,7 +76,7 @@ class HomeController extends BaseController
             'Thông tin cá nhân'
         ];
         $user =  $this->user
-            ->with('seeker')
+            ->with('getProfileUse')
             ->where('users.id', Auth::guard('user')->user()->id)
             ->first();
         $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();

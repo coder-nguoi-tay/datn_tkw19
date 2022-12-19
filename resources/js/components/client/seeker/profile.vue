@@ -24,7 +24,7 @@
                 role="button"
               >
                 <img
-                  v-if="data.user.seeker === null"
+                  v-if="data.user.get_profile_use === null"
                   src="https://i.pinimg.com/236x/15/46/2e/15462ed447e25356837b32a7e22e538f.jpg"
                   alt=""
                 />
@@ -38,8 +38,8 @@
                   />
                 </div>
                 <img
-                  v-if="!filePreview && data.user.seeker.images"
-                  :src="data.user.seeker.images"
+                  v-if="!filePreview && data.user.get_profile_use.images"
+                  :src="data.user.get_profile_use.images"
                   class="img"
                 />
                 <div
@@ -99,7 +99,7 @@
                 <Field
                   type="text"
                   class="form-control rounded"
-                  v-model="model.seeker.phone"
+                  v-model="model.get_profile_use.phone"
                   name="phone"
                   rules="required|telephone"
                 />
@@ -111,7 +111,7 @@
                 <label class="text-dark ft-medium">Địa chỉ</label>
                 <Field
                   type="text"
-                  v-model="model.seeker.address"
+                  v-model="model.get_profile_use.address"
                   class="form-control rounded"
                   name="address"
                   rules="required|max:255"
@@ -125,7 +125,7 @@
                 <Field
                   name="experience_id"
                   as="select"
-                  v-model="model.seeker.experience_id"
+                  v-model="model.get_profile_use.experience_id"
                   rules="required"
                   class="form-control"
                 >
@@ -147,7 +147,7 @@
                 <Field
                   name="lever_id"
                   as="select"
-                  v-model="model.seeker.lever_id"
+                  v-model="model.get_profile_use.lever_id"
                   rules="required"
                   class="form-control"
                 >
@@ -169,7 +169,7 @@
                 <Field
                   name="wage_id"
                   as="select"
-                  v-model="model.seeker.wage_id"
+                  v-model="model.get_profile_use.wage_id"
                   rules="required"
                   class="form-control"
                 >
@@ -191,7 +191,7 @@
                 <Field
                   name="profession_id"
                   as="select"
-                  v-model="model.seeker.profession_id"
+                  v-model="model.get_profile_use.profession_id"
                   rules="required"
                   class="form-control"
                 >
@@ -213,7 +213,7 @@
                 <Field
                   name="time_work_id"
                   as="select"
-                  v-model="model.seeker.time_work_id"
+                  v-model="model.get_profile_use.time_work_id"
                   rules="required"
                   class="form-control"
                 >
@@ -232,11 +232,29 @@
             <div class="col-xl-6 col-lg-6">
               <div class="form-group">
                 <label class="text-dark ft-medium">Kỹ năng</label>
-                <Select2
-                  :options="data.skill"
+                <!-- <Select2
+                  id="test"
+                  v-model="test"
+                  :options="myOptions"
                   multiple="true"
-                  name="skill[]"
-                ></Select2>
+                  name="skill"
+                ></Select2> -->
+                <!-- <multiselect v-model="test" :options="options"></multiselect> -->
+                <div>
+                  <label class="typo__label">Single select / dropdown</label>
+                  <div>
+                    <label class="typo__label">Single select</label>
+                    <Multiselect
+                      v-model="test"
+                      :options="options"
+                      :searchable="false"
+                      :close-on-select="false"
+                      :show-labels="false"
+                      placeholder="Pick a value"
+                    ></Multiselect>
+                    <pre class="language-json"><code>{{ test  }}</code></pre>
+                  </div>
+                </div>
                 <ErrorMessage class="error" name="skill_id" />
               </div>
             </div>
@@ -270,6 +288,7 @@ import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 import $ from 'jquery'
 import Select2 from 'vue3-select2-component'
+import Multiselect from 'vue-multiselect'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -282,17 +301,26 @@ export default {
     VeeForm,
     Field,
     ErrorMessage,
-    Select2
+    Select2,
+    Multiselect
   },
   props: ['data'],
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: this.data.user ?? '',
+      model: this.data.user,
       getskill: this.data.getskill,
       myOptions: [],
       filePreview: '',
-      loading: false
+      loading: false,
+      test: '',
+      options: [
+        { name: 'Vue.js', language: 'JavaScript' },
+        { name: 'Rails', language: 'Ruby' },
+        { name: 'Sinatra', language: 'Ruby' },
+        { name: 'Laravel', language: 'PHP', $isDisabled: true },
+        { name: 'Phoenix', language: 'Elixir' }
+      ]
     }
   },
 
@@ -300,11 +328,10 @@ export default {
     this.data.skill.map((e) => {
       this.myOptions.push({
         id: e.id,
-        text: e.label,
-        selected: true
+        text: e.label
       })
     })
-    console.log(this.getskill)
+    console.log(this.myOptions)
     let messError = {
       en: {
         fields: {
@@ -412,3 +439,4 @@ export default {
   margin-bottom: 15px;
 }
 </style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
