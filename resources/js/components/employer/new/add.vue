@@ -191,7 +191,14 @@
                   <label class="form-label"
                     >Kỹ năng<span class="required-lable">*</span></label
                   >
-                  <input type="text" class="form-control form-text" />
+                  <!-- <input type="text" class="form-control form-text" /> -->
+
+                  <Editor
+                    api-key="no-api-key"
+                    :init="{
+                      plugins: 'lists link image table code help wordcount'
+                    }"
+                  />
                 </div>
               </div>
             </div>
@@ -208,7 +215,12 @@
 </template>
 
 <script>
-export default {}
+import Editor from '@tinymce/tinymce-vue'
+export default {
+  components: {
+    editor: Editor
+  }
+}
 </script>
 
 <style>

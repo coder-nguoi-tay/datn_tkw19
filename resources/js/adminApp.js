@@ -13,17 +13,23 @@ configure({
     validateOnModelUpdate: false
 })
 
-window.YubinBango = require('yubinbango-core')
-$(document).ready(function () {
-    ClassicEditor
-        .create(document.querySelector('#editor'))
-        .catch(error => {
-            console.error(error);
-        });
-});
+// window.YubinBango = require('yubinbango-core')
+// $(document).ready(function () {
+//     ClassicEditor
+//         .create(document.querySelector('#editor'))
+//         .catch(error => {
+//             console.error(error);
+//         });
+// });
 
 const app = createApp({});
 app.use(CoreuiVue);
+
+import Editor from '@tinymce/tinymce-vue';
+// import tinymce from 'tinymce/tinymce';
+
+app.component('editor', Editor);
+
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 app.use(VueSweetalert2)
@@ -59,6 +65,7 @@ app.component('create-new-employer', CreateNewEmployer);
 import EditNewEmployer from './components/employer/new/edit.vue';
 app.component('edit-new-employer', EditNewEmployer);
 
+
 import DatePickerCustom from "./components/common/datePickerCustom.vue";
 app.component('picker-new-employer', DatePickerCustom);
 
@@ -73,8 +80,8 @@ import homeClient from "./components/client/home/index.vue";
 app.component('home-client', homeClient);
 
 // paginate
-import Paginate from './components/common/customPaginate.vue'
-app.component('paginate', Paginate);
+// import Paginate from './components/common/customPaginate.vue'
+// app.component('paginate', Paginate);
 
 app.mount('#app');
 
