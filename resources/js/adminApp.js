@@ -14,7 +14,13 @@ configure({
 })
 
 window.YubinBango = require('yubinbango-core')
-
+$(document).ready(function () {
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+});
 const app = createApp({});
 app.use(CoreuiVue);
 import VueSweetalert2 from 'vue-sweetalert2'
@@ -47,7 +53,7 @@ import CreateNew from './components/new/create.vue';
 app.component('create-new', CreateNew);
 
 //employer
-import CreateNewEmployer from './components/employer/new/create.vue';
+import CreateNewEmployer from './components/employer/new/add.vue';
 app.component('create-new-employer', CreateNewEmployer);
 import EditNewEmployer from './components/employer/new/edit.vue';
 app.component('edit-new-employer', EditNewEmployer);

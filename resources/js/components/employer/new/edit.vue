@@ -614,7 +614,7 @@ export default {
     Multiselect
   },
   props: ['data'],
-  data: function () {
+  data: function() {
     return {
       csrfToken: Laravel.csrfToken,
       model: this.data.job,
@@ -709,10 +709,10 @@ export default {
           ...this.model,
           _token: this.csrfToken
         })
-        .then(function (response) {
+        .then(function(response) {
           console.log(response)
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error)
         })
       // this.$refs.formData.submit();
