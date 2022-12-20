@@ -21,6 +21,7 @@ $(document).ready(function () {
             console.error(error);
         });
 });
+
 const app = createApp({});
 app.use(CoreuiVue);
 import VueSweetalert2 from 'vue-sweetalert2'
@@ -74,6 +75,7 @@ app.component('home-client', homeClient);
 // paginate
 import Paginate from './components/common/customPaginate.vue'
 app.component('paginate', Paginate);
+
 app.mount('#app');
 
 

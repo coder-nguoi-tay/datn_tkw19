@@ -1,241 +1,374 @@
 <template>
-  <VeeForm as="div" v-slot="{ handleSubmit }" @invalid-submit="onInvalidSubmit">
-    <form
-      @submit="handleSubmit($event, onSubmit)"
-      ref="formData"
-      method="POST"
-      :action="data.urlStore"
-    >
-      <div>
-        <div class="col-12 recuitment-inner">
-          <form class="recuitment-form">
-            <div class="card-create-employer">
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title">Đăng tin tuyển dụng</h5>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-6">
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >Tiêu đề<span class="required-lable">*</span></label
-                        >
-                        <input type="text" class="form-control form-text" />
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >Số lượng cần tuyển<span class="required-lable"
-                            >*</span
-                          ></label
-                        >
-                        <input type="number" class="form-control" min="0" />
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >Giới tính<span class="required-lable">*</span></label
-                        >
-                        <select
-                          class="form-control"
-                          required
-                          aria-label="select example"
-                        >
-                          <option value="">chọn giới tính</option>
-                          <option value="không yêu cầu"
-                            >không yêu cầu giới tính</option
-                          >
-                          <option value="nam">Nam</option>
-                          <option value="nữ">Nữ</option>
-                        </select>
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >Mô tả công việc<span class="required-lable"
-                            >*</span
-                          ></label
-                        >
-                        <textarea class="form-control"></textarea>
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >Yêu cầu công việc<span class="required-lable"
-                            >*</span
-                          ></label
-                        >
-                        <textarea class="form-control"></textarea>
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >Quyền lơi công việc<span class="required-lable"
-                            >*</span
-                          ></label
-                        >
-                        <textarea class="form-control"></textarea>
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >Chọn nghành nghề<span class="required-lable"
-                            >*</span
-                          ></label
-                        >
-                        <select
-                          class="form-control"
-                          required
-                          aria-label="select example"
-                        >
-                          <option></option>
-                        </select>
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >Chọn nơi làm việc<span class="required-lable"
-                            >*</span
-                          ></label
-                        >
-                        <select
-                          class="form-control"
-                          required
-                          aria-label="select example"
-                        >
-                          <option></option>
-                        </select>
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >Chọn địa chỉ cụ thể<span class="required-lable"
-                            >*</span
-                          ></label
-                        >
-                        <input type="text" class="form-control" />
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >Hạn nộp hồ sơ<span class="required-lable"
-                            >*</span
-                          ></label
-                        >
-                        <input type="date" class="form-control" />
-                      </div>
+    <VeeForm as="div" v-slot="{ handleSubmit }" @invalid-submit="onInvalidSubmit">
+        <form class="recuitment-form" @submit="handleSubmit($event, onSubmit)" ref="formData" method="POST"
+            :action="data.urlStore">
+            <Field type="hidden" :value="csrfToken" name="_token" />
+
+            <div class="accordion">
+                <div class="card recuitment-card">
+                    <div class="card-header recuitment-card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <span class="btn btn-block text-left recuitment-header">
+                                Đăng tin tuyển dụng
+                            </span>
+                        </h2>
                     </div>
-                    <div class="col-6">
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >Chọn nghành nghề<span class="required-lable"
-                            >*</span
-                          ></label
-                        >
-                        <select
-                          class="form-control"
-                          required
-                          aria-label="select example"
-                        >
-                          <option></option>
-                        </select>
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >Chọn chuyên ngành<span class="required-lable"
-                            >*</span
-                          ></label
-                        >
-                        <select
-                          class="form-control"
-                          required
-                          aria-label="select example"
-                        >
-                          <option></option>
-                        </select>
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >chọn trình độ<span class="required-lable"
-                            >*</span
-                          ></label
-                        >
-                        <select
-                          class="form-control"
-                          required
-                          aria-label="select example"
-                        >
-                          <option></option>
-                        </select>
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >chọn kinh nghiệm<span class="required-lable"
-                            >*</span
-                          ></label
-                        >
-                        <select
-                          class="form-control"
-                          required
-                          aria-label="select example"
-                        >
-                          <option></option>
-                        </select>
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >chọn mức lương<span class="required-lable"
-                            >*</span
-                          ></label
-                        >
-                        <select
-                          class="form-control"
-                          required
-                          aria-label="select example"
-                        >
-                          <option></option>
-                        </select>
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"
-                          >Thời gian làm việc<span class="required-lable"
-                            >*</span
-                          ></label
-                        >
-                        <select
-                          class="form-control"
-                          required
-                          aria-label="select example"
-                        >
-                          <option></option>
-                        </select>
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label"> Kỹ năng</label>
-                        <div class="checkboxsec" id="checkboxSection">
-                          <label class="label-container">
-                            <div class="filter-topic" key="{skill.id}">
-                              <label class="label-container">
-                                <span></span>
-                                <input type="checkbox" value="{skill.id}" />
-                                <span class="checkmark" />
-                              </label>
+                    <div id="collapseOne" class="collapse  show">
+                        <div class="card-body recuitment-body">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Tiêu đề<span
+                                        class="pl-2">*</span></label>
+                                <div class="col-sm-9">
+                                    <Field name="title" type="text" v-model="model.title" rules="required|max:255"
+                                        class="form-control" placeholder="Tiêu đề" />
+                                    <ErrorMessage class="error" name="title" />
+                                </div>
                             </div>
-                          </label>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Số lượng cần tuyển</label>
+                                <div class="col-sm-9">
+                                    <Field name="quatity" type="number" v-model="model.quatity" rules="required|max:255"
+                                        class="form-control" placeholder="Số lượng cần tuyển" />
+                                    <ErrorMessage class="error" name="quatity" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Giới tính<span
+                                        class="pl-2">*</span></label>
+                                <div class="col-sm-9">
+                                    <Field name="sex" as="select" v-model="model.sex" rules="required"
+                                        class="form-control">
+                                        <option value disabled selected>Chọn giới tinh</option>
+                                        <option value="0">Không yêu cầu</option>
+                                        <option value="Nam">Nam</option>
+                                        <option value="Nữ">Nữ</option>
+                                    </Field>
+                                    <ErrorMessage class="error" name="sex" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Mô tả công việc<span
+                                        class="pl-2">*</span></label>
+                                <div class="col-sm-9">
+                                    <Field name="describe" type="text" v-model="model.describe" rules="required|max:255"
+                                        class="form-control" placeholder="Mô tả công việc" />
+                                    <ErrorMessage class="error" name="describe" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Yêu cầu công việc<span
+                                        class="pl-2">*</span></label>
+                                <div class="col-sm-9">
+                                    <Field name="candidate_requirements" type="text"
+                                        v-model="model.candidate_requirements" rules="required|max:255"
+                                        class="form-control" placeholder="Yêu cầu công việc" />
+                                    <ErrorMessage class="error" name="candidate_requirements" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Chuyên Ngành<span
+                                        class="pl-2">*</span></label>
+                                <div class="col-sm-9">
+                                    <Field name="majors_id" as="select" v-model="model.majors_id" rules="required"
+                                        class="form-control">
+                                        <option value disabled selected>Chọn chuyên nghề</option>
+                                        <option v-for="item in data.majors" :key="item.id" :value="item.id">
+                                            {{ item.label }}
+                                        </option>
+                                    </Field>
+                                    <ErrorMessage class="error" name="majors_id" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Trình độ<span
+                                        class="pl-2">*</span></label>
+                                <div class="col-sm-9">
+                                    <Field name="level_id" as="select" v-model="model.level_id" rules="required"
+                                        class="form-control">
+                                        <option value disabled selected>Chọn Trình độ học vẫn</option>
+                                        <option v-for="item in data.lever" :key="item.id" :value="item.id">
+                                            {{ item.label }}
+                                        </option>
+                                    </Field>
+                                    <ErrorMessage class="error" name="level_id" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Kinh nghiệm<span
+                                        class="pl-2">*</span></label>
+                                <div class="col-sm-9">
+                                    <Field name="experience_id" as="select" v-model="model.experience_id"
+                                        rules="required" class="form-control">
+                                        <option value disabled selected>Chọn Kinh nghiệm</option>
+                                        <option v-for="item in data.experience" :key="item.id" :value="item.id">
+                                            {{ item.label }}
+                                        </option>
+                                    </Field>
+                                    <ErrorMessage class="error" name="experience_id" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Mức lương<span
+                                        class="pl-2">*</span></label>
+                                <div class="col-sm-9">
+                                    <Field name="wage_id" as="select" v-model="model.wage_id" rules="required"
+                                        class="form-control">
+                                        <option value disabled selected>Chọn Mức lương</option>
+                                        <option v-for="item in data.wage" :key="item.id" :value="item.id">
+                                            {{ item.label }}
+                                        </option>
+                                    </Field>
+                                    <ErrorMessage class="error" name="wage_id" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Hình thức làm việc<span
+                                        class="pl-2">*</span></label>
+                                <div class="col-sm-9">
+                                    <Field name="wk_form_id" as="select" v-model="model.wk_form_id" rules="required"
+                                        class="form-control">
+                                        <option value disabled selected>Chọn Hình thức làm việc</option>
+                                        <option v-for="item in data.workingform" :key="item.id" :value="item.id">
+                                            {{ item.label }}
+                                        </option>
+                                    </Field>
+                                    <ErrorMessage class="error" name="wk_form_id" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Thời gian làm việc<span
+                                        class="pl-2">*</span></label>
+                                <div class="col-sm-9">
+                                    <Field name="time_work_id" as="select" v-model="model.time_work_id" rules="required"
+                                        class="form-control">
+                                        <option value disabled selected>Chọn Yêu cầu thời gian làm việc</option>
+                                        <option v-for="item in data.timework" :key="item.id" :value="item.id">
+                                            {{ item.label }}
+                                        </option>
+                                    </Field>
+                                    <ErrorMessage class="error" name="time_work_id" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Quyền lợi<span
+                                        class="pl-2">*</span></label>
+                                <div class="col-sm-9">
+                                    <Field name="benefit" type="text" v-model="model.benefit" rules="required|max:255"
+                                        class="form-control" placeholder="Quyền lợi" />
+                                    <ErrorMessage class="error" name="benefit" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Vị trí ứng tuyển</label>
+                                <div class="col-sm-9">
+                                    <Field name="profession_id" as="select" v-model="model.profession_id"
+                                        rules="required" class="form-control">
+                                        <option value disabled selected>Chọn vị trí</option>
+                                        <option v-for="item in data.profession" :key="item.id" :value="item.id">
+                                            {{ item.label }}
+                                        </option>
+                                    </Field>
+                                    <ErrorMessage class="error" name="profession_id" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Nơi làm việc</label>
+                                <div class="col-sm-9">
+                                    <Field name="location_id" as="select" v-model="model.location_id" rules="required"
+                                        class="form-control">
+                                        <option value disabled selected>Chọn Địa chỉ</option>
+                                        <option v-for="item in data.location" :key="item.id" :value="item.id">
+                                            {{ item.label }}
+                                        </option>
+                                    </Field>
+                                    <ErrorMessage class="error" name="location_id" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Địa chỉ cụ thể</label>
+                                <div class="col-sm-9">
+                                    <Field type="text" name="address" v-model="model.address" rules="required"
+                                        class="form-control" placeholder="Nhập địa chỉ" />
+                                    <ErrorMessage class="error" name="address" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right label">Hạn nộp hồ sơ<span
+                                        class="pl-2">*</span></label>
+                                <div class="col-sm-9">
+                                    <picker-new-employer name="end_job_time" class="date-time"></picker-new-employer>
+                                    <ErrorMessage class="error" name="end_job_time" />
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                      <div>
-                        <div>logo</div>
-                        <input type="file" class="form-control" />
-                      </div>
                     </div>
-                  </div>
-                  <div class="rec-submit">
-                    <button type="submit" class="btn btn-primary">
-                      Đăng Tin
-                    </button>
-                  </div>
                 </div>
-              </div>
             </div>
-          </form>
-        </div>
-      </div>
-      <Field type="hidden" :value="csrfToken" name="_token" />
-    </form>
-  </VeeForm>
+            <div class="card recuitment-card">
+                <div class="card-header recuitment-card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <span class="btn btn-block text-left recuitment-header">
+                            Kỹ Năng
+                        </span>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse show">
+                    <div class="card-body recuitment-body">
+                        <div class="checkboxsec">
+                            <label class="label-container">
+                                <div class="filter-topic">
+                                    <label class="label-container" v-for="item in data.skill" :key="item.id"
+                                        :value="item.id">
+                                        <!-- <input type="checkbox" v-model="model.skill_id" /> -->
+                                        <input type="checkbox" v-for="(item, index) in data.skill" :key="index"
+                                            :label="item.name" :id="index" @change="onChange" />
+                                        <span class="text-skill">{{ item.label }}</span>
+                                    </label>
+                                </div>
+                            </label>
+                            <ErrorMessage class="error" name="skill_id" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div class="card recuitment-card">
+                <div class="card-header recuitment-card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <span class="btn btn-block text-left recuitment-header">
+                            Thông Tin Liên Hệ
+                        </span>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
+                    data-parent="#accordionExample">
+                    <div class="card-body recuitment-body">
+                        <input type="hidden" />
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Tên người liên hệ</label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="nameEmployer" :value="this.data.user[0].name"
+                                    v-model="model.nameEmployer" class="form-control" />
+                                <ErrorMessage class="error" name="nameEmployer" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Email</label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="email" :value="this.data.user[0].email" v-model="model.email"
+                                    class="form-control" />
+                                <ErrorMessage class="error" name="email" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Điện thoại</label>
+                            <div class="col-sm-9">
+                                <Field type="number" name="phone" :value="this.data.user[0].phone" v-model="model.phone"
+                                    class="form-control" />
+                                <ErrorMessage class="error" name="phone" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Địa chỉ</label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="addressEmployer" :value="this.data.user[0].address"
+                                    v-model="model.addressEmployer" class="form-control" />
+                                <ErrorMessage class="error" name="addressEmployer" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card recuitment-card">
+                <div class="card-header recuitment-card-header" id="heading4">
+                    <h2 class="mb-0">
+                        <span class="btn btn-block text-left recuitment-header">
+                            Thông Tin Công Ty
+                        </span>
+                    </h2>
+                </div>
+
+                <div id="collapse4" class="collapse show" aria-labelledby="heading4" data-parent="#collapse4">
+                    <div class="card-body recuitment-body">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Tên công ty<span
+                                    class="pl-2">*</span></label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="name" v-model="model.name" class="form-control"
+                                    placeholder="Tên công ty" />
+                                <ErrorMessage class="error" name="name" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Địa chỉ<span
+                                    class="pl-2">*</span></label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="addressCompany" v-model="model.address" class="form-control"
+                                    placeholder="địa chỉ" />
+                                <ErrorMessage class="error" name="addressCompany" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Email<span
+                                    class="pl-2">*</span></label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="email" v-model="model.email" class="form-control"
+                                    placeholder="Email" />
+                                <ErrorMessage class="error" name="email" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Tỉnh/Thành phố</label>
+                            <div class="col-sm-9">
+                                <Field name="location_id" as="select" v-model="model.location" rules="required"
+                                    class="form-control">
+                                    <option value disabled selected>Chọn Địa chỉ</option>
+                                    <option v-for="item in data.location" :key="item.id" :value="item.id">
+                                        {{ item.label }}
+                                    </option>
+                                </Field>
+                                <ErrorMessage class="error" name="location_id" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Sơ lược về công ty<span
+                                    class="pl-2">*</span></label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" placeholder="Sơ lược về công ty" />
+                                <ErrorMessage class="error" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Logo</label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="logo" v-model="model.logo" class="form-control"
+                                    placeholder="logo" />
+                                <ErrorMessage class="error" name="logo" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Quy mô nhân sự<span
+                                    class="pl-2">*</span></label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="number_member" v-model="model.number_member"
+                                    class="form-control" placeholder="số lượng nhân viên" />
+                                <ErrorMessage class="error" name="number_member" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="rec-submit">
+                <button type="submit" class="btn-submit-recuitment">
+                    <i class="fa fa-floppy-o pr-2 icon-save" />Lưu Tin
+                </button>
+            </div>
+
+        </form>
+    </VeeForm>
 </template>
 <script>
 import {
@@ -248,138 +381,134 @@ import {
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 import $ from 'jquery'
-import axios from 'axios'
+import axios from 'axios';
 export default {
-  setup() {
-    Object.keys(rules).forEach((rule) => {
-      if (rule != 'default') {
-        defineRule(rule, rules[rule])
-      }
-    })
-  },
-  components: {
-    VeeForm,
-    Field,
-    ErrorMessage
-  },
-  props: {
-    isChecked: true ?? false
-  },
-  props: ['data'],
-  data: function() {
-    return {
-      csrfToken: Laravel.csrfToken,
-      model: {}
-    }
-  },
-  created() {
-    let messError = {
-      en: {
-        fields: {
-          title: {
-            required: 'Tiêu đề  không được để trống',
-            max: 'Tiêu đê không được vượt qua 255 ký tự'
-          },
-          quantity: {
-            required: 'Số lượng  không được để trống',
-            max: 'Số lượng không được vượt qua 255 ký tự'
-          },
-          sex: {
-            required: 'Giới  không được để trống'
-          },
-          describe: {
-            required: 'Mô tả  không được để trống',
-            max: 'Mô tả không được vượt qua 255 ký tự'
-          },
-          level_id: {
-            required: 'Trình độ  không được để trống'
-          },
-          experience_id: {
-            required: 'Kinh nghiệm  không được để trống'
-          },
-          wage_id: {
-            required: 'mức lương  không được để trống'
-          },
-          benefit: {
-            required: 'Phúc lợi  không được để trống',
-            max: 'Phúc lợi không được vượt qua 255 ký tự'
-          },
-          profession_id: {
-            required: 'vị trí ứng tuyển không được để trống'
-          },
-          location_id: {
-            required: 'địa chỉ không được để trống',
-            max: 'địa chỉ không được vượt qua 255 ký tự'
-          },
-          address: {
-            required: 'địa chỉ không được để trống',
-            max: 'địa chỉ không được vượt qua 255 ký tự'
-          },
-          majors_id: {
-            required: 'chuyên ngành  không được để trống'
-          },
-          wk_form_id: {
-            required: 'Hình thức làm việc  không được để trống'
-          },
-          end_job_time: {
-            required: 'thời gian  không được để trống'
-          },
-          time_work_id: {
-            required: 'thời gian làm việc  không được để trống'
-          },
-          candidate_requirements: {
-            required: 'yêu cầu công việc không được để trống',
-            max: ' không được vượt qua 255 ký tự'
-          },
-          skill_id: {
-            required: 'kỹ năng không được để trống'
-          }
-        }
-      }
-    }
-    configure({
-      generateMessage: localize(messError)
-    })
-  },
-  methods: {
-    onInvalidSubmit({ values, errors, results }) {
-      let firstInputError = Object.entries(errors)[0][0]
-      this.$el.querySelector('input[name=' + firstInputError + ']').focus()
-      $('html, body').animate(
-        {
-          scrollTop: $('input[name=' + firstInputError + ']').offset().top - 150
-        },
-        500
-      )
+    setup() {
+        Object.keys(rules).forEach((rule) => {
+            if (rule != "default") {
+                defineRule(rule, rules[rule]);
+            }
+        });
     },
-    onSubmit() {
-      console.log(this.model)
-      axios
-        .post('/employer/new/store', {
-          ...this.model,
-          _token: this.csrfToken
-        })
-        .then(function(response) {
-          console.log(response)
-        })
-        .catch(function(error) {
-          console.log(error)
-        })
-      // this.$refs.formData.submit();
-    }
-  }
-}
+    components: {
+        VeeForm,
+        Field,
+        ErrorMessage,
+    },
+    props: {
+        isChecked: true ?? false,
+    },
+    props: ["data"],
+    data: function () {
+        return {
+            csrfToken: Laravel.csrfToken,
+            model: {},
+        };
+    },
+    created() {
+        let messError = {
+            en: {
+                fields: {
+                    title: {
+                        required: "Tiêu đề  không được để trống",
+                        max: "Tiêu đê không được vượt qua 255 ký tự",
+                    },
+                    quantity: {
+                        required: "Số lượng  không được để trống",
+                        max: "Số lượng không được vượt qua 255 ký tự",
+                    },
+                    sex: {
+                        required: "Giới  không được để trống",
+                    },
+                    describe: {
+                        required: "Mô tả  không được để trống",
+                        max: "Mô tả không được vượt qua 255 ký tự",
+                    },
+                    level_id: {
+                        required: "Trình độ  không được để trống",
+                    },
+                    experience_id: {
+                        required: "Kinh nghiệm  không được để trống",
+                    },
+                    wage_id: {
+                        required: "mức lương  không được để trống",
+                    },
+                    benefit: {
+                        required: "Phúc lợi  không được để trống",
+                        max: "Phúc lợi không được vượt qua 255 ký tự",
+                    },
+                    profession_id: {
+                        required: "vị trí ứng tuyển không được để trống",
+                    },
+                    location_id: {
+                        required: "địa chỉ không được để trống",
+                        max: "địa chỉ không được vượt qua 255 ký tự",
+                    },
+                    address: {
+                        required: "địa chỉ không được để trống",
+                        max: "địa chỉ không được vượt qua 255 ký tự",
+                    },
+                    majors_id: {
+                        required: "chuyên ngành  không được để trống",
+                    },
+                    wk_form_id: {
+                        required: "Hình thức làm việc  không được để trống",
+                    },
+                    end_job_time: {
+                        required: "thời gian  không được để trống",
+                    },
+                    time_work_id: {
+                        required: "thời gian làm việc  không được để trống",
+                    },
+                    candidate_requirements: {
+                        required: "yêu cầu công việc không được để trống",
+                        max: " không được vượt qua 255 ký tự",
+                    },
+                    skill_id: {
+                        required: "kỹ năng không được để trống",
+                    },
+                },
+            },
+        };
+        configure({
+            generateMessage: localize(messError),
+        });
+    },
+    methods: {
+        onInvalidSubmit({ values, errors, results }) {
+            let firstInputError = Object.entries(errors)[0][0]
+            this.$el.querySelector('input[name=' + firstInputError + ']').focus()
+            $('html, body').animate(
+                {
+                    scrollTop: $('input[name=' + firstInputError + ']').offset().top - 150
+                },
+                500
+            )
+        },
+        onSubmit() {
+
+            console.log(this.model);
+            axios.post('/employer/new/store', {
+                ...this.model,
+                _token: this.csrfToken,
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            // this.$refs.formData.submit();
+        },
+    },
+};
 </script>
 <style>
-.date-time {
-  margin-top: 15px;
-}
+/* .form-control {
+    margin-top: 15px;
+} */
 
-.form-text {
-  height: 52px;
-  padding: 10px 15px;
-  font-size: 15px;
-  border-radius: 1px !;
-  border-color: #e5e5e5;
+.date-time {
+    margin-top: 15px;
 }
 </style>

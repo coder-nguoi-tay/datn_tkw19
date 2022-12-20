@@ -28,11 +28,10 @@ defineRule('telephone', (value) => {
 $(document).ready(function () {
     $(".select2").select2({
         multiple: true,
+    });
+})
+$(document).ready(function () {
 
-    });
-    $(".select2-location").select2({
-        MaximumSelectionLength: 2
-    });
     const paginationNumbers = document.getElementById("pagination-numbers");
     if (paginationNumbers) {
         const paginatedList = document.getElementById("paginated-list");
@@ -98,11 +97,6 @@ $(document).ready(function () {
             });
         });
     }
-    ClassicEditor
-        .create(document.querySelector('#editor'))
-        .catch(error => {
-            console.error(error);
-        });
 });
 
 
@@ -116,8 +110,6 @@ import userUploadCv from "./components/client/seeker/uploadcv.vue";
 app.component('user-uploadcv', userUploadCv);
 import showNew from "./components/client/home/show-new.vue";
 app.component('show-new', showNew);
-import Paginate from "./components/common/customPaginate.vue";
-app.component('paginate', Paginate);
 import ChangePassword from "./components/client/seeker/change-password.vue";
 app.component('change-password', ChangePassword);
 import popup from './components/common/popupAlert.vue'
