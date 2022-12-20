@@ -93,7 +93,7 @@ class HomeController extends BaseController
             'majors' => $this->getmajors(),
             'location' => $this->getlocation(),
             'workingform' => $this->getworkingform(),
-            'getskill' => $getskill
+            'test' => $getskill
         ]);
     }
 

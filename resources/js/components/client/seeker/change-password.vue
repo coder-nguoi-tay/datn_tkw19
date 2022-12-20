@@ -71,7 +71,6 @@ import {
 } from 'vee-validate'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
-import Select2 from 'vue3-select2-component'
 import $ from 'jquery'
 export default {
   setup() {
@@ -84,8 +83,7 @@ export default {
   components: {
     VeeForm,
     Field,
-    ErrorMessage,
-    Select2
+    ErrorMessage
   },
   props: ['data'],
   data: function () {

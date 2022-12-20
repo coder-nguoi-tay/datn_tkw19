@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Employer;
 use App\Models\Experience;
 use App\Models\Job;
+use App\Models\Jobseeker;
 use App\Models\Jobskill;
 use App\Models\Lever;
 use App\Models\location;
@@ -47,8 +48,9 @@ class HomeController extends BaseController
     public UploadCv $upload;
     public SaveCv $savecv;
     public User $user;
+    public Jobseeker $Jobseeker;
 
-    public function __construct(User $user, SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
+    public function __construct(Jobseeker $Jobseeker, User $user, SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
     {
         $this->job = $job;
         $this->company = $company;
@@ -70,12 +72,14 @@ class HomeController extends BaseController
         $this->upload = $upload;
         $this->savecv = $savecv;
         $this->user = $user;
+        $this->Jobseeker = $Jobseeker;
     }
     public function index()
     {
         if (Auth::guard('user')->check()) {
             $user = $this->user->with('getProfileUse')->where('id', Auth::guard('user')->user()->id)->first();
         }
+        $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
         return view('client.index', [
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),
@@ -88,6 +92,7 @@ class HomeController extends BaseController
             'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
             'user' => $user ?? '',
+            'getskill' => $getskill,
             'job' => $this->job
                 ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
                 ->join('employer', 'employer.id', '=', 'job.employer_id')
