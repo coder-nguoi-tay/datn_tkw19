@@ -44,7 +44,10 @@ import btnDeleteAdmin from './components/common/deleteAdmin.vue'
 app.component('btn-delete-admin', btnDeleteAdmin)
 // new
 import CreateNew from './components/new/create.vue';
+
 app.component('create-new', CreateNew);
+import EditNew from './components/new/edit.vue'
+app.component('edit', EditNew);
 
 //employer
 import CreateNewEmployer from './components/employer/new/create.vue';

@@ -19,15 +19,15 @@
                                 @foreach ($errors->all() as $error)
                                     {{ $error }}
                                 @endforeach
-
                             </div>
                         @endif
-                        <create-new
+                        <edit
                             :data="{{ json_encode([
-                                'urlStore' => route('admin.new.store'),
+                                'new' => $new,
+                                'urlUpdate' => route('admin.new.update', $new->id),
+                                'urlBack' => route('admin.new.index'),
                             ]) }}">
-                        </create-new>
-
+                        </edit>
                     </div>
                 </div>
             </div>
