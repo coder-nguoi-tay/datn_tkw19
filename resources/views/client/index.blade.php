@@ -1073,9 +1073,33 @@
         <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
         <!-- Button trigger modal -->
         <!-- Modal login -->
+        <div class="modal fade" id="exampleModallogin" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Đăng nhập</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <client-login
+                            :data="{{ json_encode([
+                                'urlStore' => route('owner.store'),
+                                'message' => $message ?? '',
+                            ]) }}">
+                            <client-login>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
     @if (Auth::guard('user')->check())
         @if (!$user->getProfileUse == null)
+            <div class="loading-div">
+                <div class="loader-img"></div>
+            </div>
             <div class="modal fade" id="checkmodalProfile" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document">
@@ -1101,13 +1125,14 @@
                                     'user' => $user,
                                     'urlStore' => route('profile.store'),
                                     'urlBack' => route('profile.index'),
-                                    'getskill' => '',
+                                    'getskill' => $getskill,
                                 ]) }}">
                             </user-profile>
                         </div>
                     </div>
                 </div>
             </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
             <script type="text/javascript">
                 $(document).ready(function() {
                     $("#checkmodalProfile").modal('show');
