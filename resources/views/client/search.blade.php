@@ -43,12 +43,12 @@
         <div class="container">
             <form action="{{ route('home.search') }}" method="GET">
                 <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 p-3">
-                    <div class="col test">
+                    {{-- <div class="col test">
                         <div class="p-1">
                             <input type="text" class="form-control" name="key" id=""
                                 placeholder="Tìm kiếm...." value="{{ $request['key'] }}">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col">
                         <div class="p-1"><select class="form-select" name="lever" aria-label="Default select example">
                                 <option selected disabled>Trình độ</option>
@@ -98,7 +98,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col">
+                    {{-- <div class="col">
                         <div class="p-1"><select class="form-select" name="profession"
                                 aria-label="Default select example">
                                 <option selected disabled>Vị trí ứng tuyển</option>
@@ -110,22 +110,19 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col">
                         <div class="p-1"><select class="form-select select2" name="skill[]"
-                                aria-label="Default select example" multiple>
-                                @foreach ($skill as $item)
-                                    @if (isset($request['skill']))
-                                        <option value="{{ $item->id }}"
-                                            {{ in_array($item->id, $request['skill']) ? 'selected' : '' }}>
-                                            {{ $item->label }}
-                                        </option>
-                                    @endif
-                                @endforeach
-                            </select>
+                            aria-label="Default select example">
+                            @foreach ($skill as $item)
+                                <option value="{{ $item->id }}">
+                                    {{ $item->label }}
+                                </option>
+                            @endforeach
+                        </select>
                         </div>
                     </div>
-                    <div class="col">
+                    {{-- <div class="col">
                         <div class="p-1"><select class="form-select select2-location" name="location"
                                 aria-label="Default select example">
                                 <option selected disabled>Địa chỉ</option>
@@ -137,11 +134,11 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col">
                         <div class="p-1"><select class="form-select" name="workingform"
                                 aria-label="Default select example">
-                                <option selected disabled>Hình thức làm việc</option>
+                                <option selected disabled>Cấp Bậc</option>
                                 @foreach ($workingform as $item)
                                     <option value="{{ $item->id }}"
                                         {{ isset($request['workingform']) ? ($request['workingform'] == $item->id ? 'selected' : '') : '' }}>

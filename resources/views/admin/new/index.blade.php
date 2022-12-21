@@ -16,26 +16,26 @@ use App\Enums\Onoff;
                         <div class="ps-3">
                             <a href="{{ route('admin.new.create') }}" class="btn btn-primary">Thêm tin tức mới</a>
                         </div>
-                        <div class="table-responsive p-0">
-                            <table class="table align-items-center mb-0">
-                                <thead>
-                                    <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        <div class="table table-responsive p-0">
+                            <table class="table align-items-center mb-0 table  table-striped ">
+                                <thead class="table-danger ">
+                                    <tr class="">
+                                        <th class="text-dark text-center text-secondary  text-dark font-weight-bolder opacity-7">
                                             ID
                                         </th>
                                         <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            class=" text-dark text-secondary  font-weight-bolder opacity-7">
                                             Tiêu Dề
                                         </th>
                                         <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 w-25">
+                                            class=" text-dark text-secondary  font-weight-bolder opacity-7 w-25">
                                             Hình ảnh
                                         </th>
                                         <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            class=" text-dark text-secondary  font-weight-bolder opacity-7">
                                             Ngày Tạo
                                         </th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th class="text-center text-dark text-secondary  font-weight-bolder opacity-7">
                                             Ngày sửa
                                         </th>
                                         <th class="text-secondary opacity-7"></th>
@@ -44,21 +44,26 @@ use App\Enums\Onoff;
                                 <tbody>
                                     @foreach ($News as $item)
                                         <tr class="">
-                                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            <td class="text-dark text-secondary  font-weight-bolder opacity-7 text-center">
                                                 <div class="font-weight-bold ">
-                                                    <p class="text-xs text-secondary mb-0">{{ $item->id }}</p>
+                                                    <p class=" text-secondary mb-0">{{ $item->id }}</p>
                                                 </div>
 
                                             </td>
-                                            <td class=" text-center ">
+                                            <td class="  ">
                                                 <div class="font-weight-bold " style="margin-left: 20px">
-                                                    <p class="text-xs text-secondary mb-0">{{ $item->title }}</p>
+                                                    <p class=" text-secondary mb-0" style="
+                                                    max-height: 21px;
+                                                    max-width: 150px;
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis !important;
+                                                     ">{{ $item->title }}</p>
                                                 </div>
                                             </td>
-                                            <td class=" text-center">
-                                                <div class="">
+                                            <td class=" " style=" width: 250px;">
+                                                <div class="" >
 
-                                                    <label for="upload">
+                                                    <label for="upload" >
                                                         <img
                                                             src="{{ asset($item->new_image) }}"
                                                             class="img-thumbnail border-radius-lgc w-50"
@@ -74,26 +79,24 @@ use App\Enums\Onoff;
                                                     <br>
                                                 </div>
                                             </td>
-                                            <td class="align-middle text-center">
+                                            <td class="align-middle ">
                                                 <span
-                                                    class="text-secondary text-xs font-weight-bold">{{ $item->created_at }}</span>
+                                                    class="text-secondary  font-weight-bold">{{ $item->created_at }}</span>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span
-                                                    class="text-secondary text-xs font-weight-bold">{{ $item->updated_at }}</span>
+                                                    class="text-secondary  font-weight-bold">{{ $item->updated_at }}</span>
                                             </td>
                                             <td class="align-middle">
                                                 <div class="text-center"
-                                                    style="display: flex; max-width: 80%; margin-left: 27% ">
-                                                    <div style="margin-right: 30%">
+                                                    style="display: flex; max-width: 80%; margin-left: 7% ">
+                                                    <div style="margin-right: 10%">
                                                         <btn-delete-confirm
                                                             :message-confirm="{{ json_encode('Bạn có chắc muốn xóa không ?') }}"
                                                             :delete-action="{{ json_encode(route('admin.new.destroy', $item->id)) }}">
                                                         </btn-delete-confirm>
-
                                                     </div>
-
-                                                    <div style="margin-bottom: 20px; margin-left: 15% !important"
+                                                    <div style="margin-bottom: 20px; margin-left: 20%"
                                                         class="text-center">
                                                         <a href="{{ route('admin.new.edit', $item->id) }}"
                                                             class="dropdown-item"><svg xmlns="http://www.w3.org/2000/svg"

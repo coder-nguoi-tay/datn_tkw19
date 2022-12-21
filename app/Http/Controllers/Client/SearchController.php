@@ -81,7 +81,10 @@ class SearchController extends BaseController
                 ->Where(function ($q) use ($that) {
                     $q->orWhere($this->escapeLikeSentence('job.title', $that->key))
                         ->orWhere(function ($q) use ($that) {
-                            $q->whereIn('job_skill.skill_id', $that->skill);
+                            if($that->skill){
+                                  $q->whereIn('job_skill.skill_id', $that->skill);
+                            }
+
                         })
                         ->orWhere(
                             'job.location_id',
