@@ -223,8 +223,8 @@ export default {
 
 <style>
 .form-text {
-  height: 52px;
-  padding: 10px 15px;
+  height: 32px !important;
+  padding: 0px !important;
   font-size: 15px;
   border-radius: 1px;
   border-color: #e5e5e5;
