@@ -30,8 +30,8 @@
     </script>
 </head>
 @php
-$routeName = \Route::currentRouteName();
-$routeEvent = ['event.index', 'event.create'];
+    $routeName = \Route::currentRouteName();
+    $routeEvent = ['event.index', 'event.create'];
 @endphp
 
 <body class="c-app">

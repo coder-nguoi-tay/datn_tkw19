@@ -79,7 +79,7 @@ class HomeController extends BaseController
         if (Auth::guard('user')->check()) {
             $user = $this->user->with('getProfileUse')->where('id', Auth::guard('user')->user()->id)->first();
         }
-        $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
+        // $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
         return view('client.index', [
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),
@@ -92,7 +92,7 @@ class HomeController extends BaseController
             'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
             'user' => $user ?? '',
-            'getskill' => $getskill,
+            // 'getskill' => $getskill,
             'job' => $this->job
                 ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
                 ->join('employer', 'employer.id', '=', 'job.employer_id')

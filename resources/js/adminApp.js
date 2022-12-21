@@ -64,6 +64,12 @@ app.component('client-register', clientRegister);
 import homeClient from "./components/client/home/index.vue";
 app.component('home-client', homeClient);
 
+
+import registerEmployer from "./components/employer/register.vue";
+app.component('register-employer', registerEmployer);
+
+
+
 app.mount('#app');
 
 
