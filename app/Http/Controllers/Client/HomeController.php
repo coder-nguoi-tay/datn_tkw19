@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Employer;
 use App\Models\Experience;
 use App\Models\Job;
+use App\Models\Jobseeker;
 use App\Models\Jobskill;
 use App\Models\Lever;
 use App\Models\location;
@@ -17,6 +18,7 @@ use App\Models\SaveCv;
 use App\Models\Skill;
 use App\Models\Timework;
 use App\Models\UploadCv;
+use App\Models\User;
 use App\Models\Wage;
 use App\Models\WorkingForm;
 use Illuminate\Http\Request;
@@ -45,8 +47,10 @@ class HomeController extends BaseController
     public Profession $profession;
     public UploadCv $upload;
     public SaveCv $savecv;
+    public User $user;
+    public Jobseeker $Jobseeker;
 
-    public function __construct(SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
+    public function __construct(Jobseeker $Jobseeker, User $user, SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
     {
         $this->job = $job;
         $this->company = $company;
@@ -67,9 +71,15 @@ class HomeController extends BaseController
         $this->workingform = $workingform;
         $this->upload = $upload;
         $this->savecv = $savecv;
+        $this->user = $user;
+        $this->Jobseeker = $Jobseeker;
     }
     public function index()
     {
+        if (Auth::guard('user')->check()) {
+            $user = $this->user->with('getProfileUse')->where('id', Auth::guard('user')->user()->id)->first();
+        }
+        $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
         return view('client.index', [
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),
@@ -81,6 +91,15 @@ class HomeController extends BaseController
             'majors' => $this->getmajors(),
             'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
+            'user' => $user ?? '',
+            'getskill' => $getskill,
+            'job' => $this->job
+                ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
+                ->join('employer', 'employer.id', '=', 'job.employer_id')
+                ->join('company', 'company.id', '=', 'employer.id_company')
+                ->where('job.status', 1)
+                ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+                ->get(),
         ]);
     }
 
@@ -164,7 +183,10 @@ class HomeController extends BaseController
             ->paginate(4);
         // tất cả cv của người tìm việc
         // dd(Auth::guard('user'));
-        $cv = $this->upload->where('user_id', Auth::guard('user')->user()->id)->get();
+        if (Auth::guard('user')->check()) {
+            $cv = $this->upload->where('user_id', Auth::guard('user')->user()->id)->get();
+        }
+
         // dd($cv);
         $breadcrumbs = [
             $job->title
@@ -177,7 +199,7 @@ class HomeController extends BaseController
             'location' => $location,
             'rules' => $relate,
             'breadcrumbs' => $breadcrumbs,
-            'cv' => $cv,
+            'cv' => $cv ?? '',
         ]);
     }
 
@@ -240,57 +262,6 @@ class HomeController extends BaseController
             'breadcrumbs' => $breadcrumbs,
         ]);
     }
-    public function searcAll(Request $request)
-    {
-
-        try {
-            $that = $request;
-            $data = $this->job
-                ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
-                ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
-                ->Where(function ($q) use ($that) {
-                    if (isset($that->key) && !isset($that->skill_id) && !isset($that->location_id)) {
-                        $q->orWhere($this->escapeLikeSentence('job.title', $that->key));
-                        $q->orWhere($this->escapeLikeSentence('skill.name', $that->key));
-                    } else
-                    if (isset($that->skill_id) && isset($that->location_id)) {
-                        $q->orWhere('job_skill.skill_id', $that->skill_id)
-                            ->orWhere('job.location_id', $that->location_id);
-                    } else
-                    if (isset($that->skill_id) && isset($that->location_id) && isset($that->key)) {
-                        $q->orWhere($this->escapeLikeSentence('job.title', $that->key))
-                            ->orWhere('job_skill.skill_id', $that->skill_id)
-                            ->orWhere('job.location_id', $that->location_id);
-                    } else 
-                    if (isset($that->skill_id)) {
-                        $q->Where('job_skill.skill_id', $that->skill_id);
-                    } else 
-                    if (isset($that->location_id)) {
-                        $q->Where('job.location_id', $that->location_id);
-                    }
-                    $q->distinct();
-                    $q->select('job.*');
-                    return true;
-                })
-                ->distinct()
-                ->select('job.*')
-                ->get();
-            if ($data) {
-                return response()->json([
-                    'data' => $data,
-                    'count' => "Tìm thấy " . count($data) . " việc làm phù hợp với yêu cầu của bạn."
-                ]);
-            }
-            return response()->json([
-                'data' => [],
-                'count' => "Không tìm thấy việc làm phù hợp với yêu cầu của bạn."
-            ]);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'msg' => 'Tìm kiếm không thành công'
-            ]);
-        }
-    }
     public function showNew()
     {
         return response()->json([
@@ -298,6 +269,7 @@ class HomeController extends BaseController
                 ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
                 ->join('employer', 'employer.id', '=', 'job.employer_id')
                 ->join('company', 'company.id', '=', 'employer.id_company')
+                ->where('job.status', 1)
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                 ->paginate(2)
         ]);

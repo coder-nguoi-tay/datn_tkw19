@@ -2,7 +2,7 @@
 
 namespace App\Components;
 
-use Illuminate\Database\Query\Builder;
+use stdClass;
 
 class SearchQueryComponent
 {

@@ -10,8 +10,6 @@
         @submit="handleSubmit($event, onSubmit)"
         ref="formData"
         method="POST"
-        :action="data.urlStore"
-        enctype="multipart/form-data"
       >
         <Field type="hidden" :value="csrfToken" name="_token" />
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" id="img-preview2">
@@ -24,7 +22,7 @@
                 role="button"
               >
                 <img
-                  v-if="data.user.seeker === null"
+                  v-if="data.user === null"
                   src="https://i.pinimg.com/236x/15/46/2e/15462ed447e25356837b32a7e22e538f.jpg"
                   alt=""
                 />
@@ -38,8 +36,8 @@
                   />
                 </div>
                 <img
-                  v-if="!filePreview && data.user.seeker.images"
-                  :src="data.user.seeker.images"
+                  v-if="!filePreview && data.user.images"
+                  :src="data.user.images"
                   class="img"
                 />
                 <div
@@ -99,7 +97,7 @@
                 <Field
                   type="text"
                   class="form-control rounded"
-                  v-model="model.seeker.phone"
+                  v-model="model.phone"
                   name="phone"
                   rules="required|telephone"
                 />
@@ -111,7 +109,7 @@
                 <label class="text-dark ft-medium">Địa chỉ</label>
                 <Field
                   type="text"
-                  v-model="model.seeker.address"
+                  v-model="model.address"
                   class="form-control rounded"
                   name="address"
                   rules="required|max:255"
@@ -125,7 +123,7 @@
                 <Field
                   name="experience_id"
                   as="select"
-                  v-model="model.seeker.experience_id"
+                  v-model="model.experience_id"
                   rules="required"
                   class="form-control"
                 >
@@ -147,7 +145,7 @@
                 <Field
                   name="lever_id"
                   as="select"
-                  v-model="model.seeker.lever_id"
+                  v-model="model.lever_id"
                   rules="required"
                   class="form-control"
                 >
@@ -169,7 +167,7 @@
                 <Field
                   name="wage_id"
                   as="select"
-                  v-model="model.seeker.wage_id"
+                  v-model="model.wage_id"
                   rules="required"
                   class="form-control"
                 >
@@ -191,7 +189,7 @@
                 <Field
                   name="profession_id"
                   as="select"
-                  v-model="model.seeker.profession_id"
+                  v-model="model.profession_id"
                   rules="required"
                   class="form-control"
                 >
@@ -213,7 +211,7 @@
                 <Field
                   name="time_work_id"
                   as="select"
-                  v-model="model.seeker.time_work_id"
+                  v-model="model.time_work_id"
                   rules="required"
                   class="form-control"
                 >
@@ -232,11 +230,16 @@
             <div class="col-xl-6 col-lg-6">
               <div class="form-group">
                 <label class="text-dark ft-medium">Kỹ năng</label>
-                <Select2
-                  :options="data.skill"
-                  multiple="true"
-                  name="skill[]"
-                ></Select2>
+                <Multiselect
+                  v-model="value"
+                  mode="tags"
+                  :searchable="true"
+                  :options="options"
+                  label="label"
+                  track-by="label"
+                  :infinite="true"
+                  :object="true"
+                />
                 <ErrorMessage class="error" name="skill_id" />
               </div>
             </div>
@@ -265,11 +268,10 @@ import {
   defineRule,
   configure
 } from 'vee-validate'
-
+import Multiselect from '@vueform/multiselect'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 import $ from 'jquery'
-import Select2 from 'vue3-select2-component'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -282,29 +284,34 @@ export default {
     VeeForm,
     Field,
     ErrorMessage,
-    Select2
+    Multiselect
   },
   props: ['data'],
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
       model: this.data.user ?? '',
-      getskill: this.data.getskill,
-      myOptions: [],
       filePreview: '',
-      loading: false
+      loading: false,
+      value: [],
+      options: []
     }
   },
 
   created() {
-    this.data.skill.map((e) => {
-      this.myOptions.push({
-        id: e.id,
-        text: e.label,
-        selected: true
+    console.log(this.data.getskill.getskill)
+    this.data.getskill.getskill.map((e) => {
+      this.value.push({
+        value: e.id,
+        label: e.name
       })
     })
-    console.log(this.getskill)
+    this.data.skill.map((e) => {
+      this.options.push({
+        value: e.id,
+        label: e.label
+      })
+    })
     let messError = {
       en: {
         fields: {
@@ -364,11 +371,8 @@ export default {
         500
       )
     },
-    mySelectEvent(id) {
-      console.log(id)
-    },
     onSubmit() {
-      this.$refs.formData.submit()
+      console.log(this.model)
     },
     chooseImage() {
       this.$refs['fileInput'].click()
@@ -412,3 +416,4 @@ export default {
   margin-bottom: 15px;
 }
 </style>
+<style src="@vueform/multiselect/themes/default.css"></style>

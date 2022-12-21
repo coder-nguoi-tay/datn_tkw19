@@ -18,6 +18,7 @@ use App\Models\WorkingForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
+use stdClass;
 
 class SearchController extends BaseController
 {
@@ -72,7 +73,7 @@ class SearchController extends BaseController
             'Tìm kiếm việc làm ' . $request->key
         ];
         try {
-
+            $newSizeLimit = $this->newListLimit($request);
             $that = $request;
             $data = $this->job
                 ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
@@ -114,20 +115,11 @@ class SearchController extends BaseController
                             'job.majors_id',
                             $that->majors
                         );
-                    $q->distinct();
-                    $q->select('job.*');
-                    return true;
                 })
                 ->distinct()
                 ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
                 ->select('job.*')
-                ->paginate(2);
-            if ($this->checkPaginatorList($data)) {
-                Paginator::currentPageResolver(function () {
-                    return 1;
-                });
-                $data = $data->paginate(['20', '50', '100']);
-            }
+                ->get();
             return view('client.search', [
                 'job' => $data,
                 'breadcrumbs' => $breadcrumbs,
@@ -141,7 +133,7 @@ class SearchController extends BaseController
                 'majors' => $this->getmajors(),
                 'workingform' => $this->getworkingform(),
                 'location' => $this->getlocation(),
-                'request' => $request->all(),
+                'request' => $request->all() ?? new stdClass,
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();

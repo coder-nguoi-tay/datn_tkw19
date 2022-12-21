@@ -17,8 +17,9 @@
     <!-- JavaScript Bundle with Popper -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         window.Laravel = {!! json_encode(
             [
@@ -51,11 +52,13 @@
         @php
             session()->forget('Message.flash');
         @endphp
+        <div class="loading-div hidden">
+            <div class="loader-img"></div>
+        </div>
     </div>
-    <div class="loading-div hidden">
-        <div class="loader-img"></div>
-    </div>
+
     @include('client.layout.footer')
+
 
 </div>
 

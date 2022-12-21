@@ -28,17 +28,75 @@ defineRule('telephone', (value) => {
 $(document).ready(function () {
     $(".select2").select2({
         multiple: true,
-
     });
-});
+})
 $(document).ready(function () {
-    $(".select2-location").select2({
-        MaximumSelectionLength: 2
-    });
-    $('#exampleModalcheckSeeker').click(function () {
-        $('#exampleModalcheckSeeker').removeClass('show')
-        this.removeAttribute('style')
-    })
+
+    const paginationNumbers = document.getElementById("pagination-numbers");
+    if (paginationNumbers) {
+        const paginatedList = document.getElementById("paginated-list");
+        const listItems = paginatedList.querySelectorAll(".render-job-search");
+
+        const paginationLimit = 4;
+        const pageCount = Math.ceil(listItems.length / paginationLimit);
+        let currentPage = 1;
+
+        const appendPageNumber = (index) => {
+            const pageNumber = document.createElement("button");
+            pageNumber.className = "pagination-number";
+            pageNumber.innerHTML = index;
+            pageNumber.setAttribute("page-index", index);
+            pageNumber.setAttribute("aria-label", "Page " + index);
+
+            paginationNumbers.appendChild(pageNumber);
+        };
+
+        const getPaginationNumbers = () => {
+            for (let i = 1; i <= pageCount; i++) {
+                appendPageNumber(i);
+            }
+        };
+
+        const handleActivePageNumber = () => {
+            document.querySelectorAll(".pagination-number").forEach((button) => {
+                button.classList.remove("active");
+                const pageIndex = Number(button.getAttribute("page-index"));
+                if (pageIndex == currentPage) {
+                    button.classList.add("active");
+                }
+            });
+        };
+
+        const setCurrentPage = (pageNum) => {
+            currentPage = pageNum;
+            handleActivePageNumber();
+
+            const prevRange = (pageNum - 1) * paginationLimit;
+            const currRange = pageNum * paginationLimit;
+
+            listItems.forEach((item, index) => {
+                item.classList.add("hidden");
+                if (index >= prevRange && index < currRange) {
+                    item.classList.remove("hidden");
+                }
+            });
+        };
+
+        window.addEventListener("load", () => {
+            getPaginationNumbers();
+            setCurrentPage(1);
+
+            document.querySelectorAll(".pagination-number").forEach((button) => {
+                const pageIndex = Number(button.getAttribute("page-index"));
+
+                if (pageIndex) {
+                    button.addEventListener("click", () => {
+                        setCurrentPage(pageIndex);
+                    });
+                }
+            });
+        });
+    }
 });
 
 
@@ -52,8 +110,6 @@ import userUploadCv from "./components/client/seeker/uploadcv.vue";
 app.component('user-uploadcv', userUploadCv);
 import showNew from "./components/client/home/show-new.vue";
 app.component('show-new', showNew);
-import Paginate from "./components/common/customPaginate.vue";
-app.component('paginate', Paginate);
 import ChangePassword from "./components/client/seeker/change-password.vue";
 app.component('change-password', ChangePassword);
 import popup from './components/common/popupAlert.vue'
@@ -62,8 +118,5 @@ import Upcv from './components/client/home/upcv.vue';
 app.component('up-cv', Upcv)
 import clientLogin from "./components/client/login/index.vue";
 app.component('client-login', clientLogin);
-
-
-
 
 app.mount('#app')
