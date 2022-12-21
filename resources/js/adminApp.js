@@ -13,14 +13,6 @@ configure({
     validateOnModelUpdate: false
 })
 
-// window.YubinBango = require('yubinbango-core')
-// $(document).ready(function () {
-//     ClassicEditor
-//         .create(document.querySelector('#editor'))
-//         .catch(error => {
-//             console.error(error);
-//         });
-// });
 
 const app = createApp({});
 app.use(CoreuiVue);
@@ -79,9 +71,6 @@ app.component('client-register', clientRegister);
 import homeClient from "./components/client/home/index.vue";
 app.component('home-client', homeClient);
 
-// paginate
-// import Paginate from './components/common/customPaginate.vue'
-// app.component('paginate', Paginate);
 
 app.mount('#app');
 

@@ -34,15 +34,15 @@
                     aria-label="select example"
                   >
                     <option value="">chọn giới tính</option>
-                    <option value="không yêu cầu"
-                      >không yêu cầu giới tính</option
-                    >
+                    <option value="không yêu cầu">
+                      không yêu cầu giới tính
+                    </option>
                     <option value="nam">Nam</option>
                     <option value="nữ">Nữ</option>
                   </select>
                 </div>
                 <div class="mb-4">
-                  <label class="form-label "
+                  <label class="form-label"
                     >Mô tả công việc<span class="required-lable">*</span></label
                   >
                   <textarea class="form-control form-text"></textarea>
@@ -203,9 +203,7 @@
               </div>
             </div>
             <div class="rec-submit">
-              <button type="submit" class="btn btn-primary">
-                Đăng Tin
-              </button>
+              <button type="submit" class="btn btn-primary">Đăng Tin</button>
             </div>
           </div>
         </div>
@@ -218,7 +216,7 @@
 import Editor from '@tinymce/tinymce-vue'
 export default {
   components: {
-    editor: Editor
+    Editor
   }
 }
 </script>
