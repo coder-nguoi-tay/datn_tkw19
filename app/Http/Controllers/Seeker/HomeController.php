@@ -21,6 +21,7 @@ use App\Models\Timework;
 use App\Models\User;
 use App\Models\Wage;
 use App\Models\WorkingForm;
+use Database\Seeders\SkillSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -114,34 +115,47 @@ class HomeController extends BaseController
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        $images = 'http://vn.blog.kkday.com/wp-content/uploads/chup-anh-dep-bang-dien-thoai-25.jpg';
+        $Jobseeker = $this->user->where('id', Auth::guard('user')->user()->id)->first();
+        if (isset($Jobseeker->getProfileUse)) {
+            $user = $this->Jobseeker->where('user_role', Auth::guard('user')->user()->id)->first();
+        } else {
+            $user = new $this->Jobseeker();
+        }
         try {
-            $Jobseeker = $this->Jobseeker->create([
-                'address' => $request->address,
-                'phone' => $request->phone,
-                'images' => $images,
-                'user_role' => Auth::guard('user')->user()->id,
-                'skill_id' => 1,
-                'experience_id' => $request->experience_id,
-                'lever_id' => $request->lever_id,
-                'wage_id' => $request->wage_id,
-                'profession_id' => $request->profession_id,
-                'time_work_id' => $request->time_work_id,
-            ]);
-            $Jobseeker->save();
-            foreach ($request->skill_id as $value) {
+            $updateUser = $this->user->where('id', Auth::guard('user')->user()->id)->first();
+            $updateUser->name = $request['name'];
+            $updateUser->email = $request['email'];
+            $updateUser->save();
+            $user->address = $request['valueSelect']['address'];
+            $user->images = 'http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg';
+            $user->phone = $request['valueSelect']['phone'];
+            $user->user_role = Auth::guard('user')->user()->id;
+            $user->skill_id = 1;
+            $user->experience_id = $request['valueSelect']['experience_id'];
+            $user->lever_id = $request['valueSelect']['lever_id'];
+            $user->wage_id = $request['valueSelect']['wage_id'];
+            $user->profession_id = $request['valueSelect']['profession_id'];
+            $user->time_work_id = $request['valueSelect']['time_work_id'];
+            if (isset($Jobseeker->getProfileUse)) {
+                $jobskill =  $this->SeekerSkill->where('job-seeker_id', $user->id)->get();
+                foreach ($jobskill as $value) {
+                    $this->SeekerSkill->find($value->id)->delete();
+                }
+            }
+            foreach ($request['skill_id'] as $value) {
                 $this->SeekerSkill->create([
-                    'job-seeker_id' => $Jobseeker->id,
-                    'skill_id' => $value,
+                    'job-seeker_id' => $user->id,
+                    'skill_id' => $value['value'],
                 ])->save();
             }
-            $this->setFlash(__('Cập nhật thành công'));
-            return redirect()->route('profile.index');
+
+
+            $user->save();
+            return back();
         } catch (\Throwable $th) {
+            dd($th);
             DB::rollback();
-            $this->setFlash(__('Thêm Thất bại'), 'error');
-            return redirect()->route('profile.index');
+            return back();
         }
     }
 
