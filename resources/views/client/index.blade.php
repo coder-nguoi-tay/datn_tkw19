@@ -88,7 +88,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div> --}}
+                                    </div> 
                                     <div class="col">
                                         <div class="p-1"><select class="form-select select2-location" name="location"
                                                 aria-label="Default select example">

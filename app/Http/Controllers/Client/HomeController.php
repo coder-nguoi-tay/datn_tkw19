@@ -86,8 +86,6 @@ class HomeController extends BaseController
         }
         $new = News::all();
         // dd($new);
-
-        // $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
         return view('client.index', [
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),
