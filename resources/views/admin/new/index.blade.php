@@ -35,7 +35,7 @@ use App\Enums\Onoff;
                                             class=" text-dark text-secondary  font-weight-bolder opacity-7">
                                             Ngày Tạo
                                         </th>
-                                        <th class="text-center text-dark text-secondary  font-weight-bolder opacity-7">
+                                        <th class=" text-dark text-secondary  font-weight-bolder opacity-7">
                                             Ngày sửa
                                         </th>
                                         <th class="text-secondary opacity-7"></th>
@@ -83,12 +83,12 @@ use App\Enums\Onoff;
                                                 <span
                                                     class="text-secondary  font-weight-bold">{{ $item->created_at }}</span>
                                             </td>
-                                            <td class="align-middle text-center">
+                                            <td class="align-middle ">
                                                 <span
                                                     class="text-secondary  font-weight-bold">{{ $item->updated_at }}</span>
                                             </td>
                                             <td class="align-middle">
-                                                <div class="text-center"
+                                                <div class=""
                                                     style="display: flex; max-width: 80%; margin-left: 7% ">
                                                     <div style="margin-right: 10%">
                                                         <btn-delete-confirm
@@ -97,7 +97,7 @@ use App\Enums\Onoff;
                                                         </btn-delete-confirm>
                                                     </div>
                                                     <div style="margin-bottom: 20px; margin-left: 20%"
-                                                        class="text-center">
+                                                        class="">
                                                         <a href="{{ route('admin.new.edit', $item->id) }}"
                                                             class="dropdown-item"><svg xmlns="http://www.w3.org/2000/svg"
                                                                 width="25" height="25" fill="currentColor"

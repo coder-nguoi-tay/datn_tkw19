@@ -39,7 +39,6 @@
             <div class="ht-30"></div>
         </div>
         <!-- ======================= Top Breadcrubms ======================== -->
-
         <div class="container">
             <form action="{{ route('home.search') }}" method="GET">
                 <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 p-3">

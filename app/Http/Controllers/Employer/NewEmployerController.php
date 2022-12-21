@@ -84,7 +84,7 @@ class NewEmployerController extends BaseController
             'all_day' => $all_day,
             'm' => $m,
             'mon' => $mon,
-
+            'title'=> 'Tin Tuyển Dụng',
         ]);
     }
 
@@ -123,7 +123,7 @@ class NewEmployerController extends BaseController
      */
     public function store(Request $request) //EmployerCreateRequest
     {
-        dd($request->all());
+        // dd($request->all());
         try {
             // create to job
             $job = new $this->job();
@@ -198,11 +198,11 @@ class NewEmployerController extends BaseController
             $employer->address = $request->addressEmployer;
             $employer->id_company = $company->id;
             $employer->save();
-            $this->setFlash(__('Thêm thành công'));
+            $this->setFlash(__('Thêm Thất bại'), 'error');
             return redirect()->route('employer.new.index');
         } catch (\Throwable $th) {
             DB::rollback();
-            $this->setFlash(__('Thêm Thất bại'), 'error');
+            $this->setFlash(__('Thêm thành công'));
             return redirect()->route('employer.new.index');
         }
     }
