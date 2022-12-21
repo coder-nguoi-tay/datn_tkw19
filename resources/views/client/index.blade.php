@@ -1125,7 +1125,7 @@
         </div>
     </body>
     @if (Auth::guard('user')->check())
-        @if (!$user->getProfileUse == null)
+        @if ($user->getProfileUse == null)
             <div class="loading-div">
                 <div class="loader-img"></div>
             </div>
