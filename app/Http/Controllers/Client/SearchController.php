@@ -73,7 +73,6 @@ class SearchController extends BaseController
             'Tìm kiếm việc làm ' . $request->key
         ];
         try {
-            $newSizeLimit = $this->newListLimit($request);
             $that = $request;
             $data = $this->job
                 ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
@@ -119,6 +118,7 @@ class SearchController extends BaseController
                             $that->majors
                         );
                 })
+                ->where('job.status', 1)
                 ->distinct()
                 ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
                 ->select('job.*')

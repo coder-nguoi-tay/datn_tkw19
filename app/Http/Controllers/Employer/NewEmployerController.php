@@ -280,4 +280,6 @@ class NewEmployerController extends BaseController
             return redirect()->back();
         }
     }
+
+
 }

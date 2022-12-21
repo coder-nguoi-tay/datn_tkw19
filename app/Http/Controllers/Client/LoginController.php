@@ -113,24 +113,23 @@ class LoginController extends BaseController
     }
     public function updateRegister(UserRegisterRequest $request)
     {
-        if ($request->form == 1) {
-            if ($this->checkMailUser($request)) {
-                if ($this->user->create([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
-                    'role_id' => 1,
-                    'status' => 2
-                ])->save()) {
-                    $this->setFlash(__('Đăng ký tài khoản thành công'));
-                    return redirect(route('owner.index'));
-                }
+        if ($this->checkMailUser($request)) {
+            if ($this->user->create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+                'role_id' => 1,
+                'status' => 2
+            ])->save()) {
+                return response()->json([
+                    'data' => 'Đăng ký tài khoản thành công',
+                    'status' => StatusCode::OK
+                ]);
             }
-            // $this->setFlash(__('Đã có một lỗi xảy ra <br> Hoặc email đã tồn tại <br> Vui lòng nhập thử bằng email khác'), StatusCode::ERROR);
-            return view('client.register.index', [
-                'message' => 'email đã được đăng ký',
-                'request' => $request->all(),
-            ]);
         }
+        return response()->json([
+            'data' => 'Email này đã được đăng ký',
+            'status' => StatusCode::FORBIDDEN
+        ], StatusCode::OK);
     }
 }

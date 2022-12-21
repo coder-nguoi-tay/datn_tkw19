@@ -51,6 +51,8 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     // Route::resource('', HomeEmployerController::class);
     Route::get('logout', [HomeEmployerController::class, 'logout'])->name('logout');
     Route::get('', [HomeEmployerController::class, 'index'])->name('index');
+
+    
     // Route::resource('new', NewEmployerController::class);
     Route::post('new/store', [NewEmployerController::class, 'store'])->name('new.store');
     Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');

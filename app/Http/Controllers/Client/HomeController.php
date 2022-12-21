@@ -82,6 +82,7 @@ class HomeController extends BaseController
 
         if (Auth::guard('user')->check()) {
             $user = $this->user->with('getProfileUse')->where('id', Auth::guard('user')->user()->id)->first();
+            $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
         }
         $new = News::all();
         // dd($new);
@@ -99,7 +100,7 @@ class HomeController extends BaseController
             'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
             'user' => $user ?? '',
-            // 'getskill' => $getskill,
+            'getskill' => $getskill ?? '',
             'job' => $this->job
                 ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
                 ->join('employer', 'employer.id', '=', 'job.employer_id')
@@ -191,8 +192,6 @@ class HomeController extends BaseController
             ->where('company.id', $job->idCompany)
             // ->with(['getWage', 'getlocation', 'getMajors'])
             ->paginate(4);
-        // tất cả cv của người tìm việc
-        // dd(Auth::guard('user'));
         if (Auth::guard('user')->check()) {
             $cv = $this->upload->where('user_id', Auth::guard('user')->user()->id)->get();
         }
@@ -270,18 +269,6 @@ class HomeController extends BaseController
         return view('client.search', [
             'job' => $job,
             'breadcrumbs' => $breadcrumbs,
-        ]);
-    }
-    public function showNew()
-    {
-        return response()->json([
-            'job' => $this->job
-                ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
-                ->join('employer', 'employer.id', '=', 'job.employer_id')
-                ->join('company', 'company.id', '=', 'employer.id_company')
-                ->where('job.status', 1)
-                ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
-                ->paginate(2)
         ]);
     }
     public function upCv(Request $request)
