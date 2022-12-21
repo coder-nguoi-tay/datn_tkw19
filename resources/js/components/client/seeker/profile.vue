@@ -22,7 +22,7 @@
                 role="button"
               >
                 <img
-                  v-if="data.user === null"
+                  v-if="Media === '' && checkImage == '' && !filePreview"
                   src="https://i.pinimg.com/236x/15/46/2e/15462ed447e25356837b32a7e22e538f.jpg"
                   alt=""
                 />
@@ -36,10 +36,11 @@
                   />
                 </div>
                 <img
-                  v-if="!filePreview && data.user.images"
-                  :src="data.user.images"
+                  v-if="!filePreview && Media != ''"
+                  :src="Media"
                   class="img"
                 />
+
                 <div
                   class="img-display_author d-flex"
                   id="img-preview"
@@ -49,6 +50,7 @@
                   <div style="display: none">
                     <input
                       type="file"
+                      id="file"
                       @change="onChange"
                       ref="fileInput"
                       accept="image/*"
@@ -58,9 +60,12 @@
                   <img v-if="filePreview" :src="filePreview" class="img" />
                 </div>
               </div>
+              <input type="hidden" name="images" :value="Media" />
+              <div class="text-center">
+                <span class="error">{{ errmsgCheckImage }}</span>
+              </div>
             </div>
           </div>
-          <ErrorMessage class="error" name="images" />
         </div>
 
         <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
@@ -97,7 +102,7 @@
                 <Field
                   type="text"
                   class="form-control rounded"
-                  v-model="model.phone"
+                  v-model="valueSelect.phone"
                   name="phone"
                   rules="required|telephone"
                 />
@@ -109,7 +114,7 @@
                 <label class="text-dark ft-medium">Địa chỉ</label>
                 <Field
                   type="text"
-                  v-model="model.address"
+                  v-model="valueSelect.address"
                   class="form-control rounded"
                   name="address"
                   rules="required|max:255"
@@ -123,7 +128,7 @@
                 <Field
                   name="experience_id"
                   as="select"
-                  v-model="model.experience_id"
+                  v-model="valueSelect.experience_id"
                   rules="required"
                   class="form-control"
                 >
@@ -145,7 +150,7 @@
                 <Field
                   name="lever_id"
                   as="select"
-                  v-model="model.lever_id"
+                  v-model="valueSelect.lever_id"
                   rules="required"
                   class="form-control"
                 >
@@ -167,7 +172,7 @@
                 <Field
                   name="wage_id"
                   as="select"
-                  v-model="model.wage_id"
+                  v-model="valueSelect.wage_id"
                   rules="required"
                   class="form-control"
                 >
@@ -189,7 +194,7 @@
                 <Field
                   name="profession_id"
                   as="select"
-                  v-model="model.profession_id"
+                  v-model="valueSelect.profession_id"
                   rules="required"
                   class="form-control"
                 >
@@ -211,7 +216,7 @@
                 <Field
                   name="time_work_id"
                   as="select"
-                  v-model="model.time_work_id"
+                  v-model="valueSelect.time_work_id"
                   rules="required"
                   class="form-control"
                 >
@@ -230,16 +235,24 @@
             <div class="col-xl-6 col-lg-6">
               <div class="form-group">
                 <label class="text-dark ft-medium">Kỹ năng</label>
-                <Multiselect
+                <Field
+                  class="form-control"
                   v-model="value"
-                  mode="tags"
-                  :searchable="true"
-                  :options="options"
-                  label="label"
-                  track-by="label"
-                  :infinite="true"
-                  :object="true"
-                />
+                  name="skill_id"
+                  rules="required"
+                >
+                  <Multiselect
+                    placeholder="Chọn Kỹ năng"
+                    v-model="value"
+                    mode="tags"
+                    :searchable="true"
+                    :options="options"
+                    label="label"
+                    track-by="label"
+                    :infinite="true"
+                    :object="true"
+                  />
+                </Field>
                 <ErrorMessage class="error" name="skill_id" />
               </div>
             </div>
@@ -272,6 +285,7 @@ import Multiselect from '@vueform/multiselect'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 import $ from 'jquery'
+import axios from 'axios'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -294,18 +308,28 @@ export default {
       filePreview: '',
       loading: false,
       value: [],
-      options: []
+      options: [],
+      valueSelect: this.data.user.get_profile_use ?? {},
+      checkImage: '',
+      errmsgCheckImage: '',
+      Media: '',
+      deleteImage: ''
     }
   },
 
   created() {
-    console.log(this.data.getskill.getskill)
-    this.data.getskill.getskill.map((e) => {
-      this.value.push({
-        value: e.id,
-        label: e.name
+    this.Media = this.data.user.get_profile_use
+      ? this.data.user.get_profile_use.images
+      : 1
+    if (this.data.getskill.getskill != null) {
+      this.data.getskill.getskill.map((e) => {
+        this.value.push({
+          value: e.id,
+          label: e.name
+        })
       })
-    })
+    }
+
     this.data.skill.map((e) => {
       this.options.push({
         value: e.id,
@@ -362,6 +386,9 @@ export default {
   },
   methods: {
     onInvalidSubmit({ values, errors, results }) {
+      if (this.checkImage == 1) {
+        this.errmsgCheckImage = 'Ảnh không được để trống'
+      }
       let firstInputError = Object.entries(errors)[0][0]
       this.$el.querySelector('input[name=' + firstInputError + ']').focus()
       $('html, body').animate(
@@ -372,22 +399,58 @@ export default {
       )
     },
     onSubmit() {
-      console.log(this.model)
+      if (this.checkImage == 1) {
+        this.errmsgCheckImage = 'Đã có 1 lỗi sảy ra'
+      } else {
+        let that = this
+        axios
+          .post(that.data.urlStore, {
+            _token: Laravel.csrfToken,
+            valueSelect: that.valueSelect,
+            name: that.model.name,
+            email: that.model.email,
+            skill_id: that.value
+          })
+          .then((data) => {
+            console.log(data.data)
+          })
+          .catch((errors) => {
+            console.log(errors)
+          })
+      }
     },
     chooseImage() {
       this.$refs['fileInput'].click()
     },
     onChange(e) {
-      this.model.images = e.target.files[0]
-      let fileInput = this.$refs.fileInput
-      let imgFile = fileInput.files
-
-      if (imgFile && imgFile[0]) {
-        let reader = new FileReader()
-        reader.onload = (e) => {
-          this.filePreview = e.target.result
+      this.deleteImage = e.target.files[0]
+      if (e.target) {
+        let Image = e.target.files[0]
+        if (Image.type.includes('image/')) {
+          this.errmsgCheckImage = ''
+          this.checkImage = 2
+        } else {
+          this.errmsgCheckImage = 'Ảnh phải đúng định dạng'
+          return
         }
-        reader.readAsDataURL(imgFile[0])
+        if (Image.size >= 5242880) {
+          this.errmsgCheckImage = 'Ảnh không được quá 5mb'
+          this.checkImage = 1
+        } else {
+          this.errmsgCheckImage = ''
+          this.checkImage = 2
+        }
+        this.model.images = e.target.files[0]
+        let fileInput = this.$refs.fileInput
+        let imgFile = fileInput.files
+
+        if (imgFile && imgFile[0]) {
+          let reader = new FileReader()
+          reader.onload = (e) => {
+            this.filePreview = e.target.result
+          }
+          reader.readAsDataURL(imgFile[0])
+        }
       }
     }
   }

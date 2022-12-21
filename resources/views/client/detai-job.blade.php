@@ -359,8 +359,6 @@
                 <div class="col-8">
                     <div class="box-title">
                         <h2 class="box-name"><span style="margin-left: 5px !important">Việc làm liên quan</span></h2>
-                        <a href="https://www.topcv.vn/cong-ty/cong-ty-cp-duoc-pham-tin-phong/48787.html" target="_blank"
-                            class="box-link">Xem tất cả <i class="fas fa-chevron-right"></i></a>
                     </div>
                     @foreach ($rules as $item)
                         <div class="job_grid d-block border rounded px-3 pt-3 pb-2">
