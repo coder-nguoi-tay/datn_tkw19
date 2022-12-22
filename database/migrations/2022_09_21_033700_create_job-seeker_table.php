@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('phone');
             $table->string('images');
             $table->integer('user_role');
-            $table->integer('skill_id');
             $table->integer('experience_id');
             $table->integer('lever_id');
             $table->integer('wage_id');
