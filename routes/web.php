@@ -53,7 +53,6 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::get('logout', [HomeEmployerController::class, 'logout'])->name('logout');
     Route::get('', [HomeEmployerController::class, 'index'])->name('index');
 
-    
     // Route::resource('new', NewEmployerController::class);
     Route::post('new/store', [NewEmployerController::class, 'store'])->name('new.store');
     Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');
@@ -68,6 +67,9 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
     Route::resource('register-company', RegisterCompanyController::class);
 });
+Route::get('register', [HomeEmployerController::class, 'register'])->name('register.employer');
+Route::post('register/create', [HomeEmployerController::class, 'store'])->name('register.employer.create');
+
 // seeker
 Route::resource('profile', SeekerHomeController::class);
 Route::resource('quan-ly-cv', SeekerManageUploadController::class);
@@ -93,4 +95,3 @@ Route::post('home/detail/upcv', [ClientHomeController::class, 'upCv'])->name('ho
 Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 'searchLocation'])->name('home.search.location');
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
 Route::get('tim-viec-lam', [SearchController::class, 'create'])->name('home.search');
-Route::get('register', [HomeEmployerController::class, 'register'])->name('register');

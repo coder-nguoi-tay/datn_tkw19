@@ -97,7 +97,7 @@ class HomeController extends BaseController
             'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
             'user' => $user ?? '',
-            // 'getskill' => $getskill,
+            'getskill' => $getskill ?? '',
             'job' => $this->job
                 ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
                 ->join('employer', 'employer.id', '=', 'job.employer_id')

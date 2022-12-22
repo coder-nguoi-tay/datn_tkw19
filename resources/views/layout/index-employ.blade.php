@@ -17,7 +17,15 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
     <script src="{{ asset('js/userApp.js') }}?t={{ time() }}" defer></script>
-
+    <script>
+        window.Laravel = {!! json_encode(
+            [
+                'csrfToken' => csrf_token(),
+                'baseUrl' => url('/'),
+            ],
+            JSON_UNESCAPED_UNICODE,
+        ) !!};
+    </script>
 </head>
 
 <body>

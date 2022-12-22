@@ -31,15 +31,6 @@
         <div class="row no-gutters">
           <div class="row">
             <div class="card-body">
-              <a
-                href=""
-                type="button"
-                class="btn btn-light"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              >
-                Quy định
-              </a>
               <!-- Modal -->
               <div
                 class="modal fade"
@@ -48,7 +39,7 @@
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
               >
-                <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLabel">
@@ -143,7 +134,10 @@
                   method="POST"
                   @submit="handleSubmit($event, onSubmit)"
                   class="form-register-employer"
+                  :action="data.urlStore"
+                  ref="formData"
                 >
+                  <input type="hidden" :value="csrfToken" name="_token" />
                   <h4 class="title-register-employer">TÀI KHOẢN</h4>
                   <div class="form-group row">
                     <label for="email" class="col-sm-4 col-form-label"
@@ -155,6 +149,7 @@
                       <Field
                         type="text"
                         name="email"
+                        v-model="model.email"
                         id="email"
                         rules="required|email|max:255"
                         class="form-control"
@@ -170,6 +165,7 @@
                     <div class="col-sm-8">
                       <Field
                         type="password"
+                        v-model="model.password"
                         name="password"
                         rules="required|max:16|min:8"
                         id="password"
@@ -188,6 +184,7 @@
                     <div class="col-sm-8">
                       <Field
                         type="password"
+                        v-model="model.password_old"
                         name="password_old"
                         rules="required|confirmed:@password"
                         id="password_old"
@@ -208,6 +205,7 @@
                     <div class="col-sm-8">
                       <Field
                         type="text"
+                        v-model="model.name"
                         name="name"
                         rules="required|max:128"
                         id="name"
@@ -225,7 +223,8 @@
                       <Field
                         type="text"
                         name="sdt"
-                        rules="telephone"
+                        v-model="model.sdt"
+                        rules="required|telephone"
                         id="sdt"
                         class="form-control"
                         placeholder="Số điện thoại cá nhân"
@@ -238,14 +237,19 @@
                       >Giới tính:</label
                     >
                     <div class="col-sm-8">
-                      <select
+                      <Field
+                        v-model="model.sex"
+                        name="sex"
+                        as="select"
+                        rules="required"
                         class="form-select"
-                        aria-label="Default select example"
                       >
-                        <option selected>-- Chọn giới tính --</option>
-                        <option value="1">Nam</option>
-                        <option value="2">Nữ</option>
-                      </select>
+                        <option value disabled selected>Chọn giới tính</option>
+                        <option value="0">Không yêu cầu</option>
+                        <option value="nam">nam</option>
+                        <option value="nữ">nữ</option>
+                      </Field>
+                      <ErrorMessage class="error" name="sex" />
                     </div>
                   </div>
                   <br />
@@ -257,6 +261,7 @@
                       <Field
                         type="text"
                         name="company"
+                        v-model="model.company"
                         id="company"
                         rules="required|max:128"
                         class="form-control"
@@ -270,14 +275,33 @@
                       >Vị trí công tác:</label
                     >
                     <div class="col-sm-8">
-                      <select
-                        class="form-select"
-                        aria-label="Default select example"
-                      >
-                        <option selected>-- Chọn vị trí công tác: --</option>
-                        <option value="1">Nam</option>
-                        <option value="2">Nữ</option>
-                      </select>
+                      <Field
+                        type="text"
+                        name="workplace"
+                        v-model="model.workplace"
+                        id="workplace"
+                        rules="required|max:128"
+                        class="form-control"
+                        placeholder="Vị trí công tác"
+                      />
+                      <ErrorMessage class="error" name="workplace" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label"
+                      >Địa điểm cụ thể:</label
+                    >
+                    <div class="col-sm-8">
+                      <Field
+                        type="text"
+                        name="address"
+                        v-model="model.address"
+                        id="address"
+                        rules="required|max:128"
+                        class="form-control"
+                        placeholder="Địa điểm làm việc cụ thể"
+                      />
+                      <ErrorMessage class="error" name="address" />
                     </div>
                   </div>
                   <br />
@@ -286,14 +310,23 @@
                       >Địa điểm làm việc:</label
                     >
                     <div class="col-sm-8">
-                      <select
+                      <Field
+                        v-model="model.location_id"
+                        name="location_id"
+                        as="select"
+                        rules="required"
                         class="form-select"
-                        aria-label="Default select example"
                       >
-                        <option selected>-- Chọn địa điểm làm việc: --</option>
-                        <option value="1">Nam</option>
-                        <option value="2">Nữ</option>
-                      </select>
+                        <option value disabled selected>Chọn Địa chỉ</option>
+                        <option
+                          v-for="item in data.location"
+                          :key="item.id"
+                          :value="item.id"
+                        >
+                          {{ item.label }}
+                        </option>
+                      </Field>
+                      <ErrorMessage class="error" name="location_id" />
                     </div>
 
                     <div class="form-group form-check">
@@ -320,8 +353,9 @@
                       <label class="form-check-label">
                         Tôi đồng ý với
                         <a
-                          href=""
-                          target="_blank"
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModal"
                           class="text-danger text-decoration-none"
                         >
                           &nbsp;Điều khoản dịch vụ&nbsp;
@@ -407,7 +441,18 @@ export default {
             confirmed: 'Xác nhận mật khẩu không đúng.'
           },
           sdt: {
+            required: 'Vui lòng nhập số điện thoại',
             telephone: 'Vui lòng nhập chính xác định dạng số điện thoại.'
+          },
+          location_id: {
+            required: 'vui lòng chọn địa chỉ.'
+          },
+          workplace: {
+            required: 'vui lòng chọn vị trí công tác.',
+            max: 'không được quá 128 ký tự.'
+          },
+          sex: {
+            required: 'vui lòng chọn giới tính.'
           }
         }
       }
@@ -417,7 +462,10 @@ export default {
     })
   },
   data: function () {
-    return {}
+    return {
+      csrfToken: Laravel.csrfToken,
+      model: {}
+    }
   },
   mounted() {},
   props: ['data'],
