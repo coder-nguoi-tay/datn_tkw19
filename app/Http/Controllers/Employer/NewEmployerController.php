@@ -72,14 +72,16 @@ class NewEmployerController extends BaseController
         $all_day = cal_days_in_month(CAL_GREGORIAN, $m, $y);
         $mon = Carbon::parse(new Carbon('last day of last month'))->format('d');
         $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
-        $job = $this->job->where('employer_id', Auth::guard('user')->user()->id)
+        $job = $this->job->where([
+            ['employer_id', $checkCompany->id],
+            ['status', 1],
+        ])
             ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->select('job.*', 'company.logo as logo')
             ->Orderby('created_at', 'DESC')
             ->get();
-        // dd($job);
         return view('employer.new.index', [
             'job' => $job,
             'all_day' => $all_day,
@@ -127,6 +129,7 @@ class NewEmployerController extends BaseController
     {
         $end_time = Carbon::parse($request['data']['end_job_time'])->format('Y-m-d');
         $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
+        return $employer;
         try {
             $job = new $this->job();
             $job->title = $request['data']['title'];
@@ -185,7 +188,6 @@ class NewEmployerController extends BaseController
      */
     public function edit($id)
     {
-        $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         return view('employer.new.edit', [
             'job' => $this->job->with('getskill')->where([
                 ['id', $id],

@@ -393,7 +393,7 @@ export default {
     Multiselect
   },
   props: ['data'],
-  data: function() {
+  data: function () {
     return {
       csrfToken: Laravel.csrfToken,
       model: {},
@@ -488,19 +488,19 @@ export default {
       )
     },
     onSubmit() {
-      console.log(this.model, this.value)
+      let that = this
       axios
         .post('/employer/new/store', {
           _token: this.csrfToken,
           data: this.model,
           skill: this.value
         })
-        .then(function(response) {
+        .then(function (response) {
           if (response.data.status == 200) {
-            window.location.href = this.data.urlBack
+            window.location.href = that.data.urlBack
           }
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error)
         })
       // this.$refs.formData.submit()
