@@ -67,6 +67,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
 // seeker
 Route::resource('profile', SeekerHomeController::class);
 Route::resource('quan-ly-cv', SeekerManageUploadController::class);
+Route::get('quan-ly-cv/tao-moi', [SeekerManageUploadController::class, 'createFormCV'])->name('user.createFormCV');
 Route::get('user/profile/{token}', [SeekerHomeController::class, 'userProfile'])->name('user.profile');
 Route::get('user/new/favourite', [SeekerHomeController::class, 'userFavourite'])->name('user.favourite');
 Route::delete('delete/favourite/{id}', [SeekerHomeController::class, 'deleteFavourite'])->name('delete.favourite');

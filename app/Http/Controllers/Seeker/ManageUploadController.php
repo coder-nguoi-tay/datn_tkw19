@@ -92,6 +92,9 @@ class ManageUploadController extends Controller
         //
     }
 
+    public function createFormCV(){
+        return view('client.seeker.create_form_cv');
+    }
     /**
      * Update the specified resource in storage.
      *

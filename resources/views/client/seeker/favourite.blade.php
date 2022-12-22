@@ -30,13 +30,13 @@
                                                     <li>
                                                         <a href="javascript:void(0);"
                                                             class="
-                      px-2
-                      py-1
-                      medium
-                      bg-light-success
-                      rounded
-                      text-success
-                    "><i
+                                                                    px-2
+                                                                    py-1
+                                                                    medium
+                                                                    bg-light-success
+                                                                    rounded
+                                                                    text-success
+                                                                    "><i
                                                                 class="far fa-money-bill-alt mr-1"></i>{{ $item->getWage->name }}</a>
                                                     </li>
                                                     <li>

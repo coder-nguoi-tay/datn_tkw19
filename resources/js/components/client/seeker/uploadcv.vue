@@ -34,7 +34,7 @@
           <div>File tải lên không quá: 5 MB</div>
         </div>
         <button class="btn btn-info btn-create-cv" style="margin-top: 10px">
-          Tạo
+          Tải lên
         </button>
       </form>
     </VeeForm>
