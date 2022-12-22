@@ -121,8 +121,9 @@ class NewEmployerController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EmployerCreateRequest $request) //EmployerCreateRequest
+    public function store(Request $request) //EmployerCreateRequest
     {
+        dd($request->all());
         try {
             // create to job
             $job = new $this->job();

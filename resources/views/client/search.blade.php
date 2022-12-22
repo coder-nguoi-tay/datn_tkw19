@@ -46,7 +46,7 @@
                     <div class="col test">
                         <div class="p-1">
                             <input type="text" class="form-control" name="key" id=""
-                                placeholder="Tìm kiếm...." value="{{ $request['key'] }}">
+                                placeholder="Tìm kiếm...." value="{{ isset($request['key']) }}">
                         </div>
                     </div>
                     <div class="col">

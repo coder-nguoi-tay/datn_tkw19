@@ -359,8 +359,6 @@
                 <div class="col-8">
                     <div class="box-title">
                         <h2 class="box-name"><span style="margin-left: 5px !important">Việc làm liên quan</span></h2>
-                        <a href="https://www.topcv.vn/cong-ty/cong-ty-cp-duoc-pham-tin-phong/48787.html" target="_blank"
-                            class="box-link">Xem tất cả <i class="fas fa-chevron-right"></i></a>
                     </div>
                     @foreach ($rules as $item)
                         <div class="job_grid d-block border rounded px-3 pt-3 pb-2">
@@ -539,6 +537,27 @@
         </section>
 
         <!-- Log In Modal -->
+        <div class="modal fade" id="exampleModallogin" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Đăng nhập</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <client-login
+                            :data="{{ json_encode([
+                                'urlStore' => route('owner.store'),
+                                'message' => $message ?? '',
+                            ]) }}">
+                            <client-login>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- End Modal -->
 
         <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
@@ -565,5 +584,4 @@
             </div>
         </div>
     </div>
-    <div id="editor"></div>
 @endsection

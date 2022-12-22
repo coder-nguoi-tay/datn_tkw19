@@ -73,16 +73,17 @@ class SearchController extends BaseController
             'Tìm kiếm việc làm ' . $request->key
         ];
         try {
-            $newSizeLimit = $this->newListLimit($request);
             $that = $request;
             $data = $this->job
                 ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
                 ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
                 ->Where(function ($q) use ($that) {
-                    $q->orWhere($this->escapeLikeSentence('job.title', $that->key))
-                        ->orWhere(function ($q) use ($that) {
-                            $q->whereIn('job_skill.skill_id', $that->skill);
-                        })
+                    if ($that->key) {
+                        $q->orWhere($this->escapeLikeSentence('job.title', $that->key));
+                    }
+                    $q->orWhere(function ($a) use ($that) {
+                        $a->whereIn('job_skill.skill_id', $that->skill);
+                    })
                         ->orWhere(
                             'job.location_id',
                             $that->location_id
@@ -116,6 +117,7 @@ class SearchController extends BaseController
                             $that->majors
                         );
                 })
+                ->where('job.status', 1)
                 ->distinct()
                 ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
                 ->select('job.*')
