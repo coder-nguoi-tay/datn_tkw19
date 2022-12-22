@@ -20,6 +20,7 @@ use App\Http\Controllers\Seeker\ManageUploadController as SeekerManageUploadCont
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\SearchController;
 use App\Http\Controllers\Employer\ManagerUploadCvController;
+use App\Http\Controllers\Employer\RegisterCompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::post('package/payment/momo', [EmployerPackageController::class, 'Momo'])->name('package.payment.momo');
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
+    Route::resource('register-company', RegisterCompanyController::class);
 });
 // seeker
 Route::resource('profile', SeekerHomeController::class);

@@ -71,7 +71,7 @@ class NewEmployerController extends BaseController
         $y = $date['year'];
         $all_day = cal_days_in_month(CAL_GREGORIAN, $m, $y);
         $mon = Carbon::parse(new Carbon('last day of last month'))->format('d');
-        // dd($mon);
+        $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         $job = $this->job->where('employer_id', Auth::guard('user')->user()->id)
             ->with(['getWage', 'getlocation', 'getskill'])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
@@ -85,6 +85,7 @@ class NewEmployerController extends BaseController
             'm' => $m,
             'mon' => $mon,
             'title' => 'Tin Tuyển Dụng',
+            'checkCompany' => $checkCompany,
         ]);
     }
 
@@ -134,7 +135,6 @@ class NewEmployerController extends BaseController
             $job->level_id = $request['data']['level_id'];
             $job->experience_id = $request['data']['experience_id'];
             $job->wage_id = $request['data']['wage_id'];
-            $job->skill_id = 1;
             $job->benefit = $request['data']['benefit'];
             $job->profession_id = $request['data']['profession_id'];
             $job->location_id = $request['data']['location_id'];

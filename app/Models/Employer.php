@@ -22,6 +22,6 @@ class Employer extends Model
     ];
     public function getCompany()
     {
-        return $this->belongsTo(Company::class, 'id_company', 'id');
+        return $this->hasOne(Company::class, 'id', 'id_company');
     }
 }
