@@ -53,7 +53,7 @@
                       as="select"
                       v-model="model.sex"
                       rules="required"
-                      class="form-control"
+                      class="form-control form-text"
                     >
                       <option value disabled selected>Chọn giới tính</option>
                       <option value="0">không yêu cầu</option>
@@ -73,7 +73,7 @@
                       as="select"
                       v-model="model.location_id"
                       rules="required"
-                      class="form-control"
+                      class="form-control form-text"
                     >
                       <option value disabled selected>Chọn Địa chỉ</option>
                       <option
@@ -97,7 +97,7 @@
                       name="address"
                       v-model="model.address"
                       rules="required"
-                      class="form-control"
+                      class="form-control form-text"
                       placeholder="Nhập địa chỉ"
                     />
                     <ErrorMessage class="error" name="address" />
@@ -150,7 +150,7 @@
                       as="select"
                       v-model="model.majors_id"
                       rules="required"
-                      class="form-control"
+                      class="form-control form-text"
                     >
                       <option value disabled selected>Chọn chuyên nghề</option>
                       <option
@@ -174,7 +174,7 @@
                       as="select"
                       v-model="model.profession_id"
                       rules="required"
-                      class="form-control"
+                      class="form-control form-text"
                     >
                       <option value disabled selected>Chọn vị trí</option>
                       <option
@@ -196,7 +196,7 @@
                       as="select"
                       v-model="model.level_id"
                       rules="required"
-                      class="form-control"
+                      class="form-control form-text"
                     >
                       <option value disabled selected>
                         Chọn Trình độ học vẫn
@@ -223,7 +223,7 @@
                       as="select"
                       v-model="model.experience_id"
                       rules="required"
-                      class="form-control"
+                      class="form-control form-text"
                     >
                       <option value disabled selected>Chọn Kinh nghiệm</option>
                       <option
@@ -247,7 +247,7 @@
                       as="select"
                       v-model="model.wage_id"
                       rules="required"
-                      class="form-control"
+                      class="form-control form-text"
                     >
                       <option value disabled selected>Chọn Mức lương</option>
                       <option
@@ -271,7 +271,7 @@
                       as="select"
                       v-model="model.time_work_id"
                       rules="required"
-                      class="form-control"
+                      class="form-control form-text"
                     >
                       <option value disabled selected>
                         Chọn Yêu cầu thời gian làm việc
@@ -309,7 +309,7 @@
                       >Kỹ năng<span class="required-lable">*</span></label
                     >
                     <Field
-                      class="form-control"
+                      class="form-control form-text"
                       v-model="value"
                       name="skill_id"
                       rules="required"
@@ -337,7 +337,7 @@
                       as="select"
                       v-model="model.wk_form_id"
                       rules="required"
-                      class="form-control"
+                      class="form-control form-text"
                     >
                       <option value disabled selected>
                         Chọn Hình thức làm việc
@@ -393,7 +393,7 @@ export default {
     Multiselect
   },
   props: ['data'],
-  data: function () {
+  data: function() {
     return {
       csrfToken: Laravel.csrfToken,
       model: {},
@@ -495,12 +495,12 @@ export default {
           data: this.model,
           skill: this.value
         })
-        .then(function (response) {
+        .then(function(response) {
           if (response.data.status == 200) {
             window.location.href = this.data.urlBack
           }
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error)
         })
       // this.$refs.formData.submit()

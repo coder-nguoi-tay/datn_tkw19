@@ -34,33 +34,6 @@ use Carbon\Carbon;
                                             <i class="fa fa-plus"></i>Thêm
                                         </button>
                                         @endif
-
-
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="">
-                                    <h3> Các bài mà bạn đã đăng</h3>
-                                </div>
-                                <div class="searchFrom pull-right">
-                                    <form action="" class="form-inline">
-                                        <div>
-                                            <input name="search_input" class="form-control" value="" autocomplete="off" type="control" id="search_input">
-                                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>
-                                                &nbsp; Tìm kiếm</button>
-                                        </div>
-                                        @if ($checkCompany->getCompany)
-                                        <a href="{{ route('employer.new.create') }}" class="btn btn-primary btn-action-create">
-                                            <i class="fa fa-plus"></i>Thêm
-                                        </a>
-                                        @else
-                                        <button href="" type="button" data-coreui-toggle="modal" data-coreui-target="#exampleModal" class="btn btn-primary btn-action-create">
-                                            <i class="fa fa-plus"></i>Thêm
-                                        </button>
-                                        @endif
                                     </form>
                                 </div>
                             </div>
@@ -69,22 +42,22 @@ use Carbon\Carbon;
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Logo</th>
-                                        <th>Tiêu Đề</th>
-                                        <th>Vị trí làm việc</th>
-                                        <th> Hình thức làm việc</th>
-                                        <th> Trạng Thái</th>
-                                        <th>Số lượng hồ sơ đã nhân</th>
-                                        <th> Thời gian bắt đầu</th>
-                                        <th>Kết thúc</th>
-                                        <th>Thời gian còn lại</th>
-                                        <th colspan="2">Action</th>
+                                        <th scope="col">Logo</th>
+                                        <th scope="col">Tiêu Đề</th>
+                                        <th scope="col">Vị trí làm việc</th>
+                                        <th scope="col"> Hình thức làm việc</th>
+                                        <th scope="col"> Trạng Thái</th>
+                                        <th scope="col">Số lượng hồ sơ đã nhân</th>
+                                        <th scope="col"> Thời gian bắt đầu</th>
+                                        <th scope="col">Kết thúc</th>
+                                        <th scope="col">Thời gian còn lại</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($job as $item)
                                     <tr>
-                                        <th scope="row"><img src="{{ asset($item->logo) }}" alt="" width="150px" height="150px"></th>
+                                        <td scope="row"><img src="{{ asset($item->logo) }}" alt="" width="150px" height="150px"></td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->getprofession->name }}</td>
                                         <td>{{ $item->getwk_form->name }}</td>
@@ -100,6 +73,7 @@ use Carbon\Carbon;
                                                 <i class="fa fa-plus"></i>sửa
                                             </a></td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -131,4 +105,8 @@ use Carbon\Carbon;
         </div>
     </div>
 </div>
+
+<style>
+
+</style>
 @endsection
