@@ -88,4 +88,7 @@ class HomeEmployerController extends Controller
         Auth::guard('user')->logout();
         return redirect()->route('home.index');
     }
+    public function register(){
+        return view('employer.pages.register');
+    }
 }
