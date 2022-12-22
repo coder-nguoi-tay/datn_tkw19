@@ -73,12 +73,13 @@ class NewEmployerController extends BaseController
         $mon = Carbon::parse(new Carbon('last day of last month'))->format('d');
         $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         $job = $this->job->where('employer_id', Auth::guard('user')->user()->id)
-            ->with(['getWage', 'getlocation', 'getskill'])
+            ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->select('job.*', 'company.logo as logo')
             ->Orderby('created_at', 'DESC')
             ->get();
+        // dd($job);
         return view('employer.new.index', [
             'job' => $job,
             'all_day' => $all_day,
@@ -182,10 +183,13 @@ class NewEmployerController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Job $job)
+    public function edit($id)
     {
+        $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         return view('employer.new.edit', [
-            'job' => $job->with('getskill')->get(),
+            'job' => $this->job->with('getskill')->where([
+                ['id', $id],
+            ])->first(),
             'lever' => $this->getlever(),
             'experience' => $this->getexperience(),
             'wage' => $this->getwage(),
@@ -194,14 +198,7 @@ class NewEmployerController extends BaseController
             'profession' => $this->getprofession(),
             'majors' => $this->getmajors(),
             'location' => $this->getlocation(),
-            'workingform' => $this->getworkingform(),
-            'user' =>  $this->user
-                ->join('employer', 'employer.user_id', '=', 'users.id')
-                ->where('users.id', 1)
-                ->get(),
-            'company' => $this->employer->where('user_id', 1)
-                ->join('company', 'company.id', '=', 'employer.id_company')
-                ->get()
+            'workingform' => $this->getworkingform()
         ]);
     }
 
@@ -214,7 +211,48 @@ class NewEmployerController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        $end_time = Carbon::parse($request['data']['end_job_time'])->format('Y-m-d');
+        try {
+            $job =  $this->job->where('id', $id)->first();
+            $job->title = $request['data']['title'];
+            $job->quatity = $request['data']['quatity'];
+            $job->sex = $request['data']['sex'];
+            $job->describe = $request['data']['describe'];
+            $job->level_id = $request['data']['level_id'];
+            $job->experience_id = $request['data']['experience_id'];
+            $job->wage_id = $request['data']['wage_id'];
+            $job->benefit = $request['data']['benefit'];
+            $job->profession_id = $request['data']['profession_id'];
+            $job->location_id = $request['data']['location_id'];
+            $job->address = $request['data']['address'];
+            $job->majors_id = $request['data']['majors_id'];
+            $job->wk_form_id = $request['data']['wk_form_id'];
+            $job->job_time = Carbon::now();
+            $job->end_job_time = $end_time;
+            $job->time_work_id = $request['data']['time_work_id'];
+            $job->candidate_requirements = $request['data']['candidate_requirements'];
+            $job->status = 1;
+            $job->save();
+            //create to jobskill
+            $jobskill =  $this->jobskill->where('job_id', $id)->get();
+            foreach ($jobskill as $value) {
+                $this->jobskill->find($value->id)->delete();
+            }
+            foreach ($request['skill'] as $item) {
+                $this->jobskill->create([
+                    'job_id' => $job->id,
+                    'skill_id' => $item['value']
+                ])->save();
+            }
+            return response()->json([
+                'status' => StatusCode::OK
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json([
+                'status' => StatusCode::FORBIDDEN
+            ]);
+        }
     }
 
     /**

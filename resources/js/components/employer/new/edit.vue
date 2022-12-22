@@ -4,7 +4,7 @@
     <div class="card-create-employer">
       <div class="card">
         <div class="card-header">
-          <h5 class="card-title">Sửa tin tuyển dụng</h5>
+          <h5 class="card-title">Đăng tin tuyển dụng</h5>
         </div>
         <VeeForm
           as="div"
@@ -396,12 +396,18 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: {},
+      model: this.data.job,
       value: [],
       options: []
     }
   },
   created() {
+    this.data.job.getskill.map((e) => {
+      this.value.push({
+        value: e.id,
+        label: e.name
+      })
+    })
     this.data.skill.map((e) => {
       this.options.push({
         value: e.id,
@@ -488,20 +494,22 @@ export default {
       )
     },
     onSubmit() {
-      console.log(this.model, this.value)
+      let that = this
+      let id = this.data.job.id
       axios
-        .post('/employer/new/store', {
+        .post('/employer/new/update/' + id, {
           _token: this.csrfToken,
           data: this.model,
           skill: this.value
         })
         .then(function (response) {
-          console.log(response)
+          if (response.data.status == 200) {
+            window.location.href = that.data.urlBack
+          }
         })
         .catch(function (error) {
           console.log(error)
         })
-      // this.$refs.formData.submit()
     }
   }
 }
@@ -522,3 +530,4 @@ export default {
   width: 100%;
 }
 </style>
+<style src="@vueform/multiselect/themes/default.css"></style>
