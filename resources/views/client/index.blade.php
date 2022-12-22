@@ -88,7 +88,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="col">
                                         <div class="p-1"><select class="form-select select2-location" name="location"
                                                 aria-label="Default select example">
@@ -882,7 +882,8 @@
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                             <div class="blg_grid_box">
                                 <div class="blg_grid_thumb">
-                                    <a href="blog-detail.html"><img src="{{ $item->new_image }}" class="img-fluid w-75 rounded "
+                                    <a href="blog-detail.html"><img src="{{ $item->new_image }}"
+                                            class="img-fluid w-75 rounded "
                                             style="display : block;
                                                    margin-left: auto;
                                                    margin-right: auto;
@@ -924,7 +925,8 @@
                                                     <li>
                                                         <div class="elsio_ic"><i class="fa fa-clock text-warning"></i>
                                                         </div>
-                                                        <div class="elsio_tx">{{ ($item->created_at)->format('d-m-Y') }}</div>
+                                                        <div class="elsio_tx">{{ $item->created_at->format('d-m-Y') }}
+                                                        </div>
                                                     </li>
                                                 </ul>
                                             </div>

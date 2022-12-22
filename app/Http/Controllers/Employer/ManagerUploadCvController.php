@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employer;
 use App\Models\Job;
 use App\Models\SaveCv;
 use Illuminate\Http\Request;
@@ -17,13 +18,16 @@ class ManagerUploadCvController extends Controller
      */
     public SaveCv $savecv;
     public Job $job;
-    public function __construct(SaveCv $savecv, Job $job)
+    public Employer $employer;
+    public function __construct(SaveCv $savecv, Job $job, Employer $employer)
     {
         $this->savecv = $savecv;
         $this->job = $job;
+        $this->employer = $employer;
     }
     public function index()
     {
+        $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         $cv = $this->savecv
             ->join('job', 'job.id', '=', 'save_cv.id_job')
 
@@ -41,11 +45,10 @@ class ManagerUploadCvController extends Controller
 
             ->leftjoin('majors', 'majors.id', '=', 'job.majors_id')
 
-            ->where('job.employer_id', Auth::guard('user')->user()->id)
+            ->where('job.employer_id', $checkCompany->id)
 
             ->select('users.name as user_name', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'job-seeker.*', 'profession.name as profession_name', 'experience.name as experience_experience', 'time_work.name as time_work_name', 'majors.name as majors_name')
             ->get();
-        // dd($cv);
         return view('employer.managercv.index', [
             'cv' => $cv
         ]);
