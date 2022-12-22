@@ -1,93 +1,481 @@
 <template>
-  <div class="container">
-    <div class="card login-card">
-      <div class="row no-gutters">
-        <div class="col-md-5">
-          <!-- src="assets/images/login.jpg" -->
-          <img
-            src="public/assets/img/login.jpg"
-            alt="login"
-            class="login-card-img"
-          />
+  <div class="container-fluid">
+    <div class="register-header-box">
+      <div class="overlay">
+        <div class="register-header-logo d-flex justify-content-between p-4">
+          <div class="back">
+            <a href="/home" class="text-decoration-none text-white btn-comback"
+              ><i class="fas fa-arrow-left"></i>
+              Quay lại
+            </a>
+          </div>
+          <div class="logo">
+            <img
+              src="/assets/img/user/banner-5.jpg"
+              width="160px"
+              class="logo-lg"
+            />
+            <img src="/assets/img/user/banner-5.jpg" class="logo-mobile" />
+          </div>
         </div>
-        <div class="col-md-7">
-          <div class="card-body">
-            <h3 class="login-card-description">Chào mừng bạn đến với ITWork</h3>
-            <p class="login-card-description-text">
-              Cùng xây dựng một hồ sơ nổi bật và nhận được các cơ hội sự nghiệp
-              lý tưởng
-            </p>
-            <form action="#!" class="form-register-employer">
-              <div class="form-group ">
-                <label for="name">Họ và tên</label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  class="form-control"
-                  placeholder="Nhập họ và tên của bạn"
-                />
-              </div>
-              <div class="form-group ">
-                <label for="email">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  class="form-control"
-                  placeholder="Nhập email của bạn"
-                />
-              </div>
-              <div class="form-group mb-4 ">
-                <label for="password">Mật khẩu</label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  class="form-control"
-                  placeholder="Nhập mật khẩu"
-                />
-              </div>
-              <div class="form-group mb-4 ">
-                <label for="password_old">Xác nhận mật khẩu</label>
-                <input
-                  type="password_old"
-                  name="password_old"
-                  id="password_old"
-                  class="form-control"
-                  placeholder="Nhập lại mật khẩu"
-                />
-              </div>
-              <input
-                name="login"
-                id="login"
-                class="btn btn-block login-btn mb-4"
-                type="button"
-                value="Đăng ký"
-              />
-            </form>
 
-            <p class="login-card-footer-text">
-              Bạn đã có tài khoản?
-              <a href="#!" class="text-reset">Đăng nhập ngay</a>
-            </p>
-            <nav class="login-card-footer-nav">
-              <a href="#!">Bạn gặp khó khăn khi tạo tài khoản?</a>
-              <br>
-              <a href="#!">Vui lòng gọi tới số 096 252 3872 (giờ hành chính).</a>
-            </nav>
+        <h3 class="login-card-description">Đăng ký tài khoản Nhà tuyển dụng</h3>
+        <p class="login-card-description-text">
+          Cùng tạo dựng lợi thế cho doanh nghiệp bằng trải nghiệm công nghệ
+          tuyển dụng ứng dụng sâu AI & Hiring Funnel
+        </p>
+      </div>
+    </div>
+    <div class="container form-employer-register">
+      <div class="card login-card">
+        <div class="row no-gutters">
+          <div class="row">
+            <div class="card-body">
+              <a
+                href=""
+                type="button"
+                class="btn btn-light"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Quy định
+              </a>
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Quy Định
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="register-policy">
+                        Để đảm bảo chất lượng dịch vụ, ITWork
+
+                        <span class="text-danger"
+                          >không cho phép một người dùng tạo nhiều tài khoản
+                          khác nhau</span
+                        >.
+                        <br />
+                        <p>
+                          Nếu phát hiện vi phạm, ITWork sẽ ngừng cung cấp dịch
+                          vụ tới tất cả các tài khoản trùng lặp hoặc chặn toàn
+                          bộ truy cập tới hệ thống website của ITWork.
+                        </p>
+
+                        <p>
+                          Đối với trường hợp khách hàng đã sử dụng hết 3 tin
+                          tuyển dụng miễn phí, ITWork hỗ trợ kích hoạt đăng tin
+                          tuyển dụng không giới hạn sau khi quý doanh nghiệp
+                          cung cấp thông tin giấy phép kinh doanh.
+                        </p>
+                        <br />
+                        <div class="py-2">
+                          Mọi thắc mắc vui lòng liên hệ Hotline CSKH:
+                        </div>
+                        <div class="d-flex">
+                          <div class="contact-1">
+                            <button
+                              class="
+                                btn
+                                rounded-circle
+                                transparent-1
+                                py-1
+                                px-2
+                                btn-primary
+                                mr-2
+                              "
+                            >
+                              <i class="fas fa-phone-alt"></i>
+                            </button>
+                            <span class="font-weight-bold">(052) 623872</span>
+                          </div>
+                          <div>
+                            <button
+                              class="
+                                btn
+                                rounded-circle
+                                transparent-1
+                                py-1
+                                px-2
+                                btn-primary
+                                mr-2
+                                od-2
+                              "
+                            >
+                              <i class="fas fa-phone-alt"></i>
+                            </button>
+                            <span class="font-weight-bold">052 2092294</span>
+                          </div>
+                        </div>
+                        <div class="py-2">
+                          <span class="text-muted mr-2">Đã có tài khoản?</span>
+                          <a href="/home" class="text-primary">
+                            Đăng nhập ngay
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <br />
+              <VeeForm
+                as="div"
+                v-slot="{ handleSubmit }"
+                @invalid-submit="onInvalidSubmit"
+              >
+                <form
+                  method="POST"
+                  @submit="handleSubmit($event, onSubmit)"
+                  class="form-register-employer"
+                >
+                  <h4 class="title-register-employer">TÀI KHOẢN</h4>
+                  <div class="form-group row">
+                    <label for="email" class="col-sm-4 col-form-label"
+                      >Email đăng nhập<span class="required-lable"
+                        >*</span
+                      ></label
+                    >
+                    <div class="col-sm-8">
+                      <Field
+                        type="text"
+                        name="email"
+                        id="email"
+                        rules="required|email|max:255"
+                        class="form-control"
+                        placeholder="Nhập email"
+                      />
+                      <ErrorMessage class="error" name="email" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="password" class="col-sm-4 col-form-label"
+                      >Mật khẩu<span class="required-lable">*</span></label
+                    >
+                    <div class="col-sm-8">
+                      <Field
+                        type="password"
+                        name="password"
+                        rules="required|max:16|min:8"
+                        id="password"
+                        class="form-control"
+                        placeholder="Mật khẩu (phải trên 8 ký tự)"
+                      />
+                      <ErrorMessage class="error" name="password" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="password_old" class="col-sm-4 col-form-label"
+                      >Nhập lại mật khẩu<span class="required-lable"
+                        >*</span
+                      ></label
+                    >
+                    <div class="col-sm-8">
+                      <Field
+                        type="password"
+                        name="password_old"
+                        rules="required|confirmed:@password"
+                        id="password_old"
+                        class="form-control"
+                        placeholder="Nhập lại mật khẩu:"
+                      />
+                      <ErrorMessage class="error" name="password_old" />
+                    </div>
+                  </div>
+
+                  <h4 class="title-register-employer">
+                    THÔNG TIN NHÀ TUYỂN DỤNG
+                  </h4>
+                  <div class="form-group row">
+                    <label for="name" class="col-sm-4 col-form-label"
+                      >Họ và tên<span class="required-lable">*</span></label
+                    >
+                    <div class="col-sm-8">
+                      <Field
+                        type="text"
+                        name="name"
+                        rules="required|max:128"
+                        id="name"
+                        class="form-control"
+                        placeholder="Họ tên"
+                      />
+                      <ErrorMessage class="error" name="name" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="sdt" class="col-sm-4 col-form-label"
+                      >Số điện thoại</label
+                    >
+                    <div class="col-sm-8">
+                      <Field
+                        type="text"
+                        name="sdt"
+                        rules="telephone"
+                        id="sdt"
+                        class="form-control"
+                        placeholder="Số điện thoại cá nhân"
+                      />
+                      <ErrorMessage class="error" name="sdt" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="sdt" class="col-sm-4 col-form-label"
+                      >Giới tính:</label
+                    >
+                    <div class="col-sm-8">
+                      <select
+                        class="form-select"
+                        aria-label="Default select example"
+                      >
+                        <option selected>-- Chọn giới tính --</option>
+                        <option value="1">Nam</option>
+                        <option value="2">Nữ</option>
+                      </select>
+                    </div>
+                  </div>
+                  <br />
+                  <div class="form-group row">
+                    <label for="company" class="col-sm-4 col-form-label"
+                      >Công ty<span class="required-lable">*</span></label
+                    >
+                    <div class="col-sm-8">
+                      <Field
+                        type="text"
+                        name="company"
+                        id="company"
+                        rules="required|max:128"
+                        class="form-control"
+                        placeholder="Tên công ty"
+                      />
+                      <ErrorMessage class="error" name="company" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label"
+                      >Vị trí công tác:</label
+                    >
+                    <div class="col-sm-8">
+                      <select
+                        class="form-select"
+                        aria-label="Default select example"
+                      >
+                        <option selected>-- Chọn vị trí công tác: --</option>
+                        <option value="1">Nam</option>
+                        <option value="2">Nữ</option>
+                      </select>
+                    </div>
+                  </div>
+                  <br />
+                  <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label"
+                      >Địa điểm làm việc:</label
+                    >
+                    <div class="col-sm-8">
+                      <select
+                        class="form-select"
+                        aria-label="Default select example"
+                      >
+                        <option selected>-- Chọn địa điểm làm việc: --</option>
+                        <option value="1">Nam</option>
+                        <option value="2">Nữ</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group form-check">
+                      <div
+                        class="
+                          custom-control custom-checkbox
+                          form-check-input
+                          my-0
+                        "
+                        type="checkbox"
+                      >
+                        <input
+                          id="522sBGUn"
+                          type="checkbox"
+                          class="custom-control-input"
+                          value="false"
+                          data-gtm-form-interact-field-id="0"
+                        />
+                        <label
+                          for="522sBGUn"
+                          class="custom-control-label"
+                        ></label>
+                      </div>
+                      <label class="form-check-label">
+                        Tôi đồng ý với
+                        <a
+                          href=""
+                          target="_blank"
+                          class="text-danger text-decoration-none"
+                        >
+                          &nbsp;Điều khoản dịch vụ&nbsp;
+                        </a>
+                        của TopCV.
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    data-v-9281c350=""
+                    class="text-center mb-0 mt-4 action-container"
+                  >
+                    <button
+                      data-v-9281c350=""
+                      type="button"
+                      class="btn min-width btn btn-secondary btn-lg mr-3"
+                    >
+                      Hủy
+                    </button>
+                    <button
+                      type="submit"
+                      class="btn min-width btn btn-primary btn-lg"
+                    >
+                      Hoàn tất
+                    </button>
+                  </div>
+                </form>
+              </VeeForm>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+<script>
+import {
+  Form as VeeForm,
+  Field,
+  ErrorMessage,
+  defineRule,
+  configure
+} from 'vee-validate'
+import { localize } from '@vee-validate/i18n'
+import * as rules from '@vee-validate/rules'
+
+export default {
+  setup() {
+    Object.keys(rules).forEach((rule) => {
+      if (rule != 'default') {
+        defineRule(rule, rules[rule])
+      }
+    })
+
+    return {}
+  },
+  created() {
+    let messError = {
+      en: {
+        fields: {
+          name: {
+            required: 'Xin hãy nhập tên của bạn.',
+            max: 'Vui lòng nhập tên của bạn trong 128 ký tự.'
+          },
+          company: {
+            required: 'Xin hãy nhập tên công ty.',
+            max: 'Vui lòng nhập tên công ty trong 128 ký tự.'
+          },
+          email: {
+            required: 'Hãy điền địa chỉ email của bạn.',
+            email: 'Vui lòng nhập đúng định dạng địa chỉ email.',
+            max: 'Vui lòng nhập địa chỉ email của bạn trong 255 ký tự.'
+            // unique_custom: 'このメールアドレスは既に存在しています。'
+          },
+          password: {
+            required: 'Xin hãy điền mật khẩu.',
+            max: 'Vui lòng nhập mật khẩu có từ 8 đến 16 ký tự.',
+            min: 'Vui lòng nhập mật khẩu có từ 8 đến 16 ký tự.',
+            password_rule: 'Vui lòng nhập mật khẩu có chứa câu và số.'
+          },
+          password_old: {
+            required: 'Vui lòng nhập xác nhận mật khẩu.',
+            confirmed: 'Xác nhận mật khẩu không đúng.'
+          },
+          sdt: {
+            telephone: 'Vui lòng nhập chính xác định dạng số điện thoại.'
+          }
+        }
+      }
+    }
+    configure({
+      generateMessage: localize(messError)
+    })
+  },
+  data: function () {
+    return {}
+  },
+  mounted() {},
+  props: ['data'],
+  components: {
+    VeeForm,
+    Field,
+    ErrorMessage
+  },
+  methods: {
+    onInvalidSubmit({ values, errors, results }) {
+      let firstInputError = Object.entries(errors)[0][0]
+      this.$el.querySelector('input[name=' + firstInputError + ']').focus()
+      $('html, body').animate(
+        {
+          scrollTop: $('input[name=' + firstInputError + ']').offset().top - 150
+        },
+        500
+      )
+    },
+    onSubmit() {
+      this.$refs.formData.submit()
+    }
+  }
+}
+</script>
 
 <style>
 body {
   font-family: 'Karla', sans-serif;
-  background-color: #d0d0ce;
+  background-color: #f1f2f6;
   min-height: 100vh;
+}
+.container-fluid {
+  max-width: 100%;
+}
+.register-header-box {
+  background-image: url(https://tuyendung.topcv.vn/app/_nuxt/img/register-image-bg.f17662b.jpg);
+
+  background-size: cover;
+  background-position: 0;
+  height: 300px;
+
+  position: relative;
+  padding: 1.6188rem !important;
+}
+.register-header-box .overlay {
+  position: absolute;
+  background: #4ca853;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0.9;
+}
+
+.form-employer-register {
+  width: 70%;
+  margin-top: 20px !important;
 }
 
 .brand-wrapper {
@@ -100,7 +488,8 @@ body {
 
 .login-card {
   border: 0;
-  border-radius: 27.5px;
+  margin-top: -13%;
+  border-radius: 10.5px;
   box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
   overflow: hidden;
 }
@@ -115,32 +504,53 @@ body {
 }
 
 .login-card .card-body {
-  padding: 10px 60px 60px;
+  padding: 10px 60px 60px 90px;
 }
 
 @media (max-width: 422px) {
   .login-card .card-body {
     padding: 35px 24px;
+    margin-left: 10px !important;
+  }
+
+  .login-card {
+    margin-top: -70px !important;
+  }
+  .form-employer-register {
+    width: 100% !important;
+  }
+  .form-register-employer {
+    width: 95% !important;
+    margin-left: 5px !important;
+  }
+  .login-card-description-text {
+    width: 95% !important;
+    text-align: justify !important;
+    margin-left: -2px !important;
   }
 }
 
 .login-card-description {
-  font-size: 25px;
-  color: #000;
+  font-size: 30px;
+  color: white;
+  text-align: center;
   font-weight: normal;
+}
+.login-card-description-text {
+  font-size: 14px;
+  color: white;
+  text-align: center !important;
+  width: 30%;
+  margin-left: 35%;
+  text-align: justify;
   margin-bottom: 10px;
 }
-.login-card-description-text{
-  font-size: 14px;
-  color: #000;
-  width: 70%;
-  text-align: justify;
- 
-  margin-bottom: 10px;
+.logo-mobile {
+  display: none;
 }
 
 .login-card form {
-  max-width: 420px;
+  max-width: 100%;
 }
 
 .login-card .form-control {
@@ -197,7 +607,6 @@ body {
 }
 
 .login-card-footer-text {
- 
   font-size: 16px;
   color: #0d2366;
   margin-bottom: 20px;
@@ -208,11 +617,31 @@ body {
     margin-bottom: 24px;
   }
 }
-
+.title-register-employer {
+  font-size: 20px;
+  color: #000;
+  font-weight: normal;
+}
 .login-card-footer-nav a {
   font-size: 14px;
   color: #919aa3;
 }
-
+.modal-body {
+  text-align: justify;
+}
+.od-2 {
+  margin-left: 10px;
+}
+.form-check {
+  margin-top: 35px;
+  margin-left: 10px;
+}
+.form-check-input {
+  border: none;
+}
+.required-lable {
+  color: red;
+  font-size: 20px;
+}
 /*# sourceMappingURL=login.css.map */
 </style>
