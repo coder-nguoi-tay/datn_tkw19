@@ -78,12 +78,13 @@ class SearchController extends BaseController
                 ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
                 ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
                 ->Where(function ($q) use ($that) {
-                    if ($that->key) {
-                        $q->orWhere($this->escapeLikeSentence('job.title', $that->key));
-                    }
-                    $q->orWhere(function ($a) use ($that) {
-                        $a->whereIn('job_skill.skill_id', $that->skill);
-                    })
+                    $q->orWhere($this->escapeLikeSentence('job.title', $that->key))
+                        ->orWhere(function ($q) use ($that) {
+                            if($that->skill){
+                                  $q->whereIn('job_skill.skill_id', $that->skill);
+                            }
+
+                        })
                         ->orWhere(
                             'job.location_id',
                             $that->location_id

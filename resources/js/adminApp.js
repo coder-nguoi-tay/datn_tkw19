@@ -16,6 +16,12 @@ configure({
 
 const app = createApp({});
 app.use(CoreuiVue);
+
+import Editor from '@tinymce/tinymce-vue';
+// import tinymce from 'tinymce/tinymce';
+
+app.component('editor', Editor);
+
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 app.use(VueSweetalert2)
@@ -43,13 +49,17 @@ import btnDeleteAdmin from './components/common/deleteAdmin.vue'
 app.component('btn-delete-admin', btnDeleteAdmin)
 // new
 import CreateNew from './components/new/create.vue';
+
 app.component('create-new', CreateNew);
+import EditNew from './components/new/edit.vue'
+app.component('edit', EditNew);
 
 //employer
 import CreateNewEmployer from './components/employer/new/create.vue';
 app.component('create-new-employer', CreateNewEmployer);
 import EditNewEmployer from './components/employer/new/edit.vue';
 app.component('edit-new-employer', EditNewEmployer);
+
 
 import DatePickerCustom from "./components/common/datePickerCustom.vue";
 app.component('picker-new-employer', DatePickerCustom);
@@ -63,6 +73,9 @@ app.component('client-register', clientRegister);
 // home
 import homeClient from "./components/client/home/index.vue";
 app.component('home-client', homeClient);
+// create company
+import CretaeCompany from './components/company/create.vue'
+app.component('create-company', CretaeCompany);
 
 
 import registerEmployer from "./components/employer/register.vue";

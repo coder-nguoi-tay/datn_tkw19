@@ -18,7 +18,6 @@ class Job extends Authenticatable
         'level_id',
         'experience_id',
         'wage_id',
-        'skill_id',
         'benefit',
         'profession_id',
         'location_id',

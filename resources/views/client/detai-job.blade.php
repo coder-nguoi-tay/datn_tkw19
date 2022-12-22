@@ -129,7 +129,7 @@
                             <div class="jbd-01 px-3 py-4">
                                 <div class="jbd-details mb-4">
                                     <h5 class="ft-medium fs-md">Mô tả công việc</h5>
-                                    <p>{{ $job->describe }}</p>
+                                    <p>{!! $job->describe !!}</p>
 
                                 </div>
 
@@ -139,12 +139,8 @@
                                         <div class="col-lg-12 col-md-12 col-12">
                                             <div class="mb-2 mr-4 ml-lg-0 mr-lg-4">
                                                 <div class="d-flex align-items-center">
-                                                    <div
-                                                        class="rounded-circle bg-light-success theme-cl p-1 small d-flex align-items-center justify-content-center">
-                                                        <i class="fas fa-check small"></i>
-                                                    </div>
                                                     <h6 class="mb-0 ml-3 text-muted fs-sm">
-                                                        {{ $job->candidate_requirements }}</h6>
+                                                        {!! $job->candidate_requirements !!}</h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -157,12 +153,8 @@
                                         <div class="col-lg-12 col-md-12 col-12">
                                             <div class="mb-2 mr-4 ml-lg-0 mr-lg-4">
                                                 <div class="d-flex align-items-center">
-                                                    <div
-                                                        class="rounded-circle bg-light-success theme-cl p-1 small d-flex align-items-center justify-content-center">
-                                                        <i class="fas fa-check small"></i>
-                                                    </div>
                                                     <h6 class="mb-0 ml-3 text-muted fs-sm">
-                                                        {{ $job->candidate_requirements }}</h6>
+                                                        {!! $job->candidate_requirements !!}</h6>
                                                 </div>
                                             </div>
                                         </div>

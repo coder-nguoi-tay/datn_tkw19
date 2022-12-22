@@ -1,385 +1,370 @@
+
 <template>
-  <VeeForm as="div" v-slot="{ handleSubmit }" @invalid-submit="onInvalidSubmit">
-    <form
-      class="recuitment-form"
-      @submit="handleSubmit($event, onSubmit)"
-      ref="formData"
-      method="POST"
-      :action="data.urlStore"
-    >
-      <Field type="hidden" :value="csrfToken" name="_token" />
+  <div class="col-12 recuitment-inner">
+    <div class="card-create-employer">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Đăng tin tuyển dụng</h5>
+        </div>
+        <VeeForm
+          as="div"
+          v-slot="{ handleSubmit }"
+          @invalid-submit="onInvalidSubmit"
+        >
+          <form
+            class="recuitment-form"
+            @submit="handleSubmit($event, onSubmit)"
+            ref="formData"
+            method="POST"
+            :action="data.urlStore"
+          >
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  <Field type="hidden" :value="csrfToken" name="_token" />
+                  <div class="mb-4">
+                    <label for="" class="form-label">Tiêu đề</label>
+                    <Field
+                      name="title"
+                      type="text"
+                      v-model="model.title"
+                      rules="required|max:255"
+                      class="form-control form-text"
+                      placeholder="Tiêu đề"
+                    />
+                    <ErrorMessage class="error" name="title" />
+                  </div>
+                  <div class="mb-4">
+                    <label for="" class="form-label">Số lượng cần tuyển</label>
+                    <Field
+                      name="quatity"
+                      type="text"
+                      v-model="model.quatity"
+                      rules="required|max:255"
+                      class="form-control form-text"
+                      placeholder="Tiêu đề"
+                    />
+                    <ErrorMessage class="error" name="quatity" />
+                  </div>
+                  <div class="mb-4">
+                    <label for="" class="form-label">Giới tính</label>
+                    <Field
+                      name="sex"
+                      as="select"
+                      v-model="model.sex"
+                      rules="required"
+                      class="form-control"
+                    >
+                      <option value disabled selected>Chọn giới tính</option>
+                      <option value="0">không yêu cầu</option>
+                      <option value="nam">nam</option>
+                      <option value="nữ">nữ</option>
+                    </Field>
+                    <ErrorMessage class="error" name="location_id" />
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label"
+                      >Chọn nơi làm việc<span class="required-lable"
+                        >*</span
+                      ></label
+                    >
+                    <Field
+                      name="location_id"
+                      as="select"
+                      v-model="model.location_id"
+                      rules="required"
+                      class="form-control"
+                    >
+                      <option value disabled selected>Chọn Địa chỉ</option>
+                      <option
+                        v-for="item in data.location"
+                        :key="item.id"
+                        :value="item.id"
+                      >
+                        {{ item.label }}
+                      </option>
+                    </Field>
+                    <ErrorMessage class="error" name="location_id" />
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label"
+                      >Chọn địa chỉ cụ thể<span class="required-lable"
+                        >*</span
+                      ></label
+                    >
+                    <Field
+                      type="text"
+                      name="address"
+                      v-model="model.address"
+                      rules="required"
+                      class="form-control"
+                      placeholder="Nhập địa chỉ"
+                    />
+                    <ErrorMessage class="error" name="address" />
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label"
+                      >Hạn nộp hồ sơ<span class="required-lable">*</span></label
+                    >
+                    <picker-new-employer
+                      name="end_job_time"
+                      v-model="model.end_job_time"
+                      class="date-time"
+                    ></picker-new-employer>
+                    <ErrorMessage class="error" name="end_job_time" />
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label col-12"
+                      >Mô tả công việc<span class="required-lable"
+                        >*</span
+                      ></label
+                    >
+                    <Editor
+                      name="describe"
+                      class="ckedit"
+                      v-model="model.describe"
+                    />
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label col-12"
+                      >Quyền lơi công việc<span class="required-lable"
+                        >*</span
+                      ></label
+                    >
+                    <Editor
+                      class="ckedit"
+                      name="benefit"
+                      v-model="model.benefit"
+                    />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mb-4">
+                    <label class="form-label"
+                      >Chọn nghành nghề<span class="required-lable"
+                        >*</span
+                      ></label
+                    >
+                    <Field
+                      name="majors_id"
+                      as="select"
+                      v-model="model.majors_id"
+                      rules="required"
+                      class="form-control"
+                    >
+                      <option value disabled selected>Chọn chuyên nghề</option>
+                      <option
+                        v-for="item in data.majors"
+                        :key="item.id"
+                        :value="item.id"
+                      >
+                        {{ item.label }}
+                      </option>
+                    </Field>
+                    <ErrorMessage class="error" name="majors_id" />
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label"
+                      >Chọn chuyên ngành<span class="required-lable"
+                        >*</span
+                      ></label
+                    >
+                    <Field
+                      name="profession_id"
+                      as="select"
+                      v-model="model.profession_id"
+                      rules="required"
+                      class="form-control"
+                    >
+                      <option value disabled selected>Chọn vị trí</option>
+                      <option
+                        v-for="item in data.profession"
+                        :key="item.id"
+                        :value="item.id"
+                      >
+                        {{ item.label }}
+                      </option>
+                    </Field>
+                    <ErrorMessage class="error" name="profession_id" />
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label"
+                      >chọn trình độ<span class="required-lable">*</span></label
+                    >
+                    <Field
+                      name="level_id"
+                      as="select"
+                      v-model="model.level_id"
+                      rules="required"
+                      class="form-control"
+                    >
+                      <option value disabled selected>
+                        Chọn Trình độ học vẫn
+                      </option>
+                      <option
+                        v-for="item in data.lever"
+                        :key="item.id"
+                        :value="item.id"
+                      >
+                        {{ item.label }}
+                      </option>
+                    </Field>
+                    <ErrorMessage class="error" name="level_id" />
+                  </div>
 
-      <div class="accordion">
-        <div class="card recuitment-card">
-          <div class="card-header recuitment-card-header" id="headingOne">
-            <h2 class="mb-0">
-              <span class="btn btn-block text-left recuitment-header">
-                Đăng tin tuyển dụng
-              </span>
-            </h2>
-          </div>
-          <div id="collapseOne" class="collapse show">
-            <div class="card-body recuitment-body">
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Tiêu đề<span class="pl-2">*</span></label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    name="title"
-                    type="text"
-                    v-model="model.title"
-                    rules="required|max:255"
-                    class="form-control"
-                    placeholder="Tiêu đề"
-                  />
-                  <ErrorMessage class="error" name="title" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Số lượng cần tuyển</label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    name="quatity"
-                    type="number"
-                    v-model="model.quatity"
-                    rules="required|max:255"
-                    class="form-control"
-                    placeholder="Số lượng cần tuyển"
-                  />
-                  <ErrorMessage class="error" name="quatity" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Giới tính<span class="pl-2">*</span></label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    name="sex"
-                    as="select"
-                    v-model="model.sex"
-                    rules="required"
-                    class="form-control"
-                  >
-                    <option value disabled selected>Chọn giới tinh</option>
-                    <option value="0">Không yêu cầu</option>
-                    <option value="Nam">Nam</option>
-                    <option value="Nữ">Nữ</option>
-                  </Field>
-                  <ErrorMessage class="error" name="sex" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Mô tả công việc<span class="pl-2">*</span></label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    name="describe"
-                    type="text"
-                    v-model="model.describe"
-                    rules="required|max:255"
-                    class="form-control"
-                    placeholder="Mô tả công việc"
-                  />
-                  <ErrorMessage class="error" name="describe" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Yêu cầu công việc<span class="pl-2">*</span></label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    name="candidate_requirements"
-                    type="text"
-                    v-model="model.candidate_requirements"
-                    rules="required|max:255"
-                    class="form-control"
-                    placeholder="Yêu cầu công việc"
-                  />
-                  <ErrorMessage class="error" name="candidate_requirements" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Chuyên Ngành<span class="pl-2">*</span></label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    name="majors_id"
-                    as="select"
-                    v-model="model.majors_id"
-                    rules="required"
-                    class="form-control"
-                  >
-                    <option value disabled selected>Chọn chuyên nghề</option>
-                    <option
-                      v-for="item in data.majors"
-                      :key="item.id"
-                      :value="item.id"
+                  <div class="mb-4">
+                    <label class="form-label"
+                      >chọn kinh nghiệm<span class="required-lable"
+                        >*</span
+                      ></label
                     >
-                      {{ item.label }}
-                    </option>
-                  </Field>
-                  <ErrorMessage class="error" name="majors_id" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Trình độ<span class="pl-2">*</span></label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    name="level_id"
-                    as="select"
-                    v-model="model.level_id"
-                    rules="required"
-                    class="form-control"
-                  >
-                    <option value disabled selected>
-                      Chọn Trình độ học vẫn
-                    </option>
-                    <option
-                      v-for="item in data.lever"
-                      :key="item.id"
-                      :value="item.id"
+                    <Field
+                      name="experience_id"
+                      as="select"
+                      v-model="model.experience_id"
+                      rules="required"
+                      class="form-control"
                     >
-                      {{ item.label }}
-                    </option>
-                  </Field>
-                  <ErrorMessage class="error" name="level_id" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Kinh nghiệm<span class="pl-2">*</span></label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    name="experience_id"
-                    as="select"
-                    v-model="model.experience_id"
-                    rules="required"
-                    class="form-control"
-                  >
-                    <option value disabled selected>Chọn Kinh nghiệm</option>
-                    <option
-                      v-for="item in data.experience"
-                      :key="item.id"
-                      :value="item.id"
+                      <option value disabled selected>Chọn Kinh nghiệm</option>
+                      <option
+                        v-for="item in data.experience"
+                        :key="item.id"
+                        :value="item.id"
+                      >
+                        {{ item.label }}
+                      </option>
+                    </Field>
+                    <ErrorMessage class="error" name="experience_id" />
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label"
+                      >chọn mức lương<span class="required-lable"
+                        >*</span
+                      ></label
                     >
-                      {{ item.label }}
-                    </option>
-                  </Field>
-                  <ErrorMessage class="error" name="experience_id" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Mức lương<span class="pl-2">*</span></label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    name="wage_id"
-                    as="select"
-                    v-model="model.wage_id"
-                    rules="required"
-                    class="form-control"
-                  >
-                    <option value disabled selected>Chọn Mức lương</option>
-                    <option
-                      v-for="item in data.wage"
-                      :key="item.id"
-                      :value="item.id"
+                    <Field
+                      name="wage_id"
+                      as="select"
+                      v-model="model.wage_id"
+                      rules="required"
+                      class="form-control"
                     >
-                      {{ item.label }}
-                    </option>
-                  </Field>
-                  <ErrorMessage class="error" name="wage_id" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Hình thức làm việc<span class="pl-2">*</span></label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    name="wk_form_id"
-                    as="select"
-                    v-model="model.wk_form_id"
-                    rules="required"
-                    class="form-control"
-                  >
-                    <option value disabled selected>
-                      Chọn Hình thức làm việc
-                    </option>
-                    <option
-                      v-for="item in data.workingform"
-                      :key="item.id"
-                      :value="item.id"
+                      <option value disabled selected>Chọn Mức lương</option>
+                      <option
+                        v-for="item in data.wage"
+                        :key="item.id"
+                        :value="item.id"
+                      >
+                        {{ item.label }}
+                      </option>
+                    </Field>
+                    <ErrorMessage class="error" name="wage_id" />
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label"
+                      >Thời gian làm việc<span class="required-lable"
+                        >*</span
+                      ></label
                     >
-                      {{ item.label }}
-                    </option>
-                  </Field>
-                  <ErrorMessage class="error" name="wk_form_id" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Thời gian làm việc<span class="pl-2">*</span></label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    name="time_work_id"
-                    as="select"
-                    v-model="model.time_work_id"
-                    rules="required"
-                    class="form-control"
-                  >
-                    <option value disabled selected>
-                      Chọn Yêu cầu thời gian làm việc
-                    </option>
-                    <option
-                      v-for="item in data.timework"
-                      :key="item.id"
-                      :value="item.id"
+                    <Field
+                      name="time_work_id"
+                      as="select"
+                      v-model="model.time_work_id"
+                      rules="required"
+                      class="form-control"
                     >
-                      {{ item.label }}
-                    </option>
-                  </Field>
-                  <ErrorMessage class="error" name="time_work_id" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Quyền lợi<span class="pl-2">*</span></label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    name="benefit"
-                    type="text"
-                    v-model="model.benefit"
-                    rules="required|max:255"
-                    class="form-control"
-                    placeholder="Quyền lợi"
-                  />
-                  <ErrorMessage class="error" name="benefit" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Vị trí ứng tuyển</label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    name="profession_id"
-                    as="select"
-                    v-model="model.profession_id"
-                    rules="required"
-                    class="form-control"
-                  >
-                    <option value disabled selected>Chọn vị trí</option>
-                    <option
-                      v-for="item in data.profession"
-                      :key="item.id"
-                      :value="item.id"
-                    >
-                      {{ item.label }}
-                    </option>
-                  </Field>
-                  <ErrorMessage class="error" name="profession_id" />
-                </div>
-              </div>
+                      <option value disabled selected>
+                        Chọn Yêu cầu thời gian làm việc
+                      </option>
+                      <option
+                        v-for="item in data.timework"
+                        :key="item.id"
+                        :value="item.id"
+                      >
+                        {{ item.label }}
+                      </option>
+                    </Field>
+                    <ErrorMessage class="error" name="time_work_id" />
+                  </div>
 
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Nơi làm việc</label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    name="location_id"
-                    as="select"
-                    v-model="model.location_id"
-                    rules="required"
-                    class="form-control"
-                  >
-                    <option value disabled selected>Chọn Địa chỉ</option>
-                    <option
-                      v-for="item in data.location"
-                      :key="item.id"
-                      :value="item.id"
+                  <div class="mb-4">
+                    <label class="form-label col-12"
+                      >Yêu cầu công việc<span class="required-lable"
+                        >*</span
+                      ></label
                     >
-                      {{ item.label }}
-                    </option>
-                  </Field>
-                  <ErrorMessage class="error" name="location_id" />
+                    <div>
+                      <Editor
+                        name="candidate_requirements"
+                        v-model="model.candidate_requirements"
+                      />
+                      <ErrorMessage
+                        class="error"
+                        name="candidate_requirements"
+                      />
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label"
+                      >Kỹ năng<span class="required-lable">*</span></label
+                    >
+                    <Field
+                      class="form-control"
+                      v-model="value"
+                      name="skill_id"
+                      rules="required"
+                    >
+                      <Multiselect
+                        placeholder="Chọn Kỹ năng"
+                        v-model="value"
+                        mode="tags"
+                        :searchable="true"
+                        :options="options"
+                        label="label"
+                        track-by="label"
+                        :infinite="true"
+                        :object="true"
+                      />
+                    </Field>
+                    <ErrorMessage class="error" name="skill_id" />
+                  </div>
+                  <label class="col-sm-3 col-form-label text-right label"
+                    >Hình thức làm việc<span class="pl-2">*</span></label
+                  >
+                  <div class="mb-4">
+                    <Field
+                      name="wk_form_id"
+                      as="select"
+                      v-model="model.wk_form_id"
+                      rules="required"
+                      class="form-control"
+                    >
+                      <option value disabled selected>
+                        Chọn Hình thức làm việc
+                      </option>
+                      <option
+                        v-for="item in data.workingform"
+                        :key="item.id"
+                        :value="item.id"
+                      >
+                        {{ item.label }}
+                      </option>
+                    </Field>
+                    <ErrorMessage class="error" name="wk_form_id" />
+                  </div>
                 </div>
               </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Địa chỉ cụ thể</label
-                >
-                <div class="col-sm-9">
-                  <Field
-                    type="text"
-                    name="address"
-                    v-model="model.address"
-                    rules="required"
-                    class="form-control"
-                    placeholder="Nhập địa chỉ"
-                  />
-                  <ErrorMessage class="error" name="address" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right label"
-                  >Hạn nộp hồ sơ<span class="pl-2">*</span></label
-                >
-                <div class="col-sm-9">
-                  <picker-new-employer
-                    name="end_job_time"
-                    class="date-time"
-                  ></picker-new-employer>
-                  <ErrorMessage class="error" name="end_job_time" />
-                </div>
+              <div class="rec-submit">
+                <button type="submit" class="btn btn-primary">Đăng Tin</button>
               </div>
             </div>
-          </div>
-        </div>
+          </form>
+        </VeeForm>
       </div>
-      <div class="card recuitment-card">
-        <div class="card-header recuitment-card-header" id="headingTwo">
-          <h2 class="mb-0">
-            <span class="btn btn-block text-left recuitment-header">
-              Kỹ Năng
-            </span>
-          </h2>
-        </div>
-        <div id="collapseTwo" class="collapse show">
-          <div class="card-body recuitment-body">
-            <div class="checkboxsec">
-              <label class="label-container">
-                <div class="filter-topic">
-                  <label class="label-container"> </label>
-                </div>
-              </label>
-              <ErrorMessage class="error" name="skill_id" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="rec-submit">
-        <button type="submit" class="btn-submit-recuitment">
-          <i class="fa fa-floppy-o pr-2 icon-save" />Lưu Tin
-        </button>
-      </div>
-    </form>
-  </VeeForm>
+    </div>
+  </div>
 </template>
+
 <script>
 import {
   Form as VeeForm,
@@ -388,9 +373,10 @@ import {
   defineRule,
   configure
 } from 'vee-validate'
+import Multiselect from '@vueform/multiselect'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
-import $ from 'jquery'
+import Editor from '@tinymce/tinymce-vue'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -400,21 +386,27 @@ export default {
     })
   },
   components: {
+    Editor,
     VeeForm,
     Field,
-    ErrorMessage
+    ErrorMessage,
+    Multiselect
   },
   props: ['data'],
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
       model: {},
+      value: [],
       options: []
     }
   },
   created() {
     this.data.skill.map((e) => {
-      this.options.push(e.label)
+      this.options.push({
+        value: e.id,
+        label: e.label
+      })
     })
     let messError = {
       en: {
@@ -496,8 +488,40 @@ export default {
       )
     },
     onSubmit() {
-      this.$refs.formData.submit()
+      console.log(this.model, this.value)
+      axios
+        .post('/employer/new/store', {
+          _token: this.csrfToken,
+          data: this.model,
+          skill: this.value
+        })
+        .then(function (response) {
+          if (response.data.status == 200) {
+            window.location.href = this.data.urlBack
+          }
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+      // this.$refs.formData.submit()
     }
   }
 }
 </script>
+
+<style>
+.form-text {
+  height: 42px;
+  padding: 10px 15px;
+  font-size: 15px;
+  border-radius: 1px;
+  border-color: #e5e5e5;
+}
+.ckedit {
+  margin-top: 2%;
+}
+.check-edit-ter {
+  width: 100%;
+}
+</style>
+<style src="@vueform/multiselect/themes/default.css"></style>

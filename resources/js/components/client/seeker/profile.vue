@@ -88,7 +88,7 @@
                 <label class="text-dark ft-medium">Email</label>
                 <Field
                   type="email"
-                  class="form-control rounded"
+                  class="form-control"
                   v-model="model.email"
                   rules="required|email|max:255"
                   name="email"
@@ -101,7 +101,7 @@
                 <label class="text-dark ft-medium">Số điện thoại</label>
                 <Field
                   type="text"
-                  class="form-control rounded"
+                  class="form-control"
                   v-model="valueSelect.phone"
                   name="phone"
                   rules="required|telephone"
@@ -115,7 +115,7 @@
                 <Field
                   type="text"
                   v-model="valueSelect.address"
-                  class="form-control rounded"
+                  class="form-control"
                   name="address"
                   rules="required|max:255"
                 />

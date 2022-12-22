@@ -13,7 +13,7 @@
                     <Field type="text" name="email" rules="required|email" v-model="model.email" class="form-control" />
                     <ErrorMessage class="error" name="email" />
                 </div>
-                <div class="col">
+                <div class="col">The "2.0" constraint for "laravel/ui" appears too strict and will likely not match what you want. See https://getcomposer.org/constraints
                     <label class="form-label">Password</label>
                     <Field type="password" name="password" rules="required|max:16|min:8|password_rule"
                         v-model="model.password" class="form-control" />

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
+            $table->integer('profession_id');
             $table->string('title');
             $table->string('new_image');
             $table->string('describe');

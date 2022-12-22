@@ -25,6 +25,7 @@
         "@coreui/coreui": "^4.1.0",
         "@coreui/coreui-pro": "^4.3.4",
         "@coreui/vue": "^4.1.0",
+        "@tinymce/tinymce-vue": "^5.0.0",
         "@vee-validate/i18n": "^4.5.10",
         "@vee-validate/rules": "^4.5.10",
         "@vue/compiler-sfc": "^3.2.45",

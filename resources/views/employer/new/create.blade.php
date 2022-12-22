@@ -25,7 +25,6 @@
                                     'urlBack' => route('employer.new.index'),
                                 ]) }}">
                             </create-new-employer>
-
                         </div>
                     </div>
                 </div>
