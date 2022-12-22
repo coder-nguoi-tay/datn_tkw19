@@ -496,7 +496,9 @@ export default {
           skill: this.value
         })
         .then(function (response) {
-          console.log(response)
+          if (response.data.status == 200) {
+            window.location.href = this.data.urlBack
+          }
         })
         .catch(function (error) {
           console.log(error)
