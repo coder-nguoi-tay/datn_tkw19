@@ -52,7 +52,7 @@ class HomeController extends BaseController
     public Jobseeker $Jobseeker;
     public News $new;
 
-    public function __construct(News $new ,Jobseeker $Jobseeker, User $user, SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
+    public function __construct(News $new, Jobseeker $Jobseeker, User $user, SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
     {
         $this->new = $new;
         $this->job = $job;
@@ -106,10 +106,9 @@ class HomeController extends BaseController
                 ->where('job.status', 1)
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                 ->get(),
-                'new' => $new
+            'new' => $new
 
         ]);
-
     }
 
     /**

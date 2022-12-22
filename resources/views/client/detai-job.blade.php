@@ -356,7 +356,7 @@
                         <div class="job_grid d-block border rounded px-3 pt-3 pb-2">
                             <div class="jb-list01-flex d-flex align-items-start justify-content-start">
                                 <div class="jb-list01-thumb">
-                                    <img src="{{ $item->logo }}" class="img-fluid circle" width="90"
+                                    <img src="{{ asset($item->logo) }}" class="img-fluid circle" width="90"
                                         alt="">
                                 </div>
 
