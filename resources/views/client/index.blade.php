@@ -18,9 +18,62 @@
                             <p class="fs-md ft-medium">Xin chào các bạn, Công việc mơ ước của bạn đang chờ đợi ở thành phố
                                 địa phương của bạn</p>
                         </div>
-
                         <div class="container">
-                            <form action="{{ route('home.search') }}" method="GET">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="banner_caption text-center mb-5">
+                                        <h1 class="banner_title ft-bold mb-1">The Most Exciting Jobs</h1>
+                                        <p class="fs-md ft-medium">Your Dream Jobs is Waiting</p>
+                                    </div>
+
+                                    <form action="{{ route('home.search') }}" method="GET" class="bg-white rounded p-1">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                                <div class="form-group mb-0 position-relative">
+                                                    <input type="text" class="form-control lg left-ico"
+                                                        placeholder="Job Title, Keyword or Company" name="key" />
+                                                    <i class="bnc-ico lni lni-search-alt"></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                                <div class="form-group mb-0 position-relative">
+                                                    <select class="custom-select lg b-0 " style="width: auto;"
+                                                        name="skill[]">
+                                                        @foreach ($skill as $item)
+                                                            <option value="{{ $item->id }}">
+                                                                {{ $item->label }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                                <div class="form-group mb-0 position-relative">
+                                                    <select class="custom-select lg b-0" name="location">
+                                                        <option selected disabled>Địa chỉ</option>
+                                                        @foreach ($location as $item)
+                                                            <option value="{{ $item->id }}">
+                                                                {{ $item->label }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                                                <div class="form-group mb-0 position-relative">
+                                                    <button
+                                                        class="btn full-width custom-height-lg theme-bg text-white fs-md"
+                                                        type="submit">Find Job</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="container">
+                            <form>
                                 <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 p-3">
                                     <div class="col test">
                                         <div class="p-1">
@@ -28,58 +81,10 @@
                                                 id="" placeholder="Tìm kiếm....">
                                         </div>
                                     </div>
-                                    {{-- <div class="col">
-                                        <div class="p-1"><select class="form-select" name="lever"
-                                                aria-label="Default select example">
-                                                <option selected disabled>Trình độ</option>
-                                                @foreach ($lever as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->label }}
-                                                    </option>
-                                                @endforeach
-                                            </select></div>
-                                    </div>
-                                    {{-- <div class="col">
-                                        <div class="p-1"><select class="form-select" name="experience"
-                                                aria-label="Default select example">
-                                                <option selected disabled>Kinh nghiệm</option>
-                                                @foreach ($experience as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->label }}
-                                                    </option>
-                                                @endforeach
-                                            </select></div>
-                                    </div>
+
                                     <div class="col">
-                                        <div class="p-1"><select class="form-select" name="majors"
-                                                aria-label="Default select example">
-                                                <option selected disabled>Mức lương</option>
-                                                @foreach ($majors as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->label }}
-                                                    </option>
-                                                @endforeach
-                                            </select></div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="p-1"><select class="form-select" name="timework"
-                                                aria-label="Default select example">
-                                                <option selected disabled>Thời gian làm việc</option>
-                                                @foreach ($timework as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->label }}
-                                                    </option>
-                                                @endforeach
-                                            </select></div>
-                                    </div> --}}
-                                    {{-- <div class="col">
-                                        <div class="p-1"><select class="form-select" name="profession"
-                                                aria-label="Default select example">
-                                                <option selected disabled>Vị trí ứng tuyển</option>
-                                                @foreach ($profession as $item)
-                                                    <option value="{{ $item->id }}">
-                                                        {{ $item->label }}</option>
-                                                @endforeach
-                                            </select></div>
-                                    </div> --}}
-                                    <div class="col">
-                                        <div class="p-1"><select class="form-select select2" name="skill[]"
+                                        <div class="p-1">
+                                            <select class="form-select select2" name="skill[]"
                                                 aria-label="Default select example">
                                                 @foreach ($skill as $item)
                                                     <option value="{{ $item->id }}">
@@ -88,7 +93,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="col">
                                         <div class="p-1"><select class="form-select select2-location" name="location"
                                                 aria-label="Default select example">
@@ -99,16 +104,7 @@
                                                 @endforeach
                                             </select></div>
                                     </div>
-                                    {{-- <div class="col">
-                                        <div class="p-1"><select class="form-select" name="workingform"
-                                                aria-label="Default select example">
-                                                <option selected disabled>Hình thức làm việc</option>
-                                                @foreach ($workingform as $item)
-                                                    <option value="{{ $item->id }}">
-                                                        {{ $item->label }}</option>
-                                                @endforeach
-                                            </select></div>
-                                    </div> --}}
+
                                     <div class="col">
                                         <div class="p-1"><button type="submit"
                                                 class="btn theme-bg text-light">Lọc</button>
@@ -116,7 +112,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>
@@ -170,14 +166,14 @@
                                 class="show-turn-on-location">Đăng
                                 nhập tại đây!</a></strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+                            <span aria-hidden="true">X</span>
                         </button>
                     </div>
                     <div class="alert alert-info alert-dismissible fade show" role="alert">
                         Hãy báo cáo cho tôi nếu bạn gặp phải sự cố hoặc bạn phát hiện ai đó có hành vi lừa đảo!, <strong><a
                                 href="{{ route('home.index') }}" class="show-turn-on-location">Liên hệ!</a></strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+                            <span aria-hidden="true">X</span>
                         </button>
                     </div>
 
@@ -882,7 +878,8 @@
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                             <div class="blg_grid_box">
                                 <div class="blg_grid_thumb">
-                                    <a href="blog-detail.html"><img src="{{ $item->new_image }}" class="img-fluid w-75 rounded "
+                                    <a href="blog-detail.html"><img src="{{ $item->new_image }}"
+                                            class="img-fluid w-75 rounded "
                                             style="display : block;
                                                    margin-left: auto;
                                                    margin-right: auto;
@@ -924,7 +921,8 @@
                                                     <li>
                                                         <div class="elsio_ic"><i class="fa fa-clock text-warning"></i>
                                                         </div>
-                                                        <div class="elsio_tx">{{ ($item->created_at)->format('d-m-Y') }}</div>
+                                                        <div class="elsio_tx">{{ $item->created_at->format('d-m-Y') }}
+                                                        </div>
                                                     </li>
                                                 </ul>
                                             </div>
