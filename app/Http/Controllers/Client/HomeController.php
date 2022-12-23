@@ -79,7 +79,11 @@ class HomeController extends BaseController
     }
     public function index()
     {
-
+        if (Auth::guard('user')->check()) {
+            if (Auth::guard('user')->user()->role_id == 2) {
+                return redirect(route('employer.index'));
+            }
+        }
         if (Auth::guard('user')->check()) {
             $user = $this->user->with('getProfileUse')->where('id', Auth::guard('user')->user()->id)->first();
             $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
