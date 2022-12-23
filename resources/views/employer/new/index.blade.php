@@ -46,31 +46,57 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Logo</th>
-                                            <th>Tiêu Đề</th>
-                                            <th>Vị trí làm việc</th>
-                                            <th> Hình thức làm việc</th>
-                                            <th> Trạng Thái</th>
-                                            <th>Số lượng hồ sơ đã nhân</th>
-                                            <th> Thời gian bắt đầu</th>
-                                            <th>Kết thúc</th>
-                                            <th>Thời gian còn lại</th>
-                                            <th colspan="2">Action</th>
+                                            <th scope="col">Logo</th>
+                                            <th scope="col">Tiêu Đề</th>
+                                            <th scope="col">Vị trí làm việc</th>
+                                            <th scope="col"> Hình thức làm việc</th>
+                                            <th scope="col"> Trạng Thái</th>
+                                            <th scope="col">Số lượng hồ sơ đã nhân</th>
+                                            <th scope="col"> Thời gian bắt đầu</th>
+                                            <th scope="col">Kết thúc</th>
+                                            <th scope="col">Thời gian còn lại</th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($job as $item)
                                             <tr>
-                                                <th scope="row"><img src="{{ asset($item->logo) }}" alt=""
-                                                        width="150px" height="150px"></th>
+                                                <td scope="row"><img src="{{ asset($item->logo) }}" alt=""
+                                                        width="150px" height="150px"></td>
                                                 <td>{{ $item->title }}</td>
                                                 <td>{{ $item->getprofession->name }}</td>
                                                 <td>{{ $item->getwk_form->name }}</td>
-                                                <td>{{ $item->status }}</td>
-                                                <td>10</td>
+                                                <td>{{ $item->status == 0 ? 'Bản nháp' : 'Đang hoạt động' }}</td>
+                                                <td>{{ count($item->AllCv) }}</td>
                                                 <td>{{ $item->job_time }}</td>
                                                 <td>{{ Carbon::parse($item->end_job_time)->format('Y-m-d') }}</td>
-                                                <td>10</td>
+                                                <td>
+
+                                                    @if (Carbon::parse($item->end_job_time)->format('m') == $m)
+                                                        <h5>
+                                                            @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
+                                                                {{-- {{ route('employer.changestatus', $item->id) }} --}}
+                                                                Hết hạn
+                                                            @else
+                                                                {{ Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') }}
+                                                                ngày
+                                                            @endif
+                                                        @else
+                                                            @if ($all_day -
+                                                                Carbon::parse($item->job_time)->format('d') +
+                                                                ($mon - ($mon - Carbon::parse($item->end_job_time)->format('d'))) <=
+                                                                0)
+                                                                <h5>
+                                                                    {{ route('employer.changestatus', $item->id) }}
+                                                                @else
+                                                                    <h5>
+                                                                        {{ $all_day -
+                                                                            Carbon::parse(Carbon::now())->format('d') +
+                                                                            ($mon + 1 - ($mon - Carbon::parse($item->end_job_time)->format('d'))) }}
+                                                                        ngày
+                                                            @endif
+                                                    @endif
+                                                </td>
                                                 <td><button type="button" class="btn btn-primary btn-action-create">
                                                         <i class="fa fa-plus"></i>xóa
                                                     </button></td>
@@ -80,8 +106,6 @@
                                                     </a></td>
                                             </tr>
                                         @endforeach
-
-
                                     </tbody>
                                 </table>
                             </div>
@@ -114,4 +138,8 @@
             </div>
         </div>
     </div>
+
+    <style>
+
+    </style>
 @endsection

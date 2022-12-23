@@ -52,7 +52,7 @@ class HomeController extends BaseController
     public Jobseeker $Jobseeker;
     public News $new;
 
-    public function __construct(News $new ,Jobseeker $Jobseeker, User $user, SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
+    public function __construct(News $new, Jobseeker $Jobseeker, User $user, SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
     {
         $this->new = $new;
         $this->job = $job;
@@ -79,13 +79,16 @@ class HomeController extends BaseController
     }
     public function index()
     {
-
+        if (Auth::guard('user')->check()) {
+            if (Auth::guard('user')->user()->role_id == 2) {
+                return redirect(route('employer.index'));
+            }
+        }
         if (Auth::guard('user')->check()) {
             $user = $this->user->with('getProfileUse')->where('id', Auth::guard('user')->user()->id)->first();
             $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
         }
         $new = News::all();
-        // dd($new);
         return view('client.index', [
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),
@@ -106,10 +109,9 @@ class HomeController extends BaseController
                 ->where('job.status', 1)
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                 ->get(),
-                'new' => $new
+            'new' => $new
 
         ]);
-
     }
 
     /**
@@ -271,7 +273,10 @@ class HomeController extends BaseController
     }
     public function upCv(Request $request)
     {
-        $checkJob = $this->savecv->where('id_job', $request->id_job)->first();
+        $checkJob = $this->savecv->where([
+            ['id_job', $request->id_job],
+            ['user_id', Auth::guard('user')->user()->id]
+        ])->first();
         if ($checkJob) {
             return back()->with('thongbao', 'Bạn đã nộp đơn vào công việc này rồi, vui lòng thử lại cho những công việc khác');
         }

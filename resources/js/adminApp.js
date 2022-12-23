@@ -77,6 +77,13 @@ app.component('home-client', homeClient);
 import CretaeCompany from './components/company/create.vue'
 app.component('create-company', CretaeCompany);
 
+import Notyf from "./components/common/notyf.vue";
+app.component("notyf", Notyf);
+import registerEmployer from "./components/employer/register.vue";
+app.component('register-employer', registerEmployer);
+
+
+
 app.mount('#app');
 
 

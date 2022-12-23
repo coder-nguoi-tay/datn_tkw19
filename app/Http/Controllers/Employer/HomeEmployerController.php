@@ -2,17 +2,32 @@
 
 namespace App\Http\Controllers\Employer;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
+use App\Models\Employer;
+use App\Models\location;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
-class HomeEmployerController extends Controller
+class HomeEmployerController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public Location $location;
+    public Employer $employer;
+    public User $user;
+    public function __construct(location $location, Employer $employer, User $user)
+    {
+        $this->location = $location;
+        $this->employer = $employer;
+        $this->user = $user;
+    }
     public function index()
     {
         return view('employer.dashboard.index');
@@ -36,7 +51,32 @@ class HomeEmployerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            if (!$this->checkMailUser($request)) {
+                return redirect()->back();
+            }
+            $user =  $this->user->create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role_id' => 2,
+                'status' => 2
+            ]);
+            $user->save();
+            $employer = new $this->employer();
+            $employer->name = $request->name;
+            $employer->phone = $request->sdt;
+            $employer->sex = $request->sex;
+            $employer->namecompany = $request->company;
+            $employer->workplace = $request->workplace;
+            $employer->address = $request->address;
+            $employer->user_id = $user->id;
+            $employer->save();
+            return redirect(route('home.index'));
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back();
+        }
     }
 
     /**
@@ -87,5 +127,11 @@ class HomeEmployerController extends Controller
     {
         Auth::guard('user')->logout();
         return redirect()->route('home.index');
+    }
+    public function register()
+    {
+        return view('employer.pages.register', [
+            'location' => $this->getlocation()
+        ]);
     }
 }

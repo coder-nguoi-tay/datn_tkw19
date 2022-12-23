@@ -119,4 +119,8 @@ app.component('up-cv', Upcv)
 import clientLogin from "./components/client/login/index.vue";
 app.component('client-login', clientLogin);
 
+import registerEmployer from "./components/employer/register.vue";
+app.component('register-employer', registerEmployer);
+
+
 app.mount('#app')

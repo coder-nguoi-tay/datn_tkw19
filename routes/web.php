@@ -53,7 +53,6 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::get('logout', [HomeEmployerController::class, 'logout'])->name('logout');
     Route::get('', [HomeEmployerController::class, 'index'])->name('index');
 
-    
     // Route::resource('new', NewEmployerController::class);
     Route::post('new/store', [NewEmployerController::class, 'store'])->name('new.store');
     Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');
@@ -66,8 +65,16 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::post('package/payment/momo', [EmployerPackageController::class, 'Momo'])->name('package.payment.momo');
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
+    Route::group([
+        'prefix' => 'quan-ly-cv'
+    ], function () {
+        Route::get('change-status', [ManagerUploadCvController::class, 'changeStatus'])->name('changestatus');
+    });
     Route::resource('register-company', RegisterCompanyController::class);
 });
+Route::get('register', [HomeEmployerController::class, 'register'])->name('register.employer');
+Route::post('register/create', [HomeEmployerController::class, 'store'])->name('register.employer.create');
+
 // seeker
 Route::resource('profile', SeekerHomeController::class);
 Route::resource('quan-ly-cv', SeekerManageUploadController::class);

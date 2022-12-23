@@ -30,17 +30,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-5 col-sm-5 col-xs-12 group-select-page d-flex">
-                                    {{-- <limit-page-option :limit-page-option="{{ json_encode([20, 50, 100]) }}"
-                                    :new-size-limit="{{ $newSizeLimit }}"></limit-page-option> --}}
-                                </div>
-                                <div class="col-md-7 col-sm-7 col-xs-12 group-paginate">
-                                    {{-- {{ $news->appends(SearchQueryComponent::alterQuery($request))->links('pagination.admin')
-                                }} --}}
-                                </div>
-                            </div>
                             <div class="row gy-3">
                                 <table class="table table-responsive-sm table-striped text-center">
                                     <thead>
@@ -53,7 +42,6 @@
                                         <th scope="col">Link Cv</th>
                                         <th scope="col">trạng thái</th>
                                         <th scope="col">thao tác</th>
-
                                     </thead>
                                     <tbody>
                                         @foreach ($cv as $item)
@@ -63,17 +51,20 @@
                                                 <td>{{ $item->user_name }}</td>
                                                 <td>{{ $item->profession_name }}</td>
                                                 <td> {{ $item->majors_name }} </td>
-                                                <td>kỹ năng</td>
-                                                <td>{{ Carbon::Now() }}</td>
+                                                <td>
+                                                    @foreach ($item->getskill as $value)
+                                                        {{ $value->name }}
+                                                    @endforeach
+                                                </td>
+                                                <td>{{ Carbon::parse($item->create_at_sv)->format('d-m-Y') }}</td>
                                                 <td><a href="{{ asset($item->file_cv) }}" target="_blank"
                                                         rel="noopener noreferrer">Link</a></td>
-                                                <td>{{ $item->status }}</td>
+                                                <td>{{ $item->status == 0 ? 'chưa xem' : 'đã xem' }}</td>
                                                 <td>xóa</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-
                             </div>
                             <div class="group-paginate">
                                 {{-- {{ $news->appends(SearchQueryComponent::alterQuery($request))->links('pagination.admin') }} --}}

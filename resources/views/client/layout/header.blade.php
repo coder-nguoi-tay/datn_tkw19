@@ -130,8 +130,8 @@
                                 Đăng nhập</button>
                         </li>
                         <li class="add-listing theme-bg">
-                            <a href="">
-                                <i class="lni lni-circle-plus mr-1"></i> Post a Job
+                            <a href="{{ route('register.employer') }}">
+                                Đăng ký nhà tuyển dụng
                             </a>
                         </li>
                     @else

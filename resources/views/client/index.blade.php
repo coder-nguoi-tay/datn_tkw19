@@ -569,7 +569,6 @@
         <!-- ======================= All category ======================== -->
         <section class="space gray">
             <div class="container">
-
                 <div class="row justify-content-center">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                         <div class="sec_title position-relative text-center mb-5">
@@ -581,87 +580,113 @@
 
                 <!-- row -->
                 <div class="row justify-content-center">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class="review-slide px-3">
-
-                            <!-- single review -->
-                            <div class="single_review px-2">
-                                <div class="reviews_wrap position-relative bg-white rounded py-4 px-4">
-                                    <div class="rw-header d-flex align-items-center justify-content-start">
-                                        <div class="rv-110-thumb position-relative verified-author"><img
-                                                src="assets/img/team-3.jpg" class="img-fluid circle" width="70"
-                                                alt="" />
+                    
+                        <div class="page-white-100">
+                            <div id="box-discover">
+                                <div class="container">
+                                    <h3>Khám phá</h3>
+                                    <div class="list-discover">
+                                        <div class="item">
+                                            <div class="image">
+                                                <img src="https://www.topcv.vn/v4/image/job-discover/briefcase.svg"
+                                                    alt="">
+                                            </div>
+                                            <div class="title">Việc làm Quản lý</div>
+                                            <p class="count">(<span class="number count_job_manager">2,682</span> việc
+                                                làm)</p>
+                                            <div>
+                                                <a target="_blank" href="/home"
+                                                    class="see-more">Khám phá
+                                                    ngay </a>
+                                            </div>
                                         </div>
-                                        <div class="rv-110-caption pl-3">
-                                            <h4 class="ft-medium fs-md mb-0 lh-1">Alvin B. Washington</h4>
-                                            <!-- <p class="p-0 m-0">Co Founder</p> -->
+                                        <div class="item">
+                                            <div class="image">
+                                                <img src="https://www.topcv.vn/v4/image/job-discover/start-up.svg"
+                                                    alt="">
+                                            </div>
+                                            <div class="title">Việc làm Senior</div>
+                                            <p class="count">(<span class="number count_job_senior">3,253</span> việc
+                                                làm)</p>
+                                            <div>
+                                                <a target="_blank" href="/home"
+                                                    class="see-more">Khám phá ngay </a>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="image">
+                                                <img src="https://www.topcv.vn/v4/image/job-discover/money-bag.svg"
+                                                    alt="">
+                                            </div>
+                                            <div class="title">Việc làm Lương cao</div>
+                                            <p class="count">(<span class="number count_job_high_salary">8,335</span>
+                                                việc làm)</p>
+                                            <div>
+                                                <a target="_blank" href="/home"
+                                                    class="see-more">Khám phá ngay </a>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="image">
+                                                <img src="https://www.topcv.vn/v4/image/job-discover/code.svg"
+                                                    alt="">
+                                            </div>
+                                            <div class="title">Việc làm IT</div>
+                                            <p class="count">(<span class="number count_job_it">2,410</span> việc làm)
+                                            </p>
+                                            <div>
+                                                <a target="_blank" href="/home"
+                                                    class="see-more">Khám phá ngay </a>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="image">
+                                                <img src="https://www.topcv.vn/v4/image/job-discover/id-card.svg"
+                                                    alt="">
+                                            </div>
+                                            <div class="title">Tuyển thực tập sinh</div>
+                                            <p class="count">(<span class="number count_job_intern">1,209</span> việc
+                                                làm)</p>
+                                            <div>
+                                                <a target="_blank" href="/home"
+                                                    class="see-more">Khám
+                                                    phá ngay </a>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="image">
+                                                <img src="https://www.topcv.vn/v4/image/job-discover/sand-clock.svg"
+                                                    alt="">
+                                            </div>
+                                            <div class="title">Việc làm bán thời gian</div>
+                                            <p class="count">(<span class="number count_job_part_time">935</span> việc
+                                                làm)</p>
+                                            <div>
+                                                <a target="_blank"
+                                                    href="/home"
+                                                    class="see-more">Khám
+                                                    phá ngay </a>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="image">
+                                                <img src="https://www.topcv.vn/v4/image/job-discover/new.svg"
+                                                    alt="">
+                                            </div>
+                                            <div class="title">Việc làm mới</div>
+                                            <p class="count">(<span class="number count_job_new">26,549</span> việc làm)
+                                            </p>
+                                            <div>
+                                                <a target="_blank" href="/home"
+                                                    class="see-more">Khám
+                                                    phá ngay </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- single review -->
-                            <div class="single_review px-2">
-                                <div class="reviews_wrap position-relative bg-white rounded py-4 px-4">
-                                    <div class="rw-header d-flex align-items-center justify-content-start">
-                                        <div class="rv-110-thumb"><img src="assets/img/team-4.jpg"
-                                                class="img-fluid circle" width="70" alt="" /></div>
-                                        <div class="rv-110-caption pl-3">
-                                            <h4 class="ft-medium fs-md mb-0 lh-1">Lavera C. Clifford</h4>
-                                            <p class="p-0 m-0">Team Manager</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- single review -->
-                            <div class="single_review px-2">
-                                <div class="reviews_wrap position-relative bg-white rounded py-4 px-4">
-                                    <div class="rw-header d-flex align-items-center justify-content-start">
-                                        <div class="rv-110-thumb position-relative verified-author"><img
-                                                src="assets/img/team-2.jpg" class="img-fluid circle" width="70"
-                                                alt="" />
-                                        </div>
-                                        <div class="rv-110-caption pl-3">
-                                            <h4 class="ft-medium fs-md mb-0 lh-1">Linda S. Riggs</h4>
-                                            <p class="p-0 m-0">Project Manager</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- single review -->
-                            <div class="single_review px-2">
-                                <div class="reviews_wrap position-relative bg-white rounded py-4 px-4">
-                                    <div class="rw-header d-flex align-items-center justify-content-start">
-                                        <div class="rv-110-thumb"><img src="assets/img/team-5.jpg"
-                                                class="img-fluid circle" width="70" alt="" /></div>
-                                        <div class="rv-110-caption pl-3">
-                                            <h4 class="ft-medium fs-md mb-0 lh-1">Chris L. Hazel</h4>
-                                            <p class="p-0 m-0">Web Designer</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- single review -->
-                            <div class="single_review px-2">
-                                <div class="reviews_wrap position-relative bg-white rounded py-4 px-4">
-                                    <div class="rw-header d-flex align-items-center justify-content-start">
-                                        <div class="rv-110-thumb position-relative verified-author"><img
-                                                src="assets/img/team-1.jpg" class="img-fluid circle" width="70"
-                                                alt="" />
-                                        </div>
-                                        <div class="rv-110-caption pl-3">
-                                            <h4 class="ft-medium fs-md mb-0 lh-1">Mark Jukerberg</h4>
-                                            <p class="p-0 m-0">PHP Developer</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
-                    </div>
+                   
                 </div>
                 <!-- /row -->
 
