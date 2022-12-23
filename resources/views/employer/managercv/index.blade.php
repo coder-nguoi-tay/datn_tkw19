@@ -63,11 +63,15 @@
                                                 <td>{{ $item->user_name }}</td>
                                                 <td>{{ $item->profession_name }}</td>
                                                 <td> {{ $item->majors_name }} </td>
-                                                <td>kỹ năng</td>
+                                                <td>
+                                                    @foreach ($item->getskill as $value)
+                                                        {{ $value->name }}
+                                                    @endforeach
+                                                </td>
                                                 <td>{{ Carbon::Now() }}</td>
                                                 <td><a href="{{ asset($item->file_cv) }}" target="_blank"
                                                         rel="noopener noreferrer">Link</a></td>
-                                                <td>{{ $item->status }}</td>
+                                                <td>{{ $item->status == 0 ? 'chưa xem' : 'đã xem' }}</td>
                                                 <td>xóa</td>
                                             </tr>
                                         @endforeach
