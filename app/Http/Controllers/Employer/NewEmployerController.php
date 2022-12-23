@@ -73,14 +73,14 @@ class NewEmployerController extends BaseController
         $mon = Carbon::parse(new Carbon('last day of last month'))->format('d');
         $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         $job = $this->job->where([
-            ['employer_id', $checkCompany->id],
-            ['status', 1],
+            ['job.employer_id', $checkCompany->id],
+            ['job.status', 1],
         ])
-            ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
+            ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill', 'AllCv'])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->select('job.*', 'company.logo as logo')
-            ->Orderby('created_at', 'DESC')
+            // ->Orderby('created_at', 'DESC')
             ->get();
         return view('employer.new.index', [
             'job' => $job,

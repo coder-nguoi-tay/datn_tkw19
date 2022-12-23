@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            {{-- {{ dd($job) }} --}}
                             <div>
                                 <table class="table">
                                     <thead>
@@ -67,11 +67,36 @@
                                                 <td>{{ $item->title }}</td>
                                                 <td>{{ $item->getprofession->name }}</td>
                                                 <td>{{ $item->getwk_form->name }}</td>
-                                                <td>{{ $item->status }}</td>
-                                                <td>10</td>
+                                                <td>{{ $item->status == 0 ? 'Bản nháp' : 'Đang hoạt động' }}</td>
+                                                <td>{{ count($item->AllCv) }}</td>
                                                 <td>{{ $item->job_time }}</td>
                                                 <td>{{ Carbon::parse($item->end_job_time)->format('Y-m-d') }}</td>
-                                                <td>10</td>
+                                                <td>
+
+                                                    @if (Carbon::parse($item->end_job_time)->format('m') == $m)
+                                                        <h5>
+                                                            @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
+                                                                Hết hạn
+                                                            @else
+                                                                {{ Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') }}
+                                                                ngày
+                                                            @endif
+                                                        @else
+                                                            @if ($all_day -
+                                                                Carbon::parse($item->job_time)->format('d') +
+                                                                ($mon - ($mon - Carbon::parse($item->end_job_time)->format('d'))) <=
+                                                                0)
+                                                                <h5>
+                                                                    Hết hạn
+                                                                @else
+                                                                    <h5>
+                                                                        {{ $all_day -
+                                                                            Carbon::parse(Carbon::now())->format('d') +
+                                                                            ($mon + 1 - ($mon - Carbon::parse($item->end_job_time)->format('d'))) }}
+                                                                        ngày
+                                                            @endif
+                                                    @endif
+                                                </td>
                                                 <td><button type="button" class="btn btn-primary btn-action-create">
                                                         <i class="fa fa-plus"></i>xóa
                                                     </button></td>

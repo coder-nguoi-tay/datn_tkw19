@@ -269,7 +269,10 @@ class HomeController extends BaseController
     }
     public function upCv(Request $request)
     {
-        $checkJob = $this->savecv->where('id_job', $request->id_job)->first();
+        $checkJob = $this->savecv->where([
+            ['id_job', $request->id_job],
+            ['user_id', Auth::guard('user')->user()->id]
+        ])->first();
         if ($checkJob) {
             return back()->with('thongbao', 'Bạn đã nộp đơn vào công việc này rồi, vui lòng thử lại cho những công việc khác');
         }
