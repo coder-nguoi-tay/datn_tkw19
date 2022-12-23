@@ -30,7 +30,7 @@
                 </div>
             </div>
             @if (session()->get('Message.flash'))
-                <popup-alert :data="{{json_encode(session()->get('Message.flash')[0])}}"></popup-alert>
+                <notyf :data="{{json_encode(session()->get('Message.flash')[0])}}"></notyf>
             @endif
             @php
                 session()->forget('Message.flash');

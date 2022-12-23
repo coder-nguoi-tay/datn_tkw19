@@ -42,7 +42,6 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- {{ dd($job) }} --}}
                             <div>
                                 <table class="table">
                                     <thead>
@@ -76,7 +75,8 @@
                                                     @if (Carbon::parse($item->end_job_time)->format('m') == $m)
                                                         <h5>
                                                             @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
-                                                                {{ route('employer.changestatus', $item->id) }}
+                                                                {{-- {{ route('employer.changestatus', $item->id) }} --}}
+                                                                Hết hạn
                                                             @else
                                                                 {{ Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') }}
                                                                 ngày
