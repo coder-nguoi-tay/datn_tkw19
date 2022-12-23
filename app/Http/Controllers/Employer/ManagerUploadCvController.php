@@ -42,7 +42,7 @@ class ManagerUploadCvController extends Controller
             ->leftjoin('time_work', 'time_work.id', '=', 'job-seeker.time_work_id')
             ->leftjoin('majors', 'majors.id', '=', 'job.majors_id')
             ->where('job.employer_id', $checkCompany->id)
-            ->select('users.name as user_name', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'job-seeker.*', 'profession.name as profession_name', 'experience.name as experience_experience', 'time_work.name as time_work_name', 'majors.name as majors_name','save_cv.created_at as create_at_sv')
+            ->select('users.name as user_name', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'job-seeker.*', 'profession.name as profession_name', 'experience.name as experience_experience', 'time_work.name as time_work_name', 'majors.name as majors_name', 'save_cv.created_at as create_at_sv')
             ->get();
         // dd($cv);
         return view('employer.managercv.index', [
@@ -114,5 +114,12 @@ class ManagerUploadCvController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function changeStatus($id)
+    {
+        $job = $this->job->where('id', $id)->first();
+        $job->status = 0;
+        $job->save();
+        return back();
     }
 }

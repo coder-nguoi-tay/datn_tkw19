@@ -76,7 +76,7 @@
                                                     @if (Carbon::parse($item->end_job_time)->format('m') == $m)
                                                         <h5>
                                                             @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
-                                                                Hết hạn
+                                                                {{ route('employer.changestatus', $item->id) }}
                                                             @else
                                                                 {{ Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') }}
                                                                 ngày
@@ -87,7 +87,7 @@
                                                                 ($mon - ($mon - Carbon::parse($item->end_job_time)->format('d'))) <=
                                                                 0)
                                                                 <h5>
-                                                                    Hết hạn
+                                                                    {{ route('employer.changestatus', $item->id) }}
                                                                 @else
                                                                     <h5>
                                                                         {{ $all_day -
