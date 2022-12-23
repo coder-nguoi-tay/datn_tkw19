@@ -180,7 +180,7 @@
                 </div>
                 <div class="search-book">
                     <h2 class="ft-bold">Tin tuyển dụng, việc làm tốt nhất</h2>
-
+                    123213
                 </div>
                 <div class="row justify-content-center">
                     <div class="container p-3">
@@ -580,113 +580,103 @@
 
                 <!-- row -->
                 <div class="row justify-content-center">
-                    
-                        <div class="page-white-100">
-                            <div id="box-discover">
-                                <div class="container">
-                                    <h3>Khám phá</h3>
-                                    <div class="list-discover">
-                                        <div class="item">
-                                            <div class="image">
-                                                <img src="https://www.topcv.vn/v4/image/job-discover/briefcase.svg"
-                                                    alt="">
-                                            </div>
-                                            <div class="title">Việc làm Quản lý</div>
-                                            <p class="count">(<span class="number count_job_manager">2,682</span> việc
-                                                làm)</p>
-                                            <div>
-                                                <a target="_blank" href="/home"
-                                                    class="see-more">Khám phá
-                                                    ngay </a>
-                                            </div>
+
+                    <div class="page-white-100">
+                        <div id="box-discover">
+                            <div class="container">
+                                <h3>Khám phá</h3>
+                                <div class="list-discover">
+                                    <div class="item">
+                                        <div class="image">
+                                            <img src="https://www.topcv.vn/v4/image/job-discover/briefcase.svg"
+                                                alt="">
                                         </div>
-                                        <div class="item">
-                                            <div class="image">
-                                                <img src="https://www.topcv.vn/v4/image/job-discover/start-up.svg"
-                                                    alt="">
-                                            </div>
-                                            <div class="title">Việc làm Senior</div>
-                                            <p class="count">(<span class="number count_job_senior">3,253</span> việc
-                                                làm)</p>
-                                            <div>
-                                                <a target="_blank" href="/home"
-                                                    class="see-more">Khám phá ngay </a>
-                                            </div>
+                                        <div class="title">Việc làm Quản lý</div>
+                                        <p class="count">(<span class="number count_job_manager">2,682</span> việc
+                                            làm)</p>
+                                        <div>
+                                            <a target="_blank" href="/home" class="see-more">Khám phá
+                                                ngay </a>
                                         </div>
-                                        <div class="item">
-                                            <div class="image">
-                                                <img src="https://www.topcv.vn/v4/image/job-discover/money-bag.svg"
-                                                    alt="">
-                                            </div>
-                                            <div class="title">Việc làm Lương cao</div>
-                                            <p class="count">(<span class="number count_job_high_salary">8,335</span>
-                                                việc làm)</p>
-                                            <div>
-                                                <a target="_blank" href="/home"
-                                                    class="see-more">Khám phá ngay </a>
-                                            </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="image">
+                                            <img src="https://www.topcv.vn/v4/image/job-discover/start-up.svg"
+                                                alt="">
                                         </div>
-                                        <div class="item">
-                                            <div class="image">
-                                                <img src="https://www.topcv.vn/v4/image/job-discover/code.svg"
-                                                    alt="">
-                                            </div>
-                                            <div class="title">Việc làm IT</div>
-                                            <p class="count">(<span class="number count_job_it">2,410</span> việc làm)
-                                            </p>
-                                            <div>
-                                                <a target="_blank" href="/home"
-                                                    class="see-more">Khám phá ngay </a>
-                                            </div>
+                                        <div class="title">Việc làm Senior</div>
+                                        <p class="count">(<span class="number count_job_senior">3,253</span> việc
+                                            làm)</p>
+                                        <div>
+                                            <a target="_blank" href="/home" class="see-more">Khám phá ngay </a>
                                         </div>
-                                        <div class="item">
-                                            <div class="image">
-                                                <img src="https://www.topcv.vn/v4/image/job-discover/id-card.svg"
-                                                    alt="">
-                                            </div>
-                                            <div class="title">Tuyển thực tập sinh</div>
-                                            <p class="count">(<span class="number count_job_intern">1,209</span> việc
-                                                làm)</p>
-                                            <div>
-                                                <a target="_blank" href="/home"
-                                                    class="see-more">Khám
-                                                    phá ngay </a>
-                                            </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="image">
+                                            <img src="https://www.topcv.vn/v4/image/job-discover/money-bag.svg"
+                                                alt="">
                                         </div>
-                                        <div class="item">
-                                            <div class="image">
-                                                <img src="https://www.topcv.vn/v4/image/job-discover/sand-clock.svg"
-                                                    alt="">
-                                            </div>
-                                            <div class="title">Việc làm bán thời gian</div>
-                                            <p class="count">(<span class="number count_job_part_time">935</span> việc
-                                                làm)</p>
-                                            <div>
-                                                <a target="_blank"
-                                                    href="/home"
-                                                    class="see-more">Khám
-                                                    phá ngay </a>
-                                            </div>
+                                        <div class="title">Việc làm Lương cao</div>
+                                        <p class="count">(<span class="number count_job_high_salary">8,335</span>
+                                            việc làm)</p>
+                                        <div>
+                                            <a target="_blank" href="/home" class="see-more">Khám phá ngay </a>
                                         </div>
-                                        <div class="item">
-                                            <div class="image">
-                                                <img src="https://www.topcv.vn/v4/image/job-discover/new.svg"
-                                                    alt="">
-                                            </div>
-                                            <div class="title">Việc làm mới</div>
-                                            <p class="count">(<span class="number count_job_new">26,549</span> việc làm)
-                                            </p>
-                                            <div>
-                                                <a target="_blank" href="/home"
-                                                    class="see-more">Khám
-                                                    phá ngay </a>
-                                            </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="image">
+                                            <img src="https://www.topcv.vn/v4/image/job-discover/code.svg" alt="">
+                                        </div>
+                                        <div class="title">Việc làm IT</div>
+                                        <p class="count">(<span class="number count_job_it">2,410</span> việc làm)
+                                        </p>
+                                        <div>
+                                            <a target="_blank" href="/home" class="see-more">Khám phá ngay </a>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="image">
+                                            <img src="https://www.topcv.vn/v4/image/job-discover/id-card.svg"
+                                                alt="">
+                                        </div>
+                                        <div class="title">Tuyển thực tập sinh</div>
+                                        <p class="count">(<span class="number count_job_intern">1,209</span> việc
+                                            làm)</p>
+                                        <div>
+                                            <a target="_blank" href="/home" class="see-more">Khám
+                                                phá ngay </a>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="image">
+                                            <img src="https://www.topcv.vn/v4/image/job-discover/sand-clock.svg"
+                                                alt="">
+                                        </div>
+                                        <div class="title">Việc làm bán thời gian</div>
+                                        <p class="count">(<span class="number count_job_part_time">935</span> việc
+                                            làm)</p>
+                                        <div>
+                                            <a target="_blank" href="/home" class="see-more">Khám
+                                                phá ngay </a>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="image">
+                                            <img src="https://www.topcv.vn/v4/image/job-discover/new.svg" alt="">
+                                        </div>
+                                        <div class="title">Việc làm mới</div>
+                                        <p class="count">(<span class="number count_job_new">26,549</span> việc làm)
+                                        </p>
+                                        <div>
+                                            <a target="_blank" href="/home" class="see-more">Khám
+                                                phá ngay </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                   
+                    </div>
+
                 </div>
                 <!-- /row -->
 
