@@ -88,6 +88,48 @@ class HomeController extends BaseController
         if (Auth::guard('user')->check()) {
             $user = $this->user->with('getProfileUse')->where('id', Auth::guard('user')->user()->id)->first();
             $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
+            $skill_id = $getskill->getskill->pluck('id');
+            if ($user->getProfileUse) {
+                $getProfile = $user->getProfileUse;
+                $jobForUser = $this->job
+                    ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
+                    ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
+                    ->join('employer', 'employer.id', '=', 'job.employer_id')
+                    ->join('company', 'company.id', '=', 'employer.id_company')
+                    ->where([
+                        ['job.status', 1],
+                        ['job.expired', 0],
+                    ])
+                    ->where(function ($query) use ($getProfile, $skill_id) {
+                        $query->orWhere(function ($q) use ($skill_id) {
+                            $q->whereIn('job_skill.skill_id', $skill_id);
+                        })
+                            ->orWhere(
+                                'job.location_id',
+                                $getProfile->location_id
+                            )
+                            ->orWhere(
+                                'job.profession_id',
+                                $getProfile->profession
+                            )
+                            ->orWhere(
+                                'job.experience_id',
+                                $getProfile->experience
+                            )
+                            ->orWhere(
+                                'job.time_work_id',
+                                $getProfile->time_work_id
+                            )
+                            ->orWhere(
+                                'job.level_id',
+                                $getProfile->lever_id
+                            );
+                    })
+                    ->distinct()
+                    ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+                    ->orderBy('employer.prioritize', 'desc')
+                    ->get();
+            }
         }
         $new = News::all();
         return view('client.index', [
@@ -104,14 +146,17 @@ class HomeController extends BaseController
             'user' => $user ?? '',
             'getskill' => $getskill ?? '',
             'job' => $this->job
-                ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
                 ->join('employer', 'employer.id', '=', 'job.employer_id')
                 ->join('company', 'company.id', '=', 'employer.id_company')
-                ->where('job.status', 1)
+                ->where([
+                    ['job.status', 1],
+                    ['job.expired', 0],
+                ])
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                 ->orderBy('employer.prioritize', 'desc')
                 ->get(),
-            'new' => $new
+            'new' => $new,
+            'jobForUser' => $jobForUser ?? ''
 
         ]);
     }
