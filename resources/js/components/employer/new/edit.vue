@@ -393,7 +393,7 @@ export default {
     Multiselect
   },
   props: ['data'],
-  data: function() {
+  data: function () {
     return {
       csrfToken: Laravel.csrfToken,
       model: this.data.job,
@@ -502,13 +502,19 @@ export default {
           data: this.model,
           skill: this.value
         })
-        .then(function(response) {
-          if (response.data.status == 200) {
-            window.location.href = that.data.urlBack
-          }
+        .then(function (response) {
+          that
+            .$swal({
+              title: response.data.message,
+              icon: 'success',
+              confirmButtonText: 'đóng lại'
+            })
+            .then(function (response) {
+              window.location.href = that.data.urlBack
+            })
         })
-        .catch(function(error) {
-          console.log(error)
+        .catch((error) => {
+          location.reload()
         })
     }
   }

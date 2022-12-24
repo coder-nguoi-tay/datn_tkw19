@@ -94,7 +94,7 @@ class HomeController extends BaseController
             'majors' => $this->getmajors(),
             'location' => $this->getlocation(),
             'workingform' => $this->getworkingform(),
-            'test' => $getskill
+            'getskill' => $getskill
         ]);
     }
 
@@ -148,11 +148,14 @@ class HomeController extends BaseController
                     'skill_id' => $value['value'],
                 ])->save();
             }
-            return back();
+            return response()->json([
+                'message' => 'Cập nhật thành công'
+            ]);
         } catch (\Throwable $th) {
-            dd($th);
             DB::rollback();
-            return back();
+            return response()->json([
+                'message' => 'Đã có một lỗi xảy ra'
+            ]);
         }
     }
 

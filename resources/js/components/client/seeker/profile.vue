@@ -403,6 +403,7 @@ export default {
         this.errmsgCheckImage = 'Đã có 1 lỗi sảy ra'
       } else {
         let that = this
+        $('.loading-div').removeClass('hidden')
         axios
           .post(that.data.urlStore, {
             _token: Laravel.csrfToken,
@@ -411,11 +412,19 @@ export default {
             email: that.model.email,
             skill_id: that.value
           })
-          .then((data) => {
-            console.log(data.data)
+          .then(function (response) {
+            that
+              .$swal({
+                title: response.data.message,
+                icon: 'success',
+                confirmButtonText: 'đóng lại'
+              })
+              .then(function () {
+                location.reload()
+              })
           })
-          .catch((errors) => {
-            console.log(errors)
+          .catch((error) => {
+            console.log(error)
           })
       }
     },

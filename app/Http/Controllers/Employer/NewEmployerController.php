@@ -160,13 +160,15 @@ class NewEmployerController extends BaseController
                 ])->save();
             }
             return response()->json([
+                'message' => 'Cập nhật thành công',
                 'status' => StatusCode::OK
-            ]);
+            ], StatusCode::OK);
         } catch (\Throwable $th) {
             DB::rollback();
             return response()->json([
-                'status' => StatusCode::FORBIDDEN
-            ]);
+                'message' => 'Cập nhật không thành công',
+                'status' => StatusCode::FORBIDDEN,
+            ], StatusCode::FORBIDDEN);
         }
     }
 
@@ -247,13 +249,15 @@ class NewEmployerController extends BaseController
                 ])->save();
             }
             return response()->json([
+                'message' => 'Cập nhật thành công',
                 'status' => StatusCode::OK
-            ]);
+            ], StatusCode::OK);
         } catch (\Throwable $th) {
             DB::rollback();
             return response()->json([
-                'status' => StatusCode::FORBIDDEN
-            ]);
+                'message' => 'Cập nhật không thành công',
+                'status' => StatusCode::FORBIDDEN,
+            ], StatusCode::FORBIDDEN);
         }
     }
 
@@ -268,7 +272,7 @@ class NewEmployerController extends BaseController
         try {
             $jobskill = $this->jobskill->where('job_id', $id)->get();
             foreach ($jobskill as $value) {
-                Jobskill::destroy($value->id);  
+                Jobskill::destroy($value->id);
             }
             $this->job->find($id)->delete();
             $this->setFlash(__('Xóa thành công'));
