@@ -12,7 +12,6 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
-
                         <div class="banner_caption text-center mb-5">
                             <h1 class="banner_title ft-bold mb-1">Khám phá hơn 10k+ việc làm</h1>
                             <p class="fs-md ft-medium">Xin chào các bạn, Công việc mơ ước của bạn đang chờ đợi ở thành phố
@@ -21,10 +20,6 @@
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="banner_caption text-center mb-5">
-                                        <h1 class="banner_title ft-bold mb-1">The Most Exciting Jobs</h1>
-                                        <p class="fs-md ft-medium">Your Dream Jobs is Waiting</p>
-                                    </div>
 
                                     <form action="{{ route('home.search') }}" method="GET" class="bg-white rounded p-1">
                                         <div class="row no-gutters">
@@ -72,48 +67,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="container">
-                            <form>
-                                <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 p-3">
-                                    <div class="col test">
-                                        <div class="p-1">
-                                            <input type="text" class="form-control input-custom" name="key"
-                                                id="" placeholder="Tìm kiếm....">
-                                        </div>
-                                    </div>
-
-                                    <div class="col">
-                                        <div class="p-1">
-                                            <select class="form-select select2" name="skill[]"
-                                                aria-label="Default select example">
-                                                @foreach ($skill as $item)
-                                                    <option value="{{ $item->id }}">
-                                                        {{ $item->label }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="p-1"><select class="form-select select2-location" name="location"
-                                                aria-label="Default select example">
-                                                <option selected disabled>Địa chỉ</option>
-                                                @foreach ($location as $item)
-                                                    <option value="{{ $item->id }}">
-                                                        {{ $item->label }}</option>
-                                                @endforeach
-                                            </select></div>
-                                    </div>
-
-                                    <div class="col">
-                                        <div class="p-1"><button type="submit"
-                                                class="btn theme-bg text-light">Lọc</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div> --}}
-
                     </div>
                 </div>
             </div>
@@ -576,29 +529,30 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- row -->
                 <div class="row justify-content-center">
 
                     <div class="page-white-100">
                         <div id="box-discover">
                             <div class="container">
-                                <h3>Khám phá</h3>
                                 <div class="list-discover">
-                                    <div class="item">
-                                        <div class="image">
-                                            <img src="https://www.topcv.vn/v4/image/job-discover/briefcase.svg"
-                                                alt="">
+                                    @foreach ($majors as $item)
+                                        {{-- {{ dd($item) }} --}}
+                                        <div class="item">
+                                            <div class="image">
+                                                <img src="{{ $item->image_majors }}" alt="">
+                                            </div>
+                                            <div class="title">{{ $item->name }}</div>
+                                            <p class="count">(<span class="number count_job_manager">2,682</span> việc
+                                                làm)</p>
+                                            <div>
+                                                <a target="_blank" href="/home" class="see-more">Khám phá
+                                                    ngay </a>
+                                            </div>
                                         </div>
-                                        <div class="title">Việc làm Quản lý</div>
-                                        <p class="count">(<span class="number count_job_manager">2,682</span> việc
-                                            làm)</p>
-                                        <div>
-                                            <a target="_blank" href="/home" class="see-more">Khám phá
-                                                ngay </a>
-                                        </div>
-                                    </div>
-                                    <div class="item">
+                                    @endforeach
+
+                                    {{-- <div class="item">
                                         <div class="image">
                                             <img src="https://www.topcv.vn/v4/image/job-discover/start-up.svg"
                                                 alt="">
@@ -670,7 +624,7 @@
                                             <a target="_blank" href="/home" class="see-more">Khám
                                                 phá ngay </a>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -1082,7 +1036,7 @@
                                     'skill' => $skill,
                                     'timework' => $timework,
                                     'profession' => $profession,
-                                    // 'majors' => $majors,
+                                    'majors' => $majors,
                                     'location' => $location,
                                     'workingform' => $workingform,
                                     'user' => $user,

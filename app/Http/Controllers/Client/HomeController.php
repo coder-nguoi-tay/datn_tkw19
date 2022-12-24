@@ -25,6 +25,7 @@ use App\Models\WorkingForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Str;
 
 class HomeController extends BaseController
 {
@@ -97,7 +98,7 @@ class HomeController extends BaseController
             'skill' => $this->getskill(),
             'timework' => $this->gettimework(),
             'profession' => $this->getprofession(),
-            'majors' => $this->getmajors(),
+            'majors' => $this->majors->get(),
             'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
             'user' => $user ?? '',
@@ -108,6 +109,7 @@ class HomeController extends BaseController
                 ->join('company', 'company.id', '=', 'employer.id_company')
                 ->where('job.status', 1)
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+                ->orderBy('employer.prioritize', 'desc')
                 ->get(),
             'new' => $new
 
