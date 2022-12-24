@@ -148,9 +148,6 @@ class HomeController extends BaseController
                     'skill_id' => $value['value'],
                 ])->save();
             }
-
-
-
             return back();
         } catch (\Throwable $th) {
             dd($th);

@@ -46,7 +46,7 @@
                         <div class="col">
                             <div class="p-1">
                                 <input type="text" class="form-control" name="key" id=""
-                                    placeholder="Tìm kiếm...." value="{{ isset($request['key']) }}">
+                                    placeholder="Tìm kiếm...." value="{{ $request['key'] }}">
                             </div>
                         </div>
                         <div class="col">
@@ -225,17 +225,13 @@
                                                 </a>
                                             </div>
                                             <div class="row">
-                                                <div class="jbl_location ml-20">
-                                                    <h4 class="btn px-3 d-flex align-items-center text-black  ">
-                                                        {{ $value->getMajors->name }}
-                                                    </h4>
-                                                </div>
+
                                                 <div class="job_grid_thumb mb-3 title-name px-3 col-4">
                                                     <a href="home/detail/{{ $value->title . '-' . $value->id }}"
                                                         class="d-block m-auto"><img src="assets/img/c-7.png"
                                                             class="img-fluid border-0" alt="" /></a>
                                                 </div>
-                                                <div class="job_grid_caption title-name px-3 col-8 g-1">
+                                                <div class="job_grid_caption title-name px-3 col-8">
                                                     <h4 class="mb-0 ft-medium medium ml-20">
                                                         <a href="home/detail/{{ $value->title . '-' . $value->id }}"
                                                             class="text-dark fs-md" data-bs-toggle="tooltip"
@@ -245,10 +241,12 @@
                                                                 {{ $value->title }}
                                                             </p>
                                                         </a>
+                                                        <div class="jbl_location"><i
+                                                                class="lni lni-map-marker mr-1"></i><span>{{ $value->getlocation->name }}</span>
+                                                        </div>
+
                                                     </h4>
-                                                    <div class="jbl_location"><i
-                                                            class="lni lni-map-marker mr-1"></i><span>{{ $value->getlocation->name }}</span>
-                                                    </div>
+
                                                     <div class="d-flex">
 
                                                         <div class="">
@@ -256,27 +254,15 @@
                                                                 {{ $value->nameCompany }}
                                                             </a>
                                                         </div>
-                                                        <div class="">
-                                                            <ul class="p-0 skills_tag text-center">
-                                                                <li>
-                                                                    <span class=" medium skill-bg  text-dark ">Up
-                                                                        to: {{ $value->getWage->name }}
-                                                                    </span>
-                                                                </li>
-
-                                                            </ul>
-                                                        </div>
-
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="job_grid_footer d-flex  text-mute-footer"
-                                                style="margin-top: 10px">
-                                                @foreach ($value->getskill as $value)
-                                                    <span
-                                                        class="mr-2 mb-2  px-2 py-1 rounded theme-cl theme-bg-light">{{ $value->name }}</span>
-                                                @endforeach
-                                            </div>
+                                            <span class=" medium skill-bg  text-dark df-1  text-wage-company p-1">
+                                                {{ $value->getWage->name }}
+                                            </span>
+                                            <span class=" medium skill-bg m-2  text-dark df-1  text-wage-company p-1">
+                                                {{ $value->getlocation->name }}
+                                            </span>
                                         </div>
                                     </div>
                                 @endforeach

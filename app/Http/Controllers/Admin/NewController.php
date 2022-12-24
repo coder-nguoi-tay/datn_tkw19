@@ -58,6 +58,7 @@ class NewController extends BaseController
         $new = new $this->new();
         $new->title = $request->title;
         $new->describe = $request->describe;
+        $new->profession_id = '1';
         if ($request->hasFile('new_image')) {
             $avatar = $request->new_image;
             $avatarName = $avatar->hashName();
@@ -71,8 +72,6 @@ class NewController extends BaseController
         }
         $this->setFlash(__('Thêm gói thất bại'));
         return redirect()->route('admin.new.index');
-
-
     }
 
     /**

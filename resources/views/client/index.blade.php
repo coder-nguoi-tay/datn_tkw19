@@ -180,7 +180,6 @@
                 </div>
                 <div class="search-book">
                     <h2 class="ft-bold">Tin tuyển dụng, việc làm tốt nhất</h2>
-                    123213
                 </div>
                 <div class="row justify-content-center">
                     <div class="container p-3">
