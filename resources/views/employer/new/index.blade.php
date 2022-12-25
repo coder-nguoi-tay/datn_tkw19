@@ -21,9 +21,19 @@
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </form>
-                                        <a class="nav-link py-0 btn-next-step" href="{{ route('employer.new.create') }}">
-                                            Thêm tin
-                                        </a>
+
+                                        @if ($checkCompany->id_company)
+                                            <a class="nav-link py-0 btn-next-step"
+                                                href="{{ route('employer.new.create') }}">
+                                                Thêm tin
+                                            </a>
+                                        @else
+                                            <button class="nav-link py-0 btn-next-step" data-coreui-toggle="modal"
+                                                data-coreui-target="#exampleModal" type="button">
+                                                Thêm tin
+                                            </button>
+                                        @endif
+
                                     </ul>
                                 </div>
                             </header>

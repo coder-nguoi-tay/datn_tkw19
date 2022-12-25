@@ -3,10 +3,6 @@
 @endphp
 @extends('layouts.admin')
 @section('content')
-    {{-- <button class="header-toggler px-md-0 me-md-3" type="button"
-                                        onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
-                                        <i class="icon icon-lg fa fa-bars" aria-hidden="true"></i>
-                                    </button> --}}
     <div class="container">
         <div class="fade-in">
             <div class="row">
