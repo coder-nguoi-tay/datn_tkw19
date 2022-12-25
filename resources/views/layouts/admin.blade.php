@@ -42,7 +42,7 @@
         @include('include.admin.sidebar')
         <div class="wrapper d-flex flex-column min-vh-100 bg-light">
             @include('include.admin.header')
-            <div class="body">
+            <div class="body" style="margin-left: 15px">
                 @yield('content')
             </div>
         </div>

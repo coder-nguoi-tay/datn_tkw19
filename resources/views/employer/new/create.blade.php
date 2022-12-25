@@ -6,26 +6,28 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <label>Thêm tin tuyển dụng</label>
+                            <header class="header header-sticky">
+                                <div class="container-fluid">
+                                    <label class="">Thêm Tin Tuyển Dụng</label>
+                                </div>
+                            </header>
                         </div>
-                        <div class="card-body">
-                            <create-new-employer
-                                :data="{{ json_encode([
-                                    'lever' => $lever,
-                                    'experience' => $experience,
-                                    'wage' => $wage,
-                                    'skill' => $skill,
-                                    'timework' => $timework,
-                                    'profession' => $profession,
-                                    'majors' => $majors,
-                                    'location' => $location,
-                                    'workingform' => $workingform,
-                                    'user' => $user,
-                                    'urlStore' => route('employer.new.store'),
-                                    'urlBack' => route('employer.new.index'),
-                                ]) }}">
-                            </create-new-employer>
-                        </div>
+                        <create-new-employer
+                            :data="{{ json_encode([
+                                'lever' => $lever,
+                                'experience' => $experience,
+                                'wage' => $wage,
+                                'skill' => $skill,
+                                'timework' => $timework,
+                                'profession' => $profession,
+                                'majors' => $majors,
+                                'location' => $location,
+                                'workingform' => $workingform,
+                                'user' => $user,
+                                'urlStore' => route('employer.new.store'),
+                                'urlBack' => route('employer.new.index'),
+                            ]) }}">
+                        </create-new-employer>
                     </div>
                 </div>
             </div>

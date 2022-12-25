@@ -9,44 +9,41 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <label>Tin tuyển dụng</label>
+                            <header class="header header-sticky">
+                                <div class="container-fluid">
+                                    <label class=" px-md-0 me-md-3">Quản Lý Đăng Tin</label>
+                                    <ul class="header-nav ms-3 d-flex">
+                                        <form action="{{ route('employer.new.index') }}" class="d-flex" method="get">
+                                            <input name="free_word" class="custom-input" placeholder="Tìm Kiếm...."
+                                                value="" autocomplete="off" id="free_word">
+                                            <button class="nav-link py-0 btn-next-step"
+                                                href="{{ route('employer.new.create') }}">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </form>
+
+                                        @if ($checkCompany->id_company)
+                                            <a class="nav-link py-0 btn-next-step"
+                                                href="{{ route('employer.new.create') }}">
+                                                Thêm tin
+                                            </a>
+                                        @else
+                                            <button class="nav-link py-0 btn-next-step" data-coreui-toggle="modal"
+                                                data-coreui-target="#exampleModal" type="button">
+                                                Thêm tin
+                                            </button>
+                                        @endif
+
+                                    </ul>
+                                </div>
+                            </header>
                         </div>
                         <div class="card-body">
-
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="">
-                                        <h3> Các bài mà bạn đã đăng</h3>
-                                    </div>
-                                    <div class="searchFrom pull-right">
-                                        <form action="" class="form-inline">
-                                            <div>
-                                                <input name="search_input" class="form-control" value=""
-                                                    autocomplete="off" type="control" id="search_input">
-                                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>
-                                                    &nbsp; Tìm kiếm</button>
-                                            </div>
-                                            @if ($checkCompany->getCompany)
-                                                <a href="{{ route('employer.new.create') }}"
-                                                    class="btn btn-primary btn-action-create">
-                                                    <i class="fa fa-plus"></i>Thêm
-                                                </a>
-                                            @else
-                                                <button href="" type="button" data-coreui-toggle="modal"
-                                                    data-coreui-target="#exampleModal"
-                                                    class="btn btn-primary btn-action-create">
-                                                    <i class="fa fa-plus"></i>Thêm
-                                                </button>
-                                            @endif
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                             <div>
-                                <table class="table">
+                                <table class="table table-striped table-hover table-bordered text-center">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Logo</th>
+                                            {{-- <th scope="col">Logo</th> --}}
                                             <th scope="col">Tiêu Đề</th>
                                             <th scope="col">Vị trí làm việc</th>
                                             <th scope="col"> Hình thức làm việc</th>
@@ -61,12 +58,12 @@
                                     <tbody>
                                         @foreach ($job as $item)
                                             <tr>
-                                                <td scope="row"><img src="{{ asset($item->logo) }}" alt=""
-                                                        width="150px" height="150px"></td>
+                                                {{-- <td scope="row"><img src="{{ asset($item->logo) }}" alt=""
+                                                        width="150px" height="150px"></td> --}}
                                                 <td>{{ $item->title }}</td>
                                                 <td>{{ $item->getprofession->name }}</td>
                                                 <td>{{ $item->getwk_form->name }}</td>
-                                                <td>{{ $item->status == 0 ? 'Bản nháp' : 'Đang hoạt động' }}</td>
+                                                <td>{{ $item->status == 0 ? 'INACTIVE' : 'ACTIVE' }}</td>
                                                 <td>{{ count($item->AllCv) }}</td>
                                                 <td>{{ $item->job_time }}</td>
                                                 <td>{{ Carbon::parse($item->end_job_time)->format('Y-m-d') }}</td>
@@ -97,13 +94,29 @@
                                                             @endif
                                                     @endif
                                                 </td>
-                                                <td><button type="button" class="btn btn-primary btn-action-create">
-                                                        <i class="fa fa-plus"></i>xóa
-                                                    </button></td>
-                                                <td><a href="{{ route('employer.new.edit', $item->id) }}" type="button"
-                                                        class="btn btn-primary btn-action-create">
-                                                        <i class="fa fa-plus"></i>sửa
-                                                    </a></td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-warning btn-radius-auto dropdown-toggle"
+                                                            id="action" type="button" data-coreui-toggle="dropdown"
+                                                            aria-expanded="false">Chức năng</button>
+                                                        <ul class="dropdown-menu" aria-labelledby="action">
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('employer.new.edit', $item->id) }}"
+                                                                    class="dropdown-item">
+                                                                    <i class="fa fa-eye"></i>xem chi tiết
+                                                                </a>
+                                                            </li>
+                                                            <li class="dropdown-divider"></li>
+                                                            <li>
+                                                                <a class="dropdown-item" href=""
+                                                                    class="dropdown-item">
+                                                                    <i class="fa fa-eye"></i>gia hạn
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
