@@ -31,6 +31,7 @@ class Job extends Authenticatable
         'candidate_requirements',
         'employer_id',
         'status',
+        'expired',
     ];
     public function getLevel()
     {

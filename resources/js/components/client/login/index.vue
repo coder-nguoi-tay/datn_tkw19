@@ -219,7 +219,6 @@ export default {
       } else {
         let that = this
         let url = this.data.urlRegister
-        console.log(url)
         axios
           .post(url, {
             name: that.model.name,

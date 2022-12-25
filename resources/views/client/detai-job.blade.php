@@ -544,6 +544,7 @@
                         <client-login
                             :data="{{ json_encode([
                                 'urlStore' => route('owner.store'),
+                                'urlRegister' => route('owner.update.register'),
                                 'message' => $message ?? '',
                             ]) }}">
                             <client-login>

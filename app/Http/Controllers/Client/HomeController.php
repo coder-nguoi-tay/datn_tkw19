@@ -87,9 +87,10 @@ class HomeController extends BaseController
         }
         if (Auth::guard('user')->check()) {
             $user = $this->user->with('getProfileUse')->where('id', Auth::guard('user')->user()->id)->first();
-            $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
-            $skill_id = $getskill->getskill->pluck('id');
+
             if ($user->getProfileUse) {
+                $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
+                $skill_id = $getskill->getskill->pluck('id');
                 $getProfile = $user->getProfileUse;
                 $jobForUser = $this->job
                     ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
@@ -325,7 +326,8 @@ class HomeController extends BaseController
             ['user_id', Auth::guard('user')->user()->id]
         ])->first();
         if ($checkJob) {
-            return back()->with('thongbao', 'Bạn đã nộp đơn vào công việc này rồi, vui lòng thử lại cho những công việc khác');
+            $this->setFlash(__('Bạn đã nộp đơn vào công việc này rồi'), 'error');
+            return redirect()->back();
         }
 
         if (isset($request->file_cv)) {
@@ -372,6 +374,7 @@ class HomeController extends BaseController
                 $cvUpload->save();
             }
         }
-        return back();
+        $this->setFlash(__('Hãy chờ phản hồi của nhà tuyển dụng'));
+        return redirect()->back();
     }
 }

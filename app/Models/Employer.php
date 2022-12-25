@@ -18,7 +18,8 @@ class Employer extends Model
         'workplace',
         'address',
         'id_company',
-        'user_id'
+        'user_id',
+        'prioritize',
     ];
     public function getCompany()
     {
