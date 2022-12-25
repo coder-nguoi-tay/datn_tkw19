@@ -3,35 +3,40 @@
 @endphp
 @extends('layouts.admin')
 @section('content')
+    {{-- <button class="header-toggler px-md-0 me-md-3" type="button"
+                                        onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+                                        <i class="icon icon-lg fa fa-bars" aria-hidden="true"></i>
+                                    </button> --}}
     <div class="container">
         <div class="fade-in">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <label>Tin tuyển dụng</label>
+                            <header class="header header-sticky">
+                                <div class="container-fluid">
+                                    <label class=" px-md-0 me-md-3">Quản lý CV</label>
+                                    <ul class="header-nav ms-3 d-flex">
+                                        <form action="{{ route('employer.quan-ly-cv.index') }}" class="d-flex"
+                                            method="get">
+                                            <input name="free_word" class="custom-input" placeholder="Tìm Kiếm...."
+                                                value="" autocomplete="off" id="free_word">
+                                            <button class="nav-link py-0 btn-next-step"
+                                                href="{{ route('employer.quan-ly-cv.create') }}">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </form>
+                                        <a class="nav-link py-0 btn-next-step"
+                                            href="{{ route('employer.quan-ly-cv.create') }}">
+                                            Thêm tin
+                                        </a>
+                                    </ul>
+                                </div>
+                            </header>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="searchFrom pull-right">
-                                        <form action="" class="form-inline">
-                                            <div>
-                                                <input name="search_input" class="form-control" value=""
-                                                    autocomplete="off" type="control" id="search_input">
-                                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>
-                                                    &nbsp; Tìm kiếm</button>
-                                            </div>
-                                            <a href="{{ route('employer.new.create') }}"
-                                                class="btn btn-primary btn-action-create">
-                                                <i class="fa fa-plus"></i>Thêm
-                                            </a>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row gy-3">
-                                <table class="table table-responsive-sm table-striped text-center">
+                                <table class="table table-striped table-hover table-bordered text-center">
                                     <thead>
                                         <th scope="col">Hình ảnh</th>
                                         <th scope="col">Họ và Tên</th>
@@ -39,7 +44,6 @@
                                         <th scope="col">Chuyên ngành</th>
                                         <th scope="col">Kỹ năng</th>
                                         <th scope="col">Ngày nộp đơn</th>
-                                        <th scope="col">Link Cv</th>
                                         <th scope="col">trạng thái</th>
                                         <th scope="col">thao tác</th>
                                     </thead>
@@ -57,10 +61,29 @@
                                                     @endforeach
                                                 </td>
                                                 <td>{{ Carbon::parse($item->create_at_sv)->format('d-m-Y') }}</td>
-                                                <td><a href="{{ asset($item->file_cv) }}" target="_blank"
-                                                        rel="noopener noreferrer">Link</a></td>
                                                 <td>{{ $item->status == 0 ? 'chưa xem' : 'đã xem' }}</td>
-                                                <td>xóa</td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-warning btn-radius-auto dropdown-toggle"
+                                                            id="action" type="button" data-coreui-toggle="dropdown"
+                                                            aria-expanded="false">Chức năng</button>
+                                                        <ul class="dropdown-menu" aria-labelledby="action">
+                                                            <li>
+                                                                <a class="dropdown-item" href=""
+                                                                    class="dropdown-item">
+                                                                    <i class="fa fa-eye"></i>Tải xuông
+                                                                </a>
+                                                            </li>
+                                                            <li class="dropdown-divider"></li>
+                                                            <li>
+                                                                <a class="dropdown-item" href="{{ asset($item->file_cv) }}"
+                                                                    target="_blank" class="dropdown-item">
+                                                                    <i class="fa fa-eye"></i>Xem cv
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

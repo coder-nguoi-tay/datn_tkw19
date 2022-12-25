@@ -3,9 +3,6 @@
   <div class="col-12 recuitment-inner">
     <div class="card-create-employer">
       <div class="card">
-        <div class="card-header">
-          <h5 class="card-title">Đăng tin tuyển dụng</h5>
-        </div>
         <VeeForm
           as="div"
           v-slot="{ handleSubmit }"

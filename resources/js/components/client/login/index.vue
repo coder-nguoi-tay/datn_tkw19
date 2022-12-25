@@ -214,7 +214,7 @@ export default {
             }
           })
           .catch(function (error) {
-            console.log(error)
+            location.reload()
           })
       } else {
         let that = this
@@ -236,7 +236,7 @@ export default {
             }
           })
           .catch(function (error) {
-            console.log(error)
+            location.reload()
           })
       }
     }
