@@ -53,7 +53,7 @@
                             <div class="colxl-12 col-lg-12 col-md-12">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="{{ route('home.index') }}"
+                                        <li class="breadcrumb-item"><a href="{{ route('index') }}"
                                                 class="text-blue">Home</a>
                                         </li>
                                         @if (isset($breadcrumbs))
@@ -544,6 +544,7 @@
                         <client-login
                             :data="{{ json_encode([
                                 'urlStore' => route('owner.store'),
+                                'urlRegister' => route('owner.update.register'),
                                 'message' => $message ?? '',
                             ]) }}">
                             <client-login>

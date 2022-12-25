@@ -377,6 +377,7 @@ import Multiselect from '@vueform/multiselect'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 import Editor from '@tinymce/tinymce-vue'
+import { Notyf } from 'notyf'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -393,7 +394,7 @@ export default {
     Multiselect
   },
   props: ['data'],
-  data: function() {
+  data: function () {
     return {
       csrfToken: Laravel.csrfToken,
       model: this.data.job,
@@ -502,13 +503,31 @@ export default {
           data: this.model,
           skill: this.value
         })
-        .then(function(response) {
-          if (response.data.status == 200) {
-            window.location.href = that.data.urlBack
+        .then(function (response) {
+          const notyf = new Notyf({
+            duration: 6000,
+            position: {
+              x: 'right',
+              y: 'bottom'
+            },
+            types: [
+              {
+                type: 'error',
+                duration: 8000,
+                dismissible: true
+              }
+            ]
+          })
+          if (response.data.status == 403) {
+            return notyf.error(response.data.message)
           }
+          setTimeout(function () {
+            window.location.href = that.data.urlBack
+          }, 1100)
+          return notyf.success(response.data.message)
         })
-        .catch(function(error) {
-          console.log(error)
+        .catch((error) => {
+          location.reload()
         })
     }
   }

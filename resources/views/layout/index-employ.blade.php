@@ -32,6 +32,9 @@
     <div id="app">
         <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
             @yield('content')
+            @if (session()->get('Message.flash'))
+                <notyf :data="{{ json_encode(session()->get('Message.flash')[0]) }}"></notyf>
+            @endif
         </main>
     </div>
 

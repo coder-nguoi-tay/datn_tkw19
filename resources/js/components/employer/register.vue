@@ -4,7 +4,9 @@
       <div class="overlay">
         <div class="register-header-logo d-flex justify-content-between p-4">
           <div class="back">
-            <a href="/home" class="text-decoration-none text-white btn-comback"
+            <a
+              :href="data.urlBack"
+              class="text-decoration-none text-white btn-comback"
               ><i class="fas fa-arrow-left"></i>
               Quay lại
             </a>
@@ -150,6 +152,7 @@
                         type="text"
                         name="email"
                         v-model="model.email"
+                        :value="value.email"
                         id="email"
                         rules="required|email|max:255"
                         class="form-control"
@@ -166,6 +169,7 @@
                       <Field
                         type="password"
                         v-model="model.password"
+                        :value="value.password"
                         name="password"
                         rules="required|max:16|min:8"
                         id="password"
@@ -185,6 +189,7 @@
                       <Field
                         type="password"
                         v-model="model.password_old"
+                        :value="value.password_old"
                         name="password_old"
                         rules="required|confirmed:@password"
                         id="password_old"
@@ -206,6 +211,7 @@
                       <Field
                         type="text"
                         v-model="model.name"
+                        :value="value.name"
                         name="name"
                         rules="required|max:128"
                         id="name"
@@ -224,6 +230,7 @@
                         type="text"
                         name="sdt"
                         v-model="model.sdt"
+                        :value="value.sdt"
                         rules="required|telephone"
                         id="sdt"
                         class="form-control"
@@ -239,6 +246,7 @@
                     <div class="col-sm-8">
                       <Field
                         v-model="model.sex"
+                        :value="value.sex"
                         name="sex"
                         as="select"
                         rules="required"
@@ -262,6 +270,7 @@
                         type="text"
                         name="company"
                         v-model="model.company"
+                        :value="value.company"
                         id="company"
                         rules="required|max:128"
                         class="form-control"
@@ -279,6 +288,7 @@
                         type="text"
                         name="workplace"
                         v-model="model.workplace"
+                        :value="value.workplace"
                         id="workplace"
                         rules="required|max:128"
                         class="form-control"
@@ -296,6 +306,7 @@
                         type="text"
                         name="address"
                         v-model="model.address"
+                        :value="value.address"
                         id="address"
                         rules="required|max:128"
                         class="form-control"
@@ -312,6 +323,7 @@
                     <div class="col-sm-8">
                       <Field
                         v-model="model.location_id"
+                        :value="value.location_id"
                         name="location_id"
                         as="select"
                         rules="required"
@@ -464,7 +476,8 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: {}
+      model: {},
+      value: this.data.request ?? ''
     }
   },
   mounted() {},

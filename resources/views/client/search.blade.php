@@ -16,7 +16,7 @@
                         <h1 class="ft-medium">Việc làm đã tìm thấy</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('home.index') }}" class="text-light">Home</a>
+                                <li class="breadcrumb-item"><a href="{{ route('index') }}" class="text-light">Home</a>
                                 </li>
                                 @if (isset($breadcrumbs))
                                     @foreach ($breadcrumbs as $key => $breadcrumb)
@@ -46,7 +46,7 @@
                         <div class="col">
                             <div class="p-1">
                                 <input type="text" class="form-control" name="key" id=""
-                                    placeholder="Tìm kiếm...." value="{{ isset($request['key']) }}">
+                                    placeholder="Tìm kiếm...." value="{{ $request['key'] }}">
                             </div>
                         </div>
                         <div class="col">
@@ -189,7 +189,6 @@
                                         </div>
                                         <div class="single_fitres">
                                             <button href="" class="btn simple-button mr-1">Lọc</button>
-
                                         </div>
                                     </div>
                                 </div>
@@ -198,7 +197,6 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="p-3">
-
                             <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" id="paginated-list">
                                 @foreach ($job as $value)
                                     <div class="col render-job-search">
@@ -206,76 +204,49 @@
                                         <div class="p-3 border bg-light box-showdow">
                                             <div class="position-absolute ab-right">
                                                 <a type="button"
-                                                    class="
-                                            p-3
-                                            border
-                                            circle
-                                            d-flex
-                                            align-items-center
-                                            justify-content-center
-                                            bg-white
-                                            text-gray
-                                            ">
+                                                    class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray">
                                                     <i
-                                                        class="
-                                            lni lni-heart-filled
-                                            position-absolute
-                                            snackbar-wishlist
-                                        "></i>
+                                                        class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
                                                 </a>
                                             </div>
                                             <div class="row">
-                                                <div class="jbl_location ml-20">
-                                                    <h4 class="btn px-3 d-flex align-items-center text-black  ">
-                                                        {{ $value->getMajors->name }}
-                                                    </h4>
-                                                </div>
                                                 <div class="job_grid_thumb mb-3 title-name px-3 col-4">
                                                     <a href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                        class="d-block m-auto"><img src="assets/img/c-7.png"
+                                                        class="d-block m-auto"><img src="{{ asset($value->logo) }}"
                                                             class="img-fluid border-0" alt="" /></a>
                                                 </div>
-                                                <div class="job_grid_caption title-name px-3 col-8 g-1">
+                                                <div class="job_grid_caption title-name px-3 col-8">
                                                     <h4 class="mb-0 ft-medium medium ml-20">
                                                         <a href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                            class="text-dark fs-md" data-bs-toggle="tooltip"
-                                                            data-bs-placement="top" title="Tooltip on top">
-                                                            <p
-                                                                style="width: 200px !important;overflow: hidden !important;text-overflow: ellipsis !important;white-space: nowrap">
-                                                                {{ $value->title }}
-                                                            </p>
+                                                            class="text-dark fs-md mb-5" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" title="{{ $value->title }}">
+                                                            {{ $value->title }}
                                                         </a>
+                                                        <br>
+                                                        {{ $value->nameCompany }}
                                                     </h4>
-                                                    <div class="jbl_location"><i
-                                                            class="lni lni-map-marker mr-1"></i><span>{{ $value->getlocation->name }}</span>
-                                                    </div>
-                                                    <div class="d-flex">
-
-                                                        <div class="">
-                                                            <a href="" class="text-dark fs-md">
-                                                                {{ $value->nameCompany }}
-                                                            </a>
-                                                        </div>
-                                                        <div class="">
-                                                            <ul class="p-0 skills_tag text-center">
-                                                                <li>
-                                                                    <span class=" medium skill-bg  text-dark ">Up
-                                                                        to: {{ $value->getWage->name }}
-                                                                    </span>
-                                                                </li>
-
-                                                            </ul>
-                                                        </div>
-
-                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="job_grid_footer d-flex  text-mute-footer"
-                                                style="margin-top: 10px">
-                                                @foreach ($value->getskill as $value)
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <div class="cucstom-time"><span
+                                                            class=" medium skill-bg  text-dark df-1  text-wage-company p-1">
+                                                            {{ $value->getWage->name }}
+                                                        </span>
+                                                        <span
+                                                            class=" medium skill-bg m-2  text-dark df-1  text-wage-company p-1">
+                                                            <i
+                                                                class="lni lni-map-marker mr-1"></i>{{ $value->getlocation->name }}
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-4">
                                                     <span
-                                                        class="mr-2 mb-2  px-2 py-1 rounded theme-cl theme-bg-light">{{ $value->name }}</span>
-                                                @endforeach
+                                                        class="medium skill-bg m-2  text-dark df-1  text-wage-company p-1">
+                                                        còn 10 ngày
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -295,65 +266,7 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="row">
-                        <div class="row align-items-center" id="paginated-list">
-
-
-                            <!-- Single job -->
-                            @foreach ($job as $item)
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="job_grid border rounded ">
-                                        <div class="position-absolute ab-left">
-                                            <button type="button" class="btn d-flex align-items-center text-black ">
-                                                {{ $item->getMajors->name }}
-                                            </button>
-                                        </div>
-                                        <div class="position-absolute ab-right"><span
-                                                class="medium bg-light-danger text-danger px-2 py-1 rounded">{{ $item->getTime_work->name }}</span>
-                                        </div>
-                                        <div class="job_grid_thumb mb-2 pt-5 px-3">
-                                            <a href="job-detail.html" class="d-block text-center m-auto"><img
-                                                    src="assets/img/c-7.png" class="img-fluid" width="70"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="job_grid_caption text-center pb-3 px-3">
-
-                                            <h4 class="mb-0 ft-medium medium"><a href="job-detail.html"
-                                                    class="text-dark fs-md">{{ $item->title }}</a>
-                                            </h4>
-                                           
-                                        </div>
-
-                                        <div class="job_grid_footer pb-4 px-3">
-                                            <ul class="p-0 skills_tag text-center">
-                                                <li>
-                                                    <span
-                                                        class="px-2 py-1 medium skill-bg rounded text-dark t">{{ $item->getWage->name }}
-                                                    </span>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                        <div class="jb-list-01-title  text-center pb-3 px-3">
-                                            @foreach ($item->getskill as $value)
-                                                <span
-                                                    class="mr-2 mb-2 d-inline-flex px-2 py-1 rounded theme-cl theme-bg-light">{{ $value->name }}</span>
-                                            @endforeach
-
-                                        </div>
-                                    </div>
-
-
-                                </div>
-
-                                <!-- Single -->
-                            @endforeach
-                            <!-- Single job -->
-                        </div>
-                    </div> --}}
-
                     <!-- All jobs -->
-
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12"> <br><br>
                             <span class="page-item text-center pagination-container d-flex">
@@ -363,10 +276,8 @@
                             </span>
                         </div>
                     </div>
-
+                    <!-- paginate -->
                 </div>
-
-
             </div>
         </section>
         <!-- ============================ Main Section End ================================== -->

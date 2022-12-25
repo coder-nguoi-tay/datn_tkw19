@@ -286,6 +286,8 @@ import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 import $ from 'jquery'
 import axios from 'axios'
+import { Notyf } from 'notyf'
+import 'notyf/notyf.min.css'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -403,6 +405,7 @@ export default {
         this.errmsgCheckImage = 'Đã có 1 lỗi sảy ra'
       } else {
         let that = this
+        $('.loading-div').removeClass('hidden')
         axios
           .post(that.data.urlStore, {
             _token: Laravel.csrfToken,
@@ -411,11 +414,41 @@ export default {
             email: that.model.email,
             skill_id: that.value
           })
-          .then((data) => {
-            console.log(data.data)
+          .then(function (response) {
+            const notyf = new Notyf({
+              duration: 6000,
+              position: {
+                x: 'right',
+                y: 'bottom'
+              },
+              types: [
+                {
+                  type: 'error',
+                  duration: 8000,
+                  dismissible: true
+                }
+              ]
+            })
+            console.log(response.data.status)
+            if (response.data.status == 403) {
+              setTimeout(function () {
+                location.reload()
+              }, 1100)
+              return notyf.error(response.data.message)
+            }
+            if (response.data.status == 400) {
+              setTimeout(function () {
+                location.reload()
+              }, 1100)
+              return notyf.warning(response.data.message)
+            }
+            setTimeout(function () {
+              location.reload()
+            }, 1100)
+            return notyf.success(response.data.message)
           })
-          .catch((errors) => {
-            console.log(errors)
+          .catch((error) => {
+            console.log(error)
           })
       }
     },

@@ -94,7 +94,7 @@ class HomeController extends BaseController
             'majors' => $this->getmajors(),
             'location' => $this->getlocation(),
             'workingform' => $this->getworkingform(),
-            'test' => $getskill
+            'getskill' => $getskill
         ]);
     }
 
@@ -148,14 +148,16 @@ class HomeController extends BaseController
                     'skill_id' => $value['value'],
                 ])->save();
             }
-
-
-
-            return back();
+            return response()->json([
+                'message' => 'Cập nhật thành công',
+                'status' => StatusCode::OK
+            ], StatusCode::OK);
         } catch (\Throwable $th) {
-            dd($th);
             DB::rollback();
-            return back();
+            return response()->json([
+                'message' => 'Đã có một lỗi xảy ra',
+                'status' => StatusCode::FORBIDDEN
+            ], StatusCode::OK);
         }
     }
 
@@ -207,7 +209,7 @@ class HomeController extends BaseController
     public function logout()
     {
         Auth::guard('user')->logout();
-        return redirect()->route('home.index');
+        return redirect()->route('index');
     }
     public function userFavourite()
     {
@@ -260,10 +262,16 @@ class HomeController extends BaseController
     }
     public function changePasswordSucsses(Request $request)
     {
-        $user = $this->user->where('id', Auth::guard('user')->user()->id)->first();
-        $user->password = Hash::make($request->password);
-        $user->save();
-        $this->setFlash(_('Đổi mật khẩu thành công'));
-        return redirect()->route('user.changepass');
+        try {
+            $user = $this->user->where('id', Auth::guard('user')->user()->id)->first();
+            $user->password = Hash::make($request->password);
+            $user->save();
+            $this->setFlash(_('Đổi mật khẩu thành công'));
+            return redirect()->route('user.changepass');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->setFlash(_('Đã có một lỗi xảy ra'));
+            return redirect()->route('user.changepass');
+        }
     }
 }

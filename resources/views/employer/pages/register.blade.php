@@ -3,8 +3,9 @@
     <register-employer
         :data="{{ json_encode([
             'urlStore' => route('register.employer.create'),
-            'urlBack' => route('home.index'),
+            'urlBack' => route('index'),
             'location' => $location,
+            'request' => $request ?? '',
         ]) }}">
     </register-employer>
 @endsection
