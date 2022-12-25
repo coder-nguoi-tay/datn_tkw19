@@ -51,10 +51,14 @@ class HomeEmployerController extends BaseController
      */
     public function store(Request $request)
     {
+        if (!$this->checkMailUser($request)) {
+            $this->setFlash(__('Email này đã được đăng ký trước đây'), 'error');
+            return view('employer.pages.register', [
+                'location' => $this->getlocation(),
+                'request' => $request->all(),
+            ]);
+        }
         try {
-            if (!$this->checkMailUser($request)) {
-                return redirect()->back();
-            }
             $user =  $this->user->create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -72,10 +76,15 @@ class HomeEmployerController extends BaseController
             $employer->address = $request->address;
             $employer->user_id = $user->id;
             $employer->save();
+            $this->setFlash(__('đăng ký tài khoản nhà tuyển dụng thành công'));
             return redirect(route('home.index'));
         } catch (\Throwable $th) {
             DB::rollBack();
-            return back();
+            $this->setFlash(__('đã có một lỗi không xác định đã xảy ra, kiểm tra lại thông tin của bạn'), 'error');
+            return view('employer.pages.register', [
+                'location' => $this->getlocation(),
+                'request' => $request->all(),
+            ]);
         }
     }
 

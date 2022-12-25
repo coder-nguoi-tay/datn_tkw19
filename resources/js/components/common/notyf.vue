@@ -19,7 +19,7 @@ export default {
       const notyf = new Notyf({
         duration: 6000,
         position: {
-          x: 'center',
+          x: 'right',
           y: 'bottom'
         },
         types: [

@@ -286,6 +286,8 @@ import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 import $ from 'jquery'
 import axios from 'axios'
+import { Notyf } from 'notyf'
+import 'notyf/notyf.min.css'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -413,15 +415,37 @@ export default {
             skill_id: that.value
           })
           .then(function (response) {
-            that
-              .$swal({
-                title: response.data.message,
-                icon: 'success',
-                confirmButtonText: 'đóng lại'
-              })
-              .then(function () {
+            const notyf = new Notyf({
+              duration: 6000,
+              position: {
+                x: 'right',
+                y: 'bottom'
+              },
+              types: [
+                {
+                  type: 'error',
+                  duration: 8000,
+                  dismissible: true
+                }
+              ]
+            })
+            console.log(response.data.status)
+            if (response.data.status == 403) {
+              setTimeout(function () {
                 location.reload()
-              })
+              }, 1100)
+              return notyf.error(response.data.message)
+            }
+            if (response.data.status == 400) {
+              setTimeout(function () {
+                location.reload()
+              }, 1100)
+              return notyf.warning(response.data.message)
+            }
+            setTimeout(function () {
+              location.reload()
+            }, 1100)
+            return notyf.success(response.data.message)
           })
           .catch((error) => {
             console.log(error)

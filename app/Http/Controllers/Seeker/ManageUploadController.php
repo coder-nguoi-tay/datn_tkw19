@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Seeker;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\UploadCv;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class ManageUploadController extends Controller
+class ManageUploadController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -59,14 +61,21 @@ class ManageUploadController extends Controller
 
     public function store(Request $request)
     {
-        $upload = new $this->upload();
-        $upload->user_id = Auth::guard('user')->user()->id;
-        $upload->title = 'Triệu Việt Đức';
-        if ($request->hasFile('file_cv')) {
-            $upload->file_cv = $request->file_cv->storeAs('images/cv', $request->file_cv->hashName());
+        try {
+            $upload = new $this->upload();
+            $upload->user_id = Auth::guard('user')->user()->id;
+            $upload->title = 'Triệu Việt Đức';
+            if ($request->hasFile('file_cv')) {
+                $upload->file_cv = $request->file_cv->storeAs('images/cv', $request->file_cv->hashName());
+            }
+            $upload->save();
+            $this->setFlash(__('Thêm cv mới thành công'));
+            return redirect()->route('quan-ly-cv.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->setFlash(__('đã có một lỗi không rõ nguyên nhân xảy ra'), 'error');
+            return redirect()->route('quan-ly-cv.index');
         }
-        $upload->save();
-        return redirect()->route('quan-ly-cv.index');
     }
 
     /**
@@ -78,6 +87,7 @@ class ManageUploadController extends Controller
     public function show($id)
     {
         $this->upload->destroy($id);
+        $this->setFlash(__('Xóa cv thành công'));
         return redirect()->route('quan-ly-cv.index');
     }
 
@@ -113,6 +123,7 @@ class ManageUploadController extends Controller
     public function destroy($id)
     {
         $this->upload->destroy($id);
+        $this->setFlash(__('Xóa cv thành công'));
         return redirect()->route('quan-ly-cv.index');
     }
 }

@@ -5,6 +5,7 @@
             'urlStore' => route('register.employer.create'),
             'urlBack' => route('home.index'),
             'location' => $location,
+            'request' => $request ?? '',
         ]) }}">
     </register-employer>
 @endsection

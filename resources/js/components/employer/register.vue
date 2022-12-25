@@ -464,7 +464,7 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: {}
+      model: this.data.request ?? ''
     }
   },
   mounted() {},
