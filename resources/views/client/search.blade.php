@@ -16,7 +16,7 @@
                         <h1 class="ft-medium">Việc làm đã tìm thấy</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('home.index') }}" class="text-light">Home</a>
+                                <li class="breadcrumb-item"><a href="{{ route('index') }}" class="text-light">Home</a>
                                 </li>
                                 @if (isset($breadcrumbs))
                                     @foreach ($breadcrumbs as $key => $breadcrumb)

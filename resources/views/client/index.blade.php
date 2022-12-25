@@ -115,7 +115,7 @@
                         doanh nghiệp uy tín tại Việt Nam</p>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         Hệ thống mong muốn bạn đăng nhập để có thể
-                        hiển thị các việc làm phù hợp nhất!, <strong><a href="{{ route('home.index') }}"
+                        hiển thị các việc làm phù hợp nhất!, <strong><a href="{{ route('index') }}"
                                 class="show-turn-on-location">Đăng
                                 nhập tại đây!</a></strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -124,7 +124,7 @@
                     </div>
                     <div class="alert alert-info alert-dismissible fade show" role="alert">
                         Hãy báo cáo cho tôi nếu bạn gặp phải sự cố hoặc bạn phát hiện ai đó có hành vi lừa đảo!, <strong><a
-                                href="{{ route('home.index') }}" class="show-turn-on-location">Liên hệ!</a></strong>
+                                href="{{ route('index') }}" class="show-turn-on-location">Liên hệ!</a></strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">X</span>
                         </button>
@@ -796,7 +796,7 @@
         <meta charset="utf-8">
         <style>
             /* Always set the map height explicitly to define the size of the div
-                                                                                                             * element that contains the map. */
+                                                                                                                 * element that contains the map. */
             #map {
                 height: 100%;
                 background-color: grey;

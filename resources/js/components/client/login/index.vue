@@ -208,7 +208,7 @@ export default {
               that.msgLogin = data.data.data
             }
             if (data.data.data == 1) {
-              window.location.href = '/home'
+              location.reload()
             } else if (data.data.data == 2) {
               window.location.href = '/employer'
             }

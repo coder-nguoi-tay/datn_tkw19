@@ -209,7 +209,7 @@ class HomeController extends BaseController
     public function logout()
     {
         Auth::guard('user')->logout();
-        return redirect()->route('home.index');
+        return redirect()->route('index');
     }
     public function userFavourite()
     {

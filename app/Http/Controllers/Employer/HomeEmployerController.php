@@ -77,7 +77,7 @@ class HomeEmployerController extends BaseController
             $employer->user_id = $user->id;
             $employer->save();
             $this->setFlash(__('đăng ký tài khoản nhà tuyển dụng thành công'));
-            return redirect(route('home.index'));
+            return redirect(route('index'));
         } catch (\Throwable $th) {
             DB::rollBack();
             $this->setFlash(__('đã có một lỗi không xác định đã xảy ra, kiểm tra lại thông tin của bạn'), 'error');
@@ -135,7 +135,7 @@ class HomeEmployerController extends BaseController
     public function logout()
     {
         Auth::guard('user')->logout();
-        return redirect()->route('home.index');
+        return redirect()->route('index');
     }
     public function register()
     {

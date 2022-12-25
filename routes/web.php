@@ -33,7 +33,7 @@ use App\Http\Controllers\Employer\RegisterCompanyController;
 |
 */
 
-Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
+Route::middleware('admin')->prefix('dashboard')->name('admin.')->group(function () {
     Route::resource('', HomeController::class);
     Route::resource('package', PackageController::class);
     Route::resource('Users', UserController::class);
@@ -41,7 +41,7 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('profile', ProfileController::class);
     Route::resource('new', NewController::class);
 });
-Route::resource('/', LoginController::class);
+Route::resource('admin', LoginController::class);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::resource('resset_pass', ResetPasswordController::class);
 Route::resource('forgotPasswordSuccess', forgotPasswordSuccessController::class);
@@ -92,7 +92,7 @@ Route::resource('owner', ClientLoginController::class);
 Route::post('owner/update/register', [ClientLoginController::class, 'updateRegister'])->name('owner.update.register');
 // });
 //client
-Route::resource('home', ClientHomeController::class);
+Route::resource('', ClientHomeController::class);
 Route::get('show-new', [ClientHomeController::class, 'showNew']); // api
 Route::post('favourite/{id}', [SeekerHomeController::class, 'userFavouriteId']); // api
 Route::get('home/detail/{title}-{id}', [ClientHomeController::class, 'showDetail'])->name('home.detail.show');

@@ -4,7 +4,9 @@
       <div class="overlay">
         <div class="register-header-logo d-flex justify-content-between p-4">
           <div class="back">
-            <a href="/home" class="text-decoration-none text-white btn-comback"
+            <a
+              :href="data.urlBack"
+              class="text-decoration-none text-white btn-comback"
               ><i class="fas fa-arrow-left"></i>
               Quay lại
             </a>
