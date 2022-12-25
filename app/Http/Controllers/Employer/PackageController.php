@@ -87,20 +87,20 @@ class PackageController extends BaseController
     {
         //
     }
+
     public function Payment(Request $request)
     {
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = route('employer.result.index');
         $vnp_TmnCode = "S50PEHFY"; //Mã website tại VNPAY 
         $vnp_HashSecret = "KNAREAARTPBAELKXTPLZKBUMSTCJHIYE"; //Chuỗi bí mật
-
         $vnp_TxnRef = rand(0, 99);
         // $request->id
-        $vnp_OrderInfo = 'Thanh Toán đơn hàng ' . $request->name;
+        $vnp_OrderInfo = 'Thanh Toán đơn hàng tết';
         $vnp_OrderType = 'billpayment';
-        $vnp_Amount =  $request->price * 100;
+        $vnp_Amount =  10000 * 100;
         $vnp_Locale = 'vn';
-        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+        $vnp_IpAddr = '192.168.1.6';
 
         $inputData = array(
             "vnp_Version" => "2.1.0",

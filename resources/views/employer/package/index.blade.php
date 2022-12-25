@@ -22,10 +22,14 @@
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </form>
-                                        <a class="nav-link py-0 btn-next-step"
-                                            href="{{ route('employer.quan-ly-cv.create') }}">
-                                            Thêm tin
-                                        </a>
+                                        <form action="{{ route('package.test') }}" method="post">
+                                            @csrf
+                                            <button class="btn btn-info" name="redirect">mua thu</button>
+                                        </form>
+                                        {{-- <a class="nav-link py-0 btn-next-step" name="redirect"
+                                            href="{{ route('employer.package.payment') }}">
+                                            mua gói cước
+                                        </a> --}}
                                     </ul>
                                 </div>
                             </header>

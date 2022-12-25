@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\SearchController;
 use App\Http\Controllers\Employer\ManagerUploadCvController;
 use App\Http\Controllers\Employer\RegisterCompanyController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::resource('package', EmployerPackageController::class);
     Route::post('package/payment', [EmployerPackageController::class, 'Payment'])->name('package.payment');
     Route::post('package/payment/momo', [EmployerPackageController::class, 'Momo'])->name('package.payment.momo');
+    
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
     Route::group([
@@ -72,6 +74,13 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     });
     Route::resource('register-company', RegisterCompanyController::class);
 });
+
+// --------------------------- thanh toan ----------------------------------------------
+Route::post('test_vnpay', [TestController::class, 'index'])->name('package.test');
+// -----------------------------------------
+
+
+
 Route::get('register', [HomeEmployerController::class, 'register'])->name('register.employer');
 Route::post('register/create', [HomeEmployerController::class, 'store'])->name('register.employer.create');
 
