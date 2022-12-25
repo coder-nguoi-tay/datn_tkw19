@@ -23,7 +23,8 @@
                 </li>
             </ul>
             <ul data-submenu-title="Tài khoản">
-                <li><a href=""><i class="fa fa-user-circle" aria-hidden="true"></i>My Profile </a>
+                <li><a href="{{ route('employer.profile.index') }}"><i class="fa fa-user-circle"
+                            aria-hidden="true"></i>My Profile </a>
                 </li>
                 <li><a href=""><i class="fa fa-cogs" aria-hidden="true"></i>Đổi mật khẩu</a></li>
                 </li>

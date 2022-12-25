@@ -71,7 +71,6 @@
                 </div>
             </div>
         </div>
-
         <div class="imployer-explore">
             <div class="impl-thumb">
                 <img src="assets/img/microsoft-home.png" class="" alt="" />
@@ -350,7 +349,8 @@
                                             <p class="count">(<span class="number count_job_manager">2,682</span> việc
                                                 làm)</p>
                                             <div>
-                                                <a target="_blank" href="/home" class="see-more">Khám phá
+                                                <a target="_blank" href="{{ $item->name . '-' . $item->id }}"
+                                                    class="see-more">Khám phá
                                                     ngay </a>
                                             </div>
                                         </div>
@@ -796,7 +796,7 @@
         <meta charset="utf-8">
         <style>
             /* Always set the map height explicitly to define the size of the div
-                                                                                                                 * element that contains the map. */
+                                                                                                                                                                                                                                                     * element that contains the map. */
             #map {
                 height: 100%;
                 background-color: grey;
