@@ -11,19 +11,17 @@
                         <div class="card-header">
                             <header class="header header-sticky">
                                 <div class="container-fluid">
-                                    <label class=" px-md-0 me-md-3">Quản lý CV</label>
+                                    <label class=" px-md-0 me-md-3">Quản Lý Đăng Tin</label>
                                     <ul class="header-nav ms-3 d-flex">
-                                        <form action="{{ route('employer.quan-ly-cv.index') }}" class="d-flex"
-                                            method="get">
+                                        <form action="{{ route('employer.new.index') }}" class="d-flex" method="get">
                                             <input name="free_word" class="custom-input" placeholder="Tìm Kiếm...."
                                                 value="" autocomplete="off" id="free_word">
                                             <button class="nav-link py-0 btn-next-step"
-                                                href="{{ route('employer.quan-ly-cv.create') }}">
+                                                href="{{ route('employer.new.create') }}">
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </form>
-                                        <a class="nav-link py-0 btn-next-step"
-                                            href="{{ route('employer.quan-ly-cv.create') }}">
+                                        <a class="nav-link py-0 btn-next-step" href="{{ route('employer.new.create') }}">
                                             Thêm tin
                                         </a>
                                     </ul>
