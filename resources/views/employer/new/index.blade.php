@@ -132,15 +132,37 @@
         </div>
     </div>
 
-    <!-- Modal check company -->
+    <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 35%; font-size: 24px; font-weight: 400">Đăng tin tuyển dụng</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: red">Thông báo</h5>
                     <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <br>
+                    <p style="text-align: center ">Tài khoản của bạn chưa cập nhật thông tin công ty.
+                    </p>
+                    <p style="text-align: center "> Để sử dụng tính năng này vui lòng cập nhật thông tin của bạn.</p>
+                </div>
+                <button type="button" data-coreui-toggle="modal" data-coreui-target="#checkCompany"
+                    class="btn btn-primary " style="margin-left: 38%; width: 140px; margin-top: 20px">Cập nhật ngay
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Modal check company -->
+    <div class="modal fade" id="checkCompany" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"
+                        style="margin-left: 38%; font-size: 24px; font-weight: 400">Đăng tin tuyển dụng</h5>
+                    <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
                     <create-company
                         :data="{{ json_encode([
                             'urlStore' => route('employer.register-company.store'),

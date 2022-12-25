@@ -223,7 +223,7 @@
                   </div>
                   <div class="form-group row">
                     <label for="sdt" class="col-sm-4 col-form-label"
-                      >Số điện thoại</label
+                      >Số điện thoại<span class="required-lable">*</span></label
                     >
                     <div class="col-sm-8">
                       <Field
@@ -241,7 +241,7 @@
                   </div>
                   <div class="form-group row">
                     <label for="sdt" class="col-sm-4 col-form-label"
-                      >Giới tính:</label
+                      >Giới tính<span class="required-lable">*</span>:</label
                     >
                     <div class="col-sm-8">
                       <Field
@@ -281,7 +281,7 @@
                   </div>
                   <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label"
-                      >Vị trí công tác:</label
+                      >Vị trí công tác<span class="required-lable">*</span>:</label
                     >
                     <div class="col-sm-8">
                       <Field
@@ -299,7 +299,7 @@
                   </div>
                   <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label"
-                      >Địa điểm cụ thể:</label
+                      >Địa điểm cụ thể<span class="required-lable">*</span>:</label
                     >
                     <div class="col-sm-8">
                       <Field
@@ -318,7 +318,7 @@
                   <br />
                   <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label"
-                      >Địa điểm làm việc:</label
+                      >Địa điểm làm việc<span class="required-lable">*</span>:</label
                     >
                     <div class="col-sm-8">
                       <Field

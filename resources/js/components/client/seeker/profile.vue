@@ -15,7 +15,7 @@
 
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <div class="col-sm-12 text-center">
-            <div class="display-div_custom" style="margin-left: 40%">
+            <div class="display-div_custom" style="margin-left: 40%; border-radius: 20px">
               <div
                 class="img-display_author d-flex"
                 id="img-preview"

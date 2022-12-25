@@ -10,8 +10,11 @@
     >
       <input type="hidden" name="_token" :value="csrfToken" />
       <div class="mb-3">
+        
+      </div>
+      <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
-          >Tên công ty</label
+          >Tên công ty<span class="required-lable">*</span></label
         >
         <Field
           type="text"
@@ -20,12 +23,14 @@
           class="form-control"
           v-model="model.name"
           id="exampleFormControlInput1"
-          placeholder="name@example.com"
+          placeholder="Nhập tên công ty"
         />
         <ErrorMessage class="error" name="name" />
       </div>
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Địa chỉ</label>
+        <label for="exampleFormControlInput1" class="form-label"
+          >Địa chỉ<span class="required-lable">*</span></label
+        >
         <Field
           type="text"
           rules="required|max:255"
@@ -33,28 +38,29 @@
           v-model="model.address"
           class="form-control"
           id="exampleFormControlInput1"
-          placeholder="name@example.com"
+          placeholder="Nhập địa chỉ"
         />
         <ErrorMessage class="error" name="address" />
       </div>
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Sơ lược về công ty</label
-        >
-        <Field
-          type="text"
-          name="desceibe"
-          rules="required"
-          v-model="model.desceibe"
-          class="form-control"
-          id="exampleFormControlInput1"
-          placeholder="name@example.com"
-        />
-        <ErrorMessage class="error" name="desceibe" />
+        <div class="row">
+          <label for="exampleFormControlInput1" class="form-label"
+            >Sơ lược về công ty<span class="required-lable">*</span></label
+          >
+        </div>
+
+        <div class="row" style="margin-left: 1px">
+          <Editor
+            name="desceibe"
+            v-model="model.desceibe"
+            class="text-company-employer"
+          />
+          <ErrorMessage class="error" name="desceibe" />
+        </div>
       </div>
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
-          >Số lượng thành viên</label
+          >Số lượng thành viên<span class="required-lable">*</span></label
         >
         <Field
           type="number"
@@ -63,13 +69,13 @@
           v-model="model.number_member"
           class="form-control"
           id="exampleFormControlInput1"
-          placeholder="name@example.com"
+          placeholder="Nhập số lượng thành viên"
         />
         <ErrorMessage class="error" name="number_member" />
       </div>
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
-          >Email công ty</label
+          >Email công ty<span class="required-lable">*</span></label
         >
         <Field
           type="email"
@@ -78,13 +84,13 @@
           v-model="model.email"
           class="form-control"
           id="exampleFormControlInput1"
-          placeholder="name@example.com"
+          placeholder="Nhập email công ty"
         />
         <ErrorMessage class="error" name="email" />
       </div>
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
-          >Logo công ty</label
+          >Logo công ty<span class="required-lable">*</span></label
         >
         <Field
           type="file"
@@ -92,11 +98,12 @@
           v-model="model.logo"
           class="form-control"
           id="exampleFormControlInput1"
-          placeholder="name@example.com"
         />
         <ErrorMessage class="error" name="logo" />
       </div>
-      <button type="submit" class="btn btn-primary">Lưu</button>
+      <button type="submit" class="btn btn-primary" style="margin-left: 48%">
+        Lưu
+      </button>
     </form>
   </VeeForm>
 </template>
@@ -112,6 +119,7 @@ import {
 
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
+import Editor from '@tinymce/tinymce-vue'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -123,6 +131,7 @@ export default {
   components: {
     VeeForm,
     Field,
+    Editor,
     ErrorMessage
   },
   props: ['data'],
