@@ -11,20 +11,19 @@
                         <div class="card-header">
                             <header class="header header-sticky">
                                 <div class="container-fluid">
-                                    <button class="header-toggler px-md-0 me-md-3" type="button"
-                                        onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
-                                        <i class="icon icon-lg fa fa-bars" aria-hidden="true"></i>
-                                    </button>
+                                    <label class=" px-md-0 me-md-3">Quản lý CV</label>
                                     <ul class="header-nav ms-3 d-flex">
-                                        <form action="{{ route('employer.new.index') }}" class="d-flex" method="get">
+                                        <form action="{{ route('employer.quan-ly-cv.index') }}" class="d-flex"
+                                            method="get">
                                             <input name="free_word" class="custom-input" placeholder="Tìm Kiếm...."
                                                 value="" autocomplete="off" id="free_word">
                                             <button class="nav-link py-0 btn-next-step"
-                                                href="{{ route('employer.new.create') }}">
+                                                href="{{ route('employer.quan-ly-cv.create') }}">
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </form>
-                                        <a class="nav-link py-0 btn-next-step" href="{{ route('employer.new.create') }}">
+                                        <a class="nav-link py-0 btn-next-step"
+                                            href="{{ route('employer.quan-ly-cv.create') }}">
                                             Thêm tin
                                         </a>
                                     </ul>
