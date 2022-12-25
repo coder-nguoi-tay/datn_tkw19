@@ -265,7 +265,7 @@
               <div class="form-group">
                 <button
                   type="submit"
-                  class="btn btn-md ft-medium text-light rounded theme-bg"
+                  class="btn btn-md ft-medium text-light rounded theme-bg btn-register-employer"
                 >
                   Cập nhật
                 </button>
