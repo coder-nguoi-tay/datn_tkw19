@@ -1,25 +1,24 @@
 <template>
-    <div class="container container_package content-wrapper">
+    <div class="container container_new_edit ">
         <VeeForm as="div" v-slot="{ handleSubmit }" @invalid-submit="onInvalidSubmit">
-            <form method="POST" @submit="handleSubmit($event, onSubmit)" ref="formData" :action="data.urlStore"
-                enctype="multipart/form-data">
+            <form method="POST" @submit="handleSubmit($event, onSubmit)" ref="formData" :action="data.urlUpdate"  enctype="multipart/form-data">
+
                 <input type="hidden" :value="csrfToken" name="_token" />
+                <Field type="hidden" value="PUT" name="_method" />
                 <div class="col">
                     <label class="form-label">Tiêu đề</label>
-                    <Field type="text" name="title" rules="required|max:255" v-model="model.title"
-                        class="form-control" />
+                    <Field type="text" name="title" rules="required|max:255" v-model="model.title" class="form-control"  />
                     <ErrorMessage class="error" name="title" />
-                </div>
-                <div class="col">
+                  </div>
+                  <div class="col">
                     <label class="form-label">Ảnh tin tức</label>
-                    <Field type="file" name="new_image" rules="required|mimes:jpeg,jpg,png,gif|max:100000"
-                        v-model="model.new_image" class="form-control" />
+                    <Field type="file" name="new_image" rules="required|mimes:jpeg,jpg,png,gif|max:100000" v-model="model.new_image" class="form-control" />
                     <ErrorMessage class="error" name="new_image" />
                 </div>
                 <div class="col">
                     <label class="form-label">Mô tả</label>
-                    <Field type="text" name="describe" rules="required|max:255" v-model="model.describe"
-                        class="form-control" />
+                    <Field type="text" name="describe" rules="required|max:255" v-model="model.describe" class="form-control" />
+
                     <ErrorMessage class="error" name="describe" />
                 </div>
                 <div class="text-center text-1">
@@ -59,7 +58,7 @@ export default {
     data: function () {
         return {
             csrfToken: Laravel.csrfToken,
-            model: {},
+      model: this.data.new,
         };
     },
     created() {
@@ -105,8 +104,8 @@ export default {
     },
 };
 </script>
-<style scoped>
-.container_package {
+<style>
+.container_new_edit {
     margin: 0 auto;
     width: 50%;
     margin-top: 10px;

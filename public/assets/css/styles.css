@@ -323,7 +323,6 @@ html body .db {
 
 .trans-bg {
     background: rgba(255, 255, 255, 0.1);
-    !important;
 }
 
 .theme-bg-light {
@@ -4002,10 +4001,10 @@ ul.jbd-social li a {
 /*-------------- Form Elements ----------------*/
 .form-control,
 select.form-control {
-    height: 52px !important;
-    padding: 10px 15px;
+    height: 42px !important;
+    /* padding: 10px 15px; */
     font-size: 15px;
-    border-radius: 1px;
+    border-radius: 2px;
     border-color: #e5e5e5;
 }
 
@@ -6987,3 +6986,4 @@ footer a {
 footer .heart {
     color: #DC143C;
 }
+

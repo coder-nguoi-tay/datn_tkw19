@@ -130,12 +130,12 @@ class HomeController extends BaseController
             $user->images = 'http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg';
             $user->phone = $request['valueSelect']['phone'];
             $user->user_role = Auth::guard('user')->user()->id;
-            $user->skill_id = 1;
             $user->experience_id = $request['valueSelect']['experience_id'];
             $user->lever_id = $request['valueSelect']['lever_id'];
             $user->wage_id = $request['valueSelect']['wage_id'];
             $user->profession_id = $request['valueSelect']['profession_id'];
             $user->time_work_id = $request['valueSelect']['time_work_id'];
+            $user->save();
             if (isset($Jobseeker->getProfileUse)) {
                 $jobskill =  $this->SeekerSkill->where('job-seeker_id', $user->id)->get();
                 foreach ($jobskill as $value) {
@@ -150,7 +150,7 @@ class HomeController extends BaseController
             }
 
 
-            $user->save();
+            
             return back();
         } catch (\Throwable $th) {
             dd($th);

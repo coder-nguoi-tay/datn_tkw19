@@ -129,7 +129,7 @@
                             <div class="jbd-01 px-3 py-4">
                                 <div class="jbd-details mb-4">
                                     <h5 class="ft-medium fs-md">Mô tả công việc</h5>
-                                    <p>{{ $job->describe }}</p>
+                                    <p>{!! $job->describe !!}</p>
 
                                 </div>
 
@@ -144,7 +144,7 @@
                                                         <i class="fas fa-check small"></i>
                                                     </div>
                                                     <h6 class="mb-0 ml-3 text-muted fs-sm">
-                                                        {{ $job->candidate_requirements }}</h6>
+                                                        {!! $job->candidate_requirements !!}</h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -162,7 +162,7 @@
                                                         <i class="fas fa-check small"></i>
                                                     </div>
                                                     <h6 class="mb-0 ml-3 text-muted fs-sm">
-                                                        {{ $job->candidate_requirements }}</h6>
+                                                        {!! $job->candidate_requirements !!}</h6>
                                                 </div>
                                             </div>
                                         </div>

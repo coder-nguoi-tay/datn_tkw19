@@ -8,7 +8,6 @@
       :action="data.urlStore"
     >
       <Field type="hidden" :value="csrfToken" name="_token" />
-
       <div class="accordion">
         <div class="card recuitment-card">
           <div class="card-header recuitment-card-header" id="headingOne">
@@ -364,7 +363,23 @@
             <div class="checkboxsec">
               <label class="label-container">
                 <div class="filter-topic">
-                  <label class="label-container"> </label>
+                  <label
+                    class="label-container"
+                    v-for="item in data.skill"
+                    :key="item.id"
+                    :value="item.id"
+                  >
+                    <!-- <input type="checkbox" v-model="model.skill_id" /> -->
+                    <input
+                      type="checkbox"
+                      v-for="(item, index) in data.skill"
+                      :key="index"
+                      :label="item.name"
+                      :id="index"
+                      @change="onChange"
+                    />
+                    <span class="text-skill">{{ item.label }}</span>
+                  </label>
                 </div>
               </label>
               <ErrorMessage class="error" name="skill_id" />
@@ -372,6 +387,134 @@
           </div>
         </div>
       </div>
+      <!-- <div class="card recuitment-card">
+                <div class="card-header recuitment-card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <span class="btn btn-block text-left recuitment-header">
+                            Thông Tin Liên Hệ
+                        </span>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
+                    data-parent="#accordionExample">
+                    <div class="card-body recuitment-body">
+                        <input type="hidden" />
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Tên người liên hệ</label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="nameEmployer" :value="this.data.user[0].name"
+                                    v-model="model.nameEmployer" class="form-control" />
+                                <ErrorMessage class="error" name="nameEmployer" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Email</label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="email" :value="this.data.user[0].email" v-model="model.email"
+                                    class="form-control" />
+                                <ErrorMessage class="error" name="email" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Điện thoại</label>
+                            <div class="col-sm-9">
+                                <Field type="number" name="phone" :value="this.data.user[0].phone" v-model="model.phone"
+                                    class="form-control" />
+                                <ErrorMessage class="error" name="phone" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Địa chỉ</label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="addressEmployer" :value="this.data.user[0].address"
+                                    v-model="model.addressEmployer" class="form-control" />
+                                <ErrorMessage class="error" name="addressEmployer" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card recuitment-card">
+                <div class="card-header recuitment-card-header" id="heading4">
+                    <h2 class="mb-0">
+                        <span class="btn btn-block text-left recuitment-header">
+                            Thông Tin Công Ty
+                        </span>
+                    </h2>
+                </div>
+
+                <div id="collapse4" class="collapse show" aria-labelledby="heading4" data-parent="#collapse4">
+                    <div class="card-body recuitment-body">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Tên công ty<span
+                                    class="pl-2">*</span></label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="name" v-model="model.name" class="form-control"
+                                    placeholder="Tên công ty" />
+                                <ErrorMessage class="error" name="name" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Địa chỉ<span
+                                    class="pl-2">*</span></label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="addressCompany" v-model="model.address" class="form-control"
+                                    placeholder="địa chỉ" />
+                                <ErrorMessage class="error" name="addressCompany" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Email<span
+                                    class="pl-2">*</span></label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="email" v-model="model.email" class="form-control"
+                                    placeholder="Email" />
+                                <ErrorMessage class="error" name="email" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Tỉnh/Thành phố</label>
+                            <div class="col-sm-9">
+                                <Field name="location_id" as="select" v-model="model.location" rules="required"
+                                    class="form-control">
+                                    <option value disabled selected>Chọn Địa chỉ</option>
+                                    <option v-for="item in data.location" :key="item.id" :value="item.id">
+                                        {{ item.label }}
+                                    </option>
+                                </Field>
+                                <ErrorMessage class="error" name="location_id" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Sơ lược về công ty<span
+                                    class="pl-2">*</span></label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" placeholder="Sơ lược về công ty" />
+                                <ErrorMessage class="error" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Logo</label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="logo" v-model="model.logo" class="form-control"
+                                    placeholder="logo" />
+                                <ErrorMessage class="error" name="logo" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right label">Quy mô nhân sự<span
+                                    class="pl-2">*</span></label>
+                            <div class="col-sm-9">
+                                <Field type="text" name="number_member" v-model="model.number_member"
+                                    class="form-control" placeholder="số lượng nhân viên" />
+                                <ErrorMessage class="error" name="number_member" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
       <div class="rec-submit">
         <button type="submit" class="btn-submit-recuitment">
           <i class="fa fa-floppy-o pr-2 icon-save" />Lưu Tin
@@ -391,6 +534,7 @@ import {
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 import $ from 'jquery'
+import axios from 'axios'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -404,18 +548,17 @@ export default {
     Field,
     ErrorMessage
   },
+  props: {
+    isChecked: true ?? false
+  },
   props: ['data'],
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: {},
-      options: []
+      model: {}
     }
   },
   created() {
-    this.data.skill.map((e) => {
-      this.options.push(e.label)
-    })
     let messError = {
       en: {
         fields: {
@@ -496,8 +639,29 @@ export default {
       )
     },
     onSubmit() {
-      this.$refs.formData.submit()
+      console.log(this.model)
+      axios
+        .post('/employer/new/store', {
+          ...this.model,
+          _token: this.csrfToken
+        })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+      // this.$refs.formData.submit();
     }
   }
 }
 </script>
+<style>
+/* .form-control {
+    margin-top: 15px;
+} */
+
+.date-time {
+  margin-top: 15px;
+}
+</style>

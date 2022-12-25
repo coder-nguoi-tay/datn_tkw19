@@ -14,7 +14,7 @@
                             <a href="{{ route('user.createFormCV') }}" class="box-link">
                                 <button class="btn btn-success btn-create-cv">Tạo mới CV</button>
                             </a>
-                            </div>
+                            </div> 
                            
                         </div>
                         @if (!$cv->isEmpty())

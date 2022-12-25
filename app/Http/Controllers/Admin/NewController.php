@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\CreateNewRequest;
+use App\Http\Requests\PackageRequest;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use App\Enums\StatusCode;
 
 class NewController extends BaseController
 {
@@ -21,7 +25,11 @@ class NewController extends BaseController
     }
     public function index()
     {
-        //
+        $News = News::select('id', 'title', 'new_image', 'describe', 'created_at')->get();
+        return view('admin.new.index', [
+            'News' => $News,
+            'title' => 'Quản Lý Tin Tức'
+        ]);
     }
 
     /**
@@ -31,7 +39,10 @@ class NewController extends BaseController
      */
     public function create()
     {
-        return view('admin.new.create');
+
+        return view('admin.new.create', [
+            'title' => 'Thêm Tin Tức Mới'
+        ]);
     }
 
     /**
@@ -42,7 +53,26 @@ class NewController extends BaseController
      */
     public function store(CreateNewRequest $request) //
     {
-        
+
+
+        $new = new $this->new();
+        $new->title = $request->title;
+        $new->describe = $request->describe;
+        if ($request->hasFile('new_image')) {
+            $avatar = $request->new_image;
+            $avatarName = $avatar->hashName();
+            $avatarName = $request->name . '_' . $avatarName;
+            $new->new_image = $avatar->storeAs('images/new', $avatarName);
+        }
+        $new->save();
+        if ($new) {
+            $this->setFlash(__('Thêm gói thành công'));
+            return redirect()->route('admin.new.index');
+        }
+        $this->setFlash(__('Thêm gói thất bại'));
+        return redirect()->route('admin.new.index');
+
+
     }
 
     /**
@@ -64,7 +94,10 @@ class NewController extends BaseController
      */
     public function edit($id)
     {
-        //
+        return view('admin.new.edit', [
+            'new' => $this->new->where('id', $id)->first(),
+            'title' => 'Cập nhật tin tức'
+        ]);
     }
 
     /**
@@ -74,9 +107,19 @@ class NewController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, News $new)
     {
-        //
+        // $this->new->find($id)->update($request->all());
+        $new->fill($request->all());
+        if ($request->hasFile('new_image')) {
+            $avatar = $request->new_image;
+            $avatarName = $avatar->hashName();
+            $avatarName = $request->name . '_' . $avatarName;
+            $new->new_image = $avatar->storeAs('images/new', $avatarName);
+        }
+        $new->save();
+        $this->setFlash(__('Sửa tin tức thành công'));
+        return redirect(route('admin.new.index'));
     }
 
     /**
@@ -87,6 +130,15 @@ class NewController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        if (News::destroy($id)) {
+            return response()->json([
+                'message' => 'Xóa tin tức thành công',
+                'status' => StatusCode::OK,
+            ], StatusCode::OK);
+        }
+        return response()->json([
+            'message' => 'một lỗi đã xảy ra',
+            'status' => StatusCode::OK,
+        ], StatusCode::INTERNAL_ERR);
     }
 }

@@ -28,7 +28,7 @@
                                                 id="" placeholder="Tìm kiếm....">
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    {{-- <div class="col">
                                         <div class="p-1"><select class="form-select" name="lever"
                                                 aria-label="Default select example">
                                                 <option selected disabled>Trình độ</option>
@@ -67,8 +67,8 @@
                                                     </option>
                                                 @endforeach
                                             </select></div>
-                                    </div>
-                                    <div class="col">
+                                    </div> --}}
+                                    {{-- <div class="col">
                                         <div class="p-1"><select class="form-select" name="profession"
                                                 aria-label="Default select example">
                                                 <option selected disabled>Vị trí ứng tuyển</option>
@@ -88,7 +88,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> 
                                     <div class="col">
                                         <div class="p-1"><select class="form-select select2-location" name="location"
                                                 aria-label="Default select example">
@@ -99,7 +99,7 @@
                                                 @endforeach
                                             </select></div>
                                     </div>
-                                    <div class="col">
+                                    {{-- <div class="col">
                                         <div class="p-1"><select class="form-select" name="workingform"
                                                 aria-label="Default select example">
                                                 <option selected disabled>Hình thức làm việc</option>
@@ -108,7 +108,7 @@
                                                         {{ $item->label }}</option>
                                                 @endforeach
                                             </select></div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col">
                                         <div class="p-1"><button type="submit"
                                                 class="btn theme-bg text-light">Lọc</button>
@@ -867,7 +867,10 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                         <div class="sec_title position-relative text-center mb-4">
                             {{-- <h6 class="text-muted mb-0">Latest News</h6> --}}
-                            <h2 class="ft-bold">Tin Tức</h2>
+                            <h2 class="ft-bold">Tin Tức
+
+                                {{-- @dd($new) --}}
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -875,145 +878,64 @@
                 <div class="row justify-content-center">
 
                     <!-- Single Item -->
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                        <div class="blg_grid_box">
-                            <div class="blg_grid_thumb">
-                                <a href="blog-detail.html"><img src="assets/img/b-4.jpg" class="img-fluid"
-                                        alt=""></a>
-                            </div>
-                            <div class="blg_grid_caption">
-                                <div class="blg_tag"><span>Marketing</span></div>
-                                <div class="blg_title">
-                                    <h4><a href="blog-detail.html">How To Register &amp; Enrolled on SkillUp Step by
-                                            Step?</a></h4>
-                                </div>
-                                <div class="blg_desc">
-                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                                        praesentium voluptatum</p>
-                                </div>
-                            </div>
-                            <div class="crs_grid_foot">
-                                <div class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
-                                    <div class="crs_fl_first">
-                                        <div class="crs_tutor">
-                                            <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                        src="assets/img/team-2.jpg" class="img-fluid circle"
-                                                        width="35" alt=""></a></div>
-                                        </div>
-                                    </div>
-                                    <div class="crs_fl_last">
-                                        <div class="foot_list_info">
-                                            <ul>
-                                                <li>
-                                                    <div class="elsio_ic"><i class="fa fa-eye text-success"></i></div>
-                                                    <div class="elsio_tx">10k Views</div>
-                                                </li>
-                                                <li>
-                                                    <div class="elsio_ic"><i class="fa fa-clock text-warning"></i>
-                                                    </div>
-                                                    <div class="elsio_tx">10 July 2021</div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @foreach ($new as $item)
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                            <div class="blg_grid_box">
+                                <div class="blg_grid_thumb">
+                                    <a href="blog-detail.html"><img src="{{ $item->new_image }}" class="img-fluid w-75 rounded "
+                                            style="display : block;
+                                                   margin-left: auto;
+                                                   margin-right: auto;
+                                                   margin-top: 10px;"alt=""></a>
 
-                    <!-- Single Item -->
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                        <div class="blg_grid_box">
-                            <div class="blg_grid_thumb">
-                                <a href="blog-detail.html"><img src="assets/img/b-5.jpg" class="img-fluid"
-                                        alt=""></a>
-                            </div>
-                            <div class="blg_grid_caption">
-                                <div class="blg_tag"><span>Business</span></div>
-                                <div class="blg_title">
-                                    <h4><a href="blog-detail.html">Let's Know How Skillup Work Fast and Secure?</a>
-                                    </h4>
-                                </div>
-                                <div class="blg_desc">
-                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                                        praesentium voluptatum</p>
-                                </div>
-                            </div>
-                            <div class="crs_grid_foot">
-                                <div class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
-                                    <div class="crs_fl_first">
-                                        <div class="crs_tutor">
-                                            <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                        src="assets/img/team-3.jpg" class="img-fluid circle"
-                                                        width="35" alt=""></a></div>
-                                        </div>
-                                    </div>
-                                    <div class="crs_fl_last">
-                                        <div class="foot_list_info">
-                                            <ul>
-                                                <li>
-                                                    <div class="elsio_ic"><i class="fa fa-eye text-success"></i></div>
-                                                    <div class="elsio_tx">10k Views</div>
-                                                </li>
-                                                <li>
-                                                    <div class="elsio_ic"><i class="fa fa-clock text-warning"></i>
-                                                    </div>
-                                                    <div class="elsio_tx">10 July 2021</div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Single Item -->
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                        <div class="blg_grid_box">
-                            <div class="blg_grid_thumb">
-                                <a href="blog-detail.html"><img src="assets/img/b-6.jpg" class="img-fluid"
-                                        alt=""></a>
-                            </div>
-                            <div class="blg_grid_caption">
-                                <div class="blg_tag"><span>Accounting</span></div>
-                                <div class="blg_title">
-                                    <h4><a href="blog-detail.html">How To Improove Digital Marketing for Fast SEO</a>
-                                    </h4>
                                 </div>
-                                <div class="blg_desc">
-                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                                        praesentium voluptatum</p>
-                                </div>
-                            </div>
-                            <div class="crs_grid_foot">
-                                <div class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
-                                    <div class="crs_fl_first">
-                                        <div class="crs_tutor">
-                                            <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                        src="assets/img/team-5.jpg" class="img-fluid circle"
-                                                        width="35" alt=""></a></div>
-                                        </div>
+                                <div class="blg_grid_caption">
+                                    {{-- <div class="blg_tag"><span>{{ $item->title }} </span></div> --}}
+                                    <div class="blg_title">
+                                        <h4><a href="blog-detail.html">{{ $item->title }}</a></h4>
                                     </div>
-                                    <div class="crs_fl_last">
-                                        <div class="foot_list_info">
-                                            <ul>
-                                                <li>
-                                                    <div class="elsio_ic"><i class="fa fa-eye text-success"></i></div>
-                                                    <div class="elsio_tx">10k Views</div>
-                                                </li>
-                                                <li>
-                                                    <div class="elsio_ic"><i class="fa fa-clock text-warning"></i>
-                                                    </div>
-                                                    <div class="elsio_tx">10 July 2021</div>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <div class="blg_desc  "
+                                        style="
+                                           max-height: 20px;
+                                           overflow: hidden;
+                                           text-overflow: ellipsis !important;
+                                            ">
+                                        <p>{{ $item->describe }}...</p>
                                     </div>
                                 </div>
+                                <div class="crs_grid_foot">
+                                    <div
+                                        class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
+                                        <div class="crs_fl_first">
+                                            <div class="crs_tutor">
+                                                <div class="crs_tutor_thumb "><a href="instructor-detail.html"><img
+                                                            src="{{ $item->new_image }}" class="img-fluid circle "
+                                                            width="30px" alt=""></a></div>
+                                            </div>
+                                        </div>
+                                        <div class="crs_fl_last">
+                                            <div class="foot_list_info">
+                                                <ul>
+                                                    <li>
+                                                        <div class="elsio_ic"><i class="fa fa-eye text-success"></i></div>
+                                                        <div class="elsio_tx">10k Views</div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="elsio_ic"><i class="fa fa-clock text-warning"></i>
+                                                        </div>
+                                                        <div class="elsio_tx">{{ ($item->created_at)->format('d-m-Y') }}</div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
-                    </div>
+                    @endforeach
+
 
                 </div>
 
@@ -1125,7 +1047,7 @@
         </div>
     </body>
     @if (Auth::guard('user')->check())
-        @if (!$user->getProfileUse == null)
+        @if ($user->getProfileUse == null)
             <div class="loading-div">
                 <div class="loader-img"></div>
             </div>
