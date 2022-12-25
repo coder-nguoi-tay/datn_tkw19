@@ -67,10 +67,9 @@
                                 </div>
                             </div>
                             <div class="card-body" id="app">
-                                {{-- đây là trang login --}}
                                 <login
                                     :data="{{ json_encode([
-                                        'urlStore' => route('store'),
+                                        'urlStore' => route('admin.store'),
                                         'resetPassword' => route('resset_pass.index'),
                                         'message' => $message ?? '',
                                     ]) }}">

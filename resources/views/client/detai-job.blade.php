@@ -53,7 +53,7 @@
                             <div class="colxl-12 col-lg-12 col-md-12">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="{{ route('home.index') }}"
+                                        <li class="breadcrumb-item"><a href="{{ route('index') }}"
                                                 class="text-blue">Home</a>
                                         </li>
                                         @if (isset($breadcrumbs))
@@ -85,7 +85,8 @@
                             <div class="jbd-01 d-flex align-items-center justify-content-between">
                                 <div class="jbd-flex d-flex align-items-center justify-content-start">
                                     <div class="jbd-01-thumb">
-                                        <img src="{{ $job->logo }}" class="img-fluid" width="90" alt="" />
+                                        <img src="{{ asset($job->logo) }}" class="img-fluid" width="90"
+                                            alt="" />
                                     </div>
                                     <div class="jbd-01-caption pl-3">
                                         <div class="tbd-title">
@@ -139,10 +140,6 @@
                                         <div class="col-lg-12 col-md-12 col-12">
                                             <div class="mb-2 mr-4 ml-lg-0 mr-lg-4">
                                                 <div class="d-flex align-items-center">
-                                                    <div
-                                                        class="rounded-circle bg-light-success theme-cl p-1 small d-flex align-items-center justify-content-center">
-                                                        <i class="fas fa-check small"></i>
-                                                    </div>
                                                     <h6 class="mb-0 ml-3 text-muted fs-sm">
                                                         {!! $job->candidate_requirements !!}</h6>
                                                 </div>
@@ -157,10 +154,6 @@
                                         <div class="col-lg-12 col-md-12 col-12">
                                             <div class="mb-2 mr-4 ml-lg-0 mr-lg-4">
                                                 <div class="d-flex align-items-center">
-                                                    <div
-                                                        class="rounded-circle bg-light-success theme-cl p-1 small d-flex align-items-center justify-content-center">
-                                                        <i class="fas fa-check small"></i>
-                                                    </div>
                                                     <h6 class="mb-0 ml-3 text-muted fs-sm">
                                                         {!! $job->candidate_requirements !!}</h6>
                                                 </div>
@@ -364,7 +357,7 @@
                         <div class="job_grid d-block border rounded px-3 pt-3 pb-2">
                             <div class="jb-list01-flex d-flex align-items-start justify-content-start">
                                 <div class="jb-list01-thumb">
-                                    <img src="{{ $item->logo }}" class="img-fluid circle" width="90"
+                                    <img src="{{ asset($item->logo) }}" class="img-fluid circle" width="90"
                                         alt="">
                                 </div>
 
@@ -551,6 +544,7 @@
                         <client-login
                             :data="{{ json_encode([
                                 'urlStore' => route('owner.store'),
+                                'urlRegister' => route('owner.update.register'),
                                 'message' => $message ?? '',
                             ]) }}">
                             <client-login>

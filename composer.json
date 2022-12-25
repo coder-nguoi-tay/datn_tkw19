@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "barryvdh/laravel-debugbar": "^3.7",
+        "barryvdh/laravel-dompdf": "^2.0",
         "bensampo/laravel-enum": "^3.4",
         "cloudinary/cloudinary_php": "^2.9",
         "darkaonline/l5-swagger": "^8.3",

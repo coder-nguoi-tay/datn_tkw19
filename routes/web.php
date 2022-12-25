@@ -20,6 +20,7 @@ use App\Http\Controllers\Seeker\ManageUploadController as SeekerManageUploadCont
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\SearchController;
 use App\Http\Controllers\Employer\ManagerUploadCvController;
+use App\Http\Controllers\Employer\RegisterCompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,7 @@ use App\Http\Controllers\Employer\ManagerUploadCvController;
 |
 */
 
-Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
+Route::middleware('admin')->prefix('dashboard')->name('admin.')->group(function () {
     Route::resource('', HomeController::class);
     Route::resource('package', PackageController::class);
     Route::resource('Users', UserController::class);
@@ -40,7 +41,7 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('profile', ProfileController::class);
     Route::resource('new', NewController::class);
 });
-Route::resource('/', LoginController::class);
+Route::resource('admin', LoginController::class);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::resource('resset_pass', ResetPasswordController::class);
 Route::resource('forgotPasswordSuccess', forgotPasswordSuccessController::class);
@@ -52,7 +53,6 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::get('logout', [HomeEmployerController::class, 'logout'])->name('logout');
     Route::get('', [HomeEmployerController::class, 'index'])->name('index');
 
-    
     // Route::resource('new', NewEmployerController::class);
     Route::post('new/store', [NewEmployerController::class, 'store'])->name('new.store');
     Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');
@@ -65,11 +65,22 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::post('package/payment/momo', [EmployerPackageController::class, 'Momo'])->name('package.payment.momo');
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
+    Route::group([
+        'prefix' => 'quan-ly-cv'
+    ], function () {
+        Route::get('change-status', [ManagerUploadCvController::class, 'changeStatus'])->name('changestatus');
+    });
+    Route::resource('register-company', RegisterCompanyController::class);
 });
+Route::get('register', [HomeEmployerController::class, 'register'])->name('register.employer');
+Route::post('register/create', [HomeEmployerController::class, 'store'])->name('register.employer.create');
+
 // seeker
 Route::resource('profile', SeekerHomeController::class);
 Route::resource('quan-ly-cv', SeekerManageUploadController::class);
 Route::get('file/tao-moi', [SeekerManageUploadController::class, 'createFormCV'])->name('user.createFormCV');
+Route::get('user/createFormCV/download', [SeekerManageUploadController::class, 'downloadPdf'])->name('user.createFormCV.downloadPdf');
+
 Route::get('user/profile/{token}', [SeekerHomeController::class, 'userProfile'])->name('user.profile');
 Route::get('user/new/favourite', [SeekerHomeController::class, 'userFavourite'])->name('user.favourite');
 Route::delete('delete/favourite/{id}', [SeekerHomeController::class, 'deleteFavourite'])->name('delete.favourite');
@@ -84,7 +95,7 @@ Route::resource('owner', ClientLoginController::class);
 Route::post('owner/update/register', [ClientLoginController::class, 'updateRegister'])->name('owner.update.register');
 // });
 //client
-Route::resource('home', ClientHomeController::class);
+Route::resource('', ClientHomeController::class);
 Route::get('show-new', [ClientHomeController::class, 'showNew']); // api
 Route::post('favourite/{id}', [SeekerHomeController::class, 'userFavouriteId']); // api
 Route::get('home/detail/{title}-{id}', [ClientHomeController::class, 'showDetail'])->name('home.detail.show');

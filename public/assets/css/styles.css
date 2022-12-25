@@ -323,6 +323,10 @@ html body .db {
 
 .trans-bg {
     background: rgba(255, 255, 255, 0.1);
+<<<<<<< HEAD
+=======
+
+>>>>>>> duc
 }
 
 .theme-bg-light {
@@ -347,6 +351,7 @@ html body .db {
 
 .gray {
     background: #f4f5f7;
+
 }
 
 .border {
@@ -1467,7 +1472,7 @@ button.close {
     color: #28b661;
     cursor: pointer;
     background-color: transparent;
-    border-color#28b661;
+    border-color: #28b661;
 }
 
 .pagination li:first-child a {
@@ -6987,3 +6992,105 @@ footer .heart {
     color: #DC143C;
 }
 
+.page-white-100 {
+    background-color: #fff;
+    padding-top: 20px;
+}
+
+/* @media (min-width: 768px) .container {
+    min-width: 750px;
+    padding-left: 0;
+    padding-right: 0;
+    width: 96%;
+}
+
+@media (min-width: 992px) .container {
+    max-width: 1100px;
+}
+
+@media (min-width: 1200px) .container {
+    width: 1170px;
+}
+
+@media (min-width: 992px) .container {
+    width: 970px;
+}
+
+@media (min-width: 768px) .container {
+    width: 750px;
+} */
+
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.page-white-100 {
+    width: 100%;
+}
+
+.container {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.list-discover {
+    display: grid;
+    gap: 20px 16px;
+    margin-bottom: 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.list-discover .item {
+    background: #f7fdfa;
+    border: 1px solid #b3e8ca;
+    border-radius: 5px;
+    padding: 20px;
+    transition: all .4s;
+}
+
+.list-discover .item .image {
+    background: #e5f7ed;
+    border-radius: 50%;
+    display: flex;
+    height: 44px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 44px;
+}
+
+.list-discover .item .title {
+    color: #212f3f;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-bottom: 12px;
+}
+
+
+.list-discover .item .count {
+    font-size: 15px;
+    margin-bottom: 12px;
+    padding-left: 5px !important;
+}
+
+.list-discover .item .see-more {
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: #212f3f;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 7px 25px 7px 5px;
+
+}
+
+.cucstom-time {
+    margin-left: 13px !important;
+}

@@ -55,7 +55,7 @@ import EditNew from './components/new/edit.vue'
 app.component('edit', EditNew);
 
 //employer
-import CreateNewEmployer from './components/employer/new/add.vue';
+import CreateNewEmployer from './components/employer/new/create.vue';
 app.component('create-new-employer', CreateNewEmployer);
 import EditNewEmployer from './components/employer/new/edit.vue';
 app.component('edit-new-employer', EditNewEmployer);
@@ -73,6 +73,15 @@ app.component('client-register', clientRegister);
 // home
 import homeClient from "./components/client/home/index.vue";
 app.component('home-client', homeClient);
+// create company
+import CretaeCompany from './components/company/create.vue'
+app.component('create-company', CretaeCompany);
+
+import Notyf from "./components/common/notyf.vue";
+app.component("notyf", Notyf);
+import registerEmployer from "./components/employer/register.vue";
+app.component('register-employer', registerEmployer);
+
 
 
 app.mount('#app');

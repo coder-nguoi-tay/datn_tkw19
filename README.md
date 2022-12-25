@@ -68,3 +68,9 @@ $ composer require --working-dir=tools/php-cs-fixer friendsofphp/php-cs-fixer
 # refactor code before commit
 $ tools/php-cs-fixer/vendor/bin/php-cs-fixer fix folder_code
 ```
+# loi khi chay khac phien ban 
+# cach fix, chay cau lenh ben duoi
+$ composer install --ignore-platform-reqs
+# hoac
+
+$ composer update --ignore-platform-reqs

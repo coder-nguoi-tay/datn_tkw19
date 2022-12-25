@@ -159,6 +159,10 @@ export default {
             required: 'Email không được để trống',
             email: 'Email không đúng định dạng'
           },
+          name: {
+            required: 'Tên không được để trống',
+            max: 'Tên không được quá 128 ký tự'
+          },
           password: {
             required: 'Password không được để trống',
             min: 'Mật khẩu dài từ 8 đến 16 ký tự',
@@ -204,7 +208,7 @@ export default {
               that.msgLogin = data.data.data
             }
             if (data.data.data == 1) {
-              window.location.href = '/home'
+              location.reload()
             } else if (data.data.data == 2) {
               window.location.href = '/employer'
             }
@@ -215,7 +219,6 @@ export default {
       } else {
         let that = this
         let url = this.data.urlRegister
-        console.log(url)
         axios
           .post(url, {
             name: that.model.name,

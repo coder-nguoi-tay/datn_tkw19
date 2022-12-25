@@ -119,4 +119,10 @@ app.component('up-cv', Upcv)
 import clientLogin from "./components/client/login/index.vue";
 app.component('client-login', clientLogin);
 
+import registerEmployer from "./components/employer/register.vue";
+app.component('register-employer', registerEmployer);
+import Notyf from "./components/common/notyf.vue";
+app.component("notyf", Notyf);
+
+
 app.mount('#app')

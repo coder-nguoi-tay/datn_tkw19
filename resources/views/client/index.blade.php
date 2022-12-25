@@ -12,112 +12,61 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
-
                         <div class="banner_caption text-center mb-5">
                             <h1 class="banner_title ft-bold mb-1">Khám phá hơn 10k+ việc làm</h1>
                             <p class="fs-md ft-medium">Xin chào các bạn, Công việc mơ ước của bạn đang chờ đợi ở thành phố
                                 địa phương của bạn</p>
                         </div>
-
                         <div class="container">
-                            <form action="{{ route('home.search') }}" method="GET">
-                                <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 p-3">
-                                    <div class="col test">
-                                        <div class="p-1">
-                                            <input type="text" class="form-control input-custom" name="key"
-                                                id="" placeholder="Tìm kiếm....">
-                                        </div>
-                                    </div>
-                                    {{-- <div class="col">
-                                        <div class="p-1"><select class="form-select" name="lever"
-                                                aria-label="Default select example">
-                                                <option selected disabled>Trình độ</option>
-                                                @foreach ($lever as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->label }}
-                                                    </option>
-                                                @endforeach
-                                            </select></div>
-                                    </div>
-                                    {{-- <div class="col">
-                                        <div class="p-1"><select class="form-select" name="experience"
-                                                aria-label="Default select example">
-                                                <option selected disabled>Kinh nghiệm</option>
-                                                @foreach ($experience as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->label }}
-                                                    </option>
-                                                @endforeach
-                                            </select></div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="p-1"><select class="form-select" name="majors"
-                                                aria-label="Default select example">
-                                                <option selected disabled>Mức lương</option>
-                                                @foreach ($majors as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->label }}
-                                                    </option>
-                                                @endforeach
-                                            </select></div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="p-1"><select class="form-select" name="timework"
-                                                aria-label="Default select example">
-                                                <option selected disabled>Thời gian làm việc</option>
-                                                @foreach ($timework as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->label }}
-                                                    </option>
-                                                @endforeach
-                                            </select></div>
-                                    </div> --}}
-                                    {{-- <div class="col">
-                                        <div class="p-1"><select class="form-select" name="profession"
-                                                aria-label="Default select example">
-                                                <option selected disabled>Vị trí ứng tuyển</option>
-                                                @foreach ($profession as $item)
-                                                    <option value="{{ $item->id }}">
-                                                        {{ $item->label }}</option>
-                                                @endforeach
-                                            </select></div>
-                                    </div> --}}
-                                    <div class="col">
-                                        <div class="p-1"><select class="form-select select2" name="skill[]"
-                                                aria-label="Default select example">
-                                                @foreach ($skill as $item)
-                                                    <option value="{{ $item->id }}">
-                                                        {{ $item->label }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div> 
-                                    <div class="col">
-                                        <div class="p-1"><select class="form-select select2-location" name="location"
-                                                aria-label="Default select example">
-                                                <option selected disabled>Địa chỉ</option>
-                                                @foreach ($location as $item)
-                                                    <option value="{{ $item->id }}">
-                                                        {{ $item->label }}</option>
-                                                @endforeach
-                                            </select></div>
-                                    </div>
-                                    {{-- <div class="col">
-                                        <div class="p-1"><select class="form-select" name="workingform"
-                                                aria-label="Default select example">
-                                                <option selected disabled>Hình thức làm việc</option>
-                                                @foreach ($workingform as $item)
-                                                    <option value="{{ $item->id }}">
-                                                        {{ $item->label }}</option>
-                                                @endforeach
-                                            </select></div>
-                                    </div> --}}
-                                    <div class="col">
-                                        <div class="p-1"><button type="submit"
-                                                class="btn theme-bg text-light">Lọc</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                            <div class="row justify-content-center">
+                                <div class="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
 
+                                    <form action="{{ route('home.search') }}" method="GET" class="bg-white rounded p-1">
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                                <div class="form-group mb-0 position-relative">
+                                                    <input type="text" class="form-control lg left-ico"
+                                                        placeholder="Job Title, Keyword or Company" name="key" />
+                                                    <i class="bnc-ico lni lni-search-alt"></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                                <div class="form-group mb-0 position-relative">
+                                                    <select class="custom-select lg b-0 " style="width: auto;"
+                                                        name="skill[]">
+                                                        @foreach ($skill as $item)
+                                                            <option value="{{ $item->id }}">
+                                                                {{ $item->label }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                                <div class="form-group mb-0 position-relative">
+                                                    <select class="custom-select lg b-0" name="location">
+                                                        <option selected disabled>Địa chỉ</option>
+                                                        @foreach ($location as $item)
+                                                            <option value="{{ $item->id }}">
+                                                                {{ $item->label }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                                                <div class="form-group mb-0 position-relative">
+                                                    <button
+                                                        class="btn full-width custom-height-lg theme-bg text-white fs-md"
+                                                        type="submit">Find Job</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -166,25 +115,24 @@
                         doanh nghiệp uy tín tại Việt Nam</p>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         Hệ thống mong muốn bạn đăng nhập để có thể
-                        hiển thị các việc làm phù hợp nhất!, <strong><a href="{{ route('home.index') }}"
+                        hiển thị các việc làm phù hợp nhất!, <strong><a href="{{ route('index') }}"
                                 class="show-turn-on-location">Đăng
                                 nhập tại đây!</a></strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+                            <span aria-hidden="true">X</span>
                         </button>
                     </div>
                     <div class="alert alert-info alert-dismissible fade show" role="alert">
                         Hãy báo cáo cho tôi nếu bạn gặp phải sự cố hoặc bạn phát hiện ai đó có hành vi lừa đảo!, <strong><a
-                                href="{{ route('home.index') }}" class="show-turn-on-location">Liên hệ!</a></strong>
+                                href="{{ route('index') }}" class="show-turn-on-location">Liên hệ!</a></strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+                            <span aria-hidden="true">X</span>
                         </button>
                     </div>
 
                 </div>
                 <div class="search-book">
                     <h2 class="ft-bold">Tin tuyển dụng, việc làm tốt nhất</h2>
-
                 </div>
                 <div class="row justify-content-center">
                     <div class="container p-3">
@@ -269,7 +217,7 @@
             </div>
         </section>
         @if (Auth::guard('user')->check())
-            @if ($user->getProfileUse == null)
+            @if (!$user->getProfileUse == null)
                 <section class="bg-light">
                     <div class="container">
 
@@ -284,283 +232,89 @@
 
                                 <!-- Single -->
 
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="job_grid border rounded ">
-                                        <div class="position-absolute ab-left">
-                                            <button type="button"
-                                                class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray">
-                                                <i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
-                                            </button>
-                                        </div>
-                                        <div class="position-absolute ab-right"><span
-                                                class="medium bg-light-danger text-danger px-2 py-1 rounded">Enternship</span>
-                                        </div>
-                                        <div class="job_grid_thumb mb-2 pt-5 px-3">
-                                            <a href="job-detail.html" class="d-block text-center m-auto"><img
-                                                    src="assets/img/c-7.png" class="img-fluid" width="70"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="job_grid_caption text-center pb-3 px-3">
-                                            <h4 class="mb-0 ft-medium medium"><a href="job-detail.html"
-                                                    class="text-dark fs-md">UI/UX Web Designer</a>
-                                            </h4>
-                                            <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San
-                                                    Francisco</span></div>
-                                        </div>
-                                        <div class="job_grid_footer pb-4 px-3">
-                                            <ul class="p-0 skills_tag text-center">
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">Joomla</span>
-                                                </li>
-                                                <li><span
-                                                        class="px-2 py-1 medium skill-bg rounded text-dark">WordPress</span>
-                                                </li>
-                                                <li><span
-                                                        class="px-2 py-1 medium skill-bg rounded text-dark">Javascript</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">PHP</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">HTML5</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium theme-bg rounded text-light">+3
-                                                        More</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+
 
                                 <!-- Single -->
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="job_grid border rounded ">
-                                        <div class="position-absolute ab-left">
-                                            <button type="button"
-                                                class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray">
-                                                <i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
-                                            </button>
+                                <div class="row justify-content-center">
+                                    <div class="container p-3">
+                                        <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" id="paginated-list">
+                                            @foreach ($jobForUser as $value)
+                                                <div class="col render-job-search">
+                                                    <div class="p-3 border bg-light box-showdow">
+                                                        <div class="position-absolute ab-right">
+                                                            <a type="button"
+                                                                class="
+                                            p-3
+                                            border
+                                            circle
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            bg-white
+                                            text-gray
+                                            ">
+                                                                <i
+                                                                    class="
+                                            lni lni-heart-filled
+                                            position-absolute
+                                            snackbar-wishlist
+                                        "></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="job_grid_thumb mb-3 title-name px-3 col-4">
+                                                                <a href="home/detail/{{ $value->title . '-' . $value->id }}"
+                                                                    class="d-block m-auto"><img src="{{ $value->logo }}"
+                                                                        class="img-fluid" alt="" /></a>
+                                                            </div>
+                                                            <div class="job_grid_caption title-name px-3 col-8 g-1">
+                                                                <h4 class="mb-0 ft-medium medium ml-20">
+                                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}"
+                                                                        class="text-dark fs-md" data-bs-toggle="tooltip"
+                                                                        data-bs-placement="top" title="Tooltip on top">
+                                                                        <p
+                                                                            style="width: 200px !important;overflow: hidden !important;text-overflow: ellipsis !important;white-space: nowrap">
+                                                                            {{ $value->title }}
+                                                                        </p>
+                                                                    </a>
+                                                                </h4>
+
+                                                                <div class="jbl_location ml-20" style="margin-top: -10px">
+                                                                    <a href="" class="text-dark fs-md">
+                                                                        {{ $value->nameCompany }}
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
+                                                            <div class="df-1 text-muted">
+                                                                <i class="lni lni-wallet mr-1"></i>
+                                                                {{ $value->getwage->name }}
+                                                            </div>
+                                                            <div class="df-1 text-muted ml-2">
+                                                                <i
+                                                                    class="lni lni-timer mr-1"></i>{{ $value->end_job_time }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        <div class="position-absolute ab-right"><span
-                                                class="medium bg-light-warning text-warning px-2 py-1 rounded">Part
-                                                Time</span>
-                                        </div>
-                                        <div class="job_grid_thumb mb-2 pt-5 px-3">
-                                            <a href="job-detail.html" class="d-block text-center m-auto"><img
-                                                    src="assets/img/c-8.png" class="img-fluid" width="70"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="job_grid_caption text-center pb-3 px-3">
-                                            <h4 class="mb-0 ft-medium medium"><a href="job-detail.html"
-                                                    class="text-dark fs-md">UI/UX Web Designer</a>
-                                            </h4>
-                                            <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San
-                                                    Francisco</span></div>
-                                        </div>
-                                        <div class="job_grid_footer pb-4 px-3">
-                                            <ul class="p-0 skills_tag text-center">
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">Joomla</span>
-                                                </li>
-                                                <li><span
-                                                        class="px-2 py-1 medium skill-bg rounded text-dark">WordPress</span>
-                                                </li>
-                                                <li><span
-                                                        class="px-2 py-1 medium skill-bg rounded text-dark">Javascript</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">PHP</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">HTML5</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium theme-bg rounded text-light">+3
-                                                        More</span>
-                                                </li>
-                                            </ul>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <span class="page-item text-center pagination-container">
+                                                    <div id="pagination-numbers">
+                                                    </div>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Single -->
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="job_grid border rounded ">
-                                        <div class="position-absolute ab-left">
-                                            <button type="button"
-                                                class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray">
-                                                <i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
-                                            </button>
-                                        </div>
-                                        <div class="position-absolute ab-right"><span
-                                                class="medium bg-light-purple text-purple px-2 py-1 rounded">Contract</span>
-                                        </div>
-                                        <div class="job_grid_thumb mb-2 pt-5 px-3">
-                                            <a href="job-detail.html" class="d-block text-center m-auto"><img
-                                                    src="assets/img/c-9.png" class="img-fluid" width="70"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="job_grid_caption text-center pb-3 px-3">
-                                            <h4 class="mb-0 ft-medium medium"><a href="job-detail.html"
-                                                    class="text-dark fs-md">UI/UX Web Designer</a>
-                                            </h4>
-                                            <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San
-                                                    Francisco</span></div>
-                                        </div>
-                                        <div class="job_grid_footer pb-4 px-3">
-                                            <ul class="p-0 skills_tag text-center">
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">Joomla</span>
-                                                </li>
-                                                <li><span
-                                                        class="px-2 py-1 medium skill-bg rounded text-dark">WordPress</span>
-                                                </li>
-                                                <li><span
-                                                        class="px-2 py-1 medium skill-bg rounded text-dark">Javascript</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">PHP</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">HTML5</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium theme-bg rounded text-light">+3
-                                                        More</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single -->
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="job_grid border rounded ">
-                                        <div class="position-absolute ab-left">
-                                            <button type="button"
-                                                class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray">
-                                                <i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
-                                            </button>
-                                        </div>
-                                        <div class="position-absolute ab-right"><span
-                                                class="medium theme-cl theme-bg-light px-2 py-1 rounded">Full Time</span>
-                                        </div>
-                                        <div class="job_grid_thumb mb-2 pt-5 px-3">
-                                            <a href="job-detail.html" class="d-block text-center m-auto"><img
-                                                    src="assets/img/c-11.png" class="img-fluid" width="70"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="job_grid_caption text-center pb-3 px-3">
-                                            <h4 class="mb-0 ft-medium medium"><a href="job-detail.html"
-                                                    class="text-dark fs-md">UI/UX Web Designer</a>
-                                            </h4>
-                                            <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San
-                                                    Francisco</span></div>
-                                        </div>
-                                        <div class="job_grid_footer pb-4 px-3">
-                                            <ul class="p-0 skills_tag text-center">
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">Joomla</span>
-                                                </li>
-                                                <li><span
-                                                        class="px-2 py-1 medium skill-bg rounded text-dark">WordPress</span>
-                                                </li>
-                                                <li><span
-                                                        class="px-2 py-1 medium skill-bg rounded text-dark">Javascript</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">PHP</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">HTML5</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium theme-bg rounded text-light">+3
-                                                        More</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single -->
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="job_grid border rounded ">
-                                        <div class="position-absolute ab-left">
-                                            <button type="button"
-                                                class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray">
-                                                <i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
-                                            </button>
-                                        </div>
-                                        <div class="position-absolute ab-right"><span
-                                                class="medium bg-light-danger text-danger px-2 py-1 rounded">Enternship</span>
-                                        </div>
-                                        <div class="job_grid_thumb mb-2 pt-5 px-3">
-                                            <a href="job-detail.html" class="d-block text-center m-auto"><img
-                                                    src="assets/img/c-10.png" class="img-fluid" width="70"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="job_grid_caption text-center pb-3 px-3">
-                                            <h4 class="mb-0 ft-medium medium"><a href="job-detail.html"
-                                                    class="text-dark fs-md">UI/UX Web Designer</a>
-                                            </h4>
-                                            <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San
-                                                    Francisco</span></div>
-                                        </div>
-                                        <div class="job_grid_footer pb-4 px-3">
-                                            <ul class="p-0 skills_tag text-center">
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">Joomla</span>
-                                                </li>
-                                                <li><span
-                                                        class="px-2 py-1 medium skill-bg rounded text-dark">WordPress</span>
-                                                </li>
-                                                <li><span
-                                                        class="px-2 py-1 medium skill-bg rounded text-dark">Javascript</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">PHP</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">HTML5</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium theme-bg rounded text-light">+3
-                                                        More</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single -->
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="job_grid border rounded ">
-                                        <div class="position-absolute ab-left">
-                                            <button type="button"
-                                                class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray">
-                                                <i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
-                                            </button>
-                                        </div>
-                                        <div class="position-absolute ab-right"><span
-                                                class="medium bg-light-warning text-warning px-2 py-1 rounded">Part
-                                                Time</span>
-                                        </div>
-                                        <div class="job_grid_thumb mb-2 pt-5 px-3">
-                                            <a href="job-detail.html" class="d-block text-center m-auto"><img
-                                                    src="assets/img/c-12.png" class="img-fluid" width="70"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="job_grid_caption text-center pb-3 px-3">
-                                            <h4 class="mb-0 ft-medium medium"><a href="job-detail.html"
-                                                    class="text-dark fs-md">UI/UX Web Designer</a>
-                                            </h4>
-                                            <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>San
-                                                    Francisco</span></div>
-                                        </div>
-                                        <div class="job_grid_footer pb-4 px-3">
-                                            <ul class="p-0 skills_tag text-center">
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">Joomla</span>
-                                                </li>
-                                                <li><span
-                                                        class="px-2 py-1 medium skill-bg rounded text-dark">WordPress</span>
-                                                </li>
-                                                <li><span
-                                                        class="px-2 py-1 medium skill-bg rounded text-dark">Javascript</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">PHP</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium skill-bg rounded text-dark">HTML5</span>
-                                                </li>
-                                                <li><span class="px-2 py-1 medium theme-bg rounded text-light">+3
-                                                        More</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                             <!-- row -->
                         </div>
@@ -573,99 +327,39 @@
         <!-- ======================= All category ======================== -->
         <section class="space gray">
             <div class="container">
-
                 <div class="row justify-content-center">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                         <div class="sec_title position-relative text-center mb-5">
-                            <!-- <h6 class="text-muted mb-0">Popular Categories</h6> -->
                             <h2 class="ft-bold">Top Ngành Nghề nổi Bật</h2>
                         </div>
                     </div>
                 </div>
-
                 <!-- row -->
                 <div class="row justify-content-center">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class="review-slide px-3">
 
-                            <!-- single review -->
-                            <div class="single_review px-2">
-                                <div class="reviews_wrap position-relative bg-white rounded py-4 px-4">
-                                    <div class="rw-header d-flex align-items-center justify-content-start">
-                                        <div class="rv-110-thumb position-relative verified-author"><img
-                                                src="assets/img/team-3.jpg" class="img-fluid circle" width="70"
-                                                alt="" />
+                    <div class="page-white-100">
+                        <div id="box-discover">
+                            <div class="container">
+                                <div class="list-discover">
+                                    @foreach ($majors as $item)
+                                        <div class="item">
+                                            <div class="image">
+                                                <img src="{{ $item->image_majors }}" alt="">
+                                            </div>
+                                            <div class="title">{{ $item->name }}</div>
+                                            <p class="count">(<span class="number count_job_manager">2,682</span> việc
+                                                làm)</p>
+                                            <div>
+                                                <a target="_blank" href="/home" class="see-more">Khám phá
+                                                    ngay </a>
+                                            </div>
                                         </div>
-                                        <div class="rv-110-caption pl-3">
-                                            <h4 class="ft-medium fs-md mb-0 lh-1">Alvin B. Washington</h4>
-                                            <!-- <p class="p-0 m-0">Co Founder</p> -->
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
-
-                            <!-- single review -->
-                            <div class="single_review px-2">
-                                <div class="reviews_wrap position-relative bg-white rounded py-4 px-4">
-                                    <div class="rw-header d-flex align-items-center justify-content-start">
-                                        <div class="rv-110-thumb"><img src="assets/img/team-4.jpg"
-                                                class="img-fluid circle" width="70" alt="" /></div>
-                                        <div class="rv-110-caption pl-3">
-                                            <h4 class="ft-medium fs-md mb-0 lh-1">Lavera C. Clifford</h4>
-                                            <p class="p-0 m-0">Team Manager</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- single review -->
-                            <div class="single_review px-2">
-                                <div class="reviews_wrap position-relative bg-white rounded py-4 px-4">
-                                    <div class="rw-header d-flex align-items-center justify-content-start">
-                                        <div class="rv-110-thumb position-relative verified-author"><img
-                                                src="assets/img/team-2.jpg" class="img-fluid circle" width="70"
-                                                alt="" />
-                                        </div>
-                                        <div class="rv-110-caption pl-3">
-                                            <h4 class="ft-medium fs-md mb-0 lh-1">Linda S. Riggs</h4>
-                                            <p class="p-0 m-0">Project Manager</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- single review -->
-                            <div class="single_review px-2">
-                                <div class="reviews_wrap position-relative bg-white rounded py-4 px-4">
-                                    <div class="rw-header d-flex align-items-center justify-content-start">
-                                        <div class="rv-110-thumb"><img src="assets/img/team-5.jpg"
-                                                class="img-fluid circle" width="70" alt="" /></div>
-                                        <div class="rv-110-caption pl-3">
-                                            <h4 class="ft-medium fs-md mb-0 lh-1">Chris L. Hazel</h4>
-                                            <p class="p-0 m-0">Web Designer</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- single review -->
-                            <div class="single_review px-2">
-                                <div class="reviews_wrap position-relative bg-white rounded py-4 px-4">
-                                    <div class="rw-header d-flex align-items-center justify-content-start">
-                                        <div class="rv-110-thumb position-relative verified-author"><img
-                                                src="assets/img/team-1.jpg" class="img-fluid circle" width="70"
-                                                alt="" />
-                                        </div>
-                                        <div class="rv-110-caption pl-3">
-                                            <h4 class="ft-medium fs-md mb-0 lh-1">Mark Jukerberg</h4>
-                                            <p class="p-0 m-0">PHP Developer</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
+
                 </div>
                 <!-- /row -->
 
@@ -882,7 +576,8 @@
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                             <div class="blg_grid_box">
                                 <div class="blg_grid_thumb">
-                                    <a href="blog-detail.html"><img src="{{ $item->new_image }}" class="img-fluid w-75 rounded "
+                                    <a href="blog-detail.html"><img src="{{ $item->new_image }}"
+                                            class="img-fluid w-75 rounded "
                                             style="display : block;
                                                    margin-left: auto;
                                                    margin-right: auto;
@@ -924,7 +619,8 @@
                                                     <li>
                                                         <div class="elsio_ic"><i class="fa fa-clock text-warning"></i>
                                                         </div>
-                                                        <div class="elsio_tx">{{ ($item->created_at)->format('d-m-Y') }}</div>
+                                                        <div class="elsio_tx">{{ $item->created_at->format('d-m-Y') }}
+                                                        </div>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -1070,7 +766,7 @@
                                     'skill' => $skill,
                                     'timework' => $timework,
                                     'profession' => $profession,
-                                    // 'majors' => $majors,
+                                    'majors' => $majors,
                                     'location' => $location,
                                     'workingform' => $workingform,
                                     'user' => $user,
@@ -1092,6 +788,130 @@
         @endif
     @endif
 
-
     </html>
+
+    <head>
+        <title>Sushi Finder</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <style>
+            /* Always set the map height explicitly to define the size of the div
+                                                                                                                 * element that contains the map. */
+            #map {
+                height: 100%;
+                background-color: grey;
+            }
+
+            /* Optional: Makes the sample page fill the window. */
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* TODO: Step 4A1: Make a generic sidebar */
+        </style>
+    </head>
+
+    <body>
+        <!-- TODO: Step 4A2: Add a generic sidebar -->
+
+        <!-- Map appears here -->
+        <div id="map">ewwqeqw</div>
+
+        <script>
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            }
+
+            function success(pos) {
+                const crd = pos.coords
+
+                console.log('Vị trí hiện tại của bạn là::')
+                console.log(`vĩ độ : ${crd.latitude}`)
+                console.log(`kinh độ: ${crd.longitude}`)
+                console.log(`More or less ${crd.accuracy} meters.`)
+            }
+
+            function error(err) {
+                console.warn(`ERROR(${err.code}): ${err.message}`)
+            }
+
+            navigator.geolocation.getCurrentPosition(success, error, options)
+            let pos;
+            let map;
+            let bounds;
+            let infoWindow;
+            let currentInfoWindow;
+            let service;
+            let infoPane;
+
+            function initMap() {
+                // Initialize variables
+                bounds = new google.maps.LatLngBounds();
+                infoWindow = new google.maps.InfoWindow;
+                currentInfoWindow = infoWindow;
+                /* TODO: Step 4A3: Add a generic sidebar */
+
+                // Try HTML5 geolocation
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(position => {
+                        pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        map = new google.maps.Map(document.getElementById('map'), {
+                            center: pos,
+                            zoom: 15
+                        });
+                        bounds.extend(pos);
+
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent('Location found.');
+                        infoWindow.open(map);
+                        map.setCenter(pos);
+
+                        /* TODO: Step 3B2, Call the Places Nearby Search */
+                    }, () => {
+                        // Browser supports geolocation, but user has denied permission
+                        handleLocationError(true, infoWindow);
+                    });
+                } else {
+                    // Browser doesn't support geolocation
+                    handleLocationError(false, infoWindow);
+                }
+            }
+
+            // Handle a geolocation error
+            function handleLocationError(browserHasGeolocation, infoWindow) {
+                // Set default location to Sydney, Australia
+                pos = {
+                    lat: 20.9950277,
+                    lng: 105.7756499
+                };
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: pos,
+                    zoom: 15
+                });
+
+                // Display an InfoWindow at the map center
+                infoWindow.setPosition(pos);
+                infoWindow.setContent(browserHasGeolocation ?
+                    'Geolocation permissions denied. Using default location.' :
+                    'Error: Your browser doesn\'t support geolocation.');
+                infoWindow.open(map);
+                currentInfoWindow = infoWindow;
+
+                /* TODO: Step 3B3, Call the Places Nearby Search */
+            }
+            /* END TODO: Step 2, Geolocate your user */
+            /* TODO: Step 3B1, Call the Places Nearby Search */
+        </script>
+
+        <!-- TODO: Step 3A, Load the Places Library -->
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+    </body>
 @endsection

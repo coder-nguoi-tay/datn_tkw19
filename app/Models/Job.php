@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\JobStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -29,6 +30,8 @@ class Job extends Authenticatable
         'time_work_id',
         'candidate_requirements',
         'employer_id',
+        'status',
+        'expired',
     ];
     public function getLevel()
     {
@@ -69,5 +72,9 @@ class Job extends Authenticatable
     public function getskill()
     {
         return $this->belongsToMany(Skill::class, Jobskill::class, 'job_id', 'skill_id', 'id');
+    }
+    public function AllCv()
+    {
+        return $this->hasMany(SaveCv::class, 'id_job', 'id');
     }
 }

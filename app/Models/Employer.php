@@ -18,10 +18,11 @@ class Employer extends Model
         'workplace',
         'address',
         'id_company',
-        'user_id'
+        'user_id',
+        'prioritize',
     ];
     public function getCompany()
     {
-        return $this->belongsTo(Company::class, 'id_company', 'id');
+        return $this->hasOne(Company::class, 'id', 'id_company');
     }
 }
