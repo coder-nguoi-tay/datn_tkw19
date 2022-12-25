@@ -147,7 +147,7 @@
                     <p style="text-align: center "> Để sử dụng tính năng này vui lòng cập nhật thông tin của bạn.</p>
                 </div>
                 <button type="button" data-coreui-toggle="modal" data-coreui-target="#checkCompany"
-                    class="btn btn-primary " style="margin-left: 38%; width: 140px; margin-top: 20px">Cập nhật ngay
+                    class="btn btn-primary " style="margin-left: 36%; width: 140px; margin-top: 20px">Cập nhật ngay
                 </button>
             </div>
         </div>
