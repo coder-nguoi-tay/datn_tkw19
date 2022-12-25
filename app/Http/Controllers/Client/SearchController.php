@@ -205,4 +205,9 @@ class SearchController extends BaseController
     {
         //
     }
+    public function searchMajos($title, $id)
+    {
+        $job = $this->job->where('majors_id', $id)->get();
+        dd($job);
+    }
 }

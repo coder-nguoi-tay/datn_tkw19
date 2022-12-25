@@ -20,6 +20,7 @@ use App\Http\Controllers\Seeker\ManageUploadController as SeekerManageUploadCont
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\SearchController;
 use App\Http\Controllers\Employer\ManagerUploadCvController;
+use App\Http\Controllers\Employer\ProfileController as EmployerProfileController;
 use App\Http\Controllers\Employer\RegisterCompanyController;
 
 /*
@@ -71,6 +72,8 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
         Route::get('change-status', [ManagerUploadCvController::class, 'changeStatus'])->name('changestatus');
     });
     Route::resource('register-company', RegisterCompanyController::class);
+    //profile
+    Route::resource('profile', EmployerProfileController::class);
 });
 Route::get('register', [HomeEmployerController::class, 'register'])->name('register.employer');
 Route::post('register/create', [HomeEmployerController::class, 'store'])->name('register.employer.create');
@@ -93,7 +96,7 @@ Route::post('owner/update/register', [ClientLoginController::class, 'updateRegis
 // });
 //client
 Route::resource('', ClientHomeController::class);
-Route::get('show-new', [ClientHomeController::class, 'showNew']); // api
+Route::get('{title}-{id}', [SearchController::class, 'searchMajos'])->name('searchMajos');
 Route::post('favourite/{id}', [SeekerHomeController::class, 'userFavouriteId']); // api
 Route::get('home/detail/{title}-{id}', [ClientHomeController::class, 'showDetail'])->name('home.detail.show');
 Route::post('home/detail/upcv', [ClientHomeController::class, 'upCv'])->name('home.detail.upcv');

@@ -16,7 +16,15 @@ configure({
 
 const app = createApp({});
 app.use(CoreuiVue);
-
+defineRule('telephone', (value) => {
+    return (
+        /^0(\d-\d{4}-\d{4})+$/i.test(value.trim()) ||
+        /^0(\d{3}-\d{2}-\d{4})+$/i.test(value.trim()) ||
+        /^(070|080|090|050)(-\d{4}-\d{4})+$/i.test(value.trim()) ||
+        /^0(\d{2}-\d{3}-\d{4})+$/i.test(value.trim()) ||
+        /^0(\d{9,10})+$/i.test(value.trim())
+    )
+})
 import Editor from '@tinymce/tinymce-vue';
 // import tinymce from 'tinymce/tinymce';
 
@@ -81,6 +89,8 @@ import Notyf from "./components/common/notyf.vue";
 app.component("notyf", Notyf);
 import registerEmployer from "./components/employer/register.vue";
 app.component('register-employer', registerEmployer);
+import ProfileEmployer from './components/employer/profile/update.vue'
+app.component('update-profile-employer', ProfileEmployer);
 
 
 
