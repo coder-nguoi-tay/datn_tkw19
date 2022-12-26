@@ -7,9 +7,15 @@
                     <div class="_dashboard_content_header br-bottom py-3 px-3">
                         <div class="box-title box-cv">
                             <h2 class="box-name"><span style="margin-left: 5px !important">Quản lý CV</span></h2>
-                            <a href="{{ route('quan-ly-cv.create') }}" class="box-link"><button
-                                    class="btn btn-info btn-create-cv">Tạo
-                                    mới</button></a>
+                            <div class="box-title" style="margin: 0;">
+                                 <a href="{{ route('quan-ly-cv.create') }}" class="box-link" style="margin-right: 10px;">
+                                <button class="btn btn-info btn-create-cv">Tải lên CV</button>
+                            </a>
+                            <a href="{{ route('user.createFormCV') }}" class="box-link">
+                                <button class="btn btn-success btn-create-cv">Tạo mới CV</button>
+                            </a>
+                            </div> 
+                           
                         </div>
                         @if (!$cv->isEmpty())
                             <div class="container">

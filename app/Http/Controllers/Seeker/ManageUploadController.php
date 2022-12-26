@@ -8,6 +8,7 @@ use App\Models\UploadCv;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ManageUploadController extends BaseController
 {
@@ -102,6 +103,10 @@ class ManageUploadController extends BaseController
         //
     }
 
+    public function createFormCV()
+    {
+        return view('client.seeker.create_form_cv');
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -125,5 +130,12 @@ class ManageUploadController extends BaseController
         $this->upload->destroy($id);
         $this->setFlash(__('Xóa cv thành công'));
         return redirect()->route('quan-ly-cv.index');
+    }
+
+    // tao va tai xuomh cv
+    public function downloadPdf()
+    {
+        $pdf = PDF::loadView('client.seeker.pdf')->setOptions(['defaultFont' => 'sans-serif']);
+        return $pdf->stream();
     }
 }

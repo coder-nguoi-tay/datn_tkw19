@@ -956,7 +956,6 @@
                     <div class="text-center mb-4">
                         <h2 class="m-0 ft-regular">Login</h2>
                     </div>
-
                     <form>
                         <div class="form-group">
                             <label>User Name</label>

@@ -22,6 +22,7 @@ use App\Http\Controllers\Client\SearchController;
 use App\Http\Controllers\Employer\ManagerUploadCvController;
 use App\Http\Controllers\Employer\ProfileController as EmployerProfileController;
 use App\Http\Controllers\Employer\RegisterCompanyController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::resource('package', EmployerPackageController::class);
     Route::post('package/payment', [EmployerPackageController::class, 'Payment'])->name('package.payment');
     Route::post('package/payment/momo', [EmployerPackageController::class, 'Momo'])->name('package.payment.momo');
+    
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
     Route::group([
@@ -75,12 +77,22 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     //profile
     Route::resource('profile', EmployerProfileController::class);
 });
+
+// --------------------------- thanh toan ----------------------------------------------
+Route::post('test_vnpay', [TestController::class, 'index'])->name('package.test');
+// -----------------------------------------
+
+
+
 Route::get('register', [HomeEmployerController::class, 'register'])->name('register.employer');
 Route::post('register/create', [HomeEmployerController::class, 'store'])->name('register.employer.create');
 
 // seeker
 Route::resource('profile', SeekerHomeController::class);
 Route::resource('quan-ly-cv', SeekerManageUploadController::class);
+Route::get('file/tao-moi', [SeekerManageUploadController::class, 'createFormCV'])->name('user.createFormCV');
+Route::get('user/createFormCV/download', [SeekerManageUploadController::class, 'downloadPdf'])->name('user.createFormCV.downloadPdf');
+
 Route::get('user/profile/{token}', [SeekerHomeController::class, 'userProfile'])->name('user.profile');
 Route::get('user/new/favourite', [SeekerHomeController::class, 'userFavourite'])->name('user.favourite');
 Route::delete('delete/favourite/{id}', [SeekerHomeController::class, 'deleteFavourite'])->name('delete.favourite');
