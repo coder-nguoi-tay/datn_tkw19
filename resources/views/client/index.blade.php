@@ -724,7 +724,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Chào mừng bạn đã trở lại</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Chào mừng bạn đến với ITWork</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -752,10 +752,12 @@
                 <div class="modal-dialog modal-xl" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">profile</h5>
+                            <h5 class="modal-title " id="exampleModalLabel" style="margin-left: 15%; font-size: 24px; font-weight: 500">Vui lòng bổ sung các thông tin dưới đây để hoàn tất đăng ký tài khoản
+                            </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
+
                         </div>
                         <div class="modal-body">
                             <user-profile
@@ -796,7 +798,7 @@
         <meta charset="utf-8">
         <style>
             /* Always set the map height explicitly to define the size of the div
-                                                                                                                                                                                                                                                     * element that contains the map. */
+                                                                                                                 * element that contains the map. */
             #map {
                 height: 100%;
                 background-color: grey;

@@ -12,9 +12,10 @@
         method="POST"
       >
         <Field type="hidden" :value="csrfToken" name="_token" />
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" id="img-preview2">
-          <div class="col-sm-6">
-            <div class="display-div_custom">
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="col-sm-12 text-center">
+            <div class="display-div_custom" style="margin-left: 40%; border-radius: 20px">
               <div
                 class="img-display_author d-flex"
                 id="img-preview"
@@ -67,8 +68,11 @@
             </div>
           </div>
         </div>
+        
 
-        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <br>
+          <br>
           <div class="row">
             <div class="col-xl-6 col-lg-6">
               <div class="form-group">
@@ -261,7 +265,7 @@
               <div class="form-group">
                 <button
                   type="submit"
-                  class="btn btn-md ft-medium text-light rounded theme-bg"
+                  class="btn btn-md ft-medium text-light rounded theme-bg btn-register-employer"
                 >
                   Cập nhật
                 </button>
