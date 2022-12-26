@@ -72,8 +72,6 @@ class NewController extends BaseController
         }
         $this->setFlash(__('Thêm gói thất bại'));
         return redirect()->route('admin.new.index');
-
-
     }
 
     /**

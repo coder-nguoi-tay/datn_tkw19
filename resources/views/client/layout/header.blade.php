@@ -131,7 +131,7 @@
                         </li>
                         <li class="add-listing theme-bg">
                             <a href="{{ route('register.employer') }}">
-                                Đăng ký nhà tuyển dụng
+                                Đăng tuyển & tìm hồ sơ
                             </a>
                         </li>
                     @else
