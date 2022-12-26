@@ -58,7 +58,7 @@ class HomeEmployerController extends BaseController
                 'request' => $request->all(),
             ]);
         }
-        try {
+        // try {
             $user =  $this->user->create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -78,14 +78,14 @@ class HomeEmployerController extends BaseController
             $employer->save();
             $this->setFlash(__('đăng ký tài khoản nhà tuyển dụng thành công'));
             return redirect(route('index'));
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            $this->setFlash(__('đã có một lỗi không xác định đã xảy ra, kiểm tra lại thông tin của bạn'), 'error');
-            return view('employer.pages.register', [
-                'location' => $this->getlocation(),
-                'request' => $request->all(),
-            ]);
-        }
+        // } catch (\Throwable $th) {
+        //     DB::rollBack();
+        //     $this->setFlash(__('đã có một lỗi không xác định đã xảy ra, kiểm tra lại thông tin của bạn'), 'error');
+        //     return view('employer.pages.register', [
+        //         'location' => $this->getlocation(),
+        //         'request' => $request->all(),
+        //     ]);
+        // }
     }
 
     /**
