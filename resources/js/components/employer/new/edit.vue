@@ -2,22 +2,22 @@
 <template>
   <div class="col-12 recuitment-inner">
     <div class="card-create-employer">
-      <div class="card">
-        <div class="card-header">
-          <h5 class="card-title">Đăng tin tuyển dụng</h5>
-        </div>
-        <VeeForm
-          as="div"
-          v-slot="{ handleSubmit }"
-          @invalid-submit="onInvalidSubmit"
+      <VeeForm
+        as="div"
+        v-slot="{ handleSubmit }"
+        @invalid-submit="onInvalidSubmit"
+      >
+        <form
+          class="recuitment-form"
+          @submit="handleSubmit($event, onSubmit)"
+          ref="formData"
+          method="POST"
+          :action="data.urlStore"
         >
-          <form
-            class="recuitment-form"
-            @submit="handleSubmit($event, onSubmit)"
-            ref="formData"
-            method="POST"
-            :action="data.urlStore"
-          >
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Sửa tin tuyển dụng</h5>
+            </div>
             <div class="card-body">
               <div class="row">
                 <div class="col-6">
@@ -358,9 +358,9 @@
                 <button type="submit" class="btn btn-primary">Đăng Tin</button>
               </div>
             </div>
-          </form>
-        </VeeForm>
-      </div>
+          </div>
+        </form>
+      </VeeForm>
     </div>
   </div>
 </template>

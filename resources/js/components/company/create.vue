@@ -9,9 +9,7 @@
       enctype="multipart/form-data"
     >
       <input type="hidden" name="_token" :value="csrfToken" />
-      <div class="mb-3">
-        
-      </div>
+      <div class="mb-3"></div>
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
           >Tên công ty<span class="required-lable">*</span></label
@@ -54,9 +52,10 @@
             name="desceibe"
             v-model="model.desceibe"
             class="text-company-employer"
+            rules="required|max:255"
           />
-          <ErrorMessage class="error" name="desceibe" />
         </div>
+        <ErrorMessage class="error" name="desceibe" />
       </div>
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"

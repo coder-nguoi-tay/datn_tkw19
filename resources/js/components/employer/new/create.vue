@@ -20,7 +20,9 @@
                 <div class="col-6">
                   <Field type="hidden" :value="csrfToken" name="_token" />
                   <div class="mb-4">
-                    <label for="" class="form-label">Tiêu đề</label>
+                    <label for="" class="form-label">Tiêu đề<span class="required-lable"
+                        >*</span
+                      ></label>
                     <Field
                       name="title"
                       type="text"
@@ -32,19 +34,24 @@
                     <ErrorMessage class="error" name="title" />
                   </div>
                   <div class="mb-4">
-                    <label for="" class="form-label">Số lượng cần tuyển</label>
+                    <label for="" class="form-label">Số lượng cần tuyển<span class="required-lable"
+                        >*</span
+                      ></label>
                     <Field
                       name="quatity"
-                      type="text"
+                      type="number"
                       v-model="model.quatity"
                       rules="required|max:255"
+                      min="1"
                       class="form-control form-text"
-                      placeholder="Tiêu đề"
+                      placeholder="Số lượng cần tuyển"
                     />
                     <ErrorMessage class="error" name="quatity" />
                   </div>
                   <div class="mb-4">
-                    <label for="" class="form-label">Giới tính</label>
+                    <label for="" class="form-label">Giới tính<span class="required-lable"
+                        >*</span
+                      ></label>
                     <Field
                       name="sex"
                       as="select"
@@ -325,8 +332,10 @@
                     </Field>
                     <ErrorMessage class="error" name="skill_id" />
                   </div>
-                  <label class="col-sm-3 col-form-label text-right label"
-                    >Hình thức làm việc<span class="pl-2">*</span></label
+                  <label class="form-label text-right label"
+                    >Hình thức làm việc<span class="required-lable"
+                        >*</span
+                      ></label
                   >
                   <div class="mb-4">
                     <Field
