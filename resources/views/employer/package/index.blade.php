@@ -11,7 +11,7 @@
                         <div class="card-header">
                             <header class="header header-sticky">
                                 <div class="container-fluid">
-                                    <label class=" px-md-0 me-md-3">Quản lý CV</label>
+                                    <label class=" px-md-0 me-md-3">Quản lý Các Gói Cước Đã Mua </label>
                                     <ul class="header-nav ms-3 d-flex">
                                         <form action="{{ route('employer.quan-ly-cv.index') }}" class="d-flex"
                                             method="get">
@@ -22,14 +22,14 @@
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </form>
-                                        <form action="{{ route('package.test') }}" method="post">
+                                        {{-- <form action="{{ route('package.test') }}" method="post">
                                             @csrf
                                             <button class="btn btn-info" name="redirect">mua thu</button>
-                                        </form>
-                                        {{-- <a class="nav-link py-0 btn-next-step" name="redirect"
-                                            href="{{ route('employer.package.payment') }}">
+                                        </form> --}}
+                                        <button class="nav-link py-0 btn-next-step" data-coreui-toggle="modal"
+                                            data-coreui-target="#exampleModalbuyPackage">
                                             mua gói cước
-                                        </a> --}}
+                                        </button>
                                     </ul>
                                 </div>
                             </header>
@@ -85,8 +85,33 @@
             </div>
         </div>
     </div>
+    <!-- Modal by payment -->
+    <div class="modal fade" id="exampleModalbuyPackage" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info p-3 text-white">
+                            <div class="inner">
+                                <h3>150</h3>
+                                <p>New Orders</p>
+                            </div>
+                            <div class="icon"><i class="ion ion-bag"></i></div><a href="#"
+                                class="small-box-footer text-view">Xem chi tiết<i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <style>
-
-    </style>
 @endsection
