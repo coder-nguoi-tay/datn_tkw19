@@ -64,8 +64,12 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::post('new/update/{id}', [NewEmployerController::class, 'update'])->name('new.update');
     Route::resource('package', EmployerPackageController::class);
     Route::post('package/payment', [EmployerPackageController::class, 'Payment'])->name('package.payment');
-    Route::post('package/payment/momo', [EmployerPackageController::class, 'Momo'])->name('package.payment.momo');
-    
+    Route::get('package/payment/return', [EmployerPackageController::class, 'vnpayReturn'])->name('package.payment.return');
+    Route::get('package/payment/output', [EmployerPackageController::class, 'vnpayOutput'])->name('package.payment.output');
+    Route::get('package/payment/show-detail/{id}', [EmployerPackageController::class, 'showDetail'])->name('package.payment.show.detail');
+    Route::post('package/payment/buy-account', [EmployerPackageController::class, 'byAccount'])->name('package.payment.byAccount');
+
+
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
     Route::group([

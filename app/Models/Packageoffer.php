@@ -16,7 +16,8 @@ class Packageoffer extends Model
         'price',
         'time_offer_id',
     ];
-    public function timeofer(){
-        return $this->belongsTo(Timeoffer::class, 'time_offer_id', 'id');
+    public function timeofer()
+    {
+        return $this->hasOne(Timeoffer::class, 'id', 'time_offer_id');
     }
 }
