@@ -41,7 +41,7 @@ class ChangePackage extends Command
      */
     public function handle()
     {
-        $inactive_user = packageofferbought::where('end_time', '<', Carbon::now())->get();
+        $inactive_user = packageofferbought::where('end_time', '<', Carbon::parse(Carbon::now()))->get();
         $job = Job::where('end_job_time', '<', Carbon::now())->get();
         foreach ($inactive_user as $user) {
             $user->status = 2;

@@ -143,11 +143,12 @@
                           color="secondary"
                           v-c-tooltip="{
                             content:
+                              'Chủ tài khoản: ' +
+                              userPayment +
+                              '<br />' +
                               'Số Dư:' +
-                              new Intl.NumberFormat('de-DE', {
-                                style: 'currency',
-                                currency: 'VND'
-                              }).format(data.total.surplus),
+                              total +
+                              'đ',
                             placement: 'top'
                           }"
                           @click="checkAccount()"
@@ -189,10 +190,23 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
       model: [],
-      timePackage: []
+      timePackage: [],
+      total: '',
+      userPayment: ''
     }
   },
-  created() {},
+  created() {
+    if (this.data.accPayment == null) {
+      this.total = 0
+    } else {
+      this.total = new Intl.NumberFormat().format(this.data.total.surplus)
+    }
+    if (this.data.total == null) {
+      this.userPayment = ''
+    } else {
+      this.userPayment = this.data.total.user.name
+    }
+  },
   methods: {
     nextModal(id) {
       axios
@@ -207,6 +221,23 @@ export default {
         })
     },
     checkAccount() {
+      if (this.data.accPayment == null) {
+        const notyf = new Notyf({
+          duration: 6000,
+          position: {
+            x: 'right',
+            y: 'bottom'
+          },
+          types: [
+            {
+              type: 'error',
+              duration: 8000,
+              dismissible: true
+            }
+          ]
+        })
+        return notyf.error('Bạn chưa đăng ký tài khoản trong hệ thống')
+      }
       if (this.data.total.surplus < this.model.price) {
         const notyf = new Notyf({
           duration: 6000,
@@ -224,6 +255,8 @@ export default {
         })
         return notyf.error('Số dư trong tài khoản của bạn không đủ')
       } else {
+        console.log((this.data.total.surplus = this.model.price))
+
         axios
           .post('package/payment/buy-account', {
             _token: Laravel.csrfToken,

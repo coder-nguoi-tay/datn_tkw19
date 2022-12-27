@@ -1,7 +1,7 @@
 <div class="sidebar sidebar-dark sidebar-fixed sidebar-lg-show" id="sidebar">
     <ul class="sidebar-nav dashboard-nav" data-coreui="navigation" data-simplebar="init">
         <div class="dashboard-inner">
-            <ul data-submenu-title="{{ Auth::guard('user')->user()->email }}">
+            <ul data-submenu-title="{{ Auth::guard('user')->user()->name }}">
                 <li>
                     <a href="{{ route('employer.index') }}"><i class="fa fa-area-chart" aria-hidden="true"></i>Thông
                         Kê</a>
