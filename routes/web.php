@@ -82,11 +82,6 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::resource('profile', EmployerProfileController::class);
 });
 
-// --------------------------- thanh toan ----------------------------------------------
-Route::post('test_vnpay', [TestController::class, 'index'])->name('package.test');
-// -----------------------------------------
-
-
 
 Route::get('register', [HomeEmployerController::class, 'register'])->name('register.employer');
 Route::post('register/create', [HomeEmployerController::class, 'store'])->name('register.employer.create');

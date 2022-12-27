@@ -29,10 +29,14 @@
               <!-- small box -->
               <div class="small-box bg-info p-3 text-white box-custom-layout">
                 <div class="inner">
-                  <h3>{{ new Intl.NumberFormat('de-DE', {
-                            style: 'currency',
-                            currency: 'VND'
-                          }).format(payment.price) }}</h3>
+                  <h3>
+                    {{
+                      new Intl.NumberFormat('de-DE', {
+                        style: 'currency',
+                        currency: 'VND'
+                      }).format(payment.price)
+                    }}
+                  </h3>
                   <p>{{ payment.name }}</p>
                   <p>{{ payment.timeofer.name }}</p>
                 </div>
@@ -121,7 +125,14 @@
                     class="small-box bg-info p-3 text-white box-custom-layout"
                   >
                     <div class="inner">
-                      <h3>{{ new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(model.price) }} </h3>
+                      <h3>
+                        {{
+                          new Intl.NumberFormat('de-DE', {
+                            style: 'currency',
+                            currency: 'VND'
+                          }).format(model.price)
+                        }}
+                      </h3>
                       <p>{{ model.name }}</p>
                       <p>{{ timePackage }}</p>
                     </div>
@@ -131,8 +142,12 @@
                           class="nav-link py-0 btn-next-step btn-buy-package"
                           color="secondary"
                           v-c-tooltip="{
-                          content: 'Số Dư:' +
-                          new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(data.total.surplus),
+                            content:
+                              'Số Dư:' +
+                              new Intl.NumberFormat('de-DE', {
+                                style: 'currency',
+                                currency: 'VND'
+                              }).format(data.total.surplus),
                             placement: 'top'
                           }"
                           @click="checkAccount()"
@@ -194,50 +209,53 @@ export default {
     checkAccount() {
       if (this.data.total.surplus < this.model.price) {
         const notyf = new Notyf({
-            duration: 6000,
-            position: {
-              x: 'right',
-              y: 'bottom'
-            },
-            types: [
-              {
-                type: 'error',
-                duration: 8000,
-                dismissible: true
-              }
-            ]
-          })
-            return notyf.error('Số dư trong tài khoản của bạn không đủ')
-      } else {
-        axios.post('package/payment/buy-account', {
-          _token: Laravel.csrfToken,
-          data: this.model
-        }).then((data) => {
-          const notyf = new Notyf({
-            duration: 6000,
-            position: {
-              x: 'right',
-              y: 'bottom'
-            },
-            types: [
-              {
-                type: 'error',
-                duration: 8000,
-                dismissible: true
-              }
-            ]
-          })
-          console.log(data);
-          if (data.data.status == 403) {
-            return notyf.error(data.data.message)
-          }
-          setTimeout(function () {
-            location.reload()
-          }, 2000)
-          return notyf.success(data.data.message)
-        }).catch((error) => {
-          console.log(error);
+          duration: 6000,
+          position: {
+            x: 'right',
+            y: 'bottom'
+          },
+          types: [
+            {
+              type: 'error',
+              duration: 8000,
+              dismissible: true
+            }
+          ]
         })
+        return notyf.error('Số dư trong tài khoản của bạn không đủ')
+      } else {
+        axios
+          .post('package/payment/buy-account', {
+            _token: Laravel.csrfToken,
+            data: this.model
+          })
+          .then((data) => {
+            const notyf = new Notyf({
+              duration: 6000,
+              position: {
+                x: 'right',
+                y: 'bottom'
+              },
+              types: [
+                {
+                  type: 'error',
+                  duration: 8000,
+                  dismissible: true
+                }
+              ]
+            })
+            console.log(data.data)
+            if (data.data.status == 403) {
+              return notyf.error(data.data.message)
+            }
+            setTimeout(function () {
+              location.reload()
+            }, 2000)
+            return notyf.success(data.data.message)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
       }
     }
   }
