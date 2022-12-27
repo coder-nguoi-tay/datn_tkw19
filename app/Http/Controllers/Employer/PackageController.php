@@ -10,6 +10,7 @@ use App\Models\Employer;
 use App\Models\Packageoffer;
 use App\Models\packageofferbought;
 use App\Models\Vnpay;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,8 +36,9 @@ class PackageController extends BaseController
         $pachageForEmployer = Packageofferbought::leftjoin('admin_package_offer', 'admin_package_offer.id', '=', 'package_offer_bought.package_offer_id')
             ->leftjoin('users', 'users.id', '=', 'package_offer_bought.company_id')
             ->leftjoin('employer', 'employer.user_id', '=', 'users.id')
-            ->select('admin_package_offer.name as name_package', 'admin_package_offer.price as price', 'package_offer_bought.id as id', 'package_offer_bought.package_offer_id as package_id')
+            ->select('admin_package_offer.name as name_package', 'admin_package_offer.price as price', 'package_offer_bought.id as id', 'package_offer_bought.package_offer_id as package_id', 'package_offer_bought.start_time as start_time', 'package_offer_bought.end_time as end_time', 'package_offer_bought.lever', 'package_offer_bought.status')
             ->get();
+        // dd($pachageForEmployer);
         $package = Packageoffer::select('*')->whereNotIn('id', $pachageForEmployer->pluck('package_id'))->with('timeofer')->get();
         return view('employer.package.index', [
             'data' => $package,
@@ -274,7 +276,7 @@ class PackageController extends BaseController
             //Kiểm tra checksum của dữ liệu
             if ($secureHash == $vnp_SecureHash) {
 
-                $invoice = Packageoffer::where('id', 1)->first(); //$orderId
+                $invoice = Packageoffer::where('id', $orderId)->first(); //$orderId
                 if ($invoice != NULL) {
                     if ($invoice["amount"] == $vnp_Amount) //Kiểm tra số tiền thanh toán của giao dịch: giả sử số tiền kiểm tra là đúng. //$order["Amount"] == $vnp_Amount
                     {
@@ -324,22 +326,34 @@ class PackageController extends BaseController
     }
     public function byAccount(Request $request)
     {
+
         try {
+            $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
             $package = new packageofferbought();
             $package->company_id = Auth::guard('user')->user()->id;
             $package->package_offer_id = $request['data']['id'];
             $package->status = '00';
-            $package->save();
-            $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
-            if ($request['data']['id'] == 1) {
+
+            $package->start_time =
+                Carbon::parse(Carbon::now());
+            if ($request['data']['timeofer']['id'] == 1) {
                 $employer->prioritize += 1;
-            } else if ($request['data']['id'] == 2) {
+                $package->end_time = Carbon::parse(Carbon::now())->addDay(1)->format('Y-m-d');
+                $package->lever = 1;
+            } else if ($request['data']['timeofer']['id'] == 2) {
                 $employer->prioritize += 2;
-            } else if ($request['data']['id'] == 3) {
+                $package->end_time = Carbon::parse(Carbon::now())->addDay(7)->format('Y-m-d');
+                $package->lever = 2;
+            } else if ($request['data']['timeofer']['id'] == 3) {
                 $employer->prioritize += 3;
-            } else if ($request['data']['id'] == 4) {
+                $package->end_time = Carbon::parse(Carbon::now())->addDay(30)->format('Y-m-d');
+                $package->lever = 3;
+            } else if ($request['data']['timeofer']['id'] == 4) {
                 $employer->prioritize += 4;
+                $package->end_time = Carbon::parse(Carbon::now())->addDay(365)->format('Y-m-d');
+                $package->lever = 4;
             }
+            $package->save();
             $employer->save();
             $account = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
             $account->surplus = $account->surplus - $request['data']['price'];
