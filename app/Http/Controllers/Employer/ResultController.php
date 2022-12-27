@@ -15,8 +15,6 @@ class ResultController extends Controller
      */
     public function index()
     {
-
-//        dd($_GET);
         return view('employer.result.index');
     }
 

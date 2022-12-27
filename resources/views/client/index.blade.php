@@ -823,6 +823,7 @@
 
         <!-- Map appears here -->
 
+        <div id="map"></div>
 
         <script>
             const options = {

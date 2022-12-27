@@ -13,7 +13,4 @@ class Timeoffer extends Model
         'id',
         'name',
     ];
-    public function package(){
-        return $this->hasMany(Packageoffer::class, 'time_offer_id', 'id');
-    }
 }

@@ -91,6 +91,8 @@ import registerEmployer from "./components/employer/register.vue";
 app.component('register-employer', registerEmployer);
 import ProfileEmployer from './components/employer/profile/update.vue'
 app.component('update-profile-employer', ProfileEmployer);
+import AccountPayment from './components/employer/payment/index.vue'
+app.component('account-payment', AccountPayment);
 
 
 
