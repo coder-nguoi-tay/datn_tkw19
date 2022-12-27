@@ -23,6 +23,7 @@ class ProfileController extends Controller
     {
         $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         return view('employer.profile.index', [
+            'title' => 'Cập nhật thông tin công ty',
             'employer' => $employer
         ]);
     }
@@ -56,7 +57,6 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**

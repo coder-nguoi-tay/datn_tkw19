@@ -27,7 +27,7 @@
                     type="text"
                     v-model="model.title"
                     rules="required|max:255"
-                    class="form-control form-text"
+                    class="form-control "
                     placeholder="Tiêu đề"
                   />
                   <ErrorMessage class="error" name="title" />
@@ -44,7 +44,7 @@
                     v-model="model.quatity"
                     rules="required|max:255"
                     min="1"
-                    class="form-control form-text"
+                    class="form-control "
                     placeholder="Số lượng cần tuyển"
                   />
                   <ErrorMessage class="error" name="quatity" />
@@ -58,7 +58,7 @@
                     as="select"
                     v-model="model.sex"
                     rules="required"
-                    class="form-control form-text"
+                    class="form-control "
                   >
                     <option value disabled selected>Chọn giới tính</option>
                     <option value="0">không yêu cầu</option>
@@ -78,7 +78,7 @@
                     as="select"
                     v-model="model.location_id"
                     rules="required"
-                    class="form-control form-text"
+                    class="form-control "
                   >
                     <option value disabled selected>Chọn Địa chỉ</option>
                     <option
@@ -102,7 +102,7 @@
                     name="address"
                     v-model="model.address"
                     rules="required"
-                    class="form-control form-text"
+                    class="form-control "
                     placeholder="Nhập địa chỉ"
                   />
                   <ErrorMessage class="error" name="address" />
@@ -144,7 +144,7 @@
               <div class="col-6">
                 <div class="mb-4">
                   <label class="form-label"
-                    >Chọn nghành nghề<span class="required-lable"
+                    >Chọn ngành nghề<span class="required-lable"
                       >*</span
                     ></label
                   >
@@ -153,9 +153,9 @@
                     as="select"
                     v-model="model.majors_id"
                     rules="required"
-                    class="form-control form-text"
+                    class="form-control "
                   >
-                    <option value disabled selected>Chọn chuyên nghề</option>
+                    <option value disabled selected>Chọn ngành nghề</option>
                     <option
                       v-for="item in data.majors"
                       :key="item.id"
@@ -177,7 +177,7 @@
                     as="select"
                     v-model="model.profession_id"
                     rules="required"
-                    class="form-control form-text"
+                    class="form-control "
                   >
                     <option value disabled selected>Chọn vị trí</option>
                     <option
@@ -199,7 +199,7 @@
                     as="select"
                     v-model="model.level_id"
                     rules="required"
-                    class="form-control form-text"
+                    class="form-control "
                   >
                     <option value disabled selected>
                       Chọn Trình độ học vẫn
@@ -226,7 +226,7 @@
                     as="select"
                     v-model="model.experience_id"
                     rules="required"
-                    class="form-control form-text"
+                    class="form-control "
                   >
                     <option value disabled selected>Chọn Kinh nghiệm</option>
                     <option
@@ -248,7 +248,7 @@
                     as="select"
                     v-model="model.wage_id"
                     rules="required"
-                    class="form-control form-text"
+                    class="form-control "
                   >
                     <option value disabled selected>Chọn Mức lương</option>
                     <option
@@ -272,7 +272,7 @@
                     as="select"
                     v-model="model.time_work_id"
                     rules="required"
-                    class="form-control form-text"
+                    class="form-control "
                   >
                     <option value disabled selected>
                       Chọn Yêu cầu thời gian làm việc
@@ -307,7 +307,7 @@
                     >Kỹ năng<span class="required-lable">*</span></label
                   >
                   <Field
-                    class="form-control form-text"
+                    class="form-control "
                     v-model="value"
                     name="skill_id"
                     rules="required"
@@ -527,13 +527,7 @@ export default {
 </script>
 
 <style>
-.form-text {
-  height: 42px;
-  padding: 10px 15px;
-  font-size: 15px;
-  border-radius: 1px;
-  border-color: #e5e5e5;
-}
+
 .ckedit {
   margin-top: 2%;
 }

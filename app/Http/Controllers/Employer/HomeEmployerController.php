@@ -30,7 +30,9 @@ class HomeEmployerController extends BaseController
     }
     public function index()
     {
-        return view('employer.dashboard.index');
+        return view('employer.dashboard.index',[
+            'title' => 'Bảng tin | News'
+        ]);
     }
 
     /**

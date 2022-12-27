@@ -92,7 +92,8 @@ app.component('register-employer', registerEmployer);
 import ProfileEmployer from './components/employer/profile/update.vue'
 app.component('update-profile-employer', ProfileEmployer);
 
-
+import settingProfile from "./components/employer/profile/setting-profile.vue";
+app.component('setting-profile', settingProfile);
 
 app.mount('#app');
 

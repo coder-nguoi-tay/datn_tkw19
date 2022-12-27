@@ -65,7 +65,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::resource('package', EmployerPackageController::class);
     Route::post('package/payment', [EmployerPackageController::class, 'Payment'])->name('package.payment');
     Route::post('package/payment/momo', [EmployerPackageController::class, 'Momo'])->name('package.payment.momo');
-    
+
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
     Route::group([

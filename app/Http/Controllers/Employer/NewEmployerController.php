@@ -83,7 +83,7 @@ class NewEmployerController extends BaseController
             // ->Orderby('created_at', 'DESC')
             ->get();
         return view('employer.new.index', [
-           
+
             'job' => $job,
             'all_day' => $all_day,
             'm' => $m,

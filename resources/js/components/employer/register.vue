@@ -281,7 +281,8 @@
                   </div>
                   <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label"
-                      >Vị trí công tác<span class="required-lable">*</span>:</label
+                      >Vị trí công tác<span class="required-lable">*</span
+                      >:</label
                     >
                     <div class="col-sm-8">
                       <Field
@@ -299,7 +300,8 @@
                   </div>
                   <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label"
-                      >Địa điểm cụ thể<span class="required-lable">*</span>:</label
+                      >Địa điểm cụ thể<span class="required-lable">*</span
+                      >:</label
                     >
                     <div class="col-sm-8">
                       <Field
@@ -318,7 +320,8 @@
                   <br />
                   <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label"
-                      >Địa điểm làm việc<span class="required-lable">*</span>:</label
+                      >Địa điểm làm việc<span class="required-lable">*</span
+                      >:</label
                     >
                     <div class="col-sm-8">
                       <Field
@@ -505,7 +508,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 body {
   font-family: 'Karla', sans-serif;
   background-color: #f1f2f6;
