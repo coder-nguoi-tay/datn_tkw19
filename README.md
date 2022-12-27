@@ -74,3 +74,5 @@ $ composer install --ignore-platform-reqs
 # hoac
 
 $ composer update --ignore-platform-reqs
+
+$ npm install --save --legacy-peer-deps
