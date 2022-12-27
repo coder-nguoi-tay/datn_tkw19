@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Employer;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Employer;
 use App\Models\Job;
@@ -10,7 +11,7 @@ use App\Models\SaveCv;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ManagerUploadCvController extends Controller
+class ManagerUploadCvController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -28,7 +29,7 @@ class ManagerUploadCvController extends Controller
         $this->employer = $employer;
         $this->jobseeker = $jobseeker;
     }
-    public function index()
+    public function index(Request $request)
     {
         $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         $cv = $this->jobseeker
@@ -42,11 +43,24 @@ class ManagerUploadCvController extends Controller
             ->leftjoin('time_work', 'time_work.id', '=', 'job-seeker.time_work_id')
             ->leftjoin('majors', 'majors.id', '=', 'job.majors_id')
             ->where('job.employer_id', $checkCompany->id)
+            ->where(function ($q) use ($request) {
+                if (!empty($request['start_date'])) {
+                    $q->whereDate('save_cv.created_at', '>=', $request['start_date']);
+                }
+                if (!empty($request['end_date'])) {
+                    $q->whereDate('save_cv.created_at', '<=', $request['end_date']);
+                }
+                if (!empty($request['free_word'])) {
+                    $q->orWhere($this->escapeLikeSentence('users.name', $request['free_word']));
+                    $q->orWhere($this->escapeLikeSentence('profession.name', $request['free_word']));
+                    $q->orWhere($this->escapeLikeSentence('majors.name', $request['free_word']));
+                }
+            })
             ->select('users.name as user_name', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'job-seeker.*', 'profession.name as profession_name', 'experience.name as experience_experience', 'time_work.name as time_work_name', 'majors.name as majors_name', 'save_cv.created_at as create_at_sv')
             ->get();
-        // dd($cv);
         return view('employer.managercv.index', [
-            'cv' => $cv
+            'cv' => $cv,
+            'request' => $request,
         ]);
     }
 

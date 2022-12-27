@@ -754,7 +754,6 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-
                         </div>
                         <div class="modal-body">
                             <user-profile
@@ -795,7 +794,7 @@
         <meta charset="utf-8">
         <style>
             /* Always set the map height explicitly to define the size of the div
-                                                                                                                                                             * element that contains the map. */
+                                                                                                                                                                     * element that contains the map. */
             #map {
                 height: 100%;
                 background-color: grey;

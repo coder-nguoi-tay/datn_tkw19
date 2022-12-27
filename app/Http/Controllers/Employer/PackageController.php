@@ -40,6 +40,7 @@ class PackageController extends BaseController
             ->orderby('package_offer_bought.status', 'ASC')
             ->where('package_offer_bought.company_id', Auth::guard('user')->user()->id)
             ->get();
+
         $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
         $package = Packageoffer::select('*')->whereNotIn('id', $pachageForEmployer->pluck('package_id'))->with('timeofer')->get();
         return view('employer.package.index', [
