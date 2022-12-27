@@ -13,19 +13,13 @@
                                 <div class="container-fluid">
                                     <label class=" px-md-0 me-md-3">Quản lý CV</label>
                                     <ul class="header-nav ms-3 d-flex">
-                                        <form action="{{ route('employer.quan-ly-cv.index') }}" class="d-flex"
-                                            method="get">
-                                            <input name="free_word" class="custom-input" placeholder="Tìm Kiếm...."
-                                                value="" autocomplete="off" id="free_word">
-                                            <button class="nav-link py-0 btn-next-step"
-                                                href="{{ route('employer.quan-ly-cv.create') }}">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </form>
-                                        <a class="nav-link py-0 btn-next-step"
-                                            href="{{ route('employer.quan-ly-cv.create') }}">
-                                            Thêm tin
-                                        </a>
+                                        <search-cv :url="{{ json_encode(route('employer.quan-ly-cv.index')) }}"
+                                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
+                                        </search-cv>
+                                        <button class="nav-link py-0 btn-next-step" data-coreui-toggle="modal"
+                                            data-coreui-target="#exampleModalSeacrhSpeed">
+                                            Tìm Nhanh Ứng Viên
+                                        </button>
                                     </ul>
                                 </div>
                             </header>
@@ -93,5 +87,7 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <search-seeker></search-seeker>
     </div>
 @endsection
