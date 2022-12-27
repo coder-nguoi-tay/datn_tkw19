@@ -738,7 +738,7 @@
         </div>
     </body>
     @if (Auth::guard('user')->check())
-        @if ($user->getProfileUse == null)
+        @if (!$user->getProfileUse == null)
             <div class="loading-div">
                 <div class="loader-img"></div>
             </div>
@@ -752,7 +752,7 @@
                                 dưới đây để hoàn tất đăng ký tài khoản
                             </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                                <span aria-hidden="true">X</span>
                             </button>
 
                         </div>
@@ -795,7 +795,7 @@
         <meta charset="utf-8">
         <style>
             /* Always set the map height explicitly to define the size of the div
-                                                                                                                                                             * element that contains the map. */
+                                                                                                                                                                 * element that contains the map. */
             #map {
                 height: 100%;
                 background-color: grey;
