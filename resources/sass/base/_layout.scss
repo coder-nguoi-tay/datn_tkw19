@@ -14,6 +14,10 @@
   border: solid 1px #f9b115;
 }
 
+.custom-date {
+  margin-right: 5px !important;
+}
+
 .custom-input {
   border-radius: 1px !important;
   border: 1px solid #ccc;
@@ -847,4 +851,16 @@ nav a {
 .text-view {
   color: #fff;
   margin-left: 5px;
+}
+
+.fa-arrow-circle-right {
+  margin-left: 3px !important;
+}
+
+.box-custom-layout {
+  border-radius: 5px !important;
+}
+
+.btn-buy-package {
+  margin: 0 auto !important;
 }

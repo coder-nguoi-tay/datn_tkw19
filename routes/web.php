@@ -64,8 +64,11 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::post('new/update/{id}', [NewEmployerController::class, 'update'])->name('new.update');
     Route::resource('package', EmployerPackageController::class);
     Route::post('package/payment', [EmployerPackageController::class, 'Payment'])->name('package.payment');
-    Route::post('package/payment/momo', [EmployerPackageController::class, 'Momo'])->name('package.payment.momo');
-
+    Route::get('package/payment/return', [EmployerPackageController::class, 'vnpayReturn'])->name('package.payment.return');
+    Route::get('package/payment/output', [EmployerPackageController::class, 'vnpayOutput'])->name('package.payment.output');
+    Route::get('package/payment/show-detail/{id}', [EmployerPackageController::class, 'showDetail'])->name('package.payment.show.detail');
+    Route::post('package/payment/buy-account', [EmployerPackageController::class, 'byAccount'])->name('package.payment.byAccount');
+    
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
     Route::group([
@@ -77,11 +80,6 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     //profile
     Route::resource('profile', EmployerProfileController::class);
 });
-
-// --------------------------- thanh toan ----------------------------------------------
-Route::post('test_vnpay', [TestController::class, 'index'])->name('package.test');
-// -----------------------------------------
-
 
 
 Route::get('register', [HomeEmployerController::class, 'register'])->name('register.employer');
@@ -108,7 +106,7 @@ Route::post('owner/update/register', [ClientLoginController::class, 'updateRegis
 // });
 //client
 Route::resource('', ClientHomeController::class);
-Route::get('{title}-{id}', [SearchController::class, 'searchMajos'])->name('searchMajos');
+// Route::get('{title}-{id}', [SearchController::class, 'searchMajos'])->name('searchMajos');
 Route::post('favourite/{id}', [SeekerHomeController::class, 'userFavouriteId']); // api
 Route::get('home/detail/{title}-{id}', [ClientHomeController::class, 'showDetail'])->name('home.detail.show');
 Route::post('home/detail/upcv', [ClientHomeController::class, 'upCv'])->name('home.detail.upcv');

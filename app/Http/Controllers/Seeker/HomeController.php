@@ -148,7 +148,10 @@ class HomeController extends BaseController
                     'skill_id' => $value['value'],
                 ])->save();
             }
-            return back();
+            return response()->json([
+                'message' => 'Thay đổi thành công',
+                'status' => StatusCode::OK
+            ], StatusCode::OK);
         } catch (\Throwable $th) {
             DB::rollback();
             return response()->json([

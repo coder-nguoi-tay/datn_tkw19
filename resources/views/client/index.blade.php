@@ -231,9 +231,6 @@
 
                                 <!-- Single -->
 
-
-
-                                <!-- Single -->
                                 <div class="row justify-content-center">
                                     <div class="container p-3">
                                         <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" id="paginated-list">
@@ -242,8 +239,7 @@
                                                     <div class="p-3 border bg-light box-showdow">
                                                         <div class="position-absolute ab-right">
                                                             <a type="button"
-                                                                class="
-                                            p-3
+                                                                class="p-3
                                             border
                                             circle
                                             d-flex
@@ -349,8 +345,7 @@
                                             <p class="count">(<span class="number count_job_manager">2,682</span> việc
                                                 làm)</p>
                                             <div>
-                                                <a target="_blank" href="{{ $item->name . '-' . $item->id }}"
-                                                    class="see-more">Khám phá
+                                                <a target="_blank" href="" class="see-more">Khám phá
                                                     ngay </a>
                                             </div>
                                         </div>
@@ -721,7 +716,7 @@
         <!-- Modal login -->
         <div class="modal fade" id="exampleModallogin" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Chào mừng bạn đến với ITWork</h5>
@@ -752,12 +747,13 @@
                 <div class="modal-dialog modal-xl" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title " id="exampleModalLabel" style="margin-left: 15%; font-size: 24px; font-weight: 500">Vui lòng bổ sung các thông tin dưới đây để hoàn tất đăng ký tài khoản
+                            <h5 class="modal-title " id="exampleModalLabel"
+                                style="margin-left: 15%; font-size: 24px; font-weight: 500">Vui lòng bổ sung các thông tin
+                                dưới đây để hoàn tất đăng ký tài khoản
                             </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-
                         </div>
                         <div class="modal-body">
                             <user-profile
@@ -798,7 +794,7 @@
         <meta charset="utf-8">
         <style>
             /* Always set the map height explicitly to define the size of the div
-                                                                                                                 * element that contains the map. */
+                                                                                                                                                                     * element that contains the map. */
             #map {
                 height: 100%;
                 background-color: grey;
@@ -820,7 +816,7 @@
         <!-- TODO: Step 4A2: Add a generic sidebar -->
 
         <!-- Map appears here -->
-        <div id="map">ewwqeqw</div>
+        <div id="map"></div>
 
         <script>
             const options = {

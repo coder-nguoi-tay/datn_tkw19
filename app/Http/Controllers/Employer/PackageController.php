@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers\Employer;
 
+use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
+use App\Models\AccountPayment;
+use App\Models\Employer;
 use App\Models\Packageoffer;
+use App\Models\packageofferbought;
+use App\Models\Vnpay;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PackageController extends BaseController
 {
@@ -15,11 +23,31 @@ class PackageController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
+    public Vnpay $vnpay;
+    public $vnp_HashSecret = 'KNAREAARTPBAELKXTPLZKBUMSTCJHIYE';
+    public Packageoffer $package;
+    public function __construct(Vnpay $vnpay, Packageoffer $package)
+    {
+        $this->vnpay = $vnpay;
+        $this->package = $package;
+    }
     public function index()
     {
-        $package = Packageoffer::all();
+        $pachageForEmployer = Packageofferbought::leftjoin('admin_package_offer', 'admin_package_offer.id', '=', 'package_offer_bought.package_offer_id')
+            ->leftjoin('users', 'users.id', '=', 'package_offer_bought.company_id')
+            ->leftjoin('employer', 'employer.user_id', '=', 'users.id')
+            ->select('admin_package_offer.name as name_package', 'admin_package_offer.price as price', 'package_offer_bought.id as id', 'package_offer_bought.package_offer_id as package_id', 'package_offer_bought.start_time as start_time', 'package_offer_bought.end_time as end_time', 'package_offer_bought.lever', 'package_offer_bought.status')
+            ->orderby('package_offer_bought.status', 'ASC')
+            ->where('package_offer_bought.company_id', Auth::guard('user')->user()->id)
+            ->get();
+
+        $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
+        $package = Packageoffer::select('*')->whereNotIn('id', $pachageForEmployer->pluck('package_id'))->with('timeofer')->get();
         return view('employer.package.index', [
-            'data' => $package
+            'data' => $package,
+            'accPayment' => $accPayment,
+            'pachageForEmployer' => $pachageForEmployer,
+            'total' => AccountPayment::where('user_id', Auth::guard('user')->user()->id)->with('user')->first(),
         ]);
     }
 
@@ -49,9 +77,11 @@ class PackageController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showDetail($id)
     {
-        //
+        return response()->json([
+            'data' => $this->package->where('id', $id)->with('timeofer')->first()
+        ]);
     }
 
     /**
@@ -91,14 +121,13 @@ class PackageController extends BaseController
     public function Payment(Request $request)
     {
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = route('employer.result.index');
+        $vnp_Returnurl = route('employer.package.payment.return');
         $vnp_TmnCode = "S50PEHFY"; //Mã website tại VNPAY 
-        $vnp_HashSecret = "KNAREAARTPBAELKXTPLZKBUMSTCJHIYE"; //Chuỗi bí mật
-        $vnp_TxnRef = rand(0, 99);
-        // $request->id
-        $vnp_OrderInfo = 'Thanh Toán đơn hàng tết';
+        $vnp_HashSecret = $this->vnp_HashSecret; //Chuỗi bí mật
+        $vnp_TxnRef = $request->id;
+        $vnp_OrderInfo = $request->name;
         $vnp_OrderType = 'billpayment';
-        $vnp_Amount =  10000 * 100;
+        $vnp_Amount =  $request->price * 100;
         $vnp_Locale = 'vn';
         $vnp_IpAddr = '192.168.1.6';
 
@@ -154,61 +183,6 @@ class PackageController extends BaseController
             echo json_encode($returnData);
         }
     }
-    // public function Momo()
-    // {
-    //     $endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
-    //     $partnerCode = 'MOMOBKUN20180529';
-    //     $accessKey = 'klm05TvNBzhg7h7j';
-    //     $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
-    //     $orderInfo = "Thanh toán qua MoMo";
-    //     $returnUrl = "http://127.0.0.1:8000/employer/result";
-    //     $notifyurl = "http://127.0.0.1:8000/momo/test";
-    //     // Lưu ý: link notifyUrl không phải là dạng localhost
-    //     $bankCode = "SML";
-    //     $orderid = time() . "";
-    //     $amount = '1000000';
-    //     $requestId = time() . "";
-    //     $requestType = "payWithMoMoATM";
-    //     $extraData = "";
-    //     //before sign HMAC SHA256 signature
-    //     $rawHashArr =  array(
-    //         'partnerCode' => $partnerCode,
-    //         'accessKey' => $accessKey,
-    //         'requestId' => $requestId,
-    //         'amount' => $amount,
-    //         'orderId' => $orderid,
-    //         'orderInfo' => $orderInfo,
-    //         'bankCode' => $bankCode,
-    //         'returnUrl' => $returnUrl,
-    //         'notifyUrl' => $notifyurl,
-    //         'extraData' => $extraData,
-    //         'requestType' => $requestType
-    //     );
-    //     // echo $serectkey;die;
-    //     $rawHash = "partnerCode=" . $partnerCode . "&accessKey=" . $accessKey . "&requestId=" . $requestId . "&bankCode=" . $bankCode . "&amount=" . $amount . "&orderId=" . $orderid . "&orderInfo=" . $orderInfo . "&returnUrl=" . $returnUrl . "&notifyUrl=" . $notifyurl . "&extraData=" . $extraData . "&requestType=" . $requestType;
-    //     $signature = hash_hmac("sha256", $rawHash, $secretKey);
-
-    //     $data =  array(
-    //         'partnerCode' => $partnerCode,
-    //         'accessKey' => $accessKey,
-    //         'requestId' => $requestId,
-    //         'amount' => $amount,
-    //         'orderId' => $orderid,
-    //         'orderInfo' => $orderInfo,
-    //         'returnUrl' => $returnUrl,
-    //         'bankCode' => $bankCode,
-    //         'notifyUrl' => $notifyurl,
-    //         'extraData' => $extraData,
-    //         'requestType' => $requestType,
-    //         'signature' => $signature
-    //     );
-    //     $result = $this->execPostRequest($endpoint, json_encode($data));
-    //     $jsonResult = json_decode($result, true);  // decode json
-
-    //     error_log(print_r($jsonResult, true));
-    //     header('Location: ' . $jsonResult['payUrl']);
-    //     die;
-    // }
     public function execPostRequest($url, $data)
     {
         $ch = curl_init($url);
@@ -230,5 +204,190 @@ class PackageController extends BaseController
         //close connection
         curl_close($ch);
         return $result;
+    }
+    public function vnpayReturn(Request $request)
+    {
+        $vnp_SecureHash = $_GET['vnp_SecureHash'];
+        $inputData = array();
+        foreach ($_GET as $key => $value) {
+            if (substr($key, 0, 4) == "vnp_") {
+                $inputData[$key] = $value;
+            }
+        }
+
+        unset($inputData['vnp_SecureHash']);
+        ksort($inputData);
+        $i = 0;
+        $hashData = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashData = $hashData . '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashData = $hashData . urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+        }
+        // $url_ipn = $request->getRequestUri();
+        // dd($request->getRequestUri());
+        $url_ipn = route('employer.package.payment.output', $_GET);
+        // dd($url_ipn);
+        $secureHash = hash_hmac('sha512', $hashData,  $this->vnp_HashSecret);
+        if ($secureHash == $vnp_SecureHash) {
+            if ($_GET['vnp_ResponseCode'] == '00') {
+                $this->setFlash(__('Giao dịch thành công'));
+                header('Location:' . $url_ipn);
+                die;
+            } else {
+                $this->setFlash(__('Giao dịch không thành công'), 'error');
+            }
+        } else {
+            $this->setFlash(__('chu ky khong hop le'), 'error');
+        }
+        return redirect()->route('employer.package.index');
+    }
+    public function vnpayOutput(Request $request)
+    {
+        $inputData = array();
+        $returnData = array();
+        foreach ($_GET as $key => $value) {
+            if (substr($key, 0, 4) == "vnp_") {
+                $inputData[$key] = $value;
+            }
+        }
+
+        $vnp_SecureHash = $inputData['vnp_SecureHash'];
+        unset($inputData['vnp_SecureHash']);
+        ksort($inputData);
+        $i = 0;
+        $hashData = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashData = $hashData . '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashData = $hashData . urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+        }
+        // dd($request->all());
+        $secureHash = hash_hmac('sha512', $hashData, $this->vnp_HashSecret);
+        $vnpTranId = $inputData['vnp_TransactionNo']; //Mã giao dịch tại VNPAY
+        $vnp_BankCode = $inputData['vnp_BankCode']; //Ngân hàng thanh toán
+        $vnp_Amount = $inputData['vnp_Amount'] / 100; // Số tiền thanh toán VNPAY phản hồi
+        $Status = 0; // Là trạng thái thanh toán của giao dịch chưa có IPN lưu tại hệ thống của merchant chiều khởi tạo URL thanh toán.
+        $orderId = $inputData['vnp_TxnRef'];
+        // try {
+        //Check Orderid    
+        //Kiểm tra checksum của dữ liệu
+        if ($secureHash == $vnp_SecureHash) {
+
+            $invoice = Packageoffer::where('id', $orderId)->first(); //$orderId
+            if ($invoice != NULL) {
+                if ($invoice["price"] == $vnp_Amount) //Kiểm tra số tiền thanh toán của giao dịch: giả sử số tiền kiểm tra là đúng. //$order["Amount"] == $vnp_Amount
+                {
+                    if ($invoice["status"] == NULL && $invoice["status"] == 0) {
+                        if ($inputData['vnp_ResponseCode'] == '00' && $inputData['vnp_TransactionStatus'] == '00') {
+                            $Status = 1; // Trạng thái thanh toán thành công
+                        } else {
+                            $Status = 2; // Trạng thái thanh toán thất bại / lỗi
+                        }
+                        $package = new packageofferbought();
+                        $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
+                        $package->company_id = Auth::guard('user')->user()->id;
+                        $package->package_offer_id = 1;
+                        $package->status = $Status;
+                        $package->start_time = Carbon::parse(Carbon::now());
+                        if ($orderId == 1) {
+                            $employer->prioritize += 1;
+                            $package->end_time = Carbon::parse(Carbon::now())->addDay(1)->format('Y-m-d');
+                            $package->lever = 1;
+                        } else if ($orderId == 2) {
+                            $employer->prioritize += 2;
+                            $package->end_time = Carbon::parse(Carbon::now())->addDay(7)->format('Y-m-d');
+                            $package->lever = 2;
+                        } else if ($orderId == 3) {
+                            $employer->prioritize += 3;
+                            $package->end_time = Carbon::parse(Carbon::now())->addDay(30)->format('Y-m-d');
+                            $package->lever = 3;
+                        } else if ($orderId == 4) {
+                            $employer->prioritize += 4;
+                            $package->end_time = Carbon::parse(Carbon::now())->addDay(365)->format('Y-m-d');
+                            $package->lever = 4;
+                        }
+                        $package->save();
+                        $employer->save();
+                        AccountPayment::create($request->all());
+                        $returnData['RspCode'] = '00';
+                        $returnData['Message'] = 'Xác nhận thành công';
+                    } else {
+                        $returnData['RspCode'] = '02';
+                        $returnData['Message'] = 'Đơn đặt hàng đã được xác nhận';
+                    }
+                } else {
+                    $returnData['RspCode'] = '04';
+                    $returnData['Message'] = 'Số tiền không hợp lệ';
+                }
+            } else {
+                $returnData['RspCode'] = '01';
+                $returnData['Message'] = 'Không tồn tại hóa đơn';
+            }
+        } else {
+            $returnData['RspCode'] = '97';
+            $returnData['Message'] = 'Chữ ký không hợp lệ';
+        }
+        // } catch (Exception $e) {
+        //     $returnData['RspCode'] = '99';
+        //     $returnData['Message'] = 'Lỗi không xác định';
+        // }
+        if ($returnData['RspCode'] != 00) {
+            $this->setFlash($returnData['Message'], 'error');
+        } else {
+            $this->setFlash($returnData['Message']);
+        }
+        return redirect()->route('employer.package.index');
+    }
+    public function byAccount(Request $request)
+    {
+
+        try {
+            $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
+            $package = new packageofferbought();
+            $package->company_id = Auth::guard('user')->user()->id;
+            $package->package_offer_id = $request['data']['id'];
+            $package->status = 1;
+            $package->start_time =
+                Carbon::parse(Carbon::now());
+            if ($request['data']['timeofer']['id'] == 1) {
+                $employer->prioritize += 1;
+                $package->end_time = Carbon::parse(Carbon::now())->addDay(1)->format('Y-m-d');
+                $package->lever = 1;
+            } else if ($request['data']['timeofer']['id'] == 2) {
+                $employer->prioritize += 2;
+                $package->end_time = Carbon::parse(Carbon::now())->addDay(7)->format('Y-m-d');
+                $package->lever = 2;
+            } else if ($request['data']['timeofer']['id'] == 3) {
+                $employer->prioritize += 3;
+                $package->end_time = Carbon::parse(Carbon::now())->addDay(30)->format('Y-m-d');
+                $package->lever = 3;
+            } else if ($request['data']['timeofer']['id'] == 4) {
+                $employer->prioritize += 4;
+                $package->end_time = Carbon::parse(Carbon::now())->addDay(365)->format('Y-m-d');
+                $package->lever = 4;
+            }
+            $package->save();
+            $employer->save();
+            $account = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
+            $account->surplus = $account->surplus - $request['data']['price'];
+            $account->save();
+            return response()->json([
+                'message' => 'Thanh toán đơn hàng thành công',
+                'status' => StatusCode::OK,
+            ], StatusCode::OK);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Có một lỗi không xác định đã xảy ra',
+                'message' =>  StatusCode::FORBIDDEN,
+            ], StatusCode::OK,);
+        }
     }
 }
