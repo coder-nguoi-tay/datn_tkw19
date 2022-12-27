@@ -6,7 +6,7 @@
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -32,41 +32,117 @@
               <Field type="hidden" :value="csrfToken" name="_token" />
               <div class="container">
                 <form>
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"
-                      >Email address</label
-                    >
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                    />
-                    <div id="emailHelp" class="form-text">
-                      We'll never share your email with anyone else.
+                  <div id="emailHelp" class="form-text">
+                    Số Tiền Sẽ Tăng Theo Số Lượng Người Mà Bạn Muốn Tìm
+                  </div>
+                  <div class="row p-3">
+                    <div class="col-6">
+                      <div class="col-xl-12 col-lg-12">
+                        <div class="form-group">
+                          <label class="text-dark ft-medium"
+                            >Số Người Cần Tìm</label
+                          >
+                          <Field
+                            name="data"
+                            as="select"
+                            rules="required"
+                            class="form-control"
+                          >
+                            <option value disabled selected>
+                              .....Chọn Số Người.....
+                            </option>
+                            <option
+                              v-for="item in data"
+                              :key="item.id"
+                              :value="item.id"
+                            >
+                              {{ item.label }}
+                            </option>
+                          </Field>
+                          <ErrorMessage class="error" name="data" />
+                        </div>
+                      </div>
+                      <br />
+                      <div class="col-xl-12 col-lg-12">
+                        <div class="form-group">
+                          <label class="text-dark ft-medium"
+                            >Chuyên Ngành</label
+                          >
+                          <Field
+                            name="profession_id"
+                            as="select"
+                            rules="required"
+                            class="form-control"
+                          >
+                            <option value disabled selected>
+                              .....Chọn Chuyên Nhành.....
+                            </option>
+                            <option
+                              v-for="item in query.profession"
+                              :key="item.id"
+                              :value="item.id"
+                            >
+                              {{ item.label }}
+                            </option>
+                          </Field>
+                          <ErrorMessage class="error" name="profession_id" />
+                        </div>
+                      </div>
+                      <br />
+                    </div>
+                    <div class="col-6">
+                      <div class="col-xl-12 col-lg-12">
+                        <div class="form-group">
+                          <label class="text-dark ft-medium">Kỹ năng</label>
+                          <Field
+                            class="form-control"
+                            name="skill_id"
+                            rules="required"
+                          >
+                            <Multiselect
+                              placeholder="Chọn Kỹ năng"
+                              mode="tags"
+                              :options="value"
+                              v-model="model.skill"
+                              :searchable="true"
+                              label="label"
+                              track-by="label"
+                              :infinite="true"
+                              :object="true"
+                            />
+                          </Field>
+                          <ErrorMessage class="error" name="skill_id" />
+                        </div>
+                      </div>
+                      <br />
+                      <div class="col-xl-12 col-lg-12">
+                        <div class="form-group">
+                          <label class="text-dark ft-medium">Ngành Nghề</label>
+                          <Field
+                            name="majors_id"
+                            as="select"
+                            rules="required"
+                            class="form-control"
+                          >
+                            <option value disabled selected>
+                              .....Chọn Ngành Nghề.....
+                            </option>
+                            <option
+                              v-for="item in query.majors"
+                              :key="item.id"
+                              :value="item.id"
+                            >
+                              {{ item.label }}
+                            </option>
+                          </Field>
+                          <ErrorMessage class="error" name="majors_id" />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label"
-                      >Password</label
-                    >
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="exampleInputPassword1"
-                    />
-                  </div>
-                  <div class="mb-3 form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      id="exampleCheck1"
-                    />
-                    <label class="form-check-label" for="exampleCheck1"
-                      >Check me out</label
-                    >
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="nav-link py-0 btn-next-step">
+                    Submit
+                  </button>
                 </form>
               </div>
             </form>
@@ -104,18 +180,24 @@ export default {
     ErrorMessage,
     Multiselect
   },
-  props: ['data'],
+  created() {
+    this.query.skill.map((e) => {
+      this.value.push({
+        value: e.id,
+        label: e.label
+      })
+    })
+  },
+  props: ['data', 'query'],
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: {}
+      model: {},
+      value: []
     }
   },
   methods: {
     onInvalidSubmit({ values, errors, results }) {
-      if (this.checkImage == 1) {
-        this.errmsgCheckImage = 'Ảnh không được để trống'
-      }
       let firstInputError = Object.entries(errors)[0][0]
       this.$el.querySelector('input[name=' + firstInputError + ']').focus()
       $('html, body').animate(
