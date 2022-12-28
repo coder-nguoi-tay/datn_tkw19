@@ -21,4 +21,8 @@ class UploadCv extends Model
      * @var array
      */
     protected $fillable = ['title', 'user_id', 'file_cv', 'created_at', 'updated_at'];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

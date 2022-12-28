@@ -8,14 +8,14 @@
                         <div class="box-title box-cv">
                             <h2 class="box-name"><span style="margin-left: 5px !important">Quản lý CV</span></h2>
                             <div class="box-title" style="margin: 0;">
-                                 <a href="{{ route('quan-ly-cv.create') }}" class="box-link" style="margin-right: 10px;">
-                                <button class="btn btn-info btn-create-cv">Tải lên CV</button>
-                            </a>
-                            <a href="{{ route('user.createFormCV') }}" class="box-link">
-                                <button class="btn btn-success btn-create-cv">Tạo mới CV</button>
-                            </a>
-                            </div> 
-                           
+                                <a href="{{ route('quan-ly-cv.create') }}" class="box-link" style="margin-right: 10px;">
+                                    <button class="btn btn-info btn-create-cv">Tải lên CV</button>
+                                </a>
+                                <a href="{{ route('user.createFormCV') }}" class="box-link">
+                                    <button class="btn btn-success btn-create-cv">Tạo mới CV</button>
+                                </a>
+                            </div>
+
                         </div>
                         @if (!$cv->isEmpty())
                             <div class="container">
@@ -23,7 +23,8 @@
                                     @foreach ($cv as $item)
                                         <div class="col-lg-6 card-body">
                                             <div class="hover hover-2 text-white rounded"><img
-                                                    src="{{ asset($item->file_cv) }}" alt="">
+                                                    src="https://snapshot-cv.topcv.vn/cv-online/VFMFUQdRBARTUgMDBw5VWgVZUApTAQgEAAsDAQ8e53/1659440980.webp"
+                                                    alt="">
                                                 <div class="hover-overlay"></div>
                                                 <div class="hover-2-content px-5 py-4">
 

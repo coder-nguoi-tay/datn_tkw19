@@ -100,6 +100,8 @@ app.component('search-seeker', Seeker);
 
 import settingProfile from "./components/employer/profile/setting-profile.vue";
 app.component('setting-profile', settingProfile);
+import SeaechCv from "./components/employer/searchCv/index.vue";
+app.component('search-cv', SeaechCv);
 
 app.mount('#app');
 
