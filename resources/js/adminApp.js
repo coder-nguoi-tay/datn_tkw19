@@ -94,14 +94,14 @@ app.component('update-profile-employer', ProfileEmployer);
 import AccountPayment from './components/employer/payment/index.vue'
 app.component('account-payment', AccountPayment);
 import SearchCv from './components/employer/manegercv/search.vue'
-app.component('search-cv', SearchCv);
+app.component('search-cv-date', SearchCv);
 import Seeker from './components/employer/manegercv/searchSeeker.vue'
 app.component('search-seeker', Seeker);
 
 import settingProfile from "./components/employer/profile/setting-profile.vue";
 app.component('setting-profile', settingProfile);
 import SeaechCv from "./components/employer/searchCv/index.vue";
-app.component('search-cv', SeaechCv);
+app.component('search-cv1', SeaechCv);
 
 import showCV from "./components/employer/manegercv/show.vue";
 app.component('show-cv', showCV);

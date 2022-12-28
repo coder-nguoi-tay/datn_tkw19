@@ -47,7 +47,7 @@
                                                 <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>Lập
                                                         Trình Website</span>
                                                 </div>
-                                                <div class="container" style="margin-left: 50px">
+                                                <div class="container">
                                                     <a href="{{ route('employer.quan-ly-cv.show', $item->cv_id) }}"
                                                         class="nav-link py-0 btn-next-step">Xem
                                                         Chi Tiết</a>

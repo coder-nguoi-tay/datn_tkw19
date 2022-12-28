@@ -105,7 +105,7 @@
                 track-by="label"
                 :infinite="true"
                 :object="true"
-                style="width: 760px"
+                style="width: 745px"
               />
             </div>
           </div>

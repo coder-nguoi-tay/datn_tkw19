@@ -13,9 +13,9 @@
                                 <div class="container-fluid">
                                     <label class=" px-md-0 me-md-3">Quản Lý Đăng Tin</label>
                                     <ul class="header-nav ms-3 d-flex">
-                                        <search-cv :url="{{ json_encode(route('employer.new.index')) }}"
+                                        <search-cv-date :url="{{ json_encode(route('employer.new.index')) }}"
                                             :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
-                                        </search-cv>
+                                        </search-cv-date>
                                         @if ($checkCompany->id_company)
                                             <a class="nav-link py-0 btn-next-step"
                                                 href="{{ route('employer.new.create') }}">
