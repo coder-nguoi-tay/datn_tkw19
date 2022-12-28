@@ -1,5 +1,6 @@
 @php
     use Carbon\Carbon;
+    use App\Enums\UserRecruit;
 @endphp
 @extends('layouts.admin')
 @section('content')
@@ -88,6 +89,14 @@
             </div>
         </div>
         <!-- Modal -->
-        <search-seeker></search-seeker>
+        <search-seeker :data="{{ json_encode(UserRecruit::parseArray()) }}"
+            :query="{{ json_encode([
+                'urlStore' => route('employer.register-company.store'),
+                'location' => $location,
+                'profession' => $profession,
+                'skill' => $skill,
+                'majors' => $majors,
+            ]) }}">
+        </search-seeker>
     </div>
 @endsection

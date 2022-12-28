@@ -83,6 +83,7 @@ class NewEmployerController extends BaseController
             // ->Orderby('created_at', 'DESC')
             ->get();
         return view('employer.new.index', [
+
             'job' => $job,
             'all_day' => $all_day,
             'm' => $m,
@@ -100,6 +101,7 @@ class NewEmployerController extends BaseController
     public function create()
     {
         return view('employer.new.create', [
+            'title' => 'Đăng tin tuyển dụng',
             'lever' => $this->getlever(),
             'experience' => $this->getexperience(),
             'wage' => $this->getwage(),
@@ -190,6 +192,7 @@ class NewEmployerController extends BaseController
     public function edit($id)
     {
         return view('employer.new.edit', [
+            'title' => 'Sửa tin tuyển dụng',
             'job' => $this->job->with('getskill')->where([
                 ['id', $id],
             ])->first(),

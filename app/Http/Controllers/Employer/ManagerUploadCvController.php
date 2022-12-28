@@ -7,7 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Employer;
 use App\Models\Job;
 use App\Models\Jobseeker;
+use App\Models\location;
+use App\Models\Majors;
+use App\Models\Profession;
 use App\Models\SaveCv;
+use App\Models\Skill;
+use App\Models\Timework;
+use App\Models\WorkingForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,12 +28,24 @@ class ManagerUploadCvController extends BaseController
     public Job $job;
     public Employer $employer;
     public Jobseeker $jobseeker;
-    public function __construct(SaveCv $savecv, Job $job, Employer $employer, Jobseeker $jobseeker)
+    public Skill $skill;
+    public Timework $timework;
+    public Profession $profession;
+    public Majors $majors;
+    public location $location;
+    public WorkingForm $workingform;
+    public function __construct(WorkingForm $workingform, location $location, Majors $majors, Profession $profession, SaveCv $savecv, Job $job, Employer $employer, Jobseeker $jobseeker, Skill $skill, Timework $timework)
     {
         $this->savecv = $savecv;
         $this->job = $job;
         $this->employer = $employer;
         $this->jobseeker = $jobseeker;
+        $this->skill = $skill;
+        $this->timework = $timework;
+        $this->profession = $profession;
+        $this->majors = $majors;
+        $this->location = $location;
+        $this->workingform = $workingform;
     }
     public function index(Request $request)
     {
@@ -61,6 +79,12 @@ class ManagerUploadCvController extends BaseController
         return view('employer.managercv.index', [
             'cv' => $cv,
             'request' => $request,
+            'skill' => $this->getskill(),
+            'timework' => $this->gettimework(),
+            'profession' => $this->getprofession(),
+            'majors' => $this->getmajors(),
+            'location' => $this->getlocation(),
+            'workingform' => $this->getworkingform(),
         ]);
     }
 
