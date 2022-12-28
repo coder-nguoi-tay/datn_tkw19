@@ -123,6 +123,7 @@ import registerEmployer from "./components/employer/register.vue";
 app.component('register-employer', registerEmployer);
 import Notyf from "./components/common/notyf.vue";
 app.component("notyf", Notyf);
-
+import showCvClient from "./components/client/seeker/create-cv.vue";
+app.component('show-cv-client', showCvClient);
 
 app.mount('#app')
