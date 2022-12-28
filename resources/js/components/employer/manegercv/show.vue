@@ -3,8 +3,9 @@
     <div class="main_gt">
       <div class="left_cv">
         <div class="box_img" style="overflow: hidden">
+          <!-- {{ asset($item->proFileUser[0]->images) }} -->
           <img
-            :src="data.cv.images"
+            :src="data.cv.pro_file_user[0].images"
             alt="anh_cv"
             style="width: 100%; border: none"
           />
@@ -14,18 +15,24 @@
           <div class="box_contact">
             <div class="mail">
               <i class="fa-solid fa-envelope"></i>
-              <!-- <p>{{ data.cv.email }}</p> -->
-              <p>*****************</p>
+              <p v-if="data.cv.employer_payment_cv == data.CheckUser">
+                {{ data.cv.user.email }}
+              </p>
+              <p v-if="data.cv.employer_payment_cv == 0">*****************</p>
             </div>
             <div class="mail">
               <i class="fa-solid fa-phone"></i>
-              <!-- <p>{{ data.cv.phone }}</p> -->
-              <p>*****************</p>
+              <p v-if="data.cv.employer_payment_cv == data.CheckUser">
+                {{ data.cv.pro_file_user[0].phone }}
+              </p>
+              <p v-if="data.cv.employer_payment_cv == 0">*****************</p>
             </div>
             <div class="mail">
               <i class="fa-sharp fa-solid fa-location-dot"></i>
-              <!-- <p>{{ data.cv.address }}</p> -->
-              <p>*****************</p>
+              <p v-if="data.cv.employer_payment_cv == data.CheckUser">
+                {{ data.cv.pro_file_user[0].address }}
+              </p>
+              <p v-if="data.cv.employer_payment_cv == 0">*****************</p>
             </div>
             <div class="mail">
               <i class="fa-brands fa-facebook"></i>
@@ -142,7 +149,7 @@
 <script>
 export default {
   created() {
-    console.log(this.data.cv)
+    console.log(this.data.CheckUser)
   },
   props: ['data']
 }

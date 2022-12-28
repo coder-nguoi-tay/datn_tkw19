@@ -25,4 +25,8 @@ class UploadCv extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+    public function proFileUser()
+    {
+        return $this->hasManyThrough(Jobseeker::class, User::class, 'role_id', 'user_role', 'id', 'id');
+    }
 }

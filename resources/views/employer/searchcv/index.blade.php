@@ -25,18 +25,20 @@
                         <div class="card-body">
                             <search-cv></search-cv>
                             <br>
+                            <hr>
                             <div class="row align-items-center">
                                 <!-- Single -->
                                 @foreach ($cv as $item)
                                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                                         <div class="job_grid border rounded">
                                             <div class="position-absolute ab-right br-red"><span
-                                                    class="medium theme-cl theme-bg-light px-2 py-1 rounded">{{ $item->getTime_work->name }}</span>
+                                                    class="medium theme-cl theme-bg-light px-2 py-1 rounded">{{ $item->name_time }}</span>
                                             </div>
                                             <div class="job_grid_thumb mb-3 pt-5 px-3">
                                                 <a href="" class="d-block text-center m-auto"><img
-                                                        src="{{ $item->images }}" class="img-fluid border" width="200"
-                                                        height="150" alt=""></a>
+                                                        src="{{ asset($item->proFileUser[0]->images) }}"
+                                                        class="img-fluid border" width="200" height="150"
+                                                        alt=""></a>
                                             </div>
                                             <div class="job_grid_caption text-center px-3">
                                                 <h4 class="mb-0 ft-medium medium"><a href=""
@@ -48,8 +50,9 @@
                                                         Trình Website</span>
                                                 </div>
                                                 <div class="container">
-                                                    <a href="{{ route('employer.quan-ly-cv.show', $item->cv_id) }}"
-                                                        class="nav-link py-0 btn-next-step">Xem
+                                                    <a href="{{ route('employer.quan-ly-cv.show', $item->id) }}"
+                                                        class="nav-link py-0 btn-next-step"
+                                                        style="margin-right: 15px !important">Xem
                                                         Chi Tiết</a>
                                                 </div>
                                             </div>

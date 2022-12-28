@@ -24,6 +24,7 @@
                         <show-cv
                             :data="{{ json_encode([
                                 'cv' => $cv,
+                                'CheckUser' => Auth::guard('user')->user()->id,
                             ]) }}">
                         </show-cv>
                     </div>
