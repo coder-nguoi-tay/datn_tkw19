@@ -103,6 +103,9 @@ app.component('setting-profile', settingProfile);
 import SeaechCv from "./components/employer/searchCv/index.vue";
 app.component('search-cv', SeaechCv);
 
+import showCV from "./components/employer/manegercv/show.vue";
+app.component('show-cv', showCV);
+
 app.mount('#app');
 
 

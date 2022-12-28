@@ -11,7 +11,7 @@
                         <div class="card-header">
                             <header class="header header-sticky">
                                 <div class="container-fluid">
-                                    <label class=" px-md-0 me-md-3">{{ $cv->user_name }}</label>
+                                    {{-- <label class=" px-md-0 me-md-3">{{ $cv->user_name }}</label> --}}
                                     <ul class="header-nav ms-3 d-flex">
                                         <button class="nav-link py-0 btn-next-step" data-coreui-toggle="modal"
                                             data-coreui-target="#exampleModalSeacrhSpeed">
@@ -21,9 +21,9 @@
                                 </div>
                             </header>
                         </div>
-                        <div class="card-body">
 
-                        </div>
+                        <show-cv></show-cv>
+
                     </div>
                 </div>
             </div>
