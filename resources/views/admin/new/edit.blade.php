@@ -26,6 +26,7 @@
                                 'new' => $new,
                                 'urlUpdate' => route('admin.new.update', $new->id),
                                 'urlBack' => route('admin.new.index'),
+                                'majors'  =>$majors
                             ]) }}">
                         </edit>
                     </div>

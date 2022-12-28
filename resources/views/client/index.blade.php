@@ -582,6 +582,8 @@
                                 </div>
                                 <div class="blg_grid_caption">
                                     {{-- <div class="blg_tag"><span>{{ $item->title }} </span></div> --}}
+                                    <p class="theme-cl px-3 py-1 rounded bg-light-success d-inline-flex">{{$item->majors}}
+                                    </p>
                                     <div class="blg_title">
                                         <h4><a href="blog-detail.html">{{ $item->title }}</a></h4>
                                     </div>

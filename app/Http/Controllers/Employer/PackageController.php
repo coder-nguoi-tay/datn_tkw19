@@ -332,7 +332,7 @@ class PackageController extends BaseController
             $package = new packageofferbought();
             $package->company_id = Auth::guard('user')->user()->id;
             $package->package_offer_id = $request['data']['id'];
-            $package->status = '00';
+            $package->status = 1;
 
             $package->start_time =
                 Carbon::parse(Carbon::now());
