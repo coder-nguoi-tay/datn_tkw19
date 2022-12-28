@@ -1,5 +1,6 @@
 @php
     use Carbon\Carbon;
+    use App\Enums\UserRecruit;
 @endphp
 @extends('layouts.admin')
 @section('content')
@@ -13,19 +14,13 @@
                                 <div class="container-fluid">
                                     <label class=" px-md-0 me-md-3">Quản lý CV</label>
                                     <ul class="header-nav ms-3 d-flex">
-                                        <form action="{{ route('employer.quan-ly-cv.index') }}" class="d-flex"
-                                            method="get">
-                                            <input name="free_word" class="custom-input" placeholder="Tìm Kiếm...."
-                                                value="" autocomplete="off" id="free_word">
-                                            <button class="nav-link py-0 btn-next-step"
-                                                href="{{ route('employer.quan-ly-cv.create') }}">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </form>
-                                        <a class="nav-link py-0 btn-next-step"
-                                            href="{{ route('employer.quan-ly-cv.create') }}">
-                                            Thêm tin
-                                        </a>
+                                        <search-cv :url="{{ json_encode(route('employer.quan-ly-cv.index')) }}"
+                                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
+                                        </search-cv>
+                                        <button class="nav-link py-0 btn-next-step" data-coreui-toggle="modal"
+                                            data-coreui-target="#exampleModalSeacrhSpeed">
+                                            Tìm Nhanh Ứng Viên
+                                        </button>
                                     </ul>
                                 </div>
                             </header>
@@ -37,8 +32,8 @@
                                         <th scope="col">Hình ảnh</th>
                                         <th scope="col">Họ và Tên</th>
                                         <th scope="col">Ứng tuyển vị trí</th>
-                                        <th scope="col">Chuyên ngành</th>
-                                        <th scope="col">Kỹ năng</th>
+                                        {{-- <th scope="col">Chuyên ngành</th>
+                                        <th scope="col">Kỹ năng</th> --}}
                                         <th scope="col">Ngày nộp đơn</th>
                                         <th scope="col">trạng thái</th>
                                         <th scope="col">thao tác</th>
@@ -50,12 +45,12 @@
                                                         height="150"></td>
                                                 <td>{{ $item->user_name }}</td>
                                                 <td>{{ $item->profession_name }}</td>
-                                                <td> {{ $item->majors_name }} </td>
+                                                {{-- <td> {{ $item->majors_name }} </td>
                                                 <td>
                                                     @foreach ($item->getskill as $value)
                                                         {{ $value->name }}
                                                     @endforeach
-                                                </td>
+                                                </td> --}}
                                                 <td>{{ Carbon::parse($item->create_at_sv)->format('d-m-Y') }}</td>
                                                 <td>{{ $item->status == 0 ? 'chưa xem' : 'đã xem' }}</td>
                                                 <td>
@@ -72,9 +67,10 @@
                                                             </li>
                                                             <li class="dropdown-divider"></li>
                                                             <li>
-                                                                <a class="dropdown-item" href="{{ asset($item->file_cv) }}"
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('employer.quan-ly-cv.show', $item->cv_id) }}"
                                                                     target="_blank" class="dropdown-item">
-                                                                    <i class="fa fa-eye"></i>Xem cv
+                                                                    <i class="fa fa-eye"></i>Xem Chi Tiết
                                                                 </a>
                                                             </li>
                                                         </ul>
@@ -93,5 +89,15 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <search-seeker :data="{{ json_encode(UserRecruit::parseArray()) }}"
+            :query="{{ json_encode([
+                'urlStore' => route('employer.register-company.store'),
+                'location' => $location,
+                'profession' => $profession,
+                'skill' => $skill,
+                'majors' => $majors,
+            ]) }}">
+        </search-seeker>
     </div>
 @endsection

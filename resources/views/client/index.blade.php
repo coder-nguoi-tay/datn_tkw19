@@ -741,9 +741,6 @@
     </body>
     @if (Auth::guard('user')->check())
         @if ($user->getProfileUse == null)
-            <div class="loading-div">
-                <div class="loader-img"></div>
-            </div>
             <div class="modal fade" id="checkmodalProfile" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document">
@@ -756,7 +753,6 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-
                         </div>
                         <div class="modal-body">
                             <user-profile
@@ -788,131 +784,4 @@
             </script>
         @endif
     @endif
-
-    </html>
-
-    <head>
-        <title>Sushi Finder</title>
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <meta charset="utf-8">
-        <style>
-            /* Always set the map height explicitly to define the size of the div
-                                                                                                                                                             * element that contains the map. */
-            #map {
-                height: 100%;
-                background-color: grey;
-            }
-
-            /* Optional: Makes the sample page fill the window. */
-            html,
-            body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-
-            /* TODO: Step 4A1: Make a generic sidebar */
-        </style>
-    </head>
-
-    <body>
-        <!-- TODO: Step 4A2: Add a generic sidebar -->
-
-        <!-- Map appears here -->
-        <div id="map"></div>
-
-        <script>
-            const options = {
-                enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0
-            }
-
-            function success(pos) {
-                const crd = pos.coords
-
-                console.log('Vị trí hiện tại của bạn là::')
-                console.log(`vĩ độ : ${crd.latitude}`)
-                console.log(`kinh độ: ${crd.longitude}`)
-                console.log(`More or less ${crd.accuracy} meters.`)
-            }
-
-            function error(err) {
-                console.warn(`ERROR(${err.code}): ${err.message}`)
-            }
-
-            navigator.geolocation.getCurrentPosition(success, error, options)
-            let pos;
-            let map;
-            let bounds;
-            let infoWindow;
-            let currentInfoWindow;
-            let service;
-            let infoPane;
-
-            function initMap() {
-                // Initialize variables
-                bounds = new google.maps.LatLngBounds();
-                infoWindow = new google.maps.InfoWindow;
-                currentInfoWindow = infoWindow;
-                /* TODO: Step 4A3: Add a generic sidebar */
-
-                // Try HTML5 geolocation
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(position => {
-                        pos = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        };
-                        map = new google.maps.Map(document.getElementById('map'), {
-                            center: pos,
-                            zoom: 15
-                        });
-                        bounds.extend(pos);
-
-                        infoWindow.setPosition(pos);
-                        infoWindow.setContent('Location found.');
-                        infoWindow.open(map);
-                        map.setCenter(pos);
-
-                        /* TODO: Step 3B2, Call the Places Nearby Search */
-                    }, () => {
-                        // Browser supports geolocation, but user has denied permission
-                        handleLocationError(true, infoWindow);
-                    });
-                } else {
-                    // Browser doesn't support geolocation
-                    handleLocationError(false, infoWindow);
-                }
-            }
-
-            // Handle a geolocation error
-            function handleLocationError(browserHasGeolocation, infoWindow) {
-                // Set default location to Sydney, Australia
-                pos = {
-                    lat: 20.9950277,
-                    lng: 105.7756499
-                };
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: pos,
-                    zoom: 15
-                });
-
-                // Display an InfoWindow at the map center
-                infoWindow.setPosition(pos);
-                infoWindow.setContent(browserHasGeolocation ?
-                    'Geolocation permissions denied. Using default location.' :
-                    'Error: Your browser doesn\'t support geolocation.');
-                infoWindow.open(map);
-                currentInfoWindow = infoWindow;
-
-                /* TODO: Step 3B3, Call the Places Nearby Search */
-            }
-            /* END TODO: Step 2, Geolocate your user */
-            /* TODO: Step 3B1, Call the Places Nearby Search */
-        </script>
-
-        <!-- TODO: Step 3A, Load the Places Library -->
-        <script src="https://maps.googleapis.com/maps/api/js"></script>
-    </body>
 @endsection

@@ -93,8 +93,13 @@ import ProfileEmployer from './components/employer/profile/update.vue'
 app.component('update-profile-employer', ProfileEmployer);
 import AccountPayment from './components/employer/payment/index.vue'
 app.component('account-payment', AccountPayment);
+import SearchCv from './components/employer/manegercv/search.vue'
+app.component('search-cv', SearchCv);
+import Seeker from './components/employer/manegercv/searchSeeker.vue'
+app.component('search-seeker', Seeker);
 
-
+import settingProfile from "./components/employer/profile/setting-profile.vue";
+app.component('setting-profile', settingProfile);
 
 app.mount('#app');
 

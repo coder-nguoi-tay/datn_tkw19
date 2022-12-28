@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
+use App\Models\AccountPayment;
 use App\Models\Employer;
+use App\Models\Job;
 use App\Models\location;
+use App\Models\SaveCv;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,15 +25,30 @@ class HomeEmployerController extends BaseController
     public Location $location;
     public Employer $employer;
     public User $user;
-    public function __construct(location $location, Employer $employer, User $user)
+    public Job $job;
+    public SaveCv $savecv;
+    public function __construct(location $location, Employer $employer, User $user, Job $job, SaveCv $savecv)
     {
         $this->location = $location;
         $this->employer = $employer;
         $this->user = $user;
+        $this->job = $job;
+        $this->savecv = $savecv;
     }
     public function index()
     {
-        return view('employer.dashboard.index');
+        $user = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
+        $job = $this->job->where('employer_id', $user->id)->count();
+        $cv = $this->savecv
+            ->where('user_id', $user->id)
+            ->count();
+        $totalPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
+        return view('employer.dashboard.index', [
+            'job' => $job,
+            'cv' => $cv,
+             'title' => 'Bảng tin | News',
+            'totalPayment' => $totalPayment,
+        ]);
     }
 
     /**
@@ -58,7 +76,7 @@ class HomeEmployerController extends BaseController
                 'request' => $request->all(),
             ]);
         }
-        try {
+        // try {
             $user =  $this->user->create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -78,14 +96,14 @@ class HomeEmployerController extends BaseController
             $employer->save();
             $this->setFlash(__('đăng ký tài khoản nhà tuyển dụng thành công'));
             return redirect(route('index'));
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            $this->setFlash(__('đã có một lỗi không xác định đã xảy ra, kiểm tra lại thông tin của bạn'), 'error');
-            return view('employer.pages.register', [
-                'location' => $this->getlocation(),
-                'request' => $request->all(),
-            ]);
-        }
+        // } catch (\Throwable $th) {
+        //     DB::rollBack();
+        //     $this->setFlash(__('đã có một lỗi không xác định đã xảy ra, kiểm tra lại thông tin của bạn'), 'error');
+        //     return view('employer.pages.register', [
+        //         'location' => $this->getlocation(),
+        //         'request' => $request->all(),
+        //     ]);
+        // }
     }
 
     /**

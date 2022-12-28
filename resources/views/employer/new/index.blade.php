@@ -13,15 +13,9 @@
                                 <div class="container-fluid">
                                     <label class=" px-md-0 me-md-3">Quản Lý Đăng Tin</label>
                                     <ul class="header-nav ms-3 d-flex">
-                                        <form action="{{ route('employer.new.index') }}" class="d-flex" method="get">
-                                            <input name="free_word" class="custom-input" placeholder="Tìm Kiếm...."
-                                                value="" autocomplete="off" id="free_word">
-                                            <button class="nav-link py-0 btn-next-step"
-                                                href="{{ route('employer.new.create') }}">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </form>
-
+                                        <search-cv :url="{{ json_encode(route('employer.new.index')) }}"
+                                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
+                                        </search-cv>
                                         @if ($checkCompany->id_company)
                                             <a class="nav-link py-0 btn-next-step"
                                                 href="{{ route('employer.new.create') }}">
@@ -43,7 +37,6 @@
                                 <table class="table table-striped table-hover table-bordered text-center">
                                     <thead>
                                         <tr>
-                                            {{-- <th scope="col">Logo</th> --}}
                                             <th scope="col">Tiêu Đề</th>
                                             <th scope="col">Vị trí làm việc</th>
                                             <th scope="col"> Hình thức làm việc</th>
@@ -72,7 +65,6 @@
                                                     @if (Carbon::parse($item->end_job_time)->format('m') == $m)
                                                         <h5>
                                                             @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
-                                                                {{-- {{ route('employer.changestatus', $item->id) }} --}}
                                                                 Hết hạn
                                                             @else
                                                                 {{ Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') }}

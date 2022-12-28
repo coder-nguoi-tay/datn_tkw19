@@ -93,6 +93,7 @@
             'urlStore' => route('employer.package.payment'),
             'data' => $data,
             'total' => $total,
+            'accPayment' => $accPayment,
         ]) }}">
     </account-payment>
 @endsection

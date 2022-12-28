@@ -31,4 +31,8 @@ class AccountPayment extends Model
      * @var array
      */
     protected $fillable = ['user_id', 'surplus', 'created_at', 'updated_at'];
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

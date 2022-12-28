@@ -48,7 +48,6 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::resource('resset_pass', ResetPasswordController::class);
 Route::resource('forgotPasswordSuccess', forgotPasswordSuccessController::class);
 
-
 //// employer
 Route::middleware('user')->name('employer.')->prefix('employer')->group(function () {
     // Route::resource('', HomeEmployerController::class);
@@ -68,8 +67,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::get('package/payment/output', [EmployerPackageController::class, 'vnpayOutput'])->name('package.payment.output');
     Route::get('package/payment/show-detail/{id}', [EmployerPackageController::class, 'showDetail'])->name('package.payment.show.detail');
     Route::post('package/payment/buy-account', [EmployerPackageController::class, 'byAccount'])->name('package.payment.byAccount');
-
-
+    
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
     Route::group([
