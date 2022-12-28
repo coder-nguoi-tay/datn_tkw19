@@ -4,6 +4,8 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12">
                 <div class="_dashboard_content bg-white rounded mb-4">
+
+
                     <user-profile
                         :data="{{ json_encode([
                             'lever' => $lever,
