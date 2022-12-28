@@ -739,6 +739,9 @@
     </body>
     @if (Auth::guard('user')->check())
         @if ($user->getProfileUse == null)
+            <div class="loading-div">
+                <div class="loader-img"></div>
+            </div>
             <div class="modal fade" id="checkmodalProfile" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document">
@@ -749,7 +752,7 @@
                                 dưới đây để hoàn tất đăng ký tài khoản
                             </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                                <span aria-hidden="true">X</span>
                             </button>
                         </div>
                         <div class="modal-body">
