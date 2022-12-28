@@ -9,7 +9,9 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">
+            Tìm Kiếm Ứng Viên Nhanh
+          </h5>
           <button
             type="button"
             class="btn-close"
@@ -45,6 +47,7 @@
                           <Field
                             name="data"
                             as="select"
+                            v-model="ChanPayment"
                             rules="required"
                             class="form-control"
                           >
@@ -96,7 +99,7 @@
                           <label class="text-dark ft-medium">Kỹ năng</label>
                           <Field
                             class="form-control"
-                            name="skill_id"
+                            name="skill"
                             rules="required"
                           >
                             <Multiselect
@@ -111,7 +114,7 @@
                               :object="true"
                             />
                           </Field>
-                          <ErrorMessage class="error" name="skill_id" />
+                          <ErrorMessage class="error" name="skill" />
                         </div>
                       </div>
                       <br />
@@ -140,8 +143,19 @@
                       </div>
                     </div>
                   </div>
-                  <button type="submit" class="nav-link py-0 btn-next-step">
-                    Submit
+                  <button
+                    @click="test()"
+                    type="button"
+                    class="nav-link py-0 btn-next-step"
+                  >
+                    {{
+                      ChanPayment
+                        ? new Intl.NumberFormat('de-DE', {
+                            style: 'currency',
+                            currency: 'VND'
+                          }).format(ChanPayment * 300000)
+                        : 'Submit'
+                    }}
                   </button>
                 </form>
               </div>
@@ -181,6 +195,10 @@ export default {
     Multiselect
   },
   created() {
+    // if (this.ChanPayment) {
+    //   console.log(this.ChanPayment)
+    //   this.total = this.ChanPayment * 10000
+    // }
     this.query.skill.map((e) => {
       this.value.push({
         value: e.id,
@@ -193,7 +211,9 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
       model: {},
-      value: []
+      value: [],
+      ChanPayment: '',
+      total: ''
     }
   },
   methods: {
@@ -207,8 +227,12 @@ export default {
         500
       )
     },
+    test() {
+      console.log(this.model.skill)
+    },
     onSubmit() {
-      this.$refs.formData.submit()
+      console.log(this.model)
+      //   this.$refs.formData.submit()
     }
   }
 }

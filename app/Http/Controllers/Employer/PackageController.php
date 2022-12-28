@@ -124,7 +124,7 @@ class PackageController extends BaseController
         $vnp_Returnurl = route('employer.package.payment.return');
         $vnp_TmnCode = "S50PEHFY"; //Mã website tại VNPAY 
         $vnp_HashSecret = $this->vnp_HashSecret; //Chuỗi bí mật
-        $vnp_TxnRef = $request->id;
+        $vnp_TxnRef = rand(0000, 9999);
         $vnp_OrderInfo = $request->name;
         $vnp_OrderType = 'billpayment';
         $vnp_Amount =  $request->price * 100;
