@@ -49,6 +49,8 @@ import popup from './components/common/popupAlert.vue'
 app.component('popup-alert', popup)
 import btnDelete from './components/common/btnDeleteConfirm.vue'
 app.component('btn-delete-confirm', btnDelete)
+import btnPaymentEmployer from './components/common/btnPaymentEmployer.vue'
+app.component('btn-payment-employer', btnPaymentEmployer)
 
 // admin
 import CreateAdmin from './components/admin/create.vue';

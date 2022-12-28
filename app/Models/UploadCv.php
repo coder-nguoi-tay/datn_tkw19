@@ -29,4 +29,8 @@ class UploadCv extends Model
     {
         return $this->hasManyThrough(Jobseeker::class, User::class, 'role_id', 'user_role', 'id', 'id');
     }
+    public function getskill()
+    {
+        return $this->belongsToMany(Skill::class, SeekerSkill::class,  'job-seeker_id', 'skill_id', 'id');
+    }
 }

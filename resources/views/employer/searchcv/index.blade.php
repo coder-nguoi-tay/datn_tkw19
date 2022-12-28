@@ -23,7 +23,12 @@
                             </header>
                         </div>
                         <div class="card-body">
-                            <search-cv></search-cv>
+                            <search-cv
+                                :data="{{ json_encode([
+                                    'skill' => $skill,
+                                    'urlGet' => route('employer.tim-kiem-cv.store'),
+                                ]) }}">
+                            </search-cv>
                             <br>
                             <hr>
                             <div class="row align-items-center">

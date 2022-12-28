@@ -80,7 +80,7 @@
       </div>
       <div class="right_cv">
         <div class="box_cv">
-          <h2 class="name">{{ data.cv.user_name }}</h2>
+          <h2 class="name">{{ data.cv.user.name }}</h2>
           <h4>{{ data.cv.majors_name }}</h4>
         </div>
         <div class="box_cv mt_cv">
@@ -149,7 +149,7 @@
 <script>
 export default {
   created() {
-    console.log(this.data.CheckUser)
+    console.log(this.data)
   },
   props: ['data']
 }
