@@ -101,6 +101,9 @@ app.component('search-seeker', Seeker);
 import settingProfile from "./components/employer/profile/setting-profile.vue";
 app.component('setting-profile', settingProfile);
 
+import showCV from "./components/employer/manegercv/show.vue";
+app.component('show-cv', showCV);
+
 app.mount('#app');
 
 
