@@ -64,7 +64,7 @@ class NewEmployerController extends BaseController
         $this->workingform = $workingform;
         $this->user = $user;
     }
-    public function index()
+    public function index(Request $request)
     {
         $date = getdate();
         $m = $date['mon'];
@@ -75,21 +75,30 @@ class NewEmployerController extends BaseController
         $job = $this->job->where([
             ['job.employer_id', $checkCompany->id],
             ['job.status', 1],
-        ])
-            ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill', 'AllCv'])
+        ])->where(function ($q) use ($request) {
+            if (!empty($request['start_date'])) {
+                $q->whereDate('job.job_time', '>=', $request['start_date']);
+            }
+            if (!empty($request['end_date'])) {
+                $q->whereDate('job.end_job_time', '<=', $request['end_date']);
+            }
+            if (!empty($request['free_word'])) {
+                $q->orWhere($this->escapeLikeSentence('job.title', $request['free_word']));
+            }
+        })->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill', 'AllCv'])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->select('job.*', 'company.logo as logo')
             // ->Orderby('created_at', 'DESC')
             ->get();
         return view('employer.new.index', [
-
             'job' => $job,
             'all_day' => $all_day,
             'm' => $m,
             'mon' => $mon,
             'title' => 'Tin Tuyển Dụng',
             'checkCompany' => $checkCompany,
+            'request' => $request,
         ]);
     }
 

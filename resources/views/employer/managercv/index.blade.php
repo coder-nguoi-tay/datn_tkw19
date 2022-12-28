@@ -32,8 +32,8 @@
                                         <th scope="col">Hình ảnh</th>
                                         <th scope="col">Họ và Tên</th>
                                         <th scope="col">Ứng tuyển vị trí</th>
-                                        <th scope="col">Chuyên ngành</th>
-                                        <th scope="col">Kỹ năng</th>
+                                        {{-- <th scope="col">Chuyên ngành</th>
+                                        <th scope="col">Kỹ năng</th> --}}
                                         <th scope="col">Ngày nộp đơn</th>
                                         <th scope="col">trạng thái</th>
                                         <th scope="col">thao tác</th>
@@ -45,12 +45,12 @@
                                                         height="150"></td>
                                                 <td>{{ $item->user_name }}</td>
                                                 <td>{{ $item->profession_name }}</td>
-                                                <td> {{ $item->majors_name }} </td>
+                                                {{-- <td> {{ $item->majors_name }} </td>
                                                 <td>
                                                     @foreach ($item->getskill as $value)
                                                         {{ $value->name }}
                                                     @endforeach
-                                                </td>
+                                                </td> --}}
                                                 <td>{{ Carbon::parse($item->create_at_sv)->format('d-m-Y') }}</td>
                                                 <td>{{ $item->status == 0 ? 'chưa xem' : 'đã xem' }}</td>
                                                 <td>
@@ -67,9 +67,10 @@
                                                             </li>
                                                             <li class="dropdown-divider"></li>
                                                             <li>
-                                                                <a class="dropdown-item" href="{{ asset($item->file_cv) }}"
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('employer.quan-ly-cv.show', $item->cv_id) }}"
                                                                     target="_blank" class="dropdown-item">
-                                                                    <i class="fa fa-eye"></i>Xem cv
+                                                                    <i class="fa fa-eye"></i>Xem Chi Tiết
                                                                 </a>
                                                             </li>
                                                         </ul>
