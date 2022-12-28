@@ -105,6 +105,8 @@ app.component('search-cv', SeaechCv);
 
 import showCV from "./components/employer/manegercv/show.vue";
 app.component('show-cv', showCV);
+import showCvClient from "./components/client/seeker/create-cv.vue";
+app.component('show-cv-client', showCvClient);
 
 app.mount('#app');
 

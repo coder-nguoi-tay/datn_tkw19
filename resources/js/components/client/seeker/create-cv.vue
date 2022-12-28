@@ -1,0 +1,597 @@
+<template>
+  <div>
+    <!-- <VeeForm
+      as="div"
+      v-slot="{ handleSubmit }"
+      @invalid-submit="onInvalidSubmit"
+    >
+      <form
+        method="POST"
+        @submit="handleSubmit($event, onSubmit)"
+        ref="formData"
+      > -->
+    <!-- <input type="hidden" :value="csrfToken" name="_token" /> -->
+    <div style="margin: 30px 0; padding: 0; box-sizing: border-box">
+      <div class="main_gt">
+        <div class="left_cv">
+          <div class="box_img" style="overflow: hidden">
+            <img
+              src="/assets/img/bn-2.png"
+              alt="anh_cv"
+              style="width: 100%; border: none"
+            />
+          </div>
+          <div class="contact">
+            <h3>Thông tin cá nhân</h3>
+            <div class="box_contact">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Email
+                </label>
+                <input
+                  type="email"
+                  class="form-control box-up-cv"
+                  id="exampleFormControlInput1"
+                  placeholder="name@example.com"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Địa chỉ</label
+                >
+                <input
+                  type="text"
+                  class="form-control box-up-cv"
+                  id="exampleFormControlInput1"
+                  placeholder="Nhập địa chỉ"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >SDT</label
+                >
+                <input
+                  type="text"
+                  class="form-control box-up-cv"
+                  id="exampleFormControlInput1"
+                  placeholder="Nhập số điện thoại"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="contact">
+            <h3>CÁC KỸ NĂNG</h3>
+            <div class="box_contact">
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"
+                  >Các kĩ năng</label
+                >
+                <textarea
+                  class="form-control box-up-cv"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  placeholder="Nội dung kĩ năng"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="contact">
+            <h3>CHỨNG CHỈ</h3>
+            <div class="box_contact">
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"
+                  >Chứng chỉ</label
+                >
+                <textarea
+                  class="form-control box-up-cv"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  placeholder="Nội dung chứng chỉ"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="right_cv">
+          <div class="box_cv">
+            <h2 class="name">VŨ CÔNG TUYỀN</h2>
+            <h4>BACK-END DEVELOPER</h4>
+          </div>
+          <div class="box_cv mt_cv">
+            <h3
+              style="
+                font-size: 18px;
+                font-weight: 500;
+                text-transform: uppercase;
+              "
+            >
+              MỤC TIÊU NGHỀ NGHIỆP
+            </h3>
+            <span class="bd_cv"></span>
+            <div class="mt">
+              <div>
+                <Field
+                  type="text"
+                  id="address"
+                  class="form-control box-up-cv"
+                  placeholder="Mục tiêu nghề nghề nghiệp"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="box_cv">
+            <h3
+              style="
+                font-size: 18px;
+                font-weight: 500;
+                text-transform: uppercase;
+              "
+            >
+              KINH NGHIỆM LÀM VIỆC
+            </h3>
+            <span class="bd_cv"></span>
+            <div class="box_2_cv" style="margin-bottom: 30px">
+              <div class="mt">
+                <div
+                  class="title_cv"
+                  style="
+                    margin-top: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    gap: 10px;
+                    font-size: 14px;
+                  "
+                >
+                  <br />
+                  <i class="fa-solid fa-briefcase" style="color: #ebad00"></i>
+
+                  <h4 style="font-size: 14px; margin: 0; color: #284350">
+                    VỊ TRÍ:
+                  </h4>
+                  <div>
+                    <Field
+                      type="text"
+                      style="width: 300px"
+                      id="address"
+                      class="form-control box-up-cv"
+                      placeholder="Vị trí làm việc"
+                    />
+                  </div>
+                </div>
+                <br />
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label"
+                    >Nội dung công việc</label
+                  >
+                  <textarea
+                    class="form-control box-up-cv"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    placeholder="Nội dung công việc"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="box_cv">
+            <h3
+              style="
+                text-align: center;
+                font-size: 18px;
+                font-weight: 500;
+                text-transform: uppercase;
+              "
+            >
+              dự án
+            </h3>
+            <span class="bd_cv"></span>
+            <div class="mt">
+              <div
+                class="title_cv"
+                style="
+                  margin-top: 30px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: flex-start;
+                  gap: 10px;
+                  font-size: 14px;
+                "
+              >
+                <br />
+                <i class="fa-solid fa-briefcase" style="color: #ebad00"></i>
+
+                <h4 style="font-size: 14px; margin: 0; color: #284350">
+                  VỊ TRÍ:
+                </h4>
+                <div>
+                  <Field
+                    type="text"
+                    style="width: 300px"
+                    id="address"
+                    class="form-control box-up-cv"
+                    placeholder="Vị trí làm việc"
+                  />
+                </div>
+              </div>
+              <br />
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"
+                  >Nội dung công việc</label
+                >
+                <textarea
+                  class="form-control box-up-cv"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  placeholder="Nội dung công việc"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="col-md-12">
+          <button
+            type="button"
+            class="btn min-width btn min-width btn btn-secondary mr-2 btn-lg"
+          >
+            <!---->
+            Hủy
+          </button>
+          <button type="submit" class="btn min-width btn btn-primary btn-lg">
+            <!---->
+            Lưu
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- </form>
+    </VeeForm> -->
+  </div>
+</template>
+<script>
+import {
+  Form as VeeForm,
+  Field,
+  ErrorMessage,
+  defineRule,
+  configure
+} from 'vee-validate'
+import { localize } from '@vee-validate/i18n'
+// import * as rules from '@vee-validate/rules'
+
+export default {
+  //   setup() {
+  //     Object.keys(rules).forEach((rule) => {
+  //       if (rule != 'default') {
+  //         defineRule(rule, rules[rule])
+  //       }
+  //     })
+
+  //     return {}
+  //   },
+  //   created() {
+  // let messError = {
+  //   en: {
+  //     fields: {
+  //       name: {
+  //         required: 'Xin hãy nhập tên của bạn.',
+  //         max: 'Vui lòng nhập tên của bạn trong 128 ký tự.'
+  //       },
+  //       company: {
+  //         required: 'Xin hãy nhập tên công ty.',
+  //         max: 'Vui lòng nhập tên công ty trong 128 ký tự.'
+  //       },
+  //       email: {
+  //         required: 'Hãy điền địa chỉ email của bạn.',
+  //         email: 'Vui lòng nhập đúng định dạng địa chỉ email.',
+  //         max: 'Vui lòng nhập địa chỉ email của bạn trong 255 ký tự.'
+  //         // unique_custom: 'このメールアドレスは既に存在しています。'
+  //       },
+  //       password: {
+  //         required: 'Xin hãy điền mật khẩu.',
+  //         max: 'Vui lòng nhập mật khẩu có từ 8 đến 16 ký tự.',
+  //         min: 'Vui lòng nhập mật khẩu có từ 8 đến 16 ký tự.',
+  //         password_rule: 'Vui lòng nhập mật khẩu có chứa câu và số.'
+  //       },
+  //       password_old: {
+  //         required: 'Vui lòng nhập xác nhận mật khẩu.',
+  //         confirmed: 'Xác nhận mật khẩu không đúng.'
+  //       },
+  //       sdt: {
+  //         required: 'Vui lòng nhập số điện thoại',
+  //         telephone: 'Vui lòng nhập chính xác định dạng số điện thoại.'
+  //       },
+  //       location_id: {
+  //         required: 'vui lòng chọn địa chỉ.'
+  //       },
+  //       workplace: {
+  //         required: 'vui lòng chọn vị trí công tác.',
+  //         max: 'không được quá 128 ký tự.'
+  //       },
+  //       sex: {
+  //         required: 'vui lòng chọn giới tính.'
+  //       }
+  //     }
+  //   }
+  // }
+  // configure({
+  //     generateMessage: localize(messError)
+  // })
+  //   },
+  //   data: function () {
+  //     return {
+  //       // csrfToken: Laravel.csrfToken,
+  //       //   model: {},
+  //       //   value: this.data.request ?? ''
+  //     }
+  //   },
+  mounted() {},
+  props: ['data'],
+  components: {
+    VeeForm,
+    Field
+    // ErrorMessage
+  }
+  //   methods: {
+  //     onInvalidSubmit({ values, errors, results }) {
+  //       let firstInputError = Object.entries(errors)[0][0]
+  //       this.$el.querySelector('input[name=' + firstInputError + ']').focus()
+  //       $('html, body').animate(
+  //         {
+  //           scrollTop: $('input[name=' + firstInputError + ']').offset().top - 150
+  //         },
+  //         500
+  //       )
+  //     },
+  //     onSubmit() {
+  //       this.$refs.formData.submit()
+  //     }
+  //   }
+}
+</script>
+
+
+<style>
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+
+.min-width.btn {
+  min-width: 100px;
+  font-size: 14px;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #00b14f;
+  border-color: #00b14f;
+}
+.btn-primary:hover {
+  background-color: #00b14f;
+  border-color: #00b14f;
+}
+.btn-group-lg > .min-width.btn,
+.min-width.btn-lg {
+  min-width: 120px;
+}
+.nav-tabs .nav-link.active i[data-v-6f017734],
+.nav-tabs .nav-link.active p[data-v-6f017734] {
+  color: #00b14f;
+}
+.mr-2,
+.mx-2 {
+  margin-right: 0.7rem !important;
+}
+
+.btn-group-lg > .btn,
+.btn-lg {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.214rem;
+}
+.btn-secondary {
+  color: #212529;
+  background-color: #f3f4f5;
+  border-color: #f3f4f5;
+}
+.box-up-cv {
+  background: rgba(229, 247, 237, 0.1);
+  border: 2px dashed #00b14f;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+}
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #f6d365;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right bottom,
+    rgba(246, 211, 101, 1),
+    rgba(253, 160, 133, 1)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right bottom,
+    rgba(246, 211, 101, 1),
+    rgba(253, 160, 133, 1)
+  );
+}
+
+.main_gt {
+  width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  font-size: 12px !important;
+}
+
+.left_cv {
+  height: auto;
+  width: 100%;
+  color: #bbbdbf;
+  background: #284350;
+  padding: 10px;
+}
+
+.left_cv .box_img {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 3px solid #ffc628;
+  height: 300px;
+}
+
+.left_cv .box_img > img {
+  border: 3px solid #ffc628;
+}
+
+.left_cv > .contact {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.box_contact > .mail {
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  color: #bbbdbf;
+  font-size: 14px;
+  font-weight: 400;
+  gap: 5px;
+}
+
+.box_contact > .mail > p {
+  margin: 0;
+}
+
+.box_contact > .mail > i {
+  text-align: center;
+  margin: auto 0;
+  color: beige;
+}
+
+.left_cv .contact > h3 {
+  color: #f1f1f1;
+  text-transform: uppercase;
+  margin: 10px 0;
+  font-size: 18px;
+  border-bottom: 1px solid #ffc628;
+}
+
+.left_cv > .contact .box_contact {
+  line-height: 30px;
+  margin: 10px 0;
+}
+
+.left_cv > .contact h4 {
+  font-size: 12px;
+  text-transform: capitalize;
+  color: #f1f1f1;
+}
+
+.left_cv > .contact .box_contact .ky_nang {
+  font-size: 14px;
+}
+
+.text-first {
+  text-transform: capitalize;
+}
+
+.text-first::first-letter {
+  text-transform: capitalize;
+}
+
+.main_gt .right_cv {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background: white !important;
+}
+
+.main_gt .right_cv .box_cv {
+  border-top: 1px solid #ffc628;
+  position: relative;
+  padding-left: 35px;
+  color: #284350;
+  font-size: 14px;
+  padding-right: 30px;
+  text-align: justify;
+}
+
+.main_gt .right_cv .box_cv:first-child {
+  padding-top: 20px;
+  border-top: none;
+  text-transform: uppercase;
+  padding-bottom: 20px;
+}
+
+.main_gt .right_cv .box_cv .name {
+  font-size: 28px;
+  color: #284350;
+  margin-bottom: 20px;
+}
+
+.main_gt .right_cv .box_cv:first-child > h4 {
+  font-size: 24px;
+  color: #284350;
+  margin-bottom: 20px;
+}
+
+.main_gt .right_cv > .box_cv:first-child h4 {
+  border: none;
+  border-radius: none;
+}
+
+.main_gt .right_cv > .box_cv > h3 {
+  border: 1px solid #ffbb00;
+  border-radius: 8px;
+  width: 250px;
+  text-align: center;
+  padding: 8px 5px;
+  position: absolute;
+  top: -20px;
+  color: #284350;
+  background: white;
+}
+
+.main_gt .right_cv > .box_cv > h3 > {
+  font-size: 14px;
+}
+
+.main_gt .right_cv .box_cv > .mt {
+  margin: 40px 0;
+}
+
+.main_gt .right_cv.title_cv {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.main_gt .right_cv.title_cv > h4 {
+  color: #284350;
+}
+
+.main_gt .right_cv.title_cv > i {
+  color: #ebad00;
+}
+
+.main_gt .right_cv.mt .h4 {
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.main_gt .right_cv .mt_cv {
+  font-size: 14px;
+  text-align: justify;
+}
+
+.main_gt .right_cv.mt_cv > .h4 {
+  color: #284350;
+  padding: 10px 0;
+  font-size: 14px;
+}
+</style>
