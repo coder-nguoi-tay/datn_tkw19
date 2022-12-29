@@ -125,7 +125,7 @@ class PackageController extends BaseController
         $vnp_TmnCode = "JB10VE6S"; //Mã website tại VNPAY 
         $vnp_HashSecret = $this->vnp_HashSecret; //Chuỗi bí mật
         $vnp_TxnRef = rand(0000, 9999);
-        $vnp_OrderInfo = $request->name . ',' . $request->lerve_package;
+        $vnp_OrderInfo = $request->name . ',' . $request->lerve_package . ',' . $request->id;
         $vnp_OrderType = 'billpayment';
         $vnp_Amount =  $request->price * 100;
         $vnp_Locale = 'vn';
@@ -280,7 +280,7 @@ class PackageController extends BaseController
             //Kiểm tra checksum của dữ liệu
             if ($secureHash == $vnp_SecureHash) {
 
-                $invoice = Packageoffer::where('id', $orderId)->first(); //$orderId
+                $invoice = Packageoffer::where('id', explode(',', $request->vnp_OrderInfo)[2])->first(); //$orderId
                 if ($invoice != NULL) {
                     if ($invoice["price"] == $vnp_Amount) //Kiểm tra số tiền thanh toán của giao dịch: giả sử số tiền kiểm tra là đúng. //$order["Amount"] == $vnp_Amount
                     {
