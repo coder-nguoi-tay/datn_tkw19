@@ -1,16 +1,20 @@
+
 <template>
-  <div>
+  <div class="_dashboard_content_body py-3 px-3">
     <VeeForm
       as="div"
       v-slot="{ handleSubmit }"
       @invalid-submit="onInvalidSubmit"
     >
       <form
-        method="POST"
         @submit="handleSubmit($event, onSubmit)"
         ref="formData"
+        method="POST"
+        enctype="multipart/form-data"
+        class="text-center"
       >
-        <input type="hidden" :value="csrfToken" name="_token" />
+        <Field type="hidden" :value="csrfToken" name="_token" />
+
         <div style="margin: 30px 0; padding: 0; box-sizing: border-box">
           <div class="main_gt">
             <div class="left_cv">
@@ -28,33 +32,36 @@
                     <label for="exampleFormControlInput1" class="form-label"
                       >Email
                     </label>
-                    <input
-                      type="email"
+                    <Field
+                      type="text"
                       class="form-control box-up-cv it-1"
                       id="exampleFormControlInput1"
                       placeholder="name@example.com"
+                      name="email"
                     />
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label"
                       >Địa chỉ</label
                     >
-                    <input
+                    <Field
                       type="text"
                       class="form-control box-up-cv it-1"
                       id="exampleFormControlInput1"
                       placeholder="Nhập địa chỉ"
+                      name="address"
                     />
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label"
                       >SDT</label
                     >
-                    <input
+                    <Field
                       type="text"
                       class="form-control box-up-cv it-1"
                       id="exampleFormControlInput1"
                       placeholder="Nhập số điện thoại"
+                      name="phone"
                     />
                   </div>
                 </div>
@@ -63,15 +70,16 @@
                 <h3>CÁC KỸ NĂNG</h3>
                 <div class="box_contact">
                   <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label"
+                    <label for="exampleFormControlInput1" class="form-label"
                       >Các kĩ năng</label
                     >
-                    <textarea
+                    <Field
                       class="form-control box-up-cv it-1"
                       id="exampleFormControlTextarea1"
                       rows="3"
+                      name="skill"
                       placeholder="Nội dung kĩ năng"
-                    ></textarea>
+                    />
                   </div>
                 </div>
               </div>
@@ -82,12 +90,13 @@
                     <label for="exampleFormControlTextarea1" class="form-label"
                       >Chứng chỉ</label
                     >
-                    <textarea
+                    <Field
                       class="form-control box-up-cv it-1"
                       id="exampleFormControlTextarea1"
                       rows="3"
+                      name="certificate"
                       placeholder="Nội dung chứng chỉ"
-                    ></textarea>
+                    />
                   </div>
                 </div>
               </div>
@@ -112,7 +121,8 @@
                   <div>
                     <Field
                       type="text"
-                      id="address"
+                      name="target"
+                      id="target"
                       class="form-control box-up-cv"
                       placeholder="Mục tiêu nghề nghề nghiệp"
                     />
@@ -156,7 +166,8 @@
                         <Field
                           type="text"
                           style="width: 300px"
-                          id="address"
+                          id="work"
+                          name="work"
                           class="form-control box-up-cv"
                           placeholder="Vị trí làm việc"
                         />
@@ -169,12 +180,13 @@
                         class="form-label"
                         >Nội dung công việc</label
                       >
-                      <textarea
+                      <Field
                         class="form-control box-up-cv"
                         id="exampleFormControlTextarea1"
                         rows="3"
+                        name="work_detail"
                         placeholder="Nội dung công việc"
-                      ></textarea>
+                      />
                     </div>
                   </div>
                 </div>
@@ -214,7 +226,8 @@
                       <Field
                         type="text"
                         style="width: 300px"
-                        id="address"
+                        id="project"
+                        name="project"
                         class="form-control box-up-cv"
                         placeholder="Vị trí làm việc"
                       />
@@ -225,12 +238,13 @@
                     <label for="exampleFormControlTextarea1" class="form-label"
                       >Nội dung công việc</label
                     >
-                    <textarea
+                    <Field
                       class="form-control box-up-cv"
                       id="exampleFormControlTextarea1"
                       rows="3"
+                      name="project_detail"
                       placeholder="Nội dung công việc"
-                    ></textarea>
+                    />
                   </div>
                 </div>
               </div>
@@ -271,52 +285,52 @@
 import {
   Form as VeeForm,
   Field,
-  // ErrorMessage,
+  ErrorMessage,
   defineRule,
   configure
 } from 'vee-validate'
 import { localize } from '@vee-validate/i18n'
-// import * as rules from '@vee-validate/rules'
+import * as rules from '@vee-validate/rules'
 import $ from 'jquery'
 export default {
-  // setup() {
-  //   Object.keys(rules).forEach((rule) => {
-  //     if (rule != 'default') {
-  //       defineRule(rule, rules[rule])
-  //     }
-  //   })
-  // },
+  setup() {
+    Object.keys(rules).forEach((rule) => {
+      if (rule != 'default') {
+        defineRule(rule, rules[rule])
+      }
+    })
+  },
   components: {
     VeeForm,
     Field,
-    // ErrorMessage
+    ErrorMessage
   },
   props: ['data'],
   data: function () {
     return {
-      // csrfToken: Laravel.csrfToken,
-      // model: {}
+      csrfToken: Laravel.csrfToken,
+      model: {}
     }
   },
   created() {
-    // let messError = {
-    //   en: {
-    //     fields: {
-    //       password: {
-    //         required: 'mật khẩu không được để trống',
-    //         max: 'Mật khẩu 8-16 ký tự',
-    //         min: 'Mật khẩu 8-16 ký tự',
-    //         password_rule: 'mật khẩu không đúng định dạng'
-    //       },
-    //       password_old: {
-    //         required: 'Mật khẩu 2 không được để trống',
-    //         confirmed: 'Hai mật khẩu phải giống nhau'
-    //       }
-    //     }
-    //   }
-    // }
+    let messError = {
+      en: {
+        fields: {
+          password: {
+            required: 'mật khẩu không được để trống',
+            max: 'Mật khẩu 8-16 ký tự',
+            min: 'Mật khẩu 8-16 ký tự',
+            password_rule: 'mật khẩu không đúng định dạng'
+          },
+          password_old: {
+            required: 'Mật khẩu 2 không được để trống',
+            confirmed: 'Hai mật khẩu phải giống nhau'
+          }
+        }
+      }
+    }
     configure({
-      // generateMessage: localize(messError)
+      generateMessage: localize(messError)
     })
   },
   methods: {
@@ -336,8 +350,6 @@ export default {
   }
 }
 </script>
-
-
 
 <style>
 .btn:not(:disabled):not(.disabled) {
@@ -385,13 +397,14 @@ export default {
 .it-1 {
   color: white;
 }
+
 .box-up-cv {
   background: rgba(229, 247, 237, 0.1);
   border: 2px dashed #00b14f;
   border-radius: 8px;
   cursor: pointer;
   position: relative;
-  text-align: center;
+  text-align: left;
 }
 .gradient-custom {
   /* fallback for old browsers */
