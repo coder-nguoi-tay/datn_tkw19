@@ -118,6 +118,11 @@
               <input type="hidden" name="name" :value="model.name" />
               <input type="hidden" name="id" :value="model.id" />
               <input type="hidden" name="price" :value="model.price" />
+              <input
+                type="hidden"
+                name="lerve_package"
+                :value="model.lever_package_id"
+              />
               <div class="box-seting-payment">
                 <div class="col-12">
                   <!-- small box -->
@@ -214,7 +219,6 @@ export default {
         .then((data) => {
           this.model = data.data.data
           this.timePackage = this.model.timeofer.name
-          console.log(this.model.timeofer.name)
         })
         .catch((error) => {
           console.log(error)

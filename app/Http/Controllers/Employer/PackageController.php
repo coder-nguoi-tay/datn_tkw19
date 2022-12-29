@@ -24,7 +24,7 @@ class PackageController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public Vnpay $vnpay;
-    public $vnp_HashSecret = 'KNAREAARTPBAELKXTPLZKBUMSTCJHIYE';
+    public $vnp_HashSecret = 'CEARZZTZCOWJOTMTQVFNHYLJRZWRASDX';
     public Packageoffer $package;
     public function __construct(Vnpay $vnpay, Packageoffer $package)
     {
@@ -42,7 +42,7 @@ class PackageController extends BaseController
             ->get();
 
         $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
-        $package = Packageoffer::select('*')->whereNotIn('id', $pachageForEmployer->pluck('package_id'))->with('timeofer')->get();
+        $package = Packageoffer::select('*')->whereNotIn('id', $pachageForEmployer->pluck('package_id'))->with(['timeofer', 'leverPackage'])->get();
         return view('employer.package.index', [
             'data' => $package,
             'accPayment' => $accPayment,
@@ -122,10 +122,10 @@ class PackageController extends BaseController
     {
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = route('employer.package.payment.return');
-        $vnp_TmnCode = "S50PEHFY"; //Mã website tại VNPAY 
+        $vnp_TmnCode = "JB10VE6S"; //Mã website tại VNPAY 
         $vnp_HashSecret = $this->vnp_HashSecret; //Chuỗi bí mật
-        $vnp_TxnRef = $request->id;
-        $vnp_OrderInfo = $request->name;
+        $vnp_TxnRef = rand(0000, 9999);
+        $vnp_OrderInfo = $request->name . ',' . $request->lerve_package . ',' . $request->id;
         $vnp_OrderType = 'billpayment';
         $vnp_Amount =  $request->price * 100;
         $vnp_Locale = 'vn';
@@ -238,7 +238,7 @@ class PackageController extends BaseController
                 header('Location:' . $url_ipn);
                 die;
             } else {
-                $this->setFlash(__('Giao dịch không thành công'), 'error');
+                $this->setFlash(__('Giao dịch bị hủy bỏ'), 'error');
             }
         } else {
             $this->setFlash(__('chu ky khong hop le'), 'error');
@@ -268,7 +268,7 @@ class PackageController extends BaseController
                 $i = 1;
             }
         }
-        // dd($request->all());
+        $lever_package = explode(',', $request->vnp_OrderInfo)[1];
         $secureHash = hash_hmac('sha512', $hashData, $this->vnp_HashSecret);
         $vnpTranId = $inputData['vnp_TransactionNo']; //Mã giao dịch tại VNPAY
         $vnp_BankCode = $inputData['vnp_BankCode']; //Ngân hàng thanh toán
@@ -280,7 +280,7 @@ class PackageController extends BaseController
             //Kiểm tra checksum của dữ liệu
             if ($secureHash == $vnp_SecureHash) {
 
-                $invoice = Packageoffer::where('id', $orderId)->first(); //$orderId
+                $invoice = Packageoffer::where('id', explode(',', $request->vnp_OrderInfo)[2])->first(); //$orderId
                 if ($invoice != NULL) {
                     if ($invoice["price"] == $vnp_Amount) //Kiểm tra số tiền thanh toán của giao dịch: giả sử số tiền kiểm tra là đúng. //$order["Amount"] == $vnp_Amount
                     {
@@ -296,22 +296,19 @@ class PackageController extends BaseController
                             $package->package_offer_id = 1;
                             $package->status = $Status;
                             $package->start_time = Carbon::parse(Carbon::now());
-                            if ($orderId == 1) {
-                                $employer->prioritize += 1;
+                            $employer->prioritize += $lever_package;
+                            if ($lever_package == 1) {
                                 $package->end_time = Carbon::parse(Carbon::now())->addDay(1)->format('Y-m-d');
-                                $package->lever = 1;
-                            } else if ($orderId == 2) {
-                                $employer->prioritize += 2;
+                                $package->lever = $lever_package;
+                            } else if ($lever_package == 2) {
                                 $package->end_time = Carbon::parse(Carbon::now())->addDay(7)->format('Y-m-d');
-                                $package->lever = 2;
-                            } else if ($orderId == 3) {
-                                $employer->prioritize += 3;
+                                $package->lever = $lever_package;
+                            } else if ($lever_package == 3) {
                                 $package->end_time = Carbon::parse(Carbon::now())->addDay(30)->format('Y-m-d');
-                                $package->lever = 3;
-                            } else if ($orderId == 4) {
-                                $employer->prioritize += 4;
+                                $package->lever = $lever_package;
+                            } else if ($lever_package == 4) {
                                 $package->end_time = Carbon::parse(Carbon::now())->addDay(365)->format('Y-m-d');
-                                $package->lever = 4;
+                                $package->lever = $lever_package;
                             }
                             $package->save();
                             $employer->save();

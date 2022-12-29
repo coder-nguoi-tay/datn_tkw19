@@ -65,7 +65,7 @@
                                                     @if (Carbon::parse($item->end_job_time)->format('m') == $m)
                                                         <h5>
                                                             @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
-                                                                <span class="bg-secondary">Hết hạn</span>
+                                                                <span class="badge bg-secondary">Hết hạn</span>
                                                             @else
                                                                 {{ Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') }}
                                                                 ngày
