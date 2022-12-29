@@ -525,7 +525,6 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -572,6 +571,7 @@
                             'urlStore' => route('home.detail.upcv'),
                             'urlStoreCv' => route('quan-ly-cv.create'),
                             'jobId' => $job->id,
+                            'checkUser' => $profileUser,
                         ]) }}">
                     </up-cv>
                 </div>

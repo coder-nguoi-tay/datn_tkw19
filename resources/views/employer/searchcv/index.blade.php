@@ -42,11 +42,11 @@
                             <hr>
                             <div class="row align-items-center">
                                 <!-- Single -->
-                                @foreach ($cv as $item)
+                                @foreach ($seeder as $item)
                                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                                         <div class="job_grid border rounded">
                                             <div class="position-absolute ab-right br-red"><span
-                                                    class="medium theme-cl theme-bg-light px-2 py-1 rounded">{{ $item->name_time }}</span>
+                                                    class="medium theme-cl theme-bg-light px-2 py-1 rounded">{{ $item->getTime_work->name }}</span>
                                             </div>
                                             <div class="job_grid_thumb mb-3 pt-5 px-3">
                                                 <a href="" class="d-block text-center m-auto"><img

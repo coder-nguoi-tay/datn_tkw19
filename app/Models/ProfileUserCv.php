@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -37,5 +38,5 @@ class ProfileUserCv extends Model
     /**
      * @var array
      */
-    protected $fillable = ['email', 'address', 'phone', 'skill', 'certificate', 'target', 'work', 'work_detail', 'project', 'project_detail', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'status', 'email', 'address', 'phone', 'skill', 'certificate', 'target', 'work', 'work_detail', 'project', 'project_detail', 'created_at', 'updated_at'];
 }

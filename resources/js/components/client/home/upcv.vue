@@ -105,6 +105,109 @@
                         >
                       </div>
                     </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Số điện thoại</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputEmail1"
+                        name="email"
+                        aria-describedby="emailHelp"
+                        placeholder="Enter email"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Email</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        name="address"
+                        id="exampleInputPassword1"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1"
+                        >Giới thiệu bản thân</label
+                      >
+                      <input
+                        type="text"
+                        name="phone"
+                        class="form-control"
+                        id="exampleInputPassword1"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">kỹ năng</label>
+                      <input
+                        type="text"
+                        name="skill"
+                        class="form-control"
+                        id="exampleInputPassword1"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">chứng chỉ</label>
+                      <input
+                        type="text"
+                        name="certificate"
+                        class="form-control"
+                        id="exampleInputPassword1"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Mục tiêu</label>
+                      <input
+                        type="text"
+                        name="target"
+                        class="form-control"
+                        id="exampleInputPassword1"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">kinh nghiệm</label>
+                      <input
+                        type="text"
+                        name="work"
+                        class="form-control"
+                        id="exampleInputPassword1"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">dự án </label>
+                      <input
+                        type="text"
+                        name="work_detail"
+                        class="form-control"
+                        id="exampleInputPassword1"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">dự án </label>
+                      <input
+                        type="text"
+                        name="project"
+                        class="form-control"
+                        id="exampleInputPassword1"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">dự án </label>
+                      <input
+                        type="text"
+                        name="project_detail"
+                        class="form-control"
+                        id="exampleInputPassword1"
+                        placeholder="Password"
+                      />
+                    </div>
                   </div>
                 </div>
                 <!-- end -->
@@ -152,6 +255,48 @@
                   <button type="submit" class="btn btn-success text-white">
                     Tải CV
                   </button>
+                  <div
+                    class="modal fade"
+                    id="exampleModal1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                            Hãy điền thông tin cá nhân của bạn để nhà tuyển dụng
+                            chú ý đến bạn hơn
+                          </h5>
+                          <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                          >
+                            <span aria-hidden="true">x</span>
+                          </button>
+                        </div>
+                        <!-- profile cv -->
+                        <form class="p-4" method="POST" :action="data.urlStore">
+                          <input
+                            type="hidden"
+                            :value="csrfToken"
+                            name="_token"
+                          />
+                          <input
+                            type="hidden"
+                            :value="data.jobId"
+                            name="id_job"
+                          />
+
+                          <button type="submit" class="btn btn-primary">
+                            Submit
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="float-left">
                   <ul class="cv-choosen justify-content-center border p-4">
@@ -216,7 +361,8 @@ export default {
       url: Laravel.baseUrl,
       model: {},
       cv: this.data.cv,
-      cv_for_save: ''
+      cv_for_save: '',
+      visibleLiveDemo: false
     }
   },
   components: {
@@ -225,7 +371,7 @@ export default {
     ErrorMessage
   },
   mounted() {
-    console.log(this.cv.length)
+    console.log(this.data.checkUser)
     // if (this.cv_for_save == '') {
     //   return [(this.cv_for_save = 'true')]
     // }

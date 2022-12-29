@@ -15,6 +15,7 @@ use App\Models\location;
 use App\Models\Majors;
 use App\Models\News;
 use App\Models\Profession;
+use App\Models\ProfileUserCv;
 use App\Models\SaveCv;
 use App\Models\Skill;
 use App\Models\Timework;
@@ -242,9 +243,8 @@ class HomeController extends BaseController
             ->paginate(4);
         if (Auth::guard('user')->check()) {
             $cv = $this->upload->where('user_id', Auth::guard('user')->user()->id)->get();
+            $profileUser = $this->user->where('id', Auth::guard('user')->user()->id)->with('getProfile')->first();
         }
-
-        // dd($cv);
         $breadcrumbs = [
             $job->title
         ];
@@ -257,6 +257,7 @@ class HomeController extends BaseController
             'rules' => $relate,
             'breadcrumbs' => $breadcrumbs,
             'cv' => $cv ?? '',
+            'profileUser' => $profileUser ?? '',
         ]);
     }
 
@@ -321,6 +322,8 @@ class HomeController extends BaseController
     }
     public function upCv(Request $request)
     {
+
+
         $checkJob = $this->savecv->where([
             ['id_job', $request->id_job],
             ['user_id', Auth::guard('user')->user()->id]
@@ -331,6 +334,26 @@ class HomeController extends BaseController
         }
 
         if (isset($request->file_cv)) {
+            try {
+                $checkuser = $this->user->where('id', Auth::guard('user')->user()->id)->with('getCheckUser')->first();
+                if (!$checkuser->getCheckUser) {
+                    $profile = new ProfileUserCv();
+                    $profile->user_id = Auth::guard('user')->user()->id;
+                    $profile->email = $request->email;
+                    $profile->address = $request->address;
+                    $profile->phone = $request->phone;
+                    $profile->skill = $request->skill;
+                    $profile->certificate = $request->certificate;
+                    $profile->target = $request->target;
+                    $profile->work_detail = $request->work_detail;
+                    $profile->project = $request->project;
+                    $profile->work = $request->work;
+                    $profile->project_detail = $request->project_detail;
+                    $profile->save();
+                }
+            } catch (\Throwable $th) {
+                DB::rollBack();
+            }
             if ($request->save_cv) {
                 try {
                     $cvSave = new $this->upload();

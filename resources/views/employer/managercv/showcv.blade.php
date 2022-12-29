@@ -13,12 +13,12 @@
                                 <div class="container-fluid">
                                     <label class=" px-md-0 me-md-3"></label>
                                     <ul class="header-nav ms-3 d-flex">
-                                        @if (Auth::guard('user')->user()->id != $cv->employer_payment_cv)
+                                        @if (Auth::guard('user')->user()->id != $cv->status)
                                             <btn-payment-employer
                                                 :message-confirm="{{ json_encode('Bạn có chắc muốn mua CV không ?') }}"
                                                 :delete-action="{{ json_encode(route('employer.changecAcount', $cv->id)) }}"
                                                 :count-getskill="{{ json_encode([
-                                                    'data' => count($cv->getskill),
+                                                    // 'data' => count($cv->getskill),
                                                     'accPayment' => $accPayment,
                                                 ]) }}">
                                             </btn-payment-employer>
@@ -31,6 +31,7 @@
                         <show-cv
                             :data="{{ json_encode([
                                 'cv' => $cv,
+                                'avatar' => $avatar,
                                 'CheckUser' => Auth::guard('user')->user()->id,
                             ]) }}">
                         </show-cv>

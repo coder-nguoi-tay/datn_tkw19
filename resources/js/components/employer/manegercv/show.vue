@@ -3,37 +3,42 @@
     <div class="main_gt">
       <div class="left_cv">
         <div class="box_img" style="overflow: hidden">
-          <!-- :src="data.cv.pro_file_user[0].images" -->
-          <img alt="anh_cv" style="width: 100%; border: none" />
+          <img
+            alt="anh_cv"
+            :src="data.avatar"
+            style="width: 100%; border: none"
+          />
         </div>
         <div class="contact">
           <h3>Thông tin cá nhân</h3>
           <div class="box_contact">
             <div class="mail">
               <i class="fa-solid fa-envelope"></i>
-              <p v-if="data.cv.employer_payment_cv == data.CheckUser">
-                {{ data.cv.user.email }}
+              <p v-if="data.cv.status == data.CheckUser">
+                {{ data.cv.email }}
               </p>
-              <p v-if="data.cv.employer_payment_cv == 0">*****************</p>
+              <p v-if="data.cv.status == 0">*****************</p>
             </div>
             <div class="mail">
               <i class="fa-solid fa-phone"></i>
-              <p v-if="data.cv.employer_payment_cv == data.CheckUser">
-                {{ data.cv.pro_file_user[0].phone }}
+              <p v-if="data.cv.status == data.CheckUser">
+                {{ data.cv.phone }}
               </p>
-              <p v-if="data.cv.employer_payment_cv == 0">*****************</p>
+              <p v-if="data.cv.status == 0">*****************</p>
             </div>
             <div class="mail">
               <i class="fa-sharp fa-solid fa-location-dot"></i>
-              <p v-if="data.cv.employer_payment_cv == data.CheckUser">
-                {{ data.cv.pro_file_user[0].address }}
+              <p v-if="data.cv.status == data.CheckUser">
+                {{ data.cv.address }}
               </p>
-              <p v-if="data.cv.employer_payment_cv == 0">*****************</p>
+              <p v-if="data.cv.status == 0">*****************</p>
             </div>
             <div class="mail">
               <i class="fa-brands fa-facebook"></i>
-              <!-- <p>{{ data.cv.address }}</p> -->
-              <p>*****************</p>
+              <p v-if="data.cv.status == data.CheckUser">
+                <a :href="data.cv.link_fb">{{ data.cv.link_fb }}</a>
+              </p>
+              <p v-if="data.cv.status == 0">*****************</p>
             </div>
           </div>
         </div>
@@ -41,16 +46,7 @@
           <h3>CÁC KỸ NĂNG</h3>
           <div class="box_contact">
             <div class="ky_nang">
-              <h4 class="text-first">ngôn ngữ lập trình</h4>
-              <p>
-                <span v-for="skill in data.cv.getskill" :key="skill.id">
-                  {{ skill.name }}
-                </span>
-              </p>
-            </div>
-            <div class="ky_nang">
-              <h4 class="text-first">Kinh Nghiệm</h4>
-              <p>{{ data.cv.experience_experience }}</p>
+              <h4 class="text-first">{{ data.cv.skill }}</h4>
             </div>
           </div>
         </div>
@@ -58,17 +54,8 @@
           <h3>CHỨNG CHỈ</h3>
           <div class="box_contact">
             <div class="ky_nang">
-              <h4>2022</h4>
               <p>
-                English Topnotch 2.2 tại Trường Cao đẳng FPT Polytechnic (Tương
-                đương Ielts 4.5)
-              </p>
-            </div>
-            <div class="ky_nang">
-              <h4>2023</h4>
-              <p>
-                English Topnotch 2.2 tại Trường Cao đẳng FPT Polytechnic (Tương
-                đương Ielts 4.5)
+                {{ data.cv.certificate }}
               </p>
             </div>
           </div>
@@ -76,8 +63,8 @@
       </div>
       <div class="right_cv">
         <div class="box_cv">
-          <h2 class="name">{{ data.cv.user.name }}</h2>
-          <h4>{{ data.cv.majors_name }}</h4>
+          <h2 class="name">{{ data.cv.name }}</h2>
+          <!-- <h4>{{ data.cv.majors_name }}</h4> -->
         </div>
         <div class="box_cv mt_cv">
           <h3
@@ -86,14 +73,9 @@
             MỤC TIÊU NGHỀ NGHIỆP
           </h3>
           <span class="bd_cv"></span>
-          <p class="mt" v-if="data.cv.a">
-            Ngắn hạn: Trong 1 năm tới, em sẽ trở thành một lập trình viên
-            Back-end(PHP) chuyên nghiệp, tích lũy nhiều kinh nghiệm trong quá
-            trình làm việc với các dự án.- Dài hạn: Trong vòng từ 2-3 năm tới,
-            em sẽ trở thành lập trình viên fullstack, học hỏi thêm nhiều ngôn
-            ngữ cũng như framework liên quan.
+          <p class="mt" v-if="data.cv.target">
+            {{ data.cv.target }}
           </p>
-          <p class="mt">- Chưa Cập Nhật</p>
         </div>
         <div class="box_cv">
           <h3
@@ -101,25 +83,9 @@
           >
             KINH NGHIỆM LÀM VIỆC
           </h3>
-          <span class="bd_cv">dưqdqw</span>
+          <span class="bd_cv">{{ data.cv.work }}</span>
           <div class="box_2_cv" style="margin-bottom: 30px">
-            <div class="mt">- Chưa Cập Nhật</div>
-          </div>
-        </div>
-        <div class="box_cv">
-          <h3
-            style="
-              text-align: center;
-              font-size: 18px;
-              font-weight: 500;
-              text-transform: uppercase;
-            "
-          >
-            Hoạt động
-          </h3>
-          <span class="bd_cv">đewedwedew</span>
-          <div class="box_2_cv" style="margin-bottom: 30px">
-            <div class="mt">- Chưa Cập Nhật</div>
+            <div class="mt">- {{ data.cv.work_detail }}</div>
           </div>
         </div>
         <div class="box_cv">
@@ -133,9 +99,9 @@
           >
             dự án
           </h3>
-          <span class="bd_cv">sdfsdfsdf</span>
+          <span class="bd_cv">{{ data.cv.project }}</span>
           <div class="box_2_cv" style="margin-bottom: 30px">
-            - Chưa Xác Nhận
+            {{ data.cv.project_detail }}
           </div>
         </div>
       </div>
@@ -145,7 +111,7 @@
 <script>
 export default {
   created() {
-    console.log(this.data)
+    console.log(this.data.cv)
   },
   props: ['data']
 }

@@ -12,6 +12,7 @@ use App\Models\Jobseeker;
 use App\Models\location;
 use App\Models\Majors;
 use App\Models\Profession;
+use App\Models\ProfileUserCv;
 use App\Models\SaveCv;
 use App\Models\Skill;
 use App\Models\Timework;
@@ -124,18 +125,12 @@ class ManagerUploadCvController extends BaseController
      */
     public function show($id)
     {
-        $cv = $this->upload
-            ->with('proFileUser', 'user', 'getskill')
-            ->join('users', 'users.id', '=', 'upload_cv.user_id')
-            ->join('job-seeker', 'job-seeker.user_role', '=', 'users.id')
-            ->join('time_work', 'time_work.id', '=', 'job-seeker.time_work_id')
-            ->select('upload_cv.*', 'time_work.name as name_time')
-            ->where('upload_cv.user_id', $id)
-            ->first();
-        // dd($cv);
+        $seeder = $this->jobseeker->where('id', $id)->first();
+        $profile = ProfileUserCv::where('user_id', $seeder->user_role)->first();
         $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
         return view('employer.managercv.showcv', [
-            'cv' => $cv,
+            'cv' => $profile,
+            'avatar' => $seeder->images,
             'accPayment' => $accPayment,
         ]);
     }
