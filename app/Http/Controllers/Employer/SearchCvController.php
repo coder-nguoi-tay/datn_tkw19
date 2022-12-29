@@ -82,7 +82,7 @@ class SearchCvController extends BaseController
             ->join('users', 'users.id', '=', 'upload_cv.user_id')
             ->join('job-seeker', 'job-seeker.user_role', '=', 'users.id')
             ->join('time_work', 'time_work.id', '=', 'job-seeker.time_work_id')
-            ->select('upload_cv.*', 'time_work.name as name_time')
+            ->select('upload_cv.*', 'time_work.name as name_time', 'job-seeker.*')
             ->get();
         // dd($cv);
         return view('employer.searchcv.index', [
@@ -118,7 +118,7 @@ class SearchCvController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

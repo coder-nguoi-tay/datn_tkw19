@@ -3,12 +3,8 @@
     <div class="main_gt">
       <div class="left_cv">
         <div class="box_img" style="overflow: hidden">
-          <!-- {{ asset($item->proFileUser[0]->images) }} -->
-          <img
-            :src="data.cv.pro_file_user[0].images"
-            alt="anh_cv"
-            style="width: 100%; border: none"
-          />
+          <!-- :src="data.cv.pro_file_user[0].images" -->
+          <img alt="anh_cv" style="width: 100%; border: none" />
         </div>
         <div class="contact">
           <h3>Thông tin cá nhân</h3>
@@ -80,7 +76,7 @@
       </div>
       <div class="right_cv">
         <div class="box_cv">
-          <h2 class="name">{{ data.cv.user_name }}</h2>
+          <h2 class="name">{{ data.cv.user.name }}</h2>
           <h4>{{ data.cv.majors_name }}</h4>
         </div>
         <div class="box_cv mt_cv">
@@ -149,7 +145,7 @@
 <script>
 export default {
   created() {
-    console.log(this.data.CheckUser)
+    console.log(this.data)
   },
   props: ['data']
 }

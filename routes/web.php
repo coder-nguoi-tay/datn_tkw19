@@ -72,6 +72,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
     Route::resource('tim-kiem-cv', SearchCvController::class);
+    Route::post('tim-kiem-cv/change-account/{id}', [ManagerUploadCvController::class, 'changeStatus'])->name('changecAcount');
     Route::group([
         'prefix' => 'quan-ly-cv'
     ], function () {
