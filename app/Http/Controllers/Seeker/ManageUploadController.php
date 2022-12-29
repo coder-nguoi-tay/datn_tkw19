@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Seeker;
 
+use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
+use App\Models\ProfileUserCv;
 use App\Models\UploadCv;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +20,11 @@ class ManageUploadController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public UploadCv $upload;
-    public function __construct(UploadCv $upload)
+    public ProfileUserCv $profileUserCv;
+    public function __construct(UploadCv $upload, ProfileUserCv $profileUserCv)
     {
         $this->upload = $upload;
+        $this->profileUserCv = $profileUserCv;
     }
     public function index()
     {
@@ -106,6 +110,39 @@ class ManageUploadController extends BaseController
     public function createFormCV()
     {
         return view('client.seeker.create_form_cv');
+    }
+    public function storeFormCV(Request $request)
+    {
+        try {
+
+
+            $profileUserCv = new $this->profileUserCv();
+            $profileUserCv->email = $request['data']['email'];
+            $profileUserCv->address = $request['data']['address'];
+            $profileUserCv->phone = $request['data']['phone'];
+            $profileUserCv->skill = $request['data']['skill'];
+            $profileUserCv->certificate = $request['data']['certificate'];
+            $profileUserCv->target = $request['data']['target'];
+            $profileUserCv->work = $request['data']['work'];
+            $profileUserCv->work_detail = $request['data']['work_detail'];
+            $profileUserCv->project = $request['data']['project'];
+            $profileUserCv->project_detail = $request['data']['project_detail'];
+
+
+            $profileUserCv->save();
+            //create to jobskill
+
+            return response()->json([
+                'message' => 'Cập nhật thành công',
+                'status' => StatusCode::OK
+            ], StatusCode::OK);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json([
+                'message' => 'Đã có một lỗi xảy ra',
+                'status' => StatusCode::FORBIDDEN,
+            ], StatusCode::OK);
+        }
     }
     /**
      * Update the specified resource in storage.
