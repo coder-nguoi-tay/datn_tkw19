@@ -222,7 +222,7 @@
                                       "
                                     >
                                       <!---->
-                                      Lưu
+                                      Cập nhật
                                     </button>
                                   </div>
                                 </div>
@@ -291,6 +291,59 @@
                                         </p>
                                       </div>
 
+                                      <!-- <div
+                                        class="img-fluid my-5"
+                                        id="img-preview"
+                                        @click="chooseImage()"
+                                        role="button"
+                                      >
+                                        <img
+                                          v-if="!preview"
+                                          src="https://i.pinimg.com/236x/15/46/2e/15462ed447e25356837b32a7e22e538f.jpg"
+                                          alt=""
+                                        />
+                                        <div style="display: none">
+                                          <input
+                                            type="file"
+                                            @change="onChange"
+                                            ref="fileInput"
+                                            accept="image/*"
+                                            name="images"
+                                          />
+                                        </div>
+                                        <img
+                                          v-if="!preview"
+                                          class="img-fluid my-5 p-5 rounded-9"
+                                        />
+
+                                        <div
+                                          id="img-preview"
+                                          @click="chooseImage()"
+                                          role="button"
+                                        >
+                                          <div style="display: none">
+                                            <input
+                                              type="file"
+                                              id="file"
+                                              @change="onChange"
+                                              ref="fileInput"
+                                              accept="image/*"
+                                              name="images"
+                                            />
+                                          </div>
+                                          <template v-if="preview">
+                                            <img
+                                              :src="preview"
+                                              class="img-fluid img-fluid my-5"
+                                            />
+                                          </template>
+                                          <img
+                                            v-if="filePreview"
+                                            :src="filePreview"
+                                            class="img-fluid my-5 p-5"
+                                          />
+                                        </div>
+                                      </div> -->
                                       <div class="box-upload text-center">
                                         <p class="icon">
                                           <i
@@ -302,17 +355,26 @@
                                         </div>
                                         <Field
                                           type="file"
+                                          accept="image/*"
+                                          @change="previewImage"
+                                          id="my-file"
                                           name="file_cv"
                                           class="file-upload-cv"
-                                          id="file-upload-cv"
                                           rules="required|mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx|max:2048"
                                         />
                                         <br />
-                                        <ErrorMessage
-                                          class="error"
-                                          name="file_cv"
-                                        />
+
+                                        <template v-if="preview">
+                                          <img
+                                            :src="preview"
+                                            class="img-fluid box-img my-5"
+                                          />
+                                        </template>
                                       </div>
+                                      <ErrorMessage
+                                        class="error"
+                                        name="file_cv"
+                                      />
                                     </div>
                                   </div>
                                 </div>
@@ -338,7 +400,7 @@
                                     class="btn min-width btn btn-primary btn-lg"
                                   >
                                     <!---->
-                                    Lưu
+                                    Cập nhật
                                   </button>
                                 </div>
                               </div>
@@ -533,7 +595,7 @@
                                 class="btn min-width btn btn-primary btn-lg"
                               >
                                 <!---->
-                                Lưu
+                                Cập nhật
                               </button>
                             </div>
                           </div>
@@ -574,6 +636,10 @@ export default {
       //   csrfToken: Laravel.csrfToken,
       // model: this.data.employer
       //   value: this.data.email
+      preview: null,
+      image: null,
+      preview_list: [],
+      image_list: []
     }
   },
   props: ['data'],
@@ -654,12 +720,26 @@ export default {
     },
     onSubmit() {
       this.$refs.formData.submit()
+    },
+    previewImage: function (event) {
+      var input = event.target
+      if (input.files) {
+        var reader = new FileReader()
+        reader.onload = (e) => {
+          this.preview = e.target.result
+        }
+        this.image = input.files[0]
+        reader.readAsDataURL(input.files[0])
+      }
     }
   }
 }
 </script>
 
 <style scoped>
+.box-img {
+  height: 200px;
+}
 .box-title-license {
   height: 130px;
 }
