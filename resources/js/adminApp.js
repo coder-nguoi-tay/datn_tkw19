@@ -49,6 +49,8 @@ import popup from './components/common/popupAlert.vue'
 app.component('popup-alert', popup)
 import btnDelete from './components/common/btnDeleteConfirm.vue'
 app.component('btn-delete-confirm', btnDelete)
+import btnPaymentEmployer from './components/common/btnPaymentEmployer.vue'
+app.component('btn-payment-employer', btnPaymentEmployer)
 
 // admin
 import CreateAdmin from './components/admin/create.vue';
@@ -94,12 +96,19 @@ app.component('update-profile-employer', ProfileEmployer);
 import AccountPayment from './components/employer/payment/index.vue'
 app.component('account-payment', AccountPayment);
 import SearchCv from './components/employer/manegercv/search.vue'
-app.component('search-cv', SearchCv);
+app.component('search-cv-date', SearchCv);
 import Seeker from './components/employer/manegercv/searchSeeker.vue'
 app.component('search-seeker', Seeker);
 
 import settingProfile from "./components/employer/profile/setting-profile.vue";
 app.component('setting-profile', settingProfile);
+import SeaechCv from "./components/employer/searchCv/index.vue";
+app.component('search-cv', SeaechCv);
+
+import showCV from "./components/employer/manegercv/show.vue";
+app.component('show-cv', showCV);
+import showCvClient from "./components/client/seeker/create-cv.vue";
+app.component('show-cv-client', showCvClient);
 
 app.mount('#app');
 

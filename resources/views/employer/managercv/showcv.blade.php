@@ -11,19 +11,29 @@
                         <div class="card-header">
                             <header class="header header-sticky">
                                 <div class="container-fluid">
-                                    <label class=" px-md-0 me-md-3">{{ $cv->user_name }}</label>
+                                    <label class=" px-md-0 me-md-3"></label>
                                     <ul class="header-nav ms-3 d-flex">
-                                        <button class="nav-link py-0 btn-next-step" data-coreui-toggle="modal"
-                                            data-coreui-target="#exampleModalSeacrhSpeed">
-                                            Mở khóa
-                                        </button>
+                                        @if (Auth::guard('user')->user()->id != $cv->employer_payment_cv)
+                                            <btn-payment-employer
+                                                :message-confirm="{{ json_encode('Bạn có chắc muốn mua CV không ?') }}"
+                                                :delete-action="{{ json_encode(route('employer.changecAcount', $cv->id)) }}"
+                                                :count-getskill="{{ json_encode([
+                                                    'data' => count($cv->getskill),
+                                                    'accPayment' => $accPayment,
+                                                ]) }}">
+                                            </btn-payment-employer>
+                                        @endif
+
                                     </ul>
                                 </div>
                             </header>
                         </div>
-                        <div class="card-body">
-
-                        </div>
+                        <show-cv
+                            :data="{{ json_encode([
+                                'cv' => $cv,
+                                'CheckUser' => Auth::guard('user')->user()->id,
+                            ]) }}">
+                        </show-cv>
                     </div>
                 </div>
             </div>

@@ -42,7 +42,7 @@
         <div class="container-fluid">
             <form action="{{ route('home.search') }}" method="GET">
                 <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 p-3">
-                    <div class="d-flex w-100">
+                    <div class="row d-flex w-100">
                         <div class="col">
                             <div class="p-1">
                                 <input type="text" class="form-control" name="key" id=""

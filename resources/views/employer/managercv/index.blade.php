@@ -14,9 +14,9 @@
                                 <div class="container-fluid">
                                     <label class=" px-md-0 me-md-3">Quản lý CV</label>
                                     <ul class="header-nav ms-3 d-flex">
-                                        <search-cv :url="{{ json_encode(route('employer.quan-ly-cv.index')) }}"
+                                        {{-- <search-cv :url="{{ json_encode(route('employer.quan-ly-cv.index')) }}"
                                             :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
-                                        </search-cv>
+                                        </search-cv> --}}
                                         <button class="nav-link py-0 btn-next-step" data-coreui-toggle="modal"
                                             data-coreui-target="#exampleModalSeacrhSpeed">
                                             Tìm Nhanh Ứng Viên

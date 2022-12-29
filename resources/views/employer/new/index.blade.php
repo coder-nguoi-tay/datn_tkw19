@@ -13,9 +13,9 @@
                                 <div class="container-fluid">
                                     <label class=" px-md-0 me-md-3">Quản Lý Đăng Tin</label>
                                     <ul class="header-nav ms-3 d-flex">
-                                        <search-cv :url="{{ json_encode(route('employer.new.index')) }}"
+                                        <search-cv-date :url="{{ json_encode(route('employer.new.index')) }}"
                                             :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
-                                        </search-cv>
+                                        </search-cv-date>
                                         @if ($checkCompany->id_company)
                                             <a class="nav-link py-0 btn-next-step"
                                                 href="{{ route('employer.new.create') }}">
@@ -65,7 +65,7 @@
                                                     @if (Carbon::parse($item->end_job_time)->format('m') == $m)
                                                         <h5>
                                                             @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
-                                                                Hết hạn
+                                                                <span class="bg-secondary">Hết hạn</span>
                                                             @else
                                                                 {{ Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') }}
                                                                 ngày
@@ -76,7 +76,7 @@
                                                                 ($mon - ($mon - Carbon::parse($item->end_job_time)->format('d'))) <=
                                                                 0)
                                                                 <h5>
-                                                                    {{ route('employer.changestatus', $item->id) }}
+                                                                    <span class="badge bg-secondary">Hết hạn</span>
                                                                 @else
                                                                     <h5>
                                                                         {{ $all_day -
