@@ -41,14 +41,32 @@
                   list-group-item list-group-item-action
                   border-0
                   nuxt-link-active
-                  active
                 "
                 ><i data-v-61ae721f="" class="fa mr-2 fa-building"></i> Thông
                 tin công ty
               </a>
+              <a
+                id="v-pills-license-tab"
+                data-coreui-toggle="pill"
+                data-coreui-target="#v-pills-license"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-license"
+                aria-selected="false"
+                data-v-61ae721f=""
+                href=""
+                class="
+                  list-group-item list-group-item-action
+                  border-0
+                  nuxt-link-active
+                "
+                ><i data-v-61ae721f="" class="fa mr-2 fa-building"></i> Giấy
+                phép kinh doanh
+              </a>
             </div>
           </div>
           <div class="tab-content" id="v-pills-tabContent">
+            <!-- Thông tin cá nhân-->
             <div
               class="tab-pane fade"
               id="v-pills-profile"
@@ -93,7 +111,6 @@
                         </div>
                         <div class="col-md-9 border-right">
                           <div class="p-3 py-5">
-                            
                             <div class="card">
                               <div class="card-body">
                                 <br />
@@ -221,6 +238,136 @@
               </div>
             </div>
 
+            <!-- Giấy phép kinh doanh-->
+            <div
+              class="tab-pane fade"
+              id="v-pills-license"
+              role="tabpanel"
+              aria-labelledby="v-pills-license-tab"
+              tabindex="0"
+            >
+              <div class="row card-profile-employer">
+                <VeeForm
+                  as="div"
+                  v-slot="{ handleSubmit }"
+                  @invalid-submit="onInvalidSubmit"
+                >
+                  <form
+                    method="POST"
+                    @submit="handleSubmit($event, onSubmit)"
+                    class="form-register-employer"
+                    ref="formData"
+                  >
+                    <div class="row card-profile-employer">
+                      <h6 class="title-update-employer mb-3">
+                        Thông tin giấy phép kinh doanh
+                      </h6>
+                      <div class="card-employer-content">
+                        <VeeForm
+                          as="div"
+                          v-slot="{ handleSubmit }"
+                          @invalid-submit="onInvalidSubmit"
+                        >
+                          <form
+                            method="POST"
+                            @submit="handleSubmit($event, onSubmit)"
+                            class="form-register-employer"
+                            ref="formData"
+                          >
+                            <div class="card h-100">
+                              <div class="card-body">
+                                <div class="row">
+                                  <div class="col-12">
+                                    <div class="mb-3 row">
+                                      <div class="row box-title-license">
+                                        <p class="title-license">
+                                          Trạng thái: chưa cập nhật
+                                        </p>
+                                        <p class="title-license">
+                                          Giấy phép kinh doanh:
+                                        </p>
+                                        <p class="title-license">
+                                          Dung lượng file không vượt quá 5MB
+                                        </p>
+                                      </div>
+
+                                      <div class="box-upload text-center">
+                                        <p class="icon">
+                                          <i
+                                            class="fas fa-cloud-upload-alt"
+                                          ></i>
+                                        </p>
+                                        <div class="not-cv">
+                                          <p>Chọn hoặc kéo file vào đây</p>
+                                        </div>
+                                        <Field
+                                          type="file"
+                                          name="file_cv"
+                                          class="file-upload-cv"
+                                          id="file-upload-cv"
+                                          rules="required|mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx|max:2048"
+                                        />
+                                        <br />
+                                        <ErrorMessage
+                                          class="error"
+                                          name="file_cv"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                  <button
+                                    type="button"
+                                    class="
+                                      btn
+                                      min-width
+                                      btn
+                                      min-width
+                                      btn btn-secondary
+                                      mr-2
+                                      btn-lg
+                                    "
+                                  >
+                                    <!---->
+                                    Hủy
+                                  </button>
+                                  <button
+                                    type="submit"
+                                    class="btn min-width btn btn-primary btn-lg"
+                                  >
+                                    <!---->
+                                    Lưu
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </VeeForm>
+                      </div>
+                      <div class="row">
+                        <h6 class="title-update-employer mb-3">
+                          Tài liệu hướng dẫn
+                        </h6>
+                        <a
+                          class="p-update-employer"
+                          href="https://docs.google.com/document/d/1wOSg50rCXduzUxLYIYOAdWA-k3fjvfvyR-B8ASUsUUs/edit?usp=sharing"
+                          >Hướng dẫn đăng lên</a
+                        >
+                        <a
+                          class="p-update-employer"
+                          href="https://docs.google.com/document/d/1kw-3VIZHwNqCpIZZlYrQ1PmgK1dg0sw8zVImxBorYRY/edit?usp=sharing"
+                          >Giấy phép kinh doanh</a
+                        >
+                      </div>
+                    </div>
+                  </form>
+                </VeeForm>
+              </div>
+            </div>
+
+            <!-- Thông tin công ty-->
             <div
               class="tab-pane fade"
               id="v-pills-settings"
@@ -246,162 +393,149 @@
                     >
                       <div class="card h-100">
                         <div class="card-body">
-                          <br />
+                          <div class="col-12 form-update-company">
+                            <div class="mb-3 row">
+                              <label for="nameCompany" class="form-label"
+                                >Tên Công Ty
+                              </label>
+                              <div class="">
+                                <Field
+                                  type="text"
+                                  name="nameCompany"
+                                  id="nameCompany"
+                                  class="form-control"
+                                  placeholder="Nhập tên công ty"
+                                  rules="required|max:128"
+                                />
+                                <ErrorMessage
+                                  class="error"
+                                  name="nameCompany"
+                                />
+                              </div>
+                            </div>
 
-                          <div class="mb-3 row">
-                            <label
-                              for="nameCompany"
-                              class="col-sm-3 col-form-label"
-                              >Tên Công Ty<span class="required-lable">*</span>:
-                            </label>
-                            <div class="col-sm-9">
-                              <Field
-                                type="text"
-                                name="nameCompany"
-                                id="nameCompany"
-                                class="form-control"
-                                placeholder="Nhập tên công ty"
-                                rules="required|max:128"
-                              />
-                              <ErrorMessage class="error" name="nameCompany" />
+                            <div class="mb-3 row">
+                              <label for="tax_code" class="form-label"
+                                >Mã số thuế
+                              </label>
+                              <div>
+                                <Field
+                                  type="text"
+                                  name="tax_code"
+                                  id="tax_code"
+                                  class="form-control"
+                                  placeholder="Nhập mã số thuế công ty"
+                                  rules="required"
+                                />
+                                <ErrorMessage class="error" name="tax_code" />
+                              </div>
                             </div>
-                          </div>
-                          <br />
-                          <div class="mb-3 row">
-                            <label
-                              for="phoneCompany"
-                              class="col-sm-3 col-form-label"
-                              >Tên Công Ty<span class="required-lable">*</span>:
-                            </label>
-                            <div class="col-sm-9">
-                              <Field
-                                type="text"
-                                name="phoneCompany"
-                                id="phoneCompany"
-                                class="form-control"
-                                placeholder="Nhập số điện thoại công ty"
-                                rules="required"
-                              />
-                              <ErrorMessage class="error" name="phoneCompany" />
+
+                            <div class="mb-3 row">
+                              <label for="emailCompany" class="form-label"
+                                >Email Công Ty
+                              </label>
+                              <div>
+                                <Field
+                                  type="text"
+                                  name="emailCompany"
+                                  id="emailCompany"
+                                  class="form-control"
+                                  placeholder="Nhập email công ty"
+                                  rules="required|email"
+                                />
+                                <ErrorMessage
+                                  class="error"
+                                  name="emailCompany"
+                                />
+                              </div>
                             </div>
-                          </div>
-                          <br />
-                          <div class="mb-3 row">
-                            <label
-                              for="emailCompany"
-                              class="col-sm-3 col-form-label"
-                              >Email Công Ty<span class="required-lable">*</span
-                              >:
-                            </label>
-                            <div class="col-sm-9">
-                              <Field
-                                type="text"
-                                name="emailCompany"
-                                id="emailCompany"
-                                class="form-control"
-                                placeholder="Nhập email công ty"
-                                rules="required|email"
-                              />
-                              <ErrorMessage class="error" name="emailCompany" />
+
+                            <div class="mb-3 row">
+                              <label for="number_member" class="form-label"
+                                >Quy mô
+                              </label>
+                              <div>
+                                <Field
+                                  type="number"
+                                  name="number_member"
+                                  id="number_member"
+                                  class="form-control"
+                                  min="1"
+                                  rules="required"
+                                  placeholder="Nhập quy mô công ty"
+                                />
+                                <ErrorMessage
+                                  class="error"
+                                  name="number_member"
+                                />
+                              </div>
                             </div>
-                          </div>
-                          <br />
-                          <div class="mb-3 row">
-                            <label
-                              for="number_member"
-                              class="col-sm-3 col-form-label"
-                              >Số lượng thành viên<span class="required-lable"
-                                >*</span
-                              >:
-                            </label>
-                            <div class="col-sm-9">
-                              <Field
-                                type="number"
-                                name="number_member"
-                                id="number_member"
-                                class="form-control"
-                                min="1"
-                                rules="required"
-                                placeholder="Nhập số lượng thành viên"
-                              />
-                              <ErrorMessage
-                                class="error"
-                                name="number_member"
-                              />
+
+                            <div class="mb-3 row">
+                              <label for="addressCompany" class="form-label"
+                                >Địa chỉ công ty
+                              </label>
+                              <div>
+                                <Field
+                                  type="text"
+                                  name="addressCompany"
+                                  id="addressCompany"
+                                  class="form-control"
+                                  rows="3"
+                                  rules="required|max:128"
+                                  placeholder="Nhập địa chỉ công ty"
+                                />
+                                <ErrorMessage
+                                  class="error"
+                                  name="addressCompany"
+                                />
+                              </div>
                             </div>
-                          </div>
-                          <br />
-                          <div class="mb-3 row">
-                            <label
-                              for="addressCompany"
-                              class="col-sm-3 col-form-label"
-                              >Địa chỉ công ty<span class="required-lable"
-                                >*</span
-                              >:
-                            </label>
-                            <div class="col-sm-9">
-                              <Field
-                                type="text"
-                                name="addressCompany"
-                                id="addressCompany"
-                                class="form-control"
-                                rows="3"
-                                rules="required|max:128"
-                                placeholder="Nhập địa chỉ công ty"
-                              />
-                              <ErrorMessage
-                                class="error"
-                                name="addressCompany"
-                              />
+
+                            <div class="mb-3 row">
+                              <label for="descriptionCompany" class="form-label"
+                                >Mô tả công ty
+                              </label>
+                              <div>
+                                <Editor
+                                  name="descriptionCompany"
+                                  id="descriptionCompany"
+                                  placeholder="Nhập mô tả công ty"
+                                  class="text-company-employer"
+                                  rules="required|max:255"
+                                />
+
+                                <ErrorMessage
+                                  class="error"
+                                  name="descriptionCompany"
+                                />
+                              </div>
                             </div>
-                          </div>
-                          <br />
-                          <div class="mb-3 row">
-                            <label
-                              for="descriptionCompany"
-                              class="col-sm-3 col-form-label"
-                              >Mô tả công ty<span class="required-lable">*</span
-                              >:
-                            </label>
-                            <div class="col-sm-9">
-                              <Field
-                                type="text"
-                                name="descriptionCompany"
-                                id="descriptionCompany"
-                                class="form-control"
-                                rows="3"
-                                rules="required|max:128"
-                                placeholder="Nhập mô tả công ty"
-                              />
-                              <ErrorMessage
-                                class="error"
-                                name="descriptionCompany"
-                              />
+                            <div class="col-md-12">
+                              <button
+                                type="button"
+                                class="
+                                  btn
+                                  min-width
+                                  btn
+                                  min-width
+                                  btn btn-secondary
+                                  mr-2
+                                  btn-lg
+                                "
+                              >
+                                <!---->
+                                Hủy
+                              </button>
+                              <button
+                                type="submit"
+                                class="btn min-width btn btn-primary btn-lg"
+                              >
+                                <!---->
+                                Lưu
+                              </button>
                             </div>
-                          </div>
-                          <div class="col-md-12">
-                            <button
-                              type="button"
-                              class="
-                                btn
-                                min-width
-                                btn
-                                min-width
-                                btn btn-secondary
-                                mr-2
-                                btn-lg
-                              "
-                            >
-                              <!---->
-                              Hủy
-                            </button>
-                            <button
-                              type="submit"
-                              class="btn min-width btn btn-primary btn-lg"
-                            >
-                              <!---->
-                              Lưu
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -426,6 +560,7 @@ import {
 } from 'vee-validate'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
+import Editor from '@tinymce/tinymce-vue'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -446,6 +581,11 @@ export default {
     let messError = {
       en: {
         fields: {
+          file_cv: {
+            required: 'Ảnh không được để trống',
+            mimes: 'Ảnh chỉ hỗ trợ dạng jpeg,png,jpg,gif,svg,pdf,doc,docx',
+            max: 'kích thước ảnh quá lớn'
+          },
           name: {
             required: 'Xin hãy nhập tên của bạn.',
             max: 'Vui lòng nhập tên của bạn trong 128 ký tự.'
@@ -456,7 +596,7 @@ export default {
           },
           descriptionCompany: {
             required: 'Xin hãy nhập địa chỉ công ty.',
-            max: 'Vui lòng nhập địa chỉ công ty trong 128 ký tự.'
+            max: 'Vui lòng nhập địa chỉ công ty trong 255 ký tự.'
           },
           addressCompany: {
             required: 'Xin hãy nhập địa chỉ công ty.',
@@ -467,13 +607,16 @@ export default {
             max: 'Vui lòng nhập địa chỉ công ty trong 128 ký tự.'
           },
           number_member: {
-            required: 'Vui lòng nhập số lượng thành viên .'
+            required: 'Vui lòng nhập quy mô công ty.'
           },
           phoneCompany: {
             required: 'Vui lòng nhập số điện thoại công ty.'
           },
           phone: {
             required: 'Vui lòng nhập số điện thoại .'
+          },
+          tax_code: {
+            required: 'Vui lòng nhập mã số thuế .'
           },
           emailCompany: {
             required: 'Hãy điền địa chỉ email công ty.',
@@ -495,6 +638,7 @@ export default {
   components: {
     VeeForm,
     Field,
+    Editor,
     ErrorMessage
   },
   methods: {
@@ -516,6 +660,38 @@ export default {
 </script>
 
 <style scoped>
+.box-title-license {
+  height: 130px;
+}
+.title-license {
+  font-size: 16px;
+  font-weight: 550;
+  margin-left: -10px;
+}
+.box-upload {
+  background: rgba(229, 247, 237, 0.1);
+  border: 2px dashed #00b14f;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  position: relative;
+  text-align: center;
+  transition: 0.4s;
+}
+
+.icon {
+  margin-bottom: 24px;
+  margin-top: 10px;
+}
+
+.file-upload-cv {
+  margin: 0px 0px 10px 80px;
+  cursor: pointer;
+}
+.form-update-company {
+  width: 80%;
+  margin-left: 10%;
+}
 .tab-content {
   width: 100%;
 }
@@ -735,6 +911,11 @@ a {
   margin: 20px 0px 0px 30px;
   font-size: 20px;
   font-weight: 600;
+}
+.p-update-employer {
+  margin: 0px 0px 10px 30px;
+  font-size: 17px;
+  color: #000;
 }
 .btn:not(:disabled):not(.disabled) {
   cursor: pointer;
