@@ -109,39 +109,32 @@ class ManageUploadController extends BaseController
 
     public function createFormCV()
     {
-        return view('client.seeker.create_form_cv');
+        return view('client.seeker.create_form_cv',[
+            'title' => 'Tạo mới CV'
+        ]);
     }
     public function storeFormCV(Request $request)
     {
         try {
 
-
             $profileUserCv = new $this->profileUserCv();
-            $profileUserCv->email = $request['data']['email'];
-            $profileUserCv->address = $request['data']['address'];
-            $profileUserCv->phone = $request['data']['phone'];
-            $profileUserCv->skill = $request['data']['skill'];
-            $profileUserCv->certificate = $request['data']['certificate'];
-            $profileUserCv->target = $request['data']['target'];
-            $profileUserCv->work = $request['data']['work'];
-            $profileUserCv->work_detail = $request['data']['work_detail'];
-            $profileUserCv->project = $request['data']['project'];
-            $profileUserCv->project_detail = $request['data']['project_detail'];
-
-
+            $profileUserCv->email = $request->email;
+            $profileUserCv->address = $request->address;
+            $profileUserCv->phone = $request->phone;
+            $profileUserCv->skill = $request->skill;
+            $profileUserCv->certificate = $request->certificate;
+            $profileUserCv->target = $request->target;
+            $profileUserCv->work = $request->work;
+            $profileUserCv->work_detail = $request->work_detail;
+            $profileUserCv->project = $request->project;
+            $profileUserCv->project_detail = $request->project_detail;
             $profileUserCv->save();
-            //create to jobskill
-
-            return response()->json([
-                'message' => 'Cập nhật thành công',
-                'status' => StatusCode::OK
-            ], StatusCode::OK);
+            $this->setFlash(__('Tạo mới CV thành công'));
+            return redirect()->back();
         } catch (\Throwable $th) {
             DB::rollback();
-            return response()->json([
-                'message' => 'Đã có một lỗi xảy ra',
-                'status' => StatusCode::FORBIDDEN,
-            ], StatusCode::OK);
+            $this->setFlash(__('đã có một lỗi không xác định đã xảy ra, kiểm tra lại thông tin của bạn'), 'error');
+            return redirect()->back();
         }
     }
     /**
