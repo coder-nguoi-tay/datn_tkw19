@@ -27,6 +27,15 @@
                                 :data="{{ json_encode([
                                     'skill' => $skill,
                                     'urlGet' => route('employer.tim-kiem-cv.store'),
+                                    'experience' => $experience,
+                                    'wage' => $wage,
+                                    'lever' => $lever,
+                                    'skill' => $skill,
+                                    'timework' => $timework,
+                                    'profession' => $profession,
+                                    'majors' => $majors,
+                                    'workingform' => $workingform,
+                                    'location' => $location,
                                 ]) }}">
                             </search-cv>
                             <br>
@@ -41,9 +50,8 @@
                                             </div>
                                             <div class="job_grid_thumb mb-3 pt-5 px-3">
                                                 <a href="" class="d-block text-center m-auto"><img
-                                                        src="{{ asset($item->proFileUser[0]->images) }}"
-                                                        class="img-fluid border" width="200" height="150"
-                                                        alt=""></a>
+                                                        src="{{ asset($item->images) }}" class="img-fluid border"
+                                                        width="200" height="150" alt=""></a>
                                             </div>
                                             <div class="job_grid_caption text-center px-3">
                                                 <h4 class="mb-0 ft-medium medium"><a href=""

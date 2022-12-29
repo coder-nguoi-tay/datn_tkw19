@@ -3,12 +3,8 @@
     <div class="main_gt">
       <div class="left_cv">
         <div class="box_img" style="overflow: hidden">
-          <!-- {{ asset($item->proFileUser[0]->images) }} -->
-          <img
-            :src="data.cv.pro_file_user[0].images"
-            alt="anh_cv"
-            style="width: 100%; border: none"
-          />
+          <!-- :src="data.cv.pro_file_user[0].images" -->
+          <img alt="anh_cv" style="width: 100%; border: none" />
         </div>
         <div class="contact">
           <h3>Thông tin cá nhân</h3>

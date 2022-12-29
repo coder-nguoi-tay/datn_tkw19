@@ -130,8 +130,9 @@ class ManagerUploadCvController extends BaseController
             ->join('job-seeker', 'job-seeker.user_role', '=', 'users.id')
             ->join('time_work', 'time_work.id', '=', 'job-seeker.time_work_id')
             ->select('upload_cv.*', 'time_work.name as name_time')
-            ->where('upload_cv.id', $id)
+            ->where('upload_cv.user_id', $id)
             ->first();
+        // dd($cv);
         $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
         return view('employer.managercv.showcv', [
             'cv' => $cv,

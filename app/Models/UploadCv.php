@@ -27,7 +27,7 @@ class UploadCv extends Model
     }
     public function proFileUser()
     {
-        return $this->hasManyThrough(Jobseeker::class, User::class, 'role_id', 'user_role', 'id', 'id');
+        return $this->hasManyThrough(User::class, Jobseeker::class,  'user_role', 'role_id', 'id', 'id');
     }
     public function getskill()
     {
