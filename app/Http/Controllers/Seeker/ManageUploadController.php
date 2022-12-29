@@ -7,10 +7,13 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\ProfileUserCv;
 use App\Models\UploadCv;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
+
+use function GuzzleHttp\Promise\all;
 
 class ManageUploadController extends BaseController
 {
@@ -109,8 +112,10 @@ class ManageUploadController extends BaseController
 
     public function createFormCV()
     {
-        return view('client.seeker.create_form_cv',[
-            'title' => 'Tạo mới CV'
+        return view('client.seeker.create_form_cv', [
+            'title' => 'Tạo mới CV',
+            'user' => $this->profileUserCv->where('user_id', Auth::guard('user')->user()->id)->first(),
+            'user_name' => User::where('id', Auth::guard('user')->user()->id)->first()->name,
         ]);
     }
     public function storeFormCV(Request $request)
@@ -119,6 +124,7 @@ class ManageUploadController extends BaseController
 
             $profileUserCv = new $this->profileUserCv();
             $profileUserCv->email = $request->email;
+            $profileUserCv->user_id = Auth::guard('user')->user()->id;
             $profileUserCv->address = $request->address;
             $profileUserCv->phone = $request->phone;
             $profileUserCv->skill = $request->skill;

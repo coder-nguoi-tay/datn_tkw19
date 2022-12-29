@@ -171,8 +171,8 @@ class ManagerUploadCvController extends BaseController
     public function changeStatus($id)
     {
         try {
-            $upcv = $this->upload->where('id', $id)->first();
-            $upcv->employer_payment_cv = Auth::guard('user')->user()->id;
+            $upcv = ProfileUserCv::where('id', $id)->first();
+            $upcv->status = Auth::guard('user')->user()->id;
             $upcv->save();
             return response()->json([
                 'message' => 'Mua cv thành công',

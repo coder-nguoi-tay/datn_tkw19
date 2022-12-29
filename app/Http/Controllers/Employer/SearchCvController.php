@@ -77,13 +77,6 @@ class SearchCvController extends BaseController
     }
     public function index()
     {
-        // $cv = $this->upload
-        //     ->with('proFileUser', 'user')
-        //     ->join('users', 'users.id', '=', 'upload_cv.user_id')
-        //     ->join('job-seeker', 'job-seeker.user_role', '=', 'users.id')
-        //     ->join('time_work', 'time_work.id', '=', 'job-seeker.time_work_id')
-        //     ->select('upload_cv.*', 'time_work.name as name_time', 'job-seeker.*')
-        //     ->get();
         $seeder = $this->Jobseeker->with(['user', 'getTime_work'])->get();
         return view('employer.searchcv.index', [
             'profestion' => $this->getprofession(),

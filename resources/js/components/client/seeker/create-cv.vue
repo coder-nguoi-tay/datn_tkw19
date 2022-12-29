@@ -34,6 +34,7 @@
                     </label>
                     <Field
                       type="text"
+                      v-model="model.email"
                       class="form-control box-up-cv it-1"
                       id="exampleFormControlInput1"
                       placeholder="name@example.com"
@@ -46,6 +47,7 @@
                     >
                     <Field
                       type="text"
+                      v-model="model.address"
                       class="form-control box-up-cv it-1"
                       id="exampleFormControlInput1"
                       placeholder="Nhập địa chỉ"
@@ -58,6 +60,7 @@
                     >
                     <Field
                       type="text"
+                      v-model="model.phone"
                       class="form-control box-up-cv it-1"
                       id="exampleFormControlInput1"
                       placeholder="Nhập số điện thoại"
@@ -74,6 +77,7 @@
                       >Các kĩ năng</label
                     >
                     <Field
+                      v-model="model.skill"
                       class="form-control box-up-cv it-1"
                       id="exampleFormControlTextarea1"
                       rows="3"
@@ -91,6 +95,7 @@
                       >Chứng chỉ</label
                     >
                     <Field
+                      v-model="model.certificate"
                       class="form-control box-up-cv it-1"
                       id="exampleFormControlTextarea1"
                       rows="3"
@@ -103,7 +108,7 @@
             </div>
             <div class="right_cv">
               <div class="box_cv">
-                <h2 class="name">VŨ CÔNG TUYỀN</h2>
+                <h2 class="name">{{ data.user_name }}</h2>
                 <h4>BACK-END DEVELOPER</h4>
               </div>
               <div class="box_cv mt_cv">
@@ -120,6 +125,7 @@
                 <div class="mt">
                   <div>
                     <Field
+                      v-model="model.target"
                       type="text"
                       name="target"
                       id="target"
@@ -167,6 +173,7 @@
                           type="text"
                           style="width: 300px"
                           id="work"
+                          v-model="model.work"
                           name="work"
                           class="form-control box-up-cv"
                           placeholder="Vị trí làm việc"
@@ -181,6 +188,7 @@
                         >Nội dung công việc</label
                       >
                       <Field
+                        v-model="model.work_detail"
                         class="form-control box-up-cv"
                         id="exampleFormControlTextarea1"
                         rows="3"
@@ -225,6 +233,7 @@
                     <div>
                       <Field
                         type="text"
+                        v-model="model.project"
                         style="width: 300px"
                         id="project"
                         name="project"
@@ -239,6 +248,7 @@
                       >Nội dung công việc</label
                     >
                     <Field
+                      v-model="model.project_detail"
                       class="form-control box-up-cv"
                       id="exampleFormControlTextarea1"
                       rows="3"
@@ -309,10 +319,11 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: {}
+      model: this.data.user ?? ''
     }
   },
   created() {
+    console.log(this.data)
     let messError = {
       en: {
         fields: {
