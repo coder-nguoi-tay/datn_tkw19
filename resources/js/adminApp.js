@@ -110,6 +110,9 @@ app.component('show-cv', showCV);
 import showCvClient from "./components/client/seeker/create-cv.vue";
 app.component('show-cv-client', showCvClient);
 
+import Widgets from "./components/employer/widgets.vue";
+app.component('widgets', Widgets);
+
 app.mount('#app');
 
 
