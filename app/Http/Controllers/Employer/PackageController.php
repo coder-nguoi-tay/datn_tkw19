@@ -42,7 +42,7 @@ class PackageController extends BaseController
             ->get();
 
         $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
-        $package = Packageoffer::select('*')->whereNotIn('id', $pachageForEmployer->pluck('package_id'))->with('timeofer')->get();
+        $package = Packageoffer::select('*')->whereNotIn('id', $pachageForEmployer->pluck('package_id'))->with(['timeofer', 'leverPackage'])->get();
         return view('employer.package.index', [
             'data' => $package,
             'accPayment' => $accPayment,
@@ -124,7 +124,7 @@ class PackageController extends BaseController
         $vnp_Returnurl = route('employer.package.payment.return');
         $vnp_TmnCode = "S50PEHFY"; //Mã website tại VNPAY 
         $vnp_HashSecret = $this->vnp_HashSecret; //Chuỗi bí mật
-        $vnp_TxnRef = $request->id;
+        $vnp_TxnRef = rand(0000, 9999);
         $vnp_OrderInfo = $request->name;
         $vnp_OrderType = 'billpayment';
         $vnp_Amount =  $request->price * 100;
@@ -168,7 +168,7 @@ class PackageController extends BaseController
             $query .= urlencode($key) . "=" . urlencode($value) . '&';
         }
 
-        $vnp_Url = $vnp_Url . "?" . $query;
+        $vnp_Url = $vnp_Url . "?" . $query . $request->lerve_package;
         if (isset($vnp_HashSecret)) {
             $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
@@ -229,14 +229,14 @@ class PackageController extends BaseController
         }
         // $url_ipn = $request->getRequestUri();
         // dd($request->getRequestUri());
-        $url_ipn = route('employer.package.payment.output', $_GET);
+        $url_ipn = route('employer.package.payment.output', $_GET, $request->lerve_package);
         // dd($url_ipn);
         $secureHash = hash_hmac('sha512', $hashData,  $this->vnp_HashSecret);
         if ($secureHash == $vnp_SecureHash) {
             if ($_GET['vnp_ResponseCode'] == '00') {
                 $this->setFlash(__('Giao dịch thành công'));
                 header('Location:' . $url_ipn);
-                die;
+                // die;
             } else {
                 $this->setFlash(__('Giao dịch không thành công'), 'error');
             }
@@ -268,7 +268,7 @@ class PackageController extends BaseController
                 $i = 1;
             }
         }
-        // dd($request->all());
+        dd($request->all());
         $secureHash = hash_hmac('sha512', $hashData, $this->vnp_HashSecret);
         $vnpTranId = $inputData['vnp_TransactionNo']; //Mã giao dịch tại VNPAY
         $vnp_BankCode = $inputData['vnp_BankCode']; //Ngân hàng thanh toán

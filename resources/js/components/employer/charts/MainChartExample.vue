@@ -18,55 +18,56 @@ function random(min, max) {
 }
 
 export default {
+  created() {},
+  data: function () {
+    return {
+      dataDate: ''
+    }
+  },
+  props: ['NameDate'],
   name: 'MainChartExample',
   components: {
     CChart
   },
   setup() {
     const data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: [
+        'Tháng 1',
+        'Tháng 2',
+        'Tháng 3',
+        'Tháng 4',
+        'Tháng 5',
+        'Tháng 6',
+        'Tháng 7',
+        'Tháng 8',
+        'Tháng 9',
+        'Tháng 10',
+        'Tháng 11 ',
+        'Tháng 12'
+      ],
       datasets: [
         {
-          label: 'My First dataset',
+          label: 'Số người ứng tuyển: ',
           backgroundColor: hexToRgba(getStyle('--cui-info'), 10),
           borderColor: getStyle('--cui-info'),
           pointHoverBackgroundColor: getStyle('--cui-info'),
           borderWidth: 2,
           data: [
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200)
+            50, 100, 100, 60, 100, 100, 70, 100, 100, 90, 100, 100
+            // timeData.countCvMoth1,
+            // timeData.countCvMoth2,
+            // timeData.countCvMoth3,
+            // timeData.countCvMoth4,
+            // timeData.countCvMoth5,
+            // timeData.countCvMoth6,
+            // timeData.countCvMoth7,
+            // timeData.countCvMoth8,
+            // timeData.countCvMoth9,
+            // timeData.countCvMoth10,
+            // timeData.countCvMoth11,
+            // timeData.countCvMoth12
           ],
           fill: true
-        },
-        {
-          label: 'My Second dataset',
-          backgroundColor: 'transparent',
-          borderColor: getStyle('--cui-success'),
-          pointHoverBackgroundColor: getStyle('--cui-success'),
-          borderWidth: 2,
-          data: [
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200)
-          ]
-        },
-        {
-          label: 'My Third dataset',
-          backgroundColor: 'transparent',
-          borderColor: getStyle('--cui-danger'),
-          pointHoverBackgroundColor: getStyle('--cui-danger'),
-          borderWidth: 1,
-          borderDash: [8, 5],
-          data: [65, 65, 65, 65, 65, 65, 65]
         }
       ]
     }
@@ -111,11 +112,6 @@ export default {
       options
     }
   },
-  methods: {
-    aa(value, value2) {
-      console.log(value)
-      console.log(value2)
-    }
-  }
+  methods: {}
 }
 </script>

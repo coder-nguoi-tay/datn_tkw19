@@ -20,4 +20,8 @@ class Packageoffer extends Model
     {
         return $this->hasOne(Timeoffer::class, 'id', 'time_offer_id');
     }
+    public function leverPackage()
+    {
+        return $this->hasOne(leverPackage::class, 'id', 'time_offer_id');
+    }
 }

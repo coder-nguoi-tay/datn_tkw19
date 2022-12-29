@@ -4,7 +4,7 @@
     <CRow>
       <CCol :md="12">
         <CCard class="mb-4">
-          <CCardBody>
+          <CCardBody style="height: 470px">
             <CRow>
               <CCol :sm="5">
                 <div class="small text-medium-emphasis">January 2021</div>
@@ -25,63 +25,12 @@
             </CRow>
             <CRow>
               <MainChartExample
+                :NameDate="this.data"
+                :test="'123'"
                 style="height: 300px; max-height: 300px; margin-top: 40px"
               />
             </CRow>
           </CCardBody>
-          <CCardFooter>
-            <CRow :xs="{ cols: 1 }" :md="{ cols: 5 }" class="text-center">
-              <CCol class="mb-sm-2 mb-0">
-                <div class="text-medium-emphasis">Visits</div>
-                <strong>29.703 Users (40%)</strong>
-                <CProgress
-                  class="mt-2"
-                  color="success"
-                  thin
-                  :precision="1"
-                  :value="40"
-                />
-              </CCol>
-              <CCol class="mb-sm-2 mb-0 d-md-down-none">
-                <div class="text-medium-emphasis">Unique</div>
-                <strong>24.093 Users (20%)</strong>
-                <CProgress
-                  class="mt-2"
-                  color="info"
-                  thin
-                  :precision="1"
-                  :value="20"
-                />
-              </CCol>
-              <CCol class="mb-sm-2 mb-0">
-                <div class="text-medium-emphasis">Pageviews</div>
-                <strong>78.706 Views (60%)</strong>
-                <CProgress
-                  class="mt-2"
-                  color="warning"
-                  thin
-                  :precision="1"
-                  :value="60"
-                />
-              </CCol>
-              <CCol class="mb-sm-2 mb-0">
-                <div class="text-medium-emphasis">New Users</div>
-                <strong>22.123 Users (80%)</strong>
-                <CProgress
-                  class="mt-2"
-                  color="danger"
-                  thin
-                  :precision="1"
-                  :value="80"
-                />
-              </CCol>
-              <CCol class="mb-sm-2 mb-0 d-md-down-none">
-                <div class="text-medium-emphasis">Bounce Rate</div>
-                <strong>Average Rate (40.15%)</strong>
-                <CProgress class="mt-2" :value="40" thin :precision="1" />
-              </CCol>
-            </CRow>
-          </CCardFooter>
         </CCard>
       </CCol>
     </CRow>
@@ -95,6 +44,7 @@ import MainChartExample from './charts/MainChartExample'
 import WidgetsStatsD from './charts/WidgetsStatsTypeD.vue'
 
 export default {
+  props: ['data'],
   name: 'Dashboard',
   components: {
     MainChartExample,
@@ -103,13 +53,13 @@ export default {
   },
   setup() {
     const progressGroupExample1 = [
-      { title: 'Monday', value1: 34, value2: 78 },
-      { title: 'Tuesday', value1: 56, value2: 94 },
-      { title: 'Wednesday', value1: 12, value2: 67 },
-      { title: 'Thursday', value1: 43, value2: 91 },
-      { title: 'Friday', value1: 22, value2: 73 },
-      { title: 'Saturday', value1: 53, value2: 82 },
-      { title: 'Sunday', value1: 9, value2: 69 }
+      { title: 'Thứ 2', value1: 34, value2: 78 },
+      { title: 'Thứ 3', value1: 56, value2: 94 },
+      { title: 'Thứ 4', value1: 12, value2: 67 },
+      { title: 'Thứ 5', value1: 43, value2: 91 },
+      { title: 'Thứ 6', value1: 22, value2: 73 },
+      { title: 'Thứ 7', value1: 53, value2: 82 },
+      { title: 'Thứ 8', value1: 9, value2: 69 }
     ]
     const progressGroupExample2 = [
       { title: 'Male', icon: 'cil-user', value: 53 },

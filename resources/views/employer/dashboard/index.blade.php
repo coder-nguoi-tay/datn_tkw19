@@ -74,7 +74,22 @@
                     <!-- ./col -->
                 </div>
 
-                <widgets></widgets>
+                <widgets
+                    :data="{{ json_encode([
+                        'countCvMoth1' => $countCvMoth1,
+                        'countCvMoth2' => $countCvMoth2,
+                        'countCvMoth3' => $countCvMoth3,
+                        'countCvMoth4' => $countCvMoth4,
+                        'countCvMoth5' => $countCvMoth5,
+                        'countCvMoth6' => $countCvMoth6,
+                        'countCvMoth7' => $countCvMoth7,
+                        'countCvMoth8' => $countCvMoth8,
+                        'countCvMoth9' => $countCvMoth9,
+                        'countCvMoth10' => $countCvMoth10,
+                        'countCvMoth11' => $countCvMoth11,
+                        'countCvMoth12' => $countCvMoth12,
+                    ]) }}">
+                </widgets>
             </div>
 
         </div>

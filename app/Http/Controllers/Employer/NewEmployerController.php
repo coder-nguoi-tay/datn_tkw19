@@ -89,7 +89,7 @@ class NewEmployerController extends BaseController
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->select('job.*', 'company.logo as logo')
-            // ->Orderby('created_at', 'DESC')
+            ->Orderby('job.expired', 'ASC')
             ->get();
         return view('employer.new.index', [
             'job' => $job,
