@@ -796,9 +796,7 @@ a {
   cursor: pointer;
 }
 
-.labels {
-  font-size: 11px;
-}
+
 
 .add-experience:hover {
   background: #ba68c8;
