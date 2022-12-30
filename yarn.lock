@@ -1001,6 +1001,11 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@kurkle/color@^0.3.0":
+  "integrity" "sha512-hW0GwZj06z/ZFUW2Espl7toVDjghJN+EKqyXzPSV8NV89d5BYp5rRMBJoc+aUN0x5OXDMeRQHazejr2Xmqj2tw=="
+  "resolved" "https://registry.npmjs.org/@kurkle/color/-/color-0.3.1.tgz"
+  "version" "0.3.1"
+
 "@leichtgewicht/ip-codec@^2.0.1":
   "integrity" "sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A=="
   "resolved" "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz"
@@ -2150,10 +2155,17 @@
   "resolved" "https://registry.npmjs.org/charenc/-/charenc-0.0.2.tgz"
   "version" "0.0.2"
 
-"chart.js@^3.4.0", "chart.js@^3.7.0":
+"chart.js@^3.4.0":
   "integrity" "sha512-Ro2JbLmvg83gXF5F4sniaQ+lTbSv18E+TIf2cOeiH1Iqd2PGFOtem+DUufMZsCJwFE7ywPOpfXFBwRTGq7dh6w=="
   "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-3.9.1.tgz"
   "version" "3.9.1"
+
+"chart.js@^3.7.0", "chart.js@^4.1.1":
+  "integrity" "sha512-P0pCosNXp+LR8zO/QTkZKT6Hb7p0DPFtypEeVOf+6x06hX13NIb75R0DXUA4Ksx/+48chDQKtCCmRCviQRTqsA=="
+  "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-4.1.1.tgz"
+  "version" "4.1.1"
+  dependencies:
+    "@kurkle/color" "^0.3.0"
 
 "chokidar@^3.5.2", "chokidar@^3.5.3", "chokidar@>=3.0.0 <4.0.0":
   "integrity" "sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw=="
@@ -5892,6 +5904,11 @@
   "resolved" "https://registry.npmjs.org/vm-browserify/-/vm-browserify-1.1.2.tgz"
   "version" "1.1.2"
 
+"vue-chartjs@^5.1.0":
+  "integrity" "sha512-O/VllsyZn1NzRJAYEbpgfbk/N+EB1nCHLsc/ullPNWuU2YRHxgF5SS8OwWc0K2IfVZNMw94Bp6HUqi2svDQzrQ=="
+  "resolved" "https://registry.npmjs.org/vue-chartjs/-/vue-chartjs-5.1.0.tgz"
+  "version" "5.1.0"
+
 "vue-countup-v3@^1.0.14":
   "integrity" "sha512-U0FxBRQn4FJuFWj37MVTBviqTKhVy+Ctl/9x3x4zYyEV1LsRCVYI01a72fGo20dTKzzPrP4BIS1givXbOnFqrg=="
   "resolved" "https://registry.npmjs.org/vue-countup-v3/-/vue-countup-v3-1.0.14.tgz"
@@ -5955,7 +5972,7 @@
     "de-indent" "^1.0.2"
     "he" "^1.2.0"
 
-"vue@*", "vue@^2.3.0", "vue@^3.0.0", "vue@^3.0.0-0", "vue@^3.2.0", "vue@^3.2.21", "vue@^3.2.31", "vue@>=1.x.x", "vue@>=3.2.0", "vue@3.2.31":
+"vue@*", "vue@^2.3.0", "vue@^3.0.0", "vue@^3.0.0-0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.21", "vue@^3.2.31", "vue@>=1.x.x", "vue@>=3.2.0", "vue@3.2.31":
   "integrity" "sha512-odT3W2tcffTiQCy57nOT93INw1auq5lYLLYtWpPYQQYQOOdHiqFct9Xhna6GJ+pJQaF67yZABraH47oywkJgFw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.31.tgz"
   "version" "3.2.31"
