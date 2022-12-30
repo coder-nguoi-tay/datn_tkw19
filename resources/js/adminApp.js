@@ -57,6 +57,11 @@ import CreateAdmin from './components/admin/create.vue';
 app.component('create-admin', CreateAdmin);
 import btnDeleteAdmin from './components/common/deleteAdmin.vue'
 app.component('btn-delete-admin', btnDeleteAdmin)
+//jobAttractive
+import CreatejobAttractive from './components/jobAttractive/create.vue'
+app.component('create-job-attractive', CreatejobAttractive)
+import EditjobAttractive from './components/jobAttractive/edit.vue'
+app.component('edit-job-attractive', EditjobAttractive)
 // new
 import CreateNew from './components/new/create.vue';
 

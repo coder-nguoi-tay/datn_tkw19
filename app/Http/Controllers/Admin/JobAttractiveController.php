@@ -4,33 +4,37 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
-
-use App\Http\Requests\PackageRequest;
+use App\Models\jobAttractive;
+use App\Models\LeverPackage;
 use App\Models\Packageoffer;
 use App\Models\Timeoffer;
+use Illuminate\Http\Request;
 
-class PackageController extends BaseController
+class JobAttractiveController extends BaseController
 {
+    private jobAttractive $jobattractive;
+
+    public Timeoffer $timeoffer;
+    public LeverPackage $leverpackage;
+    public function __construct(jobAttractive $jobattractive, Timeoffer $timeoffer,LeverPackage $leverpackage)
+    {
+        $this->jobattractive = $jobattractive; 
+        $this->timeoffer = $timeoffer;
+        $this->leverpackage = $leverpackage;
+    }
+  
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    private Packageoffer $package;
-    public Timeoffer $timeoffer;
-
-    public function __construct(Packageoffer $package, Timeoffer $timeoffer)
+    public function index( Request $request)
     {
-
-        $this->package = $package; 
-        $this->timeoffer = $timeoffer;
-    }
-    public function index()
-    {
-      
-        return view('admin.package.index', [
-            'title' => 'Các gói ưu đãi',
-            'package' => $this->package->select('*')->with('timeofer')->get(),
+        // $jobattractive1 = jobAttractive::get();
+        // dd($this->jobattractive->select('*')->with('leverpackage')->get());
+        return view('admin.jobAttractive.index', [
+            'title' => 'Gói Ưu Đãi Hấp Dẫn',
+            'jobAttractives' => $this->jobattractive->select('*')->with('leverpackage')->get(),
 
         ]);
     }
@@ -42,9 +46,11 @@ class PackageController extends BaseController
      */
     public function create()
     {
-        return view('admin.package.create', [
-            'timeoffer' => $this->gettimeoffer(),
-            'title'=>'Thêm Gói Ưu Đãi'
+       
+      
+        return view('admin.jobAttractive.create', [
+            'title'=>'Thêm Gói Ưu Đãi Hấp Dẫn',
+            'leverpackage'  =>$this->leverpackage->get()
         ]);
     }
 
@@ -54,16 +60,16 @@ class PackageController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PackageRequest $request)
+    public function store(Request $request)
     {
-        
-        $package = $this->package->create($request->all())->save();
-        if ($package) {
+        // dd($request->all());
+        $jobattractive = $this->jobattractive->create($request->all())->save();
+        if ($jobattractive) {
             $this->setFlash(__('Thêm gói thành công'));
-            return redirect()->route('admin.package.index');
+            return redirect()->route('admin.jobAttractive.index');
         }
         $this->setFlash(__('Thêm gói thất bại'));
-        return redirect()->route('admin.package.index');
+        return redirect()->route('admin.jobAttractive.index');
     }
 
     /**
@@ -85,10 +91,11 @@ class PackageController extends BaseController
      */
     public function edit($id)
     {
-        return view('admin.package.edit', [
-            'package' => $this->package->where('id',$id)->first(),
-            'timeoff' => $this->gettimeoffer(),
-            'title' => 'Cập nhật gói cước'
+        return view('admin.jobAttractive.edit', [
+           
+            'leverpackage'  =>$this->leverpackage->get(),
+            'jobattractive' => $this->jobattractive->where('id',$id)->first(),
+            'title' => 'Cập Nhật Gói Ưu Đãi Hấp Dẫn'
         ]);
     }
 
@@ -99,11 +106,11 @@ class PackageController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PackageRequest $request, $id)
-    {
-        $this->package->find($id)->update($request->all()); 
+    public function update(Request $request, $id)
+    {       
+        $this->jobattractive->find($id)->update($request->all()); 
         $this->setFlash(__('Sửa gói cước thành công'));
-        return redirect(route('admin.package.index'));
+        return redirect(route('admin.jobAttractive.index'));
     }
 
     /**
@@ -114,7 +121,7 @@ class PackageController extends BaseController
      */
     public function destroy($id)
     {
-        if ($this->package->destroy($id)) {
+        if ($this->jobattractive->destroy($id)) {
             return response()->json([
                 'message' => 'Xóa gói cước thành công',
                 'status' => StatusCode::OK,
@@ -125,4 +132,5 @@ class PackageController extends BaseController
             'status' => StatusCode::OK,
         ], StatusCode::INTERNAL_ERR);
     }
+    
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\forgotPasswordSuccessController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\JobAttractiveController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\NewController;
 use App\Http\Controllers\Admin\PackageController;
@@ -39,6 +40,7 @@ use App\Http\Controllers\TestController;
 Route::middleware('admin')->prefix('dashboard')->name('admin.')->group(function () {
     Route::resource('', HomeController::class);
     Route::resource('package', PackageController::class);
+    Route::resource('jobAttractive', JobAttractiveController::class);
     Route::resource('Users', UserController::class);
     Route::resource('admin', AdminController::class);
     Route::resource('profile', ProfileController::class);
