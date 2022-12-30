@@ -8,6 +8,7 @@ use App\Models\AccountPayment;
 use App\Models\Employer;
 use App\Models\Job;
 use App\Models\location;
+use App\Models\ProfileUserCv;
 use App\Models\SaveCv;
 use App\Models\User;
 use Carbon\Carbon;
@@ -28,13 +29,15 @@ class HomeEmployerController extends BaseController
     public User $user;
     public Job $job;
     public SaveCv $savecv;
-    public function __construct(location $location, Employer $employer, User $user, Job $job, SaveCv $savecv)
+    public ProfileUserCv $profileCv;
+    public function __construct(ProfileUserCv $profileCv, location $location, Employer $employer, User $user, Job $job, SaveCv $savecv)
     {
         $this->location = $location;
         $this->employer = $employer;
         $this->user = $user;
         $this->job = $job;
         $this->savecv = $savecv;
+        $this->profileCv = $profileCv;
     }
     public function index()
     {
@@ -140,11 +143,13 @@ class HomeEmployerController extends BaseController
         $cv = $this->savecv
             ->where('user_id', $user->id)
             ->count();
+        $tatalecv = $this->profileCv->where('status', Auth::guard('user')->user()->id)->count();
         $totalPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
         return view('employer.dashboard.index', [
             'job' => $job,
             'cv' => $cv,
             'title' => 'Bảng tin | News',
+            'tatalecv' => $tatalecv,
             'totalPayment' => $totalPayment,
             'countCvMoth1' => $countCvMoth1,
             'countCvMoth2' => $countCvMoth2,
