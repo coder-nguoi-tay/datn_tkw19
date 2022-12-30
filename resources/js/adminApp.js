@@ -119,6 +119,8 @@ app.component('show-cv-client', showCvClient);
 
 import Widgets from "./components/employer/widgets.vue";
 app.component('widgets', Widgets);
+import BoughtCV from "./components/employer/boughtcv/index.vue";
+app.component('bought-cv', BoughtCV);
 
 app.mount('#app');
 

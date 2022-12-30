@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('employer.cv-da-mua.index') }}">
                         <i class="fa fa-address-card" aria-hidden="true"></i>CV Đã Mua
                     </a>
                 </li>
