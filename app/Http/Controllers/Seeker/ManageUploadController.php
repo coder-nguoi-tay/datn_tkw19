@@ -129,8 +129,13 @@ class ManageUploadController extends BaseController
         try {
             if ($request->status_profile) {
                 $profileUserCv->status_profile = 1;
+            } else {
+                $profileUserCv->status_profile = 0;
             }
             $profileUserCv->email = $request->email;
+            if ($request->hasFile('images')) {
+                $profileUserCv->images = $request->images->storeAs('images/cv', $request->images->hashName());
+            }
             $profileUserCv->majors = $request->majors;
             $profileUserCv->link_fb = $request->link_fb;
             $profileUserCv->user_id = Auth::guard('user')->user()->id;
@@ -144,7 +149,7 @@ class ManageUploadController extends BaseController
             $profileUserCv->project = $request->project;
             $profileUserCv->project_detail = $request->project_detail;
             $profileUserCv->save();
-            $this->setFlash(__('Tạo mới CV thành công'));
+            $this->setFlash(__('Cập nhật thành công !'));
             return redirect()->back();
         } catch (\Throwable $th) {
             DB::rollback();

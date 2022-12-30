@@ -26,6 +26,11 @@
                         <i class="fa fa-address-card" aria-hidden="true"></i>Tìm Kiếm CV
                     </a>
                 </li>
+                <li>
+                    <a href="">
+                        <i class="fa fa-address-card" aria-hidden="true"></i>CV Đã Mua
+                    </a>
+                </li>
             </ul>
             <ul data-submenu-title="Tài khoản">
                 <li><a href="{{ route('employer.profile.index') }}"><i class="fa fa-user-circle"
