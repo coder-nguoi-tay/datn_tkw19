@@ -1,46 +1,33 @@
 <template>
-    <div class="container container_new_edit ">
-      <VeeForm
-        as="div"
-        v-slot="{ handleSubmit }"
-        @invalid-submit="onInvalidSubmit"
-      >
-        <form
-          method="POST"
-          @submit="handleSubmit($event, onSubmit)"
-          ref="formData"
-          :action="data.urlUpdate"
-          enctype="multipart/form-data"
-        >
-          <input type="hidden" :value="csrfToken" name="_token" />
-          <Field type="hidden" value="PUT" name="_method" />
+    <div class="container container_package content-wrapper">
+      <VeeForm as="div" v-slot="{ handleSubmit }" @invalid-submit="onInvalidSubmit">
+        <form method="POST" @submit="handleSubmit($event, onSubmit)" ref="formData" :action="data.urlUpdate">
+            <input type="hidden" :value="csrfToken" name="_token" />
+            <Field type="hidden" value="PUT" name="_method" />
           <div class="col">
-            <label class="form-label">Tiêu đề</label>
+            <label class="form-label">Tên gói cước</label>
             <Field
               type="text"
-              name="title"
+              name="name"
               rules="required|max:255"
-              v-model="model.title"
+              v-model="model.name"
               class="form-control"
             />
-            <ErrorMessage class="error" name="title" />
+            <ErrorMessage class="error" name="name" />
           </div>
           <div class="col">
-            <label class="form-label">Ảnh tin tức</label>
-            <div class="avatar-block">
-              <img :src="model.new_image" alt="" />
-            </div>
+            <label class="form-label">Giá gói cước</label>
             <Field
-              type="file"
-              name="new_image"
-              rules="required|mimes:jpeg,jpg,png,gif|max:100000"
-              v-model="model.new_image"
+              type="text"
+              name="price"
+              rules="required|integer"
+              v-model="model.price"
               class="form-control"
             />
-            <ErrorMessage class="error" name="new_image" />
+            <ErrorMessage class="error" name="price" />
           </div>
           <div class="col">
-            <label class="form-label">Mô tả</label>
+            <label class="form-label">Mô tả gói cước</label>
             <Field
               type="text"
               name="describe"
@@ -48,50 +35,35 @@
               v-model="model.describe"
               class="form-control"
             />
-  
             <ErrorMessage class="error" name="describe" />
           </div>
-          <div class="mb-4">
-            <label class="form-label" for="profession_id"
-              >Chuyên ngành bài đăng
-              <span class="required-lable">*</span>
-            </label>
+          <div class="col ">
+              <label class="form-label">Cấp Bậc Gói </label>
             <Field
-              name="profession_id"
+              name="lever_package"
               as="select"
-              v-model="model.profession_id"
+              v-model="model.lever_package"
               class="form-control"
               id="profession_id"
               rules="required"
             >
-              <option value="" disabled selected>
-                -- Chọn ngành --
-              </option>
+              <option value disabled selected>-- Chọn Cấp Gói --</option>
               <option
-                v-for="item in this.data.majors"
+                v-for="item in this.data.leverpackage"
                 :key="item.id"
                 :value="item.id"
-              >
-                {{ item.name }}
-              </option>
+              >{{ item.name }}</option>
             </Field>
-            <ErrorMessage class="error" name="profession_id" />
           </div>
           <div class="text-center text-1">
-            <a
-              :href="data.urlBack"
-              class="btn btn-danger"
-              style="margin-right: 10px;"
-            >
-              Cancel
-            </a>
+            <a :href="data.urlBack" class="btn btn-danger" style="margin-right: 10px">Cancel</a>
             <button class="btn btn-info">Thực hiện</button>
           </div>
         </form>
       </VeeForm>
     </div>
   </template>
-  <script>
+    <script>
   import {
     Form as VeeForm,
     Field,
@@ -118,25 +90,27 @@
     data: function() {
       return {
         csrfToken: Laravel.csrfToken,
-        model: this.data.new
+        model: this.data.jobattractive
       }
     },
     created() {
       let messError = {
         en: {
           fields: {
-            title: {
-              required: 'Tiêu đề  không được để trống',
-              max: 'Tiêu đê không được vượt qua 255 ký tự'
+            name: {
+              required: 'Tên  không được để trống',
+              max: 'Tên không được vượt qua 255 ký tự'
             },
-            new_image: {
-              required: 'Ảnh không được để trống',
-              mimes: 'Ảnh không đúng định dạng',
-              max: 'Ảnh vượt mức cho phép'
+            price: {
+              required: 'Giá tiền không được để trống',
+              integer: 'Giá tiền phải là số'
             },
             describe: {
               required: 'Mô tả không được để trống',
               max: 'Mô tả không được quá 255 ký tự'
+            },
+            time_offer_id: {
+              required: 'Thời gian không được để trống'
             }
           }
         }
@@ -162,8 +136,8 @@
     }
   }
   </script>
-  <style>
-  .container_new_edit {
+    <style>
+  .container_package {
     margin: 0 auto;
     width: 50%;
     margin-top: 10px;
@@ -189,4 +163,3 @@
     margin-top: 30px !important;
   }
   </style>
-  

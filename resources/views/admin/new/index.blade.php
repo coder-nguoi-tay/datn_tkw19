@@ -31,12 +31,12 @@ use App\Enums\Onoff;
                                             class=" text-dark text-secondary  font-weight-bolder opacity-7 w-25">
                                             Hình ảnh
                                         </th>
+                                        <th class=" text-dark text-secondary  font-weight-bolder opacity-7">
+                                            Chuyên ngành
+                                        </th>
                                         <th
                                             class=" text-dark text-secondary  font-weight-bolder opacity-7">
                                             Ngày Tạo
-                                        </th>
-                                        <th class=" text-dark text-secondary  font-weight-bolder opacity-7">
-                                            Ngày sửa
                                         </th>
                                         <th class="text-secondary opacity-7"></th>
                                     </tr>
@@ -68,12 +68,7 @@ use App\Enums\Onoff;
                                                             src="{{ asset($item->new_image) }}"
                                                             class="img-thumbnail border-radius-lgc w-50"
                                                             alt="..."
-                                                        />
-                                                        <input
-                                                            type="file"
-                                                            id="upload"
-                                                            style="display: none"
-                                                        />
+                                                        />                                               
                                                     </label>
 
                                                     <br>
@@ -81,11 +76,11 @@ use App\Enums\Onoff;
                                             </td>
                                             <td class="align-middle ">
                                                 <span
-                                                    class="text-secondary  font-weight-bold">{{ $item->created_at }}</span>
+                                                    class="text-secondary  font-weight-bold">{{ $item->majors }}</span>
                                             </td>
                                             <td class="align-middle ">
                                                 <span
-                                                    class="text-secondary  font-weight-bold">{{ $item->updated_at }}</span>
+                                                    class="text-secondary  font-weight-bold">{{ $item->created_at }}</span>
                                             </td>
                                             <td class="align-middle">
                                                 <div class=""

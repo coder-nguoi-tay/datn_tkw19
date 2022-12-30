@@ -48,6 +48,7 @@
         "notyf": "^3.10.0",
         "vee-validate": "^4.5.10",
         "vue": "^3.2.31",
+        "vue-chartjs": "^5.1.0",
         "vue-countup-v3": "^1.0.14",
         "vue-moment": "^4.1.0",
         "vue-multiselect": "^3.0.0-alpha.2",

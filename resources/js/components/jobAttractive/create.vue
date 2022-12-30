@@ -1,45 +1,37 @@
 <template>
   <div class="container container_package content-wrapper">
-    <VeeForm
-      as="div"
-      v-slot="{ handleSubmit }"
-      @invalid-submit="onInvalidSubmit"
-    >
+    <VeeForm as="div" v-slot="{ handleSubmit }" @invalid-submit="onInvalidSubmit">
       <form
         method="POST"
         @submit="handleSubmit($event, onSubmit)"
         ref="formData"
         :action="data.urlStore"
-        enctype="multipart/form-data"
       >
         <input type="hidden" :value="csrfToken" name="_token" />
         <div class="col">
-          <label class="form-label">Tiêu đề</label>
-          <span class="required-lable">*</span>
+          <label class="form-label">Tên gói cước</label>
           <Field
             type="text"
-            name="title"
+            name="name"
             rules="required|max:255"
-            v-model="model.title"
+            v-model="model.name"
             class="form-control"
           />
-          <ErrorMessage class="error" name="title" />
+          <ErrorMessage class="error" name="name" />
         </div>
         <div class="col">
-          <label class="form-label">Ảnh tin tức</label>
-          <span class="required-lable">*</span>
+          <label class="form-label">Giá gói cước</label>
           <Field
-            type="file"
-            name="new_image"
-            rules="required|mimes:jpeg,jpg,png,gif|max:100000"
-            v-model="model.new_image"
+            type="text"
+            name="price"
+            rules="required|integer"
+            v-model="model.price"
             class="form-control"
           />
-          <ErrorMessage class="error" name="new_image" />
+          <ErrorMessage class="error" name="price" />
         </div>
         <div class="col">
-          <label class="form-label">Mô tả</label>
-          <span class="required-lable">*</span>
+          <label class="form-label">Mô tả gói cước</label>
           <Field
             type="text"
             name="describe"
@@ -49,47 +41,33 @@
           />
           <ErrorMessage class="error" name="describe" />
         </div>
-        <div class="mb-4">
-          <label class="form-label" for="profession_id"
-            >Chuyên ngành bài đăng
-            <span class="required-lable">*</span>
-          </label>
+        <div class="col ">
+            <label class="form-label">Cấp Bậc Gói </label>
           <Field
-            name="majors"
+            name="lever_package"
             as="select"
-            v-model="model.profession_id"
+            v-model="model.lever_package"
             class="form-control"
             id="profession_id"
             rules="required"
           >
-            <option value="" disabled selected>
-              -- Chọn ngành --
-            </option>
+            <option value disabled selected>-- Chọn Cấp Gói --</option>
             <option
-              v-for="item in this.data.majors"
+              v-for="item in this.data.leverpackage"
               :key="item.id"
-              :value="item.name"
-            >
-              {{ item.name }}
-            </option>
+              :value="item.id"
+            >{{ item.name }}</option>
           </Field>
-          <ErrorMessage class="error" name="profession_id" />
         </div>
         <div class="text-center text-1">
-          <a
-            :href="data.urlBack"
-            class="btn btn-danger"
-            style="margin-right: 10px"
-          >
-            Cancel
-          </a>
+          <a :href="data.urlBack" class="btn btn-danger" style="margin-right: 10px">Cancel</a>
           <button class="btn btn-info">Thực hiện</button>
         </div>
       </form>
     </VeeForm>
   </div>
 </template>
-<script>
+  <script>
 import {
   Form as VeeForm,
   Field,
@@ -112,11 +90,10 @@ export default {
     Field,
     ErrorMessage
   },
-  props: ['data', 'arr'],
+  props: ['data'],
   data: function() {
     return {
       csrfToken: Laravel.csrfToken,
-      majors: this.data.majors,
       model: {}
     }
   },
@@ -124,18 +101,20 @@ export default {
     let messError = {
       en: {
         fields: {
-          title: {
-            required: 'Tiêu đề  không được để trống',
-            max: 'Tiêu đê không được vượt qua 255 ký tự'
+          name: {
+            required: 'Tên  không được để trống',
+            max: 'Tên không được vượt qua 255 ký tự'
           },
-          new_image: {
-            required: 'Ảnh không được để trống',
-            mimes: 'Ảnh không đúng định dạng',
-            max: 'Ảnh vượt mức cho phép'
+          price: {
+            required: 'Giá tiền không được để trống',
+            integer: 'Giá tiền phải là số'
           },
           describe: {
             required: 'Mô tả không được để trống',
             max: 'Mô tả không được quá 255 ký tự'
+          },
+          time_offer_id: {
+            required: 'Thời gian không được để trống'
           }
         }
       }
@@ -143,9 +122,6 @@ export default {
     configure({
       generateMessage: localize(messError)
     })
-  },
-  mounted() {
-    console.log(this.data.majors)
   },
   methods: {
     onInvalidSubmit({ values, errors, results }) {
@@ -164,7 +140,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+  <style>
 .container_package {
   margin: 0 auto;
   width: 50%;

@@ -19,16 +19,16 @@
                                 @foreach ($errors->all() as $error)
                                     {{ $error }}
                                 @endforeach
+
                             </div>
                         @endif
-                        <edit
-                            :data="{{ json_encode([
-                                'new' => $new,
-                                'urlUpdate' => route('admin.new.update', $new->id),
-                                'urlBack' => route('admin.new.index'),
-                                'majors'  =>$majors
-                            ]) }}">
-                        </edit>
+                       <edit-job-attractive
+                       :data="{{ json_encode([
+                        'jobattractive' =>$jobattractive,
+                        'leverpackage' =>$leverpackage,
+                        'urlUpdate' => route('admin.jobAttractive.update',$jobattractive->id),
+                        'urlBack' => route('admin.jobAttractive.index'),
+                    ]) }}"></edit-job-attractive>
                     </div>
                 </div>
             </div>
