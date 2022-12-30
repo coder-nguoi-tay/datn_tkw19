@@ -143,6 +143,11 @@ class HomeEmployerController extends BaseController
         $cv = $this->savecv
             ->where('user_id', $user->id)
             ->count();
+        $cv = $this->savecv
+            ->join('job', 'job.id', '=', 'save_cv.id_job')
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->where('job.employer_id', $checkCompany->id)
+            ->count();
         $tatalecv = $this->profileCv->where('status', Auth::guard('user')->user()->id)->count();
         $totalPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
         return view('employer.dashboard.index', [

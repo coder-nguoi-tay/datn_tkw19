@@ -24,7 +24,7 @@ class PackageController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public Vnpay $vnpay;
-    public $vnp_HashSecret = 'CEARZZTZCOWJOTMTQVFNHYLJRZWRASDX';
+    public $vnp_HashSecret = 'KNAREAARTPBAELKXTPLZKBUMSTCJHIYE';
     public Packageoffer $package;
     public function __construct(Vnpay $vnpay, Packageoffer $package)
     {
@@ -122,7 +122,7 @@ class PackageController extends BaseController
     {
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = route('employer.package.payment.return');
-        $vnp_TmnCode = "JB10VE6S"; //Mã website tại VNPAY 
+        $vnp_TmnCode = "S50PEHFY"; //Mã website tại VNPAY 
         $vnp_HashSecret = $this->vnp_HashSecret; //Chuỗi bí mật
         $vnp_TxnRef = rand(0000, 9999);
         $vnp_OrderInfo = $request->name . ',' . $request->lerve_package . ',' . $request->id;
@@ -297,6 +297,7 @@ class PackageController extends BaseController
                             $package->status = $Status;
                             $package->start_time = Carbon::parse(Carbon::now());
                             $employer->prioritize += $lever_package;
+                            $employer->position = 1;
                             if ($lever_package == 1) {
                                 $package->end_time = Carbon::parse(Carbon::now())->addDay(1)->format('Y-m-d');
                                 $package->lever = $lever_package;

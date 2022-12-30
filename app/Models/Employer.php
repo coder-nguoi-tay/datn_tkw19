@@ -20,6 +20,7 @@ class Employer extends Model
         'id_company',
         'user_id',
         'prioritize',
+        'position',
     ];
     public function getCompany()
     {

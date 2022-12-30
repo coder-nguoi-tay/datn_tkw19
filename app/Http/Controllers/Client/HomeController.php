@@ -153,6 +153,7 @@ class HomeController extends BaseController
                 ->where([
                     ['job.status', 1],
                     ['job.expired', 0],
+                    ['employer.position', 1],
                 ])
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                 ->orderBy('employer.prioritize', 'desc')
@@ -213,6 +214,7 @@ class HomeController extends BaseController
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->whereIn('job.id', $data)
+            ->where('job.expired', 0)
             ->select('job.*', 'company.logo as logo')
             ->get();
         //

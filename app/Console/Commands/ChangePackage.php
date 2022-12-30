@@ -50,6 +50,7 @@ class ChangePackage extends Command
             $user->save();
             $employer = Employer::where('user_id', $user->company_id)->first();
             $employer->prioritize = 0;
+            $employer->position = 0;
             $employer->save();
         }
         foreach ($job as $item) {
