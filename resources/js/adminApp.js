@@ -121,6 +121,8 @@ import Widgets from "./components/employer/widgets.vue";
 app.component('widgets', Widgets);
 import btnStatusCompany from "./components/admin/company/buttomStatus.vue";
 app.component('btn-status-company', btnStatusCompany);
+import BoughtCV from "./components/employer/boughtcv/index.vue";
+app.component('bought-cv', BoughtCV);
 
 app.mount('#app');
 

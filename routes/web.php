@@ -21,6 +21,7 @@ use App\Http\Controllers\Seeker\HomeController as SeekerHomeController;
 use App\Http\Controllers\Seeker\ManageUploadController as SeekerManageUploadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\SearchController;
+use App\Http\Controllers\Employer\BoughtCvController;
 use App\Http\Controllers\Employer\ManagerUploadCvController;
 use App\Http\Controllers\Employer\ProfileController as EmployerProfileController;
 use App\Http\Controllers\Employer\RegisterCompanyController;
@@ -78,6 +79,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
     Route::resource('tim-kiem-cv', SearchCvController::class);
+    Route::resource('cv-da-mua', BoughtCvController::class);
     Route::post('tim-kiem-cv/change-account/{id}', [ManagerUploadCvController::class, 'changeStatus'])->name('changecAcount');
     Route::group([
         'prefix' => 'quan-ly-cv'
@@ -101,6 +103,7 @@ Route::post('register/create', [HomeEmployerController::class, 'store'])->name('
 // seeker
 Route::resource('profile', SeekerHomeController::class);
 Route::resource('quan-ly-cv', SeekerManageUploadController::class);
+
 Route::get('file/tao-moi', [SeekerManageUploadController::class, 'createFormCV'])->name('user.createFormCV');
 Route::post('file/tao-moi', [SeekerManageUploadController::class, 'storeFormCV'])->name('user.storeFormCV');
 Route::get('user/createFormCV/download', [SeekerManageUploadController::class, 'downloadPdf'])->name('user.createFormCV.downloadPdf');

@@ -31,6 +31,168 @@
     <script src="{{ asset('js/adminApp.js') }}" defer></script>
 
     @yield('css')
+    <style>
+        .anh-cv {
+            width: 190px;
+            height: 150px;
+        }
+
+        .me-md-3 {
+            margin-left: 20px;
+            font-size: 20px;
+            font-weight: 550;
+        }
+
+        .list-service[data-v-5ca02e54] {
+            display: flex;
+            margin: 0 -10px;
+            flex-wrap: wrap;
+            padding: 10px 0;
+        }
+
+        .service[data-v-5ca02e54] {
+            padding: 10px;
+            width: 25%;
+        }
+
+        .service-item__md[data-v-6f51bd73] {
+            min-height: 225px;
+        }
+
+        .service-item[data-v-6f51bd73] {
+            background: #f3f4f5;
+            border-radius: 5px;
+            padding: 16px;
+            height: 340px;
+
+            transition: all 0.5s;
+            border: 1px solid transparent;
+        }
+
+        .color-gray[data-v-6f51bd73] {
+            color: #555;
+        }
+
+        .align-items-center {
+            align-items: center !important;
+        }
+
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .justify-content-between {
+            margin-top: -30px;
+            justify-content: space-between !important;
+        }
+
+        .title-cv {
+            text-align: center;
+        }
+
+        .name-cv {
+            text-align: center;
+            margin: -5px 0px 5px 0px
+        }
+
+        .service-price[data-v-6f51bd73] {
+            margin-bottom: 6px;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .text-primary {
+            color: #00b14f !important;
+        }
+
+        .font-weight-bold {
+            font-weight: 500 !important;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .title-vip[data-v-6f51bd73] {
+            margin-left: 10px;
+            padding: 4px 12px 4px 6px;
+            color: #333;
+            background: #ffbc53;
+            border-radius: 5px 0 0 5px;
+            position: relative;
+        }
+
+        .button-text {
+            color: #00b14f;
+            text-decoration: none
+        }
+
+        .button-text:hover {
+            color: white;
+
+        }
+
+        .btn-add-service[data-v-6f51bd73] {
+            color: #00b14f;
+            background: #fff;
+            border: 1px solid #00b14f;
+            transition: all 0.5s;
+
+        }
+
+        .btn-see-detail {
+            width: 150px !important;
+        }
+
+        .btn-service[data-v-6f51bd73] {
+            width: calc(50% - 6px);
+            border-radius: 3px;
+            padding: 10px;
+        }
+
+        .min-width.btn {
+            min-width: 100px;
+            font-size: 14px;
+        }
+
+        .btn {
+            white-space: nowrap;
+        }
+
+        .font-weight-bold {
+            font-weight: 500 !important;
+        }
+
+        .btn-secondary {
+            color: #212529;
+            background-color: #f3f4f5;
+            border-color: #f3f4f5;
+        }
+
+        .btn-secondary:hover {
+            border-color: #00b14f;
+            background-color: #00b14f;
+            color: white;
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+        }
+
+        button {
+            border-radius: 0;
+        }
+    </style>
     <script>
         window.Laravel = {!! json_encode(
             [
