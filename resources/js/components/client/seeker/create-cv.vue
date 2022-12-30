@@ -11,6 +11,7 @@
         method="POST"
         enctype="multipart/form-data"
         class="text-center"
+        :action="data.urlStore"
       >
         <Field type="hidden" :value="csrfToken" name="_token" />
         <div class="col-4">
