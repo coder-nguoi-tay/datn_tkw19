@@ -13,7 +13,11 @@
                         <div class="container-fluid px-2 px-md-4" style="margin-top: -30px">
                             <div class="ps-3">
                                 <a href="{{ route('admin.package.create') }}" class="btn btn-primary">Thêm gói cước</a>
+                                <a href="{{ route('admin.jobAttractive.index') }}" class="btn btn-primary m-4">Ưu đãi đặc
+                                    biệt</a>
+
                             </div>
+
                             <div class="row gy-5">
                                 @foreach ($package as $item)
                                     <div class="col-md-4 stretch-card grid-margin">
