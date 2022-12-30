@@ -62,7 +62,7 @@
                             <div class="inner">
                                 <h3>65</h3>
 
-                                <p>Số CV Đã Hết Hạn</p>
+                                <p>Số CV Đã Mua</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>

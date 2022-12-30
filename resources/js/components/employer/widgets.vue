@@ -7,20 +7,9 @@
           <CCardBody style="height: 470px">
             <CRow>
               <CCol :sm="5">
-                <div class="small text-medium-emphasis">January 2021</div>
-              </CCol>
-              <CCol :sm="7" class="d-none d-md-block">
-                <CButtonGroup
-                  class="float-end me-3"
-                  role="group"
-                  aria-label="Basic outlined example"
-                >
-                  <CButton color="secondary" variant="outline">Day</CButton>
-                  <CButton color="secondary" variant="outline" active
-                    >Month</CButton
-                  >
-                  <CButton color="secondary" variant="outline">Year</CButton>
-                </CButtonGroup>
+                <div class="small text-medium-emphasis">
+                  Thống kê năm: <b>{{ newdate }}</b>
+                </div>
               </CCol>
             </CRow>
             <CRow>
@@ -40,7 +29,7 @@
 
 <script>
 import MainChartExample from './charts/MainChartExample'
-
+import moment from 'moment'
 import WidgetsStatsD from './charts/WidgetsStatsTypeD.vue'
 
 export default {
@@ -50,6 +39,11 @@ export default {
     MainChartExample,
 
     WidgetsStatsD
+  },
+  data: function () {
+    return {
+      newdate: moment(new Date()).format('YYYY')
+    }
   },
   setup() {
     const progressGroupExample1 = [
