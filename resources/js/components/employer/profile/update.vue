@@ -63,6 +63,24 @@
                 ><i data-v-61ae721f="" class="fa mr-2 fa-building"></i> Giấy
                 phép kinh doanh
               </a>
+              <a
+                id="v-pills-history-tab"
+                data-coreui-toggle="pill"
+                data-coreui-target="#v-pills-history"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-history"
+                aria-selected="false"
+                data-v-61ae721f=""
+                href=""
+                class="
+                  list-group-item list-group-item-action
+                  border-0
+                  nuxt-link-active
+                "
+                ><i data-v-61ae721f="" class="fa mr-2 fa-building"></i> Lịch sử
+                giao dịch
+              </a>
             </div>
           </div>
           <div class="tab-content" id="v-pills-tabContent">
@@ -238,6 +256,139 @@
               </div>
             </div>
 
+            <!-- Lịch sử giao dịch -->
+            <div
+              class="tab-pane fade"
+              id="v-pills-history"
+              role="tabpanel"
+              aria-labelledby="v-pills-history-tab"
+              tabindex="0"
+            >
+              <div class="row card-profile-employer">
+                <h6 class="title-update-employer mb-3">Tất cả lịch sử</h6>
+                <div class="card-employer-content">
+                  <VeeForm
+                    as="div"
+                    v-slot="{ handleSubmit }"
+                    @invalid-submit="onInvalidSubmit"
+                  >
+                    <form
+                      method="POST"
+                      @submit="handleSubmit($event, onSubmit)"
+                      class="form-register-employer"
+                      ref="formData"
+                    >
+                      <div class="card h-100">
+                        <div class="card-body">
+                          <div class="col-12 form-update-company">
+                            <div class="mb-3 row">
+                              <div data-v-79f03480="" class="card-body">
+                                <!---->
+                                <div data-v-79f03480="" class="d-flex history">
+                                  <span data-v-79f03480="" class="line-date"
+                                    >27/12/2022</span
+                                  >
+                                  <div data-v-79f03480="" class="line">
+                                    <div
+                                      data-v-79f03480=""
+                                      class="line-content"
+                                    >
+                                      <div data-v-79f03480="" class="content">
+                                        <p data-v-79f03480="">
+                                          <span data-v-79f03480="" class="time"
+                                            >Số tiền</span
+                                          ><span data-v-79f03480=""
+                                            >Số điện thoại: 0962523872 được xác
+                                            thực thành công</span
+                                          >
+                                        </p>
+                                      </div>
+                                      <div data-v-79f03480="" class="content">
+                                        <p data-v-79f03480="">
+                                          <span data-v-79f03480="" class="time"
+                                            >Nội dung</span
+                                          ><span data-v-79f03480=""
+                                            >Đăng nhập</span
+                                          >
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div data-v-79f03480="" class="d-flex history">
+                                  <span data-v-79f03480="" class="line-date"
+                                    >26/12/2022</span
+                                  >
+                                  <div data-v-79f03480="" class="line">
+                                    <div
+                                      data-v-79f03480=""
+                                      class="line-content"
+                                    >
+                                      <div data-v-79f03480="" class="content">
+                                        <p data-v-79f03480="">
+                                          <span data-v-79f03480="" class="time"
+                                            >Số tiền</span
+                                          ><span data-v-79f03480=""
+                                            >Số điện thoại: 0962523872 được xác
+                                            thực thành công</span
+                                          >
+                                        </p>
+                                      </div>
+                                      <div data-v-79f03480="" class="content">
+                                        <p data-v-79f03480="">
+                                          <span data-v-79f03480="" class="time"
+                                            >Nội dung</span
+                                          ><span data-v-79f03480=""
+                                            >Đăng nhập</span
+                                          >
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div data-v-79f03480="" class="d-flex history">
+                                  <span data-v-79f03480="" class="line-date"
+                                    >25/12/2022</span
+                                  >
+                                  <div data-v-79f03480="" class="line">
+                                    <div
+                                      data-v-79f03480=""
+                                      class="line-content"
+                                    >
+                                      <div data-v-79f03480="" class="content">
+                                        <p data-v-79f03480="">
+                                          <span data-v-79f03480="" class="time"
+                                            >Số tiền</span
+                                          ><span data-v-79f03480=""
+                                            >Số điện thoại: 0962523872 được xác
+                                            thực thành công</span
+                                          >
+                                        </p>
+                                      </div>
+                                      <div data-v-79f03480="" class="content">
+                                        <p data-v-79f03480="">
+                                          <span data-v-79f03480="" class="time"
+                                            >Nội dung</span
+                                          ><span data-v-79f03480=""
+                                            >Đăng nhập</span
+                                          >
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!---->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </VeeForm>
+                </div>
+              </div>
+            </div>
+
             <!-- Giấy phép kinh doanh-->
             <div
               class="tab-pane fade"
@@ -247,185 +398,110 @@
               tabindex="0"
             >
               <div class="row card-profile-employer">
-                <VeeForm
-                  as="div"
-                  v-slot="{ handleSubmit }"
-                  @invalid-submit="onInvalidSubmit"
-                >
-                  <form
-                    method="POST"
-                    @submit="handleSubmit($event, onSubmit)"
-                    class="form-register-employer"
-                    ref="formData"
+                <h6 class="title-update-employer mb-3">
+                  Thông tin giấy phép kinh doanh
+                </h6>
+                <div class="card-employer-content">
+                  <VeeForm
+                    as="div"
+                    v-slot="{ handleSubmit }"
+                    @invalid-submit="onInvalidSubmit"
                   >
-                    <div class="row card-profile-employer">
-                      <h6 class="title-update-employer mb-3">
-                        Thông tin giấy phép kinh doanh
-                      </h6>
-                      <div class="card-employer-content">
-                        <VeeForm
-                          as="div"
-                          v-slot="{ handleSubmit }"
-                          @invalid-submit="onInvalidSubmit"
-                        >
-                          <form
-                            method="POST"
-                            @submit="handleSubmit($event, onSubmit)"
-                            class="form-register-employer"
-                            ref="formData"
-                          >
-                            <div class="card h-100">
-                              <div class="card-body">
-                                <div class="row">
-                                  <div class="col-12">
-                                    <div class="mb-3 row">
-                                      <div class="row box-title-license">
-                                        <p class="title-license">
-                                          Trạng thái: chưa cập nhật
-                                        </p>
-                                        <p class="title-license">
-                                          Giấy phép kinh doanh:
-                                        </p>
-                                        <p class="title-license">
-                                          Dung lượng file không vượt quá 5MB
-                                        </p>
-                                      </div>
+                    <form
+                      method="POST"
+                      @submit="handleSubmit($event, onSubmit)"
+                      class="form-register-employer"
+                      ref="formData"
+                    >
+                      <div class="card h-100">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-12">
+                              <div class="mb-3 row">
+                                <div class="row box-title-license">
+                                  <p class="title-license">
+                                    Trạng thái: chưa cập nhật
+                                  </p>
+                                  <p class="title-license">
+                                    Giấy phép kinh doanh:
+                                  </p>
+                                  <p class="title-license">
+                                    Dung lượng file không vượt quá 5MB
+                                  </p>
+                                </div>
 
-                                      <!-- <div
-                                        class="img-fluid my-5"
-                                        id="img-preview"
-                                        @click="chooseImage()"
-                                        role="button"
-                                      >
-                                        <img
-                                          v-if="!preview"
-                                          src="https://i.pinimg.com/236x/15/46/2e/15462ed447e25356837b32a7e22e538f.jpg"
-                                          alt=""
-                                        />
-                                        <div style="display: none">
-                                          <input
-                                            type="file"
-                                            @change="onChange"
-                                            ref="fileInput"
-                                            accept="image/*"
-                                            name="images"
-                                          />
-                                        </div>
-                                        <img
-                                          v-if="!preview"
-                                          class="img-fluid my-5 p-5 rounded-9"
-                                        />
-
-                                        <div
-                                          id="img-preview"
-                                          @click="chooseImage()"
-                                          role="button"
-                                        >
-                                          <div style="display: none">
-                                            <input
-                                              type="file"
-                                              id="file"
-                                              @change="onChange"
-                                              ref="fileInput"
-                                              accept="image/*"
-                                              name="images"
-                                            />
-                                          </div>
-                                          <template v-if="preview">
-                                            <img
-                                              :src="preview"
-                                              class="img-fluid img-fluid my-5"
-                                            />
-                                          </template>
-                                          <img
-                                            v-if="filePreview"
-                                            :src="filePreview"
-                                            class="img-fluid my-5 p-5"
-                                          />
-                                        </div>
-                                      </div> -->
-                                      <div class="box-upload text-center">
-                                        <p class="icon">
-                                          <i
-                                            class="fas fa-cloud-upload-alt"
-                                          ></i>
-                                        </p>
-                                        <div class="not-cv">
-                                          <p>Chọn hoặc kéo file vào đây</p>
-                                        </div>
-                                        <Field
-                                          type="file"
-                                          accept="image/*"
-                                          @change="previewImage"
-                                          id="my-file"
-                                          name="file_cv"
-                                          class="file-upload-cv"
-                                          rules="required|mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx|max:2048"
-                                        />
-                                        <br />
-
-                                        <template v-if="preview">
-                                          <img
-                                            :src="preview"
-                                            class="img-fluid box-img my-5"
-                                          />
-                                        </template>
-                                      </div>
-                                      <ErrorMessage
-                                        class="error"
-                                        name="file_cv"
-                                      />
-                                    </div>
+                                <div class="box-upload text-center">
+                                  <p class="icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                  </p>
+                                  <div class="not-cv">
+                                    <p>Chọn hoặc kéo file vào đây</p>
                                   </div>
-                                </div>
+                                  <Field
+                                    type="file"
+                                    accept="image/*"
+                                    @change="previewImage"
+                                    id="my-file"
+                                    name="file_cv"
+                                    class="file-upload-cv"
+                                    rules="required|mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx|max:2048"
+                                  />
+                                  <br />
 
-                                <div class="col-md-12">
-                                  <button
-                                    type="button"
-                                    class="
-                                      btn
-                                      min-width
-                                      btn
-                                      min-width
-                                      btn btn-secondary
-                                      mr-2
-                                      btn-lg
-                                    "
-                                  >
-                                    <!---->
-                                    Hủy
-                                  </button>
-                                  <button
-                                    type="submit"
-                                    class="btn min-width btn btn-primary btn-lg"
-                                  >
-                                    <!---->
-                                    Cập nhật
-                                  </button>
+                                  <template v-if="preview">
+                                    <img
+                                      :src="preview"
+                                      class="img-fluid box-img my-5"
+                                    />
+                                  </template>
                                 </div>
+                                <ErrorMessage class="error" name="file_cv" />
                               </div>
                             </div>
-                          </form>
-                        </VeeForm>
+                          </div>
+
+                          <div class="col-md-12">
+                            <button
+                              type="button"
+                              class="
+                                btn
+                                min-width
+                                btn
+                                min-width
+                                btn btn-secondary
+                                mr-2
+                                btn-lg
+                              "
+                            >
+                              <!---->
+                              Hủy
+                            </button>
+                            <button
+                              type="submit"
+                              class="btn min-width btn btn-primary btn-lg"
+                            >
+                              <!---->
+                              Cập nhật
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                      <div class="row">
-                        <h6 class="title-update-employer mb-3">
-                          Tài liệu hướng dẫn
-                        </h6>
-                        <a
-                          class="p-update-employer"
-                          href="https://docs.google.com/document/d/1wOSg50rCXduzUxLYIYOAdWA-k3fjvfvyR-B8ASUsUUs/edit?usp=sharing"
-                          >Hướng dẫn đăng lên</a
-                        >
-                        <a
-                          class="p-update-employer"
-                          href="https://docs.google.com/document/d/1kw-3VIZHwNqCpIZZlYrQ1PmgK1dg0sw8zVImxBorYRY/edit?usp=sharing"
-                          >Giấy phép kinh doanh</a
-                        >
-                      </div>
-                    </div>
-                  </form>
-                </VeeForm>
+                    </form>
+                  </VeeForm>
+                </div>
+                <div class="row">
+                  <h6 class="title-update-employer mb-3">Tài liệu hướng dẫn</h6>
+                  <a
+                    class="p-update-employer"
+                    href="https://docs.google.com/document/d/1wOSg50rCXduzUxLYIYOAdWA-k3fjvfvyR-B8ASUsUUs/edit?usp=sharing"
+                    >Hướng dẫn đăng lên</a
+                  >
+                  <a
+                    class="p-update-employer"
+                    href="https://docs.google.com/document/d/1kw-3VIZHwNqCpIZZlYrQ1PmgK1dg0sw8zVImxBorYRY/edit?usp=sharing"
+                    >Giấy phép kinh doanh</a
+                  >
+                </div>
               </div>
             </div>
 
@@ -737,6 +813,70 @@ export default {
 </script>
 
 <style scoped>
+[data-v-79f03480] .reportrange-text {
+  background-color: #f3f4f5;
+  color: #212f3f;
+  border: none;
+  border-radius: 18px;
+}
+.reportrange-text[data-v-2359713c] {
+  background: #fff;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+.vue-daterange-picker[data-v-2359713c] {
+  position: relative;
+  display: inline-block;
+  min-width: 60px;
+}
+.font-weight-bold {
+  font-weight: 500 !important;
+}
+
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.border-0 {
+  border: 0 !important;
+}
+
+.bg-white {
+  background-color: #fff !important;
+}
+.history[data-v-79f03480] {
+  padding: 0.75rem 0;
+}
+.d-flex {
+  display: flex !important;
+}
+.line-date[data-v-79f03480] {
+  font-weight: 700;
+}
+.line[data-v-79f03480] {
+  padding-left: 1rem;
+  position: relative;
+}
+.line .line-content[data-v-79f03480] {
+  border-left: 1px solid #ebf3fe;
+}
+.line .line-content .time[data-v-79f03480] {
+  margin-right: 5px;
+  padding: 3px;
+  border-radius: 5px;
+  background: #ebf3fe;
+  color: #4285f4;
+}
+.line .content[data-v-79f03480] {
+  position: relative;
+  padding-left: 1rem;
+}
 .box-img {
   height: 200px;
 }

@@ -27,7 +27,13 @@ class ProfileController extends Controller
             'employer' => $employer
         ]);
     }
+    public function payMoney()
+    {
+        return view('employer.profile.paymoney', [
+            'title' => 'Nạp tiền vào tài khoản',
 
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
