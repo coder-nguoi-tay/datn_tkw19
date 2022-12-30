@@ -7,12 +7,12 @@
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Gói cước ưu đã</h6>
+                                <h6 class="text-white text-capitalize ps-3">Gói cước ưu đãi</h6>
                             </div>
                         </div>
                         <div class="container-fluid px-2 px-md-4" style="margin-top: -30px">
                             <div class="ps-3">
-                                <a href="{{ route('admin.jobAttractive.create') }}" class="btn btn-primary">Thêm gói cước</a>
+                                <a href="{{ route('admin.jobAttractive.create') }}" class="btn btn-primary">Thêm gói ưu đãi</a>
                             </div>
                             <div class="row gy-5">
                                 @foreach ($jobAttractives as $item)
