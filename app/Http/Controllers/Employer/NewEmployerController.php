@@ -6,6 +6,7 @@ use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployerCreateRequest;
+use App\Models\Accuracy;
 use App\Models\Company;
 use App\Models\Employer;
 use App\Models\Experience;
@@ -72,6 +73,12 @@ class NewEmployerController extends BaseController
         $all_day = cal_days_in_month(CAL_GREGORIAN, $m, $y);
         $mon = Carbon::parse(new Carbon('last day of last month'))->format('d');
         $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
+        $checkCompanyXt = Accuracy::where('user_id', Auth::guard('user')->user()->id)->first();
+        if ($checkCompanyXt) {
+            $checkCompanyStatus = 1;
+        } else {
+            $checkCompanyStatus = 0;
+        }
         $job = $this->job->where([
             ['job.employer_id', $checkCompany->id],
             ['job.status', 1],
@@ -99,6 +106,7 @@ class NewEmployerController extends BaseController
             'title' => 'Tin Tuyển Dụng',
             'checkCompany' => $checkCompany,
             'request' => $request,
+            'checkCompanyStatus' => $checkCompanyStatus,
         ]);
     }
 

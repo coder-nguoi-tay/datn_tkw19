@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Accuracy;
 use App\Models\Company;
 use Illuminate\Http\Request;
+
+use function GuzzleHttp\Promise\all;
 
 class CompanyController extends Controller
 {
@@ -22,7 +25,11 @@ class CompanyController extends Controller
 
     public function index()
     {
-        $company = Company::select('id', 'name', 'email', 'address', 'desceibe', 'number_member', 'logo', 'created_at', 'updated_at')->get();
+        $company = Company::select('company.*', 'accuracy.id as idAccuracy', 'accuracy.status as status')
+            ->leftjoin('employer', 'employer.id_company', 'company.id')
+            ->leftjoin('accuracy', 'accuracy.user_id', 'employer.user_id')
+            ->whereNotNull('accuracy.user_id')
+            ->get();
         return view('admin.company.index', [
             'company' => $company,
             'title' => 'Danh sách công ty'
@@ -93,5 +100,21 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function dataXt($id)
+    {
+        $acc = Accuracy::where('id', $id)->first();
+        return response()->json([
+            'data' => $acc
+        ]);
+    }
+    public function changeStatus(Request $request)
+    {
+        $acc = Accuracy::where('id', $request['id'])->first();
+        $acc->status = 1;
+        $acc->save();
+        return response()->json([
+            'message' => 'Xác nhận thành công'
+        ]);
     }
 }

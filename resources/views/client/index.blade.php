@@ -112,15 +112,18 @@
                     <h1 class="header-box">Tìm việc làm nhanh 24h, việc làm mới nhất trên toàn quốc</h1>
                     <p class="header-box-description">Tiếp cận 30,000+ tin tuyển dụng việc làm mới mỗi ngày từ hàng nghìn
                         doanh nghiệp uy tín tại Việt Nam</p>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Hệ thống mong muốn bạn đăng nhập để có thể
-                        hiển thị các việc làm phù hợp nhất!, <strong><a href="{{ route('index') }}"
-                                class="show-turn-on-location">Đăng
-                                nhập tại đây!</a></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">X</span>
-                        </button>
-                    </div>
+                    @if (!Auth::guard('user')->check())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Hệ thống mong muốn bạn đăng nhập để có thể
+                            hiển thị các việc làm phù hợp nhất!, <strong><a href="#" class="show-turn-on-location"
+                                    data-toggle="modal" data-target="#exampleModallogin">Đăng
+                                    nhập tại đây!</a></strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                        </div>
+                    @endif
+
                     <div class="alert alert-info alert-dismissible fade show" role="alert">
                         Hãy báo cáo cho tôi nếu bạn gặp phải sự cố hoặc bạn phát hiện ai đó có hành vi lừa đảo!, <strong><a
                                 href="{{ route('index') }}" class="show-turn-on-location">Liên hệ!</a></strong>
@@ -582,7 +585,8 @@
                                 </div>
                                 <div class="blg_grid_caption">
                                     {{-- <div class="blg_tag"><span>{{ $item->title }} </span></div> --}}
-                                    <p class="theme-cl px-3 py-1 rounded bg-light-success d-inline-flex">{{$item->majors}}
+                                    <p class="theme-cl px-3 py-1 rounded bg-light-success d-inline-flex">
+                                        {{ $item->majors }}
                                     </p>
                                     <div class="blg_title">
                                         <h4><a href="blog-detail.html">{{ $item->title }}</a></h4>

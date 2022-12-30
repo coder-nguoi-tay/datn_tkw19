@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Employer;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\AccountPayment;
+use App\Models\Accuracy;
+use App\Models\Company;
 use App\Models\Employer;
 use App\Models\PaymentHistoryEmployer;
 use Illuminate\Http\Request;
@@ -27,10 +29,14 @@ class ProfileController extends BaseController
     {
         $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         $paymentHistory = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)->get();
+        $Company = Company::where('id', $employer->id_company)->first();
+        $accuracy = Accuracy::where('user_id', Auth::guard('user')->user()->id)->first();
         return view('employer.profile.index', [
             'title' => 'Cập nhật thông tin công ty',
             'employer' => $employer,
             'paymentHistory' => $paymentHistory,
+            'accuracy' => $accuracy,
+            'Company' => $Company,
         ]);
     }
     public function payMoney()

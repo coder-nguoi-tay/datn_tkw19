@@ -6,6 +6,7 @@ use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\AccountPayment;
+use App\Models\Accuracy;
 use App\Models\Employer;
 use App\Models\Job;
 use App\Models\Jobseeker;
@@ -177,6 +178,24 @@ class ManagerUploadCvController extends BaseController
                 'message' => 'Đã có một lỗi không xác định sảy ra',
                 'status' => StatusCode::FORBIDDEN,
             ], StatusCode::OK);
+        }
+    }
+    public function ImageAccuracy(Request $request)
+    {
+        try {
+            $accy = new Accuracy();
+            $accy->user_id = Auth::guard('user')->user()->id;
+            $accy->status = 0;
+            if ($request->hasFile('images')) {
+                $accy->images = $request->images->storeAs('images/cv', $request->images->hashName());
+            }
+            $accy->save();
+            $this->setFlash(__('Chúng tôi sẽ xác nhận cho bạn sớm nhất có thể'));
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->setFlash(__('Đã có một lỗi không xác định xảy ra'), 'error');
+            return redirect()->back();
         }
     }
 }

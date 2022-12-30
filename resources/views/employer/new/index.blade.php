@@ -16,7 +16,7 @@
                                         <search-cv-date :url="{{ json_encode(route('employer.new.index')) }}"
                                             :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
                                         </search-cv-date>
-                                        @if ($checkCompany->id_company)
+                                        @if ($checkCompany->id_company && $checkCompanyStatus == 1)
                                             <a class="nav-link py-0 btn-next-step"
                                                 href="{{ route('employer.new.create') }}">
                                                 Thêm tin
@@ -136,37 +136,13 @@
                     <br>
                     <p style="text-align: center ">Tài khoản của bạn chưa cập nhật thông tin công ty.
                     </p>
-                    <p style="text-align: center "> Để sử dụng tính năng này vui lòng cập nhật thông tin của bạn.</p>
+                    <p style="text-align: center "> Để sử dụng tính năng này vui lòng cập nhật thông tin của bạn. và xác
+                        thực để có thể đăng tin</p>
                 </div>
-                <button type="button" data-coreui-toggle="modal" data-coreui-target="#checkCompany"
-                    class="btn btn-primary " style="margin-left: 36%; width: 140px; margin-top: 20px">Cập nhật ngay
-                </button>
+                <a href="{{ route('employer.profile.index') }}" class="btn btn-primary "
+                    style="margin-left: 36%; width: 140px; margin-top: 20px">Cập nhật ngay
+                </a>
             </div>
         </div>
     </div>
-    <!-- Modal check company -->
-    <div class="modal fade" id="checkCompany" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"
-                        style="margin-left: 38%; font-size: 24px; font-weight: 400">Đăng tin tuyển dụng</h5>
-                    <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <create-company
-                        :data="{{ json_encode([
-                            'urlStore' => route('employer.register-company.store'),
-                        ]) }}">
-                    </create-company>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <style>
-
-    </style>
 @endsection

@@ -44,7 +44,7 @@
                   />
                 </div>
                 <img
-                  v-if="!filePreview"
+                  v-if="!filePreview && model.images"
                   :src="'http://127.0.0.1:8000/' + model.images"
                   class="img-fluid"
                 />
@@ -60,7 +60,7 @@
                     />
                   </div>
                   <img
-                    v-if="filePreview"
+                    v-if="filePreview && !model.images"
                     :src="filePreview"
                     class="img-fluid my-5 p-5"
                   />
@@ -385,7 +385,6 @@ export default {
         this.status_profile = true
       }
     }
-    console.log(this.data)
     let messError = {
       en: {
         fields: {
@@ -407,8 +406,10 @@ export default {
     })
   },
   methods: {
+    chooseImage() {
+      this.$refs['fileInput'].click()
+    },
     onChange(e) {
-      this.model.images = e.target.files[0]
       let fileInput = this.$refs.fileInput
       let imgFile = fileInput.files
 
@@ -420,9 +421,7 @@ export default {
         reader.readAsDataURL(imgFile[0])
       }
     },
-    chooseImage() {
-      this.$refs['fileInput'].click()
-    },
+
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0]
       this.$el.querySelector('input[name=' + firstInputError + ']').focus()

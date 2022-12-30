@@ -355,7 +355,10 @@
                       @submit="handleSubmit($event, onSubmit)"
                       class="form-register-employer"
                       ref="formData"
+                      :action="data.urlAccuracyCompany"
+                      enctype="multipart/form-data"
                     >
+                      <input type="hidden" :value="csrfToken" name="_token" />
                       <div class="card h-100">
                         <div class="card-body">
                           <div class="row">
@@ -363,7 +366,17 @@
                               <div class="mb-3 row">
                                 <div class="row box-title-license">
                                   <p class="title-license">
-                                    Trạng thái: chưa cập nhật
+                                    Trạng thái:
+                                    <span
+                                      class="badge bg-secondary"
+                                      v-if="statusImage == 0"
+                                      >Chưa xác thực</span
+                                    >
+                                    <span
+                                      class="badge bg-success"
+                                      v-if="statusImage == 1"
+                                      >Đã xác thực</span
+                                    >
                                   </p>
                                   <p class="title-license">
                                     Giấy phép kinh doanh:
@@ -373,37 +386,64 @@
                                   </p>
                                 </div>
 
-                                <div class="box-upload text-center">
-                                  <p class="icon">
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                  </p>
-                                  <div class="not-cv">
-                                    <p>Chọn hoặc kéo file vào đây</p>
-                                  </div>
-                                  <Field
-                                    type="file"
-                                    accept="image/*"
-                                    @change="previewImage"
-                                    id="my-file"
-                                    name="file_cv"
-                                    class="file-upload-cv"
-                                    rules="required|mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx|max:2048"
-                                  />
-                                  <br />
+                                <div class="text-center">
+                                  <div
+                                    class="img-fluid border box-upload p-3"
+                                    id="img-preview"
+                                    @click="chooseImage()"
+                                    role="button"
+                                    style="height: 200px; width: 200px"
+                                    v-if="!Image"
+                                  >
+                                    <div style="display: none">
+                                      <input
+                                        type="file"
+                                        @change="onChange"
+                                        ref="fileInput"
+                                        accept="image/*"
+                                        name="images"
+                                      />
+                                    </div>
 
-                                  <template v-if="preview">
-                                    <img
-                                      :src="preview"
-                                      class="img-fluid box-img my-5"
-                                    />
-                                  </template>
+                                    <div
+                                      id="img-preview"
+                                      @click="chooseImage()"
+                                      role="button"
+                                    >
+                                      <div style="display: none">
+                                        <input
+                                          type="file"
+                                          id="file"
+                                          @change="onChange"
+                                          ref="fileInput"
+                                          accept="image/*"
+                                          name="images"
+                                        />
+                                      </div>
+                                      <img
+                                        v-if="filePreview"
+                                        :src="filePreview"
+                                        class="img-fluid"
+                                      />
+                                    </div>
+                                  </div>
+                                  <img
+                                    v-if="Image != null"
+                                    :src="'http://127.0.0.1:8000/' + Image"
+                                    class="img-fluid"
+                                  />
                                 </div>
-                                <ErrorMessage class="error" name="file_cv" />
+                                <ErrorMessage class="error" name="images" />
+                                <input
+                                  type="hidden"
+                                  name="images"
+                                  :value="model.images"
+                                />
                               </div>
                             </div>
                           </div>
 
-                          <div class="col-md-12">
+                          <div class="col-md-12" v-if="!Image">
                             <button
                               type="button"
                               class="
@@ -471,7 +511,9 @@
                       @submit="handleSubmit($event, onSubmit)"
                       class="form-register-employer"
                       ref="formData"
+                      :action="data.urlStoreCompany"
                     >
+                      <input type="hidden" name="_token" :value="csrfToken" />
                       <div class="card h-100">
                         <div class="card-body">
                           <div class="col-12 form-update-company">
@@ -482,6 +524,7 @@
                               <div class="">
                                 <Field
                                   type="text"
+                                  v-model="dataCompany.name"
                                   name="nameCompany"
                                   id="nameCompany"
                                   class="form-control"
@@ -496,39 +539,38 @@
                             </div>
 
                             <div class="mb-3 row">
-                              <label for="tax_code" class="form-label"
+                              <label for="number_tax" class="form-label"
                                 >Mã số thuế
                               </label>
                               <div>
                                 <Field
                                   type="text"
-                                  name="tax_code"
-                                  id="tax_code"
+                                  v-model="dataCompany.number_tax"
+                                  name="number_tax"
+                                  id="number_tax"
                                   class="form-control"
                                   placeholder="Nhập mã số thuế công ty"
                                   rules="required"
                                 />
-                                <ErrorMessage class="error" name="tax_code" />
+                                <ErrorMessage class="error" name="number_tax" />
                               </div>
                             </div>
 
                             <div class="mb-3 row">
-                              <label for="emailCompany" class="form-label"
+                              <label for="email" class="form-label"
                                 >Email Công Ty
                               </label>
                               <div>
                                 <Field
                                   type="text"
-                                  name="emailCompany"
-                                  id="emailCompany"
+                                  v-model="dataCompany.email"
+                                  name="email"
+                                  id="email"
                                   class="form-control"
                                   placeholder="Nhập email công ty"
                                   rules="required|email"
                                 />
-                                <ErrorMessage
-                                  class="error"
-                                  name="emailCompany"
-                                />
+                                <ErrorMessage class="error" name="email" />
                               </div>
                             </div>
 
@@ -538,6 +580,7 @@
                               </label>
                               <div>
                                 <Field
+                                  v-model="dataCompany.number_member"
                                   type="number"
                                   name="number_member"
                                   id="number_member"
@@ -560,17 +603,15 @@
                               <div>
                                 <Field
                                   type="text"
-                                  name="addressCompany"
-                                  id="addressCompany"
+                                  v-model="dataCompany.address"
+                                  name="address"
+                                  id="address"
                                   class="form-control"
                                   rows="3"
                                   rules="required|max:128"
                                   placeholder="Nhập địa chỉ công ty"
                                 />
-                                <ErrorMessage
-                                  class="error"
-                                  name="addressCompany"
-                                />
+                                <ErrorMessage class="error" name="address" />
                               </div>
                             </div>
 
@@ -580,18 +621,42 @@
                               </label>
                               <div>
                                 <Editor
-                                  name="descriptionCompany"
-                                  id="descriptionCompany"
+                                  v-model="dataCompany.desceibe"
+                                  name="desceibe"
+                                  id="desceibe"
                                   placeholder="Nhập mô tả công ty"
                                   class="text-company-employer"
                                   rules="required|max:255"
                                 />
 
-                                <ErrorMessage
-                                  class="error"
-                                  name="descriptionCompany"
-                                />
+                                <ErrorMessage class="error" name="desceibe" />
                               </div>
+                            </div>
+                            <div class="mb-3 row">
+                              <label for="descriptionCompany" class="form-label"
+                                >logo
+                              </label>
+                              <div>
+                                <Field
+                                  type="file"
+                                  v-model="dataCompany.logo"
+                                  name="logo"
+                                  id="logo"
+                                  class="form-control"
+                                  rows="3"
+                                  rules="required"
+                                  placeholder="logo"
+                                />
+                                <ErrorMessage class="error" name="logo" />
+                              </div>
+                              <img
+                                :src="
+                                  'http://127.0.0.1:8000/' + dataCompany.logo
+                                "
+                                alt=""
+                                style="width: 100px !important"
+                                height="100"
+                              />
                             </div>
                             <div class="col-md-12">
                               <button
@@ -653,18 +718,31 @@ export default {
   },
   data: function () {
     return {
-      //   csrfToken: Laravel.csrfToken,
-      // model: this.data.employer
-      //   value: this.data.email
+      csrfToken: Laravel.csrfToken,
+      model: {},
       preview: null,
       image: null,
       preview_list: [],
-      image_list: []
+      image_list: [],
+      filePreview: '',
+      Image: null,
+      statusImage: '',
+      dataCompany: ''
     }
   },
   props: ['data'],
   created() {
-    console.log(this.data.paymentHistory)
+    if (this.data.Company) {
+      this.dataCompany = this.data.Company
+    }
+    if (this.data.accuracy) {
+      this.Image = this.data.accuracy.images
+      if (this.data.accuracy.status == 0) {
+        this.statusImage = 0
+      } else {
+        this.statusImage = 1
+      }
+    }
     let messError = {
       en: {
         fields: {
@@ -731,6 +809,20 @@ export default {
   methods: {
     moment: function () {
       return moment()
+    },
+    chooseImage() {
+      this.$refs['fileInput'].click()
+    },
+    onChange(e) {
+      let fileInput = this.$refs.fileInput
+      let imgFile = fileInput.files
+      if (imgFile && imgFile[0]) {
+        let reader = new FileReader()
+        reader.onload = (e) => {
+          this.filePreview = e.target.result
+        }
+        reader.readAsDataURL(imgFile[0])
+      }
     },
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0]

@@ -45,7 +45,8 @@
                                     @foreach ($company as $item)
                                         <tr>
                                             <td>
-                                                {{ $item->logo }}
+                                                <img src="{{ asset($item->logo) }}" alt="" width="150"
+                                                    height="150">
                                             </td>
                                             <td>
                                                 {{ $item->name }}
@@ -57,14 +58,25 @@
                                                 {{ $item->address }}
                                             </td>
 
-                                            <td>
-                                                Giấy chứng nhận
+                                            <td class="text-center">
+                                                @if ($item->status == 0)
+                                                    <btn-status-company
+                                                        :data="{{ json_encode([
+                                                            'idCompany' => $item->idAccuracy,
+                                                            'urlGetData' => route('admin.company.dataxt', $item->idAccuracy),
+                                                        ]) }}">
+                                                    </btn-status-company>
+                                                @else
+                                                    <button class="badge bg-success text-center">Đã Xác Thức</button>
+                                                @endif
+
+
                                             </td>
 
                                             <td class="align-middle">
                                                 <btn-delete-admin
                                                     :message-confirm="{{ json_encode('Bạn có chắc muốn xóa không ?') }}"
-                                                    :delete-action="{{ json_encode(route('admin.admin.destroy', $item->id)) }}">
+                                                    :delete-action="{{ json_encode(route('admin.company.destroy', $item->id)) }}">
                                                 </btn-delete-admin>
                                             </td>
 
@@ -77,6 +89,7 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
 
     </div>
 @endsection

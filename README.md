@@ -42,7 +42,7 @@ $ npm run dev
 $ php artisan make:repository name
 
 #generate model from database
-$ php artisan krlove:generate:model PaymentHistoryEmployer --table-name=payment_history_emplyer
+$ php artisan krlove:generate:model Accuracy --table-name=accuracy
 
 #general jwt secret key
 php artisan jwt:secret

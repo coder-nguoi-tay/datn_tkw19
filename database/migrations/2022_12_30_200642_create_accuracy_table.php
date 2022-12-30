@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateCompanyTable extends Migration
+class CreateAccuracyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class UpdateCompanyTable extends Migration
      */
     public function up()
     {
-        Schema::table('company', function (Blueprint $table) {
-            $table->integer('number_tax')->default(0);
+        Schema::create('accuracy', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id');
+            $table->string('images');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +28,6 @@ class UpdateCompanyTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('accuracy');
     }
 }

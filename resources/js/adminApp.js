@@ -119,6 +119,8 @@ app.component('show-cv-client', showCvClient);
 
 import Widgets from "./components/employer/widgets.vue";
 app.component('widgets', Widgets);
+import btnStatusCompany from "./components/admin/company/buttomStatus.vue";
+app.component('btn-status-company', btnStatusCompany);
 
 app.mount('#app');
 

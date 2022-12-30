@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Seeker;
 use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
+use App\Models\Accuracy;
 use App\Models\ProfileUserCv;
 use App\Models\UploadCv;
 use App\Models\User;

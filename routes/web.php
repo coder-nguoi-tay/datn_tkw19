@@ -47,6 +47,8 @@ Route::middleware('admin')->prefix('dashboard')->name('admin.')->group(function 
     Route::resource('profile', ProfileController::class);
     Route::resource('new', NewController::class);
     Route::resource('company', CompanyController::class);
+    Route::get('company/data-xt/{id}', [CompanyController::class, 'dataXt'])->name('company.dataxt');
+    Route::post('company/change-status', [CompanyController::class, 'changeStatus'])->name('company.changeStatus');
 });
 Route::resource('admin', LoginController::class);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
@@ -88,6 +90,8 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::get('pay-money', [EmployerProfileController::class, 'payMoney'])->name('employer.profile.paymoney');
     Route::post('pay-money-payment', [EmployerProfileController::class, 'payMoneyPayment'])->name('profile.paymoney.payment');
     Route::get('pay-money-payment-return', [EmployerProfileController::class, 'vnpayReturn'])->name('profile.paymoney.payment.return');
+    // giấy xác thực
+    Route::post('image-accuracy', [ManagerUploadCvController::class, 'ImageAccuracy'])->name('profile.ImageAccuracy');
 });
 
 
