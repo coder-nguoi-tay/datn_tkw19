@@ -83,7 +83,9 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::resource('register-company', RegisterCompanyController::class);
     //profile
     Route::resource('profile', EmployerProfileController::class);
-    Route::get('pay-money',[EmployerProfileController::class, 'payMoney'])->name('employer.profile.paymoney');
+    Route::get('pay-money', [EmployerProfileController::class, 'payMoney'])->name('employer.profile.paymoney');
+    Route::post('pay-money-payment', [EmployerProfileController::class, 'payMoneyPayment'])->name('profile.paymoney.payment');
+    Route::get('pay-money-payment-return', [EmployerProfileController::class, 'vnpayReturn'])->name('profile.paymoney.payment.return');
 });
 
 

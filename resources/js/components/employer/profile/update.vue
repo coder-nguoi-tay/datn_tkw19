@@ -280,14 +280,18 @@
                     >
                       <div class="card h-100">
                         <div class="card-body">
-                          <div class="col-12 form-update-company">
+                          <div
+                            class="col-12 form-update-company"
+                            v-for="item in data.paymentHistory"
+                            :key="item.id"
+                          >
                             <div class="mb-3 row">
                               <div data-v-79f03480="" class="card-body">
                                 <!---->
                                 <div data-v-79f03480="" class="d-flex history">
-                                  <span data-v-79f03480="" class="line-date"
-                                    >27/12/2022</span
-                                  >
+                                  <span data-v-79f03480="" class="line-date">{{
+                                    moment(item.created_at).format('YYYY-MM-DD')
+                                  }}</span>
                                   <div data-v-79f03480="" class="line">
                                     <div
                                       data-v-79f03480=""
@@ -297,87 +301,26 @@
                                         <p data-v-79f03480="">
                                           <span data-v-79f03480="" class="time"
                                             >Số tiền</span
-                                          ><span data-v-79f03480=""
-                                            >Số điện thoại: 0962523872 được xác
-                                            thực thành công</span
-                                          >
+                                          ><span data-v-79f03480="">{{
+                                            new Intl.NumberFormat('de-DE', {
+                                              style: 'currency',
+                                              currency: 'VND'
+                                            }).format(item.price)
+                                          }}</span>
                                         </p>
                                       </div>
                                       <div data-v-79f03480="" class="content">
                                         <p data-v-79f03480="">
                                           <span data-v-79f03480="" class="time"
                                             >Nội dung</span
-                                          ><span data-v-79f03480=""
-                                            >Đăng nhập</span
-                                          >
+                                          ><span data-v-79f03480="">{{
+                                            item.desceibe
+                                          }}</span>
                                         </p>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                                <div data-v-79f03480="" class="d-flex history">
-                                  <span data-v-79f03480="" class="line-date"
-                                    >26/12/2022</span
-                                  >
-                                  <div data-v-79f03480="" class="line">
-                                    <div
-                                      data-v-79f03480=""
-                                      class="line-content"
-                                    >
-                                      <div data-v-79f03480="" class="content">
-                                        <p data-v-79f03480="">
-                                          <span data-v-79f03480="" class="time"
-                                            >Số tiền</span
-                                          ><span data-v-79f03480=""
-                                            >Số điện thoại: 0962523872 được xác
-                                            thực thành công</span
-                                          >
-                                        </p>
-                                      </div>
-                                      <div data-v-79f03480="" class="content">
-                                        <p data-v-79f03480="">
-                                          <span data-v-79f03480="" class="time"
-                                            >Nội dung</span
-                                          ><span data-v-79f03480=""
-                                            >Đăng nhập</span
-                                          >
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div data-v-79f03480="" class="d-flex history">
-                                  <span data-v-79f03480="" class="line-date"
-                                    >25/12/2022</span
-                                  >
-                                  <div data-v-79f03480="" class="line">
-                                    <div
-                                      data-v-79f03480=""
-                                      class="line-content"
-                                    >
-                                      <div data-v-79f03480="" class="content">
-                                        <p data-v-79f03480="">
-                                          <span data-v-79f03480="" class="time"
-                                            >Số tiền</span
-                                          ><span data-v-79f03480=""
-                                            >Số điện thoại: 0962523872 được xác
-                                            thực thành công</span
-                                          >
-                                        </p>
-                                      </div>
-                                      <div data-v-79f03480="" class="content">
-                                        <p data-v-79f03480="">
-                                          <span data-v-79f03480="" class="time"
-                                            >Nội dung</span
-                                          ><span data-v-79f03480=""
-                                            >Đăng nhập</span
-                                          >
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <!---->
                               </div>
                             </div>
                           </div>
@@ -699,6 +642,7 @@ import {
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 import Editor from '@tinymce/tinymce-vue'
+import moment from 'moment'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -720,6 +664,7 @@ export default {
   },
   props: ['data'],
   created() {
+    console.log(this.data.paymentHistory)
     let messError = {
       en: {
         fields: {
@@ -784,6 +729,9 @@ export default {
     ErrorMessage
   },
   methods: {
+    moment: function () {
+      return moment()
+    },
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0]
       this.$el.querySelector('input[name=' + firstInputError + ']').focus()

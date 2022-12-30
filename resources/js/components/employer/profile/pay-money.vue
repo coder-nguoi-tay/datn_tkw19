@@ -51,27 +51,10 @@
                       @submit="handleSubmit($event, onSubmit)"
                       class="form-register-employer"
                       ref="formData"
+                      :action="data.urlStore"
                     >
+                      <input type="hidden" :value="csrfToken" name="_token" />
                       <div class="card-body">
-                        <br />
-
-                        <div class="mb-3 row">
-                          <label for="name" class="col-sm-3 col-form-label"
-                            >Họ và tên<span class="required-lable">*</span>
-                          </label>
-                          <div class="col-sm-9">
-                            <Field
-                              type="text"
-                              name="name"
-                              id="name"
-                              class="form-control"
-                              placeholder="Nhập tên công ty"
-                              rules="required|max:128"
-                            />
-                            <ErrorMessage class="error" name="name" />
-                          </div>
-                        </div>
-
                         <br />
                         <div class="mb-3 row">
                           <label
@@ -112,9 +95,8 @@
                               <option value disabled selected>
                                 Chọn hình thức thanh toán
                               </option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
+                              <option value="1">Online</option>
+                              <option value="2">Offline</option>
                             </Field>
                             <ErrorMessage class="error" name="payments" />
                           </div>
@@ -135,26 +117,27 @@
                               <option value disabled selected>
                                 Chọn ngân hàng
                               </option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
+                              <option value="NCB">
+                                Ngân hàng Quốc Dân – NCB
+                              </option>
                             </Field>
-                             <ErrorMessage class="error" name="bank" />
+                            <ErrorMessage class="error" name="bank" />
                           </div>
                         </div>
                         <br />
                         <div class="mb-3 row">
-                          <label
-                            for="description"
-                            class="col-sm-3 col-form-label"
-                            >Mô tả công ty
+                          <label class="col-sm-3 col-form-label"
+                            >Mô tả<span class="required-lable">*</span>
                           </label>
                           <div class="col-sm-9">
-                            <Editor
-                              name="description"
-                              class="text-company-employer"
-                              rules="required|max:255"
-                            />
+                            <Field
+                              class="form-control"
+                              rules="required"
+                              name="desceibe"
+                              placeholder="desceibe"
+                            >
+                            </Field>
+                            <ErrorMessage class="error" name="desceibe" />
                           </div>
                         </div>
                         <div class="col-md-12">
@@ -173,8 +156,10 @@
                             <!---->
                             Hủy
                           </button>
+                          <input type="hidden" name="redirect" id="" />
                           <button
                             type="submit"
+                            name="redirect"
                             class="btn min-width btn btn-primary btn-lg"
                           >
                             <!---->
@@ -214,9 +199,7 @@ export default {
   },
   data: function () {
     return {
-      //   csrfToken: Laravel.csrfToken,
-      // model: this.data.employer
-      //   value: this.data.email
+      csrfToken: Laravel.csrfToken
     }
   },
   props: ['data'],

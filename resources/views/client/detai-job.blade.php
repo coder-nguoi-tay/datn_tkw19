@@ -572,6 +572,7 @@
                             'urlStoreCv' => route('quan-ly-cv.create'),
                             'jobId' => $job->id,
                             'checkUser' => $profileUser,
+                            'seeker' => $seeker,
                         ]) }}">
                     </up-cv>
                 </div>

@@ -8,6 +8,7 @@
             'employer' => $employer,
             'email' => Auth::guard('user')->user()->email,
             'urlStore' => route('employer.new.store'),
+            'paymentHistory' => $paymentHistory,
         ]) }}">
     </update-profile-employer>
 @endsection

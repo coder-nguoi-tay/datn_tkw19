@@ -197,6 +197,10 @@ class HomeController extends BaseController
      */
     public function showDetail($name, $id)
     {
+        if (Auth::guard('user')->check()) {
+            $seeker = $this->Jobseeker->where('user_role', Auth::guard('user')->user()->id)->first();
+        }
+
         $job = $this->job
             // ->with(['getWage', 'getlocation', 'getskill', 'getMajors'])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
@@ -260,6 +264,7 @@ class HomeController extends BaseController
             'breadcrumbs' => $breadcrumbs,
             'cv' => $cv ?? '',
             'profileUser' => $profileUser ?? '',
+            'seeker' => $seeker ?? '',
         ]);
     }
 
@@ -324,8 +329,11 @@ class HomeController extends BaseController
     }
     public function upCv(Request $request)
     {
-
-
+        $seeker = $this->Jobseeker->where('user_role', Auth::guard('user')->user()->id)->first();
+        if (!$seeker) {
+            $this->setFlash(__('Bạn cần hoàn thiện hồ sơ để có thể nộp được CV'), 'error');
+            return redirect()->back();
+        }
         $checkJob = $this->savecv->where([
             ['id_job', $request->id_job],
             ['user_id', Auth::guard('user')->user()->id]

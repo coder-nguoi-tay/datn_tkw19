@@ -243,6 +243,7 @@ import {
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 import $ from 'jquery'
+import { Notyf } from 'notyf'
 export default {
   setup() {
     Object.keys(rules).forEach((rule) => {
@@ -268,7 +269,7 @@ export default {
     ErrorMessage
   },
   mounted() {
-    console.log(this.data.checkUser)
+    console.log(this.data.seeker)
     // if (this.cv_for_save == '') {
     //   return [(this.cv_for_save = 'true')]
     // }
@@ -304,7 +305,25 @@ export default {
       }
     },
     onSubmit() {
-      this.$refs.formData.submit()
+      if (!this.data.seeker) {
+        const notyf = new Notyf({
+          duration: 6000,
+          position: {
+            x: 'right',
+            y: 'bottom'
+          },
+          types: [
+            {
+              type: 'error',
+              duration: 8000,
+              dismissible: true
+            }
+          ]
+        })
+        return notyf.error('Bạn cần hoàn thiện hồ sơ để có thể nộp được CV')
+      } else {
+        this.$refs.formData.submit()
+      }
     }
   }
 }
