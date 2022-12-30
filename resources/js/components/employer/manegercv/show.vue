@@ -1,9 +1,9 @@
 <template>
   <div style="margin: 30px 0; padding: 0; box-sizing: border-box">
-    <div class="main_gt">
+    <!-- <div class="main_gt">
       <div class="left_cv">
         <div class="box_img" style="overflow: hidden">
-          <!-- :src="data.avatar" -->
+          :src="data.avatar"
           <img alt="anh_cv" style="width: 100%; border: none" />
         </div>
         <div class="contact">
@@ -11,31 +11,31 @@
           <div class="box_contact">
             <div class="mail">
               <i class="fa-solid fa-envelope"></i>
-              <!-- <p v-if="data.cv.status == data.CheckUser">
+              <p v-if="data.cv.status == data.CheckUser">
                 {{ data.cv.email }}
-              </p> -->
-              <!-- <p v-if="data.cv.status == 0">*****************</p> -->
+              </p>
+              <p v-if="data.cv.status == 0">*****************</p>
             </div>
             <div class="mail">
               <i class="fa-solid fa-phone"></i>
-              <!-- <p v-if="data.cv.status == data.CheckUser">
+              <p v-if="data.cv.status == data.CheckUser">
                 {{ data.cv.phone }}
-              </p> -->
-              <!-- <p v-if="data.cv.status == 0">*****************</p> -->
+              </p>
+              <p v-if="data.cv.status == 0">*****************</p>
             </div>
             <div class="mail">
               <i class="fa-sharp fa-solid fa-location-dot"></i>
-              <!-- <p v-if="data.cv.status == data.CheckUser">
+              <p v-if="data.cv.status == data.CheckUser">
                 {{ data.cv.address }}
-              </p> -->
-              <!-- <p v-if="data.cv.status == 0">*****************</p> -->
+              </p>
+              <p v-if="data.cv.status == 0">*****************</p>
             </div>
             <div class="mail">
               <i class="fa-brands fa-facebook"></i>
-              <!-- <p v-if="data.cv.status == data.CheckUser">
+              <p v-if="data.cv.status == data.CheckUser">
                 <a :href="data.cv.link_fb">{{ data.cv.link_fb }}</a>
-              </p> -->
-              <!-- <p v-if="data.cv.status == 0">*****************</p> -->
+              </p>
+              <p v-if="data.cv.status == 0">*****************</p>
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@
           <h3>CÁC KỸ NĂNG</h3>
           <div class="box_contact">
             <div class="ky_nang">
-              <!-- <h4 class="text-first">{{ data.cv.skill }}</h4> -->
+              <h4 class="text-first">{{ data.cv.skill }}</h4>
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@
           <div class="box_contact">
             <div class="ky_nang">
               <p>
-                <!-- {{ data.cv.certificate }} -->
+                {{ data.cv.certificate }}
               </p>
             </div>
           </div>
@@ -60,8 +60,8 @@
       </div>
       <div class="right_cv">
         <div class="box_cv">
-          <!-- <h2 class="name">{{ data.cv.name }}</h2> -->
-          <!-- <h4>{{ data.cv.majors_name }}</h4> -->
+          <h2 class="name">{{ data.cv.name }}</h2>
+          <h4>{{ data.cv.majors_name }}</h4>
         </div>
         <div class="box_cv mt_cv">
           <h3
@@ -70,9 +70,9 @@
             MỤC TIÊU NGHỀ NGHIỆP
           </h3>
           <span class="bd_cv"></span>
-          <!-- <p class="mt" v-if="data.cv.target">
+          <p class="mt" v-if="data.cv.target">
             {{ data.cv.target }}
-          </p> -->
+          </p>
         </div>
         <div class="box_cv">
           <h3
@@ -80,9 +80,9 @@
           >
             KINH NGHIỆM LÀM VIỆC
           </h3>
-          <!-- <span class="bd_cv">{{ data.cv.work }}</span> -->
+          <span class="bd_cv">{{ data.cv.work }}</span>
           <div class="box_2_cv" style="margin-bottom: 30px">
-            <!-- <div class="mt">- {{ data.cv.work_detail }}</div> -->
+            <div class="mt">- {{ data.cv.work_detail }}</div>
           </div>
         </div>
         <div class="box_cv">
@@ -97,9 +97,150 @@
             dự án
           </h3>
           <span class="bd_cv">rewrwd</span>
-          <!-- <div class="box_2_cv" style="margin-bottom: 30px">
+          <div class="box_2_cv" style="margin-bottom: 30px">
             {{ data.cv.project_detail }}
-          </div> -->
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="main_gt">
+      <div class="left_cv">
+        <div class="box_img">
+          <img src="" alt="" style="width: 100%" />
+        </div>
+        <div class="contact">
+          <h3>Thông tin cá nhân</h3>
+          <div class="box_contact">
+            <div class="mail">
+              <i class="fa-solid fa-envelope"></i>
+              <p>vucongtuyen.hn@gmail.com</p>
+            </div>
+            <div class="mail">
+              <i class="fa-solid fa-envelope"></i>
+              <p>vucongtuyen.hn@gmail.com</p>
+            </div>
+            <div class="mail">
+              <i class="fa-solid fa-envelope"></i>
+              <p>vucongtuyen.hn@gmail.com</p>
+            </div>
+            <div class="mail">
+              <i class="fa-solid fa-envelope"></i>
+              <p>vucongtuyen.hn@gmail.com</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact">
+          <h3>CÁC KỸ NĂNG</h3>
+          <div class="box_contact">
+            <div class="ky_nang">
+              <h4 class="text-first">ngôn ngữ lập trình</h4>
+              <p>PHP (Laravel), Javascript, Angular, HTML CSS</p>
+            </div>
+            <div class="ky_nang">
+              <h4 class="text-first">làm việc nhóm</h4>
+              <p>PHP (Laravel), Javascript, Angular, HTML CSS</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact">
+          <h3>CHỨNG CHỈ</h3>
+          <div class="box_contact">
+            <div class="ky_nang">
+              <h4>2022</h4>
+              <p>
+                English Topnotch 2.2 tại Trường Cao đẳng FPT Polytechnic (Tương
+                đương Ielts 4.5)
+              </p>
+            </div>
+            <div class="ky_nang">
+              <h4>2023</h4>
+              <p>
+                English Topnotch 2.2 tại Trường Cao đẳng FPT Polytechnic (Tương
+                đương Ielts 4.5)
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right_cv">
+        <div class="box_cv">
+          <h2 class="name">VŨ CÔNG TUYỀN</h2>
+          <h4>BACK-END DEVELOPER</h4>
+        </div>
+        <div class="box_cv mt_cv">
+          <h3>
+            <p
+              style="
+                font-size: 18px;
+                font-weight: 500;
+                text-transform: uppercase;
+              "
+            >
+              MỤC TIÊU NGHỀ NGHIỆP
+            </p>
+          </h3>
+          <span class="bd_cv"></span>
+          <p class="mt">
+            Ngắn hạn: Trong 1 năm tới, em sẽ trở thành một lập trình viên
+            Back-end(PHP) chuyên nghiệp, tích lũy nhiều kinh nghiệm trong quá
+            trình làm việc với các dự án.- Dài hạn: Trong vòng từ 2-3 năm tới,
+            em sẽ trở thành lập trình viên fullstack, học hỏi thêm nhiều ngôn
+            ngữ cũng như framework liên quan.
+          </p>
+        </div>
+        <div class="box_cv">
+          <h3
+            style="font-size: 18px; font-weight: 500; text-transform: uppercase"
+          >
+            KINH NGHIỆM LÀM VIỆC
+          </h3>
+          <span class="bd_cv"></span>
+          <div class="box_2_cv">
+            <div class="mt">
+              <div class="title_cv">
+                <i class="fa-solid fa-briefcase"></i>
+                <h4>VỊ TRÍ: LẬP TRÌNH VIÊN BACK-END (CODE PHP THUẦN)</h4>
+              </div>
+              <div class="h4">Website bán thời trang Adidas</div>
+              <div class="h4">Công ty: Top CV</div>
+              <div class="mt_cv">
+                <p>- Số lượng thành viên: 3 người</p>
+                <p>
+                  - Mô tả công việc: Sử dụng công cụ Visual StudioCode code giao
+                  diện và code chức năng;
+                </p>
+                <p>- Công nghệ sử dụng: PHP, MySQL, Bootstrap, HTML CSS</p>
+                <p>- Githup: github.com/congtuyen791/TTA_du_an_1</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box_cv">
+          <h3
+            style="font-size: 18px; font-weight: 500; text-transform: uppercase"
+          >
+            Dự án
+          </h3>
+          <span class="bd_cv"></span>
+          <div class="box_2_cv">
+            <div class="mt">
+              <div class="title_cv">
+                <i class="fa-solid fa-briefcase"></i>
+                <h4>QUẢN TRỊ DOANH NGHIỆP</h4>
+              </div>
+              <div class="h4">RAINWAY GROUP</div>
+              <div class="mt_cv">
+                <p>Khách hàng: ANZ TOPCV</p>
+                <p>Số lượng người tham gia : 8</p>
+                <h4>Vị trí : Lập trình viên</h4>
+                <p>- Phân tích và thiết kế hệ thống</p>
+                <p>- Phát triển module</p>
+                <p>- Tối ưu code</p>
+                <p>- Sửa lỗi</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -115,6 +256,36 @@ export default {
 </script>
 
  <style>
+.box_cv h3 {
+  border: 1px solid #ffbb00;
+  border-radius: 8px;
+  width: 250px;
+  text-align: center;
+  padding: 8px 5px;
+  position: absolute;
+  top: -20px;
+  color: #284350;
+  background: white;
+}
+
+.box_cv .mt {
+  margin: 40px 0;
+}
+
+.title_cv {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.title_cv > h4 {
+  color: #284350;
+}
+
+.title_cv > i {
+  color: #ebad00;
+  margin-top: -10px;
+}
+
 .main_gt {
   width: 1100px;
   margin: 0 auto;
