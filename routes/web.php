@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\forgotPasswordSuccessController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\JobAttractiveController;
@@ -45,6 +46,7 @@ Route::middleware('admin')->prefix('dashboard')->name('admin.')->group(function 
     Route::resource('admin', AdminController::class);
     Route::resource('profile', ProfileController::class);
     Route::resource('new', NewController::class);
+    Route::resource('company', CompanyController::class);
 });
 Route::resource('admin', LoginController::class);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
