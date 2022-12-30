@@ -41,7 +41,7 @@
                                                 <td><img src="{{ $item->images }}" alt="" width="150"
                                                         height="150"></td>
                                                 <td>{{ $item->user_name }}</td>
-                                                <td>{{ $item->profession_name }}</td>
+                                                <td>{{ $item->majors_name }}</td>
 
                                                 <td>{{ Carbon::parse($item->create_at_sv)->format('d-m-Y') }}</td>
                                                 {{-- <td>{{ $item->status == 0 ? 'chưa xem' : 'đã xem' }}</td> --}}
