@@ -512,6 +512,7 @@
                       class="form-register-employer"
                       ref="formData"
                       :action="data.urlStoreCompany"
+                      enctype="multipart/form-data"
                     >
                       <input type="hidden" name="_token" :value="csrfToken" />
                       <div class="card h-100">
@@ -639,7 +640,7 @@
                               <div>
                                 <Field
                                   type="file"
-                                  v-model="dataCompany.logo"
+                                  v-model="model.logo"
                                   name="logo"
                                   id="logo"
                                   class="form-control"
@@ -649,6 +650,11 @@
                                 />
                                 <ErrorMessage class="error" name="logo" />
                               </div>
+                              <input
+                                type="hidden"
+                                name="logo"
+                                v-model="model.logo"
+                              />
                               <img
                                 :src="
                                   'http://127.0.0.1:8000/' + dataCompany.logo
@@ -719,7 +725,7 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: {},
+      model: this.data.Company ?? '',
       preview: null,
       image: null,
       preview_list: [],

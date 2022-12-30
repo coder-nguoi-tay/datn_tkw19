@@ -71,7 +71,7 @@ class RegisterCompanyController extends BaseController
             return redirect()->back();
         } catch (\Throwable $th) {
             DB::rollBack();
-            $this->setFlash(__('Đã có một lỗi không các định xảy ra'));
+            $this->setFlash(__('Đã có một lỗi không các định xảy ra'), 'error');
             return redirect()->back();
         }
     }
