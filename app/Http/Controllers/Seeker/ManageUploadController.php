@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers\Seeker;
 
+use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
+use App\Models\ProfileUserCv;
 use App\Models\UploadCv;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
+
+use function GuzzleHttp\Promise\all;
 
 class ManageUploadController extends BaseController
 {
@@ -18,9 +23,11 @@ class ManageUploadController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public UploadCv $upload;
-    public function __construct(UploadCv $upload)
+    public ProfileUserCv $profileUserCv;
+    public function __construct(UploadCv $upload, ProfileUserCv $profileUserCv)
     {
         $this->upload = $upload;
+        $this->profileUserCv = $profileUserCv;
     }
     public function index()
     {
@@ -105,7 +112,45 @@ class ManageUploadController extends BaseController
 
     public function createFormCV()
     {
-        return view('client.seeker.create_form_cv');
+        return view('client.seeker.create_form_cv', [
+            'title' => 'Tạo mới CV',
+            'user' => $this->profileUserCv->where('user_id', Auth::guard('user')->user()->id)->first(),
+            'user_name' => User::where('id', Auth::guard('user')->user()->id)->first()->name,
+        ]);
+    }
+    public function storeFormCV(Request $request)
+    {
+        $user = $this->profileUserCv->where('user_id', Auth::guard('user')->user()->id)->first();
+        if ($user) {
+            $profileUserCv = $this->profileUserCv->where('user_id', Auth::guard('user')->user()->id)->first();
+        } else {
+            $profileUserCv = new $this->profileUserCv();
+        }
+        try {
+            if ($request->status_profile) {
+                $profileUserCv->status_profile = 1;
+            }
+            $profileUserCv->email = $request->email;
+            $profileUserCv->majors = $request->majors;
+            $profileUserCv->link_fb = $request->link_fb;
+            $profileUserCv->user_id = Auth::guard('user')->user()->id;
+            $profileUserCv->address = $request->address;
+            $profileUserCv->phone = $request->phone;
+            $profileUserCv->skill = $request->skill;
+            $profileUserCv->certificate = $request->certificate;
+            $profileUserCv->target = $request->target;
+            $profileUserCv->work = $request->work;
+            $profileUserCv->work_detail = $request->work_detail;
+            $profileUserCv->project = $request->project;
+            $profileUserCv->project_detail = $request->project_detail;
+            $profileUserCv->save();
+            $this->setFlash(__('Tạo mới CV thành công'));
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            DB::rollback();
+            $this->setFlash(__('đã có một lỗi không xác định đã xảy ra, kiểm tra lại thông tin của bạn'), 'error');
+            return redirect()->back();
+        }
     }
     /**
      * Update the specified resource in storage.

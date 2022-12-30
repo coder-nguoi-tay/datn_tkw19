@@ -12,6 +12,7 @@ use App\Models\Jobseeker;
 use App\Models\location;
 use App\Models\Majors;
 use App\Models\Profession;
+use App\Models\ProfileUserCv;
 use App\Models\SaveCv;
 use App\Models\Skill;
 use App\Models\Timework;
@@ -59,12 +60,8 @@ class ManagerUploadCvController extends BaseController
         $cv = $this->jobseeker
             ->join('save_cv', 'job-seeker.user_role', '=', 'save_cv.user_id')
             ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->with('getskill')
             ->leftjoin('users', 'users.id', '=', 'job-seeker.user_role')
             ->join('employer', 'employer.id', '=', 'job.employer_id')
-            ->leftjoin('profession', 'profession.id', '=', 'job-seeker.profession_id')
-            ->leftjoin('experience', 'experience.id', '=', 'job-seeker.experience_id')
-            ->leftjoin('time_work', 'time_work.id', '=', 'job-seeker.time_work_id')
             ->leftjoin('majors', 'majors.id', '=', 'job.majors_id')
             ->where('job.employer_id', $checkCompany->id)
             ->where(function ($q) use ($request) {
@@ -80,7 +77,7 @@ class ManagerUploadCvController extends BaseController
                     $q->orWhere($this->escapeLikeSentence('majors.name', $request['free_word']));
                 }
             })
-            ->select('users.name as user_name', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'job-seeker.*', 'profession.name as profession_name', 'experience.name as experience_experience', 'time_work.name as time_work_name', 'majors.name as majors_name', 'save_cv.created_at as create_at_sv')
+            ->select('users.name as user_name', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'job-seeker.*', 'majors.name as majors_name', 'save_cv.created_at as create_at_sv')
             ->get();
 
         return view('employer.managercv.index', [
@@ -124,18 +121,10 @@ class ManagerUploadCvController extends BaseController
      */
     public function show($id)
     {
-        $cv = $this->upload
-            ->with('proFileUser', 'user', 'getskill')
-            ->join('users', 'users.id', '=', 'upload_cv.user_id')
-            ->join('job-seeker', 'job-seeker.user_role', '=', 'users.id')
-            ->join('time_work', 'time_work.id', '=', 'job-seeker.time_work_id')
-            ->select('upload_cv.*', 'time_work.name as name_time')
-            ->where('upload_cv.user_id', $id)
-            ->first();
-        // dd($cv);
+        $profile = ProfileUserCv::where('id', $id)->with('user')->first();
         $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
         return view('employer.managercv.showcv', [
-            'cv' => $cv,
+            'cv' => $profile,
             'accPayment' => $accPayment,
         ]);
     }
@@ -176,8 +165,8 @@ class ManagerUploadCvController extends BaseController
     public function changeStatus($id)
     {
         try {
-            $upcv = $this->upload->where('id', $id)->first();
-            $upcv->employer_payment_cv = Auth::guard('user')->user()->id;
+            $upcv = ProfileUserCv::where('id', $id)->first();
+            $upcv->status = Auth::guard('user')->user()->id;
             $upcv->save();
             return response()->json([
                 'message' => 'Mua cv thành công',

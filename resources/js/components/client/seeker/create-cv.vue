@@ -1,255 +1,314 @@
 <template>
-  <div>
-    <!-- <VeeForm
+  <div class="_dashboard_content_body py-3 px-3">
+    <VeeForm
       as="div"
       v-slot="{ handleSubmit }"
       @invalid-submit="onInvalidSubmit"
     >
       <form
-        method="POST"
         @submit="handleSubmit($event, onSubmit)"
         ref="formData"
-      > -->
-    <!-- <input type="hidden" :value="csrfToken" name="_token" /> -->
-    <div style="margin: 30px 0; padding: 0; box-sizing: border-box">
-      <div class="main_gt">
-        <div class="left_cv">
-          <div class="box_img" style="overflow: hidden">
-            <img
-              src="/assets/img/bn-2.png"
-              alt="anh_cv"
-              style="width: 100%; border: none"
-            />
-          </div>
-          <div class="contact">
-            <h3>Thông tin cá nhân</h3>
-            <div class="box_contact">
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Email
-                </label>
-                <input
-                  type="email"
-                  class="form-control box-up-cv"
-                  id="exampleFormControlInput1"
-                  placeholder="name@example.com"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Địa chỉ</label
-                >
-                <input
-                  type="text"
-                  class="form-control box-up-cv"
-                  id="exampleFormControlInput1"
-                  placeholder="Nhập địa chỉ"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >SDT</label
-                >
-                <input
-                  type="text"
-                  class="form-control box-up-cv"
-                  id="exampleFormControlInput1"
-                  placeholder="Nhập số điện thoại"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="contact">
-            <h3>CÁC KỸ NĂNG</h3>
-            <div class="box_contact">
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label"
-                  >Các kĩ năng</label
-                >
-                <textarea
-                  class="form-control box-up-cv"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                  placeholder="Nội dung kĩ năng"
-                ></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="contact">
-            <h3>CHỨNG CHỈ</h3>
-            <div class="box_contact">
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label"
-                  >Chứng chỉ</label
-                >
-                <textarea
-                  class="form-control box-up-cv"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                  placeholder="Nội dung chứng chỉ"
-                ></textarea>
-              </div>
-            </div>
-          </div>
+        method="POST"
+        enctype="multipart/form-data"
+        class="text-center"
+        :action="data.urlStore"
+      >
+        <Field type="hidden" :value="csrfToken" name="_token" />
+        <div class="col-4">
+          <Toggle
+            name="status_profile"
+            v-model="status_profile"
+            class="toggle-flag"
+            on-label=""
+            off-label=""
+            id="status_profile"
+          />
+          <label for="" class="form-label">Bật Tìm Kiếm Công Việc</label>
         </div>
-        <div class="right_cv">
-          <div class="box_cv">
-            <h2 class="name">VŨ CÔNG TUYỀN</h2>
-            <h4>BACK-END DEVELOPER</h4>
-          </div>
-          <div class="box_cv mt_cv">
-            <h3
-              style="
-                font-size: 18px;
-                font-weight: 500;
-                text-transform: uppercase;
-              "
-            >
-              MỤC TIÊU NGHỀ NGHIỆP
-            </h3>
-            <span class="bd_cv"></span>
-            <div class="mt">
-              <div>
-                <Field
-                  type="text"
-                  id="address"
-                  class="form-control box-up-cv"
-                  placeholder="Mục tiêu nghề nghề nghiệp"
+        <div style="margin: 30px 0; padding: 0; box-sizing: border-box">
+          <div class="main_gt">
+            <div class="left_cv">
+              <div class="box_img" style="overflow: hidden">
+                <img
+                  src="/assets/img/bn-2.png"
+                  alt="anh_cv"
+                  style="width: 100%; border: none"
                 />
               </div>
-            </div>
-          </div>
-          <div class="box_cv">
-            <h3
-              style="
-                font-size: 18px;
-                font-weight: 500;
-                text-transform: uppercase;
-              "
-            >
-              KINH NGHIỆM LÀM VIỆC
-            </h3>
-            <span class="bd_cv"></span>
-            <div class="box_2_cv" style="margin-bottom: 30px">
-              <div class="mt">
-                <div
-                  class="title_cv"
-                  style="
-                    margin-top: 30px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-start;
-                    gap: 10px;
-                    font-size: 14px;
-                  "
-                >
-                  <br />
-                  <i class="fa-solid fa-briefcase" style="color: #ebad00"></i>
-
-                  <h4 style="font-size: 14px; margin: 0; color: #284350">
-                    VỊ TRÍ:
-                  </h4>
-                  <div>
+              <div class="contact">
+                <h3>Thông tin cá nhân</h3>
+                <div class="box_contact">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"
+                      >Email
+                    </label>
                     <Field
                       type="text"
-                      style="width: 300px"
-                      id="address"
-                      class="form-control box-up-cv"
-                      placeholder="Vị trí làm việc"
+                      v-model="model.email"
+                      class="form-control box-up-cv it-1"
+                      id="exampleFormControlInput1"
+                      placeholder="name@example.com"
+                      name="email"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"
+                      >Địa chỉ</label
+                    >
+                    <Field
+                      type="text"
+                      v-model="model.address"
+                      class="form-control box-up-cv it-1"
+                      id="exampleFormControlInput1"
+                      placeholder="Nhập địa chỉ"
+                      name="address"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"
+                      >SDT</label
+                    >
+                    <Field
+                      type="text"
+                      v-model="model.phone"
+                      class="form-control box-up-cv it-1"
+                      id="exampleFormControlInput1"
+                      placeholder="Nhập số điện thoại"
+                      name="phone"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"
+                      >Link FB</label
+                    >
+                    <Field
+                      type="text"
+                      v-model="model.link_fb"
+                      class="form-control box-up-cv it-1"
+                      id="exampleFormControlInput1"
+                      placeholder="facebook.com"
+                      name="link_fb"
                     />
                   </div>
                 </div>
-                <br />
-                <div class="mb-3">
-                  <label for="exampleFormControlTextarea1" class="form-label"
-                    >Nội dung công việc</label
-                  >
-                  <textarea
-                    class="form-control box-up-cv"
-                    id="exampleFormControlTextarea1"
-                    rows="3"
-                    placeholder="Nội dung công việc"
-                  ></textarea>
+              </div>
+              <div class="contact">
+                <h3>CÁC KỸ NĂNG</h3>
+                <div class="box_contact">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"
+                      >Các kĩ năng</label
+                    >
+                    <Field
+                      v-model="model.skill"
+                      class="form-control box-up-cv it-1"
+                      id="exampleFormControlTextarea1"
+                      rows="3"
+                      name="skill"
+                      placeholder="Nội dung kĩ năng"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="contact">
+                <h3>CHỨNG CHỈ</h3>
+                <div class="box_contact">
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label"
+                      >Chứng chỉ</label
+                    >
+                    <Field
+                      v-model="model.certificate"
+                      class="form-control box-up-cv it-1"
+                      id="exampleFormControlTextarea1"
+                      rows="3"
+                      name="certificate"
+                      placeholder="Nội dung chứng chỉ"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="box_cv">
-            <h3
-              style="
-                text-align: center;
-                font-size: 18px;
-                font-weight: 500;
-                text-transform: uppercase;
-              "
-            >
-              dự án
-            </h3>
-            <span class="bd_cv"></span>
-            <div class="mt">
-              <div
-                class="title_cv"
-                style="
-                  margin-top: 30px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: flex-start;
-                  gap: 10px;
-                  font-size: 14px;
-                "
-              >
-                <br />
-                <i class="fa-solid fa-briefcase" style="color: #ebad00"></i>
-
-                <h4 style="font-size: 14px; margin: 0; color: #284350">
-                  VỊ TRÍ:
-                </h4>
-                <div>
+            <div class="right_cv">
+              <div class="box_cv">
+                <h2 class="name">{{ data.user_name }}</h2>
+                <!-- majors -->
+                <h4>
                   <Field
                     type="text"
                     style="width: 300px"
-                    id="address"
+                    id="majors"
+                    v-model="model.majors"
+                    name="majors"
                     class="form-control box-up-cv"
-                    placeholder="Vị trí làm việc"
+                    placeholder="Chuyên ngành"
                   />
+                </h4>
+              </div>
+              <div class="box_cv mt_cv">
+                <h3
+                  style="
+                    font-size: 18px;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                  "
+                >
+                  MỤC TIÊU NGHỀ NGHIỆP
+                </h3>
+                <span class="bd_cv"></span>
+                <div class="mt">
+                  <div>
+                    <Field
+                      v-model="model.target"
+                      type="text"
+                      name="target"
+                      id="target"
+                      class="form-control box-up-cv"
+                      placeholder="Mục tiêu nghề nghề nghiệp"
+                    />
+                  </div>
                 </div>
               </div>
-              <br />
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label"
-                  >Nội dung công việc</label
+              <div class="box_cv">
+                <h3
+                  style="
+                    font-size: 18px;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                  "
                 >
-                <textarea
-                  class="form-control box-up-cv"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                  placeholder="Nội dung công việc"
-                ></textarea>
+                  KINH NGHIỆM LÀM VIỆC
+                </h3>
+                <span class="bd_cv"></span>
+                <div class="box_2_cv" style="margin-bottom: 30px">
+                  <div class="mt">
+                    <div
+                      class="title_cv"
+                      style="
+                        margin-top: 30px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        gap: 10px;
+                        font-size: 14px;
+                      "
+                    >
+                      <br />
+                      <i
+                        class="fa-solid fa-briefcase"
+                        style="color: #ebad00"
+                      ></i>
+
+                      <h4 style="font-size: 14px; margin: 0; color: #284350">
+                        VỊ TRÍ:
+                      </h4>
+                      <div>
+                        <Field
+                          type="text"
+                          style="width: 300px"
+                          id="work"
+                          v-model="model.work"
+                          name="work"
+                          class="form-control box-up-cv"
+                          placeholder="Vị trí làm việc"
+                        />
+                      </div>
+                    </div>
+                    <br />
+                    <div class="mb-3">
+                      <label
+                        for="exampleFormControlTextarea1"
+                        class="form-label"
+                        >Nội dung công việc</label
+                      >
+                      <Field
+                        v-model="model.work_detail"
+                        class="form-control box-up-cv"
+                        id="exampleFormControlTextarea1"
+                        rows="3"
+                        name="work_detail"
+                        placeholder="Nội dung công việc"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
+
+              <div class="box_cv">
+                <h3
+                  style="
+                    text-align: center;
+                    font-size: 18px;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                  "
+                >
+                  dự án
+                </h3>
+                <span class="bd_cv"></span>
+                <div class="mt">
+                  <div
+                    class="title_cv"
+                    style="
+                      margin-top: 30px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: flex-start;
+                      gap: 10px;
+                      font-size: 14px;
+                    "
+                  >
+                    <br />
+                    <i class="fa-solid fa-briefcase" style="color: #ebad00"></i>
+
+                    <h4 style="font-size: 14px; margin: 0; color: #284350">
+                      VỊ TRÍ:
+                    </h4>
+                    <div>
+                      <Field
+                        type="text"
+                        v-model="model.project"
+                        style="width: 300px"
+                        id="project"
+                        name="project"
+                        class="form-control box-up-cv"
+                        placeholder="Vị trí làm việc"
+                      />
+                    </div>
+                  </div>
+                  <br />
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label"
+                      >Nội dung công việc</label
+                    >
+                    <Field
+                      v-model="model.project_detail"
+                      class="form-control box-up-cv"
+                      id="exampleFormControlTextarea1"
+                      rows="3"
+                      name="project_detail"
+                      placeholder="Nội dung công việc"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="col-md-12">
+              <button
+                type="submit"
+                class="btn min-width btn btn-primary btn-lg"
+              >
+                Lưu
+              </button>
             </div>
           </div>
         </div>
-        <br />
-        <div class="col-md-12">
-          <button
-            type="button"
-            class="btn min-width btn min-width btn btn-secondary mr-2 btn-lg"
-          >
-            <!---->
-            Hủy
-          </button>
-          <button type="submit" class="btn min-width btn btn-primary btn-lg">
-            <!---->
-            Lưu
-          </button>
-        </div>
-      </div>
-    </div>
-    <!-- </form>
-    </VeeForm> -->
+      </form>
+    </VeeForm>
   </div>
 </template>
+
 <script>
 import {
   Form as VeeForm,
@@ -258,100 +317,79 @@ import {
   defineRule,
   configure
 } from 'vee-validate'
+import Toggle from '@vueform/toggle'
+import '@vueform/toggle/themes/default.css'
 import { localize } from '@vee-validate/i18n'
-// import * as rules from '@vee-validate/rules'
-
+import * as rules from '@vee-validate/rules'
+import $ from 'jquery'
 export default {
-  //   setup() {
-  //     Object.keys(rules).forEach((rule) => {
-  //       if (rule != 'default') {
-  //         defineRule(rule, rules[rule])
-  //       }
-  //     })
-
-  //     return {}
-  //   },
-  //   created() {
-  // let messError = {
-  //   en: {
-  //     fields: {
-  //       name: {
-  //         required: 'Xin hãy nhập tên của bạn.',
-  //         max: 'Vui lòng nhập tên của bạn trong 128 ký tự.'
-  //       },
-  //       company: {
-  //         required: 'Xin hãy nhập tên công ty.',
-  //         max: 'Vui lòng nhập tên công ty trong 128 ký tự.'
-  //       },
-  //       email: {
-  //         required: 'Hãy điền địa chỉ email của bạn.',
-  //         email: 'Vui lòng nhập đúng định dạng địa chỉ email.',
-  //         max: 'Vui lòng nhập địa chỉ email của bạn trong 255 ký tự.'
-  //         // unique_custom: 'このメールアドレスは既に存在しています。'
-  //       },
-  //       password: {
-  //         required: 'Xin hãy điền mật khẩu.',
-  //         max: 'Vui lòng nhập mật khẩu có từ 8 đến 16 ký tự.',
-  //         min: 'Vui lòng nhập mật khẩu có từ 8 đến 16 ký tự.',
-  //         password_rule: 'Vui lòng nhập mật khẩu có chứa câu và số.'
-  //       },
-  //       password_old: {
-  //         required: 'Vui lòng nhập xác nhận mật khẩu.',
-  //         confirmed: 'Xác nhận mật khẩu không đúng.'
-  //       },
-  //       sdt: {
-  //         required: 'Vui lòng nhập số điện thoại',
-  //         telephone: 'Vui lòng nhập chính xác định dạng số điện thoại.'
-  //       },
-  //       location_id: {
-  //         required: 'vui lòng chọn địa chỉ.'
-  //       },
-  //       workplace: {
-  //         required: 'vui lòng chọn vị trí công tác.',
-  //         max: 'không được quá 128 ký tự.'
-  //       },
-  //       sex: {
-  //         required: 'vui lòng chọn giới tính.'
-  //       }
-  //     }
-  //   }
-  // }
-  // configure({
-  //     generateMessage: localize(messError)
-  // })
-  //   },
-  //   data: function () {
-  //     return {
-  //       // csrfToken: Laravel.csrfToken,
-  //       //   model: {},
-  //       //   value: this.data.request ?? ''
-  //     }
-  //   },
-  mounted() {},
-  props: ['data'],
+  setup() {
+    Object.keys(rules).forEach((rule) => {
+      if (rule != 'default') {
+        defineRule(rule, rules[rule])
+      }
+    })
+  },
   components: {
     VeeForm,
-    Field
-    // ErrorMessage
+    Field,
+    ErrorMessage,
+    Toggle
+  },
+  props: ['data'],
+  data: function () {
+    return {
+      csrfToken: Laravel.csrfToken,
+      model: this.data.user ?? '',
+      status_profile: ''
+    }
+  },
+  created() {
+    if (this.data.user) {
+      if (this.data.user.status_profile == 0) {
+        this.status_profile = false
+      } else {
+        this.status_profile = true
+      }
+    }
+    console.log(this.data)
+    let messError = {
+      en: {
+        fields: {
+          password: {
+            required: 'mật khẩu không được để trống',
+            max: 'Mật khẩu 8-16 ký tự',
+            min: 'Mật khẩu 8-16 ký tự',
+            password_rule: 'mật khẩu không đúng định dạng'
+          },
+          password_old: {
+            required: 'Mật khẩu 2 không được để trống',
+            confirmed: 'Hai mật khẩu phải giống nhau'
+          }
+        }
+      }
+    }
+    configure({
+      generateMessage: localize(messError)
+    })
+  },
+  methods: {
+    onInvalidSubmit({ values, errors, results }) {
+      let firstInputError = Object.entries(errors)[0][0]
+      this.$el.querySelector('input[name=' + firstInputError + ']').focus()
+      $('html, body').animate(
+        {
+          scrollTop: $('input[name=' + firstInputError + ']').offset().top - 150
+        },
+        500
+      )
+    },
+    onSubmit() {
+      this.$refs.formData.submit()
+    }
   }
-  //   methods: {
-  //     onInvalidSubmit({ values, errors, results }) {
-  //       let firstInputError = Object.entries(errors)[0][0]
-  //       this.$el.querySelector('input[name=' + firstInputError + ']').focus()
-  //       $('html, body').animate(
-  //         {
-  //           scrollTop: $('input[name=' + firstInputError + ']').offset().top - 150
-  //         },
-  //         500
-  //       )
-  //     },
-  //     onSubmit() {
-  //       this.$refs.formData.submit()
-  //     }
-  //   }
 }
 </script>
-
 
 <style>
 .btn:not(:disabled):not(.disabled) {
@@ -396,13 +434,17 @@ export default {
   background-color: #f3f4f5;
   border-color: #f3f4f5;
 }
+.it-1 {
+  color: white;
+}
+
 .box-up-cv {
   background: rgba(229, 247, 237, 0.1);
   border: 2px dashed #00b14f;
   border-radius: 8px;
   cursor: pointer;
   position: relative;
-  text-align: center;
+  text-align: left;
 }
 .gradient-custom {
   /* fallback for old browsers */

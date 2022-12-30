@@ -15,6 +15,7 @@ use App\Models\location;
 use App\Models\Majors;
 use App\Models\News;
 use App\Models\Profession;
+use App\Models\ProfileUserCv;
 use App\Models\SaveCv;
 use App\Models\Skill;
 use App\Models\Timework;
@@ -49,8 +50,9 @@ class SearchCvController extends BaseController
     public User $user;
     public Jobseeker $Jobseeker;
     public News $new;
+    public ProfileUserCv $profileCv;
 
-    public function __construct(News $new, Jobseeker $Jobseeker, User $user, SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
+    public function __construct(ProfileUserCv $profileCv, News $new, Jobseeker $Jobseeker, User $user, SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
     {
         $this->new = $new;
         $this->job = $job;
@@ -74,17 +76,11 @@ class SearchCvController extends BaseController
         $this->savecv = $savecv;
         $this->user = $user;
         $this->Jobseeker = $Jobseeker;
+        $this->profileCv = $profileCv;
     }
     public function index()
     {
-        $cv = $this->upload
-            ->with('proFileUser', 'user')
-            ->join('users', 'users.id', '=', 'upload_cv.user_id')
-            ->join('job-seeker', 'job-seeker.user_role', '=', 'users.id')
-            ->join('time_work', 'time_work.id', '=', 'job-seeker.time_work_id')
-            ->select('upload_cv.*', 'time_work.name as name_time', 'job-seeker.*')
-            ->get();
-        // dd($cv);
+        $cv = $this->profileCv->where('status_profile', 1)->get();
         return view('employer.searchcv.index', [
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),

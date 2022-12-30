@@ -46,7 +46,7 @@
                                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                                         <div class="job_grid border rounded">
                                             <div class="position-absolute ab-right br-red"><span
-                                                    class="medium theme-cl theme-bg-light px-2 py-1 rounded">{{ $item->name_time }}</span>
+                                                    class="medium theme-cl theme-bg-light px-2 py-1 rounded">{{ $item->majors }}</span>
                                             </div>
                                             <div class="job_grid_thumb mb-3 pt-5 px-3">
                                                 <a href="" class="d-block text-center m-auto"><img
@@ -56,11 +56,11 @@
                                             <div class="job_grid_caption text-center px-3">
                                                 <h4 class="mb-0 ft-medium medium"><a href=""
                                                         class="text-dark fs-md">{{ $item->user->name }}</a></h4>
-                                                <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>địa
-                                                        chỉ</span>
+                                                <div class="jbl_location"><i
+                                                        class="lni lni-map-marker mr-1"></i><span>{{ $item->address }}</span>
                                                 </div>
-                                                <div class="jbl_location"><i class="lni lni-map-marker mr-1"></i><span>Lập
-                                                        Trình Website</span>
+                                                <div class="jbl_location"><i
+                                                        class="lni lni-map-marker mr-1"></i><span>{{ $item->majors }}</span>
                                                 </div>
                                                 <div class="container">
                                                     <a href="{{ route('employer.quan-ly-cv.show', $item->id) }}"

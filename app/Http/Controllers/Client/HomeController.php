@@ -15,6 +15,7 @@ use App\Models\location;
 use App\Models\Majors;
 use App\Models\News;
 use App\Models\Profession;
+use App\Models\ProfileUserCv;
 use App\Models\SaveCv;
 use App\Models\Skill;
 use App\Models\Timework;
@@ -152,6 +153,7 @@ class HomeController extends BaseController
                 ->where([
                     ['job.status', 1],
                     ['job.expired', 0],
+                    ['employer.position', 1],
                 ])
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                 ->orderBy('employer.prioritize', 'desc')
@@ -212,6 +214,7 @@ class HomeController extends BaseController
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->whereIn('job.id', $data)
+            ->where('job.expired', 0)
             ->select('job.*', 'company.logo as logo')
             ->get();
         //
@@ -242,9 +245,8 @@ class HomeController extends BaseController
             ->paginate(4);
         if (Auth::guard('user')->check()) {
             $cv = $this->upload->where('user_id', Auth::guard('user')->user()->id)->get();
+            $profileUser = $this->user->where('id', Auth::guard('user')->user()->id)->with('getProfile')->first();
         }
-
-        // dd($cv);
         $breadcrumbs = [
             $job->title
         ];
@@ -257,6 +259,7 @@ class HomeController extends BaseController
             'rules' => $relate,
             'breadcrumbs' => $breadcrumbs,
             'cv' => $cv ?? '',
+            'profileUser' => $profileUser ?? '',
         ]);
     }
 
@@ -321,6 +324,8 @@ class HomeController extends BaseController
     }
     public function upCv(Request $request)
     {
+
+
         $checkJob = $this->savecv->where([
             ['id_job', $request->id_job],
             ['user_id', Auth::guard('user')->user()->id]

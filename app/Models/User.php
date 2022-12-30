@@ -47,4 +47,8 @@ class User  extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(UploadCv::class, 'user_id', 'id');
     }
+    public function getCheckUser()
+    {
+        return $this->hasOne(ProfileUserCv::class, 'user_id', 'id');
+    }
 }
