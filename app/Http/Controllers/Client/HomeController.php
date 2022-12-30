@@ -334,26 +334,6 @@ class HomeController extends BaseController
         }
 
         if (isset($request->file_cv)) {
-            try {
-                $checkuser = $this->user->where('id', Auth::guard('user')->user()->id)->with('getCheckUser')->first();
-                if (!$checkuser->getCheckUser) {
-                    $profile = new ProfileUserCv();
-                    $profile->user_id = Auth::guard('user')->user()->id;
-                    $profile->email = $request->email;
-                    $profile->address = $request->address;
-                    $profile->phone = $request->phone;
-                    $profile->skill = $request->skill;
-                    $profile->certificate = $request->certificate;
-                    $profile->target = $request->target;
-                    $profile->work_detail = $request->work_detail;
-                    $profile->project = $request->project;
-                    $profile->work = $request->work;
-                    $profile->project_detail = $request->project_detail;
-                    $profile->save();
-                }
-            } catch (\Throwable $th) {
-                DB::rollBack();
-            }
             if ($request->save_cv) {
                 try {
                     $cvSave = new $this->upload();
