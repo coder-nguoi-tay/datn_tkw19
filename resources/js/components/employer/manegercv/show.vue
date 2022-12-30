@@ -3,42 +3,39 @@
     <div class="main_gt">
       <div class="left_cv">
         <div class="box_img" style="overflow: hidden">
-          <img
-            alt="anh_cv"
-            :src="data.avatar"
-            style="width: 100%; border: none"
-          />
+          <!-- :src="data.avatar" -->
+          <img alt="anh_cv" style="width: 100%; border: none" />
         </div>
         <div class="contact">
           <h3>Thông tin cá nhân</h3>
           <div class="box_contact">
             <div class="mail">
               <i class="fa-solid fa-envelope"></i>
-              <p v-if="data.cv.status == data.CheckUser">
+              <!-- <p v-if="data.cv.status == data.CheckUser">
                 {{ data.cv.email }}
-              </p>
-              <p v-if="data.cv.status == 0">*****************</p>
+              </p> -->
+              <!-- <p v-if="data.cv.status == 0">*****************</p> -->
             </div>
             <div class="mail">
               <i class="fa-solid fa-phone"></i>
-              <p v-if="data.cv.status == data.CheckUser">
+              <!-- <p v-if="data.cv.status == data.CheckUser">
                 {{ data.cv.phone }}
-              </p>
-              <p v-if="data.cv.status == 0">*****************</p>
+              </p> -->
+              <!-- <p v-if="data.cv.status == 0">*****************</p> -->
             </div>
             <div class="mail">
               <i class="fa-sharp fa-solid fa-location-dot"></i>
-              <p v-if="data.cv.status == data.CheckUser">
+              <!-- <p v-if="data.cv.status == data.CheckUser">
                 {{ data.cv.address }}
-              </p>
-              <p v-if="data.cv.status == 0">*****************</p>
+              </p> -->
+              <!-- <p v-if="data.cv.status == 0">*****************</p> -->
             </div>
             <div class="mail">
               <i class="fa-brands fa-facebook"></i>
-              <p v-if="data.cv.status == data.CheckUser">
+              <!-- <p v-if="data.cv.status == data.CheckUser">
                 <a :href="data.cv.link_fb">{{ data.cv.link_fb }}</a>
-              </p>
-              <p v-if="data.cv.status == 0">*****************</p>
+              </p> -->
+              <!-- <p v-if="data.cv.status == 0">*****************</p> -->
             </div>
           </div>
         </div>
@@ -46,7 +43,7 @@
           <h3>CÁC KỸ NĂNG</h3>
           <div class="box_contact">
             <div class="ky_nang">
-              <h4 class="text-first">{{ data.cv.skill }}</h4>
+              <!-- <h4 class="text-first">{{ data.cv.skill }}</h4> -->
             </div>
           </div>
         </div>
@@ -55,7 +52,7 @@
           <div class="box_contact">
             <div class="ky_nang">
               <p>
-                {{ data.cv.certificate }}
+                <!-- {{ data.cv.certificate }} -->
               </p>
             </div>
           </div>
@@ -63,7 +60,7 @@
       </div>
       <div class="right_cv">
         <div class="box_cv">
-          <h2 class="name">{{ data.cv.name }}</h2>
+          <!-- <h2 class="name">{{ data.cv.name }}</h2> -->
           <!-- <h4>{{ data.cv.majors_name }}</h4> -->
         </div>
         <div class="box_cv mt_cv">
@@ -73,9 +70,9 @@
             MỤC TIÊU NGHỀ NGHIỆP
           </h3>
           <span class="bd_cv"></span>
-          <p class="mt" v-if="data.cv.target">
+          <!-- <p class="mt" v-if="data.cv.target">
             {{ data.cv.target }}
-          </p>
+          </p> -->
         </div>
         <div class="box_cv">
           <h3
@@ -83,9 +80,9 @@
           >
             KINH NGHIỆM LÀM VIỆC
           </h3>
-          <span class="bd_cv">{{ data.cv.work }}</span>
+          <!-- <span class="bd_cv">{{ data.cv.work }}</span> -->
           <div class="box_2_cv" style="margin-bottom: 30px">
-            <div class="mt">- {{ data.cv.work_detail }}</div>
+            <!-- <div class="mt">- {{ data.cv.work_detail }}</div> -->
           </div>
         </div>
         <div class="box_cv">
@@ -99,10 +96,10 @@
           >
             dự án
           </h3>
-          <span class="bd_cv">{{ data.cv.project }}</span>
-          <div class="box_2_cv" style="margin-bottom: 30px">
+          <span class="bd_cv">rewrwd</span>
+          <!-- <div class="box_2_cv" style="margin-bottom: 30px">
             {{ data.cv.project_detail }}
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

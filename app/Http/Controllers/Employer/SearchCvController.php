@@ -15,6 +15,7 @@ use App\Models\location;
 use App\Models\Majors;
 use App\Models\News;
 use App\Models\Profession;
+use App\Models\ProfileUserCv;
 use App\Models\SaveCv;
 use App\Models\Skill;
 use App\Models\Timework;
@@ -49,8 +50,9 @@ class SearchCvController extends BaseController
     public User $user;
     public Jobseeker $Jobseeker;
     public News $new;
+    public ProfileUserCv $profileCv;
 
-    public function __construct(News $new, Jobseeker $Jobseeker, User $user, SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
+    public function __construct(ProfileUserCv $profileCv, News $new, Jobseeker $Jobseeker, User $user, SaveCv $savecv, UploadCv $upload, Wage $wage, Experience $experience, Majors $majors, location $location, WorkingForm $workingform, Lever $lever, Profession $profession, Job $job, Company $company, Employer $employer, Jobskill $jobskill, Skill $skill, Timework $timework)
     {
         $this->new = $new;
         $this->job = $job;
@@ -74,10 +76,11 @@ class SearchCvController extends BaseController
         $this->savecv = $savecv;
         $this->user = $user;
         $this->Jobseeker = $Jobseeker;
+        $this->profileCv = $profileCv;
     }
     public function index()
     {
-        $seeder = $this->Jobseeker->with(['user', 'getTime_work'])->get();
+        $cv = $this->profileCv->where('status_profile', 1)->get();
         return view('employer.searchcv.index', [
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),
@@ -89,8 +92,7 @@ class SearchCvController extends BaseController
             'majors' => $this->majors->get(),
             'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
-            // 'cv' => $cv,
-            'seeder' => $seeder,
+            'cv' => $cv,
         ]);
     }
 

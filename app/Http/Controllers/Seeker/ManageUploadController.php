@@ -120,10 +120,19 @@ class ManageUploadController extends BaseController
     }
     public function storeFormCV(Request $request)
     {
-        try {
-
+        $user = $this->profileUserCv->where('user_id', Auth::guard('user')->user()->id)->first();
+        if ($user) {
+            $profileUserCv = $this->profileUserCv->where('user_id', Auth::guard('user')->user()->id)->first();
+        } else {
             $profileUserCv = new $this->profileUserCv();
+        }
+        try {
+            if ($request->status_profile) {
+                $profileUserCv->status_profile = 1;
+            }
             $profileUserCv->email = $request->email;
+            $profileUserCv->majors = $request->majors;
+            $profileUserCv->link_fb = $request->link_fb;
             $profileUserCv->user_id = Auth::guard('user')->user()->id;
             $profileUserCv->address = $request->address;
             $profileUserCv->phone = $request->phone;

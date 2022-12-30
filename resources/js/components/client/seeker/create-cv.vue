@@ -1,4 +1,3 @@
-
 <template>
   <div class="_dashboard_content_body py-3 px-3">
     <VeeForm
@@ -14,7 +13,17 @@
         class="text-center"
       >
         <Field type="hidden" :value="csrfToken" name="_token" />
-
+        <div class="col-4">
+          <Toggle
+            name="status_profile"
+            v-model="status_profile"
+            class="toggle-flag"
+            on-label=""
+            off-label=""
+            id="status_profile"
+          />
+          <label for="" class="form-label">Bật Tìm Kiếm Công Việc</label>
+        </div>
         <div style="margin: 30px 0; padding: 0; box-sizing: border-box">
           <div class="main_gt">
             <div class="left_cv">
@@ -67,6 +76,19 @@
                       name="phone"
                     />
                   </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"
+                      >Link FB</label
+                    >
+                    <Field
+                      type="text"
+                      v-model="model.link_fb"
+                      class="form-control box-up-cv it-1"
+                      id="exampleFormControlInput1"
+                      placeholder="facebook.com"
+                      name="link_fb"
+                    />
+                  </div>
                 </div>
               </div>
               <div class="contact">
@@ -109,7 +131,18 @@
             <div class="right_cv">
               <div class="box_cv">
                 <h2 class="name">{{ data.user_name }}</h2>
-                <h4>BACK-END DEVELOPER</h4>
+                <!-- majors -->
+                <h4>
+                  <Field
+                    type="text"
+                    style="width: 300px"
+                    id="majors"
+                    v-model="model.majors"
+                    name="majors"
+                    class="form-control box-up-cv"
+                    placeholder="Chuyên ngành"
+                  />
+                </h4>
               </div>
               <div class="box_cv mt_cv">
                 <h3
@@ -262,25 +295,9 @@
             <br />
             <div class="col-md-12">
               <button
-                type="button"
-                class="
-                  btn
-                  min-width
-                  btn
-                  min-width
-                  btn btn-secondary
-                  mr-2
-                  btn-lg
-                "
-              >
-                <!---->
-                Hủy
-              </button>
-              <button
                 type="submit"
                 class="btn min-width btn btn-primary btn-lg"
               >
-                <!---->
                 Lưu
               </button>
             </div>
@@ -299,6 +316,8 @@ import {
   defineRule,
   configure
 } from 'vee-validate'
+import Toggle from '@vueform/toggle'
+import '@vueform/toggle/themes/default.css'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 import $ from 'jquery'
@@ -313,16 +332,25 @@ export default {
   components: {
     VeeForm,
     Field,
-    ErrorMessage
+    ErrorMessage,
+    Toggle
   },
   props: ['data'],
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: this.data.user ?? ''
+      model: this.data.user ?? '',
+      status_profile: ''
     }
   },
   created() {
+    if (this.data.user) {
+      if (this.data.user.status_profile == 0) {
+        this.status_profile = false
+      } else {
+        this.status_profile = true
+      }
+    }
     console.log(this.data)
     let messError = {
       en: {

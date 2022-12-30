@@ -125,12 +125,12 @@ class ManagerUploadCvController extends BaseController
      */
     public function show($id)
     {
-        $seeder = $this->jobseeker->where('id', $id)->first();
-        $profile = ProfileUserCv::where('user_id', $seeder->user_role)->first();
+        // $seeder = $this->jobseeker->where('id', $id)->first();
+        // $profile = ProfileUserCv::where('user_id', $seeder->user_role)->first();
         $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
         return view('employer.managercv.showcv', [
-            'cv' => $profile,
-            'avatar' => $seeder->images,
+            // 'cv' => $profile,
+            // 'avatar' => $seeder->images,
             'accPayment' => $accPayment,
         ]);
     }
