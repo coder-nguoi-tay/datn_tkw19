@@ -94,6 +94,7 @@
             'data' => $data,
             'total' => $total,
             'accPayment' => $accPayment,
+            'packageAttractive' => $packageAttractive,
         ]) }}">
     </account-payment>
 @endsection

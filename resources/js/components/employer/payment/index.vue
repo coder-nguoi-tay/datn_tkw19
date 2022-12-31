@@ -21,59 +21,12 @@
         </div>
         <div class="modal-body text-center">
           <label for="" class="mb-5" style="font-size: 20px"
-            ><b>Gói Tin tuyển dụng, việc làm tốt nhất</b></label
-          >
-          <div class="row">
-            <div
-              class="col-lg-4 col-6"
-              v-for="payment in data.data"
-              :key="payment.id"
-            >
-              <!-- small box -->
-              <div class="small-box bg-info p-3 text-white box-custom-layout">
-                <div class="inner">
-                  <h3>
-                    {{
-                      new Intl.NumberFormat('de-DE', {
-                        style: 'currency',
-                        currency: 'VND'
-                      }).format(payment.price)
-                    }}
-                  </h3>
-                  <p>{{ payment.name }}</p>
-                  <p>{{ payment.timeofer.name }}</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-                <a
-                  href="#"
-                  data-coreui-toggle="modal"
-                  data-coreui-target="#exampleModalDetailPayment"
-                  class="small-box-footer text-view"
-                  >Xem chi tiết<i class="fas fa-arrow-circle-right"></i
-                ></a>
-                <button
-                  class="nav-link py-0 btn-next-step btn-buy-package"
-                  style="margin-top: 10px !important"
-                  data-coreui-toggle="modal"
-                  data-coreui-target="#exampleModalBuyPayment"
-                  @click="nextModal(payment.id)"
-                >
-                  Mua ngay
-                </button>
-              </div>
-            </div>
-          </div>
-          <br />
-          <hr />
-          <label for="" class="mb-5" style="font-size: 20px"
             ><b>Gói Tin tuyển dụng, việc làm hấp dẫn</b></label
           >
           <div class="row">
             <div
               class="col-lg-4 col-6"
-              v-for="payment in data.data"
+              v-for="payment in data.packageAttractive"
               :key="payment.id"
             >
               <!-- small box -->
@@ -88,7 +41,7 @@
                     }}
                   </h3>
                   <p>{{ payment.name }}</p>
-                  <p>{{ payment.timeofer.name }}</p>
+                  <p>{{ payment.package }}</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-bag"></i>
@@ -267,8 +220,9 @@ export default {
       axios
         .get('package/payment/show-detail/' + id)
         .then((data) => {
+          console.log(data)
           this.model = data.data.data
-          this.timePackage = this.model.timeofer.name
+          this.timePackage = data.data.data.package
         })
         .catch((error) => {
           console.log(error)
@@ -309,8 +263,6 @@ export default {
         })
         return notyf.error('Số dư trong tài khoản của bạn không đủ')
       } else {
-        console.log((this.data.total.surplus = this.model.price))
-
         axios
           .post('package/payment/buy-account', {
             _token: Laravel.csrfToken,

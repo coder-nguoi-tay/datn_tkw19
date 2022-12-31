@@ -12,6 +12,7 @@ use App\Models\Job;
 use App\Models\Jobseeker;
 use App\Models\location;
 use App\Models\Majors;
+use App\Models\PaymentHistoryEmployer;
 use App\Models\Profession;
 use App\Models\ProfileUserCv;
 use App\Models\SaveCv;
@@ -166,9 +167,21 @@ class ManagerUploadCvController extends BaseController
     public function changeStatus($id)
     {
         try {
+            //muacv
             $upcv = ProfileUserCv::where('id', $id)->first();
             $upcv->status = Auth::guard('user')->user()->id;
             $upcv->save();
+            //lsgd
+            $paymentHistory = new PaymentHistoryEmployer();
+            $paymentHistory->user_id = Auth::guard('user')->user()->id;
+            $paymentHistory->price = 30000;
+            $paymentHistory->desceibe = 'Thanh toán mua CV ' . $upcv->name;
+            $paymentHistory->form = '';
+            $paymentHistory->save();
+            //tk
+            $account = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
+            $account->surplus -= 30000;
+            $account->save();
             return response()->json([
                 'message' => 'Mua cv thành công',
                 'status' => StatusCode::OK,
