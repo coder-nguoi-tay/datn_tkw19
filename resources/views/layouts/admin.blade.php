@@ -33,8 +33,12 @@
     @yield('css')
     <style>
         .anh-cv {
-            width: 190px;
-            height: 150px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .box-anh {
+            height: 200px;
         }
 
         .me-md-3 {
@@ -63,7 +67,7 @@
             background: #f3f4f5;
             border-radius: 5px;
             padding: 16px;
-            height: 340px;
+            height: 380px;
 
             transition: all 0.5s;
             border: 1px solid transparent;
@@ -74,7 +78,7 @@
         }
 
         .align-items-center {
-            align-items: center !important;
+            justify-content: center !important;
         }
 
 
@@ -84,8 +88,8 @@
         }
 
         .justify-content-between {
-            margin-top: -30px;
-            justify-content: space-between !important;
+            margin-top: 0px;
+            justify-content: center !important;
         }
 
         .title-cv {
@@ -127,12 +131,16 @@
 
         .button-text {
             color: #00b14f;
-            text-decoration: none
+            width: 100% !important;
+            text-decoration: none;
+            background-color: white !important;
+            border-color: #00b14f !important;
         }
 
         .button-text:hover {
             color: white;
-
+            border-color: #00b14f !important;
+            background-color: #00b14f !important;
         }
 
         .btn-add-service[data-v-6f51bd73] {
@@ -143,9 +151,7 @@
 
         }
 
-        .btn-see-detail {
-            width: 150px !important;
-        }
+
 
         .btn-service[data-v-6f51bd73] {
             width: calc(50% - 6px);
