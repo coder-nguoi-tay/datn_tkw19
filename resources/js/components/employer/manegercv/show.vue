@@ -19,14 +19,12 @@
               <p v-if="data.cv.status != data.CheckUser">**************</p>
             </div>
             <div class="mail">
-             
-              <i class="fa-solid fa-phone"></i>
+              <i class="fa-solid fa-envelope"></i>
               <p v-if="data.cv.status == data.CheckUser">{{ data.cv.phone }}</p>
               <p v-if="data.cv.status != data.CheckUser">*****************</p>
             </div>
             <div class="mail">
-              <i class="fa-solid fa-location-dot"></i>
-              
+              <i class="fa-solid fa-envelope"></i>
               <p v-if="data.cv.status == data.CheckUser">
                 {{ data.cv.address }}
               </p>
@@ -35,7 +33,7 @@
               </p>
             </div>
             <div class="mail">
-              <i class="fa-solid fa-user"></i>
+              <i class="fa-solid fa-envelope"></i>
               <p v-if="data.cv.status == data.CheckUser">
                 <a :href="data.cv.link_fb">{{ data.cv.link_fb }}</a>
               </p>
@@ -50,7 +48,7 @@
           <div class="box_contact">
             <div class="ky_nang">
               <h4 class="text-first">ngôn ngữ lập trình</h4>
-              <p>{{ data.cv.skill }}</p>
+              <p v-html="data.cv.skill"></p>
             </div>
             <!-- <div class="ky_nang">
               <h4 class="text-first">làm việc nhóm</h4>
@@ -63,9 +61,7 @@
           <div class="box_contact">
             <div class="ky_nang">
               <!-- <h4>2022</h4> -->
-              <p>
-                {{ data.cv.certificate }}
-              </p>
+              <p v-html="data.cv.certificate"></p>
             </div>
             <!-- <div class="ky_nang">
               <h4>2023</h4>
@@ -95,7 +91,7 @@
             </p>
           </h3>
           <span class="bd_cv"></span>
-          <p class="mt">{{ data.cv.target }}</p>
+          <p class="mt" v-html="data.cv.target"></p>
         </div>
         <div class="box_cv">
           <h3
@@ -111,7 +107,7 @@
                 <h4>VỊ TRÍ: {{ data.cv.work }}</h4>
               </div>
               <div class="mt_cv">
-                <p>{{ data.cv.work_detail }}</p>
+                <p v-html="data.cv.work_detail"></p>
               </div>
               <!-- <div class="h4">Website bán thời trang Adidas</div>
               <div class="h4">Công ty: Top CV</div>
@@ -143,7 +139,7 @@
               </div>
               <!-- <div class="h4">RAINWAY GROUP</div> -->
               <div class="mt_cv">
-                <p>{{ data.cv.project_detail }}</p>
+                <p v-html="data.cv.project_detail"></p>
                 <!-- <p>Khách hàng: ANZ TOPCV</p>
                 <p>Số lượng người tham gia : 8</p>
                 <h4>Vị trí : Lập trình viên</h4>
@@ -169,6 +165,9 @@ export default {
 </script>
 
  <style>
+.custom-image-cv {
+  height: 240px;
+}
 .box_cv h3 {
   border: 1px solid #ffbb00;
   border-radius: 8px;
@@ -180,6 +179,7 @@ export default {
   color: #284350;
   background: white;
 }
+
 .box_cv .mt {
   margin: 40px 0;
 }

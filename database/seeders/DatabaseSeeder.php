@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LocationSeeder::class);
         $this->call(MajorsSeeder::class);
         $this->call(WorkingFormSeeder::class);
+        $this->call(LeverPackageSeeder::class);
     }
 }

@@ -40,6 +40,7 @@
                             </search-cv>
                             <br>
                             <hr> --}}
+                            {{-- {{ dd($cv[4]->user->name) }} --}}
                             <div class="row align-items-center">
 
                                 <div class="card-body">
@@ -50,9 +51,9 @@
                                                 <div data-v-5ca02e54="" data-v-6f51bd73=""
                                                     class=" service-item  justify-content-between  service-item__md">
                                                     <div>
-                                                        <div class="col-12"><span
+                                                        {{-- <div class="col-12"><span
                                                                 class="medium theme-cl theme-bg-light px-2 py-1 rounded">{{ $item->majors }}</span>
-                                                        </div>
+                                                        </div> --}}
 
                                                         <div class="col-12 box-anh">
                                                             <img src="{{ asset($item->images) }}" alt=""

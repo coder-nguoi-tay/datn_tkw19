@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Enums\LeverPackage;
+use App\Enums\LeverPackageCompany;
+use App\Models\LeverPackage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,10 +24,10 @@ class jobAttractive extends Model
     ];
     public function leverpackage()
     {
-        return $this->hasOne(leverpackage::class, 'id', 'lever_package');
+        return $this->hasOne(LeverPackage::class, 'id', 'lever_package');
     }
     public function getPackageAttribute()
     {
-        return LeverPackage::getDescription($this->lever_package);
+        return LeverPackageCompany::getDescription($this->lever_package);
     }
 }

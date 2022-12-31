@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('admin_package_offer', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('describe');
+            $table->longText('describe');
             $table->integer('price');
             $table->integer('time_offer_id');
             $table->timestamps();

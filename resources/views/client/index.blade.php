@@ -106,6 +106,7 @@
         <!-- ======================= Home Banner ======================== -->
 
         <!-- ======================= Job List ======================== -->
+
         <section class="middle space gray">
             <div class="container border" style="background: #ffff">
                 <div class="container container-header-box border ">
