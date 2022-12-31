@@ -19,12 +19,14 @@
               <p v-if="data.cv.status != data.CheckUser">**************</p>
             </div>
             <div class="mail">
-              <i class="fa-solid fa-envelope"></i>
+             
+              <i class="fa-solid fa-phone"></i>
               <p v-if="data.cv.status == data.CheckUser">{{ data.cv.phone }}</p>
               <p v-if="data.cv.status != data.CheckUser">*****************</p>
             </div>
             <div class="mail">
-              <i class="fa-solid fa-envelope"></i>
+              <i class="fa-solid fa-location-dot"></i>
+              
               <p v-if="data.cv.status == data.CheckUser">
                 {{ data.cv.address }}
               </p>
@@ -33,7 +35,7 @@
               </p>
             </div>
             <div class="mail">
-              <i class="fa-solid fa-envelope"></i>
+              <i class="fa-solid fa-user"></i>
               <p v-if="data.cv.status == data.CheckUser">
                 <a :href="data.cv.link_fb">{{ data.cv.link_fb }}</a>
               </p>
