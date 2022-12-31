@@ -128,6 +128,8 @@ class HomeController extends BaseController
             $updateUser->save();
             $user->address = $request['valueSelect']['address'];
             $user->images = 'http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg';
+            // $user->images = $request['images']->storeAs('images/cv', $request['images']->hashName());
+
             $user->phone = $request['valueSelect']['phone'];
             $user->user_role = Auth::guard('user')->user()->id;
             $user->experience_id = $request['valueSelect']['experience_id'];

@@ -119,7 +119,10 @@ class SearchController extends BaseController
                             $that->majors
                         );
                 })
-                ->where('job.status', 1)
+                ->where([
+                    ['job.status', 1],
+                    ['job.expired', 0],
+                ])
                 ->distinct()
                 ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')

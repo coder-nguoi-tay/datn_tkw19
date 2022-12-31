@@ -231,17 +231,17 @@ class ProfileController extends BaseController
             if ($_GET['vnp_ResponseCode'] == '00') {
                 $payment = new PaymentHistoryEmployer();
                 $payment->user_id = Auth::guard('user')->user()->id;
-                $payment->price = $request->vnp_Amount;
+                $payment->price = $request->vnp_Amount / 100;
                 $payment->desceibe = $request->vnp_OrderInfo;
                 $payment->form = $request->vnp_PayDate;
                 $payment->save();
                 $mony = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
                 if ($mony) {
                     $total = $mony;
-                    $total->surplus += $request->vnp_Amount;
+                    $total->surplus += $request->vnp_Amount / 100;
                 } else {
                     $total = new AccountPayment();
-                    $total->surplus = $request->vnp_Amount;
+                    $total->surplus = $request->vnp_Amount / 100;
                 }
                 $total->user_id = Auth::guard('user')->user()->id;
                 $total->save();

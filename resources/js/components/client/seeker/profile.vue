@@ -1,5 +1,5 @@
 <template>
-  <section class="" style="background-color: #f4f5f7">
+  <section style="background-color: #f4f5f7">
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col col-lg-10 mb-4 mb-lg-0">
@@ -12,10 +12,9 @@
               <form
                 @submit="handleSubmit($event, onSubmit)"
                 ref="formData"
-                method="POST"
+                enctype="multipart/form-data"
               >
                 <Field type="hidden" :value="csrfToken" name="_token" />
-
                 <div class="row g-0">
                   <div
                     class="col-md-4 gradient-custom text-center text-white"
@@ -72,7 +71,7 @@
                         />
                       </div>
                     </div>
-                    <input type="hidden" name="images" :value="Media" />
+                    <input type="hidden" name="images" v-model="model.images" />
                     <div class="text-center">
                       <span class="error">{{ errmsgCheckImage }}</span>
                     </div>
@@ -437,40 +436,41 @@ export default {
             valueSelect: that.valueSelect,
             name: that.model.name,
             email: that.model.email,
-            skill_id: that.value
+            skill_id: that.value,
+            images: that.model.images
           })
           .then(function (response) {
-            const notyf = new Notyf({
-              duration: 6000,
-              position: {
-                x: 'right',
-                y: 'bottom'
-              },
-              types: [
-                {
-                  type: 'error',
-                  duration: 8000,
-                  dismissible: true
-                }
-              ]
-            })
-            console.log(response.data.status)
-            if (response.data.status == 403) {
-              setTimeout(function () {
-                location.reload()
-              }, 1100)
-              return notyf.error(response.data.message)
-            }
-            if (response.data.status == 400) {
-              setTimeout(function () {
-                location.reload()
-              }, 1100)
-              return notyf.warning(response.data.message)
-            }
-            setTimeout(function () {
-              location.reload()
-            }, 1100)
-            return notyf.success(response.data.message)
+            console.log(response)
+            // const notyf = new Notyf({
+            //   duration: 6000,
+            //   position: {
+            //     x: 'right',
+            //     y: 'bottom'
+            //   },
+            //   types: [
+            //     {
+            //       type: 'error',
+            //       duration: 8000,
+            //       dismissible: true
+            //     }
+            //   ]
+            // })
+            // if (response.data.status == 403) {
+            //   setTimeout(function () {
+            //     location.reload()
+            //   }, 1100)
+            //   return notyf.error(response.data.message)
+            // }
+            // if (response.data.status == 400) {
+            //   setTimeout(function () {
+            //     location.reload()
+            //   }, 1100)
+            //   return notyf.warning(response.data.message)
+            // }
+            // setTimeout(function () {
+            //   location.reload()
+            // }, 1100)
+            // return notyf.success(response.data.message)
           })
           .catch((error) => {
             console.log(error)

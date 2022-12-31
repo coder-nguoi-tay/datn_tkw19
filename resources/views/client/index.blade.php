@@ -357,200 +357,9 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <!-- /row -->
-
-
             </div>
         </section>
-        <!-- ======================= All category ======================== -->
-
-        <!-- ======================= About Start ============================ -->
-        <!-- việc làm mới nhất -->
-
-        <!-- end -->
-        <!-- ======================= About Start ============================ -->
-
-        <!-- ======================= Our Partner Start ============================ -->
-        <section class="p-0">
-            <div class="container">
-
-                <div class="row justify-content-center">
-                    <div class="col-xl-5 col-lg-7 col-md-9 col-sm-12">
-                        <div class="sec_title position-relative text-center mb-5">
-                            <h6 class="text-muted mb-0">Our Partners</h6>
-                            <h2 class="ft-bold">We Have Worked with <span class="theme-cl">10,000+</span> Trusted
-                                Companies</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row justify-content-center">
-
-                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div class="empl-thumb text-center px-3 py-4">
-                            <img src="assets/img/l-1.png" class="img-fluid mx-auto" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div class="empl-thumb text-center px-3 py-4">
-                            <img src="assets/img/l-2.png" class="img-fluid mx-auto" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div class="empl-thumb text-center px-3 py-4">
-                            <img src="assets/img/l-3.png" class="img-fluid mx-auto" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div class="empl-thumb text-center px-3 py-4">
-                            <img src="assets/img/l-4.png" class="img-fluid mx-auto" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div class="empl-thumb text-center px-3 py-4">
-                            <img src="assets/img/l-5.png" class="img-fluid mx-auto" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div class="empl-thumb text-center px-3 py-4">
-                            <img src="assets/img/l-6.png" class="img-fluid mx-auto" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div class="empl-thumb text-center px-3 py-4">
-                            <img src="assets/img/l-7.png" class="img-fluid mx-auto" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div class="empl-thumb text-center px-3 py-4">
-                            <img src="assets/img/l-8.png" class="img-fluid mx-auto" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div class="empl-thumb text-center px-3 py-4">
-                            <img src="assets/img/l-9.png" class="img-fluid mx-auto" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div class="empl-thumb text-center px-3 py-4">
-                            <img src="assets/img/l-10.png" class="img-fluid mx-auto" alt="" />
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-        <!-- ======================= Our Partner Start ============================ -->
-
-        <!-- ============================ Pricing Start ==================================== -->
-        <section class="space min">
-            <div class="container">
-
-                <div class="row justify-content-center">
-                    <div class="col-xl-5 col-lg-7 col-md-9 col-sm-12">
-                        <div class="sec_title position-relative text-center mb-5">
-                            <h6 class="text-muted mb-0">Our Pricing</h6>
-                            <h2 class="ft-bold">Choose Your Package</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row align-items-center">
-
-                    <!-- Single Package -->
-                    <div class="col-lg-4 col-md-4">
-                        <div class="pricing_wrap">
-                            <div class="prt_head">
-                                <h4 class="ft-medium">Basic</h4>
-                            </div>
-                            <div class="prt_price">
-                                <h2 class="ft-bold"><span>$</span>29</h2>
-                                <span class="fs-md">per user, per month</span>
-                            </div>
-                            <div class="prt_body">
-                                <ul>
-                                    <li>99.5% Uptime Guarantee</li>
-                                    <li>120GB CDN Bandwidth</li>
-                                    <li>5GB Cloud Storage</li>
-                                    <li class="none">Personal Help Support</li>
-                                    <li class="none">Enterprise SLA</li>
-                                </ul>
-                            </div>
-                            <div class="prt_footer">
-                                <a href="#" class="btn choose_package">Start Basic</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Package -->
-                    <div class="col-lg-4 col-md-4">
-                        <div class="pricing_wrap">
-                            <div class="prt_head">
-                                <div class="recommended">Best Value</div>
-                                <h4 class="ft-medium">Standard</h4>
-                            </div>
-                            <div class="prt_price">
-                                <h2 class="ft-bold"><span>$</span>49</h2>
-                                <span class="fs-md">per user, per month</span>
-                            </div>
-                            <div class="prt_body">
-                                <ul>
-                                    <li>99.5% Uptime Guarantee</li>
-                                    <li>150GB CDN Bandwidth</li>
-                                    <li>10GB Cloud Storage</li>
-                                    <li>Personal Help Support</li>
-                                    <li class="none">Enterprise SLA</li>
-                                </ul>
-                            </div>
-                            <div class="prt_footer">
-                                <a href="#" class="btn choose_package active">Start Standard</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Package -->
-                    <div class="col-lg-4 col-md-4">
-                        <div class="pricing_wrap">
-                            <div class="prt_head">
-                                <h4 class="ft-medium">Platinum</h4>
-                            </div>
-                            <div class="prt_price">
-                                <h2 class="ft-bold"><span>$</span>79</h2>
-                                <span class="fs-md">2 user, per month</span>
-                            </div>
-                            <div class="prt_body">
-                                <ul>
-                                    <li>100% Uptime Guarantee</li>
-                                    <li>200GB CDN Bandwidth</li>
-                                    <li>20GB Cloud Storage</li>
-                                    <li>Personal Help Support</li>
-                                    <li>Enterprise SLA</li>
-                                </ul>
-                            </div>
-                            <div class="prt_footer">
-                                <a href="#" class="btn choose_package">Start Platinum</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-        <!-- ============================ Pricing End ==================================== -->
-
         <!-- ======================= Blog Start ============================ -->
         <section class="space min gray">
             <div class="container">
@@ -558,15 +367,11 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                         <div class="sec_title position-relative text-center mb-4">
-                            {{-- <h6 class="text-muted mb-0">Latest News</h6> --}}
                             <h2 class="ft-bold">Tin Tức
-
-                                {{-- @dd($new) --}}
                             </h2>
                         </div>
                     </div>
                 </div>
-
                 <div class="row justify-content-center">
 
                     <!-- Single Item -->
@@ -580,11 +385,8 @@
                                                    margin-left: auto;
                                                    margin-right: auto;
                                                    margin-top: 10px;"alt=""></a>
-
-
                                 </div>
                                 <div class="blg_grid_caption">
-                                    {{-- <div class="blg_tag"><span>{{ $item->title }} </span></div> --}}
                                     <p class="theme-cl px-3 py-1 rounded bg-light-success d-inline-flex">
                                         {{ $item->majors }}
                                     </p>
@@ -632,53 +434,9 @@
 
                         </div>
                     @endforeach
-
-
-                </div>
-
-            </div>
-        </section>
-        <!-- ======================= Blog Start ============================ -->
-
-        <!-- ========================== Download App Section =============================== -->
-        <section>
-            <div class="container">
-                <div class="row align-items-center">
-
-                    <div class="col-lg-6 col-md-12 col-sm-12 content-column">
-                        <div class="content_block_2 pr-3 py-4">
-                            <div class="content-box">
-                                <div class="sec-title light">
-                                    <p class="theme-cl px-3 py-1 rounded bg-light-success d-inline-flex">Download apps
-                                    </p>
-                                    <h2 class="ft-bold">Get the Workplex Job<br>Search App</h2>
-                                </div>
-                                <div class="text">
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                                        doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-                                        veritatis et quasi architecto accusantium.</p>
-                                </div>
-                                <div class="btn-box clearfix mt-5">
-                                    <a href="index.html" class="download-btn play-store mb-1 d-inline-flex"><img
-                                            src="assets/img/ios.png" width="200" alt="" /></a>
-                                    <a href="index.html" class="download-btn play-store ml-2 mb-1 d-inline-flex"><img
-                                            src="assets/img/and.png" width="200" alt="" /></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
-                        <div class="image-box">
-                            <figure class="image"><img src="assets/img/app.png" class="img-fluid" alt="">
-                            </figure>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
-        <!-- ========================== Download App Section =============================== -->
-
         <!-- ======================= Newsletter Start ============================ -->
         <section class="space bg-cover" style="background:#03343b url(assets/img/landing-bg.png) no-repeat;">
             <div class="container py-5">
