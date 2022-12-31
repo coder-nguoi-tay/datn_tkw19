@@ -8,7 +8,7 @@
                         <h1>Itwork</h1>
 
                         <div class="address mt-2">
-                            Tòa nhà FPT Polytechnic, P. Trịnh Văn Bô, Xuân Phương<br> Nam Từ Liêm, Hà Nội
+                            Tòa nhà FPT Polytechnic, P. Trịnh Văn Bô<br> Xuân Phương, Nam Từ Liêm, Hà Nội
                         </div>
                         <div class="address mt-3">
                             0123456789<br>support@fpt.edu.com
@@ -97,7 +97,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12 col-md-12 text-center">
-                    <p class="mb-0">© 2022 Workplex. Designd By <a href="https://themezhub.com/">ThemezHub</a>.</p>
+                    <p class="mb-0">© 2022 Itwork. Tìm Việc Muôn Nơi Tại <a href="#">Việt Nam</a>.</p>
                 </div>
             </div>
         </div>
