@@ -32,12 +32,13 @@ class ManageUploadController extends BaseController
     public function index()
     {
         $breadcrumbs = [
-            'Quản lý cv'
+            'Quản lý cv ' 
         ];
         $cv = $this->upload->get();
         return view('client.seeker.save-cv', [
             'breadcrumbs' => $breadcrumbs,
             'cv' => $cv,
+            'title' =>'123'
         ]);
     }
 
