@@ -3,12 +3,10 @@
 @endphp
 @extends('client.layout.index')
 @section('client')
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
 
     <body>
-        <div class="home-banner margin-bottom-0" style="background:#00ab46 url(assets/img/banner-5.jpg) no-repeat;"
-            data-overlay="5">
+        <div class="home-banner margin-bottom-0" style="background:#00ab46 url() no-repeat;" data-overlay="5">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -30,6 +28,7 @@
                                                     <i class="bnc-ico lni lni-search-alt"></i>
                                                 </div>
                                             </div>
+
 
                                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                                                 <div class="form-group mb-0 position-relative">
@@ -54,6 +53,7 @@
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
                                                 <div class="form-group mb-0 position-relative">
                                                     <button
@@ -71,6 +71,7 @@
                 </div>
             </div>
         </div>
+
         <div class="imployer-explore">
             <div class="impl-thumb">
                 <img src="assets/img/microsoft-home.png" class="" alt="" />
@@ -259,11 +260,13 @@
                                         "></i>
                                                             </a>
                                                         </div>
-                                                        <div class="row">
+                                                        <div class="row" style="height: 80px;">
                                                             <div class="job_grid_thumb mb-3 title-name px-3 col-4">
                                                                 <a href="home/detail/{{ $value->title . '-' . $value->id }}"
                                                                     class="d-block m-auto"><img src="{{ $value->logo }}"
-                                                                        class="img-fluid" alt="" /></a>
+                                                                        class="img-rounded"
+                                                                        style="width: 70% !important; height: 70% !important"
+                                                                        alt="" /></a>
                                                             </div>
                                                             <div class="job_grid_caption title-name px-3 col-8 g-1">
                                                                 <h4 class="mb-0 ft-medium medium ml-20">

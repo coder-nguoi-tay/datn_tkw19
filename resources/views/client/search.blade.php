@@ -194,7 +194,7 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="p-3">
+                        <div class="p-3 container">
                             <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" id="paginated-list">
                                 @foreach ($job as $value)
                                     <div class="col render-job-search">
@@ -211,7 +211,9 @@
                                                 <div class="job_grid_thumb mb-3 title-name px-3 col-4">
                                                     <a href="home/detail/{{ $value->title . '-' . $value->id }}"
                                                         class="d-block m-auto"><img src="{{ asset($value->logo) }}"
-                                                            class="img-fluid border-0" alt="" /></a>
+                                                            class="img-fluid border-0"
+                                                            style="width: 70% !important; height: 70% !important"
+                                                            alt="" /></a>
                                                 </div>
                                                 <div class="job_grid_caption title-name px-3 col-8">
                                                     <h4 class="mb-0 ft-medium medium ml-20">
