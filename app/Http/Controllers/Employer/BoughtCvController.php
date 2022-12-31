@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProfileUserCv;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BoughtCvController extends Controller
 {
@@ -12,9 +14,17 @@ class BoughtCvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public ProfileUserCv $profileCv;
+    public function __construct(ProfileUserCv $profileCv)
+    {
+       
+        $this->profileCv = $profileCv;
+    }
     public function index()
     {
+        $tatalecv = $this->profileCv->where('status', Auth::guard('user')->user()->id)->get();
         return view('employer.boughtcv.index', [
+            'tatalecv' => $tatalecv,
             'title' => 'CV đã mua'
         ]);
     }

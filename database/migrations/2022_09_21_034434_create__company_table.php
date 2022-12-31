@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
-            $table->string('desceibe');
+            $table->longText('desceibe');
             $table->integer('number_member');
             $table->string('email');
             $table->string('logo');

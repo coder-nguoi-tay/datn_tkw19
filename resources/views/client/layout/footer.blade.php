@@ -5,13 +5,13 @@
 
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                     <div class="footer_widget">
-                        <img src="assets/img/logo.png" class="img-footer small mb-2" alt="" />
+                        <h1>Itwork</h1>
 
                         <div class="address mt-2">
-                            3298 Grant Street Longview, New Texox<br>United Kingdom 75601
+                            Tòa nhà FPT Polytechnic, P. Trịnh Văn Bô<br> Xuân Phương, Nam Từ Liêm, Hà Nội
                         </div>
                         <div class="address mt-3">
-                            1-202-555-0106<br>support@workplex.com
+                            0123456789<br>support@fpt.edu.com
                         </div>
                         <div class="address mt-2">
                             <ul class="list-inline">
@@ -32,51 +32,59 @@
 
                 <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
                     <div class="footer_widget">
-                        <h4 class="widget_title">For Employers</h4>
+                        <h4 class="widget_title">Dành cho nhà tuyển dụng</h4>
                         <ul class="footer-menu">
-                            <li><a href="#">Explore Candidates</a></li>
-                            <li><a href="#">Job Pricing</a></li>
-                            <li><a href="#">Submit Job</a></li>
-                            <li><a href="#">Shortlisted</a></li>
-                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Khám phá ứng viên
+                                
+                                 
+                                 
+                                </a></li>
+                            <li><a href="#">Giá công việc</a></li>
+                            <li><a href="#"> Gửi công việc</a></li>
+                            <li><a href="#"> Danh sách rút gọn</a></li>
+                            <li><a href="#">Bảng điều khiển</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
                     <div class="footer_widget">
-                        <h4 class="widget_title">For Candidates</h4>
+                        <h4 class="widget_title">Dành Cho Ứng Viên</h4>  
                         <ul class="footer-menu">
-                            <li><a href="#">Explore All Jobs</a></li>
-                            <li><a href="#">Browse Categories</a></li>
-                            <li><a href="#">Saved Jobs</a></li>
-                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#"> Khám phá tất cả công việc</a></li>
+                            <li><a href="#"> Duyệt danh mục</a></li>
+                            <li><a href="#"> Công việc đã lưu</a></li>
+                            <li><a href="#"> Bảng điều khiển</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
                     <div class="footer_widget">
-                        <h4 class="widget_title">About Company</h4>
+                        <h4 class="widget_title">Về Công Ty </h4>   
                         <ul class="footer-menu">
-                            <li><a href="#">Who We'r?</a></li>
-                            <li><a href="#">Our Mission</a></li>
-                            <li><a href="#">Our team</a></li>
-                            <li><a href="#">Packages</a></li>
-                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">  Chúng tôi là ai?</a></li>
+                            <li><a href="#"> Nhiệm vụ của chúng tôi</a></li>
+                            <li><a href="#"> Đội ngũ của chúng tôi</a></li>
+                                
+                            <li><a href="#">Bảng điều khiển</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
                     <div class="footer_widget">
-                        <h4 class="widget_title">Helpful Topics</h4>
+                        <h4 class="widget_title">Chủ Đề Hữu Ích</h4>
+                        
+                        
+                       
+                        
+                        
                         <ul class="footer-menu">
-                            <li><a href="#">Site Map</a></li>
-                            <li><a href="#">Security</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">FAQ's Page</a></li>
-                            <li><a href="#">Privacy</a></li>
+                            <li><a href="#">Sơ đồ trang web</a></li>
+                            <li><a href="#"> Liên hệ</a></li>
+                            <li><a href="#">Trang hỏi đáp</a></li>
+                            <li><a href="#">Sự riêng tư</a></li>
                         </ul>
                     </div>
                 </div>
@@ -89,7 +97,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12 col-md-12 text-center">
-                    <p class="mb-0">© 2022 Workplex. Designd By <a href="https://themezhub.com/">ThemezHub</a>.</p>
+                    <p class="mb-0">© 2022 Itwork. Tìm Việc Muôn Nơi Tại <a href="#">Việt Nam</a>.</p>
                 </div>
             </div>
         </div>

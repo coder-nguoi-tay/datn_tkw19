@@ -155,7 +155,7 @@ class HomeEmployerController extends BaseController
             'cv' => $cv,
             'title' => 'Bảng tin | News',
             'tatalecv' => $tatalecv,
-            'totalPayment' => $totalPayment,
+            'totalPayment' => $totalPayment ?? '',
             'countCvMoth1' => $countCvMoth1,
             'countCvMoth2' => $countCvMoth2,
             'countCvMoth3' => $countCvMoth3,

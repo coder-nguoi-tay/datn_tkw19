@@ -12,23 +12,23 @@ use Illuminate\Http\Request;
 
 class JobAttractiveController extends BaseController
 {
-    private jobAttractive $jobattractive;
+    public jobAttractive $jobattractive;
 
     public Timeoffer $timeoffer;
     public LeverPackage $leverpackage;
-    public function __construct(jobAttractive $jobattractive, Timeoffer $timeoffer,LeverPackage $leverpackage)
+    public function __construct(jobAttractive $jobattractive, Timeoffer $timeoffer, LeverPackage $leverpackage)
     {
-        $this->jobattractive = $jobattractive; 
+        $this->jobattractive = $jobattractive;
         $this->timeoffer = $timeoffer;
         $this->leverpackage = $leverpackage;
     }
-  
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( Request $request)
+    public function index(Request $request)
     {
         // $jobattractive1 = jobAttractive::get();
         // dd($this->jobattractive->select('*')->with('leverpackage')->get());
@@ -46,11 +46,11 @@ class JobAttractiveController extends BaseController
      */
     public function create()
     {
-       
-      
+
+
         return view('admin.jobAttractive.create', [
-            'title'=>'Thêm Gói Ưu Đãi Hấp Dẫn',
-            'leverpackage'  =>$this->leverpackage->get()
+            'title' => 'Thêm Gói Ưu Đãi Hấp Dẫn',
+            'leverpackage'  => $this->leverpackage->get()
         ]);
     }
 
@@ -92,9 +92,9 @@ class JobAttractiveController extends BaseController
     public function edit($id)
     {
         return view('admin.jobAttractive.edit', [
-           
-            'leverpackage'  =>$this->leverpackage->get(),
-            'jobattractive' => $this->jobattractive->where('id',$id)->first(),
+
+            'leverpackage'  => $this->leverpackage->get(),
+            'jobattractive' => $this->jobattractive->where('id', $id)->first(),
             'title' => 'Cập Nhật Gói Ưu Đãi Hấp Dẫn'
         ]);
     }
@@ -107,8 +107,8 @@ class JobAttractiveController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {       
-        $this->jobattractive->find($id)->update($request->all()); 
+    {
+        $this->jobattractive->find($id)->update($request->all());
         $this->setFlash(__('Sửa gói cước thành công'));
         return redirect(route('admin.jobAttractive.index'));
     }
@@ -132,5 +132,4 @@ class JobAttractiveController extends BaseController
             'status' => StatusCode::OK,
         ], StatusCode::INTERNAL_ERR);
     }
-    
 }

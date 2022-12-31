@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('profession_id');
             $table->string('title');
             $table->string('new_image');
-            $table->string('describe');
+            $table->longText('describe');
             $table->timestamps();
         });
     }
