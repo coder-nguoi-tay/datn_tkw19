@@ -64,10 +64,12 @@ import EditjobAttractive from './components/jobAttractive/edit.vue'
 app.component('edit-job-attractive', EditjobAttractive)
 // new
 import CreateNew from './components/new/create.vue';
-
 app.component('create-new', CreateNew);
 import EditNew from './components/new/edit.vue'
 app.component('edit', EditNew);
+import ChangheStatus from './components/employer/new/ChangeStatus.vue'
+app.component('change-status-new', ChangheStatus);
+
 
 //employer
 import CreateNewEmployer from './components/employer/new/create.vue';

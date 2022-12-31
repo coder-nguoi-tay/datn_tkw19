@@ -69,6 +69,8 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::get('new/destroy/{id}', [NewEmployerController::class, 'destroy'])->name('new.destroy');
     Route::get('new/edit/{job}', [NewEmployerController::class, 'edit'])->name('new.edit');
     Route::post('new/update/{id}', [NewEmployerController::class, 'update'])->name('new.update');
+    Route::post('new/change-status/{id}', [NewEmployerController::class, 'changeStus'])->name('new.changeStus');
+    //
     Route::resource('package', EmployerPackageController::class);
     Route::post('package/payment', [EmployerPackageController::class, 'Payment'])->name('package.payment');
     Route::get('package/payment/return', [EmployerPackageController::class, 'vnpayReturn'])->name('package.payment.return');
