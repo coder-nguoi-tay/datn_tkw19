@@ -44,7 +44,7 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>{{ $totalPayment->surplus ?? '0đ' }}</h3>
+                                <h3>{{ number_format($totalPayment->surplus) . 'đ' ?? '0đ' }}</h3>
 
                                 <p>Tài Khoản</p>
                             </div>

@@ -29,7 +29,7 @@
           <div class="main_gt">
             <div class="left_cv">
               <div
-                class="img-fluid box_img"
+                class="img-fluid box_img p-3"
                 id="img-preview"
                 @click="chooseImage()"
                 role="button"
@@ -62,7 +62,7 @@
                   <img
                     v-if="filePreview && !model.images"
                     :src="filePreview"
-                    class="img-fluid my-5 p-5"
+                    class="img-fluid p-2"
                   />
                 </div>
                 <input type="hidden" name="images" v-model="model.images" />
@@ -71,7 +71,9 @@
                 <h3>Thông tin cá nhân</h3>
                 <div class="box_contact">
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label"
+                    <label
+                      for="exampleFormControlInput1"
+                      class="form-label custom-label"
                       >Email
                     </label>
                     <Field
@@ -84,7 +86,9 @@
                     />
                   </div>
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label"
+                    <label
+                      for="exampleFormControlInput1"
+                      class="form-label custom-label"
                       >Địa chỉ</label
                     >
                     <Field
@@ -97,7 +101,9 @@
                     />
                   </div>
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label"
+                    <label
+                      for="exampleFormControlInput1"
+                      class="form-label custom-label"
                       >SDT</label
                     >
                     <Field
@@ -110,7 +116,9 @@
                     />
                   </div>
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label"
+                    <label
+                      for="exampleFormControlInput1"
+                      class="form-label custom-label"
                       >Link FB</label
                     >
                     <Field
@@ -128,7 +136,9 @@
                 <h3>CÁC KỸ NĂNG</h3>
                 <div class="box_contact">
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label"
+                    <label
+                      for="exampleFormControlInput1"
+                      class="form-label custom-label"
                       >Các kĩ năng</label
                     >
                     <Field
@@ -146,7 +156,9 @@
                 <h3>CHỨNG CHỈ</h3>
                 <div class="box_contact">
                   <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label"
+                    <label
+                      for="exampleFormControlTextarea1"
+                      class="form-label custom-label"
                       >Chứng chỉ</label
                     >
                     <Field
@@ -525,19 +537,20 @@ export default {
   height: auto;
   width: 100%;
   color: #bbbdbf;
-  background: #284350;
+  background: #387fa0;
   padding: 10px;
 }
 
 .left_cv .box_img {
   width: 100%;
   margin-bottom: 10px;
-  border: 3px solid #ffc628;
-  height: 300px;
+  /* border: 3px solid #ffc628; */
+  /* height: 300px; */
+  height: 220px !important;
 }
 
 .left_cv .box_img > img {
-  border: 3px solid #ffc628;
+  /* border: 3px solid #ffc628; */
 }
 
 .left_cv > .contact {
@@ -683,5 +696,9 @@ export default {
   color: #284350;
   padding: 10px 0;
   font-size: 14px;
+}
+.custom-label {
+  float: left;
+  color: #fff;
 }
 </style>
