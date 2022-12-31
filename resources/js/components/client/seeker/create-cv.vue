@@ -702,7 +702,7 @@ export default {
 }
 ._dashboard_content_body {
   .tox-tinymce {
-    height: 200px !important;
+    height: 300px !important;
   }
 }
 </style>
