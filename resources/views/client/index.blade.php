@@ -5,7 +5,10 @@
 @section('client')
 
 
+
     <body>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
         <div class="home-banner margin-bottom-0" style="background:#00ab46 url() no-repeat;" data-overlay="5">
             <div class="container">
                 <div class="row justify-content-center">
@@ -30,13 +33,14 @@
                                             </div>
 
 
+
                                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                                                 <div class="form-group mb-0 position-relative">
-                                                    <select class="custom-select lg b-0 " style="width: auto;"
-                                                        name="skill[]">
-                                                        @foreach ($skill as $item)
+                                                    <select class="custom-select lg b-0" name="majors">
+                                                        <option selected disabled>Chuyên Ngành</option>
+                                                        @foreach ($majors as $item)
                                                             <option value="{{ $item->id }}">
-                                                                {{ $item->label }}
+                                                                {{ $item->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -107,6 +111,7 @@
         <!-- ======================= Home Banner ======================== -->
 
         <!-- ======================= Job List ======================== -->
+
 
         <section class="middle space gray">
             <div class="container border" style="background: #ffff">
@@ -479,6 +484,7 @@
 
             </div>
         </section>
+
         <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
         <!-- Button trigger modal -->
         <!-- Modal login -->
@@ -505,6 +511,15 @@
             </div>
         </div>
     </body>
+    <script src="assets/js/jquery.min.js"></script>
+    <!-- <script src="assets/js/popper.min.js"></script> -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/slick.js"></script>
+    <script src="assets/js/slider-bg.js"></script>
+    <script src="assets/js/smoothproducts.js"></script>
+    <script src="assets/js/snackbar.min.js"></script>
+    <script src="assets/js/jQuery.style.switcher.js"></script>
+    <script src="assets/js/custom.js"></script>
     @if (Auth::guard('user')->check())
         @if ($user->getProfileUse == null)
             <div class="loading-div">
@@ -545,6 +560,7 @@
                     </div>
                 </div>
             </div>
+          
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
             <script type="text/javascript">
                 $(document).ready(function() {

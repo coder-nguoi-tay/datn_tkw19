@@ -51,6 +51,7 @@
     top: 0;
 } */
 
+
 /* .preloader {
     position: fixed;
     left: 0px;
@@ -329,10 +330,7 @@ html body .db {
 
 .trans-bg {
     background: rgba(255, 255, 255, 0.1);
-<<<<<<< HEAD
-=======
-
->>>>>>> duc
+    <<<<<<< HEAD=======>>>>>>>duc
 }
 
 .theme-bg-light {
@@ -6912,8 +6910,12 @@ a:hover {
 }
 
 .select2-selection {
-    height: 37px !important;
+    height: 60px !important;
+    width: 275px !important;
+    border: 1px solid #e5e5e5;
 }
+
+
 
 .input-custom {
     /* height: 37px !important; */

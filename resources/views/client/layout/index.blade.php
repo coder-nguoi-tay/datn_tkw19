@@ -83,6 +83,7 @@
 <script src="{{ asset('assets/js/snackbar.min.js') }}"></script>
 <script src="{{ asset('assets/js/jQuery.style.switcher.js') }}"></script>
 <script src="{{ asset('assets/js/custom.js') }}"></script>
+
 <!-- ============================================================== -->
 <!-- This page plugins -->
 <!-- ============================================================== -->
