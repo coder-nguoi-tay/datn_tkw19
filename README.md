@@ -42,7 +42,7 @@ $ npm run dev
 $ php artisan make:repository name
 
 #generate model from database
-$ php artisan krlove:generate:model User --table-name=user
+$ php artisan krlove:generate:model Accuracy --table-name=accuracy
 
 #general jwt secret key
 php artisan jwt:secret

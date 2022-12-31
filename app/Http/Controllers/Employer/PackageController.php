@@ -7,8 +7,10 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\AccountPayment;
 use App\Models\Employer;
+use App\Models\jobAttractive;
 use App\Models\Packageoffer;
 use App\Models\packageofferbought;
+use App\Models\PaymentHistoryEmployer;
 use App\Models\Vnpay;
 use Carbon\Carbon;
 use Exception;
@@ -43,10 +45,12 @@ class PackageController extends BaseController
 
         $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
         $package = Packageoffer::select('*')->whereNotIn('id', $pachageForEmployer->pluck('package_id'))->with(['timeofer', 'leverPackage'])->get();
+        $packageAttractive = jobAttractive::whereNotIn('id', $pachageForEmployer->pluck('package_id'))->get();
         return view('employer.package.index', [
             'data' => $package,
             'accPayment' => $accPayment,
             'pachageForEmployer' => $pachageForEmployer,
+            'packageAttractive' => $packageAttractive,
             'total' => AccountPayment::where('user_id', Auth::guard('user')->user()->id)->with('user')->first(),
         ]);
     }
@@ -80,7 +84,7 @@ class PackageController extends BaseController
     public function showDetail($id)
     {
         return response()->json([
-            'data' => $this->package->where('id', $id)->with('timeofer')->first()
+            'data' => jobAttractive::where('id', $id)->first()
         ]);
     }
 
@@ -268,7 +272,7 @@ class PackageController extends BaseController
                 $i = 1;
             }
         }
-        $lever_package = explode(',', $request->vnp_OrderInfo)[1];
+        $lever_package = explode(',', $request->vnp_OrderInfo)[1]; // lever
         $secureHash = hash_hmac('sha512', $hashData, $this->vnp_HashSecret);
         $vnpTranId = $inputData['vnp_TransactionNo']; //Mã giao dịch tại VNPAY
         $vnp_BankCode = $inputData['vnp_BankCode']; //Ngân hàng thanh toán
@@ -279,8 +283,7 @@ class PackageController extends BaseController
             //Check Orderid    
             //Kiểm tra checksum của dữ liệu
             if ($secureHash == $vnp_SecureHash) {
-
-                $invoice = Packageoffer::where('id', explode(',', $request->vnp_OrderInfo)[2])->first(); //$orderId
+                $invoice = jobAttractive::where('id', $lever_package)->first();
                 if ($invoice != NULL) {
                     if ($invoice["price"] == $vnp_Amount) //Kiểm tra số tiền thanh toán của giao dịch: giả sử số tiền kiểm tra là đúng. //$order["Amount"] == $vnp_Amount
                     {
@@ -290,28 +293,33 @@ class PackageController extends BaseController
                             } else {
                                 $Status = 2; // Trạng thái thanh toán thất bại / lỗi
                             }
+                            //
                             $package = new packageofferbought();
-                            $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
                             $package->company_id = Auth::guard('user')->user()->id;
                             $package->package_offer_id = 1;
                             $package->status = $Status;
                             $package->start_time = Carbon::parse(Carbon::now());
-                            $employer->prioritize += $lever_package;
-                            $employer->position = 1;
                             if ($lever_package == 1) {
                                 $package->end_time = Carbon::parse(Carbon::now())->addDay(1)->format('Y-m-d');
-                                $package->lever = $lever_package;
                             } else if ($lever_package == 2) {
                                 $package->end_time = Carbon::parse(Carbon::now())->addDay(7)->format('Y-m-d');
-                                $package->lever = $lever_package;
                             } else if ($lever_package == 3) {
                                 $package->end_time = Carbon::parse(Carbon::now())->addDay(30)->format('Y-m-d');
-                                $package->lever = $lever_package;
-                            } else if ($lever_package == 4) {
-                                $package->end_time = Carbon::parse(Carbon::now())->addDay(365)->format('Y-m-d');
-                                $package->lever = $lever_package;
                             }
+                            $package->lever = $lever_package;
                             $package->save();
+                            //
+                            $paymentHistory = new PaymentHistoryEmployer();
+                            $paymentHistory->user_id = Auth::guard('user')->user()->id;
+                            $paymentHistory->price = $vnp_Amount;
+                            $paymentHistory->desceibe = explode(',', $request->vnp_OrderInfo)[0];
+                            $paymentHistory->form = '';
+                            $paymentHistory->save();
+
+                            //
+                            $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
+                            $employer->prioritize += $lever_package;
+                            $employer->position = 1;
                             $employer->save();
                             $returnData['RspCode'] = '00';
                             $returnData['Message'] = 'Xác nhận thành công';
@@ -344,37 +352,38 @@ class PackageController extends BaseController
     }
     public function byAccount(Request $request)
     {
-
         try {
+            //
             $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
+            $employer->prioritize = $request['data']['lever_package'];
+            $employer->position = 1;
+            $employer->save();
+            //
             $package = new packageofferbought();
             $package->company_id = Auth::guard('user')->user()->id;
-            $package->package_offer_id = $request['data']['id'];
+            $package->package_offer_id = $request['data']['lever_package'];
             $package->status = 1;
-            $package->start_time =
-                Carbon::parse(Carbon::now());
-            if ($request['data']['timeofer']['id'] == 1) {
-                $employer->prioritize += 1;
+            $package->lever = $request['data']['lever_package'];
+            $package->start_time = Carbon::parse(Carbon::now());
+            if ($request['data']['lever_package'] == 1) {
                 $package->end_time = Carbon::parse(Carbon::now())->addDay(1)->format('Y-m-d');
-                $package->lever = 1;
-            } else if ($request['data']['timeofer']['id'] == 2) {
-                $employer->prioritize += 2;
+            } else if ($request['data']['lever_package'] == 2) {
                 $package->end_time = Carbon::parse(Carbon::now())->addDay(7)->format('Y-m-d');
-                $package->lever = 2;
-            } else if ($request['data']['timeofer']['id'] == 3) {
-                $employer->prioritize += 3;
+            } else if ($request['data']['lever_package'] == 3) {
                 $package->end_time = Carbon::parse(Carbon::now())->addDay(30)->format('Y-m-d');
-                $package->lever = 3;
-            } else if ($request['data']['timeofer']['id'] == 4) {
-                $employer->prioritize += 4;
-                $package->end_time = Carbon::parse(Carbon::now())->addDay(365)->format('Y-m-d');
-                $package->lever = 4;
             }
             $package->save();
-            $employer->save();
+            // total
             $account = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
             $account->surplus = $account->surplus - $request['data']['price'];
             $account->save();
+            //ls 
+            $paymentHistory = new PaymentHistoryEmployer();
+            $paymentHistory->user_id = Auth::guard('user')->user()->id;
+            $paymentHistory->price = $request['data']['price'];
+            $paymentHistory->desceibe = 'Thanh toán mua gói cước VIP ' . $request['data']['lever_package'];
+            $paymentHistory->form = '';
+            $paymentHistory->save();
             return response()->json([
                 'message' => 'Thanh toán đơn hàng thành công',
                 'status' => StatusCode::OK,
@@ -384,7 +393,7 @@ class PackageController extends BaseController
             return response()->json([
                 'message' => 'Có một lỗi không xác định đã xảy ra',
                 'message' =>  StatusCode::FORBIDDEN,
-            ], StatusCode::OK,);
+            ], StatusCode::OK);
         }
     }
 }

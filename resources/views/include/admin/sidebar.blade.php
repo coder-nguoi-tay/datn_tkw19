@@ -26,10 +26,18 @@
                         <i class="fa fa-address-card" aria-hidden="true"></i>Tìm Kiếm CV
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('employer.cv-da-mua.index') }}">
+                        <i class="fa fa-address-card" aria-hidden="true"></i>CV Đã Mua
+                    </a>
+                </li>
             </ul>
             <ul data-submenu-title="Tài khoản">
                 <li><a href="{{ route('employer.profile.index') }}"><i class="fa fa-user-circle"
                             aria-hidden="true"></i>My Profile </a>
+                </li>
+                <li><a href="/employer/pay-money"><i class="fa fa-user-circle"
+                            aria-hidden="true"></i>Nạp tiền</a>
                 </li>
                 <li><a href=""><i class="fa fa-cogs" aria-hidden="true"></i>Đổi mật khẩu</a></li>
                 </li>

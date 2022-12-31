@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\forgotPasswordSuccessController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\JobAttractiveController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\Seeker\HomeController as SeekerHomeController;
 use App\Http\Controllers\Seeker\ManageUploadController as SeekerManageUploadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\SearchController;
+use App\Http\Controllers\Employer\BoughtCvController;
 use App\Http\Controllers\Employer\ManagerUploadCvController;
 use App\Http\Controllers\Employer\ProfileController as EmployerProfileController;
 use App\Http\Controllers\Employer\RegisterCompanyController;
@@ -45,6 +47,9 @@ Route::middleware('admin')->prefix('dashboard')->name('admin.')->group(function 
     Route::resource('admin', AdminController::class);
     Route::resource('profile', ProfileController::class);
     Route::resource('new', NewController::class);
+    Route::resource('company', CompanyController::class);
+    Route::get('company/data-xt/{id}', [CompanyController::class, 'dataXt'])->name('company.dataxt');
+    Route::post('company/change-status', [CompanyController::class, 'changeStatus'])->name('company.changeStatus');
 });
 Route::resource('admin', LoginController::class);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
@@ -74,6 +79,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
     Route::resource('tim-kiem-cv', SearchCvController::class);
+    Route::resource('cv-da-mua', BoughtCvController::class);
     Route::post('tim-kiem-cv/change-account/{id}', [ManagerUploadCvController::class, 'changeStatus'])->name('changecAcount');
     Route::group([
         'prefix' => 'quan-ly-cv'
@@ -83,6 +89,11 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::resource('register-company', RegisterCompanyController::class);
     //profile
     Route::resource('profile', EmployerProfileController::class);
+    Route::get('pay-money', [EmployerProfileController::class, 'payMoney'])->name('employer.profile.paymoney');
+    Route::post('pay-money-payment', [EmployerProfileController::class, 'payMoneyPayment'])->name('profile.paymoney.payment');
+    Route::get('pay-money-payment-return', [EmployerProfileController::class, 'vnpayReturn'])->name('profile.paymoney.payment.return');
+    // giấy xác thực
+    Route::post('image-accuracy', [ManagerUploadCvController::class, 'ImageAccuracy'])->name('profile.ImageAccuracy');
 });
 
 
@@ -92,6 +103,7 @@ Route::post('register/create', [HomeEmployerController::class, 'store'])->name('
 // seeker
 Route::resource('profile', SeekerHomeController::class);
 Route::resource('quan-ly-cv', SeekerManageUploadController::class);
+
 Route::get('file/tao-moi', [SeekerManageUploadController::class, 'createFormCV'])->name('user.createFormCV');
 Route::post('file/tao-moi', [SeekerManageUploadController::class, 'storeFormCV'])->name('user.storeFormCV');
 Route::get('user/createFormCV/download', [SeekerManageUploadController::class, 'downloadPdf'])->name('user.createFormCV.downloadPdf');

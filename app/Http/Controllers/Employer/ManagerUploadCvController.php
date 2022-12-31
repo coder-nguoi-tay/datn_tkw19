@@ -6,11 +6,13 @@ use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\AccountPayment;
+use App\Models\Accuracy;
 use App\Models\Employer;
 use App\Models\Job;
 use App\Models\Jobseeker;
 use App\Models\location;
 use App\Models\Majors;
+use App\Models\PaymentHistoryEmployer;
 use App\Models\Profession;
 use App\Models\ProfileUserCv;
 use App\Models\SaveCv;
@@ -167,9 +169,21 @@ class ManagerUploadCvController extends BaseController
     public function changeStatus($id)
     {
         try {
+            //muacv
             $upcv = ProfileUserCv::where('id', $id)->first();
             $upcv->status = Auth::guard('user')->user()->id;
             $upcv->save();
+            //lsgd
+            $paymentHistory = new PaymentHistoryEmployer();
+            $paymentHistory->user_id = Auth::guard('user')->user()->id;
+            $paymentHistory->price = 30000;
+            $paymentHistory->desceibe = 'Thanh toán mua CV ' . $upcv->name;
+            $paymentHistory->form = '';
+            $paymentHistory->save();
+            //tk
+            $account = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
+            $account->surplus -= 30000;
+            $account->save();
             return response()->json([
                 'message' => 'Mua cv thành công',
                 'status' => StatusCode::OK,
@@ -179,6 +193,24 @@ class ManagerUploadCvController extends BaseController
                 'message' => 'Đã có một lỗi không xác định sảy ra',
                 'status' => StatusCode::FORBIDDEN,
             ], StatusCode::OK);
+        }
+    }
+    public function ImageAccuracy(Request $request)
+    {
+        try {
+            $accy = new Accuracy();
+            $accy->user_id = Auth::guard('user')->user()->id;
+            $accy->status = 0;
+            if ($request->hasFile('images')) {
+                $accy->images = $request->images->storeAs('images/cv', $request->images->hashName());
+            }
+            $accy->save();
+            $this->setFlash(__('Chúng tôi sẽ xác nhận cho bạn sớm nhất có thể'));
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->setFlash(__('Đã có một lỗi không xác định xảy ra'), 'error');
+            return redirect()->back();
         }
     }
 }

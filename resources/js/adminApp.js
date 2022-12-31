@@ -107,6 +107,8 @@ app.component('search-seeker', Seeker);
 
 import settingProfile from "./components/employer/profile/setting-profile.vue";
 app.component('setting-profile', settingProfile);
+import payMoney from "./components/employer/profile/pay-money.vue";
+app.component('pay-money', payMoney);
 import SeaechCv from "./components/employer/searchCv/index.vue";
 app.component('search-cv', SeaechCv);
 
@@ -117,6 +119,10 @@ app.component('show-cv-client', showCvClient);
 
 import Widgets from "./components/employer/widgets.vue";
 app.component('widgets', Widgets);
+import btnStatusCompany from "./components/admin/company/buttomStatus.vue";
+app.component('btn-status-company', btnStatusCompany);
+import BoughtCV from "./components/employer/boughtcv/index.vue";
+app.component('bought-cv', BoughtCV);
 
 app.mount('#app');
 

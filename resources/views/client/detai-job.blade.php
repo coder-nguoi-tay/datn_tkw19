@@ -392,97 +392,12 @@
                 </div>
                 <div class="col-4">
                     <div class="bg-white rounded mb-4 box-text-search">
-                        <div class="sidebar_header d-flex align-items-center justify-content-between px-4 py-3 br-bottom">
-                            <h4 class="ft-medium fs-lg mb-0">Search Filter</h4>
-                            <div class="ssh-header">
-                                <a href="#search_open" data-toggle="collapse" aria-expanded="false" role="button"
-                                    class="collapsed _filter-ico ml-2"><i class="lni lni-text-align-right"></i></a>
-                            </div>
-                        </div>
-
-                        <!-- Find New Property -->
                         <div class="sidebar-widgets collapse miz_show" id="search_open" data-parent="#search_open">
-
-                            <div class="search-inner">
-
-                                <div class="filter-search-box px-4 pt-3 pb-0">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Search by keywords...">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Location, Zip..">
-                                    </div>
-                                </div>
-
-                                <div class="filter_wraps">
-
-                                    <!-- Job categories Search -->
-                                    <div class="single_search_boxed px-4 pt-0 br-bottom">
-                                        <div class="widget-boxed-header">
-                                            <h4>
-                                                <a href="#categories" class="ft-medium fs-md pb-0" data-toggle="collapse"
-                                                    aria-expanded="true" role="button">Job
-                                                    Categories</a>
-                                            </h4>
-
-                                        </div>
-                                        <div class="widget-boxed-body collapse show" id="categories"
-                                            data-parent="#categories">
-                                            <div class="side-list no-border">
-                                                <!-- Single Filter Card -->
-                                                <div class="single_filter_card">
-                                                    <div class="card-body p-0">
-                                                        <div class="inner_widget_link">
-                                                            <ul class="no-ul-list filter-list">
-                                                                <li>
-                                                                    <input id="a1" class="checkbox-custom"
-                                                                        name="ADA" type="checkbox" checked="">
-                                                                    <label for="a1" class="checkbox-custom-label">IT
-                                                                        Computers (62)</label>
-                                                                    <ul class="no-ul-list filter-list">
-                                                                        <li>
-                                                                            <input id="aa1" class="checkbox-custom"
-                                                                                name="ADA" type="checkbox">
-                                                                            <label for="aa1"
-                                                                                class="checkbox-custom-label">Web
-                                                                                Design
-                                                                                (31)</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <input id="aa2" class="checkbox-custom"
-                                                                                name="Parking" type="checkbox">
-                                                                            <label for="aa2"
-                                                                                class="checkbox-custom-label">Web
-                                                                                development
-                                                                                (20)</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <input id="aa3" class="checkbox-custom"
-                                                                                name="Coffee" type="checkbox">
-                                                                            <label for="aa3"
-                                                                                class="checkbox-custom-label">SEO
-                                                                                Services
-                                                                                (43)</label>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-
-
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group filter_button pt-2 pb-4 px-4">
-                                    <button type="submit" class="btn btn-md theme-bg text-light rounded full-width">22
-                                        Results Show</button>
-                                </div>
-                            </div>
+                            {{-- sidemap --}}
+                            <iframe class="p-2"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59587.20210256174!2d105.82177788007363!3d21.02467679226917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9bd9861ca1%3A0xe7887f7b72ca17a9!2zSMOgIE7hu5lpLCBIb8OgbiBLaeG6v20sIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1672403536602!5m2!1svi!2s"
+                                width="460" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>
@@ -572,6 +487,7 @@
                             'urlStoreCv' => route('quan-ly-cv.create'),
                             'jobId' => $job->id,
                             'checkUser' => $profileUser,
+                            'seeker' => $seeker,
                         ]) }}">
                     </up-cv>
                 </div>

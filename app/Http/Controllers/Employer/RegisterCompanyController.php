@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Employer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RegisterCompanyController extends BaseController
 {
@@ -46,21 +47,33 @@ class RegisterCompanyController extends BaseController
      */
     public function store(Request $request)
     {
-        $company = new $this->company();
-        $company->name = $request->name;
-        $company->address = $request->address;
-        $company->desceibe = $request->desceibe;
-        $company->number_member = $request->number_member;
-        $company->email = $request->email;
-        if ($request->hasFile('logo')) {
-            $company->logo = $request->logo->storeAs('images/cv', $request->logo->hashName());
+        try {
+            $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
+            $Checkompany = Company::where('id', $employer->id_company)->first();
+            if ($Checkompany) {
+                $company = $Checkompany;
+            } else {
+                $company = new $this->company();
+            }
+            $company->name = $request->nameCompany;
+            $company->number_tax = $request->number_tax;
+            $company->address = $request->address;
+            $company->desceibe = $request->desceibe;
+            $company->number_member = $request->number_member;
+            $company->email = $request->email;
+            if ($request->hasFile('logo')) {
+                $company->logo = $request->logo->storeAs('images/cv', $request->logo->hashName());
+            }
+            $company->save();
+            $employer->id_company = $company->id;
+            $employer->save();
+            $this->setFlash(__('Thêm công ty thành công'));
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->setFlash(__('Đã có một lỗi không các định xảy ra'), 'error');
+            return redirect()->back();
         }
-        $company->save();
-        $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
-        $employer->id_company = $company->id;
-        $employer->save();
-        $this->setFlash(__('Thêm thành công'));
-        return redirect()->route('employer.new.index');
     }
 
     /**

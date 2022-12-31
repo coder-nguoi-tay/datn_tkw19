@@ -28,12 +28,44 @@
         <div style="margin: 30px 0; padding: 0; box-sizing: border-box">
           <div class="main_gt">
             <div class="left_cv">
-              <div class="box_img" style="overflow: hidden">
+              <div
+                class="img-fluid box_img"
+                id="img-preview"
+                @click="chooseImage()"
+                role="button"
+              >
+                <div style="display: none">
+                  <input
+                    type="file"
+                    @change="onChange"
+                    ref="fileInput"
+                    accept="image/*"
+                    name="images"
+                  />
+                </div>
                 <img
-                  src="/assets/img/bn-2.png"
-                  alt="anh_cv"
-                  style="width: 100%; border: none"
+                  v-if="!filePreview && model.images"
+                  :src="'http://127.0.0.1:8000/' + model.images"
+                  class="img-fluid"
                 />
+                <div id="img-preview" @click="chooseImage()" role="button">
+                  <div style="display: none">
+                    <input
+                      type="file"
+                      id="file"
+                      @change="onChange"
+                      ref="fileInput"
+                      accept="image/*"
+                      name="images"
+                    />
+                  </div>
+                  <img
+                    v-if="filePreview && !model.images"
+                    :src="filePreview"
+                    class="img-fluid my-5 p-5"
+                  />
+                </div>
+                <input type="hidden" name="images" v-model="model.images" />
               </div>
               <div class="contact">
                 <h3>Thông tin cá nhân</h3>
@@ -341,7 +373,8 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
       model: this.data.user ?? '',
-      status_profile: ''
+      status_profile: '',
+      filePreview: ''
     }
   },
   created() {
@@ -352,7 +385,6 @@ export default {
         this.status_profile = true
       }
     }
-    console.log(this.data)
     let messError = {
       en: {
         fields: {
@@ -374,6 +406,22 @@ export default {
     })
   },
   methods: {
+    chooseImage() {
+      this.$refs['fileInput'].click()
+    },
+    onChange(e) {
+      let fileInput = this.$refs.fileInput
+      let imgFile = fileInput.files
+
+      if (imgFile && imgFile[0]) {
+        let reader = new FileReader()
+        reader.onload = (e) => {
+          this.filePreview = e.target.result
+        }
+        reader.readAsDataURL(imgFile[0])
+      }
+    },
+
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0]
       this.$el.querySelector('input[name=' + firstInputError + ']').focus()

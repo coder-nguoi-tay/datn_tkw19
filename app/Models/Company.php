@@ -17,5 +17,6 @@ class Company extends Model
         'number_member',
         'email',
         'logo',
+        'number_tax',
     ];
 }

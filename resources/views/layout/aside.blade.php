@@ -44,6 +44,14 @@
                     <span class="nav-link-text ms-1">Quản lý tin tức</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="{{ route('admin.company.index') }}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">receipt_long</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Quản lý công ty</span>
+                </a>
+            </li>
             @if (Auth::guard('admin')->user()->role == 2)
                 <li class="nav-item">
                     <a class="nav-link text-white " href="{{ route('admin.admin.index') }}">

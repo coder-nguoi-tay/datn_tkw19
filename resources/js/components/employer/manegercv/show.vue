@@ -3,7 +3,11 @@
     <div class="main_gt">
       <div class="left_cv">
         <div class="box_img">
-          <img src="" alt="" style="width: 100%" />
+          <img
+            :src="'http://127.0.0.1:8000/' + data.cv.images"
+            alt=""
+            style="width: 100%"
+          />
         </div>
         <div class="contact">
           <h3>Thông tin cá nhân</h3>
@@ -11,26 +15,28 @@
             <div class="mail">
               <i class="fa-solid fa-envelope"></i>
               <p v-if="data.cv.status == data.CheckUser">{{ data.cv.email }}</p>
-              <p v-if="data.cv.status == 0">**************</p>
+              <p v-if="data.cv.status != data.CheckUser">**************</p>
             </div>
             <div class="mail">
               <i class="fa-solid fa-envelope"></i>
               <p v-if="data.cv.status == data.CheckUser">{{ data.cv.phone }}</p>
-              <p v-if="data.cv.status == 0">*****************</p>
+              <p v-if="data.cv.status != data.CheckUser">*****************</p>
             </div>
             <div class="mail">
               <i class="fa-solid fa-envelope"></i>
               <p v-if="data.cv.status == data.CheckUser">
                 {{ data.cv.address }}
               </p>
-              <p v-if="data.cv.status == 0">********************</p>
+              <p v-if="data.cv.status != data.CheckUser">
+                ********************
+              </p>
             </div>
             <div class="mail">
               <i class="fa-solid fa-envelope"></i>
               <p v-if="data.cv.status == data.CheckUser">
                 <a :href="data.cv.link_fb">{{ data.cv.link_fb }}</a>
               </p>
-              <p v-if="data.cv.status == 0">
+              <p v-if="data.cv.status != data.CheckUser">
                 <a :href="data.cv.link_fb">*************</a>
               </p>
             </div>
