@@ -131,4 +131,8 @@ app.component("notyf", Notyf);
 import showCvClient from "./components/client/seeker/create-cv.vue";
 app.component('show-cv-client', showCvClient);
 
+//home 
+import HomeSearch from "./components/client/home/search.vue";
+app.component('home-search', HomeSearch);
+
 app.mount('#app')

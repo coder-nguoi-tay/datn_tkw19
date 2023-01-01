@@ -1,5 +1,3 @@
-
-
 @extends('layouts.admin')
 @section('content')
     <div class="container">
@@ -14,9 +12,10 @@
                                 </div>
                             </header>
                         </div>
-                        <change-password-employer {{-- :data="{{ json_encode([
-            'urlStore' => route('employer.changePasswordSucsses'),
-        ]) }}" --}}>
+                        <change-password-employer
+                            :data="{{ json_encode([
+                                'urlStore' => route('employer.employer.changePasswordSucsses'),
+                            ]) }}">
                         </change-password-employer>
                     </div>
                 </div>

@@ -4,22 +4,56 @@
 @extends('client.layout.index')
 @section('client')
 
-
-
     <body>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-
-        <div class="home-banner margin-bottom-0" style="background:#00ab46 url() no-repeat;" data-overlay="5">
+        <div class="home-banner margin-bottom-0" style="background:#00ab46 url('banner-bg.jpg')" data-overlay="5">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="banner_caption text-center mb-5">
-                            <h1 class="banner_title ft-bold mb-1">Khám phá hơn 10k+ việc làm</h1>
-                            <p class="fs-md ft-medium">Xin chào các bạn, Công việc mơ ước của bạn đang chờ đợi ở thành phố
-                                địa phương của bạn</p>
-                        </div>
                         <div class="container">
-                            <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <form id="search-form" action="{{ route('home.search') }}" name="gs" method="submit"
+                                    role="search" action="#">
+                                    <div class="row">
+                                        <div class="col-lg-3 align-self-center">
+                                            <fieldset>
+                                                <select name="area" class="form-select" aria-label="Area"
+                                                    id="chooseCategory" onchange="this.form.click()">
+                                                    <option selected>All Areas</option>
+                                                    <option value="New Village">New Village</option>
+                                                    <option value="Old Town">Old Town</option>
+                                                    <option value="Modern City">Modern City</option>
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-lg-3 align-self-center">
+                                            <fieldset>
+                                                <input type="address" name="key" class="searchText"
+                                                    placeholder="Enter a location" autocomplete="on" required>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-lg-3 align-self-center">
+                                            <fieldset>
+                                                <select name="price" class="form-select"
+                                                    aria-label="Default select example" id="chooseCategory"
+                                                    onchange="this.form.click()">
+                                                    <option selected>Price Range</option>
+                                                    <option value="$100 - $250">$100 - $250</option>
+                                                    <option value="$250 - $500">$250 - $500</option>
+                                                    <option value="$500 - $1000">$500 - $1,000</option>
+                                                    <option value="$1000+">$1,000 or more</option>
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <fieldset>
+                                                <button class="main-button"><i class="fa fa-search"></i> Search Now</button>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            {{-- <div class="row justify-content-center">
                                 <div class="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
 
                                     <form action="{{ route('home.search') }}" method="GET" class="bg-white rounded p-1">
@@ -31,9 +65,6 @@
                                                     <i class="bnc-ico lni lni-search-alt"></i>
                                                 </div>
                                             </div>
-
-
-
                                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                                                 <div class="form-group mb-0 position-relative">
                                                     <select class="custom-select lg b-0" name="majors">
@@ -67,52 +98,14 @@
                                             </div>
                                         </div>
                                     </form>
-
                                 </div>
-                            </div>
+
+                            </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="imployer-explore">
-            <div class="impl-thumb">
-                <img src="assets/img/microsoft-home.png" class="" alt="" />
-            </div>
-            <div class="impl-thumb">
-                <img src="assets/img/paypal-home.png" class="" alt="" />
-            </div>
-            <div class="impl-thumb">
-                <img src="assets/img/serv-home.png" class="" alt="" />
-            </div>
-            <div class="impl-thumb">
-                <img src="assets/img/mothercare-home.png" class="" alt="" />
-            </div>
-            <div class="impl-thumb">
-                <img src="assets/img/xerox-home.png" class="" alt="" />
-            </div>
-            <div class="impl-thumb">
-                <img src="assets/img/yahoo-home.png" class="" alt="" />
-            </div>
-            <div class="impl-thumb">
-                <img src="assets/img/serv-home.png" class="" alt="" />
-            </div>
-            <div class="impl-thumb">
-                <img src="assets/img/mothercare-home.png" class="" alt="" />
-            </div>
-            <div class="impl-thumb">
-                <img src="assets/img/xerox-home.png" class="" alt="" />
-            </div>
-            <div class="impl-thumb">
-                <img src="assets/img/yahoo-home.png" class="" alt="" />
-            </div>
-        </div>
-        <!-- ======================= Home Banner ======================== -->
-
-        <!-- ======================= Job List ======================== -->
-
-
         <section class="middle space gray">
             <div class="container border" style="background: #ffff">
                 <div class="container container-header-box border ">
@@ -174,8 +167,8 @@
                                         <div class="row">
                                             <div class="job_grid_thumb mb-3 title-name px-3 col-4">
                                                 <a href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                    class="d-block m-auto"><img src="{{ $value->logo }}"
-                                                        class="img-fluid" alt="" /></a>
+                                                    class="d-block m-auto"><img src="{{ $value->logo }}" class="img-fluid"
+                                                        alt="" /></a>
                                             </div>
                                             <div class="job_grid_caption title-name px-3 col-8 g-1">
                                                 <h4 class="mb-0 ft-medium medium ml-20">
@@ -560,7 +553,7 @@
                     </div>
                 </div>
             </div>
-          
+
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
             <script type="text/javascript">
                 $(document).ready(function() {

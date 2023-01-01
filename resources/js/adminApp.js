@@ -91,6 +91,7 @@ app.component('client-register', clientRegister);
 // home
 import homeClient from "./components/client/home/index.vue";
 app.component('home-client', homeClient);
+
 // create company
 import CretaeCompany from './components/company/create.vue'
 app.component('create-company', CretaeCompany);

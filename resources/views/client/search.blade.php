@@ -4,11 +4,6 @@
 @endphp
 @extends('client.layout.index')
 @section('client')
-    <style>
-
-    </style>
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> --}}
     <div id="main-wrapper">
         <div class="clearfix"></div>
         <div class="bg-title py-5" data-overlay="0">
@@ -43,260 +38,24 @@
         </div>
         <!-- ======================= Top Breadcrubms ======================== -->
         <div class="container-fluid">
-            <form action="{{ route('home.search') }}" method="GET">
-
-                <div class="row p-5">
-                    <div class=" col-2 ">
-                        <div class="form-group mb-0 position-relative border rounded">
-                            <input type="text" class="form-control lg left-ico" placeholder="Tìm kiếm...." name="key"
-                                value="{{ $request['key'] }}" />
-                            <i class="bnc-ico lni lni-search-alt"></i>
-                        </div>
-                    </div>
-                    <div class=" col-2 ">
-                        <div class="form-group mb-0 position-relative border rounded">
-                            <select class="custom-select lg b-0" name="lever">
-                                <option selected disabled>Trình độ</option>
-                                @foreach ($lever as $item)
-                                    <option value="{{ $item->id }}"
-                                        {{ isset($request['lever']) ? ($request['lever'] == $item->id ? 'selected' : '') : '' }}>
-                                        {{ $item->label }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                        </div>
-                    </div>
-                    <div class=" col-2 ">
-                        <div class="form-group mb-0 position-relative border rounded">
-                            <select class="custom-select lg b-0" name="experience">
-                                <option selected disabled>Kinh nghiệm</option>
-                                @foreach ($experience as $item)
-                                    <option value="{{ $item->id }}"
-                                        {{ !isset($request['experience']) ? '' : ($request['experience'] == $item->id ? 'selected' : '') }}>
-                                        {{ $item->label }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                        </div>
-                    </div>
-                    <div class=" col-2 ">
-                        <div class="form-group mb-0 position-relative border rounded">
-                            <select class="custom-select lg b-0" name="majors">
-                                <option selected disabled>Chuyên Ngành</option>
-                                @foreach ($majors as $item)
-                                    <option value="{{ $item->id }}"
-                                        {{ isset($request['majors']) ? ($request['majors'] == $item->id ? 'selected' : '') : '' }}>
-                                        {{ $item->label }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                        </div>
-                    </div>
-                    <div class=" col-2 ">
-                        <div class="form-group mb-0 position-relative border rounded">
-                            <select class="custom-select lg b-0" name="location">
-                                <option selected disabled>Địa chỉ</option>
-                                @foreach ($location as $item)
-                                    <option value="{{ $item->id }}"
-                                        {{ isset($request['location']) ? ($request['location'] == $item->id ? 'selected' : '') : '' }}>
-                                        {{ $item->label }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                        </div>
-                    </div>
-                    <div class=" col-2 ">
-                        <div class="form-group mb-0 position-relative border rounded">
-                            <select class="custom-select lg b-0" name="profession" aria-label="Default select example">
-                                <option selected disabled>Vị trí ứng tuyển</option>
-                                @foreach ($profession as $item)
-                                    <option value="{{ $item->id }}"
-                                        {{ isset($request['profession']) ? ($request['profession'] == $item->id ? 'selected' : '') : '' }}>
-                                        {{ $item->label }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                        </div>
-                    </div>
-                    <div class="row p-4 " style="margin-left: 350px;">
-                        <div class=" col-2 ">
-                            <div class="form-group mb-0 position-relative border rounded">
-                                <select class="custom-select lg b-0 " name="workingform"
-                                    aria-label="Default select example">
-                                    <option selected disabled>Cấp Bậc</option>
-                                    @foreach ($workingform as $item)
-                                        <option value="{{ $item->id }}"
-                                            {{ isset($request['workingform']) ? ($request['workingform'] == $item->id ? 'selected' : '') : '' }}>
-                                            {{ $item->label }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class=" col-2 ">
-                            <div class="form-group mb-0 position-relative border rounded">
-                                <select class="custom-select lg b-0 " name="timework" aria-label="Default select example">
-                                    <option selected disabled>Thời gian làm việc</option>
-                                    @foreach ($timework as $item)
-                                        <option value="{{ $item->id }}"
-                                            {{ isset($request['timework']) ? ($request['timework'] == $item->id ? 'selected' : '') : '' }}>
-                                            {{ $item->label }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class=" col-2 ">
-
-                            <select class="form-group mb-0 position-relative border rounded lg b-0 select2"
-                                data-placeholder="Kĩ năng" name="skill[]" aria-label="Default select example" multiple
-                                data-live-search="true" style="">
-                                @foreach ($skill as $item)
-                                    <option value="{{ $item->id }}">
-                                        {{ $item->label }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                        </div>
-                        <div class="col">
-                            <div class="p-1 "><button style="height: 60px !important;" type="submit"
-                                    class="btn theme-bg text-light">Lọc Việc
-                                    Làm</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                {{-- <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 p-3">
-                        <div class="row d-flex w-100">
-                            <div class="col">
-                                <div class="p-1">
-                                    <input type="text" class="form-control" name="key" id=""
-                                        placeholder="Tìm kiếm...." value="{{ $request['key'] }}">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="p-1"><select class="form-select" name="lever"
-                                        aria-label="Default select example">
-                                        <option selected disabled>Trình độ</option>
-                                        @foreach ($lever as $item)
-                                            <option value="{{ $item->id }}"
-                                                {{ isset($request['lever']) ? ($request['lever'] == $item->id ? 'selected' : '') : '' }}>
-                                                {{ $item->label }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="p-1"><select class="form-select" name="experience"
-                                        aria-label="Default select example">
-                                        <option selected disabled>Kinh nghiệm</option>
-                                        @foreach ($experience as $item)
-                                            <option value="{{ $item->id }}"
-                                                {{ !isset($request['experience']) ? '' : ($request['experience'] == $item->id ? 'selected' : '') }}>
-                                                {{ $item->label }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="p-1"><select class="form-select" name="majors"
-                                        aria-label="Default select example">
-                                        <option selected disabled>Mức lương</option>
-                                        @foreach ($majors as $item)
-                                            <option value="{{ $item->id }}"
-                                                {{ isset($request['majors']) ? ($request['majors'] == $item->id ? 'selected' : '') : '' }}>
-                                                {{ $item->label }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="p-1"><select class="form-select" name="profession"
-                                        aria-label="Default select example">
-                                        <option selected disabled>Vị trí ứng tuyển</option>
-                                        @foreach ($profession as $item)
-                                            <option value="{{ $item->id }}"
-                                                {{ isset($request['profession']) ? ($request['profession'] == $item->id ? 'selected' : '') : '' }}>
-                                                {{ $item->label }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="p-1"><select class="form-select select2-location" name="location"
-                                        aria-label="Default select example">
-                                        <option selected disabled>Địa chỉ</option>
-                                        @foreach ($location as $item)
-                                            <option value="{{ $item->id }}"
-                                                {{ isset($request['location']) ? ($request['location'] == $item->id ? 'selected' : '') : '' }}>
-                                                {{ $item->label }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100">
-                            <div class="col-2">
-                                <div class="p-1"><select class="form-select" name="workingform"
-                                        aria-label="Default select example">
-                                        <option selected disabled>Cấp Bậc</option>
-                                        @foreach ($workingform as $item)
-                                            <option value="{{ $item->id }}"
-                                                {{ isset($request['workingform']) ? ($request['workingform'] == $item->id ? 'selected' : '') : '' }}>
-                                                {{ $item->label }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="p-1"><select class="form-select" name="timework"
-                                        aria-label="Default select example">
-                                        <option selected disabled>Thời gian làm việc</option>
-                                        @foreach ($timework as $item)
-                                            <option value="{{ $item->id }}"
-                                                {{ isset($request['timework']) ? ($request['timework'] == $item->id ? 'selected' : '') : '' }}>
-                                                {{ $item->label }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <div class="p-1 "><select class="form-control input-custom select2" name="skill[]"
-                                        aria-label="Default select example" multiple data-live-search="true">
-                                        @foreach ($skill as $item)
-                                            <option value="{{ $item->id }}">
-                                                {{ $item->label }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="p-1 "><button type="submit" class="btn theme-bg text-light">Lọc Việc
-                                        Làm</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-
-            </form>
+            <div class="col-lg-12 p-4">
+                <home-search
+                    :data="{{ json_encode([
+                        'lever' => $lever,
+                        'experience' => $experience,
+                        'wage' => $wage,
+                        'skill' => $skill,
+                        'timework' => $timework,
+                        'profession' => $profession,
+                        'majors' => $majors,
+                        'location' => $location,
+                        'workingform' => $workingform,
+                        'urlSeach' => route('home.search'),
+                        'skillSearch' => $skillSearch,
+                        'request' => !empty($request) ? $request->all() : new stdClass(),
+                    ]) }}">
+                </home-search>
+            </div>
         </div>
         <section class="bg-light">
             <div class="container-fluid">
@@ -337,8 +96,7 @@
                                             <div class="position-absolute ab-right">
                                                 <a type="button"
                                                     class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray">
-                                                    <i
-                                                        class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
+                                                    <i class="lni lni-heart-filled position-absolute snackbar-wishlist"></i>
                                                 </a>
                                             </div>
                                             <div class="row">

@@ -96,7 +96,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::get('pay-money', [EmployerProfileController::class, 'payMoney'])->name('employer.profile.paymoney');
     Route::post('pay-money-payment', [EmployerProfileController::class, 'payMoneyPayment'])->name('profile.paymoney.payment');
     Route::get('pay-money-payment-return', [EmployerProfileController::class, 'vnpayReturn'])->name('profile.paymoney.payment.return');
-   
+
     Route::get('change-password', [ProfileController::class, 'changePassword'])->name('employer.change-password');
     Route::post('change-password', [ProfileController::class, 'changePasswordSucsses'])->name('employer.changePasswordSucsses');
     // giấy xác thực
