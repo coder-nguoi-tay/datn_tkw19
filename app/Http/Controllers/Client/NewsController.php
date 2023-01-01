@@ -12,4 +12,7 @@ class NewsController extends Controller
     {
         return view('client.news');
     }
+    public function Test(){
+        return view('client.Test');
+    }
 }

@@ -13,7 +13,7 @@
                     <ul>
                         @if (!Auth::guard('user')->check())
                             <li>
-                                <fieldset><button class="main-button btn border" data-toggle="modal"
+                                <fieldset><button class="main-button" data-toggle="modal"
                                         data-target="#exampleModallogin">
                                         <i class="lni lni-user"></i>Đăng
                                         nhập</button></fieldset>

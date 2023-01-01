@@ -84,8 +84,8 @@
                         <div class="bg-white rounded px-3 py-4 mb-4">
                             <div class="jbd-01 d-flex align-items-center justify-content-between">
                                 <div class="jbd-flex d-flex align-items-center justify-content-start">
-                                    <div class="jbd-01-thumb">
-                                        <img src="{{ asset($job->logo) }}" class="img-fluid" width="90"
+                                    <div class="jbd-01-thumb" style="overflow: hidden; width: 150px; height: 150px;">
+                                        <img src="{{ asset($job->logo) }}" class="img-fluid" style="width: 150px; height: 150px;"
                                             alt="" />
                                     </div>
                                     <div class="jbd-01-caption pl-3">
