@@ -164,9 +164,9 @@
                             </select>
 
                         </div>
-                        <div class="col">
-                            <div class="p-1 "><button style="height: 60px !important;" type="submit"
-                                    class="btn theme-bg text-light">Lọc Việc
+                        <div class="col-2">
+                            <div class="mb-0 position-relative rounded "><button style="height: 60px !important;"
+                                    type="submit" class="btn theme-bg text-light">Lọc Việc
                                     Làm</button>
                             </div>
                         </div>

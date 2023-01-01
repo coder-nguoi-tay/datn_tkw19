@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ResetPasswordController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\HomeController as ClientHomeController;
 use App\Http\Controllers\Client\LoginController as ClientLoginController;
+use App\Http\Controllers\Client\NewsController;
 use App\Http\Controllers\Employer\HomeEmployerController;
 use App\Http\Controllers\Employer\NewEmployerController;
 use App\Http\Controllers\Employer\PackageController as EmployerPackageController;
@@ -132,3 +133,4 @@ Route::post('home/detail/upcv', [ClientHomeController::class, 'upCv'])->name('ho
 Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 'searchLocation'])->name('home.search.location');
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
 Route::get('tim-viec-lam', [SearchController::class, 'create'])->name('home.search');
+Route::get('News', [NewsController::class, 'index'])->name('News');
