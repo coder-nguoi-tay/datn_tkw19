@@ -117,7 +117,7 @@ class HomeController extends BaseController
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $Jobseeker = $this->user->where('id', Auth::guard('user')->user()->id)->first();
         if (isset($Jobseeker->getProfileUse)) {
             $user = $this->Jobseeker->where('user_role', Auth::guard('user')->user()->id)->first();

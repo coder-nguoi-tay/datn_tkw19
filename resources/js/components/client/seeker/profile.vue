@@ -261,14 +261,20 @@
                               mode="tags"
                               :searchable="true"
                               :options="options"
-                              :close-on-select="true"
-                              autocomplete
-                              :clearOnSearch="true"
-                              :clear-on-select="true"
                               label="label"
                               track-by="label"
                               :infinite="true"
                               :object="true"
+                              :loading="isLoading"
+                              :internal-search="false"
+                              :clear-on-select="false"
+                              :close-on-select="false"
+                              :options-limit="300"
+                              :limit="3"
+                              :limit-text="limitText"
+                              :max-height="600"
+                              :show-no-results="false"
+                              :hide-selected="true"
                               @input="updateSelected"
                             />
                           </Field>
@@ -348,7 +354,8 @@ export default {
       errmsgCheckImage: '',
       Media: '',
       deleteImage: '',
-      skill: []
+      skill: [],
+      isLoading: false
     }
   },
 
@@ -423,6 +430,9 @@ export default {
     })
   },
   methods: {
+    limitText(count) {
+      return `and ${count} other countries`
+    },
     updateSelected(e) {
       let array = []
       e.map((x) => {
