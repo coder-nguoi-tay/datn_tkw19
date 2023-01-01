@@ -13,6 +13,8 @@
                 @submit="handleSubmit($event, onSubmit)"
                 ref="formData"
                 enctype="multipart/form-data"
+                :action="data.urlStore"
+                method="POST"
               >
                 <Field type="hidden" :value="csrfToken" name="_token" />
                 <div class="row g-0">
@@ -263,12 +265,24 @@
                               track-by="label"
                               :infinite="true"
                               :object="true"
+                              :loading="isLoading"
+                              :internal-search="false"
+                              :clear-on-select="false"
+                              :close-on-select="false"
+                              :options-limit="300"
+                              :limit="3"
+                              :limit-text="limitText"
+                              :max-height="600"
+                              :show-no-results="false"
+                              :hide-selected="true"
+                              @input="updateSelected"
                             />
                           </Field>
                           <ErrorMessage class="error" name="skill_id" />
                         </div>
                       </div>
-
+                      <!-- skill -->
+                      <input type="hidden" name="skill[]" v-model="skill" />
                       <div class="col-xl-12 col-lg-12">
                         <div class="form-group">
                           <button
@@ -339,11 +353,14 @@ export default {
       checkImage: '',
       errmsgCheckImage: '',
       Media: '',
-      deleteImage: ''
+      deleteImage: '',
+      skill: [],
+      isLoading: false
     }
   },
 
   created() {
+    let array = []
     this.Media = this.data.user.get_profile_use
       ? this.data.user.get_profile_use.images
       : 1
@@ -353,6 +370,8 @@ export default {
           value: e.id,
           label: e.name
         })
+        array.push(e.id)
+        this.skill = array
       })
     }
 
@@ -411,6 +430,17 @@ export default {
     })
   },
   methods: {
+    limitText(count) {
+      return `and ${count} other countries`
+    },
+    updateSelected(e) {
+      let array = []
+      e.map((x) => {
+        array.push(x.value)
+      })
+      array = [...new Set(array)]
+      this.skill = array
+    },
     onInvalidSubmit({ values, errors, results }) {
       if (this.checkImage == 1) {
         this.errmsgCheckImage = 'Ảnh không được để trống'
@@ -425,57 +455,7 @@ export default {
       )
     },
     onSubmit() {
-      if (this.checkImage == 1) {
-        this.errmsgCheckImage = 'Đã có 1 lỗi sảy ra'
-      } else {
-        let that = this
-        $('.loading-div').removeClass('hidden')
-        axios
-          .post(that.data.urlStore, {
-            _token: Laravel.csrfToken,
-            valueSelect: that.valueSelect,
-            name: that.model.name,
-            email: that.model.email,
-            skill_id: that.value,
-            images: that.model.images
-          })
-          .then(function (response) {
-            console.log(response)
-            // const notyf = new Notyf({
-            //   duration: 6000,
-            //   position: {
-            //     x: 'right',
-            //     y: 'bottom'
-            //   },
-            //   types: [
-            //     {
-            //       type: 'error',
-            //       duration: 8000,
-            //       dismissible: true
-            //     }
-            //   ]
-            // })
-            // if (response.data.status == 403) {
-            //   setTimeout(function () {
-            //     location.reload()
-            //   }, 1100)
-            //   return notyf.error(response.data.message)
-            // }
-            // if (response.data.status == 400) {
-            //   setTimeout(function () {
-            //     location.reload()
-            //   }, 1100)
-            //   return notyf.warning(response.data.message)
-            // }
-            // setTimeout(function () {
-            //   location.reload()
-            // }, 1100)
-            // return notyf.success(response.data.message)
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-      }
+      this.$refs.formData.submit()
     },
     chooseImage() {
       this.$refs['fileInput'].click()

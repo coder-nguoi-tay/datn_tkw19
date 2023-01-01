@@ -81,7 +81,6 @@ class NewEmployerController extends BaseController
         }
         $job = $this->job->where([
             ['job.employer_id', $checkCompany->id],
-            ['job.status', 1],
         ])->where(function ($q) use ($request) {
             if (!empty($request['start_date'])) {
                 $q->whereDate('job.job_time', '>=', $request['start_date']);
@@ -168,7 +167,7 @@ class NewEmployerController extends BaseController
             $job->time_work_id = $request['data']['time_work_id'];
             $job->candidate_requirements = $request['data']['candidate_requirements'];
             $job->employer_id = $employer->id;
-            $job->status = 1;
+            $job->status = 0;
             $job->save();
             //create to jobskill
             foreach ($request['skill'] as $item) {
@@ -254,7 +253,6 @@ class NewEmployerController extends BaseController
             $job->end_job_time = $end_time;
             $job->time_work_id = $request['data']['time_work_id'];
             $job->candidate_requirements = $request['data']['candidate_requirements'];
-            $job->status = 1;
             $job->save();
             //create to jobskill
             $jobskill =  $this->jobskill->where('job_id', $id)->get();
@@ -300,6 +298,24 @@ class NewEmployerController extends BaseController
             DB::rollBack();
             $this->setFlash(__('Đã có một lỗi sảy ra'), 'error');
             return redirect()->back();
+        }
+    }
+    public function changeStus(Request $request, $id)
+    {
+        try {
+            $job = $this->job->where('id', $id)->first();
+            $job->status = $request['data'];
+            $job->save();
+            return response()->json([
+                'message' => 'Cập nhật thành công',
+                'status' => StatusCode::OK
+            ], StatusCode::OK);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json([
+                'message' => 'Đã có một lỗi xảy ra',
+                'status' => StatusCode::FORBIDDEN,
+            ], StatusCode::FORBIDDEN);
         }
     }
 }

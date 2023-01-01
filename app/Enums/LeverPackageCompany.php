@@ -9,7 +9,7 @@ use BenSampo\Enum\Enum;
  * @method static static OptionTwo()
  * @method static static OptionThree()
  */
-final class LeverPackage extends Enum
+final class LeverPackageCompany extends Enum
 {
     const VIP1 = 1;
     const VIP2 = 2;

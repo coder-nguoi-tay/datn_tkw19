@@ -15,6 +15,7 @@
         "cloudinary/cloudinary_php": "^2.9",
         "darkaonline/l5-swagger": "^8.3",
         "fruitcake/laravel-cors": "^2.0",
+        "genealabs/laravel-caffeine": "^9.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "jrm2k6/cloudder": "0.4.*",
         "krlove/eloquent-model-generator": "^1.3",

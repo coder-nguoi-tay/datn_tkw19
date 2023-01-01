@@ -56,7 +56,12 @@
                                                 <td>{{ $item->title }}</td>
                                                 <td>{{ $item->getprofession->name }}</td>
                                                 <td>{{ $item->getwk_form->name }}</td>
-                                                <td>{{ $item->status == 0 ? 'INACTIVE' : 'ACTIVE' }}</td>
+                                                {{-- <td>{{ $item->status == 0 ? 'INACTIVE' : 'ACTIVE' }}</td> --}}
+                                                <td>
+                                                    <change-status-new :data="{{ json_encode($item->status) }}"
+                                                        :route="{{ json_encode(route('employer.new.changeStus', $item->id)) }}">
+                                                    </change-status-new>
+                                                </td>
                                                 <td>{{ count($item->AllCv) }}</td>
                                                 <td>{{ $item->job_time }}</td>
                                                 <td>{{ Carbon::parse($item->end_job_time)->format('Y-m-d') }}</td>

@@ -80,7 +80,7 @@ class SearchCvController extends BaseController
     }
     public function index()
     {
-        $cv = $this->profileCv->where('status_profile', 1)->get();
+        $cv = $this->profileCv->where('status_profile', 1)->with('user')->get();
         return view('employer.searchcv.index', [
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),

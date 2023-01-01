@@ -16,7 +16,7 @@ class CreateJobAttractiveTable extends Migration
         Schema::create('job_attractive', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('describe');
+            $table->longText('describe');
             $table->integer('lever_package');
             $table->timestamps();
         });

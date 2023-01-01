@@ -18,14 +18,13 @@ class CreateProfileUserCvTable extends Migration
             $table->string('email');
             $table->string('address');
             $table->string('phone');
-            $table->string('skill');
-            $table->string('certificate');
-            $table->string('target');
-            $table->string('work');
-            $table->string('work_detail');
-            $table->string('project');
-            $table->string('project_detail');
-
+            $table->longText('skill');
+            $table->longText('certificate');
+            $table->longText('target');
+            $table->longText('work');
+            $table->longText('work_detail');
+            $table->longText('project');
+            $table->longText('project_detail');
             $table->timestamps();
         });
     }

@@ -91,6 +91,7 @@ class ManagerUploadCvController extends BaseController
             'majors' => $this->getmajors(),
             'location' => $this->getlocation(),
             'workingform' => $this->getworkingform(),
+           
         ]);
     }
 
@@ -128,6 +129,7 @@ class ManagerUploadCvController extends BaseController
         return view('employer.managercv.showcv', [
             'cv' => $profile,
             'accPayment' => $accPayment,
+            
         ]);
     }
 

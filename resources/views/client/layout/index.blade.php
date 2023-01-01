@@ -8,16 +8,19 @@
     <meta name="author" content="Themezhub" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>home</title>
+    <title>ITWORK</title>
 
     <!-- Custom CSS -->
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('assets/css/search.css') }}" rel="stylesheet"> --}}
+
     <script src="{{ asset('js/userApp.js') }}" defer></script>
     <!-- CSS only -->
     <!-- JavaScript Bundle with Popper -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
@@ -30,7 +33,7 @@
             JSON_UNESCAPED_UNICODE,
         ) !!};
     </script>
-    
+
 </head>
 <div class="preloader"></div>
 
@@ -80,6 +83,7 @@
 <script src="{{ asset('assets/js/snackbar.min.js') }}"></script>
 <script src="{{ asset('assets/js/jQuery.style.switcher.js') }}"></script>
 <script src="{{ asset('assets/js/custom.js') }}"></script>
+
 <!-- ============================================================== -->
 <!-- This page plugins -->
 <!-- ============================================================== -->
