@@ -504,6 +504,7 @@ img {
 }
 .box-group {
   margin-top: -20px;
+  
 }
 .ds{
   text-decoration: none;
