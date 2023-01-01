@@ -133,8 +133,11 @@ class HomeController extends BaseController
                     ->get();
             }
         }
+        $majors = Majors::all();
+
         $new = News::all();
         return view('client.index', [
+            'majors' => $majors,
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),
             'experience' => $this->getexperience(),
