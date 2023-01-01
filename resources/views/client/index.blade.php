@@ -33,8 +33,8 @@
 
                                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                                                 <div class="form-group mb-0 position-relative">
-                                                    <select class="custom-select lg b-0 " style="width: auto;"
-                                                        name="skill[]">
+                                                    <select class="custom-select lg b-0" aria-multiselectable="true"
+                                                        style="width: auto;" name="skill[]">
                                                         @foreach ($skill as $item)
                                                             <option value="{{ $item->id }}">
                                                                 {{ $item->label }}
