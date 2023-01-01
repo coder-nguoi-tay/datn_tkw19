@@ -13,19 +13,15 @@
                     <ul>
                         @if (!Auth::guard('user')->check())
                             <li>
-                                {{-- <a href="{{ route('owner.index') }}" class="theme-cl fs-lg" data-toggle="modal"
-                                    data-target="#exampleModallogin">
-                                    <i class="lni lni-user"></i>
-                                </a> --}}
-                                <button class="theme-cl fs-lg" data-toggle="modal"
-                                    data-target="#exampleModalcheckSeeker">
-                                    <i class="lni lni-user"></i>Đăng
-                                    nhập</button>
+                                <fieldset><button class="main-button btn border" data-toggle="modal"
+                                        data-target="#exampleModallogin">
+                                        <i class="lni lni-user"></i>Đăng
+                                        nhập</button></fieldset>
                             </li>
                             <li>
-                                <a href="dashboard-post-job.html" class="crs_yuo12 w-auto text-white theme-bg">
-                                    <span class="embos_45"><i class="fas fa-plus-circle mr-1 mr-1"></i>Post
-                                        Job</span>
+                                <a href="dashboard-post-job.html" class="main-button">
+                                    <span class="embos_45"><i class="fas fa-plus-circle mr-1 mr-1"></i>Đăng tuyển & Tìm
+                                        hồ sơ</span>
                                 </a>
                             </li>
                         @else
@@ -43,12 +39,10 @@
                             </li>
                         @endif
                     </ul>
-
                 </div>
             </div>
             <div class="nav-menus-wrapper" style="transition-property: none;">
                 <ul class="nav-menu">
-
                     <li><a href="#">Home</a>
                         <ul class="nav-dropdown nav-submenu">
                             <li><a href="index.html">Home 1</a></li>
@@ -119,18 +113,20 @@
                             <li><a href="docs.html">Docs</a></li>
                         </ul>
                     </li>
-
                 </ul>
-
                 <ul class="nav-menu nav-menu-social align-to-right">
 
                     @if (!Auth::guard('user')->check())
                         <li>
-                            <button class="theme-cl fs-lg btn" data-toggle="modal" data-target="#exampleModallogin">
-                                Đăng nhập</button>
+                            <fieldset>
+                                <button style="background-color: #a4aec0; color: #fff" class="main-button btn border"
+                                    data-toggle="modal" data-target="#exampleModallogin">
+                                    <i class="lni lni-user"></i>Đăng
+                                    nhập</button>
+                            </fieldset>
                         </li>
-                        
-                        <li class="add-listing theme-bg">
+
+                        <li class="add-listing" style="background-color: rgb(37, 191, 37)">
                             <a href="{{ route('register.employer') }}">
                                 Đăng tuyển & tìm hồ sơ
                             </a>
@@ -149,7 +145,6 @@
                             </div>
                         </li>
                     @endif
-
                 </ul>
             </div>
         </nav>

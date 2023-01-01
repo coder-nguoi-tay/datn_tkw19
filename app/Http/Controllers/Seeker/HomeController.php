@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
+use function GuzzleHttp\Promise\all;
+
 class HomeController extends BaseController
 {
     /**
@@ -115,6 +117,7 @@ class HomeController extends BaseController
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $Jobseeker = $this->user->where('id', Auth::guard('user')->user()->id)->first();
         if (isset($Jobseeker->getProfileUse)) {
             $user = $this->Jobseeker->where('user_role', Auth::guard('user')->user()->id)->first();
@@ -123,20 +126,20 @@ class HomeController extends BaseController
         }
         try {
             $updateUser = $this->user->where('id', Auth::guard('user')->user()->id)->first();
-            $updateUser->name = $request['name'];
-            $updateUser->email = $request['email'];
+            $updateUser->name = $request->name;
+            $updateUser->email = $request->email;
             $updateUser->save();
-            $user->address = $request['valueSelect']['address'];
-            $user->images = 'http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg';
-            // $user->images = $request['images']->storeAs('images/cv', $request['images']->hashName());
-
-            $user->phone = $request['valueSelect']['phone'];
+            $user->address = $request->address;
+            if ($request->hasFile('images')) {
+                $user->images = $request->images->storeAs('images/cv', $request->images->hashName());
+            }
+            $user->phone = $request->phone;
             $user->user_role = Auth::guard('user')->user()->id;
-            $user->experience_id = $request['valueSelect']['experience_id'];
-            $user->lever_id = $request['valueSelect']['lever_id'];
-            $user->wage_id = $request['valueSelect']['wage_id'];
-            $user->profession_id = $request['valueSelect']['profession_id'];
-            $user->time_work_id = $request['valueSelect']['time_work_id'];
+            $user->experience_id = $request->experience_id;
+            $user->lever_id = $request->lever_id;
+            $user->wage_id = $request->wage_id;
+            $user->profession_id = $request->profession_id;
+            $user->time_work_id = $request->time_work_id;
             $user->save();
             if (isset($Jobseeker->getProfileUse)) {
                 $jobskill =  $this->SeekerSkill->where('job-seeker_id', $user->id)->get();
@@ -144,22 +147,18 @@ class HomeController extends BaseController
                     $this->SeekerSkill->find($value->id)->delete();
                 }
             }
-            foreach ($request['skill_id'] as $value) {
+            foreach (explode(',', $request->skill[0]) as $value) {
                 $this->SeekerSkill->create([
                     'job-seeker_id' => $user->id,
-                    'skill_id' => $value['value'],
+                    'skill_id' => $value,
                 ])->save();
             }
-            return response()->json([
-                'message' => 'Thay đổi thành công',
-                'status' => StatusCode::OK
-            ], StatusCode::OK);
+            $this->setFlash(_('Cập nhật thành công!'));
+            return redirect()->back();
         } catch (\Throwable $th) {
             DB::rollback();
-            return response()->json([
-                'message' => 'Đã có một lỗi xảy ra',
-                'status' => StatusCode::FORBIDDEN
-            ], StatusCode::OK);
+            $this->setFlash(_('Đã có một lỗi xảy ra'), 'error');
+            return redirect()->back();
         }
     }
 

@@ -77,7 +77,8 @@ app.component('create-new-employer', CreateNewEmployer);
 import EditNewEmployer from './components/employer/new/edit.vue';
 app.component('edit-new-employer', EditNewEmployer);
 
-
+import ChangePasswordEmployer from "./components/employer/profile/change-password.vue";
+app.component('change-password-employer', ChangePasswordEmployer);
 import DatePickerCustom from "./components/common/datePickerCustom.vue";
 app.component('picker-new-employer', DatePickerCustom);
 
@@ -90,6 +91,7 @@ app.component('client-register', clientRegister);
 // home
 import homeClient from "./components/client/home/index.vue";
 app.component('home-client', homeClient);
+
 // create company
 import CretaeCompany from './components/company/create.vue'
 app.component('create-company', CretaeCompany);

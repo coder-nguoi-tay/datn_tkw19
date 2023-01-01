@@ -88,7 +88,7 @@ class SearchController extends BaseController
                         })
                         ->orWhere(
                             'job.location_id',
-                            $that->location_id
+                            $that->location
                         )
                         ->orWhere(
                             'job.profession_id',
@@ -128,7 +128,12 @@ class SearchController extends BaseController
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                 ->orderBy('employer.prioritize', 'desc')
                 ->get();
-            // dd($data);
+            if ($request->skill != null) {
+                $skill = explode(',', $request->skill[0]);
+                foreach ($skill as $item) {
+                    $skillSearch[] = $this->skill->where('id', $item)->first();
+                }
+            }
             return view('client.search', [
                 'job' => $data,
                 'breadcrumbs' => $breadcrumbs,
@@ -142,7 +147,8 @@ class SearchController extends BaseController
                 'majors' => $this->getmajors(),
                 'workingform' => $this->getworkingform(),
                 'location' => $this->getlocation(),
-                'request' => $request->all() ?? new stdClass,
+                'request' => $request,
+                'skillSearch' => $skillSearch ?? null,
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();

@@ -9,8 +9,11 @@ use App\Models\Accuracy;
 use App\Models\Company;
 use App\Models\Employer;
 use App\Models\PaymentHistoryEmployer;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends BaseController
 {
@@ -20,9 +23,12 @@ class ProfileController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public Employer $employer;
+    public User $user;
     public $vnp_HashSecret = 'KNAREAARTPBAELKXTPLZKBUMSTCJHIYE';
-    public function __construct(Employer $employer)
+    public function __construct(Employer $employer, User $user)
     {
+
+        $this->user = $user;
         $this->employer = $employer;
     }
     public function index()
@@ -253,5 +259,24 @@ class ProfileController extends BaseController
             $this->setFlash(__('chu ky khong hop le'), 'error');
         }
         return redirect()->route('employer.employer.profile.paymoney');
+    }
+
+    public function changePassword()
+    {
+        return view('employer.profile.change-password');
+    }
+    public function changePasswordSucsses(Request $request)
+    {
+        try {
+            $user = $this->user->where('id', Auth::guard('user')->user()->id)->first();
+            $user->password = Hash::make($request->password);
+            $user->save();
+            $this->setFlash(_('Đổi mật khẩu thành công'));
+            return redirect()->route('employer.change-password');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->setFlash(_('Đã có một lỗi xảy ra'));
+            return redirect()->route('employer.change-password');
+        }
     }
 }

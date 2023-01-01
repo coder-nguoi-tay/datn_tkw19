@@ -112,6 +112,9 @@ import showNew from "./components/client/home/show-new.vue";
 app.component('show-new', showNew);
 import ChangePassword from "./components/client/seeker/change-password.vue";
 app.component('change-password', ChangePassword);
+
+import ChangePasswordEmployer from "./components/employer/profile/change-password.vue";
+app.component('change-password-employer', ChangePasswordEmployer);
 import popup from './components/common/popupAlert.vue'
 app.component('popup-alert', popup)
 import Upcv from './components/client/home/upcv.vue';
@@ -121,9 +124,15 @@ app.component('client-login', clientLogin);
 
 import registerEmployer from "./components/employer/register.vue";
 app.component('register-employer', registerEmployer);
+import viewProfile from "./components/client/seeker/view-profile.vue";
+app.component('view-profile', viewProfile);
 import Notyf from "./components/common/notyf.vue";
 app.component("notyf", Notyf);
 import showCvClient from "./components/client/seeker/create-cv.vue";
 app.component('show-cv-client', showCvClient);
+
+//home 
+import HomeSearch from "./components/client/home/search.vue";
+app.component('home-search', HomeSearch);
 
 app.mount('#app')
