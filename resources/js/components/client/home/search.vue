@@ -1,7 +1,7 @@
 <template>
   <form id="search-form" :action="data.urlSeach" method="submit" role="search">
     <div class="row ml-5">
-      <div class="col-lg-3 align-self-center border p-2 mr-1">
+      <div class="col-lg-3 align-self-center border p-2 mr-1 custom-input">
         <fieldset>
           <input
             type="text"
@@ -17,12 +17,7 @@
         style="height: 54px"
       >
         <fieldset>
-          <Field
-            name="lever"
-            as="select"
-            v-model="model.lever"
-            class="form-control"
-          >
+          <Field name="lever" as="select" v-model="model.lever">
             <option value selected>Kinh Nghiệm</option>
             <option v-for="item in data.lever" :key="item.id" :value="item.id">
               {{ item.label }}
@@ -35,12 +30,7 @@
         style="height: 54px"
       >
         <fieldset>
-          <Field
-            name="time_work"
-            as="select"
-            v-model="model.time_work"
-            class="form-control"
-          >
+          <Field name="time_work" as="select" v-model="model.time_work">
             <option value selected>Chọn Thời Gian</option>
             <option
               v-for="item in data.timework"
@@ -57,12 +47,7 @@
         style="height: 54px"
       >
         <fieldset>
-          <Field
-            name="profession"
-            as="select"
-            v-model="model.profession"
-            class="form-control"
-          >
+          <Field name="profession" as="select" v-model="model.profession">
             <option value selected>Chọn Ngành Nghề</option>
             <option
               v-for="item in data.profession"
@@ -80,12 +65,7 @@
         style="height: 54px"
       >
         <fieldset>
-          <Field
-            name="experience"
-            as="select"
-            v-model="model.experience"
-            class="form-control"
-          >
+          <Field name="experience" as="select" v-model="model.experience">
             <option value selected>Chọn Kinh Nghiệm</option>
             <option
               v-for="item in data.experience"
@@ -98,16 +78,20 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 ml-sm-5 mr-1 custom-input"
+        class="
+          col-lg-2
+          align-self-center
+          border
+          p-2
+          ml-sm-5
+          mr-1
+          custom-input
+          mt-2
+        "
         style="height: 54px"
       >
         <fieldset>
-          <Field
-            name="majors"
-            as="select"
-            v-model="model.majors"
-            class="form-control"
-          >
+          <Field name="majors" as="select" v-model="model.majors">
             <option value selected>Chọn ngành nghề</option>
             <option v-for="item in data.majors" :key="item.id" :value="item.id">
               {{ item.label }}
@@ -116,13 +100,12 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1 custom-input"
+        class="col-lg-2 align-self-center border p-2 mr-1 custom-input mt-2"
         style="height: 54px"
       >
         <fieldset>
           <select
             name="price"
-            class="form-control"
             aria-label="Default select example"
             id="chooseCategory"
           >
@@ -135,16 +118,11 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1 custom-input"
+        class="col-lg-2 align-self-center border p-2 mr-1 custom-input mt-2"
         style="height: 54px"
       >
         <fieldset>
-          <Field
-            name="wage"
-            as="select"
-            v-model="model.wage"
-            class="form-control"
-          >
+          <Field name="wage" as="select" v-model="model.wage">
             <option value selected>Chọn Mức Lương</option>
             <option v-for="item in data.wage" :key="item.id" :value="item.id">
               {{ item.label }}
@@ -153,10 +131,10 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1 custom-input"
+        class="col-lg-2 align-self-center border p-2 mr-1 custom-input mt-2"
         style="height: 54px"
       >
-        <fieldset>
+        <fieldset class="custom-multiselect">
           <Multiselect
             placeholder="Chọn Kỹ năng"
             mode="tags"
@@ -172,7 +150,6 @@
             :close-on-select="false"
             :show-no-results="false"
             :hide-selected="true"
-            :max-height="600"
             @input="updateSelected"
           />
         </fieldset>
@@ -180,7 +157,7 @@
       </div>
       <div class="col-lg-2" style="margin-left: -12px !important; width: 250px">
         <fieldset>
-          <button class="align-self-center p-2">
+          <button class="align-self-center p-2 mt-2">
             <i class="fa fa-search"></i> Tìm Kiếm
           </button>
         </fieldset>
@@ -242,8 +219,14 @@ export default {
 </script>
 <style src="@vueform/multiselect/themes/default.css">
 </style>
-<style>
+<style lang="scss">
 .custom-input {
   border-radius: 5px !important;
+}
+.custom-multiselect {
+  .multiselect {
+    padding-bottom: 10px !important;
+    border: none !important;
+  }
 }
 </style>

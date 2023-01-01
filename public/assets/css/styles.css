@@ -35,12 +35,12 @@
 /*------------------------------------
 	Fonts
 ------------------------------------ */
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&amp;display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 /*------------------------------------------------------------
 	Page Loader
 -------------------------------------------------------------*/
-/* .no-js #loader {
+.no-js #loader {
     display: none;
 }
 
@@ -49,10 +49,9 @@
     position: absolute;
     left: 100px;
     top: 0;
-} */
+}
 
-
-/* .preloader {
+.preloader {
     position: fixed;
     left: 0px;
     top: 0px;
@@ -60,7 +59,7 @@
     height: 100%;
     z-index: 9999999;
     background: url(../img/loader.gif) center no-repeat #ffffff;
-} */
+}
 
 /*------------------------------------------------------------
 	Global Settings
@@ -330,7 +329,6 @@ html body .db {
 
 .trans-bg {
     background: rgba(255, 255, 255, 0.1);
-    <<<<<<< HEAD=======>>>>>>>duc
 }
 
 .theme-bg-light {
@@ -338,7 +336,7 @@ html body .db {
 }
 
 .bg-title {
-    background: #03343b;
+    background: url(../../banner-bg.jpg);
 }
 
 .bg-trans {
@@ -7133,7 +7131,7 @@ Table of contents
 font & reset css
 --------------------------------------------- 
 */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 
 /* 
 ---------------------------------------------
@@ -7237,7 +7235,7 @@ figcaption {
 }
 
 .clearfix {
-    display: inline-block;
+    display: none;
 }
 
 html[xmlns] .clearfix {

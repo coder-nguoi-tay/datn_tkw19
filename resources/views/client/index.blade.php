@@ -5,7 +5,6 @@
 @section('client')
 
     <body>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
         <div class="home-banner margin-bottom-0" style="background:#00ab46 url('banner-bg.jpg')" data-overlay="5">
             <div class="container">
                 <div class="row justify-content-center">
@@ -13,94 +12,45 @@
                         <div class="container">
                             <div class="col-lg-12">
                                 <form id="search-form" action="{{ route('home.search') }}" name="gs" method="submit"
-                                    role="search" action="#">
+                                    role="search">
                                     <div class="row">
                                         <div class="col-lg-3 align-self-center">
                                             <fieldset>
-                                                <select name="area" class="form-select" aria-label="Area"
-                                                    id="chooseCategory" onchange="this.form.click()">
-                                                    <option selected>All Areas</option>
-                                                    <option value="New Village">New Village</option>
-                                                    <option value="Old Town">Old Town</option>
-                                                    <option value="Modern City">Modern City</option>
+                                                <input type="address" name="key" class="searchText"
+                                                    placeholder="Tìm Kiêm..." autocomplete="on">
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-lg-3 align-self-center">
+                                            <fieldset>
+                                                <select class="form-select" name="majors">
+                                                    <option selected disabled>Chuyên Ngành</option>
+                                                    @foreach ($majors as $item)
+                                                        <option value="{{ $item->id }}">
+                                                            {{ $item->name }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </fieldset>
                                         </div>
                                         <div class="col-lg-3 align-self-center">
                                             <fieldset>
-                                                <input type="address" name="key" class="searchText"
-                                                    placeholder="Enter a location" autocomplete="on" required>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-3 align-self-center">
-                                            <fieldset>
-                                                <select name="price" class="form-select"
-                                                    aria-label="Default select example" id="chooseCategory"
-                                                    onchange="this.form.click()">
-                                                    <option selected>Price Range</option>
-                                                    <option value="$100 - $250">$100 - $250</option>
-                                                    <option value="$250 - $500">$250 - $500</option>
-                                                    <option value="$500 - $1000">$500 - $1,000</option>
-                                                    <option value="$1000+">$1,000 or more</option>
+                                                <select class="form-select" name="location">
+                                                    <option selected disabled>Địa chỉ</option>
+                                                    @foreach ($location as $item)
+                                                        <option value="{{ $item->id }}">
+                                                            {{ $item->label }}</option>
+                                                    @endforeach
                                                 </select>
                                             </fieldset>
                                         </div>
                                         <div class="col-lg-3">
                                             <fieldset>
-                                                <button class="main-button"><i class="fa fa-search"></i> Search Now</button>
+                                                <button class="main-button"><i class="fa fa-search"></i> Tìm Kiếm</button>
                                             </fieldset>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                            {{-- <div class="row justify-content-center">
-                                <div class="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
-
-                                    <form action="{{ route('home.search') }}" method="GET" class="bg-white rounded p-1">
-                                        <div class="row no-gutters">
-                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                                                <div class="form-group mb-0 position-relative">
-                                                    <input type="text" class="form-control lg left-ico"
-                                                        placeholder="Job Title, Keyword or Company" name="key" />
-                                                    <i class="bnc-ico lni lni-search-alt"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                                                <div class="form-group mb-0 position-relative">
-                                                    <select class="custom-select lg b-0" name="majors">
-                                                        <option selected disabled>Chuyên Ngành</option>
-                                                        @foreach ($majors as $item)
-                                                            <option value="{{ $item->id }}">
-                                                                {{ $item->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                                                <div class="form-group mb-0 position-relative">
-                                                    <select class="custom-select lg b-0" name="location">
-                                                        <option selected disabled>Địa chỉ</option>
-                                                        @foreach ($location as $item)
-                                                            <option value="{{ $item->id }}">
-                                                                {{ $item->label }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
-                                                <div class="form-group mb-0 position-relative">
-                                                    <button
-                                                        class="btn full-width custom-height-lg theme-bg text-white fs-md"
-                                                        type="submit">Find Job</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -440,44 +390,6 @@
             </div>
         </section>
         <!-- ======================= Newsletter Start ============================ -->
-        <section class="space bg-cover" style="background:#03343b url(assets/img/landing-bg.png) no-repeat;">
-            <div class="container py-5">
-
-                <div class="row justify-content-center">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class="sec_title position-relative text-center mb-5">
-                            <h6 class="text-light mb-0">Subscribr Now</h6>
-                            <h2 class="ft-bold text-light">Get All New Job Notification</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-12">
-                        <form class="bg-white rounded p-1">
-                            <div class="row no-gutters">
-                                <div class="col-xl-9 col-lg-9 col-md-8 col-sm-8 col-8">
-                                    <div class="form-group mb-0 position-relative">
-                                        <input type="text" class="form-control lg left-ico"
-                                            placeholder="Enter Your Email Address">
-                                        <i class="bnc-ico lni lni-envelope"></i>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
-                                    <div class="form-group mb-0 position-relative">
-                                        <button class="btn full-width custom-height-lg theme-bg text-light fs-md"
-                                            type="button">Subscribe
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
         <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
         <!-- Button trigger modal -->
         <!-- Modal login -->

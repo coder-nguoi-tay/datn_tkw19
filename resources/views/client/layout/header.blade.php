@@ -17,7 +17,6 @@
                                         data-target="#exampleModallogin">
                                         <i class="lni lni-user"></i>Đăng
                                         nhập</button></fieldset>
-
                             </li>
                             <li>
                                 <a href="dashboard-post-job.html" class="main-button">
@@ -40,12 +39,10 @@
                             </li>
                         @endif
                     </ul>
-
                 </div>
             </div>
             <div class="nav-menus-wrapper" style="transition-property: none;">
                 <ul class="nav-menu">
-
                     <li><a href="#">Home</a>
                         <ul class="nav-dropdown nav-submenu">
                             <li><a href="index.html">Home 1</a></li>

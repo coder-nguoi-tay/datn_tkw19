@@ -71,7 +71,7 @@
           <a href="" class="text-danger ms-auto">Quên mật khẩu</a>
         </div>
         <div class="text-center mt-5">
-          <Button class="btn btn-success btn-login">Đăng nhập</Button>
+          <Button class="main-button btn border btn-all">Đăng nhập</Button>
         </div>
       </div>
       <div class="form-login-user" v-if="checkForm == 2">
@@ -109,7 +109,7 @@
         <ErrorMessage class="error" name="password" />
         <br />
         <div class="text-center">
-          <Button class="btn btn-success">Đăng ký</Button>
+          <Button class="main-button btn border btn-all">Đăng ký</Button>
         </div>
       </div>
     </form>
@@ -282,6 +282,9 @@ export default {
   .custom-buttom-checkform {
     font-size: 17px !important;
     padding: 10px 55px 10px 55px;
+  }
+  .btn-all {
+    background-color: #ccc;
   }
 }
 .success {
