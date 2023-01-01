@@ -13,7 +13,7 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1"
+        class="col-lg-2 align-self-center border p-2 mr-1 custom-input"
         style="height: 54px"
       >
         <fieldset>
@@ -31,7 +31,7 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1"
+        class="col-lg-2 align-self-center border p-2 mr-1 custom-input"
         style="height: 54px"
       >
         <fieldset>
@@ -53,7 +53,7 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1"
+        class="col-lg-2 align-self-center border p-2 mr-1 custom-input"
         style="height: 54px"
       >
         <fieldset>
@@ -76,7 +76,7 @@
       </div>
 
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1"
+        class="col-lg-2 align-self-center border p-2 mr-1 custom-input"
         style="height: 54px"
       >
         <fieldset>
@@ -98,29 +98,25 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 ml-sm-5"
+        class="col-lg-2 align-self-center border p-2 ml-sm-5 mr-1 custom-input"
         style="height: 54px"
       >
         <fieldset>
           <Field
-            name="time_work"
+            name="majors"
             as="select"
-            v-model="model.time_work_id"
+            v-model="model.majors"
             class="form-control"
           >
-            <option value selected>Chọn Thời Gian</option>
-            <option
-              v-for="item in data.timework"
-              :key="item.id"
-              :value="item.id"
-            >
+            <option value selected>Chọn ngành nghề</option>
+            <option v-for="item in data.majors" :key="item.id" :value="item.id">
               {{ item.label }}
             </option>
           </Field>
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1"
+        class="col-lg-2 align-self-center border p-2 mr-1 custom-input"
         style="height: 54px"
       >
         <fieldset>
@@ -139,14 +135,14 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1"
+        class="col-lg-2 align-self-center border p-2 mr-1 custom-input"
         style="height: 54px"
       >
         <fieldset>
           <Field
             name="wage"
             as="select"
-            v-model="model.wage_id"
+            v-model="model.wage"
             class="form-control"
           >
             <option value selected>Chọn Mức Lương</option>
@@ -157,7 +153,7 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1"
+        class="col-lg-2 align-self-center border p-2 mr-1 custom-input"
         style="height: 54px"
       >
         <fieldset>
@@ -219,16 +215,17 @@ export default {
         label: e.label
       })
     })
-    console.log(this.data)
-    if (this.data.skillSearch != null) {
-      this.data.skillSearch.map((e) => {
-        this.value.push({
-          value: e.id,
-          label: e.name
+    if (this.data.skillSearch) {
+      if (this.data.skillSearch[0] != null) {
+        this.data.skillSearch.map((e) => {
+          this.value.push({
+            value: e.id,
+            label: e.name
+          })
+          array.push(e.id)
+          this.skill = array
         })
-        array.push(e.id)
-        this.skill = array
-      })
+      }
     }
   },
   methods: {
@@ -244,4 +241,9 @@ export default {
 }
 </script>
 <style src="@vueform/multiselect/themes/default.css">
+</style>
+<style>
+.custom-input {
+  border-radius: 5px !important;
+}
 </style>

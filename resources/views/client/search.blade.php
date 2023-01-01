@@ -66,23 +66,6 @@
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
                                     <h6 class="mb-0 ft-medium fs-sm">{{ count($job) }} Công việc được tìm thấy</h6>
                                 </div>
-
-                                <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12">
-                                    <div class="filter_wraps elspo_wrap d-flex align-items-center justify-content-end">
-                                        <div class="single_fitres mr-2 br-right">
-                                            <select class="custom-select simple">
-                                                <option value="1" selected="">Default Sorting</option>
-                                                <option value="2">Recent jobs</option>
-                                                <option value="3">Featured jobs</option>
-                                                <option value="4">Trending Jobs</option>
-                                                <option value="5">Premium jobs</option>
-                                            </select>
-                                        </div>
-                                        <div class="single_fitres">
-                                            <button href="" class="btn simple-button mr-1">Lọc</button>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
