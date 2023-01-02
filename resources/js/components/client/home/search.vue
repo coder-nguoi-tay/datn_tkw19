@@ -1,7 +1,7 @@
 <template>
   <form id="search-form" :action="data.urlSeach" method="submit" role="search" class="p-0">
-    <div class="row">
-      <div class="col-lg-4 align-self-center border p-2 custom-input">
+    <div class="row gap_row_form justify-content-center">
+      <div class="col-lg-3 align-self-center border p-2 custom-input">
         <fieldset>
           <input
             type="text"
@@ -128,8 +128,7 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-4 align-self-center border p-2  custom-input"
-        
+        class="col-lg-3 align-self-center border p-2  custom-input"
       >
         <fieldset class="custom-multiselect">
           <Multiselect
@@ -224,5 +223,9 @@ export default {
     padding-bottom: 10px !important;
     border: none !important;
   }
+}
+.gap_row_form{
+  row-gap: 2px !important;
+  column-gap: 6px !important;
 }
 </style>

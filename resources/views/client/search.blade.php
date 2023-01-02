@@ -58,20 +58,20 @@
             </div>
         </div>
         <section class="bg-light">
-            <div class="container-fluid">
+            <div class="container-xxl pt-2">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="row align-items-center">
+                    <div class="row align-items-center bg-info">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                            <div class="row align-items-center justify-content-between mx-0 bg-white rounded py-2 mb-4">
+                            <div class="row align-items-center justify-content-between mx-0 rounded p-3">
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
                                     <h6 class="mb-0 ft-medium fs-sm">{{ count($job) }} Công việc được tìm thấy</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center bg-white">
                         <div class="p-3 container">
-                            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3" id="paginated-list">
+                            <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" id="paginated-list">
                                 @foreach ($job as $value)
                                     <div class="col render-job-search">
 
@@ -83,7 +83,7 @@
                                                 </a>
                                             </div>
                                             <div class="row">
-                                                <div class="job_grid_thumb mb-3 title-name px-3 col-3">
+                                                <div class="job_grid_thumb mb-3 title-name px-3 col-4">
                                                     <a href="home/detail/{{ $value->title . '-' . $value->id }}"
                                                         class="d-block m-auto" style="width: 55px !important;height: 55px !important;overflow: hidden;">
                                                         <img src="{{ asset($value->logo) }}"
@@ -110,7 +110,7 @@
                                                             {{ $value->getWage->name }}
                                                         </span>
                                                         <span
-                                                            class=" medium skill-bg m-2  text-dark df-1  text-wage-company p-1">
+                                                            class=" medium skill-bg  text-dark df-1  text-wage-company p-1">
                                                             <i
                                                                 class="lni lni-map-marker mr-1"></i>{{ $value->getlocation->name }}
                                                         </span>
@@ -119,7 +119,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <span
-                                                        class="medium skill-bg m-2  text-dark df-1  text-wage-company p-1">
+                                                        class="medium skill-bg  text-dark df-1  text-wage-company p-1">
                                                         còn 10 ngày
                                                     </span>
                                                 </div>
