@@ -5,7 +5,7 @@
 @section('client')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <div id="main-wrapper">
+    <div id="main-wrapper" style="background: #f0f2f5 !important;">
         <div class="clearfix"></div>
 
         <div class="py-5" style="background:#03343b url(assets/img/landing-bg.png) no-repeat;" data-overlay="0">
@@ -93,8 +93,8 @@
                             <div class="jbd-01 d-flex align-items-center justify-content-between">
                                 <div class="jbd-flex d-flex align-items-center justify-content-start">
                                     <div class="jbd-01-thumb" style="overflow: hidden; width: 150px; height: 150px;">
-                                        <img src="{{ asset($job->logo) }}" class="img-fluid" style="width: 150px; height: 150px;"
-                                            alt="" />
+                                        <img src="{{ asset($job->logo) }}" class="img-fluid"
+                                            style="width: 150px; height: 150px;" alt="" />
                                     </div>
                                     <div class="jbd-01-caption pl-3">
                                         <div class="tbd-title">
@@ -242,8 +242,8 @@
         <!-- ============================ Job Details End ================================== -->
 
         <!-- ======================= Related Jobs ======================== -->
-        <section class="space min container-company-detai">
-            <div class="container container-detai">
+        <section class="space min container-company-detai mb-3">
+            <div class="container container-detai pt-3 pb-2">
                 <div class="box-title">
                     <h2 class="box-name"><span style="margin-left: 5px !important">{{ $jobCompany[0]->name }}</span></h2>
                     <a href="https://www.topcv.vn/cong-ty/cong-ty-cp-duoc-pham-tin-phong/48787.html" target="_blank"
@@ -301,117 +301,49 @@
                             <span class="content">Lô B10/D6, KĐT Cầu Giấy, Dịch Vọng, Cầu Giấy, Hà Nội</span>
                         </div>
                     </div>
-                    <div class="box-job-company">
-                        <div class="box-title">
-                            <h2 class="box-name"> <span style="margin-left: 5px !important;">Việc làm cùng công
-                                    ty</span></h2>
-                            <a href="" target="_blank" style="margin-top: 5px">Xem nhiều hơn <i
-                                    class="fas fa-chevron-right"></i></a>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="container">
-                                <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
-                                    @foreach ($jobCompany as $item)
-                                        <div class="col">
-                                            <div class="p-3  bg-light box-showdow-company">
-                                                <div class="position-absolute ab-right"><button type="button"
-                                                        class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"
-                                                        title="123123213"><i
-                                                            class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button>
-                                                </div>
-                                                <div class="row">
-                                                    <div
-                                                        class="job_grid_caption title-name px-3 col-8 g-1 text-name-company">
-                                                        <h4 class="mb-0 ft-medium medium ml-20"><a
-                                                                href="{{ route('home.detail.show', [$item->title, $item->id]) }}"
-                                                                class="text-dark fs-md " data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" title="Tooltip on top">
-                                                                <p style="width: 200px !important; overflow: hidden !important;text-overflow: ellipsis !important; white-space: nowrap;"
-                                                                    title="{{ $item->title }}">
-                                                                    {{ $item->title }}</p>
-                                                            </a></h4>
+                </div>
+            </div>
+        </section>
 
-                                                        <div class="jbl_location ml-20" style="margin-top: -10px"><a
-                                                                href="" class="text-dark fs-md"><i
-                                                                    class="lni lni-map-marker mr-1"></i>{{ $item->getlocation->name }}</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="job_grid_footer d-flex">
-                                                    <div class="df-1  text-wage-company"><i
-                                                            class="lni lni-wallet mr-1"></i>{{ $item->getWage->name }}
-                                                    </div>
-                                                    <div class="df-1  ml-2 text-wage-company text-time"><i
-                                                            class="lni lni-timer mr-1"></i>còn 10 ngày
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
+        </section>
+        <!-- ======================= Related Jobs ======================== -->
+        <!-- ======================= Newsletter Start ============================ -->
+        <section class="space bg-cover" style="background:#03343b url(assets/img/landing-bg.png) no-repeat;">
+            <div class="container py-5">
+
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        <div class="sec_title position-relative text-center mb-5">
+                            <h6 class="text-light mb-0">Subscribr Now</h6>
+                            <h2 class="ft-bold text-light">Get All New Job Notification</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-12">
+                        <form class="bg-white rounded p-1">
+                            <div class="row no-gutters">
+                                <div class="col-xl-9 col-lg-9 col-md-8 col-sm-8 col-8">
+                                    <div class="form-group mb-0 position-relative">
+                                        <input type="text" class="form-control lg left-ico"
+                                            placeholder="Enter Your Email Address">
+                                        <i class="bnc-ico lni lni-envelope"></i>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
+                                    <div class="form-group mb-0 position-relative">
+                                        <button class="btn full-width custom-height-lg theme-bg text-light fs-md"
+                                            type="button">Subscribe</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="space min container-relate">
-            <div class="row">
-                <div class="col-8">
-                    <div class="box-title">
-                        <h2 class="box-name"><span style="margin-left: 5px !important">Việc làm liên quan</span></h2>
-                    </div>
-                    @foreach ($rules as $item)
-                        <div class="job_grid d-block border rounded px-3 pt-3 pb-2">
-                            <div class="jb-list01-flex d-flex align-items-start justify-content-start">
-                                <div class="jb-list01-thumb">
-                                    <img src="{{ asset($item->logo) }}" class="img-fluid circle" width="90"
-                                        alt="">
-                                </div>
 
-                                <div class="jb-list01 pl-3">
-                                    <div class="jb-list-01-title">
-                                        <h5 class="ft-medium mb-1"><a
-                                                href="{{ route('home.detail.show', [$item->title, $item->id]) }}">{{ $item->title }}<img
-                                                    src="assets/img/verify.svg" class="ml-1" width="12"
-                                                    alt=""></a></h5>
-                                    </div>
-                                    <div class="jb-list-01-info d-block mb-3">
-                                        <span class="text-muted mr-2"><i
-                                                class="lni lni-map-marker mr-1"></i>{{ $item->getlocation->name }}</span>
-                                        <span class="text-muted mr-2"><i
-                                                class="lni lni-tag mr-1"></i>{{ $item->getprofession->name }}</span>
-                                        <span class="text-muted mr-2"><i
-                                                class="lni lni-briefcase mr-1"></i>{{ $item->getTime_work->name }}</span>
-                                        <span class="text-muted mr-2"><i
-                                                class="lni lni-graduation mr-1"></i>{{ $item->getExperience->name }}</span>
-                                    </div>
-                                    <div class="jb-list-01-title d-inline">
-                                        @foreach ($item->getskill as $item)
-                                            <span
-                                                class="mr-2 mb-2 d-inline-flex px-2 py-1 rounded theme-cl theme-bg-light">{{ $item->name }}</span>
-                                        @endforeach
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="col-4">
-                    <div class="bg-white rounded mb-4 box-text-search">
-                        <div class="sidebar-widgets collapse miz_show" id="search_open" data-parent="#search_open">
-                            {{-- sidemap --}}
-                            <iframe class="p-2"
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59587.20210256174!2d105.82177788007363!3d21.02467679226917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9bd9861ca1%3A0xe7887f7b72ca17a9!2zSMOgIE7hu5lpLCBIb8OgbiBLaeG6v20sIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1672403536602!5m2!1svi!2s"
-                                width="460" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
         <!-- Log In Modal -->
         <div class="modal fade" id="exampleModallogin" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
