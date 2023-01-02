@@ -138,5 +138,5 @@ Route::post('home/detail/upcv', [ClientHomeController::class, 'upCv'])->name('ho
 Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 'searchLocation'])->name('home.search.location');
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
 Route::get('tim-viec-lam', [SearchController::class, 'create'])->name('home.search');
-Route::get('News', [NewsController::class, 'index'])->name('News');
-Route::get('News/Test', [NewsController::class, 'Test'])->name('Test');
+Route::get('News', [NewsController::class, 'index'])->name('company');
+Route::get('News/detail', [NewsController::class, 'Test'])->name('company.detail');
