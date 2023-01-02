@@ -1,4 +1,4 @@
-<section class="space bg-cover" style="background:#00ab46 url('banner-bg.jpg')">
+<section class="space bg-cover" style="background:#00ab46 url('../../banner-bg.jpg')">
     <div class="container py-5">
 
         <div class="row justify-content-center">

@@ -109,61 +109,6 @@ class BaseController extends Controller
 
         return $ret;
     }
-
-    // public function logInfo($request, $message = '')
-    // {
-    //     Log::channel('access_log')->info([
-    //         'url' => url()->full(),
-    //         'method' => $request->getMethod(),
-    //         'data' => $request->all(),
-    //         'message' => $message,
-    //     ]);
-    // }
-
-    // public function logError($request, $message = '')
-    // {
-    //     Log::channel('access_log')->error([
-    //         'url' => url()->full(),
-    //         'method' => $request->getMethod(),
-    //         'data' => $request->all(),
-    //         'message' => $message,
-    //     ]);
-    // }
-
-    // public function logWarning($request, $message = '')
-    // {
-    //     Log::channel('access_log')->warning([
-    //         'url' => url()->full(),
-    //         'method' => $request->getMethod(),
-    //         'data' => $request->all(),
-    //         'message' => $message,
-    //     ]);
-    // }
-
-    // public function convertShijis($text)
-    // {
-    //     return mb_convert_encoding($text, 'SJIS', 'UTF-8');
-    // }
-
-    // public function saveOperationLog($request, $operationType = OperationType::INSERT)
-    // {
-    //     $requestUri = $request->getRequestUri();
-    //     $guard = isset(explode('/', $requestUri)[1]) ? explode('/', $requestUri)[1] : 'system';
-    //     $operationLog = new OperationLog();
-    //     $operationLog->operation_log_datetime = Carbon::now();
-    //     $operationLog->screen_name = $requestUri;
-    //     $operationLog->user_id = Auth::guard($guard)->user() === null ? null : Auth::guard($guard)->user()->id;
-    //     $operationLog->operation_name = $request->route()->getActionMethod();
-    //     $operationLog->operation_type = $operationType;
-    //     $operationValue = $request->all();
-    //     unset($operationValue['_token']);
-    //     unset($operationValue['_method']);
-    //     unset($operationValue['password']);
-    //     $operationValue['ip'] = $request->ip();
-    //     $operationValue['user_agent'] = $request->server('HTTP_USER_AGENT');
-    //     $operationLog->operation_value = $operationValue;
-    //     $operationLog->save();
-    // }
     public function checkMail($request)
     {
         if ($request['email'] != '') {
@@ -352,5 +297,16 @@ class BaseController extends Controller
         $str = preg_replace("/(\“|\”|\‘|\’|\,|\!|\&|\;|\@|\#|\%|\~|\`|\=|\_|\'|\]|\[|\}|\{|\)|\(|\+|\^)/", '-', $str);
         $str = preg_replace("/( )/", '-', $str);
         return $str;
+    }
+    public function getDataMouth($request, $employer)
+    {
+        return $this->savecv
+            ->join('job', 'job.id', '=', 'save_cv.id_job')
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->where('job.employer_id', $employer)
+            ->where(function ($q) use ($request) {
+                $q->whereMonth('save_cv.created_at', $request);
+            })
+            ->count();
     }
 }

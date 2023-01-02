@@ -33,7 +33,7 @@ class ProfileController extends BaseController
     }
     public function index()
     {
-        $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
+        $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->with('getUser')->first();
         $paymentHistory = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)->get();
         $Company = Company::where('id', $employer->id_company)->first();
         $accuracy = Accuracy::where('user_id', Auth::guard('user')->user()->id)->first();
@@ -103,7 +103,19 @@ class ProfileController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->with('getUser')->first();
+            $employer->name = $request->name;
+            $employer->phone = $request->phone;
+            $employer->address = $request->address;
+            $employer->save();
+            $this->setFlash(__('Cập nhật thành công'));
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->setFlash(__('Đã có một lỗi xảy ra'), 'error');
+            return redirect()->back();
+        }
     }
 
     /**

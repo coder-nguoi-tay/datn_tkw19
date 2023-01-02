@@ -144,7 +144,7 @@ class SearchController extends BaseController
                 'skill' => $this->getskill(),
                 'timework' => $this->gettimework(),
                 'profession' => $this->getprofession(),
-                'majors' => $this->getmajors(),
+                'majors' => $this->majors->get(),
                 'workingform' => $this->getworkingform(),
                 'location' => $this->getlocation(),
                 'request' => $request,

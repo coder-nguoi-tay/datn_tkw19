@@ -727,36 +727,7 @@
                                         <p>{{ $item->describe }}...</p>
                                     </div>
                                 </div>
-                                <div class="crs_grid_foot">
-                                    <div
-                                        class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_tutor">
-                                                <div class="crs_tutor_thumb "><a href="instructor-detail.html"><img
-                                                            src="{{ $item->new_image }}" class="img-fluid circle "
-                                                            width="30px" alt=""></a></div>
-                                            </div>
-                                        </div>
-                                        <div class="crs_fl_last">
-                                            <div class="foot_list_info">
-                                                <ul>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-eye text-success"></i></div>
-                                                        <div class="elsio_tx">10k Views</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-clock text-warning"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">{{ $item->created_at->format('d-m-Y') }}
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-
                         </div>
                     @endforeach
                 </div>

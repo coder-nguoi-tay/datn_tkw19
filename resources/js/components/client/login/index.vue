@@ -283,11 +283,11 @@ export default {
     font-size: 17px !important;
     padding: 10px 55px 10px 55px;
   }
-  .btn-all {
-    background-color: #ccc;
-  }
 }
 .success {
   color: green;
+}
+.btn-all {
+  background-color: #ccc;
 }
 </style>

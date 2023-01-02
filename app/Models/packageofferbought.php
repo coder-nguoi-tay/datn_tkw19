@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\LeverPackage;
+use App\Enums\LeverPackageCompany;
 use App\Enums\StatusPackage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +27,7 @@ class packageofferbought extends Model
     ];
     public function getLeverPackageAttribute()
     {
-        return LeverPackage::getDescription($this->lever);
+        return LeverPackageCompany::getDescription($this->lever);
     }
     public function getStatusPackageAttribute()
     {

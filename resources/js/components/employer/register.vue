@@ -375,7 +375,7 @@
                         >
                           &nbsp;Điều khoản dịch vụ&nbsp;
                         </a>
-                        của TopCV.
+                        của ITWORK.
                       </label>
                     </div>
                   </div>
@@ -384,15 +384,8 @@
                     class="text-center mb-0 mt-4 action-container"
                   >
                     <button
-                      data-v-9281c350=""
-                      type="button"
-                      class="btn min-width btn btn-secondary btn-lg mr-3"
-                    >
-                      Hủy
-                    </button>
-                    <button
                       type="submit"
-                      class="btn min-width btn btn-primary btn-lg"
+                      class="main-button btn border btn-all"
                     >
                       Hoàn tất
                     </button>
@@ -529,7 +522,7 @@ body {
 }
 .register-header-box .overlay {
   position: absolute;
-  background: #4ca853;
+  background: #747474;
   width: 100%;
   height: 100%;
   left: 0;

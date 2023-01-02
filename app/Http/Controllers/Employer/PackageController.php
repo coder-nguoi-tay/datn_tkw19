@@ -35,10 +35,10 @@ class PackageController extends BaseController
     }
     public function index()
     {
-        $pachageForEmployer = Packageofferbought::leftjoin('admin_package_offer', 'admin_package_offer.id', '=', 'package_offer_bought.package_offer_id')
+        $pachageForEmployer = Packageofferbought::leftjoin('job_attractive', 'job_attractive.id', '=', 'package_offer_bought.package_offer_id')
             ->leftjoin('users', 'users.id', '=', 'package_offer_bought.company_id')
             ->leftjoin('employer', 'employer.user_id', '=', 'users.id')
-            ->select('admin_package_offer.name as name_package', 'admin_package_offer.price as price', 'package_offer_bought.id as id', 'package_offer_bought.package_offer_id as package_id', 'package_offer_bought.start_time as start_time', 'package_offer_bought.end_time as end_time', 'package_offer_bought.lever', 'package_offer_bought.status')
+            ->select('job_attractive.name as name_package', 'job_attractive.price as price', 'package_offer_bought.id as id', 'package_offer_bought.package_offer_id as package_id', 'package_offer_bought.start_time as start_time', 'package_offer_bought.end_time as end_time', 'package_offer_bought.lever', 'package_offer_bought.status')
             ->orderby('package_offer_bought.status', 'ASC')
             ->where('package_offer_bought.company_id', Auth::guard('user')->user()->id)
             ->get();
@@ -296,7 +296,7 @@ class PackageController extends BaseController
                             //
                             $package = new packageofferbought();
                             $package->company_id = Auth::guard('user')->user()->id;
-                            $package->package_offer_id = 1;
+                            $package->package_offer_id = $lever_package;
                             $package->status = $Status;
                             $package->start_time = Carbon::parse(Carbon::now());
                             if ($lever_package == 1) {

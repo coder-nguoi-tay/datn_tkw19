@@ -103,7 +103,10 @@
                     @submit="handleSubmit($event, onSubmit)"
                     class="form-register-employer"
                     ref="formData"
+                    :action="data.urlStoreEmployer"
                   >
+                    <input type="hidden" :value="csrfToken" name="_token" />
+                    <Field type="hidden" value="PUT" name="_method" />
                     <div class="container rounded bg-white mt-5 mb-5">
                       <div class="row">
                         <div class="col-md-3 border-right">
@@ -121,10 +124,10 @@
                               alt="Admin"
                               class="rounded-circle"
                               width="150"
-                            /><span class="font-weight-bold"> Hùng</span>
-                            <br /><span class="text-black-50"
-                              >Hung@gmail.com</span
-                            ><span> </span>
+                            /><span class="font-weight-bold">
+                              {{ employer.name }}</span
+                            >
+                            <br /><span> </span>
                           </div>
                         </div>
                         <div class="col-md-9 border-right">
@@ -144,6 +147,7 @@
                                     <Field
                                       type="text"
                                       name="name"
+                                      v-model="employer.name"
                                       id="name"
                                       rules="required|max:128"
                                       class="form-control"
@@ -162,7 +166,10 @@
                                   <div class="col-sm-9">
                                     <Field
                                       type="email"
+                                      v-model="employer.get_user.email"
                                       name="email"
+                                      disabled
+                                      readonly
                                       id="email"
                                       rules="required|email"
                                       class="form-control"
@@ -184,6 +191,7 @@
                                     <Field
                                       type="text"
                                       name="phone"
+                                      v-model="employer.phone"
                                       id="phone"
                                       rules="required"
                                       class="form-control"
@@ -205,6 +213,7 @@
                                       type="text"
                                       name="address"
                                       id="address"
+                                      v-model="employer.address"
                                       rows="3"
                                       class="form-control"
                                       rules="required|max:128"
@@ -548,6 +557,8 @@
                                   type="text"
                                   v-model="dataCompany.number_tax"
                                   name="number_tax"
+                                  disabled
+                                  readonly
                                   id="number_tax"
                                   class="form-control"
                                   placeholder="Nhập mã số thuế công ty"
@@ -565,6 +576,8 @@
                                 <Field
                                   type="text"
                                   v-model="dataCompany.email"
+                                  disabled
+                                  readonly
                                   name="email"
                                   id="email"
                                   class="form-control"
@@ -726,6 +739,7 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
       model: this.data.Company ?? '',
+      employer: this.data.employer,
       preview: null,
       image: null,
       preview_list: [],
@@ -738,6 +752,7 @@ export default {
   },
   props: ['data'],
   created() {
+    console.log(this.data.employer)
     if (this.data.Company) {
       this.dataCompany = this.data.Company
     }
