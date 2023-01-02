@@ -24,7 +24,7 @@
       class="select-custom border"
       v-if="checkStep == 1"
     >
-      <option selected value="0">tất cả</option>
+      <option value="0">tất cả</option>
       <option value="1">còn hạn</option>
       <option value="2">hết hạn</option>
     </select>
