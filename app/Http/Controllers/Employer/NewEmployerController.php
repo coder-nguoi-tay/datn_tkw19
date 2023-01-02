@@ -88,6 +88,13 @@ class NewEmployerController extends BaseController
             if (!empty($request['end_date'])) {
                 $q->whereDate('job.end_job_time', '<=', $request['end_date']);
             }
+            if (!empty($request['expired'])) {
+                if ($request['expired'] == 1) {
+                    $q->where('job.expired', 0);
+                } else {
+                    $q->where('job.expired', 1);
+                }
+            }
             if (!empty($request['free_word'])) {
                 $q->orWhere($this->escapeLikeSentence('job.title', $request['free_word']));
             }

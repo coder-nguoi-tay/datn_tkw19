@@ -18,6 +18,16 @@
       autocomplete="off"
       id="free_word"
     />
+    <select
+      name="expired"
+      v-model="dataQuery.expired"
+      class="select-custom border"
+      v-if="checkStep == 1"
+    >
+      <option selected value="0">tất cả</option>
+      <option value="1">còn hạn</option>
+      <option value="2">hết hạn</option>
+    </select>
     <button class="nav-link py-0 btn-next-step" href="">
       <i class="fa fa-search"></i>
     </button>
@@ -27,18 +37,30 @@
 <script>
 import { CDropdownHeader } from '@coreui/vue'
 export default {
-  props: ['url', 'dataQuery'],
+  created() {
+    console.log(this)
+  },
+  props: ['url', 'dataQuery', 'data'],
   components: {
     CDropdownHeader
   },
   data() {
     return {
       start_date: this.dataQuery.start_date,
-      end_date: this.dataQuery.end_date
+      end_date: this.dataQuery.end_date,
+      checkStep: this.data
     }
   }
 }
 </script>
 
 <style>
+.select-custom {
+  margin-left: 5px;
+  border-radius: 5px;
+  width: 80px !important;
+}
+.custom-input {
+  border-radius: 5px !important;
+}
 </style>

@@ -14,7 +14,8 @@
                                     <label class=" px-md-0 me-md-3">Quản Lý Đăng Tin</label>
                                     <ul class="header-nav ms-3 d-flex">
                                         <search-cv-date :url="{{ json_encode(route('employer.new.index')) }}"
-                                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
+                                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
+                                            :data="{{ json_encode(1) }}">
                                         </search-cv-date>
                                         @if ($checkCompany->id_company && $checkCompanyStatus == 1)
                                             <a class="nav-link py-0 btn-next-step"
