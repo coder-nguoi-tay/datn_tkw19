@@ -46,14 +46,15 @@
                     <li><a href="#">Lĩnh vực</a>
                         <ul class="nav-dropdown nav-submenu">
                             @foreach ($majors as $item)
-                                <li><a href="">{{ $item->name }}</a></li>
+                                <li><a href="tim-viec-lam?majors={{ $item->id }}">{{ $item->name }}</a>
+                                </li>
                             @endforeach
                         </ul>
                     </li>
 
                     <li><a href="{{ route('home.search') }}">Việc làm</a>
                     </li>
-                    <li><a href="">Công ty</a>
+                    <li><a href="{{ route('company') }}">Công ty</a>
                     </li>
 
                     <li><a href="javascript:void(0);">Phỏng vấn</a>
