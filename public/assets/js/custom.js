@@ -179,7 +179,7 @@ $(function () {
 	// Snackbar for wishlist Product
 	$('.snackbar-wishlist').click(function () {
 		Snackbar.show({
-			text: 'Your Job was added to wishlist successfully!',
+			text: 'Trái tym này vẫn chưa được xử lý logic',
 			pos: 'top-right',
 			showAction: false,
 			actionText: "Dismiss",

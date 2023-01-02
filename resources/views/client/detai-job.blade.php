@@ -344,7 +344,6 @@
             </div>
         </section>
 
->>>>>>>>> Temporary merge branch 2
         <!-- Log In Modal -->
         <div class="modal fade" id="exampleModallogin" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">

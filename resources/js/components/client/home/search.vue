@@ -1,7 +1,7 @@
 <template>
-  <form id="search-form" :action="data.urlSeach" method="submit" role="search">
-    <div class="row ml-5">
-      <div class="col-lg-3 align-self-center border p-2 mr-1 custom-input">
+  <form id="search-form" :action="data.urlSeach" method="submit" role="search" class="p-0">
+    <div class="row">
+      <div class="col-lg-4 align-self-center border p-2 custom-input">
         <fieldset>
           <input
             type="text"
@@ -13,8 +13,8 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1 custom-input"
-        style="height: 54px"
+        class="col-lg-2 align-self-center border p-2  custom-input"
+        
       >
         <fieldset>
           <Field name="lever" as="select" v-model="model.lever">
@@ -26,8 +26,8 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1 custom-input"
-        style="height: 54px"
+        class="col-lg-2 align-self-center border p-2  custom-input"
+        
       >
         <fieldset>
           <Field name="time_work" as="select" v-model="model.time_work">
@@ -43,8 +43,8 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1 custom-input"
-        style="height: 54px"
+        class="col-lg-2 align-self-center border p-2 custom-input"
+        
       >
         <fieldset>
           <Field name="profession" as="select" v-model="model.profession">
@@ -61,8 +61,8 @@
       </div>
 
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1 custom-input"
-        style="height: 54px"
+        class="col-lg-2 align-self-center border p-2  custom-input"
+        
       >
         <fieldset>
           <Field name="experience" as="select" v-model="model.experience">
@@ -83,12 +83,9 @@
           align-self-center
           border
           p-2
-          ml-sm-5
-          mr-1
           custom-input
-          mt-2
         "
-        style="height: 54px"
+        
       >
         <fieldset>
           <Field name="majors" as="select" v-model="model.majors">
@@ -100,8 +97,8 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1 custom-input mt-2"
-        style="height: 54px"
+        class="col-lg-2 align-self-center border p-2  custom-input"
+        
       >
         <fieldset>
           <select
@@ -118,8 +115,8 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1 custom-input mt-2"
-        style="height: 54px"
+        class="col-lg-2 align-self-center border p-2  custom-input"
+        
       >
         <fieldset>
           <Field name="wage" as="select" v-model="model.wage">
@@ -131,8 +128,8 @@
         </fieldset>
       </div>
       <div
-        class="col-lg-2 align-self-center border p-2 mr-1 custom-input mt-2"
-        style="height: 54px"
+        class="col-lg-4 align-self-center border p-2  custom-input"
+        
       >
         <fieldset class="custom-multiselect">
           <Multiselect
@@ -155,9 +152,9 @@
         </fieldset>
         <input type="hidden" name="skill[]" v-model="skill" />
       </div>
-      <div class="col-lg-2" style="margin-left: -12px !important; width: 250px">
+      <div class="col-lg-2 align-self-center p-2">
         <fieldset>
-          <button class="align-self-center p-2 mt-2">
+          <button class="align-self-center p-2 rounded">
             <i class="fa fa-search"></i> Tìm Kiếm
           </button>
         </fieldset>

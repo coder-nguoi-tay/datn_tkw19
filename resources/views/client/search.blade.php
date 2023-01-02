@@ -37,8 +37,8 @@
             <div class="ht-30"></div>
         </div>
         <!-- ======================= Top Breadcrubms ======================== -->
-        <div class="container-fluid">
-            <div class="col-lg-12 p-4">
+        <div class="container-xxl pt-4 pb-4">
+            <div class="col-lg-12 ">
                 <home-search
                     :data="{{ json_encode([
                         'lever' => $lever,
@@ -71,7 +71,7 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="p-3 container">
-                            <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" id="paginated-list">
+                            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3" id="paginated-list">
                                 @foreach ($job as $value)
                                     <div class="col render-job-search">
 
@@ -83,11 +83,12 @@
                                                 </a>
                                             </div>
                                             <div class="row">
-                                                <div class="job_grid_thumb mb-3 title-name px-3 col-4">
+                                                <div class="job_grid_thumb mb-3 title-name px-3 col-3">
                                                     <a href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                        class="d-block m-auto"><img src="{{ asset($value->logo) }}"
+                                                        class="d-block m-auto" style="width: 55px !important;height: 55px !important;overflow: hidden;">
+                                                        <img src="{{ asset($value->logo) }}"
                                                             class="img-fluid border-0"
-                                                            style="width: 70% !important; height: 70% !important"
+                                                            style="width: 100% !important; height: 100% !important"
                                                             alt="" /></a>
                                                 </div>
                                                 <div class="job_grid_caption title-name px-3 col-8">
