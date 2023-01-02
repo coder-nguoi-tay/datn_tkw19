@@ -25,7 +25,7 @@
           ></button>
         </div>
         <div class="modal-body">
-          <img :src="'http://127.0.0.1:8000/' + fileXt" alt="" />
+          <img :src="'http://127.0.0.1:8000/' + fileXt" alt="" style="width: 300px; height: 300px;"/>
         </div>
         <div class="modal-footer">
           <button

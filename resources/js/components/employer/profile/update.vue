@@ -432,7 +432,7 @@
                                       <img
                                         v-if="filePreview"
                                         :src="filePreview"
-                                        class="img-fluid"
+                                        class="img-fluid img-show"
                                       />
                                     </div>
                                   </div>
@@ -874,6 +874,10 @@ export default {
 </script>
 
 <style scoped>
+.img-show {
+  width: 180px !important;
+  height: 170px !important;
+}
 [data-v-79f03480] .reportrange-text {
   background-color: #f3f4f5;
   color: #212f3f;
