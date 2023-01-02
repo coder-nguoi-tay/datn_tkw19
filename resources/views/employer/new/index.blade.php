@@ -43,7 +43,6 @@
                                             <th scope="col"> Trạng Thái</th>
                                             <th scope="col">Số lượng hồ sơ đã nhân</th>
                                             <th scope="col"> Thời gian bắt đầu</th>
-                                            <th scope="col">Kết thúc</th>
                                             <th scope="col">Thời gian còn lại</th>
                                             <th scope="col">Action</th>
                                         </tr>
@@ -64,7 +63,6 @@
                                                 </td>
                                                 <td>{{ count($item->AllCv) }}</td>
                                                 <td>{{ $item->job_time }}</td>
-                                                <td>{{ Carbon::parse($item->end_job_time)->format('Y-m-d') }}</td>
                                                 <td>
 
                                                     @if (Carbon::parse($item->end_job_time)->format('m') == $m)

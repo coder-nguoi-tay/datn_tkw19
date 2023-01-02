@@ -94,7 +94,7 @@
           <Field name="majors" as="select" v-model="model.majors">
             <option value selected>Chọn ngành nghề</option>
             <option v-for="item in data.majors" :key="item.id" :value="item.id">
-              {{ item.label }}
+              {{ item.name }}
             </option>
           </Field>
         </fieldset>
@@ -165,7 +165,6 @@
     </div>
   </form>
 </template>
-
 <script>
 import { Field } from 'vee-validate'
 import Multiselect from '@vueform/multiselect'

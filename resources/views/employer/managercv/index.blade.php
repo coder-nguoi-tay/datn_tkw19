@@ -38,7 +38,7 @@
                                     <tbody>
                                         @foreach ($cv as $item)
                                             <tr>
-                                                <td><img src="{{ $item->images }}" alt="" width="150"
+                                                <td><img src="{{ asset($item->images) }}" alt="" width="150"
                                                         height="150"></td>
                                                 <td>{{ $item->user_name }}</td>
                                                 <td>{{ $item->majors_name }}</td>

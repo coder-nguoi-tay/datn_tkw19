@@ -263,11 +263,13 @@ class HomeController extends BaseController
             'title' => $title,
             'getMajors' => $getMajors,
             'location' => $location,
+            'locationAll' => $this->location->get(),
             'rules' => $relate,
             'breadcrumbs' => $breadcrumbs,
             'cv' => $cv ?? '',
             'profileUser' => $profileUser ?? '',
             'seeker' => $seeker ?? '',
+            'majors' => $this->majors->get(),
         ]);
     }
 

@@ -8,6 +8,7 @@
             'employer' => $employer,
             'email' => Auth::guard('user')->user()->email,
             'urlStore' => route('employer.new.store'),
+            'urlStoreEmployer' => route('employer.profile.update', $employer->id),
             'paymentHistory' => $paymentHistory,
             'urlAccuracyCompany' => route('employer.profile.ImageAccuracy'),
             'accuracy' => $accuracy,

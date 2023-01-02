@@ -124,7 +124,7 @@
               <input
                 type="hidden"
                 name="lerve_package"
-                :value="model.lever_package_id"
+                :value="model.lever_package"
               />
               <div class="box-seting-payment">
                 <div class="col-12">

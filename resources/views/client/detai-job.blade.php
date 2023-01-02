@@ -10,38 +10,46 @@
 
         <div class="py-5" style="background:#03343b url(assets/img/landing-bg.png) no-repeat;" data-overlay="0">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
-                        <div class="banner_caption text-center mb-2">
-                            <h1 class="ft-bold mb-4">The Most Exciting Jobs</h1>
-                        </div>
-
-                        <form class="bg-white rounded p-1">
-                            <div class="row no-gutters">
-                                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12">
-                                    <div class="form-group mb-0 position-relative">
-                                        <input type="text" class="form-control lg left-ico"
-                                            placeholder="Job Title, Keyword or Company" />
-                                        <i class="bnc-ico lni lni-search-alt"></i>
-                                    </div>
-                                </div>
-                                <div class="col-xl-5 col-lg-4 col-md-4 col-sm-12 col-12">
-                                    <div class="form-group mb-0 position-relative">
-                                        <input type="text" class="form-control lg left-ico"
-                                            placeholder="Location or Zip Code" />
-                                        <i class="bnc-ico lni lni-target"></i>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12">
-                                    <div class="form-group mb-0 position-relative">
-                                        <button class="btn full-width custom-height-lg theme-bg text-white fs-md"
-                                            type="button">Find Job</button>
-                                    </div>
-                                </div>
+                <div class="col-lg-12">
+                    <form id="search-form" action="{{ route('home.search') }}" name="gs" method="submit"
+                        role="search">
+                        <div class="row">
+                            <div class="col-lg-3 align-self-center">
+                                <fieldset>
+                                    <input type="address" name="key" class="searchText" placeholder="Tìm Kiêm..."
+                                        autocomplete="on">
+                                </fieldset>
                             </div>
-                        </form>
-
-                    </div>
+                            <div class="col-lg-3 align-self-center">
+                                <fieldset>
+                                    <select class="form-select" name="majors">
+                                        <option selected disabled>Chuyên Ngành</option>
+                                        @foreach ($majors as $item)
+                                            <option value="{{ $item->id }}">
+                                                {{ $item->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-3 align-self-center">
+                                <fieldset>
+                                    <select class="form-select" name="location">
+                                        <option selected disabled>Địa chỉ</option>
+                                        @foreach ($locationAll as $item)
+                                            <option value="{{ $item->id }}">
+                                                {{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-3">
+                                <fieldset>
+                                    <button class="main-button"><i class="fa fa-search"></i> Tìm Kiếm</button>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -404,45 +412,6 @@
             </div>
 
         </section>
-        <!-- ======================= Related Jobs ======================== -->
-
-        <!-- ======================= Newsletter Start ============================ -->
-        <section class="space bg-cover" style="background:#03343b url(assets/img/landing-bg.png) no-repeat;">
-            <div class="container py-5">
-
-                <div class="row justify-content-center">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class="sec_title position-relative text-center mb-5">
-                            <h6 class="text-light mb-0">Subscribr Now</h6>
-                            <h2 class="ft-bold text-light">Get All New Job Notification</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-12">
-                        <form class="bg-white rounded p-1">
-                            <div class="row no-gutters">
-                                <div class="col-xl-9 col-lg-9 col-md-8 col-sm-8 col-8">
-                                    <div class="form-group mb-0 position-relative">
-                                        <input type="text" class="form-control lg left-ico"
-                                            placeholder="Enter Your Email Address">
-                                        <i class="bnc-ico lni lni-envelope"></i>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
-                                    <div class="form-group mb-0 position-relative">
-                                        <button class="btn full-width custom-height-lg theme-bg text-light fs-md"
-                                            type="button">Subscribe</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Log In Modal -->
         <div class="modal fade" id="exampleModallogin" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">

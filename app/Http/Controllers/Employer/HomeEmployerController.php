@@ -42,102 +42,6 @@ class HomeEmployerController extends BaseController
     public function index()
     {
         $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
-        $countCvMoth1 = $this->savecv
-            ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->join('employer', 'employer.id', '=', 'job.employer_id')
-            ->where('job.employer_id', $checkCompany->id)
-            ->where(function ($q) {
-                $q->whereMonth('save_cv.created_at', 1);
-            })
-            ->count();
-        $countCvMoth2 = $this->savecv
-            ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->join('employer', 'employer.id', '=', 'job.employer_id')
-            ->where('job.employer_id', $checkCompany->id)
-            ->where(function ($q) {
-                $q->whereMonth('save_cv.created_at', 2);
-            })
-            ->count();
-        $countCvMoth3 = $this->savecv
-            ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->join('employer', 'employer.id', '=', 'job.employer_id')
-            ->where('job.employer_id', $checkCompany->id)
-            ->where(function ($q) {
-                $q->whereMonth('save_cv.created_at', 3);
-            })
-            ->count();
-        $countCvMoth4 = $this->savecv
-            ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->join('employer', 'employer.id', '=', 'job.employer_id')
-            ->where('job.employer_id', $checkCompany->id)
-            ->where(function ($q) {
-                $q->whereMonth('save_cv.created_at', 4);
-            })
-            ->count();
-        $countCvMoth5 = $this->savecv
-            ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->join('employer', 'employer.id', '=', 'job.employer_id')
-            ->where('job.employer_id', $checkCompany->id)
-            ->where(function ($q) {
-                $q->whereMonth('save_cv.created_at', 5);
-            })
-            ->count();
-        $countCvMoth6 = $this->savecv
-            ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->join('employer', 'employer.id', '=', 'job.employer_id')
-            ->where('job.employer_id', $checkCompany->id)
-            ->where(function ($q) {
-                $q->whereMonth('save_cv.created_at', 6);
-            })
-            ->count();
-        $countCvMoth7 = $this->savecv
-            ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->join('employer', 'employer.id', '=', 'job.employer_id')
-            ->where('job.employer_id', $checkCompany->id)
-            ->where(function ($q) {
-                $q->whereMonth('save_cv.created_at', 7);
-            })
-            ->count();
-        $countCvMoth8 = $this->savecv
-            ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->join('employer', 'employer.id', '=', 'job.employer_id')
-            ->where('job.employer_id', $checkCompany->id)
-            ->where(function ($q) {
-                $q->whereMonth('save_cv.created_at', 8);
-            })
-            ->count();
-        $countCvMoth9 = $this->savecv
-            ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->join('employer', 'employer.id', '=', 'job.employer_id')
-            ->where('job.employer_id', $checkCompany->id)
-            ->where(function ($q) {
-                $q->whereMonth('save_cv.created_at', 9);
-            })
-            ->count();
-        $countCvMoth10 = $this->savecv
-            ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->join('employer', 'employer.id', '=', 'job.employer_id')
-            ->where('job.employer_id', $checkCompany->id)
-            ->where(function ($q) {
-                $q->whereMonth('save_cv.created_at', 10);
-            })
-            ->count();
-        $countCvMoth11 = $this->savecv
-            ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->join('employer', 'employer.id', '=', 'job.employer_id')
-            ->where('job.employer_id', $checkCompany->id)
-            ->where(function ($q) {
-                $q->whereMonth('save_cv.created_at', 11);
-            })
-            ->count();
-        $countCvMoth12 = $this->savecv
-            ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->join('employer', 'employer.id', '=', 'job.employer_id')
-            ->where('job.employer_id', $checkCompany->id)
-            ->where(function ($q) {
-                $q->whereMonth('save_cv.created_at', 12);
-            })
-            ->count();
         $user = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         $job = $this->job->where('employer_id', $user->id)->count();
         $cv = $this->savecv
@@ -156,18 +60,18 @@ class HomeEmployerController extends BaseController
             'title' => 'Bảng tin | News',
             'tatalecv' => $tatalecv,
             'totalPayment' => $totalPayment ?? '',
-            'countCvMoth1' => $countCvMoth1,
-            'countCvMoth2' => $countCvMoth2,
-            'countCvMoth3' => $countCvMoth3,
-            'countCvMoth4' => $countCvMoth4,
-            'countCvMoth5' => $countCvMoth5,
-            'countCvMoth6' => $countCvMoth6,
-            'countCvMoth7' => $countCvMoth7,
-            'countCvMoth8' => $countCvMoth8,
-            'countCvMoth9' => $countCvMoth9,
-            'countCvMoth10' => $countCvMoth10,
-            'countCvMoth11' => $countCvMoth11,
-            'countCvMoth12' => $countCvMoth12
+            'countCvMoth1' => $this->getDataMouth(1, $checkCompany->id),
+            'countCvMoth2' => $this->getDataMouth(2, $checkCompany->id),
+            'countCvMoth3' => $this->getDataMouth(3, $checkCompany->id),
+            'countCvMoth4' => $this->getDataMouth(4, $checkCompany->id),
+            'countCvMoth5' => $this->getDataMouth(5, $checkCompany->id),
+            'countCvMoth6' =>  $this->getDataMouth(6, $checkCompany->id),
+            'countCvMoth7' => $this->getDataMouth(7, $checkCompany->id),
+            'countCvMoth8' => $this->getDataMouth(8, $checkCompany->id),
+            'countCvMoth9' => $this->getDataMouth(9, $checkCompany->id),
+            'countCvMoth10' => $this->getDataMouth(10, $checkCompany->id),
+            'countCvMoth11' => $this->getDataMouth(11, $checkCompany->id),
+            'countCvMoth12' => $this->getDataMouth(12, $checkCompany->id)
         ]);
     }
 
