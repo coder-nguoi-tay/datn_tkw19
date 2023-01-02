@@ -7,14 +7,14 @@ use App\Mail\ForgotPassComplete;
 use App\Models\OperationLog;
 
 use App\Repositories\Packageoffer\PackageInterface;
-use Auth;
 use App\Mail\ForgotPassword;
+use App\Models\PaymentHistoryEmployer;
 use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Log;
+use Illuminate\Support\Facades\Auth;
 
 class BaseController extends Controller
 {
@@ -305,8 +305,17 @@ class BaseController extends Controller
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->where('job.employer_id', $employer)
             ->where(function ($q) use ($request) {
-                $q->whereMonth('save_cv.created_at', $request);
+                $q->whereMonth('save_cv.created_at', $request)
+                    ->whereYear('save_cv.created_at', Carbon::parse(Carbon::now())->format('Y'));
             })
             ->count();
+    }
+    public function getDataYear($request)
+    {
+        return PaymentHistoryEmployer::where(function ($q) use ($request) {
+            $q->where('user_id', Auth::guard('user')->user()->id)
+                ->whereMonth('created_at', $request)
+                ->whereYear('created_at', Carbon::parse(Carbon::now())->format('Y'));
+        })->pluck('price')->sum();
     }
 }

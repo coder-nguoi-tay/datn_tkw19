@@ -88,6 +88,19 @@
                         'countCvMoth10' => $countCvMoth10,
                         'countCvMoth11' => $countCvMoth11,
                         'countCvMoth12' => $countCvMoth12,
+                        'totalMonnyMouth1' => $totalMonnyMouth1,
+                        'totalMonnyMouth2' => $totalMonnyMouth2,
+                        'totalMonnyMouth3' => $totalMonnyMouth3,
+                        'totalMonnyMouth4' => $totalMonnyMouth4,
+                        'totalMonnyMouth5' => $totalMonnyMouth5,
+                        'totalMonnyMouth6' => $totalMonnyMouth6,
+                        'totalMonnyMouth7' => $totalMonnyMouth7,
+                        'totalMonnyMouth8' => $totalMonnyMouth8,
+                        'totalMonnyMouth9' => $totalMonnyMouth9,
+                        'totalMonnyMouth10' => $totalMonnyMouth10,
+                        'totalMonnyMouth11' => $totalMonnyMouth11,
+                        'totalMonnyMouth12' => $totalMonnyMouth12,
+                        'totalMonny' => $totalMonny,
                     ]) }}">
                 </widgets>
             </div>

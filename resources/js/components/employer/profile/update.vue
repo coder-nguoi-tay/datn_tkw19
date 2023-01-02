@@ -576,8 +576,6 @@
                                 <Field
                                   type="text"
                                   v-model="dataCompany.email"
-                                  disabled
-                                  readonly
                                   name="email"
                                   id="email"
                                   class="form-control"

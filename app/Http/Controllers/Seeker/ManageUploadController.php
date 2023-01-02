@@ -35,7 +35,7 @@ class ManageUploadController extends BaseController
         $breadcrumbs = [
             'Quản lý cv '
         ];
-        $cv = $this->upload->get();
+        $cv = $this->upload->where('user_id', Auth::guard('user')->user()->id)->get();
         return view('client.seeker.save-cv', [
             'breadcrumbs' => $breadcrumbs,
             'cv' => $cv,
