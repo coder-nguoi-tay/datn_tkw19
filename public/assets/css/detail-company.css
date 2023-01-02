@@ -1,0 +1,464 @@
+body {
+    background-color: #f7fdfa !important;
+}
+
+#header {
+    background: #fff;
+}
+
+element.style {
+    background-image: url(https://static.topcv.vn/company_covers/xfoEHCektStYeXXpIG9J.jpg);
+}
+
+#header #cover {
+    background-size: cover;
+    color: #fff;
+    height: 16.4583333333vw;
+}
+
+.bg-white {
+    background-color: #fff;
+    box-shadow: -1px 1px 6px rgb(0 0 0 / 5%);
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#header #cover-body {
+    background: #fff;
+    display: flex;
+}
+
+#header #cover-body #company-logo {
+    align-items: center;
+    background-color: #fff;
+    border: 3px solid #f1f2f6;
+    /* border-radius: 50%; */
+    display: flex;
+    flex-shrink: 0;
+    float: left;
+    height: 200px;
+    justify-content: center;
+    margin-bottom: 20px;
+   
+    width: 200px;
+}
+
+#header #cover-body #company-name {
+    padding: 20px 24px;
+}
+
+.grow-1 {
+    flex-grow: 1;
+}
+
+
+.btn {
+    transition: 0.4s;
+}
+
+.bg-premium {
+    background-color: #ea9520;
+}
+
+
+#header #nav {
+    border: 1px solid #eee;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#header #nav li {
+    display: inline-block;
+}
+
+#header #nav li a {
+    color: #999;
+    display: block;
+    font-size: 19px;
+    font-weight: 700;
+    padding: 24px 20px 14px;
+    text-decoration: none;
+}
+
+#nav li a:hover,
+#nav li a.active {
+    color: #ea9520 !important;
+    border-bottom: 2px solid #ea9520 !important;
+}
+
+
+
+.bg-white {
+    background-color: #fff;
+    box-shadow: -1px 1px 6px rgb(0 0 0 / 5%);
+}
+
+.section {
+    padding: 20px 24px;
+}
+
+.section h2 {
+    color: #212f3f;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.information-section .box-items {
+    display: flex;
+    margin-bottom: 32px;
+}
+
+.information-section .box-items .icon-block {
+    align-items: center;
+    border-radius: 10px;
+    display: flex;
+    flex-shrink: 0;
+    height: 72px;
+    justify-content: center;
+    margin-right: 26px;
+    width: 72px;
+}
+
+.bg-premium-hover {
+    background-color: #ea95201A;
+}
+
+.information-section .box-items .icon-block i {
+    font-size: 30px;
+}
+
+.information-section .box-items .value-block {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.information-section .box-items .title-block {
+    color: #999;
+    font-size: 19px;
+}
+
+.gallery-section .section-body .box-image {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 33%;
+}
+
+.gallery-section img {
+    border-radius: 8px;
+    height: 90px;
+    margin-bottom: 10px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 94%;
+}
+
+img {
+    vertical-align: middle;
+}
+
+img {
+    border: 0;
+}
+
+.br-8 {
+    border-radius: 8px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.bg-white {
+    background-color: #fff;
+    box-shadow: -1px 1px 6px rgb(0 0 0 / 5%);
+}
+
+.contact-section .section-body .info {
+    align-items: center;
+    display: flex;
+}
+
+.contact-section .section-body .info .company-logo {
+    align-items: center;
+    background-color: #fff;
+    border: 0.5px solid #eee;
+    border-radius: 50%;
+    display: flex;
+    flex-shrink: 0;
+    height: 56px;
+    justify-content: center;
+    width: 56px;
+}
+
+
+
+.contact-section .section-body .info .company-name {
+    padding-left: 20px;
+}
+
+.contact-section .section-body .info .company-name h4 {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0 0 12px;
+    word-break: break-word;
+}
+
+.contact-section .section-body .info .company-name h4 i {
+    font-size: 15px;
+    margin-left: 12px;
+}
+
+.contact-section .section-body .content-contact .info-line {
+    margin-bottom: 16px;
+}
+
+.contact-section .section-body .content-contact .info-line a,
+.contact-section .section-body .content-contact .info-line span {
+    color: #000;
+    font-size: 15px;
+}
+
+.pl-10 {
+    padding-left: 10px;
+}
+
+.br-8 {
+    border-radius: 8px;
+}
+
+.box-search-job-home-page {
+    background: #fafafa;
+    border-radius: 3px;
+    padding: 8px;
+}
+
+.box-search-job-home-page .box-search {
+    align-content: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.box-search-job-home-page .box-search .col-input {
+    position: relative;
+    width: 76%;
+}
+
+.box-search-job-home-page .box-search .col-input .input-search {
+    border: 1px solid #eee;
+    border-radius: 3px;
+    box-shadow: none;
+    font-size: 15px;
+    height: 40px;
+    padding-left: 16px;
+}
+
+.box-search-job-home-page .box-search .search-advanced {
+    height: 0;
+    margin-top: 0;
+    overflow: hidden;
+}
+
+.box-search-job-home-page .box-search .search-advanced .form-group {
+    margin-bottom: 0;
+    margin-top: 8px;
+    position: relative;
+    width: 49%;
+}
+
+.box-search-job-home-page .box-search .search-advanced .form-group .ctn-icon {
+    font-size: 15px;
+    left: 18px;
+    position: absolute;
+    top: 10px;
+    z-index: 1;
+}
+
+.select2-container {
+    height: 40px;
+    width: 100% !important;
+}
+
+.select2-container {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+}
+
+.box-search-job-home-page .box-search .col-button {
+    width: 22%;
+}
+
+.box-search-job-home-page .box-search .col-button .btn-search-job {
+    color: #fff;
+    font-weight: 700;
+    height: 40px;
+    width: 100%;
+}
+
+.btn {
+    transition: 0.4s;
+}
+
+.bg-premium {
+    background-color: #ea9520;
+}
+
+.box-search-job-home-page .box-search .col-button .btn-search-job i {
+    color: #fff;
+    margin-right: 9px;
+}
+
+.job-section-home-page .section-header .section-title {
+    color: #999;
+    font-size: 15px;
+    margin-bottom: 20px;
+    margin-top: 16px;
+}
+
+.color-premium {
+    color: #ea9520 !important;
+}
+
+.job-section-home-page .section-body .job-item.bg-highlight {
+    background-color: #f2fbf6;
+}
+
+.job-section-home-page .section-body .job-item {
+    background: #fff 0 0 no-repeat padding-box;
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    display: flex;
+    margin: auto auto 16px;
+    padding: 16px;
+}
+
+
+
+.job-section-home-page .section-body .job-item .body {
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    width: 100%;
+}
+
+.box-job,
+.job-item {
+    box-shadow: 0 5px 20px 0 transparent;
+    transition: box-shadow .3s;
+}
+
+.job-section-home-page .section-body .job-item .body .content {
+    display: flex;
+    width: 100%;
+}
+
+.job-section-home-page .section-body .job-item .ml-auto {
+    margin-right: auto;
+}
+
+.job-section-home-page .section-body .job-item .body .title {
+    line-height: 20px;
+    margin-bottom: 8px;
+    margin-top: 0;
+}
+
+.job-section-home-page .section-body .job-item .body .title a.highlight {
+    color: #ff453a;
+}
+
+.job-section-home-page .section-body .job-item .body .title a {
+    color: #212f3f;
+    font-size: 16px;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+.highlight,
+.highlight:hover {
+    color: #fb4747 !important;
+}
+
+.job-section-home-page .section-body .job-item .text-right {
+    min-width: 180px;
+    text-align: right;
+}
+
+.job-section-home-page .section-body .job-item .mr-auto {
+    margin-left: auto;
+}
+
+.job-section-home-page .section-body .job-item .body .deadline {
+    color: #333;
+    font-size: 14px;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+
+
+.color-premium {
+    color: #ea9520 !important;
+}
+
+.job-section-home-page .section-body .job-item .ml-auto {
+    margin-right: auto;
+}
+
+.job-section-home-page .section-body .job-item .body .label-content label {
+    background: #edeef0 0 0 no-repeat padding-box;
+    border-radius: 3px;
+    color: #636d78;
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 0;
+    padding: 4px 8px;
+}
+
+
+.box-save-job {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.box-save-job {
+    margin-left: 8px;
+    margin-top: 0 !important;
+}
+
+.gallery-section .section-body {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: -10px;
+    overflow: hidden;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #00b14f;
+    border-color: #00b14f;
+    width: 20% !important;
+    margin-left: 40%;
+}
