@@ -57,7 +57,7 @@
             </div>
         </div>
         <section class="middle space gray">
-            <div class="container border" style="background: #ffff">
+            <div class="container bg-white">
                 <div class="container container-header-box border ">
                     <h1 class="header-box">Tìm việc làm nhanh 24h, việc làm mới nhất trên toàn quốc</h1>
                     <p class="header-box-description">Tiếp cận 30,000+ tin tuyển dụng việc làm mới mỗi ngày từ hàng nghìn
@@ -91,8 +91,7 @@
 
                         <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" id="paginated-list">
                             @foreach ($job as $value)
-                                <div class="col render-job-search">
-
+                                <div class="col-3 render-job-search">
                                     <div class="p-3 border bg-light box-showdow">
                                         <div class="position-absolute ab-right">
                                             <a type="button"
@@ -117,8 +116,8 @@
                                         <div class="row">
                                             <div class="job_grid_thumb mb-3 title-name px-3 col-4">
                                                 <a href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                    class="d-block m-auto"><img src="{{ $value->logo }}" class="img-fluid"
-                                                        alt="" /></a>
+                                                    class="d-block m-auto" style="width: 68px; height: 68px;">
+                                                    <img src="{{ $value->logo }}" class="img-fluid" alt="" /></a>
                                             </div>
                                             <div class="job_grid_caption title-name px-3 col-8 g-1">
                                                 <h4 class="mb-0 ft-medium medium ml-20">
@@ -141,7 +140,7 @@
                                         <div
                                             class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
                                             <div class="df-1 text-muted">
-                                                <i class="lni lni-wallet mr-1"></i> {{ $value->getwage->name }}
+                                                <i class="lni lni-wallet mr-1"></i>{{ $value->getwage->name }}
                                             </div>
                                             <div class="df-1 text-muted ml-2">
                                                 <i class="lni lni-timer mr-1"></i>{{ $value->end_job_time }}
@@ -150,6 +149,406 @@
                                     </div>
                                 </div>
                             @endforeach
+
+                            <div class="col-3 render-job-search">
+                                <div class="p-3 border bg-light box-showdow">
+                                    <div class="position-absolute ab-right">
+                                        <a type="button"
+                                            class="
+                                            p-3
+                                            border
+                                            circle
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            bg-white
+                                            text-gray
+                                            ">
+                                            <i
+                                                class="
+                                            lni lni-heart-filled
+                                            position-absolute
+                                            snackbar-wishlist
+                                        "></i>
+                                        </a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="job_grid_thumb mb-3 title-name px-3 col-4">
+                                            <a href="home/detail/sasdsa" class="d-block m-auto"
+                                                style="width: 68px; height: 68px;">
+                                                <img src="{{ asset('assets/img/about-2.png') }}" class="img-fluid"
+                                                    alt="" /></a>
+                                        </div>
+                                        <div class="job_grid_caption title-name px-3 col-8 g-1">
+                                            <h4 class="mb-0 ft-medium medium ml-20">
+                                                <a href="home/detail/ad" class="text-dark fs-md" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Tooltip on top">
+                                                    <p
+                                                        style="width: 200px !important;overflow: hidden !important;text-overflow: ellipsis !important;white-space: nowrap">
+                                                        Thực tập sinh php, c#
+                                                    </p>
+                                                </a>
+                                            </h4>
+
+                                            <div class="jbl_location ml-20" style="margin-top: -10px">
+                                                <a href="" class="text-dark fs-md"> VNP GroupGroup
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
+                                        <div class="df-1 text-muted">
+                                            <i class="lni lni-wallet mr-1"></i> 7-10 trieu
+                                        </div>
+                                        <div class="df-1 text-muted ml-2">
+                                            <i class="lni lni-timer mr-1"></i>10 ngay
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 render-job-search">
+                                <div class="p-3 border bg-light box-showdow">
+                                    <div class="position-absolute ab-right">
+                                        <a type="button"
+                                            class="
+                                            p-3
+                                            border
+                                            circle
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            bg-white
+                                            text-gray
+                                            ">
+                                            <i
+                                                class="
+                                            lni lni-heart-filled
+                                            position-absolute
+                                            snackbar-wishlist
+                                        "></i>
+                                        </a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="job_grid_thumb mb-3 title-name px-3 col-4">
+                                            <a href="home/detail/sasdsa" class="d-block m-auto"
+                                                style="width: 68px; height: 68px;">
+                                                <img src="{{ asset('assets/img/about-2.png') }}" class="img-fluid"
+                                                    alt="" /></a>
+                                        </div>
+                                        <div class="job_grid_caption title-name px-3 col-8 g-1">
+                                            <h4 class="mb-0 ft-medium medium ml-20">
+                                                <a href="home/detail/ad" class="text-dark fs-md" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Tooltip on top">
+                                                    <p
+                                                        style="width: 200px !important;overflow: hidden !important;text-overflow: ellipsis !important;white-space: nowrap">
+                                                        Thực tập sinh php, c#
+                                                    </p>
+                                                </a>
+                                            </h4>
+
+                                            <div class="jbl_location ml-20" style="margin-top: -10px">
+                                                <a href="" class="text-dark fs-md"> VNP GroupGroup
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
+                                        <div class="df-1 text-muted">
+                                            <i class="lni lni-wallet mr-1"></i> 7-10 trieu
+                                        </div>
+                                        <div class="df-1 text-muted ml-2">
+                                            <i class="lni lni-timer mr-1"></i>10 ngay
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 render-job-search">
+                                <div class="p-3 border bg-light box-showdow">
+                                    <div class="position-absolute ab-right">
+                                        <a type="button"
+                                            class="
+                                            p-3
+                                            border
+                                            circle
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            bg-white
+                                            text-gray
+                                            ">
+                                            <i
+                                                class="
+                                            lni lni-heart-filled
+                                            position-absolute
+                                            snackbar-wishlist
+                                        "></i>
+                                        </a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="job_grid_thumb mb-3 title-name px-3 col-4">
+                                            <a href="home/detail/sasdsa" class="d-block m-auto"
+                                                style="width: 68px; height: 68px;">
+                                                <img src="{{ asset('assets/img/about-2.png') }}" class="img-fluid"
+                                                    alt="" /></a>
+                                        </div>
+                                        <div class="job_grid_caption title-name px-3 col-8 g-1">
+                                            <h4 class="mb-0 ft-medium medium ml-20">
+                                                <a href="home/detail/ad" class="text-dark fs-md" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Tooltip on top">
+                                                    <p
+                                                        style="width: 200px !important;overflow: hidden !important;text-overflow: ellipsis !important;white-space: nowrap">
+                                                        Thực tập sinh php, c#
+                                                    </p>
+                                                </a>
+                                            </h4>
+
+                                            <div class="jbl_location ml-20" style="margin-top: -10px">
+                                                <a href="" class="text-dark fs-md"> VNP GroupGroup
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
+                                        <div class="df-1 text-muted">
+                                            <i class="lni lni-wallet mr-1"></i> 7-10 trieu
+                                        </div>
+                                        <div class="df-1 text-muted ml-2">
+                                            <i class="lni lni-timer mr-1"></i>10 ngay
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 render-job-search">
+                                <div class="p-3 border bg-light box-showdow">
+                                    <div class="position-absolute ab-right">
+                                        <a type="button"
+                                            class="
+                                            p-3
+                                            border
+                                            circle
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            bg-white
+                                            text-gray
+                                            ">
+                                            <i
+                                                class="
+                                            lni lni-heart-filled
+                                            position-absolute
+                                            snackbar-wishlist
+                                        "></i>
+                                        </a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="job_grid_thumb mb-3 title-name px-3 col-4">
+                                            <a href="home/detail/sasdsa" class="d-block m-auto"
+                                                style="width: 68px; height: 68px;">
+                                                <img src="{{ asset('assets/img/about-2.png') }}" class="img-fluid"
+                                                    alt="" /></a>
+                                        </div>
+                                        <div class="job_grid_caption title-name px-3 col-8 g-1">
+                                            <h4 class="mb-0 ft-medium medium ml-20">
+                                                <a href="home/detail/ad" class="text-dark fs-md" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Tooltip on top">
+                                                    <p
+                                                        style="width: 200px !important;overflow: hidden !important;text-overflow: ellipsis !important;white-space: nowrap">
+                                                        Thực tập sinh php, c#
+                                                    </p>
+                                                </a>
+                                            </h4>
+
+                                            <div class="jbl_location ml-20" style="margin-top: -10px">
+                                                <a href="" class="text-dark fs-md"> VNP GroupGroup
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
+                                        <div class="df-1 text-muted">
+                                            <i class="lni lni-wallet mr-1"></i> 7-10 trieu
+                                        </div>
+                                        <div class="df-1 text-muted ml-2">
+                                            <i class="lni lni-timer mr-1"></i>10 ngay
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 render-job-search">
+                                <div class="p-3 border bg-light box-showdow">
+                                    <div class="position-absolute ab-right">
+                                        <a type="button"
+                                            class="
+                                            p-3
+                                            border
+                                            circle
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            bg-white
+                                            text-gray
+                                            ">
+                                            <i
+                                                class="
+                                            lni lni-heart-filled
+                                            position-absolute
+                                            snackbar-wishlist
+                                        "></i>
+                                        </a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="job_grid_thumb mb-3 title-name px-3 col-4">
+                                            <a href="home/detail/sasdsa" class="d-block m-auto"
+                                                style="width: 68px; height: 68px;">
+                                                <img src="{{ asset('assets/img/about-2.png') }}" class="img-fluid"
+                                                    alt="" /></a>
+                                        </div>
+                                        <div class="job_grid_caption title-name px-3 col-8 g-1">
+                                            <h4 class="mb-0 ft-medium medium ml-20">
+                                                <a href="home/detail/ad" class="text-dark fs-md" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Tooltip on top">
+                                                    <p
+                                                        style="width: 200px !important;overflow: hidden !important;text-overflow: ellipsis !important;white-space: nowrap">
+                                                        Thực tập sinh php, c#
+                                                    </p>
+                                                </a>
+                                            </h4>
+
+                                            <div class="jbl_location ml-20" style="margin-top: -10px">
+                                                <a href="" class="text-dark fs-md"> VNP GroupGroup
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
+                                        <div class="df-1 text-muted">
+                                            <i class="lni lni-wallet mr-1"></i> 7-10 trieu
+                                        </div>
+                                        <div class="df-1 text-muted ml-2">
+                                            <i class="lni lni-timer mr-1"></i>10 ngay
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 render-job-search">
+                                <div class="p-3 border bg-light box-showdow">
+                                    <div class="position-absolute ab-right">
+                                        <a type="button"
+                                            class="
+                                            p-3
+                                            border
+                                            circle
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            bg-white
+                                            text-gray
+                                            ">
+                                            <i
+                                                class="
+                                            lni lni-heart-filled
+                                            position-absolute
+                                            snackbar-wishlist
+                                        "></i>
+                                        </a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="job_grid_thumb mb-3 title-name px-3 col-4">
+                                            <a href="home/detail/sasdsa" class="d-block m-auto"
+                                                style="width: 68px; height: 68px;">
+                                                <img src="{{ asset('assets/img/about-2.png') }}" class="img-fluid"
+                                                    alt="" /></a>
+                                        </div>
+                                        <div class="job_grid_caption title-name px-3 col-8 g-1">
+                                            <h4 class="mb-0 ft-medium medium ml-20">
+                                                <a href="home/detail/ad" class="text-dark fs-md" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Tooltip on top">
+                                                    <p
+                                                        style="width: 200px !important;overflow: hidden !important;text-overflow: ellipsis !important;white-space: nowrap">
+                                                        Thực tập sinh php, c#
+                                                    </p>
+                                                </a>
+                                            </h4>
+
+                                            <div class="jbl_location ml-20" style="margin-top: -10px">
+                                                <a href="" class="text-dark fs-md"> VNP GroupGroup
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
+                                        <div class="df-1 text-muted">
+                                            <i class="lni lni-wallet mr-1"></i> 7-10 trieu
+                                        </div>
+                                        <div class="df-1 text-muted ml-2">
+                                            <i class="lni lni-timer mr-1"></i>10 ngay
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 render-job-search">
+                                <div class="p-3 border bg-light box-showdow">
+                                    <div class="position-absolute ab-right">
+                                        <a type="button"
+                                            class="
+                                            p-3
+                                            border
+                                            circle
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            bg-white
+                                            text-gray
+                                            ">
+                                            <i
+                                                class="
+                                            lni lni-heart-filled
+                                            position-absolute
+                                            snackbar-wishlist
+                                        "></i>
+                                        </a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="job_grid_thumb mb-3 title-name px-3 col-4">
+                                            <a href="home/detail/sasdsa" class="d-block m-auto"
+                                                style="width: 68px; height: 68px;">
+                                                <img src="{{ asset('assets/img/about-2.png') }}" class="img-fluid"
+                                                    alt="" /></a>
+                                        </div>
+                                        <div class="job_grid_caption title-name px-3 col-8 g-1">
+                                            <h4 class="mb-0 ft-medium medium ml-20">
+                                                <a href="home/detail/ad" class="text-dark fs-md" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Tooltip on top">
+                                                    <p
+                                                        style="width: 200px !important;overflow: hidden !important;text-overflow: ellipsis !important;white-space: nowrap">
+                                                        Thực tập sinh php, c#
+                                                    </p>
+                                                </a>
+                                            </h4>
+
+                                            <div class="jbl_location ml-20" style="margin-top: -10px">
+                                                <a href="" class="text-dark fs-md"> VNP GroupGroup
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
+                                        <div class="df-1 text-muted">
+                                            <i class="lni lni-wallet mr-1"></i> 7-10 trieu
+                                        </div>
+                                        <div class="df-1 text-muted ml-2">
+                                            <i class="lni lni-timer mr-1"></i>10 ngay
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -168,82 +567,57 @@
                 <!-- end -->
             </div>
         </section>
+
         @if (Auth::guard('user')->check())
             @if (!$user->getProfileUse == null)
-                <section class="bg-light">
-                    <div class="container">
-
+                <section class="middle space gray">
+                    <div class="container-xxl p-0 bg-white text-dark">
                         <!-- Item Wrap Start -->
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-
+                        <div class="col-lg-12 p-0">
                             <!-- row -->
-                            <div class="text-interesting border">
-                                <h2 class="ft-bold">Việc làm phù hợp với bạn</h2>
+                            <div class="p-1 pl-3 mb-2 bg-success text-white rounded">
+                                <h2 class="ft-bold text-white">Việc làm phù hợp với bạn</h2>
                             </div>
-                            <div class="row align-items-center">
-
+                            <div class="row justify-content-center">
                                 <!-- Single -->
-
                                 <div class="row justify-content-center">
                                     <div class="container p-3">
                                         <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" id="paginated-list">
                                             @foreach ($jobForUser as $value)
-                                                <div class="col render-job-search">
+                                                <div class="col-3 render-job-search">
                                                     <div class="p-3 border bg-light box-showdow">
-                                                        <div class="position-absolute ab-right">
-                                                            <a type="button"
-                                                                class="p-3
-                                            border
-                                            circle
-                                            d-flex
-                                            align-items-center
-                                            justify-content-center
-                                            bg-white
-                                            text-gray
-                                            ">
-                                                                <i
-                                                                    class="
-                                            lni lni-heart-filled
-                                            position-absolute
-                                            snackbar-wishlist
-                                        "></i>
-                                                            </a>
+                                                        <div class="position-absolute ab-right"><a type="button"
+                                                                class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
+                                                                    class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></a>
                                                         </div>
                                                         <div class="row" style="height: 80px;">
-                                                            <div class="job_grid_thumb mb-3 title-name px-3 col-4">
-                                                                <a href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                                    class="d-block m-auto"><img src="{{ $value->logo }}"
-                                                                        class="img-rounded"
-                                                                        style="width: 70% !important; height: 70% !important"
-                                                                        alt="" /></a>
-                                                            </div>
+                                                            <div class="job_grid_thumb mb-3 title-name px-3 col-4"><a
+                                                                    href="home/detail/Tuyển FPT-1" class="d-block m-auto"
+                                                                    style="width: 68px; height: 68px;"><img
+                                                                        src="images/cv/TTa7yGhFlC7j878HvIYIbEMHzID5Jrbka0f90HiN.jpg"
+                                                                        class="img-rounded" alt=""
+                                                                        style=""></a></div>
                                                             <div class="job_grid_caption title-name px-3 col-8 g-1">
-                                                                <h4 class="mb-0 ft-medium medium ml-20">
-                                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}"
+                                                                <h4 class="mb-0 ft-medium medium ml-20"><a
+                                                                        href="home/detail/{{ $value->title . '-' . $value->id }}"
                                                                         class="text-dark fs-md" data-bs-toggle="tooltip"
                                                                         data-bs-placement="top" title="Tooltip on top">
                                                                         <p
-                                                                            style="width: 200px !important;overflow: hidden !important;text-overflow: ellipsis !important;white-space: nowrap">
-                                                                            {{ $value->title }}
-                                                                        </p>
-                                                                    </a>
-                                                                </h4>
-
-                                                                <div class="jbl_location ml-20" style="margin-top: -10px">
-                                                                    <a href="" class="text-dark fs-md">
-                                                                        {{ $value->nameCompany }}
-                                                                    </a>
+                                                                            style="width: 200px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap;">
+                                                                            {{ $value->title }}</p>
+                                                                    </a></h4>
+                                                                <div class="jbl_location ml-20"
+                                                                    style="margin-top: -10px;"><a href=""
+                                                                        class="text-dark fs-md">{{ $value->nameCompany }}</a>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div
                                                             class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
-                                                            <div class="df-1 text-muted">
-                                                                <i class="lni lni-wallet mr-1"></i>
-                                                                {{ $value->getwage->name }}
+                                                            <div class="df-1 text-muted"><i
+                                                                    class="lni lni-wallet mr-1"></i>{{ $value->getwage->name }}
                                                             </div>
-                                                            <div class="df-1 text-muted ml-2">
-                                                                <i
+                                                            <div class="df-1 text-muted ml-2"><i
                                                                     class="lni lni-timer mr-1"></i>{{ $value->end_job_time }}
                                                             </div>
                                                         </div>
@@ -265,8 +639,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- row -->
+                            </div><!-- row -->
                         </div>
                     </div>
                 </section>
