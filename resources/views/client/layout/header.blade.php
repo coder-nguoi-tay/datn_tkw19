@@ -45,10 +45,10 @@
                 <ul class="nav-menu">
                     <li><a href="#">Lĩnh vực</a>
                         <ul class="nav-dropdown nav-submenu">
-                            @foreach ($majors as $item)
+                            {{-- @foreach ($majors as $item)
                                 <li><a href="tim-viec-lam?majors={{ $item->id }}">{{ $item->name }}</a>
                                 </li>
-                            @endforeach
+                            @endforeach --}}
                         </ul>
                     </li>
 

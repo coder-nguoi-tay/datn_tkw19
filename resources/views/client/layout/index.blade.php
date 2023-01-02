@@ -8,12 +8,14 @@
     <meta name="author" content="Themezhub" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ITWORK</title>
+    @if (isset($title))
+        <title>{{ $title }}</title>
+    @endif
 
     <!-- Custom CSS -->
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('assets/css/search.css') }}" rel="stylesheet"> --}}
-
+    <link href="{{ asset('assets/css/detail-company.css') }}" rel="stylesheet">
     <script src="{{ asset('js/userApp.js') }}" defer></script>
     <!-- CSS only -->
     <!-- JavaScript Bundle with Popper -->
@@ -23,7 +25,29 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <style>
+        .ic-1 {
+            width: 80px !important;
+            height: 80px !important;
+            margin-left: 36%;
+        }
 
+        .reviews_wrap {
+            width: 100%;
+            height: 100%;
+            background-color: #f7fdfa !important;
+            margin-bottom: 20px;
+        }
+
+        .title-company {
+            text-align: center;
+        }
+
+        .number-job {
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
     <script>
         window.Laravel = {!! json_encode(
             [
