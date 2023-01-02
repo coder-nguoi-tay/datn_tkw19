@@ -5,8 +5,8 @@
         class="mb-4"
         style="--cui-card-cap-bg: #3b5998"
         :values="[
-          { title: 'friends', value: '89K' },
-          { title: 'feeds', value: '459' },
+          { title: dataTotalYear, value: 'Tổng' },
+          { title: 'Tháng', value: '12' }
         ]"
       >
         <template #icon
@@ -18,13 +18,18 @@
             type="line"
             :data="{
               labels: [
-                'January',
-                'February',
-                'March',
-                'April',
-                'May',
-                'June',
-                'July',
+                'Tháng 1',
+                'Tháng 2',
+                'Tháng 3',
+                'Tháng 4',
+                'Tháng 5',
+                'Tháng 6',
+                'Tháng 7',
+                'Tháng 8',
+                'Tháng 9',
+                'Tháng 10',
+                'Tháng 11',
+                'Tháng 12'
               ],
               datasets: [
                 {
@@ -32,10 +37,23 @@
                   borderColor: 'rgba(255,255,255,.55)',
                   pointHoverBackgroundColor: '#fff',
                   borderWidth: 2,
-                  data: [65, 59, 84, 84, 51, 55, 40],
-                  fill: true,
-                },
-              ],
+                  data: [
+                    dataYear.totalMonnyMouth1,
+                    dataYear.totalMonnyMouth2,
+                    dataYear.totalMonnyMouth3,
+                    dataYear.totalMonnyMouth4,
+                    dataYear.totalMonnyMouth5,
+                    dataYear.totalMonnyMouth6,
+                    dataYear.totalMonnyMouth7,
+                    dataYear.totalMonnyMouth8,
+                    dataYear.totalMonnyMouth9,
+                    dataYear.totalMonnyMouth10,
+                    dataYear.totalMonnyMouth11,
+                    dataYear.totalMonnyMouth12
+                  ],
+                  fill: true
+                }
+              ]
             }"
             :options="options"
           />
@@ -48,7 +66,7 @@
         style="--cui-card-cap-bg: #00aced"
         :values="[
           { title: 'followers', value: '973k' },
-          { title: 'tweets', value: '1.792' },
+          { title: 'tweets', value: '1.792' }
         ]"
       >
         <template #icon
@@ -66,7 +84,7 @@
                 'April',
                 'May',
                 'June',
-                'July',
+                'July'
               ],
               datasets: [
                 {
@@ -75,9 +93,9 @@
                   pointHoverBackgroundColor: '#fff',
                   borderWidth: 2,
                   data: [1, 13, 9, 17, 34, 41, 38],
-                  fill: true,
-                },
-              ],
+                  fill: true
+                }
+              ]
             }"
             :options="options"
           />
@@ -90,7 +108,7 @@
         style="--cui-card-cap-bg: #4875b4"
         :values="[
           { title: 'contacts', value: '500' },
-          { title: 'feeds', value: '1.292' },
+          { title: 'feeds', value: '1.292' }
         ]"
       >
         <template #icon
@@ -109,6 +127,11 @@
                 'May',
                 'June',
                 'July',
+                'July',
+                'July',
+                'July',
+                'July',
+                'July'
               ],
               datasets: [
                 {
@@ -116,10 +139,10 @@
                   borderColor: 'rgba(255,255,255,.55)',
                   pointHoverBackgroundColor: '#fff',
                   borderWidth: 2,
-                  data: [78, 81, 80, 45, 34, 12, 40],
-                  fill: true,
-                },
-              ],
+                  data: [78, 81, 80, 45, 34, 12, 40, 40, 40, 40, 40, 40],
+                  fill: true
+                }
+              ]
             }"
             :options="options"
           />
@@ -132,7 +155,7 @@
         color="warning"
         :values="[
           { title: 'events', value: '12+' },
-          { title: 'meetings', value: '4' },
+          { title: 'meetings', value: '4' }
         ]"
       >
         <template #icon
@@ -150,7 +173,7 @@
                 'April',
                 'May',
                 'June',
-                'July',
+                'July'
               ],
               datasets: [
                 {
@@ -159,9 +182,9 @@
                   pointHoverBackgroundColor: '#fff',
                   borderWidth: 2,
                   data: [35, 23, 56, 22, 97, 23, 64],
-                  fill: true,
-                },
-              ],
+                  fill: true
+                }
+              ]
             }"
             :options="options"
           />
@@ -174,42 +197,56 @@
 <script>
 import { CChart } from '@coreui/vue-chartjs'
 export default {
+  created() {
+    if (this.dataTotal) {
+      this.dataTotalYear = new Intl.NumberFormat('ja-JP', {
+        style: 'currency',
+        currency: 'VND'
+      }).format(this.dataTotal)
+    }
+  },
+  data: function () {
+    return {
+      dataTotalYear: 0
+    }
+  },
+  props: ['dataTotal', 'dataYear'],
   name: 'WidgetsStatsD',
   components: {
-    CChart,
+    CChart
   },
   setup() {
     const options = {
       elements: {
         line: {
-          tension: 0.4,
+          tension: 0.4
         },
         point: {
           radius: 0,
           hitRadius: 10,
           hoverRadius: 4,
-          hoverBorderWidth: 3,
-        },
+          hoverBorderWidth: 3
+        }
       },
       maintainAspectRatio: false,
       plugins: {
         legend: {
-          display: false,
-        },
+          display: false
+        }
       },
       scales: {
         x: {
-          display: false,
+          display: false
         },
         y: {
-          display: false,
-        },
-      },
+          display: false
+        }
+      }
     }
 
     return {
-      options,
+      options
     }
-  },
+  }
 }
 </script>

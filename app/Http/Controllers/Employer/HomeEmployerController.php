@@ -8,6 +8,7 @@ use App\Models\AccountPayment;
 use App\Models\Employer;
 use App\Models\Job;
 use App\Models\location;
+use App\Models\PaymentHistoryEmployer;
 use App\Models\ProfileUserCv;
 use App\Models\SaveCv;
 use App\Models\User;
@@ -54,11 +55,14 @@ class HomeEmployerController extends BaseController
             ->count();
         $tatalecv = $this->profileCv->where('status', Auth::guard('user')->user()->id)->count();
         $totalPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
+        // total monny in year
+        $totalMonny = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)->pluck('price')->sum();
         return view('employer.dashboard.index', [
             'job' => $job,
             'cv' => $cv,
             'title' => 'Bảng tin | News',
             'tatalecv' => $tatalecv,
+            'totalMonny' => $totalMonny,
             'totalPayment' => $totalPayment ?? '',
             'countCvMoth1' => $this->getDataMouth(1, $checkCompany->id),
             'countCvMoth2' => $this->getDataMouth(2, $checkCompany->id),
@@ -71,7 +75,19 @@ class HomeEmployerController extends BaseController
             'countCvMoth9' => $this->getDataMouth(9, $checkCompany->id),
             'countCvMoth10' => $this->getDataMouth(10, $checkCompany->id),
             'countCvMoth11' => $this->getDataMouth(11, $checkCompany->id),
-            'countCvMoth12' => $this->getDataMouth(12, $checkCompany->id)
+            'countCvMoth12' => $this->getDataMouth(12, $checkCompany->id),
+            'totalMonnyMouth1' => $this->getDataYear(1),
+            'totalMonnyMouth2' => $this->getDataYear(2),
+            'totalMonnyMouth3' => $this->getDataYear(3),
+            'totalMonnyMouth4' => $this->getDataYear(4),
+            'totalMonnyMouth5' => $this->getDataYear(5),
+            'totalMonnyMouth6' => $this->getDataYear(6),
+            'totalMonnyMouth7' => $this->getDataYear(7),
+            'totalMonnyMouth8' => $this->getDataYear(8),
+            'totalMonnyMouth9' => $this->getDataYear(9),
+            'totalMonnyMouth10' => $this->getDataYear(10),
+            'totalMonnyMouth11' => $this->getDataYear(11),
+            'totalMonnyMouth12' => $this->getDataYear(12),
         ]);
     }
 

@@ -162,6 +162,17 @@ class HomeController extends BaseController
                 ->orderBy('employer.prioritize', 'desc')
                 ->get(),
             'new' => $new,
+            'jobAttractive' => $this->job
+                ->join('employer', 'employer.id', '=', 'job.employer_id')
+                ->join('company', 'company.id', '=', 'employer.id_company')
+                ->where([
+                    ['job.status', 1],
+                    ['job.expired', 0],
+                    ['employer.position', 0],
+                ])
+                ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+                ->orderBy('employer.prioritize', 'desc')
+                ->get(),
             'jobForUser' => $jobForUser ?? ''
 
         ]);
