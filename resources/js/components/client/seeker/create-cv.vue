@@ -29,7 +29,7 @@
           <div class="main_gt">
             <div class="left_cv">
               <div
-                class="img-fluid box_img p-3"
+                class="img-fluid p-3"
                 id="img-preview"
                 @click="chooseImage()"
                 role="button"
@@ -44,7 +44,7 @@
                   />
                 </div>
                 <img
-                  v-if="!filePreview && model.images"
+                  v-if="model.images && !filePreview"
                   :src="'http://127.0.0.1:8000/' + model.images"
                   class="img-fluid"
                 />
@@ -60,7 +60,7 @@
                     />
                   </div>
                   <img
-                    v-if="filePreview && !model.images"
+                    v-if="filePreview"
                     :src="filePreview"
                     class="img-fluid p-2"
                   />
@@ -543,13 +543,7 @@ export default {
 .left_cv .box_img {
   width: 100%;
   margin-bottom: 10px;
-  /* border: 3px solid #ffc628; */
-  /* height: 300px; */
-  height: 220px !important;
-}
-
-.left_cv .box_img > img {
-  /* border: 3px solid #ffc628; */
+  height: 335px !important;
 }
 
 .left_cv > .contact {
