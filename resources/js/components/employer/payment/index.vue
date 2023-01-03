@@ -37,7 +37,7 @@
                       new Intl.NumberFormat('de-DE', {
                         style: 'currency',
                         currency: 'VND'
-                      }).format(payment.price)
+                      }).format(payment.price - checkPayment)
                     }}
                   </h3>
                   <p>{{ payment.name }}</p>
@@ -120,7 +120,11 @@
               <input type="hidden" name="_token" :value="csrfToken" />
               <input type="hidden" name="name" :value="model.name" />
               <input type="hidden" name="id" :value="model.id" />
-              <input type="hidden" name="price" :value="model.price" />
+              <input
+                type="hidden"
+                name="price"
+                :value="model.price - checkPayment"
+              />
               <input
                 type="hidden"
                 name="lerve_package"
@@ -138,7 +142,7 @@
                           new Intl.NumberFormat('de-DE', {
                             style: 'currency',
                             currency: 'VND'
-                          }).format(model.price)
+                          }).format(model.price - checkPayment)
                         }}
                       </h3>
                       <p>{{ model.name }}</p>
@@ -200,10 +204,16 @@ export default {
       model: [],
       timePackage: [],
       total: '',
-      userPayment: ''
+      userPayment: '',
+      checkPayment: ''
     }
   },
   created() {
+    if (this.data.checkPackage) {
+      this.checkPayment = this.data.checkPackage.price
+    } else {
+      this.checkPayment = 0
+    }
     if (this.data.accPayment == null) {
       this.total = 0
     } else {

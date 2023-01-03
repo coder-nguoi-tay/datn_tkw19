@@ -50,7 +50,8 @@
                                             <td>{{ $item->lever_package }}</td>
                                             <td>{{ $item->start_time }}</td>
                                             <td>{{ $item->end_time }}</td>
-                                            <td><span
+                                            <td>
+                                                <span
                                                     class="badge {{ $item->status == 1 ? 'bg-success' : 'bg-secondary' }}">{{ $item->status_package }}</span>
                                             </td>
                                             <td>
@@ -95,6 +96,7 @@
             'total' => $total,
             'accPayment' => $accPayment,
             'packageAttractive' => $packageAttractive,
+            'checkPackage' => $checkPackage,
         ]) }}">
     </account-payment>
 @endsection

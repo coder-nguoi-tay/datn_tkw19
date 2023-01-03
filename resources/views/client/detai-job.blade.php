@@ -301,6 +301,57 @@
                             <span class="content">Lô B10/D6, KĐT Cầu Giấy, Dịch Vọng, Cầu Giấy, Hà Nội</span>
                         </div>
                     </div>
+                    <div class="box-job-company">
+                        <div class="box-title">
+                            <h2 class="box-name"> <span style="margin-left: 5px !important;">Việc làm cùng công
+                                    ty</span></h2>
+                            <a href="" target="_blank" style="margin-top: 5px">Xem nhiều hơn <i
+                                    class="fas fa-chevron-right"></i></a>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="container">
+                                <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
+                                    @foreach ($jobCompany as $item)
+                                        <div class="col">
+                                            <div class="p-3  bg-light box-showdow-company">
+                                                <div class="position-absolute ab-right"><button type="button"
+                                                        class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"
+                                                        title="123123213"><i
+                                                            class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></button>
+                                                </div>
+                                                <div class="row">
+                                                    <div
+                                                        class="job_grid_caption title-name px-3 col-8 g-1 text-name-company">
+                                                        <h4 class="mb-0 ft-medium medium ml-20"><a
+                                                                href="{{ route('home.detail.show', [$item->title, $item->id]) }}"
+                                                                class="text-dark fs-md " data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="Tooltip on top">
+                                                                <p style="width: 200px !important; overflow: hidden !important;text-overflow: ellipsis !important; white-space: nowrap;"
+                                                                    title="{{ $item->title }}">
+                                                                    {{ $item->title }}</p>
+                                                            </a></h4>
+
+                                                        <div class="jbl_location ml-20" style="margin-top: -10px"><a
+                                                                href="" class="text-dark fs-md"><i
+                                                                    class="lni lni-map-marker mr-1"></i>{{ $item->getlocation->name }}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="job_grid_footer d-flex">
+                                                    <div class="df-1  text-wage-company"><i
+                                                            class="lni lni-wallet mr-1"></i>{{ $item->getWage->name }}
+                                                    </div>
+                                                    <div class="df-1  ml-2 text-wage-company text-time"><i
+                                                            class="lni lni-timer mr-1"></i>còn 10 ngày
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
