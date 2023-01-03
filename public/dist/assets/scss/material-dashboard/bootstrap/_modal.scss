@@ -9,6 +9,7 @@
 // Container that the modal scrolls within
 .modal {
   // scss-docs-start modal-css-vars
+  --#{$prefix}backdrop-zindex: #{$zindex-modal-backdrop};
   --#{$prefix}modal-zindex: #{$zindex-modal};
   --#{$prefix}modal-width: #{$modal-md};
   --#{$prefix}modal-padding: #{$modal-inner-padding};

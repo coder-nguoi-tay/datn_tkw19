@@ -6717,7 +6717,7 @@ a:hover {
 }
 
 .icon-item {
-    width: 160px !important;
+    width: 200px !important;
 
 }
 
@@ -6912,6 +6912,19 @@ a:hover {
     width: 275px !important;
     border: 1px solid #e5e5e5;
 } */
+
+.maxText {
+    font-size: 20px;
+    color: #3b5998 !important;
+    margin: 0 0 5px;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    text-align: justify;
+
+}
 
 .job-item {
     background: #fff 0 0 no-repeat padding-box;

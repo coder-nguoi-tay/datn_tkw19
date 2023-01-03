@@ -166,7 +166,7 @@
                 <!-- end -->
             </div>
         </section>
-        <section class="space gray">
+        <section class="space gray" data-aos="zoom-in-up">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -313,9 +313,9 @@
                             <!-- Single -->
                             <div class="row justify-content-center">
                                 <div class="container p-3">
-                                    <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" id="paginated-list">
+                                    <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3 " id="paginated-list">
                                         @foreach ($jobAttractive as $value)
-                                            <div class="col-3 render-job-search">
+                                            <div class="col-3 render-job-search view overlay">
                                                 <div class="p-3 border bg-light box-showdow">
                                                     <div class="position-absolute ab-right"><a type="button"
                                                             class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
@@ -323,11 +323,11 @@
                                                     </div>
                                                     <div class="row" style="height: 80px;">
                                                         <div class="job_grid_thumb mb-3 title-name px-3 col-4"><a
-                                                                href="home/detail/Tuyển FPT-1" class="d-block m-auto"
+                                                                href="home/detail/{{ $value->title . '-' . $value->id }}"
+                                                                class="d-block m-auto"
                                                                 style="width: 68px; height: 68px;"><img
-                                                                    src="images/cv/TTa7yGhFlC7j878HvIYIbEMHzID5Jrbka0f90HiN.jpg"
-                                                                    class="img-rounded" alt=""
-                                                                    style=""></a>
+                                                                    src="{{ asset($value->logo) }}" class="img-rounded"
+                                                                    alt="" style=""></a>
                                                         </div>
                                                         <div class="job_grid_caption title-name px-3 col-8 g-1">
                                                             <h4 class="mb-0 ft-medium medium ml-20"><a
@@ -505,28 +505,8 @@
         <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
         <!-- Button trigger modal -->
         <!-- Modal login -->
-        <div class="modal fade" id="exampleModallogin" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Chào mừng bạn đến với ITWork</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <client-login
-                            :data="{{ json_encode([
-                                'urlStore' => route('owner.store'),
-                                'urlRegister' => route('owner.update.register'),
-                                'message' => $message ?? '',
-                            ]) }}">
-                            <client-login>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+      
     </body>
     @if (Auth::guard('user')->check())
         @if ($user->getProfileUse == null)
