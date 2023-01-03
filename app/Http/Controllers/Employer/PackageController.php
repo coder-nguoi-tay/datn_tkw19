@@ -123,9 +123,53 @@ class PackageController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function updateTimePayment($id, Request $request)
     {
-        //
+        try {
+            $account = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
+            if ($account) {
+                $account->surplus -=  $request['price'];
+                $account->save();
+                $payment = packageofferbought::where('id', $id)->first();
+                $payment->status = 1;
+                $payment->start_time = Carbon::parse(Carbon::now())->format('Y-m-d');
+                if ($payment->lever == LeverPackageCompany::VIP1) {
+                    $payment->end_time = Carbon::parse(Carbon::now())->addDay(1)->format('Y-m-d');
+                } else if ($payment->lever == LeverPackageCompany::VIP2) {
+                    $payment->end_time = Carbon::parse(Carbon::now())->addDay(7)->format('Y-m-d');
+                } else if ($payment->lever == LeverPackageCompany::VIP3) {
+                    $payment->end_time = Carbon::parse(Carbon::now())->addDay(30)->format('Y-m-d');
+                }
+                $payment->save();
+                //ls
+                $paymentHistory = new PaymentHistoryEmployer();
+                $paymentHistory->user_id = Auth::guard('user')->user()->id;
+                $paymentHistory->price = $request['price'];
+                $paymentHistory->desceibe = 'Gia hạn gói cước VIP ' . $payment->lever;
+                $paymentHistory->form = '';
+                $paymentHistory->save();
+                //
+                $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
+                $employer->prioritize = $payment->lever;
+                $employer->save();
+
+                return response()->json([
+                    'message' => 'Gia hạn thành công!',
+                    'status' => StatusCode::OK,
+                ], StatusCode::OK);
+            } else {
+                return response()->json([
+                    'message' => 'Tài khoản của bạn chưa đủ tiền',
+                    'status' => StatusCode::FORBIDDEN,
+                ]);
+            }
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Đã có lỗi xảy ra ',
+                'status' => StatusCode::FORBIDDEN,
+            ], StatusCode::INTERNAL_ERR);
+        }
     }
 
     public function Payment(Request $request)
