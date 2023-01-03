@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Employer;
 
+use App\Enums\LeverPackageCompany;
 use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
@@ -42,12 +43,17 @@ class PackageController extends BaseController
             ->orderby('package_offer_bought.status', 'ASC')
             ->where('package_offer_bought.company_id', Auth::guard('user')->user()->id)
             ->get();
-
         $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
-        $package = Packageoffer::select('*')->whereNotIn('id', $pachageForEmployer->pluck('package_id'))->with(['timeofer', 'leverPackage'])->get();
-        $packageAttractive = jobAttractive::whereNotIn('id', $pachageForEmployer->pluck('package_id'))->get();
+        $package = jobAttractive::select('*')->whereNotIn('id', $pachageForEmployer->pluck('package_id'))->get();
+
+        $checkPackage = packageofferbought::where('company_id', Auth::guard('user')->user()->id)
+            ->leftjoin('job_attractive', 'job_attractive.id', 'package_offer_bought.package_offer_id')
+            ->select('job_attractive.price as price')
+            ->first();
+        $packageAttractive = jobAttractive::whereNotIn('id', $pachageForEmployer->pluck('package_id'))->where('price', '>', $checkPackage->price ?? '')->get();
         return view('employer.package.index', [
             'data' => $package,
+            'checkPackage' => $checkPackage,
             'accPayment' => $accPayment,
             'pachageForEmployer' => $pachageForEmployer,
             'packageAttractive' => $packageAttractive,
@@ -284,8 +290,12 @@ class PackageController extends BaseController
             //Kiểm tra checksum của dữ liệu
             if ($secureHash == $vnp_SecureHash) {
                 $invoice = jobAttractive::where('id', $lever_package)->first();
+                $checkPackage = packageofferbought::where('company_id', Auth::guard('user')->user()->id)
+                    ->leftjoin('job_attractive', 'job_attractive.id', 'package_offer_bought.package_offer_id')
+                    ->select('job_attractive.price as price')
+                    ->first();
                 if ($invoice != NULL) {
-                    if ($invoice["price"] == $vnp_Amount) //Kiểm tra số tiền thanh toán của giao dịch: giả sử số tiền kiểm tra là đúng. //$order["Amount"] == $vnp_Amount
+                    if ($invoice["price"] + $checkPackage->price ?? 0 == $vnp_Amount) //Kiểm tra số tiền thanh toán của giao dịch: giả sử số tiền kiểm tra là đúng. //$order["Amount"] == $vnp_Amount
                     {
                         if ($invoice["status"] == NULL && $invoice["status"] == 0) {
                             if ($inputData['vnp_ResponseCode'] == '00' && $inputData['vnp_TransactionStatus'] == '00') {
@@ -294,25 +304,38 @@ class PackageController extends BaseController
                                 $Status = 2; // Trạng thái thanh toán thất bại / lỗi
                             }
                             //
-                            $package = new packageofferbought();
+                            $checkPackage = packageofferbought::where('company_id', Auth::guard('user')->user()->id)->first();
+                            if ($checkPackage) {
+                                $package = $checkPackage;
+                                if ($lever_package == LeverPackageCompany::VIP1) {
+                                    $package->end_time = Carbon::parse($package->end_time)->addDay(1)->format('Y-m-d');
+                                } else if ($lever_package == LeverPackageCompany::VIP2) {
+                                    $package->end_time = Carbon::parse($package->end_time)->addDay(7)->format('Y-m-d');
+                                } else if ($lever_package == LeverPackageCompany::VIP3) {
+                                    $package->end_time = Carbon::parse($package->end_time)->addDay(30)->format('Y-m-d');
+                                }
+                            } else {
+                                $package = new packageofferbought();
+                                if ($lever_package == LeverPackageCompany::VIP1) {
+                                    $package->end_time = Carbon::parse(Carbon::now())->addDay(1)->format('Y-m-d');
+                                } else if ($lever_package == LeverPackageCompany::VIP2) {
+                                    $package->end_time = Carbon::parse(Carbon::now())->addDay(7)->format('Y-m-d');
+                                } else if ($lever_package == LeverPackageCompany::VIP3) {
+                                    $package->end_time = Carbon::parse(Carbon::now())->addDay(30)->format('Y-m-d');
+                                }
+                            }
                             $package->company_id = Auth::guard('user')->user()->id;
                             $package->package_offer_id = $lever_package;
                             $package->status = $Status;
                             $package->start_time = Carbon::parse(Carbon::now());
-                            if ($lever_package == 1) {
-                                $package->end_time = Carbon::parse(Carbon::now())->addDay(1)->format('Y-m-d');
-                            } else if ($lever_package == 2) {
-                                $package->end_time = Carbon::parse(Carbon::now())->addDay(7)->format('Y-m-d');
-                            } else if ($lever_package == 3) {
-                                $package->end_time = Carbon::parse(Carbon::now())->addDay(30)->format('Y-m-d');
-                            }
+
                             $package->lever = $lever_package;
                             $package->save();
                             //
                             $paymentHistory = new PaymentHistoryEmployer();
                             $paymentHistory->user_id = Auth::guard('user')->user()->id;
                             $paymentHistory->price = $vnp_Amount;
-                            $paymentHistory->desceibe = explode(',', $request->vnp_OrderInfo)[0];
+                            $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp' : 'Thanh toán mua ' . explode(',', $request->vnp_OrderInfo)[0] . 'gói VIP ' . $lever_package;
                             $paymentHistory->form = '';
                             $paymentHistory->save();
 
@@ -355,23 +378,35 @@ class PackageController extends BaseController
         try {
             //
             $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
-            $employer->prioritize = $request['data']['lever_package'];
+            $employer->prioritize += $request['data']['lever_package'];
             $employer->position = 1;
             $employer->save();
             //
-            $package = new packageofferbought();
+            $checkPackage = packageofferbought::where('company_id', Auth::guard('user')->user()->id)->first();
+            if ($checkPackage) {
+                $package = $checkPackage;
+                if ($request['data']['lever_package'] == LeverPackageCompany::VIP1) {
+                    $package->end_time = Carbon::parse($package->end_time)->addDay(1)->format('Y-m-d');
+                } else if ($request['data']['lever_package'] == LeverPackageCompany::VIP2) {
+                    $package->end_time = Carbon::parse($package->end_time)->addDay(7)->format('Y-m-d');
+                } else if ($request['data']['lever_package'] == LeverPackageCompany::VIP3) {
+                    $package->end_time = Carbon::parse($package->end_time)->addDay(30)->format('Y-m-d');
+                }
+            } else {
+                $package = new packageofferbought();
+                if ($request['data']['lever_package'] == LeverPackageCompany::VIP1) {
+                    $package->end_time = Carbon::parse(Carbon::now())->addDay(1)->format('Y-m-d');
+                } else if ($request['data']['lever_package'] == LeverPackageCompany::VIP2) {
+                    $package->end_time = Carbon::parse(Carbon::now())->addDay(7)->format('Y-m-d');
+                } else if ($request['data']['lever_package'] == LeverPackageCompany::VIP3) {
+                    $package->end_time = Carbon::parse(Carbon::now())->addDay(30)->format('Y-m-d');
+                }
+            }
             $package->company_id = Auth::guard('user')->user()->id;
             $package->package_offer_id = $request['data']['lever_package'];
             $package->status = 1;
             $package->lever = $request['data']['lever_package'];
             $package->start_time = Carbon::parse(Carbon::now());
-            if ($request['data']['lever_package'] == 1) {
-                $package->end_time = Carbon::parse(Carbon::now())->addDay(1)->format('Y-m-d');
-            } else if ($request['data']['lever_package'] == 2) {
-                $package->end_time = Carbon::parse(Carbon::now())->addDay(7)->format('Y-m-d');
-            } else if ($request['data']['lever_package'] == 3) {
-                $package->end_time = Carbon::parse(Carbon::now())->addDay(30)->format('Y-m-d');
-            }
             $package->save();
             // total
             $account = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
@@ -381,7 +416,7 @@ class PackageController extends BaseController
             $paymentHistory = new PaymentHistoryEmployer();
             $paymentHistory->user_id = Auth::guard('user')->user()->id;
             $paymentHistory->price = $request['data']['price'];
-            $paymentHistory->desceibe = 'Thanh toán mua gói cước VIP ' . $request['data']['lever_package'];
+            $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp' : 'Thanh toán mua ' . 'gói cước VIP ' . $request['data']['lever_package'];
             $paymentHistory->form = '';
             $paymentHistory->save();
             return response()->json([

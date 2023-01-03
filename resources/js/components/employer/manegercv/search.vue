@@ -37,9 +37,6 @@
 <script>
 import { CDropdownHeader } from '@coreui/vue'
 export default {
-  created() {
-    console.log(this)
-  },
   props: ['url', 'dataQuery', 'data'],
   components: {
     CDropdownHeader

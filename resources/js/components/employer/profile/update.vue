@@ -557,8 +557,6 @@
                                   type="text"
                                   v-model="dataCompany.number_tax"
                                   name="number_tax"
-                                  disabled
-                                  readonly
                                   id="number_tax"
                                   class="form-control"
                                   placeholder="Nhập mã số thuế công ty"
