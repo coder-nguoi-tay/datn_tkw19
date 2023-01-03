@@ -165,9 +165,6 @@ export default {
 </script>
 
  <style>
-.custom-image-cv {
-  height: 240px;
-}
 .box_cv h3 {
   border: 1px solid #ffbb00;
   border-radius: 8px;
@@ -217,12 +214,10 @@ export default {
 .left_cv .box_img {
   width: 100%;
   margin-bottom: 10px;
-  /* border: 3px solid #ffc628; */
-  /* height: 300px; */
 }
 
 .left_cv .box_img > img {
-  /* border: 3px solid #ffc628; */
+  height: 300px !important;
 }
 
 .left_cv > .contact {

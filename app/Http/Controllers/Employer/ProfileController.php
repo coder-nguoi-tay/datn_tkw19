@@ -109,6 +109,10 @@ class ProfileController extends BaseController
             $employer->phone = $request->phone;
             $employer->address = $request->address;
             $employer->save();
+            //
+            $user = $this->user->where('id', Auth::guard('user')->user()->id)->first();
+            $user->name = $request->name;
+            $user->save();
             $this->setFlash(__('Cập nhật thành công'));
             return redirect()->back();
         } catch (\Throwable $th) {
