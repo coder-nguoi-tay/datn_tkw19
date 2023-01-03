@@ -14,7 +14,6 @@
 
     <!-- Custom CSS -->
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('assets/css/search.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('assets/css/detail-company.css') }}" rel="stylesheet">
     <script src="{{ asset('js/userApp.js') }}" defer></script>
     <!-- CSS only -->
@@ -23,8 +22,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <style>
         .ic-1 {
             width: 80px !important;
@@ -61,15 +58,7 @@
 </head>
 <div class="preloader"></div>
 
-<!-- ============================================================== -->
-<!-- Main wrapper - style you can find in pages.scss -->
-<!-- ============================================================== -->
 <div id="main-wrapper">
-
-    <!-- ============================================================== -->
-    <!-- Top header  -->
-    <!-- ============================================================== -->
-    <!-- Start Navigation -->
     <div id="app">
         @include('client.layout.header')
         <!-- End Navigation -->
@@ -88,16 +77,7 @@
 
     @include('client.layout.footer')
 
-
 </div>
-
-<!-- ============================================================== -->
-<!-- End Wrapper -->
-<!-- ============================================================== -->
-
-<!-- ============================================================== -->
-<!-- All Jquery -->
-<!-- ============================================================== -->
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
@@ -107,7 +87,3 @@
 <script src="{{ asset('assets/js/snackbar.min.js') }}"></script>
 <script src="{{ asset('assets/js/jQuery.style.switcher.js') }}"></script>
 <script src="{{ asset('assets/js/custom.js') }}"></script>
-
-<!-- ============================================================== -->
-<!-- This page plugins -->
-<!-- ============================================================== -->
