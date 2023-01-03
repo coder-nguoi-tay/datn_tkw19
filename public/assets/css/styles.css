@@ -6568,13 +6568,14 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
     font-size: 15px;
     border-radius: 4px;
     text-decoration: none;
-    background: #333c56;
-    color: #ffffff;
+   
+    color: #208ceb;
 }
 
+
 #back2Top:hover {
-    background-color: #ffffff;
-    color: #333c56;
+   
+    color: #208ceb;
 }
 
 .box-not-share-location {

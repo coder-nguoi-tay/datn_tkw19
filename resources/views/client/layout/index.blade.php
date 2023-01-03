@@ -47,6 +47,61 @@
             text-align: center;
             font-size: 18px;
         }
+
+        #support-ticket-modal-wraper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .3);
+            display: none;
+            z-index: 22071993;
+            overflow: auto;
+        }
+
+        .support-ticket-modal {
+            width: 600px;
+            margin: 30px auto;
+            max-width: 100%;
+            background-color: #fff;
+            position: relative;
+            display: none;
+        }
+
+        .support-ticket-modal-header {
+            padding: 20px;
+        }
+
+        .support-ticket-modal-title {
+            font-size: 21px;
+            font-weight: 400;
+            margin: 0 auto;
+        }
+
+        .st-text-highlight {
+            color: #00b14f;
+        }
+
+        .st-text-center {
+            text-align: center;
+        }
+
+        .st-text-bold {
+            font-weight: 700;
+        }
+
+        .st-text-highlight {
+            color: #00b14f;
+        }
+
+        .support-ticket-modal-footer {
+            padding: 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
     </style>
     <script>
         window.Laravel = {!! json_encode(
