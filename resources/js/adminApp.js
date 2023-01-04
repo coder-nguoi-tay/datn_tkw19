@@ -129,7 +129,7 @@ import BoughtCV from "./components/employer/boughtcv/index.vue";
 app.component('bought-cv', BoughtCV);
 
 import btnPayment from "./components/common/btnPayment.vue";
-app.component('btn-payment-employer', btnPayment);
+app.component('btn-payment-extend-employer', btnPayment);
 
 app.mount('#app');
 

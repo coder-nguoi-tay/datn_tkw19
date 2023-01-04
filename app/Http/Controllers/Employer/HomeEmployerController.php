@@ -63,7 +63,7 @@ class HomeEmployerController extends BaseController
             'title' => 'Bảng tin | News',
             'tatalecv' => $tatalecv,
             'totalMonny' => $totalMonny,
-            'totalPayment' => $totalPayment ?? '',
+            'totalPayment' => $totalPayment->surplus ?? 0,
             'countCvMoth1' => $this->getDataMouth(1, $checkCompany->id),
             'countCvMoth2' => $this->getDataMouth(2, $checkCompany->id),
             'countCvMoth3' => $this->getDataMouth(3, $checkCompany->id),

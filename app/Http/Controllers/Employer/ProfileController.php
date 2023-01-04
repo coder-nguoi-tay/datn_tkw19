@@ -34,7 +34,7 @@ class ProfileController extends BaseController
     public function index()
     {
         $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->with('getUser')->first();
-        $paymentHistory = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)->get();
+        $paymentHistory = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)->orderby('created_at', 'DESC')->get();
         $Company = Company::where('id', $employer->id_company)->first();
         $accuracy = Accuracy::where('user_id', Auth::guard('user')->user()->id)->first();
         return view('employer.profile.index', [

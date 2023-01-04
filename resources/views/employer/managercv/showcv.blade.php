@@ -7,7 +7,6 @@
         <div class="fade-in">
             <div class="row">
                 <div class="col-sm-12">
-                    {{-- <div class="card"> --}}
                     <div class="card-header">
                         <header class="header header-sticky">
                             <div class="container-fluid">
@@ -23,7 +22,6 @@
                                             ]) }}">
                                         </btn-payment-employer>
                                     @endif
-
                                 </ul>
                             </div>
                         </header>
