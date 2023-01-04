@@ -80,6 +80,71 @@ class SearchController extends BaseController
                 ->join('employer', 'employer.id', '=', 'job.employer_id')
                 ->join('company', 'company.id', '=', 'employer.id_company')
                 ->Where(function ($q) use ($that) {
+                    if ($that->key) {
+                        $q->orWhere($this->escapeLikeSentence('job.title', $that->key));
+                    }
+                    if ($that->skill) {
+                        $q->whereIn('job_skill.skill_id', $that->skill);
+                    }
+                    if ($that->location) {
+                        $q->Where(
+                            'job.location_id',
+                            $that->location
+                        );
+                    }
+                    if ($that->profession) {
+                        $q->Where(
+                            'job.profession_id',
+                            $that->profession
+                        );
+                    }
+                    if ($that->experience) {
+                        $q->Where(
+                            'job.experience_id',
+                            $that->experience
+                        );
+                    }
+                    if ($that->timework) {
+                        $q->Where(
+                            'job.time_work_id',
+                            $that->timework
+                        );
+                    }
+
+                    if ($that->workingform) {
+                        $q->Where(
+                            'job.wk_form_id',
+                            $that->workingform
+                        );
+                    }
+                    if ($that->majors) {
+                        $q->Where(
+                            'job.majors_id',
+                            $that->majors
+                        );
+                    }
+                    if ($that->lever) {
+                        $q->Where(
+                            'job.level_id',
+                            $that->lever
+                        );
+                    }
+                })
+                ->where([
+                    ['job.status', 1],
+                    ['job.expired', 0],
+                ])
+                ->distinct()
+                ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
+                ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+                ->orderBy('employer.prioritize', 'desc')
+                ->get();
+            $datalq = $this->job
+                ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
+                ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
+                ->join('employer', 'employer.id', '=', 'job.employer_id')
+                ->join('company', 'company.id', '=', 'employer.id_company')
+                ->Where(function ($q) use ($that) {
                     $q->orWhere($this->escapeLikeSentence('job.title', $that->key))
                         ->orWhere(function ($q) use ($that) {
                             if ($that->skill) {
@@ -136,6 +201,7 @@ class SearchController extends BaseController
             }
             return view('client.search', [
                 'job' => $data,
+                'datalq' => $datalq,
                 'breadcrumbs' => $breadcrumbs,
                 'profestion' => $this->getprofession(),
                 'lever' => $this->getlever(),

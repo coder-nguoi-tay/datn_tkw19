@@ -44,12 +44,12 @@
             <div class="nav-menus-wrapper" style="transition-property: none;">
                 <ul class="nav-menu">
                     <li><a href="{{ route('index') }}">Lĩnh vực</a>
-                        {{-- <ul class="nav-dropdown nav-submenu">
-                             @foreach ($majors as $item)
+                        <ul class="nav-dropdown nav-submenu">
+                            @foreach ($majors as $item)
                                 <li><a href="tim-viec-lam?majors={{ $item->id }}">{{ $item->name }}</a>
                                 </li>
-                            @endforeach 
-                        </ul> --}}
+                            @endforeach
+                        </ul>
                     </li>
 
                     <li><a href="{{ route('home.search') }}">Việc làm</a>

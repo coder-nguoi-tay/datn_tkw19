@@ -114,7 +114,7 @@ Route::post('register/create', [HomeEmployerController::class, 'store'])->name('
 // seeker
 Route::resource('profile', SeekerHomeController::class);
 Route::resource('quan-ly-cv', SeekerManageUploadController::class);
-Route::resource('detail-company', DetailCompanyController::class);
+Route::get('detail-company/{id}', [DetailCompanyController::class, 'detailCompany'])->name('detail.company');
 Route::resource('xem-ho-so', ViewProfileController::class);
 Route::get('file/tao-moi', [SeekerManageUploadController::class, 'createFormCV'])->name('user.createFormCV');
 Route::post('file/tao-moi', [SeekerManageUploadController::class, 'storeFormCV'])->name('user.storeFormCV');
