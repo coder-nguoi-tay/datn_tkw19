@@ -503,117 +503,9 @@
         </section>
         <!-- ======================= Newsletter Start ============================ -->
         {{-- <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a> --}}
-        <a id="back2Top" class=" button-chat" title="Back to top" href="#">
 
+        <modal-care></modal-care>
 
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                <path
-                    d="M64 0C28.7 0 0 28.7 0 64V352c0 35.3 28.7 64 64 64h96v80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64z" />
-            </svg></a>
-
-        <div id="support-ticket-modal-wraper">
-            <div id="modalHotlineContact" class="support-ticket-modal">
-                <div class="support-ticket-modal-header">
-                    <h4 class="support-ticket-modal-title st-text-highlight">Liên hệ</h4>
-                </div>
-                <div class="support-ticket-modal-body">
-                    <div class="st-text-center">
-                        <p><strong class="st-text-bold">TopCV cam kết sẽ xử lý các vấn đề của bạn trong vòng tối đa
-                                24h.</strong></p>
-                        <p>Tổng đài:
-                            <span class="st-text-highlight">(024) 6680 5588 (Giờ hành chính) </span>
-                        </p>
-                        <p>Trong trường hợp không liên lạc được, vui lòng gửi hỗ trợ tới email: <span
-                                class="st-text-highlight">hotro@topcv.vn</span></p>
-                        <p>Xin cảm ơn!</p>
-                    </div>
-                </div>
-                <div class="support-ticket-modal-footer text-center"><a href="#" class="st-btn st-btn-default">Đóng
-                        lại</a></div>
-            </div>
-            <div id="modalSubmitTicket" class="support-ticket-modal">
-                <form action="" method="post" id="frmSubmitTicket">
-                    <div class="support-ticket-modal-header">
-                        <h4 class="support-ticket-modal-title st-text-highlight">Gửi yêu cầu hỗ trợ</h4>
-                        <p class="st-text-gray st-text-italic" style="margin: 5px 0px 0px;">Mã ứng viên của bạn là: <span
-                                class="st-text-red">#5210812</span></p>
-                    </div>
-                    <div class="support-ticket-modal-body">
-                        <div class="st-row">
-                            <div class="st-form-group st-col-12"><span class="st-text-dark-gray">Họ tên <span
-                                        class="st-text-red">*</span></span> <input name="fullname" id="st-fullname"
-                                    value="Nguyễn Văn Hùng PH 1 4 8 2 0" placeholder="e.g Nguyễn Văn A"
-                                    class="st-form-control"></div>
-                        </div>
-                        <div class="st-row">
-                            <div class="st-form-group st-col-6"><span class="st-text-dark-gray">Email <span
-                                        class="st-text-red">*</span></span> <input name="email" id="st-email"
-                                    value="hungnvph14820@fpt.edu.vn" placeholder="e.g nguyenvana@gmail.com"
-                                    class="st-form-control"></div>
-                            <div class="st-form-group st-col-6"><span class="st-text-dark-gray">Số điện thoại <span
-                                        class="st-text-red">*</span></span> <input name="phone" id="st-phone"
-                                    value="" placeholder="e.g 0123456789" class="st-form-control"></div>
-                        </div>
-                        <div class="st-row">
-                            <div class="st-form-group st-col-12"><span class="st-text-dark-gray">Vấn đề cần hỗ trợ <span
-                                        class="st-text-red">*</span></span> <select name="type" id="st-type"
-                                    class="st-form-control">
-                                    <option value="">-- Chọn vấn đề --</option>
-                                    <option value="3">Thanh toán dịch vụ</option>
-                                    <option value="1">Sử dụng công cụ tạo CV</option>
-                                    <option value="2">Tìm Việc làm</option>
-                                    <option value="50">Góp ý tính năng, sản phẩm</option>
-                                    <option value="4">Bảo mật thông tin cá nhân</option>
-                                    <option value="100">Hỗ trợ khác</option>
-                                </select></div>
-                        </div>
-                        <div class="st-row" style="display: none;">
-                            <div class="st-form-group st-col-12"><span class="st-text-dark-gray">Gói dịch vụ <span
-                                        class="st-text-red">*</span></span> <select name="package" id="st-package"
-                                    class="st-form-control">
-                                    <option value="">-- Chọn gói dịch vụ --</option>
-                                    <option value="premium_1day">VIP 1 ngày (20k)</option>
-                                    <option value="premium_pro">VIP 1 tháng (50k)</option>
-                                    <option value="premium_vip">VIP 1 năm (200k)</option>
-                                </select></div>
-                        </div>
-                        <div class="st-row">
-                            <div class="st-form-group st-col-12"><span class="st-text-dark-gray">Mô tả vấn đề cần hỗ trợ
-                                    <span class="st-text-red">*</span></span>
-                                <textarea name="content" id="st-content" rows="4"
-                                    placeholder="Mô tả rõ vấn đề bạn gặp phải hoặc thông tin góp ý để TopCV có thể xử lý chính xác nhất."
-                                    class="st-form-control"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="support-ticket-modal-footer text-center">
-                        <p><span class="st-text-red st-text-italic st-text-small">TopCV cam kết sẽ xử lý các vấn đề của bạn
-                                trong vòng tối đa 24h.</span></p> <a href="#" class="st-btn st-btn-default"
-                            style="min-width: 117px;">Đóng lại</a> <a href="#" class="st-btn st-btn-primary"
-                            style="min-width: 117px; margin-left: 10px;">Gửi yêu cầu</a>
-                    </div>
-                </form>
-            </div>
-            <div id="modalSubmitTicketSuccess" class="support-ticket-modal">
-                <div class="support-ticket-modal-header">
-                    <h4 class="support-ticket-modal-title st-text-highlight">Gửi yêu cầu thành công</h4>
-                </div>
-                <div class="support-ticket-modal-body">
-                    <div class="st-text-center">
-                        <p><strong class="st-text-bold">TopCV sẽ gửi phản hồi qua email bạn đã nhập trong vòng tối đa
-                                24h.</strong></p>
-                        <p>Liên hệ hotline nếu sau 24h bạn chưa nhận được phản hồi qua email: <br> <span
-                                class="st-text-highlight">(024) 6680 5588 (Giờ hành chính) </span></p>
-                        <p>Hoặc email trực tiếp cho TopCV tại địa chỉ: <span
-                                class="st-text-highlight">hotro@topcv.vn</span></p>
-                        <p>Xin cảm ơn!</p>
-                    </div>
-                </div>
-                <div class="support-ticket-modal-footer text-center"><a href="#" class="st-btn st-btn-default">Đóng
-                        lại</a></div>
-            </div>
-        </div>
         <!-- Button trigger modal -->
         <!-- Modal login -->
         <div class="modal fade" id="exampleModallogin" tabindex="-1" role="dialog"
@@ -688,4 +580,5 @@
             </script>
         @endif
     @endif
+
 @endsection

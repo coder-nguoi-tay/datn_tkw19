@@ -131,6 +131,19 @@ app.component("notyf", Notyf);
 import showCvClient from "./components/client/seeker/create-cv.vue";
 app.component('show-cv-client', showCvClient);
 
+
+import modalContract from "./components/client/modal/modalContact.vue";
+app.component('modal-contract', modalContract);
+
+import modalRequired from "./components/client/modal/modalRequired.vue";
+app.component('modal-required', modalRequired);
+
+import modalSupport from "./components/client/modal/modalSupport.vue";
+app.component('modal-support', modalSupport);
+
+import modalCare from "./components/client/modal/modalCare.vue";
+app.component('modal-care', modalCare);
+
 //home 
 import HomeSearch from "./components/client/home/search.vue";
 app.component('home-search', HomeSearch);
