@@ -27,7 +27,9 @@
                 method="POST"
               >
                 <div class="form-group">
-                  <label for="name" class="form-label">Họ và Tên<span class="required-label">*</span></label>
+                  <label for="name" class="form-label"
+                    >Họ và Tên<span class="required-label">*</span></label
+                  >
                   <Field
                     type="text"
                     name="name"
@@ -39,7 +41,9 @@
                   <ErrorMessage class="error" name="name" />
                 </div>
                 <div class="form-group">
-                  <label for="email" class="form-label">Email<span class="required-label">*</span></label>
+                  <label for="email" class="form-label"
+                    >Email<span class="required-label">*</span></label
+                  >
                   <Field
                     type="text"
                     name="email"
@@ -51,7 +55,9 @@
                   <ErrorMessage class="error" name="email" />
                 </div>
                 <div class="form-group mb-4">
-                  <label for="password" class="form-label">Password<span class="required-label">*</span></label>
+                  <label for="password" class="form-label"
+                    >Password<span class="required-label">*</span></label
+                  >
                   <Field
                     type="password"
                     name="password"
@@ -107,10 +113,7 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken
-      //   model: {},
-      //   msgLogin: '',
-      //   checkForm: 1,
-      //   msgSucsess: ''
+     
     }
   },
   mounted() {},
@@ -153,60 +156,6 @@ export default {
     onSubmit() {
       this.$refs.formData.submit()
     }
-    // checkFormData(id) {
-    //   if (id == 1) {
-    //     this.checkForm = 1
-    //   } else {
-    //     this.checkForm = 2
-    //   }
-    // },
-    // onSubmit() {
-    //   if (this.checkForm == 1) {
-    //     let that = this
-    //     let url = this.data.urlStore
-    //     axios
-    //       .post(url, {
-    //         email: this.model.email,
-    //         password: this.model.password,
-    //         save: this.model.save
-    //       })
-    //       .then(function (data) {
-    //         if (data.data.status == 403) {
-    //           that.msgLogin = data.data.data
-    //         }
-    //         if (data.data.data == 1) {
-    //           location.reload()
-    //         } else if (data.data.data == 2) {
-    //           window.location.href = '/employer'
-    //         }
-    //       })
-    //       .catch(function (error) {
-    //         location.reload()
-    //       })
-    //   } else {
-    //     let that = this
-    //     let url = this.data.urlRegister
-    //     axios
-    //       .post(url, {
-    //         name: that.model.name,
-    //         email: that.model.email,
-    //         password: that.model.password
-    //       })
-    //       .then(function (data) {
-    //         console.log(data)
-    //         if (data.data.status == 403) {
-    //           that.msgLogin = data.data.data
-    //         } else {
-    //           that.msgLogin = ''
-    //           that.msgSucsess = data.data.data
-    //           that.checkForm = 1
-    //         }
-    //       })
-    //       .catch(function (error) {
-    //         location.reload()
-    //       })
-    //   }
-    // }
   }
 }
 </script>
