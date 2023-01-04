@@ -90,6 +90,7 @@
                 placeholder="Mô tả rõ vấn đề bạn gặp phải hoặc thông tin góp ý để ITWork có thể xử lý chính xác nhất."
               ></textarea>
               <!-- <ErrorMessage class="error" name="mo_ta" /> -->
+              
             </div>
           </div>
         </div>
