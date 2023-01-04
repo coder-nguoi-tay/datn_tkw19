@@ -357,19 +357,21 @@ html body .db {
 }
 
 
-
+/* // */
 .hover-div {
     display: block;
-    border-radius: 5px !important;
+    border-radius: 7px !important;
     overflow: hidden;
-    box-shadow: 5px 3px 0px 0.2em rgb(105, 67, 67);
+    box-shadow: 2px 2px 12px rgb(33 47 63 / 10%);
+    height: 130px;
 }
 
 .hover-div:hover {
-    background: rgba(49, 45, 45, 0.904);
+    background: rgb(243, 241, 241);
     cursor: pointer;
 }
 
+/*  */
 .border {
     border: 1px solid #eef2f5;
 }
@@ -6582,13 +6584,13 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
     font-size: 15px;
     border-radius: 4px;
     text-decoration: none;
-   
+
     color: #208ceb;
 }
 
 
 #back2Top:hover {
-   
+
     color: #208ceb;
 }
 
