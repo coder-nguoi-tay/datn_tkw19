@@ -3,6 +3,11 @@
 @endphp
 @extends('client.layout.index')
 @section('client')
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 
     <body>
         <div class="home-banner margin-bottom-0" style="background:#00ab46 url('banner-bg.jpg')" data-overlay="5">
@@ -309,14 +314,15 @@
                         <div class="p-1 pl-3 mb-2 alert alert-secondary rounded">
                             <h2 class="ft-bold">Tất cả việc làm</h2>
                         </div>
-                        <div class="row justify-content-center">
+
+                        <div class="row justify-content-center" data-aos="flip-left">
                             <!-- Single -->
-                            <div class="row justify-content-center">
+                            <div class="row justify-content-center" style="background: rgba(250, 250, 250, 0.904);">
                                 <div class="container p-3">
-                                    <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3 " id="paginated-list">
+                                    <div class="row  g-2 g-lg-3 " id="paginated-list">
                                         @foreach ($jobAttractive as $value)
-                                            <div class="col-3 render-job-search view overlay">
-                                                <div class="p-3 border bg-light box-showdow">
+                                            <div class="col-4 render-job-search view overlay rounded">
+                                                <div class="p-4  hover-div border">
                                                     <div class="position-absolute ab-right"><a type="button"
                                                             class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
                                                                 class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></a>
@@ -392,8 +398,8 @@
                                     <div class="container p-3">
                                         <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" id="paginated-list">
                                             @foreach ($jobForUser as $value)
-                                                <div class="col-3 render-job-search">
-                                                    <div class="p-3 border bg-light box-showdow">
+                                                <div class="col-3 render-job-search ">
+                                                    <div class="p-3 border bg-light box-showdow ">
                                                         <div class="position-absolute ab-right"><a type="button"
                                                                 class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
                                                                     class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></a>
@@ -506,7 +512,7 @@
         <!-- Button trigger modal -->
         <!-- Modal login -->
 
-      
+
     </body>
     @if (Auth::guard('user')->check())
         @if ($user->getProfileUse == null)
