@@ -12,9 +12,9 @@
                         <div class="card-header">
                             <header class="header header-sticky">
                                 <div class="container-fluid">
-                                    <label class=" px-md-0 me-md-3">Quản lý CV</label>
+                                    <label class=" px-md-0 me-md-3">Tất cả hồ sơ đã nhận</label>
                                     <ul class="header-nav ms-3 d-flex">
-                                        <search-cv-date :url="{{ json_encode(route('employer.quan-ly-cv.index')) }}"
+                                        <search-cv-date :url="{{ json_encode(route('employer.new.showdetai', $id)) }}"
                                             :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
                                         </search-cv-date>
                                     </ul>
@@ -35,14 +35,13 @@
                                     <tbody>
                                         @foreach ($cv as $item)
                                             <tr>
-                                                <td scope="row">{{ $item->token }}</td>
+                                                <td>{{ $item->token }}</td>
                                                 <td><img src="{{ asset($item->images) }}" alt="" width="150"
                                                         height="150"></td>
                                                 <td>{{ $item->user_name }}</td>
                                                 <td>{{ $item->majors_name }}</td>
 
                                                 <td>{{ Carbon::parse($item->create_at_sv)->format('d-m-Y') }}</td>
-                                                {{-- <td>{{ $item->status == 0 ? 'chưa xem' : 'đã xem' }}</td> --}}
                                                 <td>
                                                     <div class="dropdown">
                                                         <button class="btn btn-warning btn-radius-auto dropdown-toggle"

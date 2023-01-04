@@ -75,13 +75,12 @@ class ManagerUploadCvController extends BaseController
                 }
                 if (!empty($request['free_word'])) {
                     $q->orWhere($this->escapeLikeSentence('users.name', $request['free_word']));
-                    $q->orWhere($this->escapeLikeSentence('profession.name', $request['free_word']));
                     $q->orWhere($this->escapeLikeSentence('majors.name', $request['free_word']));
+                    $q->orWhere($this->escapeLikeSentence('save_cv.token', $request['free_word']));
                 }
             })
-            ->select('users.name as user_name', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'job-seeker.*', 'majors.name as majors_name', 'save_cv.created_at as create_at_sv')
+            ->select('users.name as user_name', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'job-seeker.*', 'majors.name as majors_name', 'save_cv.created_at as create_at_sv', 'save_cv.token as token')
             ->get();
-
         return view('employer.managercv.index', [
             'cv' => $cv,
             'request' => $request,

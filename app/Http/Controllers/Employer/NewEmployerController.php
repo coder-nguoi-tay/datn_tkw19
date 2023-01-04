@@ -11,6 +11,7 @@ use App\Models\Company;
 use App\Models\Employer;
 use App\Models\Experience;
 use App\Models\Job;
+use App\Models\Jobseeker;
 use App\Models\Jobskill;
 use App\Models\Lever;
 use App\Models\location;
@@ -47,8 +48,9 @@ class NewEmployerController extends BaseController
     public location $location;
     public WorkingForm $workingform;
     public User $user;
+    public Jobseeker $jobseeker;
 
-    public function __construct(User $user, Lever $lever, Experience $experience, Wage $wage, Skill $skill, Timework $timework, Profession $profession, Jobskill $jobskill, Job $job, Majors $majors, Employer $employer, Company $company, location $location, WorkingForm $workingform)
+    public function __construct(Jobseeker $jobseeker, User $user, Lever $lever, Experience $experience, Wage $wage, Skill $skill, Timework $timework, Profession $profession, Jobskill $jobskill, Job $job, Majors $majors, Employer $employer, Company $company, location $location, WorkingForm $workingform)
     {
         $this->lever = $lever;
         $this->experience = $experience;
@@ -64,6 +66,7 @@ class NewEmployerController extends BaseController
         $this->location = $location;
         $this->workingform = $workingform;
         $this->user = $user;
+        $this->jobseeker = $jobseeker;
     }
     public function index(Request $request)
     {
@@ -324,5 +327,30 @@ class NewEmployerController extends BaseController
                 'status' => StatusCode::FORBIDDEN,
             ], StatusCode::FORBIDDEN);
         }
+    }
+    public function detailNew($id, Request $request)
+    {
+        $cv = $this->jobseeker
+            ->join('save_cv', 'job-seeker.user_role', '=', 'save_cv.user_id')
+            ->join('job', 'job.id', '=', 'save_cv.id_job')
+            ->leftjoin('users', 'users.id', '=', 'job-seeker.user_role')
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->leftjoin('majors', 'majors.id', '=', 'job.majors_id')
+            ->where('job.id', $id)
+            ->where(function ($q) use ($request) {
+                if (!empty($request['start_date'])) {
+                    $q->whereDate('save_cv.created_at', '>=', $request['start_date']);
+                }
+                if (!empty($request['end_date'])) {
+                    $q->whereDate('save_cv.created_at', '<=', $request['end_date']);
+                }
+                if (!empty($request['free_word'])) {
+                    $q->orWhere($this->escapeLikeSentence('users.name', $request['free_word']));
+                    $q->orWhere($this->escapeLikeSentence('majors.name', $request['free_word']));
+                }
+            })
+            ->select('users.name as user_name', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'job-seeker.*', 'majors.name as majors_name', 'save_cv.created_at as create_at_sv', 'save_cv.token as token')
+            ->get();
+        return view('employer.new.detail', ['cv' => $cv, 'id' => $id, 'request' => $request]);
     }
 }

@@ -20,5 +20,5 @@ class SaveCv extends Model
     /**
      * @var array
      */
-    protected $fillable = ['status', 'title', 'user_id', 'file_cv', 'id_job'];
+    protected $fillable = ['status', 'title', 'user_id', 'file_cv', 'id_job', 'token'];
 }

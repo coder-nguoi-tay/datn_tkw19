@@ -73,6 +73,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::get('new/edit/{job}', [NewEmployerController::class, 'edit'])->name('new.edit');
     Route::post('new/update/{id}', [NewEmployerController::class, 'update'])->name('new.update');
     Route::post('new/change-status/{id}', [NewEmployerController::class, 'changeStus'])->name('new.changeStus');
+    Route::get('new/show-all-cv/{id}', [NewEmployerController::class, 'detailNew'])->name('new.showdetai');
     //
     Route::resource('package', EmployerPackageController::class);
     Route::post('package/update-time/{id}', [EmployerPackageController::class, 'updateTimePayment'])->name('package.updateTimePayment');

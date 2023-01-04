@@ -35,11 +35,10 @@
 </template>
 
 <script>
-import { CDropdownHeader } from '@coreui/vue'
 export default {
   props: ['url', 'dataQuery', 'data'],
-  components: {
-    CDropdownHeader
+  created() {
+    console.log(this.dataQuery)
   },
   data() {
     return {

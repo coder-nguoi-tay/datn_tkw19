@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Company;
 use App\Models\Employer;
 use App\Models\Job;
 use App\Models\packageofferbought;
@@ -45,6 +46,10 @@ class ChangePackage extends Command
     {
         $inactive_user = packageofferbought::where('end_time', '<', Carbon::parse(Carbon::now()))->get();
         $job = Job::where('end_job_time', '<', Carbon::now())->get();
+        $company = Company::all();
+        // foreach($company as $companys){
+        //     $companys->
+        // }
         foreach ($inactive_user as $user) {
             $user->status = 2;
             $user->save();

@@ -280,8 +280,8 @@
                               :name="'project[' + index + ']'"
                             />
                             <Editor
-                              :name="'project[ ' + index + ' ]'"
-                              v-model="model.project_detail"
+                              :name="'project_detail[ ' + index + ' ]'"
+                              v-model="item.project_detail"
                               class="
                                 form-control
                                 cus-tom-ckediter-cv
@@ -377,8 +377,8 @@ export default {
       ],
       experience_cv_info: [
         {
-          experience: '',
-          title_experience: ''
+          project: '',
+          project_detail: ''
         }
       ],
       numberForm: 1,
@@ -455,12 +455,13 @@ export default {
     },
     addFormExperience() {
       this.experience_cv_info.push({
-        skill: '',
-        title_skill: ''
+        project: '',
+        project_detail: ''
       })
       this.numberFormExperience += 1
     },
     deleteItemexperience(index) {
+      console.log(index)
       this.experience_cv_info.splice(index, 1)
     }
   }
