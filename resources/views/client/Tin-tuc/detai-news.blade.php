@@ -18,48 +18,52 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
-                        <div class="company-info box-white">
-                            <h4 class="title">Giới thiệu công ty</h4>
-                            <div class="box-body">
-                                <p style="text-align:justify;">Concentrix là một công ty hàng đầu thế giới của Mỹ trong lĩnh
-                                    vực
-                                    dịch vụ chăm sóc khách hàng có mặt ở trên 44 quốc gia với tổng số nhân sự lên tới trên
-                                    250.000 nhân viên.</p>
-                                <p style="text-align:justify;">Concentrix Việt Nam luôn đầu tư và nỗ lực nhằm cung cấp môi
-                                    trường tốt nhất như:</p>
-                                <p style="text-align:justify;">Cơ hội học hỏi &amp; phát triển</p>
-                                <p style="text-align:justify;">Kết nối thường xuyên với nhân viên, tạo môi trường tốt để
-                                    lắng
-                                    nghe và tôn trọng tiếng nói nhân viên cũng như giá trị tập thể</p>
-                                <p style="text-align:justify;">Đầy đủ cơ hội phát triển nhân viên</p>
-                                <p style="text-align:justify;">Công nhận sự nỗ lực và sự cống hiến từ các cá nhân và tập thể
-                                </p>
-                                <p style="text-align:justify;">Sự khác biệt lớn khi có sự đồng hành tuyệt vời từ đội ngũ
-                                    nhân
-                                    viên Concentrix.</p>
-                                <p style="text-align:justify;">Với sứ mệnh luôn chú trọng con người là nhân tố chủ lực,
-                                    chính
-                                    điều này đã trở thành một trong các yếu tố quan trọng giúp chúng tôi chiến thắng với
-                                    giải
-                                    thưởng cao quý và uy tín "" Công ty có môi trường làm việc tốt nhất Châu Á năm 2020"" –
-                                    Được
-                                    bình chọn bởi Tạp chí HR Asia - Là một trong những ấn phẩm hàng đầu Châu Á dành cho Hiệp
-                                    hội
-                                    Nhân sự.</p>
-                                <p style="text-align:justify;"><br></p>
+                        <div class="bg-white rounded px-3 py-4 mb-4">
+                            <div class="jbd-01 d-flex align-items-center justify-content-between">
+                                <div class="jbd-flex d-flex align-items-center justify-content-start">
+                                    <div class="jbd-01-thumb" style="overflow: hidden; width: 150px; height: 150px;">
+                                        <img src="{{ $company->logo }}" class="img-fluid"
+                                            style="width: 150px; height: 150px;" alt="" />
+                                    </div>
+                                    <div class="jbd-01-caption pl-3">
+                                        <div class="tbd-title">
+                                            <h4 class="mb-0 ft-medium fs-md">{{ $company->name }}</h4>
+                                        </div>
+                                        <div class="jbl_location mb-3"><span><i
+                                                    class="lni lni-map-marker mr-1"></i></span>{{ $company->address }}<span
+                                                class="medium ft-medium text-warning ml-3">
+                                            </span></div>
+                                        <div class="jbl_info01">
+                                            <span
+                                                class="px-2 py-1 ft-medium medium rounded theme-cl theme-bg-light mr-2">Quy
+                                                mô: {{ $company->number_tax }}</span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                {{-- <div class="jbd-01-right text-right hide-1023">
+
+
+                                    <div class="jbl_button"><a href="javascript:void(0);"
+                                            class="btn rounded bg-white border fs-sm ft-medium">Xem công ty</a></div>
+                                </div> --}}
                             </div>
                         </div>
-                        <div class="job-listing box-white">
+                        <div class="company-info box-white bg-white rounded px-3 py-4 mb-4">
+                            <h4 class="title">Giới thiệu công ty</h4>
+                            <div class="box-body">
+                                <p>{!! $company->desceibe !!}</p>
+                            </div>
+                        </div>
+                        <div class="company-info box-white bg-white rounded px-3 py-4 mb-4">
                             <h4 class="title">Tuyển dụng</h4>
                             <div class="box-body">
                                 <div class="job-item  bg-highlight  job-ta result-job-hover" data-job-id="692983"
                                     data-job-position="1" data-box="BoxRecruitmentInCompany">
                                     <div class="avatar">
-                                        <a target="_blank"
-                                            href="https://www.topcv.vn/viec-lam/nhan-vien-nhac-phi-thu-hoi-phi-collection-thu-nhap-15-trieu/692983.html?ta_source=JobListInNormalCompany"
-                                            class="company-logo">
-                                            <img src="https://cdn.topcv.vn/80/company_logos/cong-ty-tnhh-concentrix-service-vietnam-5d2887eec8342.jpg"
-                                                class="w-100" alt="Công ty TNHH Concentrix Service Vietnam"
+                                        <a target="_blank" href="#" class="company-logo">
+                                            <img src="#" class="w-100" alt="Công ty TNHH Concentrix Service Vietnam"
                                                 title="Nhân Viên Nhắc Phí (Thu Hồi Phí) - Collection - Thu Nhập 15 Triệu">
                                         </a>
                                     </div>
@@ -98,13 +102,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="box-address box-white">
+                    <div class="col-md-4 ">
+                        <div class="company-info box-white bg-white rounded px-3 py-4 mb-4 ">
                             <h4 class="title">Địa chỉ công ty</h4>
                             <div class="box-body">
                                 <p class="text-dark-gray">
-                                    <i class="icons8-map-pin text-highlight"></i>Tòa nhà QTSC 9, Công viên phần mềm Quang
-                                    Trung, Số 02 Đường Tô Ký, Phường Tân Hưng Thuận, Quận 12, TP. HCM
+                                    <i class="icons8-map-pin text-highlight"></i>
+                                    {{ $company->address }}
                                 </p>
                                 <div class="company-map">
                                     <p class="map">Bản đồ trụ sở chính :</p>

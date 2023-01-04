@@ -60,6 +60,7 @@
 
 <div id="main-wrapper">
     <div id="app">
+        @include('client.Tin-tuc.logn')
         @include('client.layout.header')
         <!-- End Navigation -->
         <div class="clearfix"></div>

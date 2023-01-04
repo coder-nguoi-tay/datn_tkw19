@@ -6415,7 +6415,7 @@ fieldset:disabled .btn {
 }
 
 .modal-backdrop {
-    --bs-backdrop-zindex: 1040;
+    --bs-backdrop-zindex: none;
     --bs-backdrop-bg: #000;
     --bs-backdrop-opacity: 0.5;
     position: fixed;
@@ -6426,6 +6426,7 @@ fieldset:disabled .btn {
     height: 100vh;
     background-color: var(--bs-backdrop-bg)
 }
+
 
 .modal-backdrop.fade {
     opacity: 0

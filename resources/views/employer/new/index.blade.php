@@ -65,7 +65,6 @@
                                                 <td>{{ count($item->AllCv) }}</td>
                                                 <td>{{ $item->job_time }}</td>
                                                 <td>
-
                                                     @if (Carbon::parse($item->end_job_time)->format('m') == $m)
                                                         <h5>
                                                             @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
@@ -105,9 +104,10 @@
                                                             </li>
                                                             <li class="dropdown-divider"></li>
                                                             <li>
-                                                                <a class="dropdown-item" href=""
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('employer.new.showdetai', $item->id) }}"
                                                                     class="dropdown-item">
-                                                                    <i class="fa fa-eye"></i>gia hạn
+                                                                    <i class="fa fa-eye"></i>Tất cả hồ sơ đã nhận
                                                                 </a>
                                                             </li>
                                                         </ul>

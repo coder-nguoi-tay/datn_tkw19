@@ -73,6 +73,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::get('new/edit/{job}', [NewEmployerController::class, 'edit'])->name('new.edit');
     Route::post('new/update/{id}', [NewEmployerController::class, 'update'])->name('new.update');
     Route::post('new/change-status/{id}', [NewEmployerController::class, 'changeStus'])->name('new.changeStus');
+    Route::get('new/show-all-cv/{id}', [NewEmployerController::class, 'detailNew'])->name('new.showdetai');
     //
     Route::resource('package', EmployerPackageController::class);
     Route::post('package/update-time/{id}', [EmployerPackageController::class, 'updateTimePayment'])->name('package.updateTimePayment');
@@ -116,7 +117,7 @@ Route::resource('login', ClientLoginController::class);
 Route::get('register-client', [ClientLoginController::class, 'registerClient'])->name('register');
 
 Route::resource('quan-ly-cv', SeekerManageUploadController::class);
-Route::resource('detail-company', DetailCompanyController::class);
+Route::get('detail-company/{id}', [DetailCompanyController::class, 'detailCompany'])->name('detail.company');
 Route::resource('xem-ho-so', ViewProfileController::class);
 Route::get('file/tao-moi', [SeekerManageUploadController::class, 'createFormCV'])->name('user.createFormCV');
 Route::post('file/tao-moi', [SeekerManageUploadController::class, 'storeFormCV'])->name('user.storeFormCV');
@@ -145,4 +146,4 @@ Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 's
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
 Route::get('tim-viec-lam', [SearchController::class, 'create'])->name('home.search');
 Route::get('News', [NewsController::class, 'index'])->name('company');
-Route::get('News/detail', [NewsController::class, 'Test'])->name('company.detail');
+Route::get('detailNew/{id}', [NewsController::class, 'showTinTuc'])->name('detailNew');

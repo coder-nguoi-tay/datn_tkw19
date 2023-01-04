@@ -356,6 +356,22 @@ html body .db {
 
 }
 
+
+/* // */
+.hover-div {
+    display: block;
+    border-radius: 7px !important;
+    overflow: hidden;
+    box-shadow: 2px 2px 12px rgb(33 47 63 / 10%);
+    height: 130px;
+}
+
+.hover-div:hover {
+    background: rgb(243, 241, 241);
+    cursor: pointer;
+}
+
+/*  */
 .border {
     border: 1px solid #eef2f5;
 }
@@ -3744,7 +3760,7 @@ li.login-attri .account-drop a {
 .jbr-wrap {
     position: relative;
     display: block;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     background: #ffffff;
 }
 
@@ -6568,13 +6584,14 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
     font-size: 15px;
     border-radius: 4px;
     text-decoration: none;
-    background: #333c56;
-    color: #ffffff;
+
+    color: #208ceb;
 }
 
+
 #back2Top:hover {
-    background-color: #ffffff;
-    color: #333c56;
+
+    color: #208ceb;
 }
 
 .box-not-share-location {
@@ -6717,7 +6734,7 @@ a:hover {
 }
 
 .icon-item {
-    width: 160px !important;
+    width: 200px !important;
 
 }
 
@@ -6912,6 +6929,19 @@ a:hover {
     width: 275px !important;
     border: 1px solid #e5e5e5;
 } */
+
+.maxText {
+    font-size: 20px;
+    color: #3b5998 !important;
+    margin: 0 0 5px;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    text-align: justify;
+
+}
 
 .job-item {
     background: #fff 0 0 no-repeat padding-box;

@@ -372,6 +372,7 @@ class HomeController extends BaseController
                     //
                     $cvUpload = new $this->savecv();
                     $cvUpload->title = $request->title;
+                    $cvUpload->token = rand(00000, 99999);
                     $cvUpload->user_id = Auth::guard('user')->user()->id;
                     if ($request->hasFile('file_cv')) {
                         $cvUpload->file_cv = $request->file_cv->storeAs('images/cv', $request->file_cv->hashName());
@@ -397,6 +398,7 @@ class HomeController extends BaseController
             if ($cvSave) {
                 $cvUpload = new $this->savecv();
                 $cvUpload->title = $cvSave->title;
+                $cvUpload->token = rand(00000, 99999);
                 $cvUpload->user_id = $cvSave->user_id;
                 $cvUpload->file_cv = $cvSave->file_cv;
                 $cvUpload->id_job = $request->id_job;
