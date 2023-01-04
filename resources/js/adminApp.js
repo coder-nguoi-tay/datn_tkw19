@@ -128,6 +128,9 @@ app.component('btn-status-company', btnStatusCompany);
 import BoughtCV from "./components/employer/boughtcv/index.vue";
 app.component('bought-cv', BoughtCV);
 
+import btnPayment from "./components/common/btnPayment.vue";
+app.component('btn-payment-extend-employer', btnPayment);
+
 app.mount('#app');
 
 
