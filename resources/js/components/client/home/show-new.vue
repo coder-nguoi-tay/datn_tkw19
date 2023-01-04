@@ -150,7 +150,7 @@
                   >
                     <p
                       style="
-                        width: 200px !important
+                        width: 200px !important,
                         overflow: hidden !important,
                         text-overflow: ellipsis !important,
                         white-space: nowrap,

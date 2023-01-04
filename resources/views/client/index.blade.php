@@ -3,6 +3,11 @@
 @endphp
 @extends('client.layout.index')
 @section('client')
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 
     <body>
         <div class="home-banner margin-bottom-0" style="background:#00ab46 url('banner-bg.jpg')" data-overlay="5">
@@ -166,7 +171,7 @@
                 <!-- end -->
             </div>
         </section>
-        <section class="space gray">
+        <section class="space gray" data-aos="zoom-in-up">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -309,25 +314,26 @@
                         <div class="p-1 pl-3 mb-2 alert alert-secondary rounded">
                             <h2 class="ft-bold">Tất cả việc làm</h2>
                         </div>
-                        <div class="row justify-content-center">
+
+                        <div class="row justify-content-center" data-aos="flip-left">
                             <!-- Single -->
-                            <div class="row justify-content-center">
+                            <div class="row justify-content-center" style="background: rgba(250, 250, 250, 0.904);">
                                 <div class="container p-3">
-                                    <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" id="paginated-list">
+                                    <div class="row  g-2 g-lg-3 " id="paginated-list">
                                         @foreach ($jobAttractive as $value)
-                                            <div class="col-3 render-job-search">
-                                                <div class="p-3 border bg-light box-showdow">
+                                            <div class="col-4 render-job-search view overlay rounded">
+                                                <div class="p-4  hover-div border">
                                                     <div class="position-absolute ab-right"><a type="button"
                                                             class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
                                                                 class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></a>
                                                     </div>
                                                     <div class="row" style="height: 80px;">
                                                         <div class="job_grid_thumb mb-3 title-name px-3 col-4"><a
-                                                                href="home/detail/Tuyển FPT-1" class="d-block m-auto"
+                                                                href="home/detail/{{ $value->title . '-' . $value->id }}"
+                                                                class="d-block m-auto"
                                                                 style="width: 68px; height: 68px;"><img
-                                                                    src="images/cv/TTa7yGhFlC7j878HvIYIbEMHzID5Jrbka0f90HiN.jpg"
-                                                                    class="img-rounded" alt=""
-                                                                    style=""></a>
+                                                                    src="{{ asset($value->logo) }}" class="img-rounded"
+                                                                    alt="" style=""></a>
                                                         </div>
                                                         <div class="job_grid_caption title-name px-3 col-8 g-1">
                                                             <h4 class="mb-0 ft-medium medium ml-20"><a
@@ -392,8 +398,8 @@
                                     <div class="container p-3">
                                         <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" id="paginated-list">
                                             @foreach ($jobForUser as $value)
-                                                <div class="col-3 render-job-search">
-                                                    <div class="p-3 border bg-light box-showdow">
+                                                <div class="col-3 render-job-search ">
+                                                    <div class="p-3 border bg-light box-showdow ">
                                                         <div class="position-absolute ab-right"><a type="button"
                                                                 class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
                                                                     class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></a>
@@ -508,28 +514,8 @@
 
         <!-- Button trigger modal -->
         <!-- Modal login -->
-        <div class="modal fade" id="exampleModallogin" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Chào mừng bạn đến với ITWork</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <client-login
-                            :data="{{ json_encode([
-                                'urlStore' => route('owner.store'),
-                                'urlRegister' => route('owner.update.register'),
-                                'message' => $message ?? '',
-                            ]) }}">
-                            <client-login>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
     </body>
     @if (Auth::guard('user')->check())
         @if ($user->getProfileUse == null)

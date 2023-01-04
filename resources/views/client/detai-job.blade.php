@@ -163,7 +163,7 @@
                                             <div class="mb-2 mr-4 ml-lg-0 mr-lg-4">
                                                 <div class="d-flex align-items-center">
                                                     <h6 class="mb-0 ml-3 text-muted fs-sm">
-                                                        {!! $job->candidate_requirements !!}</h6>
+                                                        {!! $job->benefit !!}</h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -256,25 +256,9 @@
                         <div>
                             <p class="title">Giới thiệu</p>
                             <span class="content">
-                                <p>Công ty Cổ phần Dược phẩm Tín Phong được thành lập ngày 09/09/2013 bởi đội ngũ giàu kinh
-                                    nghiệm trong nghiên cứu và phân phối các sản phẩm thuốc uy tín cho thị trường Việt Nam.
-                                    Với tầm nhìn dài hạn và quan điểm phát triển bền vững, TÍN PHONG tập trung gây dựng và
-                                    kiến tạo hình ảnh một thương hiệu dược phẩm uy tín, lựa chọn tin cậy của mọi nhà. Bằng
-                                    khát vọng vươn lên cùng chiến lược đầu tư – phát triển sáng tạo, TÍN PHONG phấn đấu trở
-                                    thành công ty dược phẩm uy tín hàng đầu trong việc kinh doanh, phân phối sản phẩm dược
-                                    và thực phẩm bảo vệ sức khỏe.
+                                <p>{!! $jobCompany[0]->desceibe !!}
                                 </p>
-                                <p>TÍN PHONG mong muốn tạo nên một thương hiệu uy tín cho cộng đồng, trở thành niềm tin khi
-                                    lựa chọn các sản phẩm chất lượng của người tiêu dùng, vì một cuộc sống khoẻ mạnh và phát
-                                    triển toàn diện.
-                                </p>
-                                <p>TÍN PHONG tin rằng, niềm tin của khách hàng chính là thước đo cho thành công của doanh
-                                    nghiệp. TÍN PHONG nỗ lực hết mình vì sự tín nhiệm của cộng đồng.
-                                </p>
-                                <p>Với triết lý kinh doanh đó, TÍN PHONG xây dựng những giá trị cốt lõi làm tôn chỉ xuyên
-                                    suốt mọi hoạt động của công ty, cũng là lời hứa danh dự của người làm thuốc:
-                                </p>
-                                <p>TÍN - TÂM - NHÂN - ĐỨC</p>
+
                                 <p>
                                 </p>
                                 <p>
@@ -291,14 +275,14 @@
                         <div class="dro_141 de"><i class="fa fa-user-shield"></i></div>
                         <div>
                             <p class="title" style="margin-bottom: 0">Quy mô</p>
-                            <span class="content">100-499 nhân viên</span>
+                            <span class="content">{{ $jobCompany[0]->number_tax }}</span>
                         </div>
                     </div>
                     <div class="box-item">
                         <div class="dro_141 de"><i class="fa fa-map-marker"></i></div>
                         <div>
                             <p class="title" style="margin-bottom: 0">Địa điểm</p>
-                            <span class="content">Lô B10/D6, KĐT Cầu Giấy, Dịch Vọng, Cầu Giấy, Hà Nội</span>
+                            <span class="content">{{ $jobCompany[0]->address }}</span>
                         </div>
                     </div>
                     <div class="box-job-company">
