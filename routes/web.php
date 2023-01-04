@@ -112,6 +112,9 @@ Route::post('register/create', [HomeEmployerController::class, 'store'])->name('
 
 // seeker
 Route::resource('profile', SeekerHomeController::class);
+Route::resource('login', ClientLoginController::class);
+Route::get('register-client', [ClientLoginController::class, 'registerClient'])->name('register');
+
 Route::resource('quan-ly-cv', SeekerManageUploadController::class);
 Route::resource('detail-company', DetailCompanyController::class);
 Route::resource('xem-ho-so', ViewProfileController::class);

@@ -17,6 +17,9 @@
                                         data-target="#exampleModallogin">
                                         <i class="lni lni-user"></i>Đăng
                                         nhập</button></fieldset>
+                                {{-- <a href="/login" class="main-button" >
+                                    <i class="lni lni-user"></i>Đăng
+                                    nhập</a> --}}
                             </li>
                             <li>
                                 <a href="dashboard-post-job.html" class="main-button">

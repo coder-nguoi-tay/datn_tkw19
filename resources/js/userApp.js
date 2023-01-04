@@ -125,6 +125,11 @@ app.component("notyf", Notyf);
 import showCvClient from "./components/client/seeker/create-cv.vue";
 app.component('show-cv-client', showCvClient);
 
+import formLogin from "./components/client/login/login.vue";
+app.component('form-login', formLogin);
+import formRegister from "./components/client/register/index.vue";
+app.component('form-register', formRegister);
+
 //home 
 import Abcxyz from "./components/client/seeker/test.vue";
 app.component('home-test', Abcxyz);
