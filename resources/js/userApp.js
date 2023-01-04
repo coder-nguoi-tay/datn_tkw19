@@ -26,11 +26,6 @@ defineRule('telephone', (value) => {
 })
 
 $(document).ready(function () {
-    $(".select2").select2({
-        multiple: true,
-    });
-})
-$(document).ready(function () {
 
     const paginationNumbers = document.getElementById("pagination-numbers");
     if (paginationNumbers) {
@@ -99,7 +94,6 @@ $(document).ready(function () {
     }
 });
 
-
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 app.use(VueSweetalert2)
@@ -132,6 +126,8 @@ import showCvClient from "./components/client/seeker/create-cv.vue";
 app.component('show-cv-client', showCvClient);
 
 //home 
+import Abcxyz from "./components/client/seeker/test.vue";
+app.component('home-test', Abcxyz);
 import HomeSearch from "./components/client/home/search.vue";
 app.component('home-search', HomeSearch);
 

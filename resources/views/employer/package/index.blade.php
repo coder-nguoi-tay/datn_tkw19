@@ -68,11 +68,11 @@
                                                         @if ($item->status == 2)
                                                             <li class="dropdown-divider"></li>
                                                             <li>
-                                                                <btn-payment-employer
+                                                                <btn-payment-extend-employer
                                                                     :message-confirm="{{ json_encode('Bạn có chắc muốn gia hạn với mức giá ' . number_format($item->price) . 'đ' . ' không ?') }}"
                                                                     :delete-action="{{ json_encode(route('employer.package.updateTimePayment', $item->id)) }}"
                                                                     :price="{{ json_encode($item->price) }}">
-                                                                </btn-payment-employer>
+                                                                </btn-payment-extend-employer>
                                                             </li>
                                                         @endif
                                                     </ul>
@@ -92,7 +92,6 @@
             </div>
         </div>
     </div>
-    <!-- Button check expext -->
 
     <!-- Modal by payment -->
     <account-payment
