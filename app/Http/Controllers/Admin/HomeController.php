@@ -95,8 +95,6 @@ class HomeController extends BaseController
     }
     public function error()
     {
-        return view('client.404', [
-            'majors' => Majors::all()
-        ]);
+        return view('client.404');
     }
 }

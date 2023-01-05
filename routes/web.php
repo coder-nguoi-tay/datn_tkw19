@@ -151,4 +151,4 @@ Route::get('detail-company/{id}', [DetailCompanyController::class, 'detailCompan
 // Route::get('detailNew/{id}', [NewsController::class, 'showTinTuc'])->name('detailNew');
 //
 Route::get('majors/{id}', [ClientHomeController::class, 'searchMajors'])->name('searchMajors');
-Route::get('404', [HomeController::class, 'error'])->name('404');
+Route::get('error-404', [HomeController::class, 'error'])->name('error404');
