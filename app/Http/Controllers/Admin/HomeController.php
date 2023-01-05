@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\StatusCode;
 use App\Http\Requests\RegisterAdminRequest;
+use App\Models\Majors;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends BaseController
@@ -56,7 +57,7 @@ class HomeController extends BaseController
      */
     public function show($id)
     {
-       //
+        //
     }
 
     /**
@@ -91,5 +92,11 @@ class HomeController extends BaseController
     public function destroy($id)
     {
         //
+    }
+    public function error()
+    {
+        return view('client.404', [
+            'majors' => Majors::all()
+        ]);
     }
 }

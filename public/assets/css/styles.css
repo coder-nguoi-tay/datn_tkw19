@@ -371,6 +371,18 @@ html body .db {
     cursor: pointer;
 }
 
+.hover-div1 {
+    display: block;
+    border-radius: 7px !important;
+    overflow: hidden;
+    box-shadow: 2px 2px 12px rgb(33 47 63 / 10%);
+}
+
+.hover-div1:hover {
+    background: rgb(255, 251, 251);
+    cursor: pointer;
+}
+
 /*  */
 .border {
     border: 1px solid #eef2f5;
@@ -6936,13 +6948,21 @@ a:hover {
     font-size: 20px;
     color: #3b5998 !important;
     margin: 0 0 5px;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     text-align: justify;
 
+}
+
+.maxTextCompany {
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
 }
 
 .job-item {
@@ -8798,3 +8818,4 @@ responsive
         transform: translateX(-22px);
     }
 }
+

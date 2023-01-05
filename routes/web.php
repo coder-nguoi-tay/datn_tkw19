@@ -117,7 +117,6 @@ Route::resource('login', ClientLoginController::class);
 Route::get('register-client', [ClientLoginController::class, 'registerClient'])->name('register');
 
 Route::resource('quan-ly-cv', SeekerManageUploadController::class);
-Route::get('detail-company/{id}', [DetailCompanyController::class, 'detailCompany'])->name('detail.company');
 Route::get('job-manager', [DetailCompanyController::class, 'jobManager'])->name('jobManager');
 Route::resource('xem-ho-so', ViewProfileController::class);
 Route::get('file/tao-moi', [SeekerManageUploadController::class, 'createFormCV'])->name('user.createFormCV');
@@ -146,7 +145,10 @@ Route::post('home/detail/upcv', [ClientHomeController::class, 'upCv'])->name('ho
 Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 'searchLocation'])->name('home.search.location');
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
 Route::get('tim-viec-lam', [SearchController::class, 'create'])->name('home.search');
+//trang giới thiệu các công ty
 Route::get('News', [NewsController::class, 'index'])->name('company');
-Route::get('detailNew/{id}', [NewsController::class, 'showTinTuc'])->name('detailNew');
+Route::get('detail-company/{id}', [DetailCompanyController::class, 'detailCompany'])->name('detail.company');
+// Route::get('detailNew/{id}', [NewsController::class, 'showTinTuc'])->name('detailNew');
 //
 Route::get('majors/{id}', [ClientHomeController::class, 'searchMajors'])->name('searchMajors');
+Route::get('404', [HomeController::class, 'error'])->name('404');
