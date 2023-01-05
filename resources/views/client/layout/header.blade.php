@@ -13,7 +13,7 @@
                     <ul>
                         @if (!Auth::guard('user')->check())
                             <li>
-                                <fieldset><button class="main-button" data-toggle="modal"
+                                <fieldset><button class="main-button " data-toggle="modal"
                                         data-target="#exampleModallogin">
                                         <i class="lni lni-user"></i>Đăng
                                         nhập</button></fieldset>
@@ -77,8 +77,8 @@
                     @if (!Auth::guard('user')->check())
                         <li>
                             <fieldset>
-                                <button style="background-color: #a4aec0; color: #fff" class="main-button btn border"
-                                    data-toggle="modal" data-target="#exampleModallogin">
+                                <button style="background-color: #f8b8b8; color: #fff;height: 51px;"
+                                    class="main-button btn border" data-toggle="modal" data-target="#exampleModallogin">
                                     <i class="lni lni-user"></i>Đăng
                                     nhập</button>
                             </fieldset>

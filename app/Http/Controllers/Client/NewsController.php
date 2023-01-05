@@ -12,17 +12,17 @@ class NewsController extends Controller
     //
     public function index()
     {
-        return view('client.Tin-tuc.news', [
+        return view('client.detail-company.news', [
             'company' => Company::all(),
             'majors' => Majors::all()
         ]);
     }
-    public function showTinTuc($id)
-    {
-        $company = Company::find($id);
-        return view('client.Tin-tuc.detai-news', [
-            'company' => $company,
-            'majors' => Majors::all()
-        ]);
-    }
+    // public function showTinTuc($id)
+    // {
+    //     $company = Company::find($id);
+    //     return view('client.Tin-tuc.detai-news', [
+    //         'company' => $company,
+    //         'majors' => Majors::all()
+    //     ]);
+    // }
 }
