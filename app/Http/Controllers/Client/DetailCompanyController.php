@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Job;
+use App\Models\Majors;
 use Illuminate\Http\Request;
 
 class DetailCompanyController extends Controller
@@ -106,6 +107,6 @@ class DetailCompanyController extends Controller
             ->where('company.id', $id)
             ->with(['getWage', 'getlocation', 'getMajors'])
             ->get();
-        return view('client.detail-company.index', ['company' => Company::where('id', $id)->first(), 'job' => $jobCompany]);
+        return view('client.detail-company.index', ['company' => Company::where('id', $id)->first(), 'job' => $jobCompany, 'majors' => Majors::all()]);
     }
 }

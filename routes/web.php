@@ -144,3 +144,5 @@ Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'sea
 Route::get('tim-viec-lam', [SearchController::class, 'create'])->name('home.search');
 Route::get('News', [NewsController::class, 'index'])->name('company');
 Route::get('detailNew/{id}', [NewsController::class, 'showTinTuc'])->name('detailNew');
+//
+Route::get('majors/{id}', [ClientHomeController::class, 'searchMajors'])->name('searchMajors');

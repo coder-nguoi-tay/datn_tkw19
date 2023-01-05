@@ -114,51 +114,111 @@ class ManageUploadController extends BaseController
 
     public function createFormCV()
     {
+        $skill = $this->profileUserCv->where('user_id', Auth::guard('user')->user()->id)->first();
         return view('client.seeker.create_form_cv', [
             'title' => 'Tạo mới CV',
-            'user' => $this->profileUserCv->where('user_id', Auth::guard('user')->user()->id)->first(),
+            'user' => $this->profileUserCv->where('user_id', Auth::guard('user')->user()->id)->first() ?? null,
+            'skill' => $skill ?  json_decode($skill->skill) : null,
+            'project' => $skill ? json_decode($skill->project) : null,
             'user_name' => User::where('id', Auth::guard('user')->user()->id)->first()->name,
         ]);
     }
     public function storeFormCV(Request $request)
     {
-        dd($request->all());
         $user = $this->profileUserCv->where('user_id', Auth::guard('user')->user()->id)->first();
         if ($user) {
             $profileUserCv = $this->profileUserCv->where('user_id', Auth::guard('user')->user()->id)->first();
         } else {
             $profileUserCv = new $this->profileUserCv();
         }
-        try {
-            if ($request->status_profile) {
-                $profileUserCv->status_profile = 1;
-            } else {
-                $profileUserCv->status_profile = 0;
-            }
-            $profileUserCv->email = $request->email;
-            if ($request->hasFile('images')) {
-                $profileUserCv->images = $request->images->storeAs('images/cv', $request->images->hashName());
-            }
-            $profileUserCv->majors = $request->majors;
-            $profileUserCv->link_fb = $request->link_fb;
-            $profileUserCv->user_id = Auth::guard('user')->user()->id;
-            $profileUserCv->address = $request->address;
-            $profileUserCv->phone = $request->phone;
-            $profileUserCv->skill = $request->skill;
-            $profileUserCv->certificate = $request->certificate;
-            $profileUserCv->target = $request->target;
-            $profileUserCv->work = $request->work;
-            $profileUserCv->work_detail = $request->work_detail;
-            $profileUserCv->project = $request->project;
-            $profileUserCv->project_detail = $request->project_detail;
-            $profileUserCv->save();
-            $this->setFlash(__('Cập nhật thành công !'));
-            return redirect()->back();
-        } catch (\Throwable $th) {
-            DB::rollback();
-            $this->setFlash(__('đã có một lỗi không xác định đã xảy ra, kiểm tra lại thông tin của bạn'), 'error');
-            return redirect()->back();
+        if ($request->status_profile) {
+            $profileUserCv->status_profile = 1;
+        } else {
+            $profileUserCv->status_profile = 0;
         }
+        $profileUserCv->email = $request->email;
+        if ($request->hasFile('images')) {
+            $profileUserCv->images = $request->images->storeAs('images/cv', $request->images->hashName());
+        }
+        $arr_skill = [];
+        foreach ($request->skill as $i => $skill) {
+            foreach ($request->title_skill as $key => $value) {
+                if ($i == $key) {
+                    $arr_skill[] = [
+                        'name' => $skill,
+                        'value' => $value
+                    ];
+                }
+            }
+        }
+        $array_project = [];
+        foreach ($request->project as $i => $project) {
+            foreach ($request->project_detail as $key => $value) {
+                if ($i == $key) {
+                    $array_project[] = [
+                        'name' => $project,
+                        'value' => $value
+                    ];
+                }
+            }
+        }
+        $profileUserCv->majors = $request->majors;
+        $profileUserCv->link_fb = $request->link_fb;
+        $profileUserCv->user_id = Auth::guard('user')->user()->id;
+        $profileUserCv->address = $request->address;
+        $profileUserCv->phone = $request->phone;
+        $profileUserCv->skill = json_encode($arr_skill);
+        $profileUserCv->certificate = $request->certificate;
+        $profileUserCv->target = $request->target;
+        $profileUserCv->work = '';
+        $profileUserCv->work_detail = '';
+        $profileUserCv->project = json_encode($array_project);
+        $profileUserCv->project_detail = '';
+        $profileUserCv->save();
+        $this->setFlash(__('Cập nhật thành công !'));
+        return redirect()->back();
+
+
+        dd($request->skill, $request->title_skill, $arr_skill);
+        // $array = collect([$request->skill, $request->title_skill]);
+        // dd($array);
+        // $user = $this->profileUserCv->where('user_id', Auth::guard('user')->user()->id)->first();
+        // if ($user) {
+        //     $profileUserCv = $this->profileUserCv->where('user_id', Auth::guard('user')->user()->id)->first();
+        // } else {
+        //     $profileUserCv = new $this->profileUserCv();
+        // }
+        // // try {
+        // if ($request->status_profile) {
+        //     $profileUserCv->status_profile = 1;
+        // } else {
+        //     $profileUserCv->status_profile = 0;
+        // }
+        // $profileUserCv = new $this->profileUserCv();
+        // $profileUserCv->email = $request->email;
+        // if ($request->hasFile('images')) {
+        //     $profileUserCv->images = $request->images->storeAs('images/cv', $request->images->hashName());
+        // }
+        // $profileUserCv->majors = $request->majors;
+        // $profileUserCv->link_fb = $request->link_fb;
+        // $profileUserCv->user_id = Auth::guard('user')->user()->id;
+        // $profileUserCv->address = $request->address;
+        // $profileUserCv->phone = $request->phone;
+        // $profileUserCv->skill = $array;
+        // $profileUserCv->certificate = 'json_encode((object)$request->title_skill)';
+        // $profileUserCv->target = '$request->target';
+        // $profileUserCv->work = ' $request->work';
+        // $profileUserCv->work_detail = '$request->work_detail';
+        // $profileUserCv->project = '$request->project';
+        // $profileUserCv->project_detail = '$request->project_detail';
+        // $profileUserCv->save();
+        // $this->setFlash(__('Cập nhật thành công !'));
+        // return redirect()->back();
+        // } catch (\Throwable $th) {
+        //     DB::rollback();
+        //     $this->setFlash(__('đã có một lỗi không xác định đã xảy ra, kiểm tra lại thông tin của bạn'), 'error');
+        //     return redirect()->back();
+        // }
     }
     /**
      * Update the specified resource in storage.

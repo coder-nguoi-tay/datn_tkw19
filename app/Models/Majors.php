@@ -21,4 +21,8 @@ class Majors extends Model
     {
         return ImageMajors::getDescription($this->id);
     }
+    public function majors()
+    {
+        return $this->hasMany(Job::class, 'majors_id', 'id');
+    }
 }

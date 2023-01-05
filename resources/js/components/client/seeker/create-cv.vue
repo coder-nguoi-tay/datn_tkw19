@@ -44,8 +44,8 @@
                   />
                 </div>
                 <img
-                  v-if="model.images && !filePreview"
-                  :src="'http://127.0.0.1:8000/' + model.images"
+                  v-if="Imgage && !filePreview"
+                  :src="'http://127.0.0.1:8000/' + Imgage"
                   class="img-fluid"
                 />
                 <div id="img-preview" @click="chooseImage()" role="button">
@@ -65,7 +65,7 @@
                     class="img-fluid p-2"
                   />
                 </div>
-                <input type="hidden" name="images" v-model="model.images" />
+                <input type="hidden" name="images" v-model="Imgage" />
               </div>
               <div class="contact">
                 <h3>Thông tin cá nhân</h3>
@@ -160,7 +160,7 @@
                               />
                               <Field
                                 type="text"
-                                v-model="item.title"
+                                v-model="item.title_skill"
                                 rules="required"
                                 :name="'title_skill[ ' + index + ' ]'"
                                 :disabled="isReadOnly"
@@ -213,9 +213,8 @@
                 <h4>
                   <Field
                     type="text"
-                    style="width: 300px"
-                    id="majors"
                     v-model="model.majors"
+                    style="width: 300px"
                     name="majors"
                     class="form-control box-up-cv"
                     placeholder="Chuyên ngành"
@@ -259,14 +258,14 @@
                 <div class="box_2_cv" style="margin-bottom: 30px">
                   <div class="col-md-12 col-sm-12 col-xs-12 p-2">
                     <div
-                      v-for="(item, index) in experience_cv_info"
+                      v-for="(item1, index) in experience_cv_info"
                       class="wrapper-item"
                     >
                       <div class="row">
-                        <div class="col-6">
+                        <div class="col-10">
                           <div class="mb-2">
                             <Field
-                              v-model="item.project"
+                              v-model="item1.project"
                               rules="required"
                               :name="'project[ ' + index + ' ]'"
                               :disabled="isReadOnly"
@@ -281,12 +280,8 @@
                             />
                             <Editor
                               :name="'project_detail[ ' + index + ' ]'"
-                              v-model="model.project_detail"
-                              class="
-                                form-control
-                                cus-tom-ckediter-cv
-                                input-skill
-                              "
+                              v-model="item1.project_detail"
+                              class="form-control mt-5"
                               rules="required|max:255"
                               placeholder="Mô tả"
                             />
@@ -296,7 +291,7 @@
                             />
                           </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-2">
                           <span @click.prevent="addFormExperience()"
                             ><i class="fas fa-plus"></i
                           ></span>
@@ -362,33 +357,48 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: this.data.user ?? '',
+      model: this.data.user ?? {},
       status_profile: '',
       filePreview: '',
       isReadOnly: false,
-      skill_cv_info: [
-        {
-          skill: '',
-          title_skill: ''
-        }
-      ],
-      experience_cv_info: [
-        {
-          project: '',
-          project_detail: ''
-        }
-      ],
+      skill_cv_info: [],
+      experience_cv_info: [],
       numberForm: 1,
-      numberFormExperience: 1
+      numberFormExperience: 1,
+      Imgage: ''
     }
   },
   created() {
-    if (this.data.user) {
+    console.log(this.data.user)
+    if (this.data.user != null) {
+      this.data.skill.map((x) => {
+        this.skill_cv_info.push({
+          skill: x.name,
+          title_skill: x.value
+        })
+      })
+      this.Imgage = this.data.user.images
+      this.data.project.map((x) => {
+        this.experience_cv_info.push({
+          project: x.name,
+          project_detail: x.value
+        })
+      })
+      console.log(this.model)
       if (this.data.user.status_profile == 0) {
         this.status_profile = false
       } else {
         this.status_profile = true
       }
+    } else {
+      this.skill_cv_info.push({
+        skill: '',
+        title_skill: ''
+      })
+      this.experience_cv_info.push({
+        project: '',
+        project_detail: ''
+      })
     }
     let messError = {
       en: {
@@ -481,25 +491,12 @@ export default {
   margin-top: 20px;
 }
 
-.cus-tom-ckediter-cv {
-  display: block !important;
-  margin-top: 10px !important;
-}
-
 .cus-tom-ckediter-cv:hover {
   border: 2px dashed #f5e63f;
 }
 
-.form-control:hover {
-  border: 2px dashed #f5e63f;
-}
-
 .tox-tinymce {
-  visibility: hidden !important;
-}
-
-.input-skill {
-  width: 700px !important;
+  margin-top: 10px !important;
 }
 
 .custum-box-image-cv {
@@ -752,12 +749,5 @@ export default {
 
 .custom-label {
   float: left;
-}
-
-._dashboard_content_body {
-  .tox-tinymce {
-    height: 0px !important;
-    visibility: hidden !important;
-  }
 }
 </style>

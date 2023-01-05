@@ -46,7 +46,7 @@
                     <li><a href="{{ route('index') }}">Lĩnh vực</a>
                         <ul class="nav-dropdown nav-submenu">
                             @foreach ($majors as $item)
-                                <li><a href="tim-viec-lam?majors={{ $item->id }}">{{ $item->name }}</a>
+                                <li><a href="{{ route('searchMajors', $item->id) }}">{{ $item->name }}</a>
                                 </li>
                             @endforeach
                         </ul>
