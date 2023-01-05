@@ -22,7 +22,7 @@
                 class="
                   list-group-item list-group-item-action
                   border-0
-                  nuxt-link-active
+                  nuxt-link-active active
                 "
                 ><i data-v-61ae721f="" class="fa mr-2 fa-user"></i> Thông tin cá
                 nhân
@@ -86,13 +86,13 @@
           <div class="tab-content" id="v-pills-tabContent">
             <!-- Thông tin cá nhân-->
             <div
-              class="tab-pane fade"
+              class="tab-pane fade active"
               id="v-pills-profile"
               role="tabpanel"
               aria-labelledby="v-pills-profile-tab"
               tabindex="0"
             >
-              <div class="row card-profile-employer">
+              <div class="row card-profile-employer active">
                 <VeeForm
                   as="div"
                   v-slot="{ handleSubmit }"
@@ -951,7 +951,7 @@ export default {
 }
 .box-upload {
   background: rgba(229, 247, 237, 0.1);
-  border: 2px dashed #00b14f;
+  border: 2px dashed #2eb85c;
   border-radius: 8px;
   cursor: pointer;
   margin-bottom: 16px;
@@ -1048,11 +1048,6 @@ a {
   text-decoration: none;
   background-color: transparent;
 }
-/* .list-group-item.active[data-v-61ae721f] {
-  color: #28a745;
-  background: #fff;
-  font-weight: 700;
-} */
 
 .list-group-item + .list-group-item.active {
   margin-top: -1px;
@@ -1070,8 +1065,8 @@ a {
 .list-group-item.active {
   z-index: 2;
   color: #fff;
-  background-color: #00b14f;
-  border-color: #00b14f;
+  background-color: #2eb85c;
+  border-color: #2eb85c;
 }
 .list-group-item:last-child {
   border-bottom-right-radius: inherit;
@@ -1111,9 +1106,6 @@ a {
 .w-50 {
   width: 50% !important;
 }
-/* .nav-tabs .nav-link.active[data-v-6f017734] {
-  border-bottom: 2px solid #00b14f !important;
-} */
 
 .nav-tabs .nav-link[data-v-6f017734] {
   border-bottom: 2px solid #eee !important;
@@ -1162,7 +1154,7 @@ a {
 
 .nav-tabs .nav-link.active i[data-v-6f017734],
 .nav-tabs .nav-link.active p[data-v-6f017734] {
-  color: #00b14f;
+  color: #2eb85c;
 }
 .card {
   border: none;
@@ -1208,8 +1200,13 @@ a {
 }
 .btn-primary {
   color: #fff;
-  background-color: #00b14f;
-  border-color: #00b14f;
+  background-color: #2eb85c;
+  border-color: #2eb85c;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #2eb85c;
+  border-color: #2eb85c;
 }
 .btn-group-lg > .min-width.btn,
 .min-width.btn-lg {
@@ -1232,40 +1229,5 @@ a {
   color: #212529;
   background-color: #f3f4f5;
   border-color: #f3f4f5;
-}
-.profile-button {
-  background: rgb(99, 39, 120);
-  box-shadow: none;
-  border: none;
-}
-
-.profile-button:hover {
-  background: #682773;
-}
-
-.profile-button:focus {
-  background: #682773;
-  box-shadow: none;
-}
-
-.profile-button:active {
-  background: #682773;
-  box-shadow: none;
-}
-
-.back:hover {
-  color: #682773;
-  cursor: pointer;
-}
-
-.labels {
-  font-size: 11px;
-}
-
-.add-experience:hover {
-  background: #ba68c8;
-  color: #fff;
-  cursor: pointer;
-  border: solid 1px #ba68c8;
 }
 </style>

@@ -133,8 +133,7 @@ class HomeController extends BaseController
                     ->get();
             }
         }
-        $majors = Majors::all();
-
+        $majors = Majors::with('majors')->get();
         $new = News::all();
         return view('client.index', [
             'majors' => $majors,
@@ -330,18 +329,15 @@ class HomeController extends BaseController
             'breadcrumbs' => $breadcrumbs,
         ]);
     }
-    public function searchMajors($name, $id)
+    public function searchMajors($id)
     {
         $job =  $this->job->where('majors_id', $id)
             ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getExperience', 'getLevel', 'getTime_work', 'getwk_form', 'getMajors'])
-            ->paginate(10);
+            ->get();
         $breadcrumbs = [
             'Tìm kiếm việc làm'
         ];
-        return view('client.search', [
-            'job' => $job,
-            'breadcrumbs' => $breadcrumbs,
-        ]);
+        dd($job);
     }
     public function upCv(Request $request)
     {

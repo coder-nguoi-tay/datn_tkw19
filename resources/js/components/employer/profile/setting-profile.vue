@@ -93,7 +93,6 @@
                         </div>
                         <div class="col-md-9 border-right">
                           <div class="p-3 py-5">
-                            
                             <div class="card">
                               <div class="card-body">
                                 <br />
@@ -591,11 +590,6 @@ a {
   text-decoration: none;
   background-color: transparent;
 }
-/* .list-group-item.active[data-v-61ae721f] {
-  color: #28a745;
-  background: #fff;
-  font-weight: 700;
-} */
 
 .list-group-item + .list-group-item.active {
   margin-top: -1px;
@@ -770,38 +764,5 @@ a {
   color: #212529;
   background-color: #f3f4f5;
   border-color: #f3f4f5;
-}
-.profile-button {
-  background: rgb(99, 39, 120);
-  box-shadow: none;
-  border: none;
-}
-
-.profile-button:hover {
-  background: #682773;
-}
-
-.profile-button:focus {
-  background: #682773;
-  box-shadow: none;
-}
-
-.profile-button:active {
-  background: #682773;
-  box-shadow: none;
-}
-
-.back:hover {
-  color: #682773;
-  cursor: pointer;
-}
-
-
-
-.add-experience:hover {
-  background: #ba68c8;
-  color: #fff;
-  cursor: pointer;
-  border: solid 1px #ba68c8;
 }
 </style>

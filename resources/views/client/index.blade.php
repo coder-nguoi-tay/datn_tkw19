@@ -182,9 +182,10 @@
                                                 </div>
                                                 <br>
                                                 <div class="col-xl-12">
-                                                    <h4 class="title-company"><a href="">{{ $item->name }}</a>
+                                                    <h4 class="title-company"><a
+                                                            href="{{ route('searchMajors', $item->id) }}">{{ $item->name }}</a>
                                                     </h4>
-                                                    <p class="number-job">600 Việc làm
+                                                    <p class="number-job">{{ count($item->majors) }} Việc làm
                                                     </p>
                                                 </div>
                                             </div>
