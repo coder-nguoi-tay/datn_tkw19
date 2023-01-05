@@ -59,16 +59,8 @@
           <h3>CHỨNG CHỈ</h3>
           <div class="box_contact">
             <div class="ky_nang">
-              <!-- <h4>2022</h4> -->
               <p v-html="data.cv.certificate"></p>
             </div>
-            <!-- <div class="ky_nang">
-              <h4>2023</h4>
-              <p>
-                English Topnotch 2.2 tại Trường Cao đẳng FPT Polytechnic (Tương
-                đương Ielts 4.5)
-              </p>
-            </div> -->
           </div>
         </div>
       </div>
@@ -106,10 +98,10 @@
             >
               <div class="title_cv">
                 <i class="fa-solid fa-briefcase"></i>
-                <h4 v-html="item.value">VỊ TRÍ:</h4>
+                <h4 v-html="item.name"></h4>
               </div>
               <div class="mt_cv">
-                <p v-html="item.name"></p>
+                <p v-html="item.value"></p>
               </div>
             </div>
           </div>
@@ -120,8 +112,11 @@
 </template>
 <script>
 export default {
-  created() {
-    console.log(JSON.parse(this.data.cv.skill))
+  created() {},
+  data: function () {
+    return {
+      csrfToken: Laravel.csrfToken
+    }
   },
   props: ['data']
 }

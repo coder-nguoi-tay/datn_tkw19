@@ -18,6 +18,7 @@
                                             :delete-action="{{ json_encode(route('employer.changecAcount', $cv->id)) }}"
                                             :count-getskill="{{ json_encode([
                                                 'accPayment' => $accPayment,
+                                                'total' => count(json_decode($cv->skill)) + count(json_decode($cv->project)),
                                             ]) }}">
                                         </btn-payment-employer>
                                     @endif
