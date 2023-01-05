@@ -25,10 +25,14 @@ class LoginController extends BaseController
     }
     public function index()
     {
-        if (Auth::guard('user')->check()) {
-            return redirect()->route('employer.index');
-        }
-        return view('client.login.index');
+        // if (Auth::guard('user')->check()) {
+        //     return redirect()->route('employer.index');
+        // }
+        // return view('client.login.index');
+
+        return view('client.login.index', [
+            'title' => 'Đăng nhập tài khoản',
+        ]);
     }
 
     /**
@@ -111,6 +115,13 @@ class LoginController extends BaseController
     {
         //
     }
+    public function registerClient()
+    {
+        return view('client.register.register',[
+            'title' => 'Đăng ký tài khoản',
+        ]);
+    }
+
     public function updateRegister(UserRegisterRequest $request)
     {
         if ($this->checkMailUser($request)) {

@@ -260,6 +260,10 @@ import Notyf from "./components/common/notyf.vue";
 app.component("notyf", Notyf);
 import showCvClient from "./components/client/seeker/create-cv.vue";
 app.component('show-cv-client', showCvClient);
+import formLogin from "./components/client/login/login.vue";
+app.component('form-login', formLogin);
+import formRegister from "./components/client/register/index.vue";
+app.component('form-register', formRegister);
 
 
 import modalContract from "./components/client/modal/modalContact.vue";
@@ -273,6 +277,10 @@ app.component('modal-support', modalSupport);
 
 import modalCare from "./components/client/modal/modalCare.vue";
 app.component('modal-care', modalCare);
+
+
+import jobManager from "./components/client/job-manager/index.vue";
+app.component('job-manager', jobManager);
 
 //home 
 import Abcxyz from "./components/client/seeker/test.vue";
