@@ -17,7 +17,6 @@
                                             :message-confirm="{{ json_encode('Bạn có chắc muốn mua CV không ?') }}"
                                             :delete-action="{{ json_encode(route('employer.changecAcount', $cv->id)) }}"
                                             :count-getskill="{{ json_encode([
-                                                // 'data' => count($cv->getskill),
                                                 'accPayment' => $accPayment,
                                             ]) }}">
                                         </btn-payment-employer>
@@ -32,7 +31,6 @@
                             'CheckUser' => Auth::guard('user')->user()->id,
                         ]) }}">
                     </show-cv>
-                    {{-- </div> --}}
                 </div>
             </div>
         </div>
