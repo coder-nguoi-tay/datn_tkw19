@@ -278,6 +278,10 @@ app.component('modal-support', modalSupport);
 import modalCare from "./components/client/modal/modalCare.vue";
 app.component('modal-care', modalCare);
 
+
+import jobManager from "./components/client/job-manager/index.vue";
+app.component('job-manager', jobManager);
+
 //home 
 import Abcxyz from "./components/client/seeker/test.vue";
 app.component('home-test', Abcxyz);

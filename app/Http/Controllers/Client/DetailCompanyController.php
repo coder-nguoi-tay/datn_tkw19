@@ -85,6 +85,13 @@ class DetailCompanyController extends Controller
     {
         //
     }
+    public function jobManager()
+    {
+        return view('client.job-manager.index', [
+            'title' => 'Việc làm quản lý ',
+        ]);
+    }
+
     public function detailCompany($id)
     {
         $jobCompany = Job::select(

@@ -328,11 +328,6 @@ a {
   text-decoration: none;
   background-color: transparent;
 }
-/* .list-group-item.active[data-v-61ae721f] {
-  color: #28a745;
-  background: #fff;
-  font-weight: 700;
-} */
 
 .list-group-item + .list-group-item.active {
   margin-top: -1px;

@@ -22,7 +22,7 @@
                 class="
                   list-group-item list-group-item-action
                   border-0
-                  nuxt-link-active
+                  nuxt-link-active active
                 "
                 ><i data-v-61ae721f="" class="fa mr-2 fa-user"></i> Thông tin cá
                 nhân
@@ -86,13 +86,13 @@
           <div class="tab-content" id="v-pills-tabContent">
             <!-- Thông tin cá nhân-->
             <div
-              class="tab-pane fade"
+              class="tab-pane fade active"
               id="v-pills-profile"
               role="tabpanel"
               aria-labelledby="v-pills-profile-tab"
               tabindex="0"
             >
-              <div class="row card-profile-employer">
+              <div class="row card-profile-employer active">
                 <VeeForm
                   as="div"
                   v-slot="{ handleSubmit }"
@@ -1229,40 +1229,5 @@ a {
   color: #212529;
   background-color: #f3f4f5;
   border-color: #f3f4f5;
-}
-.profile-button {
-  background: rgb(99, 39, 120);
-  box-shadow: none;
-  border: none;
-}
-
-.profile-button:hover {
-  background: #682773;
-}
-
-.profile-button:focus {
-  background: #682773;
-  box-shadow: none;
-}
-
-.profile-button:active {
-  background: #682773;
-  box-shadow: none;
-}
-
-.back:hover {
-  color: #682773;
-  cursor: pointer;
-}
-
-.labels {
-  font-size: 11px;
-}
-
-.add-experience:hover {
-  background: #ba68c8;
-  color: #fff;
-  cursor: pointer;
-  border: solid 1px #ba68c8;
 }
 </style>
