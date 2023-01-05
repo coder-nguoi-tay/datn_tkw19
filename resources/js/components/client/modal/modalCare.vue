@@ -70,8 +70,7 @@
           </li>
           <li>
             <a href="" data-toggle="modal" data-target="#exampleModal2"
-              ><i class="fas fa-headset"></i> Yêu cầu hỗ trợ khác / Góp ý sản
-              phẩm</a
+              ><i class="fas fa-headset"></i> Báo cáo lừa đảo</a
             >
           </li>
           <li>
