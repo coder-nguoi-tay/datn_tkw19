@@ -379,19 +379,20 @@
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                             <div class="blg_grid_box">
                                 <div class="blg_grid_thumb">
-                                    <a href="blog-detail.html"><img src="{{ $item->new_image }}"
+                                    <a href="{{ route('detailTin-tuc', $item->id) }}"><img src="{{ $item->new_image }}"
                                             class="img-fluid w-75 rounded "
                                             style="display : block;
                                                    margin-left: auto;
                                                    margin-right: auto;
-                                                   margin-top: 10px;"alt=""></a>
+                                                   margin-top: 10px;
+                                                   height: 300px;"alt=""></a>
                                 </div>
                                 <div class="blg_grid_caption">
                                     <p class="theme-cl px-3 py-1 rounded bg-light-success d-inline-flex">
                                         {{ $item->majors }}
                                     </p>
                                     <div class="blg_title">
-                                        <h4><a href="blog-detail.html">{{ $item->title }}</a></h4>
+                                        <h4><a href="#">{{ $item->title }}</a></h4>
                                     </div>
                                     <div class="blg_desc  "
                                         style="

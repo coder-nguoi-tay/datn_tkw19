@@ -5,7 +5,7 @@
 @section('client')
 
     <body>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div id="header">
 
@@ -237,7 +237,7 @@
         </div>
 
 
-        </div>
+
         <br>
     </body>
 @endsection

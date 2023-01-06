@@ -30,6 +30,7 @@ use App\Http\Controllers\Employer\RegisterCompanyController;
 use App\Http\Controllers\Employer\SearchCvController;
 use App\Http\Controllers\Employer\ViewProfileController;
 use App\Http\Controllers\TestController;
+use Illuminate\Routing\Router;
 
 /*
 |--------------------------------------------------------------------------
@@ -152,3 +153,4 @@ Route::get('detail-company/{id}', [DetailCompanyController::class, 'detailCompan
 //
 Route::get('majors/{id}', [ClientHomeController::class, 'searchMajors'])->name('searchMajors');
 Route::get('error-404', [HomeController::class, 'error'])->name('error404');
+Route::get('deailTin-tuc/{id}', [ClientHomeController::class, 'detailTinTuc'])->name('detailTin-tuc');
