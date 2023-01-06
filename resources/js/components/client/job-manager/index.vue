@@ -369,60 +369,6 @@
             </div>
           </div>
           <div class="text-center">
-            <nav>
-              <ul class="pagination">
-                <li
-                  class="disabled"
-                  aria-disabled="true"
-                  aria-label="« Previous"
-                >
-                  <span aria-hidden="true">‹</span>
-                </li>
-                <li class="active" aria-current="page"><span>1</span></li>
-                <li>
-                  <a href="https://www.topcv.vn/viec-lam-quan-ly?page=2">2</a>
-                </li>
-                <li>
-                  <a href="https://www.topcv.vn/viec-lam-quan-ly?page=3">3</a>
-                </li>
-                <li>
-                  <a href="https://www.topcv.vn/viec-lam-quan-ly?page=4">4</a>
-                </li>
-                <li>
-                  <a href="https://www.topcv.vn/viec-lam-quan-ly?page=5">5</a>
-                </li>
-                <li>
-                  <a href="https://www.topcv.vn/viec-lam-quan-ly?page=6">6</a>
-                </li>
-                <li>
-                  <a href="https://www.topcv.vn/viec-lam-quan-ly?page=7">7</a>
-                </li>
-                <li>
-                  <a href="https://www.topcv.vn/viec-lam-quan-ly?page=8">8</a>
-                </li>
-                <li>
-                  <a href="https://www.topcv.vn/viec-lam-quan-ly?page=9">9</a>
-                </li>
-                <li>
-                  <a href="https://www.topcv.vn/viec-lam-quan-ly?page=10">10</a>
-                </li>
-                <li class="disabled" aria-disabled="true"><span>...</span></li>
-                <li>
-                  <a href="https://www.topcv.vn/viec-lam-quan-ly?page=45">45</a>
-                </li>
-                <li>
-                  <a href="https://www.topcv.vn/viec-lam-quan-ly?page=46">46</a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.topcv.vn/viec-lam-quan-ly?page=2"
-                    rel="next"
-                    aria-label="Next »"
-                    >›</a
-                  >
-                </li>
-              </ul>
-            </nav>
           </div>
         </div>
       </div>

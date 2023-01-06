@@ -19,6 +19,7 @@ class DetailCompanyController extends Controller
     {
         return view('client.detail-company.index', [
             'title' => 'Thông tin công ty ',
+            'majors ' => Majors::all(),
         ]);
     }
 
@@ -90,6 +91,7 @@ class DetailCompanyController extends Controller
     {
         return view('client.job-manager.index', [
             'title' => 'Việc làm quản lý ',
+            'majors' => Majors::all(),
         ]);
     }
 

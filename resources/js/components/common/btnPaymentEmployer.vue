@@ -20,7 +20,15 @@
       }
     "
   >
-    <CModalBody>Số tiền mà bạn cần thanh toán là: 30.000đ</CModalBody>
+    <CModalBody
+      >Số tiền mà bạn cần thanh toán là:
+      {{
+        new Intl.NumberFormat('de-DE', {
+          style: 'currency',
+          currency: 'VND'
+        }).format(getSkill)
+      }}</CModalBody
+    >
     <CModalFooter>
       <CButton class="nav-link py-0 btn-next-step" @click="showAlert"
         >Thanh Toán</CButton
@@ -42,19 +50,14 @@ export default {
     return {
       flagShowLoader: false,
       visibleLiveDemo: false,
-      total: '',
-      getSkill: this.countGetskill.data * 10000
+      getSkill: this.countGetskill.total * 5000
     }
   },
   components: {
     Loader
   },
   props: ['deleteAction', 'listUrl', 'messageConfirm', 'countGetskill'],
-  mounted() {
-    if (this.countGetskill.accPayment != null) {
-      this.total = this.countGetskill.accPayment.surplus
-    }
-  },
+  mounted() {},
   methods: {
     showAlert() {
       let that = this
@@ -66,7 +69,7 @@ export default {
         showCancelButton: true
       }).then((result) => {
         if (result.value) {
-          if (this.total < 30000) {
+          if (this.total < this.getSkill) {
             const notyf = new Notyf({
               duration: 6000,
               position: {

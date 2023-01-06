@@ -46,30 +46,21 @@
         <div class="contact">
           <h3>CÁC KỸ NĂNG</h3>
           <div class="box_contact">
-            <div class="ky_nang">
-              <h4 class="text-first">ngôn ngữ lập trình</h4>
-              <p v-html="data.cv.skill"></p>
+            <div
+              class="ky_nang"
+              v-for="(item, index) in JSON.parse(this.data.cv.skill)"
+            >
+              <b>{{ item.name }}</b>
+              <p>{{ item.value }}</p>
             </div>
-            <!-- <div class="ky_nang">
-              <h4 class="text-first">làm việc nhóm</h4>
-              <p>PHP (Laravel), Javascript, Angular, HTML CSS</p>
-            </div> -->
           </div>
         </div>
         <div class="contact">
           <h3>CHỨNG CHỈ</h3>
           <div class="box_contact">
             <div class="ky_nang">
-              <!-- <h4>2022</h4> -->
               <p v-html="data.cv.certificate"></p>
             </div>
-            <!-- <div class="ky_nang">
-              <h4>2023</h4>
-              <p>
-                English Topnotch 2.2 tại Trường Cao đẳng FPT Polytechnic (Tương
-                đương Ielts 4.5)
-              </p>
-            </div> -->
           </div>
         </div>
       </div>
@@ -101,52 +92,16 @@
           </h3>
           <span class="bd_cv"></span>
           <div class="box_2_cv">
-            <div class="mt">
+            <div
+              class="mt"
+              v-for="(item, index) in JSON.parse(this.data.cv.project)"
+            >
               <div class="title_cv">
                 <i class="fa-solid fa-briefcase"></i>
-                <h4>VỊ TRÍ: {{ data.cv.work }}</h4>
+                <h4 v-html="item.name"></h4>
               </div>
               <div class="mt_cv">
-                <p v-html="data.cv.work_detail"></p>
-              </div>
-              <!-- <div class="h4">Website bán thời trang Adidas</div>
-              <div class="h4">Công ty: Top CV</div>
-              <div class="mt_cv">
-                <p>- Số lượng thành viên: 3 người</p>
-                <p>
-                  - Mô tả công việc: Sử dụng công cụ Visual StudioCode code giao
-                  diện và code chức năng;
-                </p>
-                <p>- Công nghệ sử dụng: PHP, MySQL, Bootstrap, HTML CSS</p>
-                <p>- Githup: github.com/congtuyen791/TTA_du_an_1</p>
-              </div> -->
-            </div>
-          </div>
-        </div>
-
-        <div class="box_cv">
-          <h3
-            style="font-size: 18px; font-weight: 500; text-transform: uppercase"
-          >
-            Dự án
-          </h3>
-          <span class="bd_cv"></span>
-          <div class="box_2_cv">
-            <div class="mt">
-              <div class="title_cv">
-                <i class="fa-solid fa-briefcase"></i>
-                <h4>{{ data.cv.project }}</h4>
-              </div>
-              <!-- <div class="h4">RAINWAY GROUP</div> -->
-              <div class="mt_cv">
-                <p v-html="data.cv.project_detail"></p>
-                <!-- <p>Khách hàng: ANZ TOPCV</p>
-                <p>Số lượng người tham gia : 8</p>
-                <h4>Vị trí : Lập trình viên</h4>
-                <p>- Phân tích và thiết kế hệ thống</p>
-                <p>- Phát triển module</p>
-                <p>- Tối ưu code</p>
-                <p>- Sửa lỗi</p> -->
+                <p v-html="item.value"></p>
               </div>
             </div>
           </div>
@@ -157,8 +112,11 @@
 </template>
 <script>
 export default {
-  created() {
-    console.log(this.data)
+  created() {},
+  data: function () {
+    return {
+      csrfToken: Laravel.csrfToken
+    }
   },
   props: ['data']
 }

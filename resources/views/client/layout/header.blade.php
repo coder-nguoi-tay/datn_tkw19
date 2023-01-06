@@ -62,13 +62,15 @@
 
                     <li><a href="javascript:void(0);">Phỏng vấn</a>
                     </li>
+                    @if (Auth::guard('user')->check())
+                        <li><a href="javascript:void(0);">Hồ sơ</a>
+                            <ul class="nav-dropdown nav-submenu">
+                                <li><a href="{{ route('quan-ly-cv.index') }}">Quản lý hồ sơ</a></li>
+                                <li><a href="{{ route('user.createFormCV') }}">Quản lý cv</a></li>
+                            </ul>
+                        </li>
+                    @endif
 
-                    <li><a href="javascript:void(0);">Hồ sơ</a>
-                        <ul class="nav-dropdown nav-submenu">
-                            <li><a href="browse-employers.html">Quản lý hồ sơ</a></li>
-                            <li><a href="browse-employers-list.html">Quản lý cv</a></li>
-                        </ul>
-                    </li>
                 </ul>
                 <ul class="nav-menu nav-menu-social align-to-right">
 
