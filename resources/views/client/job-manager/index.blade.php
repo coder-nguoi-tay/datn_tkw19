@@ -5,4 +5,5 @@
         'total' => $total,
     ]) }}">
     </job-manager>
+ 
 @endsection

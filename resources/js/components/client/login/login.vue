@@ -119,6 +119,8 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken
+      
+
       //   model: {},
       //   msgLogin: '',
       //   checkForm: 1,

@@ -212,7 +212,7 @@
                             <div class="container p-3">
                                 <div class="row g-2 g-lg-3" id="paginated-list1">
                                     @foreach ($jobAttractive as $value)
-                                        <div class="col-4 render-job-search1 view overlay rounded">
+                                        <div class="col-3 render-job-search1 view overlay rounded">
                                             <div class="hover-div border p-2">
                                                 <div class="position-absolute ab-right"><a type="button"
                                                         class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
