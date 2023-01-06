@@ -22,7 +22,8 @@
                 class="
                   list-group-item list-group-item-action
                   border-0
-                  nuxt-link-active active
+                  nuxt-link-active
+                  active
                 "
                 ><i data-v-61ae721f="" class="fa mr-2 fa-user"></i> Thông tin cá
                 nhân
@@ -324,6 +325,17 @@
                                             >Nội dung</span
                                           ><span data-v-79f03480="">{{
                                             item.desceibe
+                                          }}</span>
+                                        </p>
+                                      </div>
+                                      <div data-v-79f03480="" class="content">
+                                        <p data-v-79f03480="">
+                                          <span data-v-79f03480="" class="time"
+                                            >Trạng thái</span
+                                          ><span data-v-79f03480="">{{
+                                            item.status == 1
+                                              ? 'Thành công'
+                                              : 'Thất bại'
                                           }}</span>
                                         </p>
                                       </div>

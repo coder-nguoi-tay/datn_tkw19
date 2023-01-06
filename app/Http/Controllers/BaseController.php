@@ -298,15 +298,16 @@ class BaseController extends Controller
         $str = preg_replace("/( )/", '-', $str);
         return $str;
     }
-    public function getDataMouth($request, $employer)
+    public function getDataMouth($request, $employer, $year)
     {
+        $date = $year['date'] ?? Carbon::parse(Carbon::now())->format('Y');
         return $this->savecv
             ->join('job', 'job.id', '=', 'save_cv.id_job')
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->where('job.employer_id', $employer)
-            ->where(function ($q) use ($request) {
+            ->where(function ($q) use ($request, $date) {
                 $q->whereMonth('save_cv.created_at', $request)
-                    ->whereYear('save_cv.created_at', Carbon::parse(Carbon::now())->format('Y'));
+                    ->whereYear('save_cv.created_at', $date);
             })
             ->count();
     }

@@ -140,6 +140,19 @@
                     v-model="model.benefit"
                   />
                 </div>
+                <div class="mb-4">
+                  <label class="form-label col-12"
+                    >Trạng thái<span class="required-lable">*</span></label
+                  >
+                  <Toggle
+                    name="status_profile"
+                    v-model="status_profile"
+                    class="toggle-flag"
+                    on-label=""
+                    off-label=""
+                    id="status_profile"
+                  />
+                </div>
               </div>
               <div class="col-6">
                 <div class="mb-4">
@@ -371,6 +384,8 @@ import {
   defineRule,
   configure
 } from 'vee-validate'
+import Toggle from '@vueform/toggle'
+import '@vueform/toggle/themes/default.css'
 import Multiselect from '@vueform/multiselect'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
@@ -389,18 +404,21 @@ export default {
     VeeForm,
     Field,
     ErrorMessage,
-    Multiselect
+    Multiselect,
+    Toggle
   },
   props: ['data'],
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
       model: this.data.job,
+      status_profile: this.data.job.status == 1 ? true : false,
       value: [],
       options: []
     }
   },
   created() {
+    console.log(this.data.job.status)
     this.data.job.getskill.map((e) => {
       this.value.push({
         value: e.id,
@@ -499,9 +517,11 @@ export default {
         .post('/employer/new/update/' + id, {
           _token: this.csrfToken,
           data: this.model,
-          skill: this.value
+          skill: this.value,
+          status_profile: this.status_profile
         })
         .then(function (response) {
+          console.log(response)
           const notyf = new Notyf({
             duration: 6000,
             position: {

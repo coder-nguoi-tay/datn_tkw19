@@ -106,6 +106,8 @@ import AccountPayment from './components/employer/payment/index.vue'
 app.component('account-payment', AccountPayment);
 import SearchCv from './components/employer/manegercv/search.vue'
 app.component('search-cv-date', SearchCv);
+import SearchCvFin from './components/employer/searchCv/searchFind.vue'
+app.component('search-find-cv', SearchCvFin);
 import Seeker from './components/employer/manegercv/searchSeeker.vue'
 app.component('search-seeker', Seeker);
 

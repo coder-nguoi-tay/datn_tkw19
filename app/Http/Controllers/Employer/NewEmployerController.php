@@ -174,10 +174,10 @@ class NewEmployerController extends BaseController
             $job->wk_form_id = $request['data']['wk_form_id'];
             $job->job_time = Carbon::now();
             $job->end_job_time = $end_time;
+            $job->status = $request['data']['status_profile'] ? 1 : 0;
             $job->time_work_id = $request['data']['time_work_id'];
             $job->candidate_requirements = $request['data']['candidate_requirements'];
             $job->employer_id = $employer->id;
-            $job->status = 0;
             $job->save();
             //create to jobskill
             foreach ($request['skill'] as $item) {
@@ -259,7 +259,8 @@ class NewEmployerController extends BaseController
             $job->address = $request['data']['address'];
             $job->majors_id = $request['data']['majors_id'];
             $job->wk_form_id = $request['data']['wk_form_id'];
-            $job->job_time = Carbon::now();
+            $job->status = $request['status_profile'] ? 1 : 0;
+            // $job->job_time = Carbon::now();
             $job->end_job_time = $end_time;
             $job->time_work_id = $request['data']['time_work_id'];
             $job->candidate_requirements = $request['data']['candidate_requirements'];
@@ -347,6 +348,7 @@ class NewEmployerController extends BaseController
                 if (!empty($request['free_word'])) {
                     $q->orWhere($this->escapeLikeSentence('users.name', $request['free_word']));
                     $q->orWhere($this->escapeLikeSentence('majors.name', $request['free_word']));
+                    $q->orWhere($this->escapeLikeSentence('save_cv.token', $request['free_word']));
                 }
             })
             ->select('users.name as user_name', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'job-seeker.*', 'majors.name as majors_name', 'save_cv.created_at as create_at_sv', 'save_cv.token as token')

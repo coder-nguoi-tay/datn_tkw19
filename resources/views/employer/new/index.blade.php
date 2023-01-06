@@ -35,88 +35,94 @@
                         </div>
                         <div class="card-body">
                             <div>
-                                <table class="table table-striped table-hover table-bordered text-center">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Tiêu Đề</th>
-                                            <th scope="col">Vị trí làm việc</th>
-                                            <th scope="col"> Hình thức làm việc</th>
-                                            <th scope="col"> Trạng Thái</th>
-                                            <th scope="col">Số lượng hồ sơ đã nhân</th>
-                                            <th scope="col"> Thời gian bắt đầu</th>
-                                            <th scope="col">Thời gian còn lại</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($job as $item)
+                                @if (!$job->isEmpty())
+                                    <table class="table table-striped table-hover table-bordered text-center">
+                                        <thead>
                                             <tr>
-                                                {{-- <td scope="row"><img src="{{ asset($item->logo) }}" alt=""
-                                                        width="150px" height="150px"></td> --}}
-                                                <td>{{ $item->title }}</td>
-                                                <td>{{ $item->getprofession->name }}</td>
-                                                <td>{{ $item->getwk_form->name }}</td>
-                                                {{-- <td>{{ $item->status == 0 ? 'INACTIVE' : 'ACTIVE' }}</td> --}}
-                                                <td>
-                                                    <change-status-new :data="{{ json_encode($item->status) }}"
-                                                        :route="{{ json_encode(route('employer.new.changeStus', $item->id)) }}">
-                                                    </change-status-new>
-                                                </td>
-                                                <td>{{ count($item->AllCv) }}</td>
-                                                <td>{{ $item->job_time }}</td>
-                                                <td>
-                                                    @if (Carbon::parse($item->end_job_time)->format('m') == $m)
-                                                        <h5>
-                                                            @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
-                                                                <span class="badge bg-secondary">Hết hạn</span>
-                                                            @else
-                                                                {{ Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') }}
-                                                                ngày
-                                                            @endif
-                                                        @else
-                                                            @if ($all_day -
-                                                                Carbon::parse($item->job_time)->format('d') +
-                                                                ($mon - ($mon - Carbon::parse($item->end_job_time)->format('d'))) <=
-                                                                0)
-                                                                <h5>
+                                                <th scope="col">Tiêu Đề</th>
+                                                <th scope="col">Vị trí làm việc</th>
+                                                <th scope="col"> Hình thức làm việc</th>
+                                                <th scope="col"> Trạng Thái</th>
+                                                <th scope="col">Số lượng hồ sơ đã nhân</th>
+                                                <th scope="col"> Thời gian bắt đầu</th>
+                                                <th scope="col">Thời gian còn lại</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($job as $item)
+                                                <tr>
+                                                    <td>{{ $item->title }}</td>
+                                                    <td>{{ $item->getprofession->name }}</td>
+                                                    <td>{{ $item->getwk_form->name }}</td>
+                                                    <td>
+                                                        <span
+                                                            class="badge {{ $item->status == 1 ? 'bg-success' : 'bg-secondary' }}">{{ $item->status == 0 ? 'Bản nháp' : 'Đang hoạt động' }}</span>
+                                                    </td>
+
+                                                    <td>{{ count($item->AllCv) }}</td>
+                                                    <td>{{ $item->job_time }}</td>
+                                                    <td>
+                                                        @if (Carbon::parse($item->end_job_time)->format('m') == $m)
+                                                            <h5>
+                                                                @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
                                                                     <span class="badge bg-secondary">Hết hạn</span>
                                                                 @else
+                                                                    {{ Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') }}
+                                                                    ngày
+                                                                @endif
+                                                            @else
+                                                                @if ($all_day -
+                                                                    Carbon::parse($item->job_time)->format('d') +
+                                                                    ($mon - ($mon - Carbon::parse($item->end_job_time)->format('d'))) <=
+                                                                    0)
                                                                     <h5>
-                                                                        {{ $all_day -
-                                                                            Carbon::parse(Carbon::now())->format('d') +
-                                                                            ($mon + 1 - ($mon - Carbon::parse($item->end_job_time)->format('d'))) }}
-                                                                        ngày
-                                                            @endif
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-warning btn-radius-auto dropdown-toggle"
-                                                            id="action" type="button" data-coreui-toggle="dropdown"
-                                                            aria-expanded="false">Chức năng</button>
-                                                        <ul class="dropdown-menu" aria-labelledby="action">
-                                                            <li>
-                                                                <a class="dropdown-item"
-                                                                    href="{{ route('employer.new.edit', $item->id) }}"
-                                                                    class="dropdown-item">
-                                                                    <i class="fa fa-eye"></i>xem chi tiết
-                                                                </a>
-                                                            </li>
-                                                            <li class="dropdown-divider"></li>
-                                                            <li>
-                                                                <a class="dropdown-item"
-                                                                    href="{{ route('employer.new.showdetai', $item->id) }}"
-                                                                    class="dropdown-item">
-                                                                    <i class="fa fa-eye"></i>Tất cả hồ sơ đã nhận
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                                                        <span class="badge bg-secondary">Hết hạn</span>
+                                                                    @else
+                                                                        <h5>
+                                                                            {{ $all_day -
+                                                                                Carbon::parse(Carbon::now())->format('d') +
+                                                                                ($mon + 1 - ($mon - Carbon::parse($item->end_job_time)->format('d'))) }}
+                                                                            ngày
+                                                                @endif
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-warning btn-radius-auto dropdown-toggle"
+                                                                id="action" type="button" data-coreui-toggle="dropdown"
+                                                                aria-expanded="false">Chức năng</button>
+                                                            <ul class="dropdown-menu" aria-labelledby="action">
+                                                                <li>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('employer.new.edit', $item->id) }}"
+                                                                        class="dropdown-item">
+                                                                        <i class="fa fa-eye"></i>xem chi tiết
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('employer.new.showdetai', $item->id) }}"
+                                                                        class="dropdown-item">
+                                                                        <i class="fa fa-eye"></i>Tất cả hồ sơ đã nhận
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                @else
+                                    <div class="container">
+                                        <div class="alert alert-danger alert-dismissible fade show text-center"
+                                            role="alert">
+                                            Không tìm thấy dữ liệu mà bạn mong muốn!
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                             <div class="group-paginate">
                                 {{-- {{ $news->appends(SearchQueryComponent::alterQuery($request))->links('pagination.admin') }} --}}

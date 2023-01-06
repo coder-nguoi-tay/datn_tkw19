@@ -92,6 +92,7 @@
                         'totalMonnyMouth11' => $totalMonnyMouth11,
                         'totalMonnyMouth12' => $totalMonnyMouth12,
                         'totalMonny' => $totalMonny,
+                        'request' => !empty($request) ? $request->all() : new stdClass(),
                     ]) }}">
                 </widgets>
             </div>

@@ -34,7 +34,7 @@ class ProfileController extends BaseController
     public function index()
     {
         $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->with('getUser')->first();
-        $paymentHistory = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)->orderby('created_at', 'DESC')->get();
+        $paymentHistory = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)->orderBy('created_at', 'DESC')->get();
         $Company = Company::where('id', $employer->id_company)->first();
         $accuracy = Accuracy::where('user_id', Auth::guard('user')->user()->id)->first();
         return view('employer.profile.index', [
@@ -251,12 +251,7 @@ class ProfileController extends BaseController
         $secureHash = hash_hmac('sha512', $hashData,  $this->vnp_HashSecret);
         if ($secureHash == $vnp_SecureHash) {
             if ($_GET['vnp_ResponseCode'] == '00') {
-                $payment = new PaymentHistoryEmployer();
-                $payment->user_id = Auth::guard('user')->user()->id;
-                $payment->price = $request->vnp_Amount / 100;
-                $payment->desceibe = $request->vnp_OrderInfo;
-                $payment->form = $request->vnp_PayDate;
-                $payment->save();
+
                 $mony = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
                 if ($mony) {
                     $total = $mony;
@@ -274,6 +269,18 @@ class ProfileController extends BaseController
         } else {
             $this->setFlash(__('chu ky khong hop le'), 'error');
         }
+        if ($_GET['vnp_ResponseCode'] == '00') {
+            $status = 1;
+        } else {
+            $status = 0;
+        }
+        $payment = new PaymentHistoryEmployer();
+        $payment->user_id = Auth::guard('user')->user()->id;
+        $payment->price = $request->vnp_Amount / 100;
+        $payment->desceibe = $request->vnp_OrderInfo;
+        $payment->status = $status;
+        $payment->form = $request->vnp_PayDate;
+        $payment->save();
         return redirect()->route('employer.employer.profile.paymoney');
     }
 

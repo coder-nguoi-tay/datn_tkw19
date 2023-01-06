@@ -78,9 +78,15 @@ class SearchCvController extends BaseController
         $this->Jobseeker = $Jobseeker;
         $this->profileCv = $profileCv;
     }
-    public function index()
+    public function index(Request $request)
     {
-        $cv = $this->profileCv->where('status_profile', 1)->with('user')->get();
+        $cv = $this->profileCv
+            ->where('status_profile', 1)
+            ->where(function ($q) use ($request) {
+                $q->orWhere($this->escapeLikeSentence('majors', $request['free_word']));
+                // $q->orWhere($this->escapeLikeSentence('name', $request['free_word']));
+            })
+            ->with('user')->get();
         return view('employer.searchcv.index', [
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),
@@ -93,6 +99,7 @@ class SearchCvController extends BaseController
             'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
             'cv' => $cv,
+            'request' => $request,
         ]);
     }
 
