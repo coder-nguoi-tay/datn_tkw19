@@ -23,6 +23,7 @@ use App\Models\UploadCv;
 use App\Models\User;
 use App\Models\Wage;
 use App\Models\WorkingForm;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -332,12 +333,26 @@ class HomeController extends BaseController
     public function searchMajors($id)
     {
         $job =  $this->job->where('majors_id', $id)
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
             ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getExperience', 'getLevel', 'getTime_work', 'getwk_form', 'getMajors'])
+            ->orderby('employer.prioritize', 'asc')
+            ->select('job.*', 'company.logo as logo', 'company.id as id_company', 'company.name as name_company')
             ->get();
         $breadcrumbs = [
             'Tìm kiếm việc làm'
         ];
         // dd($job);
+        foreach ($job as $item) {
+            $item['duration'] = Carbon::parse($item->end_job_time)->diffInRealMilliseconds(Carbon::parse($item->job_time));
+        }
+        return view('client.job-manager.index', [
+            'title' => 'Việc làm quản lý ',
+            'majors' => Majors::all(),
+            'breadcrumbs' => $breadcrumbs,
+            'job' => $job,
+            'total' => count($job),
+        ]);
     }
     public function upCv(Request $request)
     {

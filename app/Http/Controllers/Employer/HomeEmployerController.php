@@ -40,7 +40,7 @@ class HomeEmployerController extends BaseController
         $this->savecv = $savecv;
         $this->profileCv = $profileCv;
     }
-    public function index()
+    public function index(Request $request)
     {
         $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         $user = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
@@ -63,19 +63,20 @@ class HomeEmployerController extends BaseController
             'title' => 'Bảng tin | News',
             'tatalecv' => $tatalecv,
             'totalMonny' => $totalMonny,
+            'request' => $request,
             'totalPayment' => $totalPayment->surplus ?? 0,
-            'countCvMoth1' => $this->getDataMouth(1, $checkCompany->id),
-            'countCvMoth2' => $this->getDataMouth(2, $checkCompany->id),
-            'countCvMoth3' => $this->getDataMouth(3, $checkCompany->id),
-            'countCvMoth4' => $this->getDataMouth(4, $checkCompany->id),
-            'countCvMoth5' => $this->getDataMouth(5, $checkCompany->id),
-            'countCvMoth6' =>  $this->getDataMouth(6, $checkCompany->id),
-            'countCvMoth7' => $this->getDataMouth(7, $checkCompany->id),
-            'countCvMoth8' => $this->getDataMouth(8, $checkCompany->id),
-            'countCvMoth9' => $this->getDataMouth(9, $checkCompany->id),
-            'countCvMoth10' => $this->getDataMouth(10, $checkCompany->id),
-            'countCvMoth11' => $this->getDataMouth(11, $checkCompany->id),
-            'countCvMoth12' => $this->getDataMouth(12, $checkCompany->id),
+            'countCvMoth1' => $this->getDataMouth(1, $checkCompany->id, $request->all()),
+            'countCvMoth2' => $this->getDataMouth(2, $checkCompany->id, $request->all()),
+            'countCvMoth3' => $this->getDataMouth(3, $checkCompany->id, $request->all()),
+            'countCvMoth4' => $this->getDataMouth(4, $checkCompany->id, $request->all()),
+            'countCvMoth5' => $this->getDataMouth(5, $checkCompany->id, $request->all()),
+            'countCvMoth6' =>  $this->getDataMouth(6, $checkCompany->id, $request->all()),
+            'countCvMoth7' => $this->getDataMouth(7, $checkCompany->id, $request->all()),
+            'countCvMoth8' => $this->getDataMouth(8, $checkCompany->id, $request->all()),
+            'countCvMoth9' => $this->getDataMouth(9, $checkCompany->id, $request->all()),
+            'countCvMoth10' => $this->getDataMouth(10, $checkCompany->id, $request->all()),
+            'countCvMoth11' => $this->getDataMouth(11, $checkCompany->id, $request->all()),
+            'countCvMoth12' => $this->getDataMouth(12, $checkCompany->id, $request->all()),
             'totalMonnyMouth1' => $this->getDataYear(1),
             'totalMonnyMouth2' => $this->getDataYear(2),
             'totalMonnyMouth3' => $this->getDataYear(3),

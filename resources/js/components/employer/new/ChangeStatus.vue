@@ -6,7 +6,6 @@
     on-label=""
     off-label=""
     id="status_profile"
-    @change="ChangeStatus"
   />
 </template>
 

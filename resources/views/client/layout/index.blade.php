@@ -22,6 +22,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- use the latest release -->
+    <script src="https://unpkg.com/vuejs-paginate@latest"></script>
+    <!-- or use the specify version -->
+    <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
     <style>
         .ic-1 {
             width: 80px !important;

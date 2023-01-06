@@ -295,6 +295,15 @@ class PackageController extends BaseController
                 $this->setFlash(__('Giao dịch bị hủy bỏ'), 'error');
             }
         } else {
+            $lever_package = explode(',', $request->vnp_OrderInfo)[1];
+            $checkPackage = packageofferbought::where('company_id', Auth::guard('user')->user()->id)->first();
+            $paymentHistory = new PaymentHistoryEmployer();
+            $paymentHistory->user_id = Auth::guard('user')->user()->id;
+            $paymentHistory->price = $request->vnp_Amount;
+            $paymentHistory->status = 0;
+            $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp' : 'Thanh toán mua ' . explode(',', $request->vnp_OrderInfo)[0] . 'gói VIP ' . $lever_package;
+            $paymentHistory->form = '';
+            $paymentHistory->save();
             $this->setFlash(__('chu ky khong hop le'), 'error');
         }
         return redirect()->route('employer.package.index');
@@ -379,7 +388,8 @@ class PackageController extends BaseController
                             $paymentHistory = new PaymentHistoryEmployer();
                             $paymentHistory->user_id = Auth::guard('user')->user()->id;
                             $paymentHistory->price = $vnp_Amount;
-                            $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp' : 'Thanh toán mua ' . explode(',', $request->vnp_OrderInfo)[0] . 'gói VIP ' . $lever_package;
+                            $paymentHistory->status = 1;
+                            $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp gói cước Tin tuyển dụng - việc làm tốt nhất' : 'Thanh toán mua gói cước Tin tuyển dụng - việc làm tốt nhất';
                             $paymentHistory->form = '';
                             $paymentHistory->save();
 
@@ -460,7 +470,8 @@ class PackageController extends BaseController
             $paymentHistory = new PaymentHistoryEmployer();
             $paymentHistory->user_id = Auth::guard('user')->user()->id;
             $paymentHistory->price = $request['data']['price'];
-            $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp' : 'Thanh toán mua ' . 'gói cước VIP ' . $request['data']['lever_package'];
+            $paymentHistory->status = 1;
+            $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp gói cước Tin tuyển dụng - việc làm tốt nhất' : 'Thanh toán mua gói cước Tin tuyển dụng - việc làm tốt nhất ';
             $paymentHistory->form = '';
             $paymentHistory->save();
             return response()->json([

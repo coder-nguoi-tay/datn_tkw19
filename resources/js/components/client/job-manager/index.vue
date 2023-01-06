@@ -1,19 +1,22 @@
 <template>
- <div class="row">
-      <img src="https://www.onpassivians.vn/images/product-title-banner.png" style="height: 400px;" alt="">
-    </div>
+  <div class="row">
+    <img
+      src="https://www.onpassivians.vn/images/product-title-banner.png"
+      style="height: 400px"
+      alt=""
+    />
+  </div>
   <div class="container mt-24 bg-white mb-40">
-   
     <div class="list-job">
       <div class="job-header">
         <br />
         <span
-          >Tìm thấy <b class="text-highlight">2,260</b> việc làm phù hợp với yêu
-          cầu của bạn.</span
+          >Tìm thấy <b class="text-highlight">{{ data.total }}</b> việc làm phù
+          hợp với yêu cầu của bạn.</span
         >
       </div>
 
-      <div class="job-body row">
+      <div class="job-body row" v-for="(item, index) in data.job">
         <div class="col-md-9">
           <br />
           <div class="lists">
@@ -44,9 +47,8 @@
                           title=""
                           data-placement="top"
                           data-container="body"
-                          data-original-title="Cửa Hàng Trưởng / Giám Sát Cửa Hàng ( Hà Nội, Bắc Ninh )"
-                          >Cửa Hàng Trưởng / Giám Sát Cửa Hàng ( Hà Nội, Bắc
-                          Ninh )</span
+                          :data-original-title="item.title"
+                          >{{ item.title }}</span
                         >
                       </a>
                     </h3>
@@ -58,20 +60,25 @@
                         data-placement="top"
                         data-container="body"
                         target="_blank"
-                        data-original-title="Công ty TNHH Jollibee Việt Nam"
-                        >Công ty TNHH Jollibee Việt Nam</a
+                        :data-original-title="item.name_company"
+                        >{{ item.name_company }}</a
                       >
                     </p>
                   </div>
                   <div class="mr-auto text-right">
                     <p class="deadline">
-                      Còn <strong>26</strong> ngày để ứng tuyển
+                      Còn
+                      <strong>
+                        {{ msToTime(item.duration) }}
+                        <!-- {{ new Date().getDate() - new Date().getDate() / 1000 }} -->
+                      </strong>
+                      ngày để ứng tuyển
                     </p>
                   </div>
                 </div>
                 <div class="d-flex">
                   <div class="label-content ml-auto">
-                    <label class="salary">9-15 triệu</label>
+                    <label class="salary">{{ item.get_wage.name }}</label>
                     <label
                       class="address"
                       data-toggle="tooltip"
@@ -79,297 +86,15 @@
                       title=""
                       data-placement="top"
                       data-container="body"
-                      data-original-title="<p style='text-align: left'>Hà Nội: Cầu Giấy, Hà Đông, Đống Đa, Long Biên<br/>Bắc Ninh: TP Bắc Ninh</p>"
-                      >Hà Nội, Bắc Ninh</label
+                      :data-original-title="item.getlocation.name"
+                      >{{ item.getlocation.name }}</label
                     >
-                    <label class="time">3 phút trước</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="job-item bg-highlight job-ta result-job-hover"
-              data-job-id="901667"
-              data-job-position="1"
-              data-box="BoxSearchResult"
-            >
-              <div class="avatar">
-                <a target="_blank" href="" class="company-logo">
-                  <img
-                    src="https://cdn.topcv.vn/80/company_logos/cong-ty-tnhh-jollibee-viet-nam-5f64893730c37.jpg"
-                    class="w-100"
-                    alt="Công ty TNHH Jollibee Việt Nam"
-                    title="Công ty TNHH Jollibee Việt Nam  Việc làm quản lý"
-                  />
-                </a>
-              </div>
-              <div class="body">
-                <div class="content">
-                  <div class="ml-auto content-left col-9">
-                    <h3 class="title">
-                      <a target="_blank" class="underline-box-job" href="">
-                        <span
-                          class="bold transform-job-title"
-                          data-toggle="tooltip"
-                          title=""
-                          data-placement="top"
-                          data-container="body"
-                          data-original-title="Cửa Hàng Trưởng / Giám Sát Cửa Hàng ( Hà Nội, Bắc Ninh )"
-                          >Cửa Hàng Trưởng / Giám Sát Cửa Hàng ( Hà Nội, Bắc
-                          Ninh )</span
-                        >
-                      </a>
-                    </h3>
-                    <p class="company underline-box-job">
-                      <a
-                        href="https://www.topcv.vn/cong-ty/cong-ty-tnhh-jollibee-viet-nam/31196.html"
-                        data-toggle="tooltip"
-                        title=""
-                        data-placement="top"
-                        data-container="body"
-                        target="_blank"
-                        data-original-title="Công ty TNHH Jollibee Việt Nam"
-                        >Công ty TNHH Jollibee Việt Nam</a
-                      >
-                    </p>
-                  </div>
-                  <div class="mr-auto text-right">
-                    <p class="deadline">
-                      Còn <strong>26</strong> ngày để ứng tuyển
-                    </p>
-                  </div>
-                </div>
-                <div class="d-flex">
-                  <div class="label-content ml-auto">
-                    <label class="salary">9-15 triệu</label>
-                    <label
-                      class="address"
-                      data-toggle="tooltip"
-                      data-html="true"
-                      title=""
-                      data-placement="top"
-                      data-container="body"
-                      data-original-title="<p style='text-align: left'>Hà Nội: Cầu Giấy, Hà Đông, Đống Đa, Long Biên<br/>Bắc Ninh: TP Bắc Ninh</p>"
-                      >Hà Nội, Bắc Ninh</label
-                    >
-                    <label class="time">3 phút trước</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="job-item bg-highlight job-ta result-job-hover"
-              data-job-id="901667"
-              data-job-position="1"
-              data-box="BoxSearchResult"
-            >
-              <div class="avatar">
-                <a target="_blank" href="" class="company-logo">
-                  <img
-                    src="https://cdn.topcv.vn/80/company_logos/cong-ty-tnhh-jollibee-viet-nam-5f64893730c37.jpg"
-                    class="w-100"
-                    alt="Công ty TNHH Jollibee Việt Nam"
-                    title="Công ty TNHH Jollibee Việt Nam  Việc làm quản lý"
-                  />
-                </a>
-              </div>
-              <div class="body">
-                <div class="content">
-                  <div class="ml-auto content-left col-9">
-                    <h3 class="title">
-                      <a target="_blank" class="underline-box-job" href="">
-                        <span
-                          class="bold transform-job-title"
-                          data-toggle="tooltip"
-                          title=""
-                          data-placement="top"
-                          data-container="body"
-                          data-original-title="Cửa Hàng Trưởng / Giám Sát Cửa Hàng ( Hà Nội, Bắc Ninh )"
-                          >Cửa Hàng Trưởng / Giám Sát Cửa Hàng ( Hà Nội, Bắc
-                          Ninh )</span
-                        >
-                      </a>
-                    </h3>
-                    <p class="company underline-box-job">
-                      <a
-                        href="https://www.topcv.vn/cong-ty/cong-ty-tnhh-jollibee-viet-nam/31196.html"
-                        data-toggle="tooltip"
-                        title=""
-                        data-placement="top"
-                        data-container="body"
-                        target="_blank"
-                        data-original-title="Công ty TNHH Jollibee Việt Nam"
-                        >Công ty TNHH Jollibee Việt Nam</a
-                      >
-                    </p>
-                  </div>
-                  <div class="mr-auto text-right">
-                    <p class="deadline">
-                      Còn <strong>26</strong> ngày để ứng tuyển
-                    </p>
-                  </div>
-                </div>
-                <div class="d-flex">
-                  <div class="label-content ml-auto">
-                    <label class="salary">9-15 triệu</label>
-                    <label
-                      class="address"
-                      data-toggle="tooltip"
-                      data-html="true"
-                      title=""
-                      data-placement="top"
-                      data-container="body"
-                      data-original-title="<p style='text-align: left'>Hà Nội: Cầu Giấy, Hà Đông, Đống Đa, Long Biên<br/>Bắc Ninh: TP Bắc Ninh</p>"
-                      >Hà Nội, Bắc Ninh</label
-                    >
-                    <label class="time">3 phút trước</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="job-item bg-highlight job-ta result-job-hover"
-              data-job-id="901667"
-              data-job-position="1"
-              data-box="BoxSearchResult"
-            >
-              <div class="avatar">
-                <a target="_blank" href="" class="company-logo">
-                  <img
-                    src="https://cdn.topcv.vn/80/company_logos/cong-ty-tnhh-jollibee-viet-nam-5f64893730c37.jpg"
-                    class="w-100"
-                    alt="Công ty TNHH Jollibee Việt Nam"
-                    title="Công ty TNHH Jollibee Việt Nam  Việc làm quản lý"
-                  />
-                </a>
-              </div>
-              <div class="body">
-                <div class="content">
-                  <div class="ml-auto content-left col-9">
-                    <h3 class="title">
-                      <a target="_blank" class="underline-box-job" href="">
-                        <span
-                          class="bold transform-job-title"
-                          data-toggle="tooltip"
-                          title=""
-                          data-placement="top"
-                          data-container="body"
-                          data-original-title="Cửa Hàng Trưởng / Giám Sát Cửa Hàng ( Hà Nội, Bắc Ninh )"
-                          >Cửa Hàng Trưởng / Giám Sát Cửa Hàng ( Hà Nội, Bắc
-                          Ninh )</span
-                        >
-                      </a>
-                    </h3>
-                    <p class="company underline-box-job">
-                      <a
-                        href="https://www.topcv.vn/cong-ty/cong-ty-tnhh-jollibee-viet-nam/31196.html"
-                        data-toggle="tooltip"
-                        title=""
-                        data-placement="top"
-                        data-container="body"
-                        target="_blank"
-                        data-original-title="Công ty TNHH Jollibee Việt Nam"
-                        >Công ty TNHH Jollibee Việt Nam</a
-                      >
-                    </p>
-                  </div>
-                  <div class="mr-auto text-right">
-                    <p class="deadline">
-                      Còn <strong>26</strong> ngày để ứng tuyển
-                    </p>
-                  </div>
-                </div>
-                <div class="d-flex">
-                  <div class="label-content ml-auto">
-                    <label class="salary">9-15 triệu</label>
-                    <label
-                      class="address"
-                      data-toggle="tooltip"
-                      data-html="true"
-                      title=""
-                      data-placement="top"
-                      data-container="body"
-                      data-original-title="<p style='text-align: left'>Hà Nội: Cầu Giấy, Hà Đông, Đống Đa, Long Biên<br/>Bắc Ninh: TP Bắc Ninh</p>"
-                      >Hà Nội, Bắc Ninh</label
-                    >
-                    <label class="time">3 phút trước</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="job-item bg-highlight job-ta result-job-hover"
-              data-job-id="901667"
-              data-job-position="1"
-              data-box="BoxSearchResult"
-            >
-              <div class="avatar">
-                <a target="_blank" href="" class="company-logo">
-                  <img
-                    src="https://cdn.topcv.vn/80/company_logos/cong-ty-tnhh-jollibee-viet-nam-5f64893730c37.jpg"
-                    class="w-100"
-                    alt="Công ty TNHH Jollibee Việt Nam"
-                    title="Công ty TNHH Jollibee Việt Nam  Việc làm quản lý"
-                  />
-                </a>
-              </div>
-              <div class="body">
-                <div class="content">
-                  <div class="ml-auto content-left col-9">
-                    <h3 class="title">
-                      <a target="_blank" class="underline-box-job" href="">
-                        <span
-                          class="bold transform-job-title"
-                          data-toggle="tooltip"
-                          title=""
-                          data-placement="top"
-                          data-container="body"
-                          data-original-title="Cửa Hàng Trưởng / Giám Sát Cửa Hàng ( Hà Nội, Bắc Ninh )"
-                          >Cửa Hàng Trưởng / Giám Sát Cửa Hàng ( Hà Nội, Bắc
-                          Ninh )</span
-                        >
-                      </a>
-                    </h3>
-                    <p class="company underline-box-job">
-                      <a
-                        href="https://www.topcv.vn/cong-ty/cong-ty-tnhh-jollibee-viet-nam/31196.html"
-                        data-toggle="tooltip"
-                        title=""
-                        data-placement="top"
-                        data-container="body"
-                        target="_blank"
-                        data-original-title="Công ty TNHH Jollibee Việt Nam"
-                        >Công ty TNHH Jollibee Việt Nam</a
-                      >
-                    </p>
-                  </div>
-                  <div class="mr-auto text-right">
-                    <p class="deadline">
-                      Còn <strong>26</strong> ngày để ứng tuyển
-                    </p>
-                  </div>
-                </div>
-                <div class="d-flex">
-                  <div class="label-content ml-auto">
-                    <label class="salary">9-15 triệu</label>
-                    <label
-                      class="address"
-                      data-toggle="tooltip"
-                      data-html="true"
-                      title=""
-                      data-placement="top"
-                      data-container="body"
-                      data-original-title="<p style='text-align: left'>Hà Nội: Cầu Giấy, Hà Đông, Đống Đa, Long Biên<br/>Bắc Ninh: TP Bắc Ninh</p>"
-                      >Hà Nội, Bắc Ninh</label
-                    >
-                    <label class="time">3 phút trước</label>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="text-center">
-          </div>
+          <div class="text-center"></div>
         </div>
       </div>
     </div>
@@ -377,7 +102,29 @@
 </template>
 
 <script>
-export default {}
+import moment from 'moment'
+export default {
+  props: ['data'],
+  created() {
+    console.log(this.data)
+  },
+  components: {},
+  methods: {
+    getFormattedDate(date) {
+      return moment(date).format('DD/MM/YYYY')
+    },
+    msToTime(ms) {
+      let seconds = (ms / 1000).toFixed(1)
+      let minutes = (ms / (1000 * 60)).toFixed(1)
+      let hours = (ms / (1000 * 60 * 60)).toFixed(1)
+      let days = (ms / (1000 * 60 * 60 * 24)).toFixed(0)
+      if (seconds < 60) return seconds + ' Sec'
+      else if (minutes < 60) return minutes + ' Min'
+      else if (hours < 24) return hours + ' Hrs'
+      else return days
+    }
+  }
+}
 </script>
 
 <style  scoped>

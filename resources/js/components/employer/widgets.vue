@@ -6,10 +6,29 @@
         <CCard class="mb-4">
           <CCardBody style="height: 470px">
             <CRow>
-              <CCol :sm="5">
+              <CCol :sm="10">
                 <div class="small text-medium-emphasis">
-                  Thống kê năm: <b>{{ newdate }}</b>
+                  Thống kê năm: <b>{{ model.date ?? newdate }}</b>
                 </div>
+              </CCol>
+              <CCol :sm="2" class="d-flex">
+                <form action="" method="get" class="row">
+                  <div class="col-10 text-center">
+                    <div class="small text-medium-emphasis d-flex">
+                      <DatePicker
+                        year-picker
+                        name="date"
+                        v-model="model.date"
+                        textInput
+                      />
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div class="small text-medium-emphasis">
+                      <button class="nav-link py-0 btn-next-step">Lọc</button>
+                    </div>
+                  </div>
+                </form>
               </CCol>
             </CRow>
             <CRow>
@@ -32,21 +51,30 @@
 import MainChartExample from './charts/MainChartExample'
 import moment from 'moment'
 import WidgetsStatsD from './charts/WidgetsStatsTypeD.vue'
+import DatePicker from './../common/datePickerYear.vue'
+import { ref } from '@vue/reactivity'
 
 export default {
+  created() {
+    console.log(this.data)
+  },
   props: ['data'],
   name: 'Dashboard',
   components: {
     MainChartExample,
-
+    DatePicker,
     WidgetsStatsD
   },
   data: function () {
     return {
-      newdate: moment(new Date()).format('YYYY')
+      newdate: moment(new Date()).format('YYYY'),
+      model: this.data.request
     }
   },
+  methods: {},
   setup() {
+    const year = ref(new Date().getFullYear())
+
     const progressGroupExample1 = [
       { title: 'Thứ 2', value1: 34, value2: 78 },
       { title: 'Thứ 3', value1: 56, value2: 94 },
@@ -166,7 +194,8 @@ export default {
       tableExample,
       progressGroupExample1,
       progressGroupExample2,
-      progressGroupExample3
+      progressGroupExample3,
+      year
     }
   }
 }

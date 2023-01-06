@@ -32,5 +32,5 @@ class PaymentHistoryEmployer extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'price', 'desceibe', 'form', 'created_at', 'updated_at'];
+    protected $fillable = ['status', 'user_id', 'price', 'desceibe', 'form', 'created_at', 'updated_at'];
 }

@@ -30,59 +30,68 @@
                             </header>
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped table-hover table-bordered text-center">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Tên gói cước</th>
-                                        <th scope="col">Giá</th>
-                                        <th scope="col">Cấp bậc</th>
-                                        <th scope="col">Thời gian mua</th>
-                                        <th scope="col">Thời gian hết hạn</th>
-                                        <th scope="col">Trạng Thái</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($pachageForEmployer as $item)
+                            @if (!$pachageForEmployer->isEmpty())
+                                <table class="table table-striped table-hover table-bordered text-center">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $item->name_package }}</td>
-                                            <td>{{ number_format($item->price) }}đ</td>
-                                            <td>{{ $item->lever_package }}</td>
-                                            <td>{{ $item->start_time }}</td>
-                                            <td>{{ $item->end_time }}</td>
-                                            <td>
-                                                <span
-                                                    class="badge {{ $item->status == 1 ? 'bg-success' : 'bg-secondary' }}">{{ $item->status_package }}</span>
-                                            </td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-warning btn-radius-auto dropdown-toggle"
-                                                        id="action" type="button" data-coreui-toggle="dropdown"
-                                                        aria-expanded="false">Chức năng</button>
-                                                    <ul class="dropdown-menu" aria-labelledby="action">
-                                                        <li>
-                                                            <a class="dropdown-item" href="" class="dropdown-item">
-                                                                <i class="fa fa-eye"></i>xem chi tiết
-                                                            </a>
-                                                        </li>
-                                                        @if ($item->status == 2)
-                                                            <li class="dropdown-divider"></li>
-                                                            <li>
-                                                                <btn-payment-extend-employer
-                                                                    :message-confirm="{{ json_encode('Bạn có chắc muốn gia hạn với mức giá ' . number_format($item->price) . 'đ' . ' không ?') }}"
-                                                                    :delete-action="{{ json_encode(route('employer.package.updateTimePayment', $item->id)) }}"
-                                                                    :price="{{ json_encode($item->price) }}">
-                                                                </btn-payment-extend-employer>
-                                                            </li>
-                                                        @endif
-                                                    </ul>
-                                                </div>
-                                            </td>
+                                            <th scope="col">Tên gói cước</th>
+                                            <th scope="col">Giá</th>
+                                            <th scope="col">Cấp bậc</th>
+                                            <th scope="col">Thời gian mua</th>
+                                            <th scope="col">Thời gian hết hạn</th>
+                                            <th scope="col">Trạng Thái</th>
+                                            <th scope="col">Action</th>
                                         </tr>
-                                    @endforeach
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($pachageForEmployer as $item)
+                                            <tr>
+                                                <td>{{ $item->name_package }}</td>
+                                                <td>{{ number_format($item->price) }}đ</td>
+                                                <td>{{ $item->lever_package }}</td>
+                                                <td>{{ $item->start_time }}</td>
+                                                <td>{{ $item->end_time }}</td>
+                                                <td>
+                                                    <span
+                                                        class="badge {{ $item->status == 1 ? 'bg-success' : 'bg-secondary' }}">{{ $item->status_package }}</span>
+                                                </td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-warning btn-radius-auto dropdown-toggle"
+                                                            id="action" type="button" data-coreui-toggle="dropdown"
+                                                            aria-expanded="false">Chức năng</button>
+                                                        <ul class="dropdown-menu" aria-labelledby="action">
+                                                            <li>
+                                                                <a class="dropdown-item" href=""
+                                                                    class="dropdown-item">
+                                                                    <i class="fa fa-eye"></i>xem chi tiết
+                                                                </a>
+                                                            </li>
+                                                            @if ($item->status == 2)
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <btn-payment-extend-employer
+                                                                        :message-confirm="{{ json_encode('Bạn có chắc muốn gia hạn với mức giá ' . number_format($item->price) . 'đ' . ' không ?') }}"
+                                                                        :delete-action="{{ json_encode(route('employer.package.updateTimePayment', $item->id)) }}"
+                                                                        :price="{{ json_encode($item->price) }}">
+                                                                    </btn-payment-extend-employer>
+                                                                </li>
+                                                            @endif
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            @else
+                                <div class="container">
+                                    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                                        Không tìm thấy dữ liệu mà bạn mong muốn!
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                         <div class="group-paginate">
                             {{-- {{ $news->appends(SearchQueryComponent::alterQuery($request))->links('pagination.admin') }} --}}
