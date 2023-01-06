@@ -35,7 +35,7 @@
                         </div>
                         <div class="card-body">
                             <div>
-                                @if (!$job->isEmpty())
+                                @if ($job->isEmpty())
                                     <table class="table table-striped table-hover table-bordered text-center">
                                         <thead>
                                             <tr>

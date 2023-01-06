@@ -8,6 +8,7 @@
     @if (isset($title))
         <title>{{ $title }}</title>
     @endif
+
     <link rel="stylesheet" href="assets/css/adminlte.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 

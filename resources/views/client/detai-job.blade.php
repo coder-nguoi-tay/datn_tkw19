@@ -224,6 +224,13 @@
                                             title="Tìm việc làm it tại {{ $job->getlocation->name }}">{{ $job->getlocation->name }}</a></span>
 
                                 </div>
+                                <div class="area">
+                                    <div>
+                                        <img src="assets/img/logo.png" alt="">
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -332,64 +339,7 @@
 
             </div>
         </section>
-        {{-- <section class="space min container-relate container container-detai p-3">
-            <div class="row">
-                <div class="col-8">
-                    <div class="box-title">
-                        <h2 class="box-name"><span style="margin-left: 5px !important">Việc làm liên quan</span>
-                        </h2>
-                    </div>
-                    @foreach ($rules as $item)
-                        <div class="job_grid d-block border rounded px-3 pt-3 pb-2">
-                            <div class="jb-list01-flex d-flex align-items-start justify-content-start">
-                                <div class="jb-list01-thumb">
-                                    <img src="{{ asset($item->logo) }}" class="img-fluid circle" width="90"
-                                        alt="">
-                                </div>
 
-                                <div class="jb-list01 pl-3">
-                                    <div class="jb-list-01-title">
-                                        <h5 class="ft-medium mb-1"><a
-                                                href="{{ route('home.detail.show', [$item->title, $item->id]) }}">{{ $item->title }}<img
-                                                    src="assets/img/verify.svg" class="ml-1" width="12"
-                                                    alt=""></a></h5>
-                                    </div>
-                                    <div class="jb-list-01-info d-block mb-3">
-                                        <span class="text-muted mr-2"><i
-                                                class="lni lni-map-marker mr-1"></i>{{ $item->getlocation->name }}</span>
-                                        <span class="text-muted mr-2"><i
-                                                class="lni lni-tag mr-1"></i>{{ $item->getprofession->name }}</span>
-                                        <span class="text-muted mr-2"><i
-                                                class="lni lni-briefcase mr-1"></i>{{ $item->getTime_work->name }}</span>
-                                        <span class="text-muted mr-2"><i
-                                                class="lni lni-graduation mr-1"></i>{{ $item->getExperience->name }}</span>
-                                    </div>
-                                    <div class="jb-list-01-title d-inline">
-                                        @foreach ($item->getskill as $item)
-                                            <span
-                                                class="mr-2 mb-2 d-inline-flex px-2 py-1 rounded theme-cl theme-bg-light">{{ $item->name }}</span>
-                                        @endforeach
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="col-4">
-                    <div class="bg-white rounded mb-4 box-text-search">
-
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.863855881457!2d105.74459841535469!3d21.038132792833228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b991d80fd5%3A0x53cefc99d6b0bf6f!2sFPT%20Polytechnic%20Hanoi!5e0!3m2!1sen!2s!4v1672849269578!5m2!1sen!2s"
-                            width="100%"  style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        <!-- Find New Property -->
-
-                    </div>
-                </div>
-            </div>
-
-        </section> --}}
         <div class="space min container-relate container container-detai p-3" id="tab-job">
             <div class="box-job-similar  box-white">
                 <h2 class="box-name"> <span style="margin-left: 5px !important;">Việc làm liên quan</span> </h2>
