@@ -4584,7 +4584,7 @@ button:focus {
     position: fixed;
     min-height: 100vh;
     overflow: hidden;
-    min-width: 270px;
+    /* min-width: 270px; */
     max-width: 760px;
 }
 
@@ -4592,7 +4592,7 @@ button:focus {
     display: block;
     z-index: 11;
     padding-bottom: 30px;
-    box-shadow: 0 0 20px 0 rgb(0 0 0 / 10%);
+    /* box-shadow: 0 0 20px 0 rgb(0 0 0 / 10%); */
     z-index: 0;
     background: #fff;
 }
@@ -8818,4 +8818,3 @@ responsive
         transform: translateX(-22px);
     }
 }
-

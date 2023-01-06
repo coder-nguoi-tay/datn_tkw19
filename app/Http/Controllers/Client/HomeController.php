@@ -343,7 +343,7 @@ class HomeController extends BaseController
             'Tìm kiếm việc làm'
         ];
         foreach ($job as $item) {
-            $item['duration'] = Carbon::parse($item->end_job_time)->diffInRealMilliseconds(Carbon::parse($item->job_time));
+            $item['duration'] = Carbon::parse($item->end_job_time)->diffInRealMilliseconds(Carbon::parse(Carbon::now()));
         }
         return view('client.job-manager.index', [
             'title' => 'Việc làm quản lý ',

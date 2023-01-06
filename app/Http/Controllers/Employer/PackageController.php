@@ -464,12 +464,12 @@ class PackageController extends BaseController
             $package->save();
             // total
             $account = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
-            $account->surplus = $account->surplus - $request['data']['price'];
+            $account->surplus = $account->surplus - $request['price'];
             $account->save();
             //ls 
             $paymentHistory = new PaymentHistoryEmployer();
             $paymentHistory->user_id = Auth::guard('user')->user()->id;
-            $paymentHistory->price = $request['data']['price'];
+            $paymentHistory->price = $request['price'];
             $paymentHistory->status = 1;
             $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp gói cước Tin tuyển dụng - việc làm tốt nhất' : 'Thanh toán mua gói cước Tin tuyển dụng - việc làm tốt nhất ';
             $paymentHistory->form = '';

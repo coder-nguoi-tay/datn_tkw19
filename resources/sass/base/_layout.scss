@@ -37,7 +37,7 @@
   position: fixed;
   min-height: 100vh;
   overflow: hidden;
-  min-width: 270px;
+  min-width: 257px;
   max-width: 760px;
 }
 
@@ -45,14 +45,13 @@
   display: block;
   z-index: 11;
   padding-bottom: 30px;
-  box-shadow: 0 0 20px 0 rgb(0 0 0 / 10%);
+  // box-shadow: 0 0 20px 0 rgb(0 0 0 / 10%);
   z-index: 0;
   background: #fff;
 }
 
 .dashboard-inner {
   height: 100%;
-  width: 250px;
   overflow-y: scroll;
   position: relative;
   display: block;
@@ -834,8 +833,6 @@ nav a {
 }
 
 .header {
-  height: 50px !important;
-  padding: 2px !important;
 
   .container {
     margin: 1px !important;

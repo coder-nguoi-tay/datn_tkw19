@@ -273,10 +273,12 @@ export default {
         })
         return notyf.error('Số dư trong tài khoản của bạn không đủ')
       } else {
+        console.log(this.model.price - this.checkPayment)
         axios
           .post('package/payment/buy-account', {
             _token: Laravel.csrfToken,
-            data: this.model
+            data: this.model,
+            price: this.model.price - this.checkPayment
           })
           .then((data) => {
             const notyf = new Notyf({

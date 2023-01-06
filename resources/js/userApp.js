@@ -32,7 +32,7 @@ $(document).ready(function () {
         const paginatedList = document.getElementById("paginated-list");
         const listItems = paginatedList.querySelectorAll(".render-job-search");
 
-        const paginationLimit = 4;
+        const paginationLimit = 6;
         const pageCount = Math.ceil(listItems.length / paginationLimit);
         let currentPage = 1;
 
@@ -100,7 +100,7 @@ $(document).ready(function () {
         const paginatedList = document.getElementById("paginated-list1");
         const listItems = paginatedList.querySelectorAll(".render-job-search1");
 
-        const paginationLimit = 4;
+        const paginationLimit = 6;
         const pageCount = Math.ceil(listItems.length / paginationLimit);
         let currentPage = 1;
 
@@ -168,7 +168,7 @@ $(document).ready(function () {
         const paginatedList = document.getElementById("paginated-list2");
         const listItems = paginatedList.querySelectorAll(".render-job-search2");
 
-        const paginationLimit = 4;
+        const paginationLimit = 6;
         const pageCount = Math.ceil(listItems.length / paginationLimit);
         let currentPage = 1;
 
