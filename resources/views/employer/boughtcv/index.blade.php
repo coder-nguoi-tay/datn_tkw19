@@ -23,27 +23,22 @@
                             </header>
                         </div>
                         <div class="card-body">
-
                             <div class="row align-items-center">
-
                                 <div class="card-body">
                                     @if (!$tatalecv->isEmpty())
                                         <div data-v-5ca02e54="" class="list-service">
                                             @foreach ($tatalecv as $item)
                                                 <div data-v-5ca02e54=""class="service">
-
                                                     <div data-v-5ca02e54="" data-v-6f51bd73=""
                                                         class=" service-item  justify-content-between  service-item__md">
                                                         <div>
                                                             <div class="col-12"><span
                                                                     class="medium theme-cl theme-bg-light px-2 py-1 rounded">{{ $item->majors }}</span>
                                                             </div>
-
                                                             <div class="col-12 box-anh">
                                                                 <img src="{{ asset($item->images) }}" alt=""
                                                                     class="anh-cv" />
                                                             </div>
-
                                                             <div class="col-12">
                                                                 <h4 class="title-cv">
                                                                     {{ $item->user->name }}
