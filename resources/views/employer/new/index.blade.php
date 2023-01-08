@@ -125,7 +125,7 @@
                                 @endif
                             </div>
                             <div class="group-paginate">
-                                {{-- {{ $news->appends(SearchQueryComponent::alterQuery($request))->links('pagination.admin') }} --}}
+             p                   {{-- {{ $news->appends(SearchQueryComponent::alterQuery($request))->links('pagination.admin') }} --}}
                             </div>
                         </div>
                     </div>

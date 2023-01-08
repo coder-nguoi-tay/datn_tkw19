@@ -1,0 +1,13 @@
+.single_job_listing .application-deadline {
+  list-style: none;
+}
+
+.single_job_listing .application-deadline::before {
+  font-size: var(--jobbox-font-xs);
+}
+
+.single_job_listing .application-deadline label {
+  margin-bottom: 0;
+}
+
+/*# sourceMappingURL=wp-job-manager.css.map */
