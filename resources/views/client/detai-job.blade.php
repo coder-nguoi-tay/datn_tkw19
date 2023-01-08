@@ -134,6 +134,7 @@
         </div>
     </div>
     @include('client.layout.header')
+
     <main class="main">
         <div class="post-loop-grid">
             <div class="container">
@@ -149,18 +150,17 @@
 
                             <div class="row mt-10">
                                 <div class="col-lg-8 col-md-12">
-                                    <h3>Full Stack Engineer</h3>
+                                    <h3>{{ $job->title }}</h3>
 
                                     <div
                                         class="single_job_listing d-flex flex-wrap align-items-center gap-3 font-xs color-text-mutted mt-0 mb-15">
 
 
-                                        <span class="fi-icon full-time"><i class="fi-rr-briefcase"></i>Full
-                                            Time</span>
+                                        <span class="fi-icon full-time"><i
+                                                class="fi-rr-briefcase"></i>{{ $job->getTime_work->name }}</span>
 
 
-                                        <span class="fi-icon"><i class="fi-rr-clock"></i><time
-                                                datetime="2022-09-12">Posted 4 months ago</time></span>
+
 
                                     </div>
 
@@ -182,7 +182,7 @@
 
 
                                         <div class="job-overview">
-                                            <h5 class="border-bottom pb-15 mb-30">Employment Information</h5>
+                                            <h5 class="border-bottom pb-15 mb-30">Thông tin tuyển dụng</h5>
 
                                             <div class="row">
                                                 <div class="col-md-6 d-flex">
@@ -191,11 +191,10 @@
                                                             alt="Industry">
                                                     </div>
                                                     <div class="sidebar-text-info ml-10">
-                                                        <span
-                                                            class="text-description industry-icon mb-10">Industry</span>
-                                                        <strong class="small-heading">Content Writer</strong>
-                                                        <strong class="small-heading">/Market Research</strong>
-                                                        <strong class="small-heading">/Software</strong>
+                                                        <span class="text-description industry-icon mb-10">Quy
+                                                            mô:</span>
+                                                        <strong class="small-heading">{{ $job->quatity }}</strong>
+
                                                     </div>
                                                 </div>
 
@@ -207,7 +206,7 @@
                                                     <div class="sidebar-text-info ml-10">
                                                         <span class="text-description joblevel-icon mb-10">Job
                                                             level</span>
-                                                        <strong class="small-heading">Experienced</strong>
+                                                        <strong class="small-heading"></strong>
                                                     </div>
                                                 </div>
 
@@ -221,8 +220,9 @@
                                                             alt="Salary">
                                                     </div>
                                                     <div class="sidebar-text-info ml-10">
-                                                        <span class="text-description salary-icon mb-10">Salary</span>
-                                                        <strong class="small-heading">$600</strong>
+                                                        <span class="text-description salary-icon mb-10">Lương</span>
+                                                        <strong
+                                                            class="small-heading">{{ $job->getWage->name }}</strong>
                                                     </div>
                                                 </div>
 
@@ -234,7 +234,7 @@
                                                     <div class="sidebar-text-info ml-10">
                                                         <span
                                                             class="text-description experience-icon mb-10">Experience</span>
-                                                        <strong class="small-heading">2-3 Years</strong>
+                                                        <strong class="small-heading"></strong>
                                                     </div>
                                                 </div>
 
@@ -248,9 +248,10 @@
                                                             alt="Job type">
                                                     </div>
                                                     <div class="sidebar-text-info ml-10">
-                                                        <span class="text-description jobtype-icon mb-10">Job
-                                                            type</span>
-                                                        <strong class="small-heading">Full Time</strong>
+                                                        <span class="text-description jobtype-icon mb-10">Loại
+                                                            việc</span>
+                                                        <strong
+                                                            class="small-heading">{{ $job->getTime_work->name }}</strong>
                                                     </div>
                                                 </div>
 
@@ -261,7 +262,7 @@
                                                     </div>
                                                     <div class="sidebar-text-info ml-10">
                                                         <span class="text-description mb-10">Deadline</span>
-                                                        <strong class="small-heading">12/10/2028</strong>
+                                                        <strong class="small-heading">{{ $job->end_job_time }}</strong>
                                                     </div>
                                                 </div>
 
@@ -275,9 +276,9 @@
                                                             alt="Updated">
                                                     </div>
                                                     <div class="sidebar-text-info ml-10">
-                                                        <span
-                                                            class="text-description jobtype-icon mb-10">Updated</span>
-                                                        <strong class="small-heading">18/12/2022</strong>
+                                                        <span class="text-description jobtype-icon mb-10">Ngày
+                                                            đăng</span>
+                                                        <strong class="small-heading">{{ $job->job_time }}</strong>
                                                     </div>
                                                 </div>
 
@@ -287,8 +288,9 @@
                                                             alt="Location">
                                                     </div>
                                                     <div class="sidebar-text-info ml-10">
-                                                        <span class="text-description mb-10">Location</span>
-                                                        <strong class="small-heading">Australia</strong>
+                                                        <span class="text-description mb-10">Địa chỉ</span>
+                                                        <strong
+                                                            class="small-heading">{{ $job->getlocation->name }}</strong>
                                                     </div>
                                                 </div>
 
@@ -296,54 +298,20 @@
                                         </div>
 
                                         <div class="content-single">
-                                            <h4>Welcome to AliStudio Team</h4>
-                                            <p>The AliStudio Design team has a vision to establish a trusted platform
-                                                that enables productive and healthy enterprises in a world of digital
-                                                and remote everything, constantly changing work patterns and norms, and
-                                                the need for organizational resiliency.</p>
-                                            <p>The ideal candidate will have strong creative skills and a portfolio of
-                                                work which demonstrates their passion for illustrative design and
-                                                typography. This candidate will have experiences in working with
-                                                numerous different design platforms such as digital and print forms.</p>
-                                            <h4>Essential Knowledge, Skills, and Experience</h4>
+                                            <h4>Chào mừng đến với {{ $jobCompany[0]->name }}</h4>
+                                            <p>{!! $jobCompany[0]->desceibe !!}</p>
+
+                                            <h4>Quyền lợi công việc</h4>
                                             <ul>
-                                                <li>A portfolio demonstrating well thought through and polished end to
-                                                    end customer journeys</li>
-                                                <li>5+ years of industry experience in interactive design and / or
-                                                    visual design</li>
-                                                <li>Excellent interpersonal skills</li>
-                                                <li>Aware of trends in mobile, communications, and collaboration</li>
-                                                <li>Ability to create highly polished design prototypes, mockups, and
-                                                    other communication artifacts</li>
-                                                <li>The ability to scope and estimate efforts accurately and prioritize
-                                                    tasks and goals independently</li>
-                                                <li>History of impacting shipping products with your work</li>
-                                                <li>A Bachelor’s Degree in Design (or related field) or equivalent
-                                                    professional experience</li>
-                                                <li>Proficiency in a variety of design tools such as Figma, Photoshop,
-                                                    Illustrator, and Sketch</li>
+
+                                                <li>{!! $job->benefit !!}</li>
                                             </ul>
-                                            <h4>Preferred Experience</h4>
+                                            <h4>Yêu cầu của công việc</h4>
                                             <ul>
-                                                <li>Designing user experiences for enterprise software / services</li>
-                                                <li>Creating and applying established design principles and interaction
-                                                    patterns</li>
-                                                <li>Aligning or influencing design thinking with teams working in other
-                                                    geographies</li>
+                                                <li>{!! $job->candidate_requirements !!}</li>
+
                                             </ul>
-                                            <h4>Product Designer</h4>
-                                            <p><strong>Product knowledge:</strong> Deeply understand the technology and
-                                                features of the product area to which you are assigned.</p>
-                                            <p><strong>Research:</strong> Provide human and business impact and insights
-                                                for products.</p>
-                                            <p><strong>Deliverables:</strong> Create deliverables for your product area
-                                                (for example competitive analyses, user flows, low fidelity wireframes,
-                                                high fidelity mockups, prototypes, etc.) that solve real user problems
-                                                through the user experience.</p>
-                                            <p><strong>Communication:</strong> Communicate the results of UX activities
-                                                within your product area to the design team department, cross-functional
-                                                partners within your product area, and other interested Superformula
-                                                team members using clear language that simplifies complexity.</p>
+
                                         </div>
                                         <div class="author-single">
                                             <span>Baseball Saving</span>
@@ -371,407 +339,73 @@
                                             <div class="sidebar-heading">
                                                 <div class="avatar-sidebar">
                                                     <figure>
-                                                        <img alt="baseball-savings-2"
-                                                            src="../../wp-content/uploads/2022/09/brand-2.png"
+                                                        <img alt="logo" src="{{ asset($job->logo) }}"
                                                             width="85">
                                                     </figure>
                                                     <div class="sidebar-info">
                                                         <span class="sidebar-company">
-                                                            Baseball Saving </span>
-                                                        <span class="card-location">Chicago, US</span>
+                                                            {{ $jobCompany[0]->name }} </span>
+                                                        <span
+                                                            class="card-location">{{ $jobCompany[0]->address }}</span>
 
-                                                        <a class="link-underline mt-15"
-                                                            href="../../jobs/index22ab.html?search_location=Chicago,%20US">
-                                                            2 Open Jobs </a>
+
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="sidebar-list-job">
                                                 <ul class="ul-disc">
-                                                    <li>Address : 205 North Michigan Avenue, Suite 810 Chicago, 60601,
-                                                        USA</li>
-                                                    <li>Phone : (123) 456-7890</li>
-                                                    <li>Email : contact@Evara.com</li>
+                                                    <li>Address : {{ $jobCompany[0]->address }}</li>
+                                                    <li>Email : {{ $jobCompany[0]->email }}</li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="sidebar-border">
-                                            <h6 class="f-18">Similar jobs</h6>
+                                            <h6 class="f-18">Việc làm liên quan</h6>
                                             <div class="sidebar-list-job">
                                                 <ul>
-                                                    <li>
-                                                        <div
-                                                            class="card-list-4 wow animate__animated animate__fadeIn hover-up">
-                                                            <div class="image">
-                                                                <a href="../lead-quality-control-qa-2/index.html">
-                                                                    <img src="../../wp-content/uploads/2022/09/brand-7.png"
-                                                                        width="50" alt="ashford-2">
-                                                                </a>
-                                                            </div>
-                                                            <div class="info-text">
-                                                                <h5 class="font-md font-bold color-brand-1">
-                                                                    <a href="../lead-quality-control-qa-2/index.html">Lead
-                                                                        Quality Control QA</a>
-                                                                </h5>
-                                                                <div
-                                                                    class="d-flex align-items-center gap-3 font-xs color-text-mutted mt-0">
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-briefcase"></i>Full
-                                                                        Time</span>
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-clock"></i><time
-                                                                            datetime="2022-09-27">Posted 3 months
-                                                                            ago</time></span>
-                                                                </div>
-                                                                <div class="mt-6">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col-6">
-                                                                            <h6 class="card-price mb-0"><span
-                                                                                    class="card-text-price">$500</span><span
-                                                                                    class="font-xs text-muted">/Hour</span>
-                                                                            </h6>
-                                                                        </div>
-                                                                        <div class="col-6 text-end">
-                                                                            <span class="card-location">France</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div
-                                                            class="card-list-4 wow animate__animated animate__fadeIn hover-up">
-                                                            <div class="image">
-                                                                <a
-                                                                    href="../../indexdbbd.html?post_type=job_listing&amp;p=576">
-                                                                    <img src="../../wp-content/uploads/2022/09/brand-4.png"
-                                                                        width="50" alt="percepta">
-                                                                </a>
-                                                            </div>
-                                                            <div class="info-text">
-                                                                <h5 class="font-md font-bold color-brand-1">
+
+                                                    @foreach ($jobCompany as $item)
+                                                        <li>
+                                                            <div
+                                                                class="card-list-4 wow animate__animated animate__fadeIn hover-up">
+                                                                <div class="image">
                                                                     <a
-                                                                        href="../../indexdbbd.html?post_type=job_listing&amp;p=576">React
-                                                                        Native Web Developer</a>
-                                                                </h5>
-                                                                <div
-                                                                    class="d-flex align-items-center gap-3 font-xs color-text-mutted mt-0">
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-briefcase"></i>Part
-                                                                        Time</span>
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-clock"></i><time
-                                                                            datetime="2022-09-27">Posted 3 months
-                                                                            ago</time></span>
+                                                                        href="{{ route('home.detail.show', [$item->title, $item->id]) }}">
+                                                                        <img src="{{ asset($item->logo) }}"
+                                                                            width="50" alt="wanderu">
+                                                                    </a>
                                                                 </div>
-                                                                <div class="mt-6">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col-6">
-                                                                            <h6 class="card-price mb-0"><span
-                                                                                    class="card-text-price">$800</span><span
-                                                                                    class="font-xs text-muted">/Hour</span>
-                                                                            </h6>
-                                                                        </div>
-                                                                        <div class="col-6 text-end">
-                                                                            <span class="card-location">Germany</span>
+                                                                <div class="info-text">
+                                                                    <h5 class="font-md font-bold color-brand-1">
+                                                                        <a
+                                                                            href="{{ route('home.detail.show', [$item->title, $item->id]) }}">UI
+                                                                            {{ $item->title }}</a>
+                                                                    </h5>
+                                                                    <div
+                                                                        class="d-flex align-items-center gap-3 font-xs color-text-mutted mt-0">
+                                                                        <span class="fi-icon"><i
+                                                                                class="fi-rr-briefcase"></i>{{ $job->getTime_work->name }}</span>
+                                                                        <span class="fi-icon"><i
+                                                                                class="fi-rr-clock"></i><time
+                                                                                datetime="2022-09-12">{{ $job->end_job_time }}</time></span>
+                                                                    </div>
+                                                                    <div class="mt-6">
+                                                                        <div class="row align-items-center">
+                                                                            <div class="col-6">
+                                                                                <h6 class="card-price mb-0"><span
+                                                                                        class="card-text-price">{{ $job->getWage->name }}</span>
+                                                                                </h6>
+                                                                            </div>
+                                                                            <div class="col-6 text-end">
+                                                                                <span
+                                                                                    class="card-location">{{ $item->address }}</span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </li>
-
-                                                    <li>
-                                                        <div
-                                                            class="card-list-4 wow animate__animated animate__fadeIn hover-up">
-                                                            <div class="image">
-                                                                <a href="../senior-system-engineer-3/index.html">
-                                                                    <img src="../../wp-content/uploads/2022/09/brand-10.png"
-                                                                        width="50" alt="tesla">
-                                                                </a>
-                                                            </div>
-                                                            <div class="info-text">
-                                                                <h5 class="font-md font-bold color-brand-1">
-                                                                    <a href="../senior-system-engineer-3/index.html">Senior
-                                                                        System Engineer</a>
-                                                                </h5>
-                                                                <div
-                                                                    class="d-flex align-items-center gap-3 font-xs color-text-mutted mt-0">
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-briefcase"></i>Temporary</span>
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-clock"></i><time
-                                                                            datetime="2022-09-27">Posted 3 months
-                                                                            ago</time></span>
-                                                                </div>
-                                                                <div class="mt-6">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col-6">
-                                                                            <h6 class="card-price mb-0"><span
-                                                                                    class="card-text-price">$500</span><span
-                                                                                    class="font-xs text-muted">/Hour</span>
-                                                                            </h6>
-                                                                        </div>
-                                                                        <div class="col-6 text-end">
-                                                                            <span class="card-location">Denmark</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-                                                    <li>
-                                                        <div
-                                                            class="card-list-4 wow animate__animated animate__fadeIn hover-up">
-                                                            <div class="image">
-                                                                <a href="../full-stack-engineer-3/index.html">
-                                                                    <img src="../../wp-content/uploads/2022/09/brand-5.png"
-                                                                        width="50" alt="bing-search">
-                                                                </a>
-                                                            </div>
-                                                            <div class="info-text">
-                                                                <h5 class="font-md font-bold color-brand-1">
-                                                                    <a href="../full-stack-engineer-3/index.html">Full
-                                                                        Stack Engineer</a>
-                                                                </h5>
-                                                                <div
-                                                                    class="d-flex align-items-center gap-3 font-xs color-text-mutted mt-0">
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-briefcase"></i>Internship</span>
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-clock"></i><time
-                                                                            datetime="2022-09-22">Posted 4 months
-                                                                            ago</time></span>
-                                                                </div>
-                                                                <div class="mt-6">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col-6">
-                                                                            <h6 class="card-price mb-0"><span
-                                                                                    class="card-text-price">$800</span><span
-                                                                                    class="font-xs text-muted">/Hour</span>
-                                                                            </h6>
-                                                                        </div>
-                                                                        <div class="col-6 text-end">
-                                                                            <span class="card-location">New York,
-                                                                                USA</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-
-                                                    <li>
-                                                        <div
-                                                            class="card-list-4 wow animate__animated animate__fadeIn hover-up">
-                                                            <div class="image">
-                                                                <a href="../ui-ux-designer-fulltime/index.html">
-                                                                    <img src="../../wp-content/uploads/2022/09/brand-10.png"
-                                                                        width="50" alt="exela-movers">
-                                                                </a>
-                                                            </div>
-                                                            <div class="info-text">
-                                                                <h5 class="font-md font-bold color-brand-1">
-                                                                    <a href="../ui-ux-designer-fulltime/index.html">UI
-                                                                        / UX Designer fulltime</a>
-                                                                </h5>
-                                                                <div
-                                                                    class="d-flex align-items-center gap-3 font-xs color-text-mutted mt-0">
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-briefcase"></i>Part
-                                                                        Time</span>
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-clock"></i><time
-                                                                            datetime="2022-09-22">Posted 4 months
-                                                                            ago</time></span>
-                                                                </div>
-                                                                <div class="mt-6">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col-6">
-                                                                            <h6 class="card-price mb-0"><span
-                                                                                    class="card-text-price">$500</span><span
-                                                                                    class="font-xs text-muted">/Hour</span>
-                                                                            </h6>
-                                                                        </div>
-                                                                        <div class="col-6 text-end">
-                                                                            <span
-                                                                                class="card-location">Australia</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-
-                                                    <li>
-                                                        <div
-                                                            class="card-list-4 wow animate__animated animate__fadeIn hover-up">
-                                                            <div class="image">
-                                                                <a href="../frontend-developer-2/index.html">
-                                                                    <img src="../../wp-content/uploads/2022/09/brand-3.png"
-                                                                        width="50" alt="amazon-2">
-                                                                </a>
-                                                            </div>
-                                                            <div class="info-text">
-                                                                <h5 class="font-md font-bold color-brand-1">
-                                                                    <a href="../frontend-developer-2/index.html">Frontend
-                                                                        Developer</a>
-                                                                </h5>
-                                                                <div
-                                                                    class="d-flex align-items-center gap-3 font-xs color-text-mutted mt-0">
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-briefcase"></i>Full
-                                                                        Time</span>
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-clock"></i><time
-                                                                            datetime="2022-09-12">Posted 4 months
-                                                                            ago</time></span>
-                                                                </div>
-                                                                <div class="mt-6">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col-6">
-                                                                            <h6 class="card-price mb-0"><span
-                                                                                    class="card-text-price">$800</span><span
-                                                                                    class="font-xs text-muted">/Hour</span>
-                                                                            </h6>
-                                                                        </div>
-                                                                        <div class="col-6 text-end">
-                                                                            <span class="card-location">London</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-
-                                                    <li>
-                                                        <div
-                                                            class="card-list-4 wow animate__animated animate__fadeIn hover-up">
-                                                            <div class="image">
-                                                                <a href="../java-software-engineer-2/index.html">
-                                                                    <img src="../../wp-content/uploads/2022/09/brand-8.png"
-                                                                        width="50" alt="aceable-inc">
-                                                                </a>
-                                                            </div>
-                                                            <div class="info-text">
-                                                                <h5 class="font-md font-bold color-brand-1">
-                                                                    <a href="../java-software-engineer-2/index.html">Java
-                                                                        Software Engineer</a>
-                                                                </h5>
-                                                                <div
-                                                                    class="d-flex align-items-center gap-3 font-xs color-text-mutted mt-0">
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-briefcase"></i>Part
-                                                                        Time</span>
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-clock"></i><time
-                                                                            datetime="2022-09-12">Posted 4 months
-                                                                            ago</time></span>
-                                                                </div>
-                                                                <div class="mt-6">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col-6">
-                                                                            <h6 class="card-price mb-0"><span
-                                                                                    class="card-text-price">$250</span><span
-                                                                                    class="font-xs text-muted">/Hour</span>
-                                                                            </h6>
-                                                                        </div>
-                                                                        <div class="col-6 text-end">
-                                                                            <span class="card-location">London</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-
-                                                    <li>
-                                                        <div
-                                                            class="card-list-4 wow animate__animated animate__fadeIn hover-up">
-                                                            <div class="image">
-                                                                <a href="index.html">
-                                                                    <img src="../../wp-content/uploads/2022/09/brand-2.png"
-                                                                        width="50" alt="baseball-savings-2">
-                                                                </a>
-                                                            </div>
-                                                            <div class="info-text">
-                                                                <h5 class="font-md font-bold color-brand-1">
-                                                                    <a href="index.html">Full Stack Engineer</a>
-                                                                </h5>
-                                                                <div
-                                                                    class="d-flex align-items-center gap-3 font-xs color-text-mutted mt-0">
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-briefcase"></i>Full
-                                                                        Time</span>
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-clock"></i><time
-                                                                            datetime="2022-09-12">Posted 4 months
-                                                                            ago</time></span>
-                                                                </div>
-                                                                <div class="mt-6">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col-6">
-                                                                            <h6 class="card-price mb-0"><span
-                                                                                    class="card-text-price">$600</span><span
-                                                                                    class="font-xs text-muted">/Hour</span>
-                                                                            </h6>
-                                                                        </div>
-                                                                        <div class="col-6 text-end">
-                                                                            <span
-                                                                                class="card-location">Australia</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-
-                                                    <li>
-                                                        <div
-                                                            class="card-list-4 wow animate__animated animate__fadeIn hover-up">
-                                                            <div class="image">
-                                                                <a href="../ui-ux-designer-2/index.html">
-                                                                    <img src="../../wp-content/uploads/2022/09/brand-1-1.png"
-                                                                        width="50" alt="wanderu">
-                                                                </a>
-                                                            </div>
-                                                            <div class="info-text">
-                                                                <h5 class="font-md font-bold color-brand-1">
-                                                                    <a href="../ui-ux-designer-2/index.html">UI / UX
-                                                                        Designer</a>
-                                                                </h5>
-                                                                <div
-                                                                    class="d-flex align-items-center gap-3 font-xs color-text-mutted mt-0">
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-briefcase"></i>Temporary</span>
-                                                                    <span class="fi-icon"><i
-                                                                            class="fi-rr-clock"></i><time
-                                                                            datetime="2022-09-12">Posted 4 months
-                                                                            ago</time></span>
-                                                                </div>
-                                                                <div class="mt-6">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col-6">
-                                                                            <h6 class="card-price mb-0"><span
-                                                                                    class="card-text-price">$500</span><span
-                                                                                    class="font-xs text-muted">/Hour</span>
-                                                                            </h6>
-                                                                        </div>
-                                                                        <div class="col-6 text-end">
-                                                                            <span class="card-location">London</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
+                                                        </li>
+                                                    @endforeach
                                                 </ul>
                                             </div>
                                         </div>
@@ -798,14 +432,14 @@
             gap: 9px 9px;
         }
     </style>
-    <link rel='stylesheet' id='ctrljm-frontend-form-css'
+    {{-- <link rel='stylesheet' id='ctrljm-frontend-form-css'
         href='../../wp-content/plugins/control-job-manager/assets/css/form0ba6.css?ver=1.0.6' media='all' />
     <link rel='stylesheet' id='wp-color-picker-css' href='../../wp-admin/css/color-picker.min6a4d.css?ver=6.1.1'
         media='all' />
     <link rel='stylesheet' id='ctrlbp-css'
         href='../../wp-content/plugins/control-block-patterns/assets/css/ctrlbp-admin.min676a.css?ver=1.3.5.2'
         media='all' />
-    <script src='../../wp-content/plugins/contact-form-7/includes/swv/js/index9f31.js?ver=5.7.2' id='swv-js'></script>
+    <script src='../../wp-content/plugins/contact-form-7/includes/swv/js/index9f31.js?ver=5.7.2' id='swv-js'></script> --}}
     <script id='contact-form-7-js-extra'>
         var wpcf7 = {
             "api": {
@@ -815,7 +449,7 @@
             "cached": "1"
         };
     </script>
-    <script src='../../wp-content/plugins/contact-form-7/includes/js/index9f31.js?ver=5.7.2' id='contact-form-7-js'>
+    {{-- <script src='../../wp-content/plugins/contact-form-7/includes/js/index9f31.js?ver=5.7.2' id='contact-form-7-js'>
     </script>
     <script src='../../wp-content/plugins/control-job-manager/assets/js/bootstrap.bundle.minf08a.js?ver=5.2.0'
         id='bootstrap-bundle-js'></script>
@@ -826,7 +460,7 @@
     <script src='../../wp-includes/js/dist/vendor/wp-polyfill.min2c7c.js?ver=3.15.0' id='wp-polyfill-js'></script>
     <script src='../../wp-includes/js/dist/dom-ready.minded6.js?ver=392bdd43726760d1f3ca' id='wp-dom-ready-js'></script>
     <script src='../../wp-includes/js/dist/hooks.min6c65.js?ver=4169d3cf8e8d95a3d6d5' id='wp-hooks-js'></script>
-    <script src='../../wp-includes/js/dist/i18n.mine57b.js?ver=9e794f35a71bb98672ae' id='wp-i18n-js'></script>
+    <script src='../../wp-includes/js/dist/i18n.mine57b.js?ver=9e794f35a71bb98672ae' id='wp-i18n-js'></script> --}}
     <script id='wp-i18n-js-after'>
         wp.i18n.setLocaleData({
             'text direction\u0004ltr': ['ltr']
@@ -841,15 +475,15 @@
             "itemSelected": "Item selected."
         };
     </script>
-    <script src='../../wp-includes/js/jquery/ui/autocomplete.min3f14.js?ver=1.13.2' id='jquery-ui-autocomplete-js'></script>
+    {{-- <script src='../../wp-includes/js/jquery/ui/autocomplete.min3f14.js?ver=1.13.2' id='jquery-ui-autocomplete-js'></script> --}}
     <script id='control-job-manager-js-extra'>
         var controlJobManager = {
             "skills": ["Adobe XD", "APP", "Digital", "Figma", "PSD"],
             "ajax": "https:\/\/jthemes.com\/themes\/wp\/jobbox\/wp-admin\/admin-ajax.php"
         };
     </script>
-    <script src='../../wp-content/plugins/control-job-manager/assets/js/control-job-manager0ba6.js?ver=1.0.6'
-        id='control-job-manager-js'></script>
+    {{-- <script src='../../wp-content/plugins/control-job-manager/assets/js/control-job-manager0ba6.js?ver=1.0.6'
+        id='control-job-manager-js'></script> --}}
     <script id='wp-job-manager-bookmarks-bookmark-js-js-extra'>
         var job_manager_bookmarks = {
             "i18n_confirm_delete": "Are you sure you want to delete this bookmark?",
@@ -858,12 +492,12 @@
             "spinner_url": "https:\/\/jthemes.com\/themes\/wp\/jobbox\/wp-includes\/images\/spinner.gif"
         };
     </script>
-    <script src='../../wp-content/plugins/control-job-manager/vendor/bookmarks/assets/dist/js/bookmark0ba6.js?ver=1.0.6'
+    {{-- <script src='../../wp-content/plugins/control-job-manager/vendor/bookmarks/assets/dist/js/bookmark0ba6.js?ver=1.0.6'
         id='wp-job-manager-bookmarks-bookmark-js-js'></script>
     <script src='../../wp-content/plugins/control-job-manager/vendor/tags/assets/dist/js/tag-filter0ba6.js?ver=1.0.6'
         id='wp-job-manager-ajax-tag-filters-js'></script>
     <script src='../../wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min8bd8.js?ver=2.7.0-wc.7.2.2'
-        id='jquery-blockui-js'></script>
+        id='jquery-blockui-js'></script> --}}
     <script id='wc-add-to-cart-js-extra'>
         var wc_add_to_cart_params = {
             "ajax_url": "\/themes\/wp\/jobbox\/wp-admin\/admin-ajax.php",
@@ -874,18 +508,18 @@
             "cart_redirect_after_add": "no"
         };
     </script>
-    <script src='../../wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.mincb57.js?ver=7.2.2'
+    {{-- <script src='../../wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.mincb57.js?ver=7.2.2'
         id='wc-add-to-cart-js'></script>
     <script src='../../wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min5f13.js?ver=2.1.4-wc.7.2.2'
-        id='js-cookie-js'></script>
+        id='js-cookie-js'></script> --}}
     <script id='woocommerce-js-extra'>
         var woocommerce_params = {
             "ajax_url": "\/themes\/wp\/jobbox\/wp-admin\/admin-ajax.php",
             "wc_ajax_url": "\/themes\/wp\/jobbox\/?wc-ajax=%%endpoint%%"
         };
     </script>
-    <script src='../../wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.mincb57.js?ver=7.2.2'
-        id='woocommerce-js'></script>
+    {{-- <script src='../../wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.mincb57.js?ver=7.2.2'
+        id='woocommerce-js'></script> --}}
     <script id='wc-cart-fragments-js-extra'>
         var wc_cart_fragments_params = {
             "ajax_url": "\/themes\/wp\/jobbox\/wp-admin\/admin-ajax.php",
@@ -895,7 +529,7 @@
             "request_timeout": "5000"
         };
     </script>
-    <script src='../../wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.mincb57.js?ver=7.2.2'
+    {{-- <script src='../../wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.mincb57.js?ver=7.2.2'
         id='wc-cart-fragments-js'></script>
     <script src='../../wp-content/themes/jobbox/assets/js/vendor/modernizr-3.6.0.minaf6c.js?ver=3.6.0' id='modernizr-js'>
     </script>
@@ -905,7 +539,7 @@
     <script src='../../wp-content/themes/jobbox/assets/js/plugins/magnific-popupbb93.js?ver=5.0.0' id='magnific-popup-js'>
     </script>
     <script src='../../wp-content/themes/jobbox/assets/js/plugins/perfect-scrollbar.minbb93.js?ver=5.0.0'
-        id='perfect-scrollbar-js'></script>
+        id='perfect-scrollbar-js'></script> --}}
     <script id='select2-js-extra'>
         var job_manager_select2_args = {
             "width": "100%"
@@ -917,7 +551,7 @@
             "placeholder": "Any Category"
         };
     </script>
-    <script src='../../wp-content/plugins/woocommerce/assets/js/select2/select2.full.mince9a.js?ver=4.0.3-wc.7.2.2'
+    {{-- <script src='../../wp-content/plugins/woocommerce/assets/js/select2/select2.full.mince9a.js?ver=4.0.3-wc.7.2.2'
         id='select2-js'></script>
     <script src='../../wp-content/themes/jobbox/assets/js/plugins/isotopebb93.js?ver=5.0.0' id='isotope-js'></script>
     <script src='../../wp-content/themes/jobbox/assets/js/plugins/scrollupbb93.js?ver=5.0.0' id='scrollup-js'></script>
@@ -925,19 +559,19 @@
     </script>
     <script src='../../wp-includes/js/imagesloaded.mineda1.js?ver=4.1.4' id='imagesloaded-js'></script>
     <script src='../../wp-includes/js/masonry.min3a05.js?ver=4.2.2' id='masonry-js'></script>
-    <script src='../../wp-includes/js/jquery/jquery.masonry.minef70.js?ver=3.1.2b' id='jquery-masonry-js'></script>
+    <script src='../../wp-includes/js/jquery/jquery.masonry.minef70.js?ver=3.1.2b' id='jquery-masonry-js'></script> --}}
     <script src='../../wp-content/themes/jobbox/assets/js/mainbb93.js?ver=5.0.0' id='jobbox-main-js'></script>
     <script src='../../wp-content/plugins/control-email-subscriber/jquery.ajaxchimp.min6f3e.js?ver=1.3.0'
         id='jquery-ajaxchimp-js'></script>
     <script src='../../wp-content/plugins/control-email-subscriber/jquery.ajaxchimp.langs.min6f3e.js?ver=1.3.0'
         id='jquery-ajaxchimp-langs-js'></script>
-    <script id='control-email-subscriber-js-extra'>
+    {{-- <script id='control-email-subscriber-js-extra'>
         var controlEmailSubscriber = {
             "ajaxurl": "https:\/\/jthemes.com\/themes\/wp\/jobbox\/wp-admin\/admin-ajax.php",
             "ajaxchimpurl": "https:\/\/themeperch.us9.list-manage.com\/subscribe\/post?u=d33802e92fdc29def2e7af643&id=0085e5e2b5"
         };
-    </script>
-    <script src='../../wp-content/plugins/control-email-subscriber/scripts8a54.js?ver=1.0.0'
+    </script> --}}
+    {{-- <script src='../../wp-content/plugins/control-email-subscriber/scripts8a54.js?ver=1.0.0'
         id='control-email-subscriber-js'></script>
     <script id='ctrljm-frontend-js-extra'>
         var ctrljmFrontendForm = {
@@ -949,8 +583,8 @@
             "recaptchaKey": "6LcvRogiAAAAAOGCoaTo7d2Y3ra3DgG8L8YyHtfR",
             "captchaExecuteError": "Error trying to execute grecaptcha."
         };
-    </script>
-    <script src='../../wp-content/plugins/control-job-manager/assets/js/frontend-submission0ba6.js?ver=1.0.6'
+    </script> --}}
+    {{-- <script src='../../wp-content/plugins/control-job-manager/assets/js/frontend-submission0ba6.js?ver=1.0.6'
         id='ctrljm-frontend-js'></script>
     <script
         src='../../../../../../www.google.com/recaptcha/apib049.js?render=6LcvRogiAAAAAOGCoaTo7d2Y3ra3DgG8L8YyHtfR&amp;ver=3'
@@ -975,7 +609,7 @@
     <script src='../../wp-content/plugins/control-block-patterns/assets/js/validation.min676a.js?ver=1.3.5.2'
         id='ctrlbp-validation-js'></script>
     <script src='../../wp-content/plugins/control-block-patterns/assets/js/tabs5a2c.js?ver=1.1.7' id='ctrlbp-tabs-js'>
-    </script>
+    </script> --}}
 
 </body>
 

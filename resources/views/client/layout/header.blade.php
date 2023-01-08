@@ -4,8 +4,8 @@
 
             <div class="header-left">
                 <div class="header-logo">
-                    <a class="d-flex" href="../index.html">
-                        <img alt="Jobbox" src="../wp-content/themes/jobbox/assets/imgs/template/jobhub-logo.svg">
+                    <a class="d-flex" href="{{ route('index') }}">
+                        <img alt="ITWORK" src="../wp-content/themes/jobbox/assets/imgs/template/jobhub-logo.svg">
                     </a>
                 </div>
             </div>
