@@ -62,7 +62,7 @@
         </div>
     </div>
     <div id="app">
-        @include('client.layout.header')
+        @include('client.layout.headerSeeker')
         @include('client.layout.navbar')
         @yield('content')
 
