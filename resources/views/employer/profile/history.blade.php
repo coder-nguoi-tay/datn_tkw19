@@ -1,4 +1,4 @@
 @extends('employer.layout.index')
 @section('content')
-    ssssss
+    <history></history>
 @endsection

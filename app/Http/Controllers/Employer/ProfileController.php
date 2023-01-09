@@ -304,6 +304,8 @@ class ProfileController extends BaseController
     }
     public function historyPay()
     {
-        return view('employer.profile.history');
+        return view('employer.profile.history',[
+            'title' => 'Lịch sử giao dịch'
+        ]);
     }
 }
