@@ -23,8 +23,8 @@
     <link rel="stylesheet" href="{{ asset('assets/company/chosen.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/company/jquery-te-1.4.0.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/company/style.css') }}">
-    <link rel='stylesheet' id='jobbox-style-css' href='../wp-content/themes/jobbox/assets/css/style8a54.css?ver=1.0.0'
-        media='all' />
+    <link rel='stylesheet' id='jobbox-style-css'
+        href='{{ asset('wp-content/themes/jobbox/assets/css/style8a54.css?ver=1.0.0') }}' media='all' />
     <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/css/coreui.min.css" rel="stylesheet"
         integrity="sha384-UkVD+zxJKGsZP3s/JuRzapi4dQrDDuEf/kHphzg8P3v8wuQ6m9RLjTkPGeFcglQU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/js/coreui.bundle.min.js"

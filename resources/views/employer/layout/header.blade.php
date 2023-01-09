@@ -5,7 +5,7 @@
                   <div class="col-lg-12">
                       <div class="menu-full-width">
                           <div class="logo">
-                              <a href="index.html"><img src="images/logo2.png" alt="logo"></a>
+                              <a href="index.html"><img src="" alt="logo"></a>
                           </div><!-- end logo -->
 
                           <div class="logo-right-content">
@@ -121,8 +121,7 @@
                                                           <a href="employer-dashboard-message.html" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="avatar dot-status">
-                                                                      <img src="images/small-team1.jpg"
-                                                                          alt="Michelle Moreno">
+                                                                      <img src="" alt="Michelle Moreno">
                                                                   </div>
                                                                   <div class="content">
                                                                       <h4 class="widget-title">Michelle Moreno</h4>
@@ -135,8 +134,7 @@
                                                           <a href="employer-dashboard-message.html" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="avatar dot-status online-status">
-                                                                      <img src="images/small-team2.jpg"
-                                                                          alt="Michelle Moreno">
+                                                                      <img src="" alt="Michelle Moreno">
                                                                   </div>
                                                                   <div class="content">
                                                                       <h4 class="widget-title">Alex Smith</h4>
@@ -149,8 +147,7 @@
                                                           <a href="employer-dashboard-message.html" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="avatar dot-status">
-                                                                      <img src="images/small-team1.jpg"
-                                                                          alt="Michelle Moreno">
+                                                                      <img src="" alt="Michelle Moreno">
                                                                   </div>
                                                                   <div class="content">
                                                                       <h4 class="widget-title">Michelle Moreno</h4>
@@ -163,8 +160,7 @@
                                                           <a href="employer-dashboard-message.html" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="avatar dot-status online-status">
-                                                                      <img src="images/small-team2.jpg"
-                                                                          alt="Michelle Moreno">
+                                                                      <img src="" alt="Michelle Moreno">
                                                                   </div>
                                                                   <div class="content">
                                                                       <h4 class="widget-title">Alex Smith</h4>
@@ -177,8 +173,7 @@
                                                           <a href="employer-dashboard-message.html" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="avatar dot-status">
-                                                                      <img src="images/small-team2.jpg"
-                                                                          alt="Michelle Moreno">
+                                                                      <img src="" alt="Michelle Moreno">
                                                                   </div>
                                                                   <div class="content">
                                                                       <h4 class="widget-title">Alex Smith</h4>
@@ -204,15 +199,14 @@
                                               <button class="notification-btn dot-status online-status dropdown-toggle"
                                                   type="button" id="userDropdownMenu" data-toggle="dropdown"
                                                   aria-haspopup="true" aria-expanded="false">
-                                                  <img src="images/company-logo.jpg" alt="Bluetech,Inc">
+                                                  <img src="" alt="Bluetech,Inc">
                                               </button>
                                               <div class="dropdown-menu" aria-labelledby="userDropdownMenu">
                                                   <div class="mess-dropdown">
                                                       <div class="mess__title d-flex align-items-center">
                                                           <div class="image dot-status online-status">
                                                               <a href="#">
-                                                                  <img src="images/company-logo.jpg"
-                                                                      alt="Bluetech,Inc">
+                                                                  <img src="" alt="Bluetech,Inc">
                                                               </a>
                                                           </div>
                                                           <div class="content">
@@ -484,7 +478,7 @@
                                   <a href="employer-dashboard-message.html" class="d-block">
                                       <div class="mess__item">
                                           <div class="avatar dot-status">
-                                              <img src="images/small-team1.jpg" alt="Michelle Moreno">
+                                              <img src="" alt="Michelle Moreno">
                                           </div>
                                           <div class="content">
                                               <h4 class="widget-title">Michelle Moreno</h4>
@@ -497,7 +491,7 @@
                                   <a href="employer-dashboard-message.html" class="d-block">
                                       <div class="mess__item">
                                           <div class="avatar dot-status online-status">
-                                              <img src="images/small-team2.jpg" alt="Michelle Moreno">
+                                              <img src="" alt="Michelle Moreno">
                                           </div>
                                           <div class="content">
                                               <h4 class="widget-title">Alex Smith</h4>
@@ -510,7 +504,7 @@
                                   <a href="employer-dashboard-message.html" class="d-block">
                                       <div class="mess__item">
                                           <div class="avatar dot-status">
-                                              <img src="images/small-team1.jpg" alt="Michelle Moreno">
+                                              <img src="" alt="Michelle Moreno">
                                           </div>
                                           <div class="content">
                                               <h4 class="widget-title">Michelle Moreno</h4>
@@ -523,7 +517,7 @@
                                   <a href="employer-dashboard-message.html" class="d-block">
                                       <div class="mess__item">
                                           <div class="avatar dot-status online-status">
-                                              <img src="images/small-team2.jpg" alt="Michelle Moreno">
+                                              <img src="" alt="Michelle Moreno">
                                           </div>
                                           <div class="content">
                                               <h4 class="widget-title">Alex Smith</h4>
@@ -536,7 +530,7 @@
                                   <a href="employer-dashboard-message.html" class="d-block">
                                       <div class="mess__item">
                                           <div class="avatar dot-status">
-                                              <img src="images/small-team2.jpg" alt="Michelle Moreno">
+                                              <img src="" alt="Michelle Moreno">
                                           </div>
                                           <div class="content">
                                               <h4 class="widget-title">Alex Smith</h4>
@@ -549,7 +543,7 @@
                                   <a href="employer-dashboard-message.html" class="d-block">
                                       <div class="mess__item">
                                           <div class="avatar dot-status">
-                                              <img src="images/small-team6.jpg" alt="Michelle Moreno">
+                                              <img src="" alt="Michelle Moreno">
                                           </div>
                                           <div class="content">
                                               <h4 class="widget-title">Michelle Moreno</h4>
@@ -562,7 +556,7 @@
                                   <a href="employer-dashboard-message.html" class="d-block">
                                       <div class="mess__item">
                                           <div class="avatar dot-status online-status">
-                                              <img src="images/small-team6.jpg" alt="Michelle Moreno">
+                                              <img src="" alt="Michelle Moreno">
                                           </div>
                                           <div class="content">
                                               <h4 class="widget-title">Kamran Adi</h4>
@@ -582,7 +576,7 @@
                               <div class="mess__title d-flex align-items-center">
                                   <div class="image dot-status online-status">
                                       <a href="#">
-                                          <img src="images/company-logo.jpg" alt="Bluetech, Inc">
+                                          <img src="" alt="Bluetech, Inc">
                                       </a>
                                   </div>
                                   <div class="content">
