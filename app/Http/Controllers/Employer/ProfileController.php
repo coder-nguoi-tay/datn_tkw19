@@ -302,4 +302,8 @@ class ProfileController extends BaseController
             return redirect()->route('employer.change-password');
         }
     }
+    public function historyPay()
+    {
+        return view('employer.profile.history');
+    }
 }

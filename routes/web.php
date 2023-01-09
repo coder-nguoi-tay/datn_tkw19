@@ -96,8 +96,8 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
         Route::get('change-status', [ManagerUploadCvController::class, 'changeStatus'])->name('changestatus');
     });
     Route::resource('register-company', RegisterCompanyController::class);
-    //profile
-    Route::resource('profile', EmployerProfileController::class);
+
+
     Route::get('pay-money', [EmployerProfileController::class, 'payMoney'])->name('employer.profile.paymoney');
     Route::post('pay-money-payment', [EmployerProfileController::class, 'payMoneyPayment'])->name('profile.paymoney.payment');
     Route::get('pay-money-payment-return', [EmployerProfileController::class, 'vnpayReturn'])->name('profile.paymoney.payment.return');
@@ -106,6 +106,13 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::post('change-password', [ProfileController::class, 'changePasswordSucsses'])->name('employer.changePasswordSucsses');
     // giấy xác thực
     Route::post('image-accuracy', [ManagerUploadCvController::class, 'ImageAccuracy'])->name('profile.ImageAccuracy');
+
+
+    //profile
+    Route::get('history', [EmployerProfileController::class, 'historyPay'])->name('employer.profile.history');
+    Route::resource('profile', EmployerProfileController::class);
+    Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');
+    Route::get('/profile/change-password', [EmployerProfileController::class, 'changePassword'])->name('employer.profile.changePassword');
 });
 
 

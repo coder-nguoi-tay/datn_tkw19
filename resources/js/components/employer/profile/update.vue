@@ -882,7 +882,7 @@ export default {
 </script>
 
 <style scoped>
-.img-show {
+/* .img-show {
   width: 180px !important;
   height: 170px !important;
 }
@@ -1241,5 +1241,5 @@ a {
   color: #212529;
   background-color: #f3f4f5;
   border-color: #f3f4f5;
-}
+} */
 </style>
