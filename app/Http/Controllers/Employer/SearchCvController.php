@@ -87,6 +87,10 @@ class SearchCvController extends BaseController
                 // $q->orWhere($this->escapeLikeSentence('name', $request['free_word']));
             })
             ->with('user')->get();
+        $breadcrumbs = [
+            'Tìm kiếm ứng viên',
+
+        ];
         return view('employer.searchcv.index', [
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),
@@ -100,6 +104,7 @@ class SearchCvController extends BaseController
             'location' => $this->getlocation(),
             'cv' => $cv,
             'request' => $request,
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 

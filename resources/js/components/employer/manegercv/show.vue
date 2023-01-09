@@ -1,5 +1,5 @@
 <template>
-  <div style="margin: 30px 0; padding: 0; box-sizing: border-box">
+  <div>
     <div class="main_gt">
       <div class="left_cv">
         <div class="box_img">
