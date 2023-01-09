@@ -1,5 +1,6 @@
 require('./bootstrap')
 import { createApp } from 'vue'
+import $ from 'jquery'
 
 import { configure, defineRule } from 'vee-validate'
 

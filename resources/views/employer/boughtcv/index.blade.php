@@ -1,7 +1,7 @@
 @php
     use Carbon\Carbon;
 @endphp
-@extends('layouts.admin')
+@extends('employer.layout.index')
 @section('content')
     {{-- <bought-cv></bought-cv> --}}
     <div class="container">

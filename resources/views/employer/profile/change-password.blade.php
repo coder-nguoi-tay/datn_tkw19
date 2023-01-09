@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('employer.layout.index')
 @section('content')
     <div class="container">
         <div class="fade-in">

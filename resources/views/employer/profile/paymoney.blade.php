@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('employer.layout.index')
 @section('content')
     <pay-money :data="{{ json_encode([
         'urlStore' => route('employer.profile.paymoney.payment'),

@@ -428,4 +428,12 @@ class HomeController extends BaseController
             'majors' => Majors::all()
         ]);
     }
+    public function test()
+    {
+        return view('test');
+    }
+    public function test1()
+    {
+        return view('test1');
+    }
 }

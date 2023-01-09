@@ -107,6 +107,9 @@ class NewEmployerController extends BaseController
             ->select('job.*', 'company.logo as logo')
             ->Orderby('job.expired', 'ASC')
             ->get();
+        $breadcrumbs = [
+            'Dăng tin'
+        ];
         return view('employer.new.index', [
             'job' => $job,
             'all_day' => $all_day,
@@ -116,6 +119,7 @@ class NewEmployerController extends BaseController
             'checkCompany' => $checkCompany,
             'request' => $request,
             'checkCompanyStatus' => $checkCompanyStatus,
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 
@@ -126,6 +130,14 @@ class NewEmployerController extends BaseController
      */
     public function create()
     {
+        $breadcrumbs = [
+            [
+                'url' => route('employer.new.index'),
+                'name' => 'Quản lý cv'
+            ],
+            'Thêm tin',
+
+        ];
         return view('employer.new.create', [
             'title' => 'Đăng tin tuyển dụng',
             'lever' => $this->getlever(),
@@ -137,6 +149,7 @@ class NewEmployerController extends BaseController
             'majors' => $this->getmajors(),
             'location' => $this->getlocation(),
             'workingform' => $this->getworkingform(),
+            'breadcrumbs' => $breadcrumbs,
             'user' =>  $this->user
                 ->join('employer', 'employer.user_id', '=', 'users.id')
                 ->where('users.id', Auth::guard('user')->user()->id)
@@ -217,6 +230,14 @@ class NewEmployerController extends BaseController
      */
     public function edit($id)
     {
+        $breadcrumbs = [
+            [
+                'url' => route('employer.new.index'),
+                'name' => 'Quản lý cv'
+            ],
+            'Thêm tin',
+
+        ];
         return view('employer.new.edit', [
             'title' => 'Sửa tin tuyển dụng',
             'job' => $this->job->with('getskill')->where([
@@ -230,7 +251,8 @@ class NewEmployerController extends BaseController
             'profession' => $this->getprofession(),
             'majors' => $this->getmajors(),
             'location' => $this->getlocation(),
-            'workingform' => $this->getworkingform()
+            'workingform' => $this->getworkingform(),
+            'breadcrumbs' => $breadcrumbs
         ]);
     }
 
@@ -353,6 +375,22 @@ class NewEmployerController extends BaseController
             })
             ->select('users.name as user_name', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'job-seeker.*', 'majors.name as majors_name', 'save_cv.created_at as create_at_sv', 'save_cv.token as token')
             ->get();
-        return view('employer.new.detail', ['cv' => $cv, 'id' => $id, 'request' => $request]);
+        $breadcrumbs = [
+            [
+                'url' => route('employer.new.index'),
+                'name' => 'Quản lý cv'
+            ],
+            'CV đã nhận',
+
+        ];
+        return view(
+            'employer.new.detail',
+            [
+                'cv' => $cv,
+                'id' => $id,
+                'request' => $request,
+                'breadcrumbs' => $breadcrumbs,
+            ]
+        );
     }
 }

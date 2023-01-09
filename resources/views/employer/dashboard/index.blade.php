@@ -1,5 +1,4 @@
-@extends('layouts.admin')
-
+@extends('employer.layout.index')
 @section('content')
     <div>
         <div class="content">

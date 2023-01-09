@@ -1,74 +1,115 @@
 @php
     use Carbon\Carbon;
-    use App\Enums\UserRecruit;
 @endphp
-@extends('layouts.admin')
+@extends('employer.layout.index')
 @section('content')
-    <div class="container">
-        <div class="fade-in">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <header class="header header-sticky">
-                                <div class="container-fluid">
-                                    <label class=" px-md-0 me-md-3">Tất cả hồ sơ đã nhận</label>
-                                    <ul class="header-nav ms-3 d-flex">
-                                        <search-cv-date :url="{{ json_encode(route('employer.new.showdetai', $id)) }}"
-                                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
-                                        </search-cv-date>
-                                    </ul>
-                                </div>
-                            </header>
-                        </div>
-                        <div class="card-body">
-                            <div class="row gy-3">
-                                <table class="table table-striped table-hover table-bordered text-center">
-                                    <thead>
-                                        <th scope="col">Mã CV</th>
-                                        <th scope="col">Hình ảnh</th>
-                                        <th scope="col">Họ và Tên</th>
-                                        <th scope="col">Ứng tuyển vị trí</th>
-                                        <th scope="col">Ngày nộp đơn</th>
-                                        <th scope="col">thao tác</th>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($cv as $item)
-                                            <tr>
-                                                <td>{{ $item->token }}</td>
-                                                <td><img src="{{ asset($item->images) }}" alt="" width="150"
-                                                        height="150"></td>
-                                                <td>{{ $item->user_name }}</td>
-                                                <td>{{ $item->majors_name }}</td>
+    <section class="dashboard-area">
+        <div class="dashboard-content-wrap">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-content d-flex flex-wrap justify-content-between align-items-center">
+                            <ul class="list-items d-flex align-items-center">
+                                @if (isset($breadcrumbs))
+                                    @foreach ($breadcrumbs as $key => $breadcrumb)
+                                        @if ($key != count($breadcrumbs) - 1)
+                                            <li class="active__list-item">
+                                                <a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['name'] }}</a>
+                                            </li>
+                                        @else
+                                            <li class="active__list-item active">{{ $breadcrumb }}</li>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </ul>
+                        </div><!-- end breadcrumb-content -->
+                    </div><!-- end col-lg-12 -->
+                </div><!-- end row -->
+                <div class="row mt-5">
+                    <div class="col-lg-12">
+                        <div class="billing-form-item">
+                            <div class="billing-title-wrap">
+                                <h3 class="widget-title pb-0">
+                                    @if (isset($title))
+                                        <title>{{ $title }}</title>
+                                    @endif
+                                </h3>
+                                <div class="title-shape margin-top-10px"></div>
+                            </div><!-- billing-title-wrap -->
+                            <div class="billing-content pb-0">
+                                <div class="manage-job-wrap">
+                                    <div class="table-responsive">
+                                        <table class="table text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>Mã CV</th>
+                                                    <th>Hình ảnh</th>
+                                                    <th>Ngày nộp đơn</th>
+                                                    <th>Ứng tuyển vị trí</th>
+                                                    <th class="text-center">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($cv as $item)
+                                                    <tr>
+                                                        <td>{{ $item->token }}</td>
+                                                        <td class="text-center">
+                                                            <div class="manage-candidate-wrap">
+                                                                <img src="{{ asset($item->images) }}" alt=""
+                                                                    width="150" height="150">
+                                                                <p class="mt-1 text-center">
+                                                                    <span><b>{{ $item->user_name }}</b></span>
+                                                                </p>
+                                                            </div><!-- end manage-candidate-wrap -->
+                                                        </td>
+                                                        <td>{{ $item->majors_name }}</td>
+                                                        <td>{{ Carbon::parse($item->create_at_sv)->format('d-m-Y') }}</td>
+                                                        <td class="text-center">
+                                                            <div class="manage-candidate-wrap">
+                                                                <div class="bread-action pt-0">
+                                                                    <ul class="info-list">
+                                                                        <li class="d-inline-block"><a
+                                                                                href="{{ asset($item->file_cv) }}"
+                                                                                target="_blank"><i class="la la-eye"
+                                                                                    data-toggle="tooltip"
+                                                                                    data-placement="top" title=""
+                                                                                    data-original-title="Xem chi tiết"></i></a>
+                                                                        </li>
 
-                                                <td>{{ Carbon::parse($item->create_at_sv)->format('d-m-Y') }}</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-warning btn-radius-auto dropdown-toggle"
-                                                            id="action" type="button" data-coreui-toggle="dropdown"
-                                                            aria-expanded="false">Chức năng</button>
-                                                        <ul class="dropdown-menu" aria-labelledby="action">
-                                                            <li>
-                                                                <a class="dropdown-item" href="{{ asset($item->file_cv) }}"
-                                                                    target="_blank" class="dropdown-item">
-                                                                    <i class="fa fa-eye"></i>Xem Chi Tiết
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="group-paginate">
-                                {{-- {{ $news->appends(SearchQueryComponent::alterQuery($request))->links('pagination.admin') }} --}}
-                            </div>
-                        </div>
-                    </div>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div><!-- end billing-content -->
+                        </div><!-- end billing-form-item -->
+                    </div><!-- end col-lg-12 -->
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copy-right margin-top-30px padding-top-20px padding-bottom-20px">
+                            <p class="copy__desc">
+                                Copyright &copy;2020 Zobstar Inc. Made with
+                                <span class="la la-heart-o"></span> by <a
+                                    href="https://themeforest.net/user/techydevs/portfolio">TechyDevs</a>
+                            </p>
+                            <ul class="list-items">
+                                <li><a href="#">Terms of Use,</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul>
+                        </div><!-- end copy-right -->
+                    </div><!-- end col-lg-12 -->
+                </div><!-- end row -->
+            </div><!-- end container-fluid -->
         </div>
+    </section><!-- end dashboard-area -->
+
+    <div id="back-to-top">
+        <i class="la la-angle-up" title="Go top"></i>
     </div>
 @endsection
