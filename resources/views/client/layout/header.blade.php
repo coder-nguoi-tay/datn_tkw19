@@ -1,669 +1,321 @@
-<header class="header-area header-desktop">
-    <div class="header-menu-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="menu-full-width">
-                        <div class="logo">
-                            <a href="index.html"><img src="" alt="logo"></a>
-                        </div><!-- end logo -->
-                        <div class="main-menu-content">
-                            <nav>
-                                <ul>
-                                    <li>
-                                        <a href="#">Lĩnh vực <i class="la la-angle-down"></i></a>
-                                        <ul class="dropdown-menu-item">
-                                            <li><a href="index.html">Home 1</a></li>
-                                            <li><a href="index2.html">Home 2</a></li>
-                                            <li><a href="index3.html">Home 3</a></li>
-                                            <li><a href="index4.html">Home 4</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Việc làm </a>
+<header class="header sticky-bar">
+    <div class="container">
+        <div class="main-header">
 
-                                    </li>
-                                    <li>
-                                        <a href="#">Công ty <i class="la la-angle-down"></i></a>
-                                        <ul class="dropdown-menu-item">
-                                            <li><a href="candidate-listing.html">Candidate Listing</a></li>
-                                            <li><a href="candidate-details.html">Candidate Details</a></li>
-                                            <li><a href="candidate-dashboard.html">Candidate Dashboard</a></li>
-                                            <li><a href="candidate-dashboard-edit-profile.html">Edit Profile</a></li>
-                                            <li><a href="candidate-add-resume.html">Add a Resume</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tin tức </a>
-
-                                    </li>
-                                    <li>
-                                        <a href="#">Câu hỏi thường gặp </a>
-
-                                    </li>
-                                    <li>
-                                        <a href="#">Xem hồ sơ <i class="la la-angle-down"></i></a>
-                                        <ul class="dropdown-menu-item">
-                                            <li><a href="job-listing.html">Quản lý hồ sơ</a></li>
-                                            <li><a href="job-grid-view.html">Quản lý cv</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div><!-- end main-menu-content -->
-                        <div class="logo-right-content">
-                            <div class="header-action-button d-flex align-items-center">
-                                <div class="notification-wrap d-flex align-items-center">
-                                    <div class="notification-item mr-3">
-                                        <div class="dropdown">
-                                            <button class="notification-btn dropdown-toggle" type="button"
-                                                id="notificationDropdownMenu" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                                <i class="la la-bell"></i>
-                                                <span class="quantity">5</span>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="notificationDropdownMenu">
-                                                <div class="mess-dropdown">
-                                                    <div class="mess__title">
-                                                        <h4
-                                                            class="widget-title d-flex align-items-center justify-content-between">
-                                                            Notifications<a href="#"
-                                                                class="font-size-12 color-text-3">Mark all as read</a>
-                                                        </h4>
-                                                        <p class="font-size-12 font-weight-medium">You have 5
-                                                            Notifications</p>
-                                                    </div><!-- end mess__title -->
-                                                    <div class="mess__body">
-                                                        <a href="#" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="icon-element">
-                                                                    <i class="la la-bolt"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p class="text">Your Resume Updated!</p>
-                                                                    <span class="time">5 hours ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="#" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="icon-element">
-                                                                    <i class="la la-lock"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p class="text">You changed password</p>
-                                                                    <span class="time">2 day ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="#" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="icon-element">
-                                                                    <i class="la la-check-circle"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p class="text">You applied for a job <span
-                                                                            class="color-text">Front-end
-                                                                            Developer</span></p>
-                                                                    <span class="time">1 day ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="#" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="icon-element">
-                                                                    <i class="la la-user"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p class="text">Your account has been created
-                                                                        successfully</p>
-                                                                    <span class="time">1 minute ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="#" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="icon-element">
-                                                                    <i class="la la-download"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p class="text">Someone downloaded resume</p>
-                                                                    <span class="time">Yesterday</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                    </div><!-- end mess__body -->
-                                                    <div class="mess__item border-bottom-0 text-center">
-                                                        <a href="#" class="theme-btn w-100">View All
-                                                            Notifications</a>
-                                                    </div><!-- end mess__item -->
-                                                </div><!-- end mess-dropdown -->
-                                            </div><!-- end dropdown-menu -->
-                                        </div><!-- end dropdown -->
-                                    </div>
-                                    <div class="notification-item mr-3">
-                                        <div class="dropdown">
-                                            <button class="notification-btn dropdown-toggle" type="button"
-                                                id="messageDropdownMenu" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
-                                                <i class="la la-envelope"></i>
-                                                <span class="quantity">5</span>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="messageDropdownMenu">
-                                                <div class="mess-dropdown">
-                                                    <div class="mess__title">
-                                                        <h4
-                                                            class="widget-title d-flex align-items-center justify-content-between">
-                                                            Message <a href="#"
-                                                                class="font-size-12 color-text-3">Mark all as read</a>
-                                                        </h4>
-                                                        <p class="font-size-12 font-weight-medium">You have 5 new
-                                                            messages</p>
-                                                    </div><!-- end mess__title -->
-                                                    <div class="mess__body">
-                                                        <a href="employer-dashboard-message.html" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="avatar dot-status">
-                                                                    <img src=""
-                                                                        alt="Michelle Moreno">
-                                                                </div>
-                                                                <div class="content">
-                                                                    <h4 class="widget-title">Michelle Moreno</h4>
-                                                                    <p class="text">Thanks for reaching out. I'm
-                                                                        quite busy right now on many</p>
-                                                                    <span class="time">5 min ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="employer-dashboard-message.html" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="avatar dot-status online-status">
-                                                                    <img src=""
-                                                                        alt="Michelle Moreno">
-                                                                </div>
-                                                                <div class="content">
-                                                                    <h4 class="widget-title">Alex Smith</h4>
-                                                                    <p class="text">Thanks for reaching out. I'm
-                                                                        quite busy right now on many</p>
-                                                                    <span class="time">2 days ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="employer-dashboard-message.html" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="avatar dot-status">
-                                                                    <img src=""
-                                                                        alt="Michelle Moreno">
-                                                                </div>
-                                                                <div class="content">
-                                                                    <h4 class="widget-title">Michelle Moreno</h4>
-                                                                    <p class="text">Thanks for reaching out. I'm
-                                                                        quite busy right now on many</p>
-                                                                    <span class="time">5 min ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="employer-dashboard-message.html" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="avatar dot-status online-status">
-                                                                    <img src=""
-                                                                        alt="Michelle Moreno">
-                                                                </div>
-                                                                <div class="content">
-                                                                    <h4 class="widget-title">Alex Smith</h4>
-                                                                    <p class="text">Thanks for reaching out. I'm
-                                                                        quite busy right now on many</p>
-                                                                    <span class="time">2 days ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="employer-dashboard-message.html" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="avatar dot-status">
-                                                                    <img src=""
-                                                                        alt="Michelle Moreno">
-                                                                </div>
-                                                                <div class="content">
-                                                                    <h4 class="widget-title">Alex Smith</h4>
-                                                                    <p class="text">Thanks for reaching out. I'm
-                                                                        quite busy right now on many</p>
-                                                                    <span class="time">2 days ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                    </div><!-- end mess__body -->
-                                                    <div class="mess__item border-bottom-0 text-center">
-                                                        <a href="#" class="theme-btn w-100">View All
-                                                            Messages</a>
-                                                    </div><!-- end mess__item -->
-                                                </div><!-- end mess-dropdown -->
-                                            </div><!-- end dropdown-menu -->
-                                        </div><!-- end dropdown -->
-                                    </div>
-                                </div>
-                                <div class="user-action-wrap">
-                                    <div class="notification-item">
-                                        <div class="dropdown">
-                                            <button class="notification-btn dot-status online-status dropdown-toggle"
-                                                type="button" id="userDropdownMenu" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                                <img src="" alt="Bluetech,Inc">
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="userDropdownMenu">
-                                                <div class="mess-dropdown">
-                                                    <div class="mess__title d-flex align-items-center">
-                                                        <div class="image dot-status online-status">
-                                                            <a href="#">
-                                                                <img src="" alt="Bluetech,Inc">
-                                                            </a>
-                                                        </div>
-                                                        <div class="content">
-                                                            <h4 class="widget-title font-size-16">
-                                                                <a href="#">Bluetech, Inc</a>
-                                                            </h4>
-                                                            <span class="email">bluetechinc@example.com</span>
-                                                        </div>
-                                                    </div><!-- end mess__title -->
-                                                    <div class="mess__body">
-                                                        <ul class="list-items">
-                                                            <li class="mb-0">
-                                                                <a href="employer-dashboard.html" class="d-block">
-                                                                    <i class="la la-user"></i> Account
-                                                                </a>
-                                                            </li>
-                                                            <li class="mb-0">
-                                                                <a href="employer-dashboard-bookmark.html"
-                                                                    class="d-block">
-                                                                    <i class="la la-bookmark"></i> Bookmarks
-                                                                </a>
-                                                            </li>
-                                                            <li class="mb-0">
-                                                                <a href="employer-dashboard.html" class="d-block">
-                                                                    <i class="la la-plus"></i> Post a Job
-                                                                </a>
-                                                            </li>
-                                                            <li class="mb-0">
-                                                                <a href="employer-dashboard.html" class="d-block">
-                                                                    <i class="la la-question"></i> Help
-                                                                </a>
-                                                            </li>
-                                                            <li class="mb-0">
-                                                                <a href="employer-dashboard.html" class="d-block">
-                                                                    <i class="la la-gear"></i> Settings
-                                                                </a>
-                                                            </li>
-                                                            <li class="mb-0">
-                                                                <div class="section-block mt-2 mb-2"></div>
-                                                            </li>
-                                                            <li class="mb-0">
-                                                                <a href="index.html" class="d-block">
-                                                                    <i class="la la-power-off"></i> Logout
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!-- end mess__body -->
-                                                </div><!-- end mess-dropdown -->
-                                            </div><!-- end dropdown-menu -->
-                                        </div><!-- end dropdown -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu-toggler d-flex align-items-center">
-                                <div class="side-menu-open">
-                                    <span class="menu__bar"></span>
-                                    <span class="menu__bar"></span>
-                                    <span class="menu__bar"></span>
-                                </div><!-- end side-menu-open -->
-                                <div class="user-menu-open">
-                                    <i class="la la-user"></i>
-                                </div><!-- end user-menu-open -->
-                            </div>
-                        </div><!-- end logo-right-content -->
-                    </div><!-- end menu-full-width -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-        </div><!-- end container-fluid -->
-    </div><!-- end header-menu-wrapper -->
-    <div class="side-nav-container">
-        <div class="humburger-menu">
-            <div class="humburger-menu-lines side-menu-close"></div><!-- end humburger-menu-lines -->
-        </div><!-- end humburger-menu -->
-        <div class="side-menu-wrap">
-            <ul class="side-menu-ul">
-                <li>
-                    <a href="#">Home <i class="la la-caret-down btn-toggle"></i></a>
-                    <ul class="dropdown-menu-item">
-                        <li><a href="index.html">Home 1</a></li>
-                        <li><a href="index2.html">Home 2</a></li>
-                        <li><a href="index3.html">Home 3</a></li>
-                        <li><a href="index4.html">Home 4</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Employers <i class="la la-caret-down btn-toggle"></i></a>
-                    <ul class="dropdown-menu-item">
-                        <li><a href="employer-listing.html">Employer Listing</a></li>
-                        <li><a href="employer-details.html">Employer Details</a></li>
-                        <li><a href="employer-dashboard.html">Employer Dashboard</a></li>
-                        <li><a href="employer-dashboard-edit-profile.html">Edit Profile</a></li>
-                        <li><a href="employer-dashboard-post-job.html">Post a Job</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Candidates <i class="la la-caret-down btn-toggle"></i></a>
-                    <ul class="dropdown-menu-item">
-                        <li><a href="candidate-listing.html">Candidate Listing</a></li>
-                        <li><a href="candidate-details.html">Candidate Details</a></li>
-                        <li><a href="candidate-dashboard.html">Candidate Dashboard</a></li>
-                        <li><a href="candidate-dashboard-edit-profile.html">Edit Profile</a></li>
-                        <li><a href="candidate-add-resume.html">Add a Resume</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Pages <i class="la la-caret-down btn-toggle"></i></a>
-                    <ul class="dropdown-menu-item">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="all-category.html">All Category</a></li>
-                        <li><a href="invoice.html">Invoice</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="how-it-works.html">How It Works</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="payment-complete.html">Payment Complete</a></li>
-                        <li><a href="faq.html">Faq</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="page-404.html">404 Page</a></li>
-                        <li><a href="terms-and-condition.html">Terms And Condition</a></li>
-                        <li><a href="recover.html">Recover Password</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Blog <i class="la la-caret-down btn-toggle"></i></a>
-                    <ul class="dropdown-menu-item">
-                        <li><a href="blog-grid.html">Blog Grid</a></li>
-                        <li><a href="blog-left-sidebar.html">Left Sidebar</a></li>
-                        <li><a href="blog-right-sidebar.html">Right Sidebar</a></li>
-                        <li><a href="blog-single.html">Blog Detail</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Jobs <i class="la la-caret-down btn-toggle"></i></a>
-                    <ul class="dropdown-menu-item">
-                        <li><a href="job-listing.html">Job Listing</a></li>
-                        <li><a href="job-grid-view.html">Job Grid View</a></li>
-                        <li><a href="job-details.html">Job Details </a></li>
-                    </ul>
-                </li>
-            </ul>
-            <div class="side-nav-button">
-                <a href="login.html">Login</a>
-                <span class="or-text">or</span>
-                <a href="sign-up.html">Sign up</a>
-                <a href="employer-dashboard-post-job.html" class="theme-btn">Post a Job</a>
-            </div><!-- end side-nav-button -->
-        </div><!-- end side-menu-wrap -->
-    </div><!-- end side-nav-container -->
-    <div class="user-nav-container">
-        <div class="humburger-menu">
-            <div class="humburger-menu-lines side-menu-close"></div><!-- end humburger-menu-lines -->
-        </div><!-- end humburger-menu -->
-        <div class="user-panel-nav">
-            <ul class="nav nav-tabs" id="nav-tab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="notification-tab" data-toggle="tab" href="#notification-home"
-                        role="tab" aria-controls="notification-home" aria-selected="true">
-                        Notifications
+            <div class="header-left">
+                <div class="header-logo">
+                    <a class="d-flex" href="{{ route('index') }}">
+                        <img alt="ITWORK" src="../wp-content/themes/jobbox/assets/imgs/template/jobhub-logo.svg">
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="message-tab" data-toggle="tab" href="#message-home" role="tab"
-                        aria-controls="message-home" aria-selected="false">Messages</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="account-tab" data-toggle="tab" href="#account-home" role="tab"
-                        aria-controls="account-home" aria-selected="false">Account</a>
-                </li>
-            </ul>
-        </div>
-        <div class="user-panel-content">
-            <div class="tab-content" id="tab-tabContent">
-                <div class="tab-pane fade show active" id="notification-home" role="tabpanel"
-                    aria-labelledby="notification-tab">
-                    <div class="user-sidebar-item">
-                        <div class="mess-dropdown">
-                            <div class="mess__body">
-                                <a href="#" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="icon-element">
-                                            <i class="la la-bolt"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p class="text">Your Resume Updated!</p>
-                                            <span class="time">5 hours ago</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                                <a href="#" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="icon-element">
-                                            <i class="la la-lock"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p class="text">You changed password</p>
-                                            <span class="time">2 day ago</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                                <a href="#" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="icon-element">
-                                            <i class="la la-check-circle"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p class="text">You applied for a job <span class="color-text">Front-end
-                                                    Developer</span></p>
-                                            <span class="time">1 day ago</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                                <a href="#" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="icon-element">
-                                            <i class="la la-user"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p class="text">Your account has been created successfully</p>
-                                            <span class="time">1 minute ago</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                                <a href="#" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="icon-element">
-                                            <i class="la la-download"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p class="text">Someone downloaded resume</p>
-                                            <span class="time">Yesterday</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                                <a href="#" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="icon-element">
-                                            <i class="la la-check-circle"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p class="text">Application has been approved</p>
-                                            <span class="time">1 hour ago</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                                <a href="#" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="icon-element">
-                                            <i class="la la-flag"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p class="text">New report has been received</p>
-                                            <span class="time">10 hours ago</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                                <a href="#" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="icon-element">
-                                            <i class="la la-bell-o"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p class="text">New user feedback received</p>
-                                            <span class="time">2 hours ago</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                            </div><!-- end mess__body -->
-                        </div><!-- end mess-dropdown -->
-                    </div>
                 </div>
-                <div class="tab-pane fade" id="message-home" role="tabpanel" aria-labelledby="message-tab">
-                    <div class="user-sidebar-item">
-                        <div class="mess-dropdown">
-                            <div class="mess__body">
-                                <a href="employer-dashboard-message.html" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="avatar dot-status">
-                                            <img src="" alt="Michelle Moreno">
-                                        </div>
-                                        <div class="content">
-                                            <h4 class="widget-title">Michelle Moreno</h4>
-                                            <p class="text">Thanks for reaching out. I'm quite busy right now on many
-                                            </p>
-                                            <span class="time">5 min ago</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                                <a href="employer-dashboard-message.html" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="avatar dot-status online-status">
-                                            <img src="" alt="Michelle Moreno">
-                                        </div>
-                                        <div class="content">
-                                            <h4 class="widget-title">Alex Smith</h4>
-                                            <p class="text">Thanks for reaching out. I'm quite busy right now on many
-                                            </p>
-                                            <span class="time">2 days ago</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                                <a href="employer-dashboard-message.html" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="avatar dot-status">
-                                            <img src="" alt="Michelle Moreno">
-                                        </div>
-                                        <div class="content">
-                                            <h4 class="widget-title">Michelle Moreno</h4>
-                                            <p class="text">Thanks for reaching out. I'm quite busy right now on many
-                                            </p>
-                                            <span class="time">5 min ago</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                                <a href="employer-dashboard-message.html" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="avatar dot-status online-status">
-                                            <img src="" alt="Michelle Moreno">
-                                        </div>
-                                        <div class="content">
-                                            <h4 class="widget-title">Alex Smith</h4>
-                                            <p class="text">Thanks for reaching out. I'm quite busy right now on many
-                                            </p>
-                                            <span class="time">2 days ago</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                                <a href="employer-dashboard-message.html" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="avatar dot-status">
-                                            <img src="" alt="Michelle Moreno">
-                                        </div>
-                                        <div class="content">
-                                            <h4 class="widget-title">Alex Smith</h4>
-                                            <p class="text">Thanks for reaching out. I'm quite busy right now on many
-                                            </p>
-                                            <span class="time">2 days ago</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                                <a href="employer-dashboard-message.html" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="avatar dot-status">
-                                            <img src="" alt="Michelle Moreno">
-                                        </div>
-                                        <div class="content">
-                                            <h4 class="widget-title">Michelle Moreno</h4>
-                                            <p class="text">Thanks for reaching out. I'm quite busy right now on many
-                                            </p>
-                                            <span class="time">5 min ago</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                                <a href="employer-dashboard-message.html" class="d-block">
-                                    <div class="mess__item">
-                                        <div class="avatar dot-status online-status">
-                                            <img src="" alt="Michelle Moreno">
-                                        </div>
-                                        <div class="content">
-                                            <h4 class="widget-title">Kamran Adi</h4>
-                                            <p class="text">Thanks for reaching out. I'm quite busy right now on many
-                                            </p>
-                                            <span class="time">2 hours ago</span>
-                                        </div>
-                                    </div><!-- end mess__item -->
-                                </a>
-                            </div><!-- end mess__body -->
-                        </div><!-- end mess-dropdown -->
-                    </div>
+            </div>
+            <div class="header-nav">
+                <nav class="primary-menu-container nav-main-menu">
+                    <ul id="primary-menu-list" class="menu-wrapper main-menu list-unstyled mb-0">
+                        <li id="menu-item-93"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-menu-ancestor current-menu-parent menu-item-has-children menu-item-93 has-children">
+                            <a href="../index.html" class="active">Home</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-1348"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1348">
+                                    <a href="../index.html">Home 1</a>
+                                </li>
+                                <li id="menu-item-1347"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1347">
+                                    <a href="../home-2/index.html">Home 2</a>
+                                </li>
+                                <li id="menu-item-1346"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1341 current_page_item menu-item-1346">
+                                    <a href="index.html" aria-current="page" class="active">Home 3</a>
+                                </li>
+                                <li id="menu-item-1368"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1368">
+                                    <a href="../home-4/index.html">Home 4</a>
+                                </li>
+                                <li id="menu-item-1409"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1409">
+                                    <a href="../home-5/index.html">Home 5</a>
+                                </li>
+                                <li id="menu-item-1408"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1408">
+                                    <a href="../home-6/index.html">Home 6</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-145"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-145 has-children">
+                            <a href="../jobs/index.html">Find a Job</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-566"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-566">
+                                    <a href="../jobs/index.html">All Jobs</a>
+                                </li>
+                                <li id="menu-item-643"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-643">
+                                    <a href="../job-dashboard/index.html">Job Dashboard</a>
+                                </li>
+                                <li id="menu-item-1442"
+                                    class="menu-item menu-item-type-post_type menu-item-object-job_listing menu-item-1442">
+                                    <a href="../job/lead-quality-control-qa-2/index.html">Job Details with Form</a>
+                                </li>
+                                <li id="menu-item-1440"
+                                    class="menu-item menu-item-type-post_type menu-item-object-job_listing menu-item-1440">
+                                    <a href="../job/senior-system-engineer-3/index.html">Job Details with Email</a>
+                                </li>
+                                <li id="menu-item-1441"
+                                    class="menu-item menu-item-type-post_type menu-item-object-job_listing menu-item-1441">
+                                    <a href="../job/full-stack-engineer-3/index.html">Job with Custom Link</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-134"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-134 has-children">
+                            <a href="../recruiters/index.html">Recruiters</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-135"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-135">
+                                    <a href="../recruiters/index.html">Recruiters</a>
+                                </li>
+                                <li id="menu-item-136"
+                                    class="menu-item menu-item-type-post_type menu-item-object-ctrljm_recruiter menu-item-136">
+                                    <a href="../company/fireworks/index.html">Company Details</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-139"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-139 has-children">
+                            <a href="../candidates/index.html">Candidates</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-140"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-140">
+                                    <a href="../candidates/index.html">Candidates</a>
+                                </li>
+                                <li id="menu-item-141"
+                                    class="menu-item menu-item-type-post_type menu-item-object-ctrljm_candidate menu-item-141">
+                                    <a href="../candidate/jacob-jones/index.html">Candidate Details</a>
+                                </li>
+                                <li id="menu-item-1445"
+                                    class="menu-item menu-item-type-post_type menu-item-object-ctrljm_candidate menu-item-1445">
+                                    <a href="../candidate/cody-fisher/index.html">Candidate with Video</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-96"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-96 has-children">
+                            <a href="../blog/index.html">Blog</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-851"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-851">
+                                    <a href="../blog/index.html">Blog Grid</a>
+                                </li>
+                                <li id="menu-item-850"
+                                    class="menu-item menu-item-type-post_type menu-item-object-post menu-item-850">
+                                    <a href="../how-to-write-an-application-letter-with-examples-2/index.html">Blog
+                                        Single</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-123"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-123 has-children">
+                            <a href="#">Pages</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-124"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-124">
+                                    <a href="../about-us/index.html">About Us</a>
+                                </li>
+                                <li id="menu-item-147"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-147">
+                                    <a href="../contact-us/index.html">Contact</a>
+                                </li>
+                                <li id="menu-item-131"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-131">
+                                    <a href="../pricing-plan/index.html">Pricing Plan</a>
+                                </li>
+                                <li id="menu-item-1410"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1410">
+                                    <a href="../shop/index.html">Shop Page</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="burger-icon burger-icon-white" data-bs-toggle="offcanvas" href="#offcanvasMenu"
+                    role="button" aria-controls="offcanvasMenu">
+                    <span class="burger-icon-top"></span>
+                    <span class="burger-icon-mid"></span>
+                    <span class="burger-icon-bottom"></span>
                 </div>
-                <div class="tab-pane fade" id="account-home" role="tabpanel" aria-labelledby="account-tab">
-                    <div class="user-action-wrap user-sidebar-panel">
-                        <div class="mess-dropdown">
-                            <div class="mess__title d-flex align-items-center">
-                                <div class="image dot-status online-status">
-                                    <a href="#">
-                                        <img src="" alt="Bluetech, Inc">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <h4 class="widget-title">
-                                        <a href="#">Bluetech, Inc</a>
-                                    </h4>
-                                    <span class="email">bluetechinc@example.com</span>
-                                </div>
-                            </div><!-- end mess__title -->
-                            <div class="mess__body">
-                                <a href="employer-dashboard.html" class="d-block">
-                                    <i class="la la-user"></i> Account
-                                </a>
-                                <a href="employer-dashboard-bookmark.html" class="d-block">
-                                    <i class="la la-bookmark"></i> Bookmarks
-                                </a>
-                                <a href="employer-dashboard.html" class="d-block">
-                                    <i class="la la-plus"></i> Post a Job
-                                </a>
-                                <a href="employer-dashboard.html" class="d-block">
-                                    <i class="la la-question"></i> Help
-                                </a>
-                                <a href="employer-dashboard.html" class="d-block">
-                                    <i class="la la-gear"></i> Settings
-                                </a>
-                                <div class="section-block mt-2 mb-2"></div>
-                                <a href="index.html" class="d-block">
-                                    <i class="la la-power-off"></i> Logout
-                                </a>
-                            </div><!-- end mess__body -->
-                        </div><!-- end mess-dropdown -->
-                    </div>
+            </div>
+            <div class="header-right">
+                <div class="block-signin d-flex align-items-center gap-2">
+                    <a class="text-link-bd-btom hover-up" href="#controlJobManagerRegister"
+                        data-bs-toggle="modal">Register</a>
+                    <a class="btn btn-default btn-shadow ml-30 hover-up" href="#controlJobManagerLogin"
+                        data-bs-toggle="modal">Sign in</a>
+
+
                 </div>
             </div>
         </div>
-    </div><!-- end user-nav-container -->
+    </div>
 </header>
+<div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar offcanvas offcanvas-end" tabindex="-1"
+    id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+    <div class="offcanvas-header justify-content-end">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="mobile-header-wrapper-inner offcanvas-body">
+        <div class="mobile-header-content-area">
+            <div class="perfect-scroll">
+                <div class="mobile-search mobile-header-border mb-30">
+                    <form role="search" method="get" action="https://jthemes.com/themes/wp/jobbox/">
+                        <input type="search" placeholder="Search.." value="" name="s" /><i
+                            class="fi-rr-search"></i>
+                    </form>
+                </div>
+                <div class="mobile-menu-wrap mobile-header-border">
+                    <!-- mobile menu start-->
+                    <nav class="primary-menu-container">
+                        <ul id="primary-mobile-menu-list" class="menu-wrapper mobile-menu font-heading list-unstyled">
+                            <li
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-menu-ancestor current-menu-parent menu-item-has-children menu-item-93 has-children">
+                                <a href="../index.html" class="active">Home</a>
+                                <ul class="sub-menu">
+                                    <li
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1348">
+                                        <a href="../index.html">Home 1</a>
+                                    </li>
+                                    <li
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1347">
+                                        <a href="../home-2/index.html">Home 2</a>
+                                    </li>
+                                    <li
+                                        class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1341 current_page_item menu-item-1346">
+                                        <a href="index.html" aria-current="page" class="active">Home 3</a>
+                                    </li>
+                                    <li
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1368">
+                                        <a href="../home-4/index.html">Home 4</a>
+                                    </li>
+                                    <li
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1409">
+                                        <a href="../home-5/index.html">Home 5</a>
+                                    </li>
+                                    <li
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1408">
+                                        <a href="../home-6/index.html">Home 6</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-145 has-children">
+                                <a href="../jobs/index.html">Find a Job</a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-566">
+                                        <a href="../jobs/index.html">All Jobs</a>
+                                    </li>
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-643">
+                                        <a href="../job-dashboard/index.html">Job Dashboard</a>
+                                    </li>
+                                    <li
+                                        class="menu-item menu-item-type-post_type menu-item-object-job_listing menu-item-1442">
+                                        <a href="../job/lead-quality-control-qa-2/index.html">Job Details with
+                                            Form</a>
+                                    </li>
+                                    <li
+                                        class="menu-item menu-item-type-post_type menu-item-object-job_listing menu-item-1440">
+                                        <a href="../job/senior-system-engineer-3/index.html">Job Details with
+                                            Email</a>
+                                    </li>
+                                    <li
+                                        class="menu-item menu-item-type-post_type menu-item-object-job_listing menu-item-1441">
+                                        <a href="../job/full-stack-engineer-3/index.html">Job with Custom Link</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-134 has-children">
+                                <a href="../recruiters/index.html">Recruiters</a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-135">
+                                        <a href="../recruiters/index.html">Recruiters</a>
+                                    </li>
+                                    <li
+                                        class="menu-item menu-item-type-post_type menu-item-object-ctrljm_recruiter menu-item-136">
+                                        <a href="../company/fireworks/index.html">Company Details</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-139 has-children">
+                                <a href="../candidates/index.html">Candidates</a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-140">
+                                        <a href="../candidates/index.html">Candidates</a>
+                                    </li>
+                                    <li
+                                        class="menu-item menu-item-type-post_type menu-item-object-ctrljm_candidate menu-item-141">
+                                        <a href="../candidate/jacob-jones/index.html">Candidate Details</a>
+                                    </li>
+                                    <li
+                                        class="menu-item menu-item-type-post_type menu-item-object-ctrljm_candidate menu-item-1445">
+                                        <a href="../candidate/cody-fisher/index.html">Candidate with Video</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-96 has-children">
+                                <a href="../blog/index.html">Blog</a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-851">
+                                        <a href="../blog/index.html">Blog Grid</a>
+                                    </li>
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-850">
+                                        <a href="../how-to-write-an-application-letter-with-examples-2/index.html">Blog
+                                            Single</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-123 has-children">
+                                <a href="#">Pages</a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-124">
+                                        <a href="../about-us/index.html">About Us</a>
+                                    </li>
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-147">
+                                        <a href="../contact-us/index.html">Contact</a>
+                                    </li>
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-131">
+                                        <a href="../pricing-plan/index.html">Pricing Plan</a>
+                                    </li>
+                                    <li
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1410">
+                                        <a href="../shop/index.html">Shop Page</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="mobile-account">
+                    <h6 class="mb-10">Your Account</h6>
+                    <div class="header-right">
+                        <div class="block-signin d-flex align-items-center gap-2">
+                            <a class="text-link-bd-btom hover-up" href="#controlJobManagerRegister"
+                                data-bs-toggle="modal">Register</a>
+                            <a class="btn btn-default btn-shadow ml-30 hover-up" href="#controlJobManagerLogin"
+                                data-bs-toggle="modal">Sign in</a>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="site-copyright pt-2 border-top">
+                    Copyright 2023 &copy; Jobbox.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
