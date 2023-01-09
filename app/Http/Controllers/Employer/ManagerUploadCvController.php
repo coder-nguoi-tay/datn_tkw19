@@ -81,6 +81,10 @@ class ManagerUploadCvController extends BaseController
             })
             ->select('users.name as user_name', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'job-seeker.*', 'majors.name as majors_name', 'save_cv.created_at as create_at_sv', 'save_cv.token as token')
             ->get();
+        $breadcrumbs = [
+            'Quản lý ứng viên',
+
+        ];
         return view('employer.managercv.index', [
             'cv' => $cv,
             'request' => $request,
@@ -90,6 +94,7 @@ class ManagerUploadCvController extends BaseController
             'majors' => $this->getmajors(),
             'location' => $this->getlocation(),
             'workingform' => $this->getworkingform(),
+            'breadcrumbs' => $breadcrumbs,
 
         ]);
     }
