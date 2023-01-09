@@ -114,6 +114,13 @@ class ManageUploadController extends BaseController
 
     public function createFormCV()
     {
+        $breadcrumbs = [
+            [
+                'url' => route('quan-ly-cv.index'),
+                'name' => 'Quản lý cv'
+            ],
+            'Tạo cv'
+        ];
         $skill = $this->profileUserCv->where('user_id', Auth::guard('user')->user()->id)->first();
         return view('client.seeker.create_form_cv', [
             'title' => 'Tạo mới CV',
@@ -121,6 +128,7 @@ class ManageUploadController extends BaseController
             'skill' => $skill ?  json_decode($skill->skill) : null,
             'project' => $skill ? json_decode($skill->project) : null,
             'user_name' => User::where('id', Auth::guard('user')->user()->id)->first()->name,
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
     public function storeFormCV(Request $request)
