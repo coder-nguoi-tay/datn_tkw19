@@ -266,6 +266,8 @@ app.component('form-login', formLogin);
 import formRegister from "./components/client/register/index.vue";
 app.component('form-register', formRegister);
 
+import History from "./components/employer/profile/history.vue";
+app.component('history', History);
 
 import modalContract from "./components/client/modal/modalContact.vue";
 app.component('modal-contract', modalContract);

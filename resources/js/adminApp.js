@@ -86,6 +86,7 @@ import History from "./components/employer/profile/history.vue";
 app.component('history', History);
 
 
+
 // client
 import clientLogin from "./components/client/login/index.vue";
 app.component('client-login', clientLogin);

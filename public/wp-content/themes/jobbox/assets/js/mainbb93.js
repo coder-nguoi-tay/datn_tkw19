@@ -20,18 +20,18 @@
         }
     });
     /*------ ScrollUp -------- */
-    $.scrollUp({
-        scrollText: '<i class="fi-rr-arrow-small-up"></i>',
-        easingType: "linear",
-        scrollSpeed: 900,
-        animation: "fade"
-    });
+    // $.scrollUp({
+    //     scrollText: '<i class="fi-rr-arrow-small-up"></i>',
+    //     easingType: "linear",
+    //     scrollSpeed: 900,
+    //     animation: "fade"
+    // });
     /*------ Wow Active ----*/
-    new WOW().init();
-    //sidebar sticky
-    if ($(".sticky-sidebar").length) {
-        $(".sticky-sidebar").theiaStickySidebar();
-    }
+    // new WOW().init();
+    // //sidebar sticky
+    // if ($(".sticky-sidebar").length) {
+    //     $(".sticky-sidebar").theiaStickySidebar();
+    // }
     /*----------------------------
         Category toggle function
     ------------------------------*/

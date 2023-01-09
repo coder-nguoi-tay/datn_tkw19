@@ -1,4 +1,5 @@
 @extends('employer.layout.index')
 @section('content')
-    <history></history>
+    <history :data="{{ json_encode([]) }}">
+    </history>
 @endsection
