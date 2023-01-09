@@ -33,16 +33,20 @@ class ProfileController extends BaseController
     }
     public function index()
     {
+        $breadcrumbs = [
+            'Cập nhật thông tin'
+        ];
         $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->with('getUser')->first();
         $paymentHistory = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)->orderBy('created_at', 'DESC')->get();
         $Company = Company::where('id', $employer->id_company)->first();
-        $accuracy = Accuracy::where('user_id', Auth::guard('user')->user()->id)->first();
+
         return view('employer.profile.index', [
             'title' => 'Cập nhật thông tin công ty',
             'employer' => $employer,
             'paymentHistory' => $paymentHistory,
-            'accuracy' => $accuracy,
+
             'Company' => $Company,
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
     public function payMoney()
@@ -304,8 +308,34 @@ class ProfileController extends BaseController
     }
     public function historyPay()
     {
-        return view('employer.profile.history',[
-            'title' => 'Lịch sử giao dịch'
+        $breadcrumbs = [
+            'Lịch sử giao dịch'
+        ];
+        return view('employer.profile.history', [
+            'title' => 'Lịch sử giao dịch',
+            'breadcrumbs' => $breadcrumbs,
+        ]);
+    }
+    public function profileEmployer()
+    {
+        $breadcrumbs = [
+            'Cập nhật thông tin công ty'
+        ];
+        return view('employer.profile.profile-employer', [
+            'title' => 'Thông tin công ty',
+            'breadcrumbs' => $breadcrumbs,
+        ]);
+    }
+    public function businessLicense()
+    {
+        $breadcrumbs = [
+            'Thông tin giấy phép kinh doanh'
+        ];
+        $accuracy = Accuracy::where('user_id', Auth::guard('user')->user()->id)->first();
+        return view('employer.profile.business-license', [
+            'title' => 'Giấy phép kinh doanh',
+            'breadcrumbs' => $breadcrumbs,
+            'accuracy' => $accuracy,
         ]);
     }
 }

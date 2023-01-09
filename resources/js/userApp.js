@@ -269,6 +269,15 @@ app.component('form-register', formRegister);
 import History from "./components/employer/profile/history.vue";
 app.component('history', History);
 
+import profileEmployer from "./components/employer/profile/profile-employer.vue";
+app.component('profile-employer', profileEmployer);
+
+import businessLicense from "./components/employer/profile/business-license.vue";
+app.component('business-license', businessLicense);
+
+
+
+
 import modalContract from "./components/client/modal/modalContact.vue";
 app.component('modal-contract', modalContract);
 

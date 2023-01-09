@@ -550,7 +550,7 @@
         }
     }
     //Perfect Scrollbar
-    const ps = new PerfectScrollbar(".mobile-header-wrapper-inner");
+    // const ps = new PerfectScrollbar(".mobile-header-wrapper-inner");
 
     // Init function billed
     checkBilled();

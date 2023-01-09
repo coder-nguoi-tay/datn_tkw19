@@ -18,11 +18,9 @@
                 <li class="active__list-item active">Tất cả lịch sử</li>
               </ul>
             </div>
-            <!-- end breadcrumb-content -->
           </div>
-          <!-- end col-lg-12 -->
         </div>
-        <!-- end row -->
+
         <div class="row">
           <div class="col-lg-12">
             <div class="billing-form-item">
@@ -256,13 +254,9 @@ export default {
 </script>
 
 <style>
-
-
 .justify-content-between {
   justify-content: space-between !important;
 }
-
-
 
 .d-flex {
   display: flex !important;
@@ -288,141 +282,27 @@ export default {
   position: relative;
   padding-left: 1rem;
 }
-.box-img {
-  height: 200px;
-}
-.box-title-license {
-  height: 130px;
-}
-.title-license {
-  font-size: 16px;
-  font-weight: 550;
-  margin-left: -10px;
-}
-.box-upload {
-  background: rgba(229, 247, 237, 0.1);
-  border: 2px dashed #2eb85c;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-bottom: 16px;
-  position: relative;
-  text-align: center;
-  transition: 0.4s;
-}
 
-.icon {
-  margin-bottom: 24px;
-  margin-top: 10px;
-}
-
-.file-upload-cv {
-  margin: 0px 0px 10px 80px;
-  cursor: pointer;
-}
 .form-update-company {
   width: 80%;
   margin-left: 10%;
-}
-.tab-content {
-  width: 100%;
-}
-.page-content {
-  max-width: 1296px;
-  padding: 20px 20px 80px;
 }
 
 .shadow-none {
   box-shadow: none !important;
 }
 
-.card-profile-employer {
-  width: 100%;
-}
-
-.shadow-sm {
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-  width: 100%;
-}
-
-.list-group[data-v-61ae721f] {
-  height: 100%;
-  background: #fafafa;
-  width: 230px;
-}
-
-/* .rounded {
-  border-radius: 0.214rem !important;
-} */
-
-.list-group {
-  display: flex;
-  flex-direction: column;
-  padding-left: 0;
-  margin-bottom: 0;
-  border-radius: 0.25rem;
-}
-.list-group-item {
-  position: relative;
-  display: block;
-  padding: 0.75rem 1.25rem;
-  background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-}
-
-.list-group-item-action {
-  width: 100%;
-  color: #495057;
-  text-align: inherit;
-}
-.list-group-item[data-v-61ae721f] {
-  background: transparent;
-}
-.list-group-item + .list-group-item {
-  border-top-width: 0;
-}
 a {
   color: #007bff;
   text-decoration: none;
   background-color: transparent;
 }
 
-.list-group-item + .list-group-item.active {
-  margin-top: -1px;
-  border-top-width: 1px;
-}
-
-.list-group-item[data-v-61ae721f] {
-  background: transparent;
-}
-
-.list-group-item + .list-group-item {
-  border-top-width: 0;
-}
-
-.list-group-item.active {
-  z-index: 2;
-  color: #fff;
-  background-color: #2eb85c;
-  border-color: #2eb85c;
-}
-.list-group-item:last-child {
-  border-bottom-right-radius: inherit;
-  border-bottom-left-radius: inherit;
-}
 .content[data-v-4ad9e6f8] {
   width: calc(100% - 230px);
 }
-.py-5 {
-  border: 1px solid #f1f3f4;
-  border-radius: 10px;
-}
-.rounded {
-  border-radius: 0.214rem !important;
-}
 
-.description[data-v-6f017734] {
-  font-size: 12px;
-}
+
 .card {
   border: none;
 }

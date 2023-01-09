@@ -110,9 +110,10 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
 
     //profile
     Route::get('history', [EmployerProfileController::class, 'historyPay'])->name('employer.profile.history');
+    Route::get('profile-employer', [EmployerProfileController::class, 'profileEmployer'])->name('employer.profileEmployer');
+    Route::get('business-license', [EmployerProfileController::class, 'businessLicense'])->name('employer.businessLicense');
     Route::resource('profile', EmployerProfileController::class);
     Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');
-    Route::get('/profile/change-password', [EmployerProfileController::class, 'changePassword'])->name('employer.profile.changePassword');
 });
 
 
