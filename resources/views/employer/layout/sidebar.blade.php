@@ -12,13 +12,13 @@
             <ul class="side-menu-ul">
                 <li class="page-active"><a href="{{ route('employer.index') }}"><i
                             class="la la-dashboard icon-element"></i>
-                        Dashboard</a></li>
-                <li><a href="{{ route('employer.new.index') }}"><i class="la la-envelope icon-element"></i>
-                        Messages <span class="badge badge-info radius-rounded p-1">3</span></a></li>
+                        Thống kê</a></li>
+
                 <li><a href="{{ route('employer.package.index') }}"><i class="la la-bookmark icon-element"></i>
-                        Bookmarks</a></li>
+                        Gói cước</a></li>
                 <li>
-                    <a href="#"><i class="la la-gear icon-element"></i> Quản lý CV
+                    <a href="{{ route('employer.quan-ly-cv.index') }}"><i class="la la-gear icon-element"></i> Quản lý
+                        CV
                         <span class="la la-caret-down btn-toggle"></span></a>
                     <ul class="dropdown-menu-item p-2">
                         <li><a href="{{ route('employer.quan-ly-cv.index') }}">CV đã nhận</a></li>
@@ -54,4 +54,3 @@
         </div><!-- end side-menu-wrap -->
     </div>
 </div><!-- end dashboard-sidebar -->
-

@@ -27,6 +27,11 @@
     <link rel='stylesheet' id='jobbox-style-css' href='../wp-content/themes/jobbox/assets/css/style8a54.css?ver=1.0.0'
         media='all' />
     <script src="{{ asset('js/adminApp.js') }}" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/css/coreui.min.css" rel="stylesheet"
+        integrity="sha384-UkVD+zxJKGsZP3s/JuRzapi4dQrDDuEf/kHphzg8P3v8wuQ6m9RLjTkPGeFcglQU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/js/coreui.bundle.min.js"
+        integrity="sha384-n0qOYeB4ohUPebL1M9qb/hfYkTp4lvnZM6U6phkRofqsMzK29IdkBJPegsyfj/r4" crossorigin="anonymous">
+    </script>
     <script>
         window.Laravel = {!! json_encode(
             [
@@ -36,6 +41,11 @@
             JSON_UNESCAPED_UNICODE,
         ) !!};
     </script>
+    <style>
+        a {
+            text-decoration: none !important
+        }
+    </style>
 </head>
 
 <body>

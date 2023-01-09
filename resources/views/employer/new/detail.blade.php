@@ -25,7 +25,7 @@
                         </div><!-- end breadcrumb-content -->
                     </div><!-- end col-lg-12 -->
                 </div><!-- end row -->
-                <div class="row mt-5">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="billing-form-item">
                             <div class="billing-title-wrap">
