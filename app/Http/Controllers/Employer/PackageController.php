@@ -51,12 +51,17 @@ class PackageController extends BaseController
             ->select('job_attractive.price as price')
             ->first();
         $packageAttractive = jobAttractive::whereNotIn('id', $pachageForEmployer->pluck('package_id'))->where('price', '>', $checkPackage->price ?? '')->get();
+        $breadcrumbs = [
+            'Gói cước',
+
+        ];
         return view('employer.package.index', [
             'data' => $package,
             'checkPackage' => $checkPackage,
             'accPayment' => $accPayment,
             'pachageForEmployer' => $pachageForEmployer,
             'packageAttractive' => $packageAttractive,
+            'breadcrumbs' => $breadcrumbs,
             'total' => AccountPayment::where('user_id', Auth::guard('user')->user()->id)->with('user')->first(),
         ]);
     }

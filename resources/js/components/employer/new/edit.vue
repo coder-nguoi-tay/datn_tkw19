@@ -15,7 +15,7 @@
           :action="data.urlStore"
         >
           <Field type="hidden" :value="csrfToken" name="_token" />
-          <div class="row mt-5">
+          <div class="row">
             <div class="col-lg-12">
               <div class="billing-form-item">
                 <!-- billing-title-wrap -->
