@@ -270,7 +270,7 @@ a {
 }
 
 .st-btn-primary {
-  background-color: #00b14f;
+  
   color: #fff;
 }
 

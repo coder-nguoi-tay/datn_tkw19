@@ -38,7 +38,9 @@
                             class="la la-caret-down btn-toggle"></span></a>
                     <ul class="dropdown-menu-item p-2">
                         <li><a href="{{ route('employer.profile.index') }}">Profile</a></li>
-                        <li><a href="/employer/pay-money">nạp tiền</a></li>
+                        <li><a href="/employer/profile-employer">Thông tin công ty</a></li>
+                        <li><a href="/employer/business-license">Giấy phép kinh Doanh</a></li>
+                        <li><a href="/employer/pay-money">Nạp tiền</a></li>
                         <li><a href="/employer/change-password">đổi mật khẩu</a></li>
                     </ul>
                 </li>

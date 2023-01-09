@@ -1343,16 +1343,16 @@ table.table tr th {
 }
 
 .theme-btn-light {
-    color: #28b661;
+    color: #3C65F5;
     background: #ffffff;
-    border: 1px solid #28b661;
+    border: 1px solid #3C65F5;
     transition: all ease 0.4s;
 }
 
 .theme-btn-light:hover,
 .btn-light:focus {
-    background: #28b661;
-    border: 1px solid #28b661;
+    background: #3C65F5;
+    border: 1px solid #3C65F5;
     color: #ffffff;
 }
 

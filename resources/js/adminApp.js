@@ -121,8 +121,7 @@ app.component('search-find-cv', SearchCvFin);
 import Seeker from './components/employer/manegercv/searchSeeker.vue'
 app.component('search-seeker', Seeker);
 
-import settingProfile from "./components/employer/profile/setting-profile.vue";
-app.component('setting-profile', settingProfile);
+
 import payMoney from "./components/employer/profile/pay-money.vue";
 app.component('pay-money', payMoney);
 import SeaechCv from "./components/employer/searchCv/index.vue";

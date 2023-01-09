@@ -124,19 +124,18 @@
                             </div>
 
                             <div class="mb-3 row">
-                              <label for="descriptionCompany" class="form-label"
+                              <label for="desceibe" class="form-label"
                                 >Mô tả công ty
                               </label>
-                              <div>
+                              <div class="form-group">
                                 <Editor
-                                  v-model="dataCompany.desceibe"
-                                  name="desceibe"
-                                  id="desceibe"
                                   placeholder="Nhập mô tả công ty"
-                                  class="text-company-employer"
+                                  name="desceibe"
+                                  class="ckedit"
+                                  v-model="model.desceibe"
+                                  id="desceibe"
                                   rules="required|max:255"
                                 />
-
                                 <ErrorMessage class="error" name="desceibe" />
                               </div>
                             </div>
@@ -228,7 +227,7 @@ import {
 } from 'vee-validate'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
-
+import Editor from '@tinymce/tinymce-vue'
 import moment from 'moment'
 export default {
   setup() {
@@ -327,6 +326,7 @@ export default {
   components: {
     VeeForm,
     Field,
+    Editor,
     ErrorMessage
   },
   methods: {

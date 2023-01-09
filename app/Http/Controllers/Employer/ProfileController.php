@@ -51,9 +51,12 @@ class ProfileController extends BaseController
     }
     public function payMoney()
     {
+        $breadcrumbs = [
+            'Nạp tiền vào tài khoản'
+        ];
         return view('employer.profile.paymoney', [
             'title' => 'Nạp tiền vào tài khoản',
-
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
     /**
@@ -290,7 +293,13 @@ class ProfileController extends BaseController
 
     public function changePassword()
     {
-        return view('employer.profile.change-password');
+        $breadcrumbs = [
+            'Đổi mật khẩu'
+        ];
+        return view('employer.profile.change-password',[
+            'title'=> 'Đổi mật khẩu',
+            'breadcrumbs' => $breadcrumbs,
+        ]);
     }
     public function changePasswordSucsses(Request $request)
     {

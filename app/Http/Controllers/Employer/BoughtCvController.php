@@ -22,10 +22,14 @@ class BoughtCvController extends Controller
     }
     public function index()
     {
+        $breadcrumbs = [
+            'CV đã mua'
+        ];
         $tatalecv = $this->profileCv->where('status', Auth::guard('user')->user()->id)->get();
         return view('employer.boughtcv.index', [
             'tatalecv' => $tatalecv,
-            'title' => 'CV đã mua'
+            'title' => 'CV đã mua',
+            'breadcrumbs' => $breadcrumbs
         ]);
     }
 

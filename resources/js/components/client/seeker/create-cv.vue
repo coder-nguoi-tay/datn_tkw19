@@ -516,13 +516,9 @@ export default {
 
 .btn-primary {
   color: #fff;
-  background-color: #00b14f;
-  border-color: #00b14f;
 }
 
 .btn-primary:hover {
-  background-color: #00b14f;
-  border-color: #00b14f;
 }
 
 .btn-group-lg > .min-width.btn,

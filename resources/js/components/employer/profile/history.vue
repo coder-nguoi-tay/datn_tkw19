@@ -1,88 +1,96 @@
 <template>
   <div>
     <!-- Lịch sử giao dịch -->
-    <div class="dashboard-content-wrap">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            <div
-              class="
-                breadcrumb-content
-                d-flex
-                flex-wrap
-                justify-content-between
-                align-items-center
-              "
-            >
-              <ul class="list-items d-flex align-items-center">
-                <li class="active__list-item active">Tất cả lịch sử</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="billing-form-item">
-              <div class="card-employer-content">
-                <VeeForm
-                  as="div"
-                  v-slot="{ handleSubmit }"
-                  @invalid-submit="onInvalidSubmit"
-                >
-                  <form
-                    method="POST"
-                    @submit="handleSubmit($event, onSubmit)"
-                    class="form-register-employer"
-                    ref="formData"
-                  >
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <div
-                          class="col-12 form-update-company"
-                          v-for="item in data.paymentHistory"
-                          :key="item.id"
-                        >
-                          <div class="mb-3 row">
-                            <div data-v-79f03480="" class="card-body">
-                              <!---->
-                              <div data-v-79f03480="" class="d-flex history">
-                                <span data-v-79f03480="" class="line-date">{{
-                                  moment(item.created_at).format('YYYY-MM-DD')
-                                }}</span>
-                                <div data-v-79f03480="" class="line">
-                                  <div data-v-79f03480="" class="line-content">
-                                    <div data-v-79f03480="" class="content">
-                                      <p data-v-79f03480="">
-                                        <span data-v-79f03480="" class="time"
-                                          >Số tiền</span
-                                        ><span data-v-79f03480="">{{
-                                          new Intl.NumberFormat('de-DE', {
-                                            style: 'currency',
-                                            currency: 'VND'
-                                          }).format(item.price)
-                                        }}</span>
-                                      </p>
-                                    </div>
-                                    <div data-v-79f03480="" class="content">
-                                      <p data-v-79f03480="">
-                                        <span data-v-79f03480="" class="time"
-                                          >Nội dung</span
-                                        ><span data-v-79f03480="">{{
-                                          item.desceibe
-                                        }}</span>
-                                      </p>
-                                    </div>
-                                    <div data-v-79f03480="" class="content">
-                                      <p data-v-79f03480="">
-                                        <span data-v-79f03480="" class="time"
-                                          >Trạng thái</span
-                                        ><span data-v-79f03480="">{{
-                                          item.status == 1
-                                            ? 'Thành công'
-                                            : 'Thất bại'
-                                        }}</span>
-                                      </p>
+    <div class="col-12 recuitment-inner">
+      <div class="card-create-employer">
+        <VeeForm
+          as="div"
+          v-slot="{ handleSubmit }"
+          @invalid-submit="onInvalidSubmit"
+        >
+          <form
+            class="recuitment-form"
+            @submit="handleSubmit($event, onSubmit)"
+            ref="formData"
+            method="POST"
+            :action="data.urlStoreCompany"
+            enctype="multipart/form-data"
+          >
+            <Field type="hidden" :value="csrfToken" name="_token" />
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="billing-form-item">
+                  <!-- billing-title-wrap -->
+                  <div class="billing-content">
+                    <div class="contact-form-action">
+                      <div class="MultiFile-intercepted">
+                        <div class="card h-100">
+                          <div class="card-body">
+                            <div
+                              class="col-12 form-update-company"
+                              v-for="item in data.paymentHistory"
+                              :key="item.id"
+                            >
+                              <div class="mb-3 row">
+                                <div data-v-79f03480="" class="card-body">
+                                  <!---->
+                                  <div
+                                    data-v-79f03480=""
+                                    class="d-flex history"
+                                  >
+                                    <span
+                                      data-v-79f03480=""
+                                      class="line-date"
+                                      >{{
+                                        moment(item.created_at).format(
+                                          'YYYY-MM-DD'
+                                        )
+                                      }}</span
+                                    >
+                                    <div data-v-79f03480="" class="line">
+                                      <div
+                                        data-v-79f03480=""
+                                        class="line-content"
+                                      >
+                                        <div data-v-79f03480="" class="content">
+                                          <p data-v-79f03480="">
+                                            <span
+                                              data-v-79f03480=""
+                                              class="time"
+                                              >Số tiền</span
+                                            ><span data-v-79f03480="">{{
+                                              new Intl.NumberFormat('de-DE', {
+                                                style: 'currency',
+                                                currency: 'VND'
+                                              }).format(item.price)
+                                            }}</span>
+                                          </p>
+                                        </div>
+                                        <div data-v-79f03480="" class="content">
+                                          <p data-v-79f03480="">
+                                            <span
+                                              data-v-79f03480=""
+                                              class="time"
+                                              >Nội dung</span
+                                            ><span data-v-79f03480="">{{
+                                              item.desceibe
+                                            }}</span>
+                                          </p>
+                                        </div>
+                                        <div data-v-79f03480="" class="content">
+                                          <p data-v-79f03480="">
+                                            <span
+                                              data-v-79f03480=""
+                                              class="time"
+                                              >Trạng thái</span
+                                            ><span data-v-79f03480="">{{
+                                              item.status == 1
+                                                ? 'Thành công'
+                                                : 'Thất bại'
+                                            }}</span>
+                                          </p>
+                                        </div>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -90,14 +98,22 @@
                             </div>
                           </div>
                         </div>
+
+                        <!-- end row -->
                       </div>
                     </div>
-                  </form>
-                </VeeForm>
+                    <!-- end contact-form-action -->
+                  </div>
+                  <!-- end billing-content -->
+                </div>
+                <!-- end billing-form-item -->
+
+                <!-- end billing-form-item -->
               </div>
+              <!-- end col-lg-12 -->
             </div>
-          </div>
-        </div>
+          </form>
+        </VeeForm>
       </div>
     </div>
   </div>
@@ -107,7 +123,7 @@
 import { Form as VeeForm, Field, defineRule, configure } from 'vee-validate'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
-
+import Editor from '@tinymce/tinymce-vue'
 import moment from 'moment'
 export default {
   setup() {
@@ -205,7 +221,8 @@ export default {
   },
   components: {
     VeeForm,
-    Field
+    Field,
+    Editor
   },
   methods: {
     moment: function () {
@@ -301,7 +318,6 @@ a {
 .content[data-v-4ad9e6f8] {
   width: calc(100% - 230px);
 }
-
 
 .card {
   border: none;
