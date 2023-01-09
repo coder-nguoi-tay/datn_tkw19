@@ -27,6 +27,7 @@
             id="file-upload-cv"
             rules="required|mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx|max:2048"
           />
+          <br />
           <ErrorMessage class="error" name="file_cv" />
         </div>
         <div class="file-format">
@@ -108,4 +109,20 @@ export default {
 </script>
 
 <style>
+.box-upload {
+  background: rgba(229, 247, 237, 0.1);
+  border: 2px dashed #00b14f;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  margin-top: 32px;
+  position: relative;
+  text-align: center;
+  transition: 0.4s;
+  height: 300px;
+}
+.file-format {
+  display: flex;
+  justify-content: space-between;
+}
 </style>

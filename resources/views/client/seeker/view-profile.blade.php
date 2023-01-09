@@ -1,4 +1,4 @@
 @extends('client.layout.seeker')
-@section('seeker')
+@section('content')
     <view-profile></view-profile>
 @endsection

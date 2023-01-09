@@ -1,8 +1,8 @@
 <template>
-  <section style="background-color: #f4f5f7">
+  <section>
     <div class="container">
-      <div class="row d-flex justify-content-center align-items-center">
-        <div class="col col-lg-10 mb-4 mb-lg-0">
+      <div class="row d-flex">
+        <div class="col col-lg-12 mb-4 mb-lg-0">
           <div class="card mb-3" style="border-radius: 0.5rem">
             <VeeForm
               as="div"
@@ -84,8 +84,6 @@
                   </div>
                   <div class="col-md-8">
                     <div class="card-body p-4">
-                      <h6>Thông tin tài khoản của bạn</h6>
-                      <hr class="mt-0 mb-4" />
                       <div class="row pt-1">
                         <div class="col-6 mb-3">
                           <h6>Name</h6>
@@ -247,38 +245,45 @@
                           </Field>
                           <ErrorMessage class="error" name="time_work_id" />
                         </div>
-                        <div class="col-6 mb-3">
-                          <h6>Kĩ năng</h6>
-                          <Field
-                            class="form-control"
-                            v-model="value"
-                            name="skill_id"
-                            rules="required"
-                          >
-                            <Multiselect
-                              placeholder="Chọn Kỹ năng"
-                              v-model="value"
-                              mode="tags"
-                              :searchable="true"
-                              :options="options"
-                              label="label"
-                              track-by="label"
-                              :infinite="true"
-                              :object="true"
-                              :loading="isLoading"
-                              :internal-search="false"
-                              :clear-on-select="false"
-                              :close-on-select="false"
-                              :options-limit="300"
-                              :limit="3"
-                              :limit-text="limitText"
-                              :max-height="600"
-                              :show-no-results="false"
-                              :hide-selected="true"
-                              @input="updateSelected"
-                            />
-                          </Field>
-                          <ErrorMessage class="error" name="skill_id" />
+                        <!-- /// -->
+                        <div class="col-6 mb-3 column-lg-full">
+                          <div class="input-box">
+                            <label class="label-text">Kỹ năng</label>
+                            <div
+                              class="form-group user-chosen-select-container"
+                            >
+                              <Field
+                                class="form-control"
+                                v-model="value"
+                                name="skill_id"
+                                rules="required"
+                              >
+                                <Multiselect
+                                  placeholder="Chọn Kỹ năng"
+                                  v-model="value"
+                                  mode="tags"
+                                  :searchable="true"
+                                  :options="options"
+                                  label="label"
+                                  track-by="label"
+                                  :infinite="true"
+                                  :object="true"
+                                  :loading="isLoading"
+                                  :internal-search="false"
+                                  :clear-on-select="false"
+                                  :close-on-select="false"
+                                  :options-limit="300"
+                                  :limit="3"
+                                  :limit-text="limitText"
+                                  :max-height="600"
+                                  :show-no-results="false"
+                                  :hide-selected="true"
+                                  @input="updateSelected"
+                                />
+                              </Field>
+                              <ErrorMessage class="error" name="skill_id" />
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <!-- skill -->
