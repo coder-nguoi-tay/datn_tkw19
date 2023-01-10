@@ -13,7 +13,7 @@
               </CCol>
               <CCol :sm="2" class="d-flex">
                 <form action="" method="get" class="row">
-                  <div class="col-10 text-center">
+                  <div class="col-8 text-center">
                     <div class="small text-medium-emphasis d-flex">
                       <DatePicker
                         year-picker
@@ -23,9 +23,9 @@
                       />
                     </div>
                   </div>
-                  <div class="col-2">
+                  <div class="col-4">
                     <div class="small text-medium-emphasis">
-                      <button class="nav-link py-0 btn-next-step">Lọc</button>
+                      <button class="btn btn-info btn-filter">Lọc</button>
                     </div>
                   </div>
                 </form>
@@ -200,3 +200,9 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.btn-filter {
+  left: 0 !important;
+}
+</style>>
+

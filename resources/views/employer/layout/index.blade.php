@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{ asset('assets/company/chosen.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/company/jquery-te-1.4.0.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/company/style.css') }}">
+    <link rel="stylesheet" href="assets/css/adminlte.min.css">
     <link rel='stylesheet' id='jobbox-style-css' href='../wp-content/themes/jobbox/assets/css/style8a54.css?ver=1.0.0'
         media='all' />
     <script src="{{ asset('js/adminApp.js') }}" defer></script>

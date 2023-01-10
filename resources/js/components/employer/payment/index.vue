@@ -50,11 +50,11 @@
                   href="#"
                   data-coreui-toggle="modal"
                   data-coreui-target="#exampleModalDetailPayment"
-                  class="small-box-footer text-view"
+                  class="btn btn-link text-view col-12"
                   >Xem chi tiết<i class="fas fa-arrow-circle-right"></i
                 ></a>
                 <button
-                  class="nav-link py-0 btn-next-step btn-buy-package"
+                  class="btn btn-warning btn-buy-package"
                   style="margin-top: 10px !important"
                   data-coreui-toggle="modal"
                   data-coreui-target="#exampleModalBuyPayment"
