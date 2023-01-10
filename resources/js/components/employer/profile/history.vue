@@ -29,12 +29,13 @@
                               name="free_word"
                               class="custom-input imput-history mr-1"
                               placeholder="Tìm Kiếm...."
-                              :value="Date.free_word"
+                              :value="datePicker.free_word"
                               autocomplete="off"
                               id="free_word"
                             />
                             <select
                               name="status"
+                              v-model="datePicker.status"
                               class="custom-form-select border mr-1"
                               id=""
                             >
