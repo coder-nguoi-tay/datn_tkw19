@@ -81,7 +81,7 @@ class SearchController extends BaseController
                 ->join('company', 'company.id', '=', 'employer.id_company')
                 ->Where(function ($q) use ($that) {
                     if ($that->key) {
-                        $q->orWhere($this->escapeLikeSentence('job.title', $that->key));
+                        $q->Where($this->escapeLikeSentence('job.title', $that->key));
                     }
                     if ($that->skill) {
                         $q->whereIn('job_skill.skill_id', $that->skill);

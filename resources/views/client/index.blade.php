@@ -53,7 +53,7 @@
 
                                                                     <select class="form-input mr-10 select-active w-200"
                                                                         name="majors">
-                                                                        <option>Chọn ngành nghề</option>
+                                                                        <option value="">Chọn ngành nghề</option>
                                                                         @foreach ($majors as $item)
                                                                             <option value="{{ $item->id }}">
                                                                                 {{ $item->name }}
@@ -63,7 +63,7 @@
 
                                                                     <select class="form-input mr-10 select-active"
                                                                         name="location" id="location">
-                                                                        <option>Chọn địa chỉ</option>
+                                                                        <option value="">Chọn địa chỉ</option>
                                                                         @foreach ($location as $item)
                                                                             <option value="{{ $item->id }}">
                                                                                 {{ $item->label }}</option>

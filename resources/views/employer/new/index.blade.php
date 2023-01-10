@@ -80,7 +80,7 @@
                                                                         10
                                                                         ngày</span>
                                                                 </p>
-                                                            </div><!-- end manage-candidate-wrap -->
+                                                            </div>
                                                         </td>
                                                         <td>{{ count($item->AllCv) }}</td>
                                                         <td>{{ $item->job_time }}</td>
