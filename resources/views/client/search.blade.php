@@ -4,10 +4,12 @@
 @endphp
 @extends('client.layout.index')
 @section('client')
+
     <div id="main-wrapper">
         <div class="clearfix"></div>
         <div class="bg-title py-5" data-overlay="0">
             <div class="ht-30"></div>
+
             <div class="container">
                 <div class="row">
                     <div class="colxl-12 col-lg-12 col-md-12">
@@ -70,7 +72,81 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    <div class="row flex-row-reverse mt-30">
+                        <div class="col-lg-12">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-30" id="paginated-list1">
+                                @foreach ($job as $value)
+                                    <div class="col jobbox-grid-item ">
+                                        <div class="card-grid-2 hover-up">
+                                            <div class="card-grid-2-image-left">
+                                                <div class="image-box">
+                                                    <img src="{{ asset($value->logo) }}" width="52" alt="Percepta">
+                                                </div>
+                                                <div class="right-info">
+                                                    <a
+                                                        href="https://jthemes.com/themes/wp/jobbox/?post_type=job_listing&amp;p=576">
+                                                        <span class="name-job">Percepta2222</span>
+                                                    </a>
+                                                    <span class="location-small">Germany</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-block-info">
+                                                <h6 class="mb-1"><a
+                                                        href="https://jthemes.com/themes/wp/jobbox/?post_type=job_listing&amp;p=576">React
+                                                        Native Web Developer</a></h6>
+
+                                                <div class="d-flex align-items-center gap-3 font-xs color-text-mutted">
+                                                    <span><i class="fi-rr-briefcase ms-0 me-5"></i>Part Time</span>
+                                                    <span><i class="fi-rr-clock ms-0 me-5"></i><time
+                                                            datetime="2022-09-27">Posted 4 months
+                                                            ago</time></span>
+                                                </div>
+
+                                                <p class="font-sm color-text-paragraph mt-15">Lorem ipsum dolor sit amet,
+                                                    consectetur
+                                                    adipisicing elit. Recusandae architecto eveniet, dolor quo repellendus
+                                                    pariatur</p>
+
+                                                <div class="mt-30 d-flex flex-wrap gap-5">
+                                                    <span class="btn btn-grey-small"
+                                                        href="https://jthemes.com/themes/wp/jobbox/candidate/skill/app/">
+                                                        App </span>
+                                                    <span class="btn btn-grey-small"
+                                                        href="https://jthemes.com/themes/wp/jobbox/candidate/skill/figma/">
+                                                        Figma </span>
+                                                    <span class="btn btn-grey-small"
+                                                        href="https://jthemes.com/themes/wp/jobbox/candidate/skill/psd/">
+                                                        PSD </span>
+                                                </div>
+
+                                                <div class="card-2-bottom mt-30">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-lg-6 col-7">
+                                                            <span class="card-text-price">$800</span><span
+                                                                class="font-xs text-muted">/Hour</span>
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-5 text-end">
+                                                            <a class="btn btn-apply-now"
+                                                                href="https://jthemes.com/themes/wp/jobbox/?post_type=job_listing&amp;p=576">Apply
+                                                                now</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+
+
+                            </div>
+                            <!--row job_listings-->
+                        </div>
+                        <!--col-lg-9-->
+                    </div>
+                    {{-- <div class="row justify-content-center">
                         <div class="container p-3">
                             <div class="row g-2 g-lg-3" id="paginated-list1">
                                 @foreach ($job as $value)
@@ -128,7 +204,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- All jobs -->
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12"> <br><br>

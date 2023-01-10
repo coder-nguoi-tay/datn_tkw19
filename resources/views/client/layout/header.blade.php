@@ -5,7 +5,7 @@
             <div class="header-left">
                 <div class="header-logo">
                     <a class="d-flex" href="{{ route('index') }}">
-                        <img alt="ITWORK" src="../wp-content/themes/jobbox/assets/imgs/template/jobhub-logo.svg">
+                        <img alt="ITWORK" src="../wp-content/themes/jobbox/assets/imgs/template/logoIT.png">
                     </a>
                 </div>
             </div>
@@ -14,33 +14,8 @@
                     <ul id="primary-menu-list" class="menu-wrapper main-menu list-unstyled mb-0">
                         <li id="menu-item-93"
                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-menu-ancestor current-menu-parent menu-item-has-children menu-item-93 has-children">
-                            <a href="../index.html" class="active">Home</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-1348"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1348">
-                                    <a href="../index.html">Home 1</a>
-                                </li>
-                                <li id="menu-item-1347"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1347">
-                                    <a href="../home-2/index.html">Home 2</a>
-                                </li>
-                                <li id="menu-item-1346"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1341 current_page_item menu-item-1346">
-                                    <a href="index.html" aria-current="page" class="active">Home 3</a>
-                                </li>
-                                <li id="menu-item-1368"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1368">
-                                    <a href="../home-4/index.html">Home 4</a>
-                                </li>
-                                <li id="menu-item-1409"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1409">
-                                    <a href="../home-5/index.html">Home 5</a>
-                                </li>
-                                <li id="menu-item-1408"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1408">
-                                    <a href="../home-6/index.html">Home 6</a>
-                                </li>
-                            </ul>
+                            <a href="{{ route('index') }}" class="active">Home</a>
+
                         </li>
                         <li id="menu-item-145"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-145 has-children">
@@ -179,7 +154,7 @@
                         {{ Auth::guard('user')->user()->name }}
                     </button>
                     <ul class="dropdown-menu">
-                
+
                         <li> <a class="dropdown-item" href="{{ route('profile.index') }} ">Profile</a></li>
                         <li> <a class="dropdown-item" href="#">Quản lý CV</a></li>
                         <li> <a class="dropdown-item" href="#">Bài tuyển dụng đã yêu thích</a></li>

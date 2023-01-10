@@ -3,11 +3,7 @@
                 <div class="row justify-content-start">
                     <div class="footer-col-1 col-md-3 col-sm-12">
                         <div id="block-7" class="widget widget_block widget_media_image">
-                            <figure class="wp-block-image size-full is-resized text-start"><img decoding="async"
-                                    loading="lazy" src="../wp-content/uploads/2022/09/jobhub-logo.jpg" alt=""
-                                    class="wp-image-164" width="139" height="36"
-                                    srcset="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/jobhub-logo.jpg 434w, https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/jobhub-logo-300x77.jpg 300w"
-                                    sizes="(max-width: 139px) 100vw, 139px" /></figure>
+                            <h3>ITWORK</h3>
                         </div>
                         <div id="block-13" class="widget widget_block widget_text">
                             <p class="small mt-20 mb-20">JobBox is the heart of the design community and the best
@@ -58,13 +54,16 @@
                                 <ul id="menu-resources" class="menu">
                                     <li id="menu-item-155"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-155">
-                                        <a href="../about-us/index.html">About Us</a></li>
+                                        <a href="../about-us/index.html">About Us</a>
+                                    </li>
                                     <li id="menu-item-153"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-153">
-                                        <a href="../candidates/index.html">Candidates</a></li>
+                                        <a href="../candidates/index.html">Candidates</a>
+                                    </li>
                                     <li id="menu-item-154"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-154">
-                                        <a href="../contact-us/index.html">Contact Us</a></li>
+                                        <a href="../contact-us/index.html">Contact Us</a>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>
@@ -97,16 +96,20 @@
                                 <ul id="menu-quick-links" class="menu">
                                     <li id="menu-item-149"
                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-149">
-                                        <a href="#">iOS</a></li>
+                                        <a href="#">iOS</a>
+                                    </li>
                                     <li id="menu-item-150"
                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-150">
-                                        <a href="#">Android</a></li>
+                                        <a href="#">Android</a>
+                                    </li>
                                     <li id="menu-item-151"
                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-151">
-                                        <a href="#">Microsoft</a></li>
+                                        <a href="#">Microsoft</a>
+                                    </li>
                                     <li id="menu-item-152"
                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-152">
-                                        <a href="#">Desktop</a></li>
+                                        <a href="#">Desktop</a>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>
@@ -118,16 +121,20 @@
                                 <ul id="menu-legal-menu" class="menu">
                                     <li id="menu-item-160"
                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-160">
-                                        <a href="#">Privacy</a></li>
+                                        <a href="#">Privacy</a>
+                                    </li>
                                     <li id="menu-item-161"
                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-161">
-                                        <a href="#">Helps</a></li>
+                                        <a href="#">Helps</a>
+                                    </li>
                                     <li id="menu-item-162"
                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-162">
-                                        <a href="#">Terms</a></li>
+                                        <a href="#">Terms</a>
+                                    </li>
                                     <li id="menu-item-163"
                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-163">
-                                        <a href="#">FAQ</a></li>
+                                        <a href="#">FAQ</a>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>
