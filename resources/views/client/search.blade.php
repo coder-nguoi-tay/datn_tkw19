@@ -179,8 +179,7 @@
         <section class="bg-light">
             <div class="container-xxl pt-2">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="row align-items-center bg-secondary"
-                        style="   border-bottom-left-radius: 70px; border-top-right-radius: 70px;">
+                    {{-- <div class="row align-items-center ">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                             <div class="row align-items-center justify-content-between mx-0 rounded p-3">
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 ">
@@ -188,7 +187,39 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
+                    <section class="section-box" style="
+    background: #c9b7b7;">
+                        <div class="breacrumb-cover " style="">
+                            <div class="container">
+                                <div class="row d-grid d-md-flex gap-30 gap-lg-0 align-items-end">
+                                    <div class="col-lg-6">
+                                        <h3 class="mb-0">Sản phẩm liên quan</h3>
+
+                                    </div>
+                                    <div class="col-lg-6 text-lg-end">
+                                        <ul class="breadcrumbs list-unstyled">
+                                            <!-- Breadcrumb NavXT 7.1.0 -->
+                                            <li class="home"><span property="itemListElement" typeof="ListItem"><a
+                                                        property="item" typeof="WebPage" title="Go to Jobbox."
+                                                        href="" class="home home-icon"><span
+                                                            property="name">Home</span></a>
+                                                    <meta property="position" content="1">
+                                                </span></li>
+                                            <li class="post-root post post-post current-item"><span
+                                                    property="itemListElement" typeof="ListItem"><span property="name"
+                                                        class="post-root post post-post current-item">Blog</span>
+                                                    <meta property="url" content="">
+                                                    <meta property="position" content="2">
+                                                </span></li>
+                                            <!-- <li><a class="home-icon" href="#">Home</a></li> -->
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                     <div class="row flex-row-reverse">
                         <div class="col-lg-12">
                             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-30" id="paginated-list2">
@@ -210,7 +241,8 @@
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
                                                             text-align: justify;">
-                                                        <span class="location-small">{{ $value->getLocation->name }}</span>
+                                                        <span
+                                                            class="location-small">{{ $value->getLocation->name }}</span>
                                                     </div>
                                                 </div>
                                             </div>
