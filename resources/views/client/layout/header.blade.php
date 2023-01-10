@@ -176,16 +176,14 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-default btn-shadow ml-30 hover-up dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Action
+                        {{ Auth::guard('user')->user()->name }}
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                
+                        <li> <a class="dropdown-item" href="{{ route('profile.index') }} ">Profile</a></li>
+                        <li> <a class="dropdown-item" href="#">Quản lý CV</a></li>
+                        <li> <a class="dropdown-item" href="#">Bài tuyển dụng đã yêu thích</a></li>
+                        <li> <a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a></li>
                     </ul>
                 </div>
             @endif
