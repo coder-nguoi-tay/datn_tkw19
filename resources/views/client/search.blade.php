@@ -176,53 +176,84 @@
                 </div>
             </div>
         </section>
-        <section class="bg-light">
+        <section class="bg-light" style="margin-top: 30px">
             <div class="container-xxl pt-2">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    {{-- <div class="row align-items-center ">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li>
+                            <a class="" id="nav-tab-content-writer" href="#tab-content-writer" data-bs-toggle="tab"
+                                role="tab" aria-controls="tab-content-writer" aria-selected="false" tabindex="-1">
+                                <img decoding="async" src="wp-content/uploads/2022/10/security-icon.png" width="18"
+                                    alt="Content Writer">
+                                Content Writer </a>
+                        </li>
+                        <li>
+                            <a class="" id="nav-tab-finance" href="#tab-finance" data-bs-toggle="tab" role="tab"
+                                aria-controls="tab-finance" aria-selected="false" tabindex="-1">
+                                <img decoding="async" src="wp-content/uploads/2022/10/bank.png" width="18"
+                                    alt="Finance">
+                                Finance </a>
+                        </li>
+                        <li>
+                            <a class="" id="nav-tab-human-resource" href="#tab-human-resource" data-bs-toggle="tab"
+                                role="tab" aria-controls="tab-human-resource" aria-selected="false" tabindex="-1">
+                                <img decoding="async" src="wp-content/uploads/2022/10/human-resource.png" width="18"
+                                    alt="Human Resource">
+                                Human Resource </a>
+                        </li>
+                        <li>
+                            <a class="active" id="nav-tab-management" href="#tab-management" data-bs-toggle="tab"
+                                role="tab" aria-controls="tab-management" aria-selected="true">
+                                <img decoding="async" src="wp-content/uploads/2022/10/management-icon.png" width="18"
+                                    alt="Management">
+                                Management </a>
+                        </li>
+                        <li>
+                            <a class="" id="nav-tab-market-research" href="#tab-market-research"
+                                data-bs-toggle="tab" role="tab" aria-controls="tab-market-research"
+                                aria-selected="false" tabindex="-1">
+                                <img decoding="async" src="wp-content/uploads/2022/10/research-icon.png" width="18"
+                                    alt="Market Research">
+                                Market Research </a>
+                        </li>
+                        <li>
+                            <a class="" id="nav-tab-marketing-sale" href="#tab-marketing-sale"
+                                data-bs-toggle="tab" role="tab" aria-controls="tab-marketing-sale"
+                                aria-selected="false" tabindex="-1">
+                                <img decoding="async" src="wp-content/uploads/2022/10/career-icon.png" width="18"
+                                    alt="Marketing &amp; Sale">
+                                Marketing &amp; Sale </a>
+                        </li>
+                        <li>
+                            <a class="" id="nav-tab-retail-products" href="#tab-retail-products"
+                                data-bs-toggle="tab" role="tab" aria-controls="tab-retail-products"
+                                aria-selected="false" tabindex="-1">
+                                <img decoding="async" src="wp-content/uploads/2022/10/retail-icon.png" width="18"
+                                    alt="Retail &amp; Products">
+                                Retail &amp; Products </a>
+                        </li>
+                        <li>
+                            <a class="" id="nav-tab-software" href="#tab-software" data-bs-toggle="tab"
+                                role="tab" aria-controls="tab-software" aria-selected="false" tabindex="-1">
+                                <img decoding="async" src="wp-content/uploads/2022/10/lamp-icon.png" width="18"
+                                    alt="Software">
+                                Software </a>
+                        </li>
+                    </ul>
+                    <div class="row align-items-center ">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                             <div class="row align-items-center justify-content-between mx-0 rounded p-3">
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 ">
-                                    <h6 class="mb-0 ft-medium fs-sm">Việc làm liên quan</h6>
+                                    <h4 class="mb-0 ft-medium fs-sm">Việc làm liên quan</h4>
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
-                    <section class="section-box" style="
-    background: #c9b7b7;">
-                        <div class="breacrumb-cover " style="">
-                            <div class="container">
-                                <div class="row d-grid d-md-flex gap-30 gap-lg-0 align-items-end">
-                                    <div class="col-lg-6">
-                                        <h3 class="mb-0">Sản phẩm liên quan</h3>
-
-                                    </div>
-                                    <div class="col-lg-6 text-lg-end">
-                                        <ul class="breadcrumbs list-unstyled">
-                                            <!-- Breadcrumb NavXT 7.1.0 -->
-                                            <li class="home"><span property="itemListElement" typeof="ListItem"><a
-                                                        property="item" typeof="WebPage" title="Go to Jobbox."
-                                                        href="" class="home home-icon"><span
-                                                            property="name">Home</span></a>
-                                                    <meta property="position" content="1">
-                                                </span></li>
-                                            <li class="post-root post post-post current-item"><span
-                                                    property="itemListElement" typeof="ListItem"><span property="name"
-                                                        class="post-root post post-post current-item">Blog</span>
-                                                    <meta property="url" content="">
-                                                    <meta property="position" content="2">
-                                                </span></li>
-                                            <!-- <li><a class="home-icon" href="#">Home</a></li> -->
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    </div>
+                
                     <div class="row flex-row-reverse">
                         <div class="col-lg-12">
-                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-30" id="paginated-list2">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-25"
+                                id="paginated-list2">
                                 @foreach ($datalq as $value)
                                     <div class="col jobbox-grid-item ">
                                         <div class="card-grid-2 hover-up">
