@@ -49,52 +49,30 @@
                                                         <div class="block-banner p-0">
                                                             <div class="form-find mt-40 wow animate__animated animate__fadeIn"
                                                                 data-wow-delay=".2s">
-                                                                <form method="get"
-                                                                    action="https://jthemes.com/themes/wp/jobbox/jobs/">
-                                                                    <div class="box-industry">
-                                                                        <select
-                                                                            class="form-input mr-10 select2 input-industry"
-                                                                            name="search_category">
-                                                                            <option value="">Industry</option>
-                                                                            <option value="content-writer">Content
-                                                                                Writer</option>
-                                                                            <option value="finance">Finance</option>
-                                                                            <option value="human-resource">Human
-                                                                                Resource</option>
-                                                                            <option value="management">Management
+                                                                <form method="get" action="{{ route('home.search') }}">
+
+                                                                    <select class="form-input mr-10 select-active w-200"
+                                                                        name="majors">
+                                                                        <option>Chọn ngành nghề</option>
+                                                                        @foreach ($majors as $item)
+                                                                            <option value="{{ $item->id }}">
+                                                                                {{ $item->name }}
                                                                             </option>
-                                                                            <option value="market-research">Market
-                                                                                Research</option>
-                                                                            <option value="marketing-sale">Marketing
-                                                                                &amp; Sale</option>
-                                                                            <option value="retail-products">Retail
-                                                                                &amp;
-                                                                                Products</option>
-                                                                            <option value="software">Software</option>
-                                                                        </select>
-                                                                    </div>
+                                                                        @endforeach
+                                                                    </select>
+
                                                                     <select class="form-input mr-10 select-active"
-                                                                        name="search_location" id="search_location">
-                                                                        <option value="">Location</option>
-                                                                        <option value="Dallas, Texas">Dallas, Texas
-                                                                        </option>
-                                                                        <option value="Holland">Holland</option>
-                                                                        <option value="USA">USA</option>
-                                                                        <option value="Germany">Germany</option>
-                                                                        <option value="London">London</option>
-                                                                        <option value="Denmark">Denmark</option>
-                                                                        <option value="Chicago">Chicago</option>
-                                                                        <option value="Australia">Australia</option>
-                                                                        <option value="Paris, France">Paris, France
-                                                                        </option>
-                                                                        <option value="New York, USA">New York, USA
-                                                                        </option>
-                                                                        <option value="France">France</option>
+                                                                        name="location" id="location">
+                                                                        <option>Chọn địa chỉ</option>
+                                                                        @foreach ($location as $item)
+                                                                            <option value="{{ $item->id }}">
+                                                                                {{ $item->label }}</option>
+                                                                        @endforeach
                                                                     </select>
 
                                                                     <input class="form-input input-keysearch mr-10"
-                                                                        type="text" name="search_keywords"
-                                                                        id="search_keywords" placeholder="Keywords" />
+                                                                        type="text" name="key" id="key"
+                                                                        placeholder="Keywords" />
 
                                                                     <input class="btn btn-default btn-find font-sm"
                                                                         type="submit" value="Search">
@@ -140,8 +118,8 @@
                                 <div class="elementor-widget-container">
                                     <div class="mt-10">
                                         <div class="tab-content" id="myTabContent-2">
-                                            <div class="tab-pane fade show active" id="tab-content-writer"
-                                                role="tabpanel" aria-labelledby="tab-content-writer">
+                                            <div class="tab-pane fade show active" id="tab-content-writer" role="tabpanel"
+                                                aria-labelledby="tab-content-writer">
                                                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 text-start"
                                                     id="paginated-list">
                                                     @foreach ($jobAttractive as $item)

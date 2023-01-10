@@ -25,7 +25,6 @@
                     </div><!-- end breadcrumb-content -->
                 </div><!-- end col-lg-12 -->
             </div><!-- end row -->
-            {{-- @dd($cv) --}}
             <div class="row">
                 <div class="col-lg-12">
                     <div class="billing-form-item">
@@ -56,10 +55,10 @@
                                     </div>
                                     <div class="bread-action">
                                         <ul class="info-list">
-                                            <li class="d-inline-block mb-0"><a
-                                                    href="{{ route('employer.quan-ly-cv.show', $item->id) }}"><i
-                                                        class="la la-eye" data-toggle="tooltip" data-placement="top"
-                                                        title="" data-original-title="View"></i></a></li>
+                                            <li class="d-inline-block mb-0"><a href="{{ asset($item->file_cv) }}"
+                                                    target="_blank"><i class="la la-eye" data-toggle="tooltip"
+                                                        data-placement="top" title=""
+                                                        data-original-title="View"></i></a></li>
                                         </ul>
                                     </div>
                                 </div><!-- end manage-candidate-wrap -->

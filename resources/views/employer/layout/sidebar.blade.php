@@ -15,40 +15,36 @@
                         Thống kê</a></li>
 
                 <li><a href="{{ route('employer.package.index') }}"><i class="la la-bookmark icon-element"></i>
-                        Gói cước</a></li>
-                <li>
-                    <a href="{{ route('employer.quan-ly-cv.index') }}"><i class="la la-gear icon-element"></i> Quản lý
-                        CV
-                        <span class="la la-caret-down btn-toggle"></span></a>
-                    <ul class="dropdown-menu-item p-2">
-                        <li><a href="{{ route('employer.quan-ly-cv.index') }}">CV đã nhận</a></li>
-                        <li><a href="{{ route('employer.cv-da-mua.index') }}">CV đã mua</a></li>
-                        <li><a href="{{ route('employer.tim-kiem-cv.index') }}">Tìm kiếm CV</a></li>
-                    </ul>
+                        Gói cước</a>
+                </li>
+                <li><a href="{{ route('employer.package.index') }}"><i class="la la-gear icon-element"></i>
+                        Quản lý
+                        CV</a>
+                </li>
+                <li><a href="{{ route('employer.package.index') }}"><i class="la la-gear icon-element"></i>
+                        CV đã mua</a>
+                </li>
+                <li><a href="{{ route('employer.package.index') }}"><i class="la la-gear icon-element"></i>
+                        Tìm kiếm
+                        CV</a>
                 </li>
                 <li>
-                    <a href="{{ route('employer.new.index') }}"><i class="la la-gear icon-element"></i> Đăng tin
-                        <span class="la la-caret-down btn-toggle"></span></a>
-                    <ul class="dropdown-menu-item">
-                        <li><a href="{{ route('employer.new.create') }}">Thêm tin</a></li>
-                    </ul>
+                    <a href="{{ route('employer.new.index') }}"><i class="la la-gear icon-element"></i> Đăng tin</a>
                 </li>
                 <li>
-                    <a href="#"><i class="la la-briefcase icon-element"></i> Tài khoản <span
-                            class="la la-caret-down btn-toggle"></span></a>
-                    <ul class="dropdown-menu-item p-2">
-                        <li><a href="{{ route('employer.profile.index') }}">Profile</a></li>
-                        <li><a href="/employer/profile-employer">Thông tin công ty</a></li>
-                        <li><a href="/employer/business-license">Giấy phép kinh Doanh</a></li>
-                        <li><a href="/employer/pay-money">Nạp tiền</a></li>
-                        <li><a href="/employer/change-password">đổi mật khẩu</a></li>
-                    </ul>
+                    <div class="section-block margin-top-30px mb-3 p-2 ml-2"></div>
                 </li>
-                <li>
-                    <div class="section-block margin-top-30px mb-3"></div>
+                <li><a href="{{ route('employer.profile.index') }}"><i class="la la-user icon-element"></i>Thông tin cá
+                        nhân</a>
                 </li>
-                <li><a href=""><i class="la la-user icon-element"></i> View
-                        Profile</a>
+                <li><a href="/employer/business-license"><i class="la la-user icon-element"></i> Giấy phép kinh
+                        Doanh</a>
+                </li>
+                <li><a href="/employer/pay-money"><i class="la la-user icon-element"></i> Nạp tiền</a>
+                </li>
+                <li><a href="/employer/profile-employer"><i class="la la-user icon-element"></i> Công ty</a>
+                </li>
+                <li><a href="/employer/change-password"><i class="la la-user icon-element"></i> Đổi mật khẩu</a>
                 </li>
                 <li><a href="{{ route('employer.logout') }}"><i class="la la-power-off icon-element"></i> Logout</a>
                 </li>

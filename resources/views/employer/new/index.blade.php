@@ -29,14 +29,6 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="billing-form-item">
-                            <div class="billing-title-wrap">
-                                <h3 class="widget-title pb-0">
-                                    @if (isset($title))
-                                        <title>{{ $title }}</title>
-                                    @endif
-                                </h3>
-                                <div class="title-shape margin-top-10px"></div>
-                            </div><!-- billing-title-wrap -->
                             <div class="billing-content pb-0">
                                 <div class="manage-job-wrap">
                                     <div class="manage-job-header mt-3 mb-5">
@@ -45,8 +37,19 @@
                                             <span class="font-weight-medium">công việc được đăng</span>
                                         </div>
                                         <div class="manage-job-count">
-                                            <span class="font-weight-medium color-text-2 mr-1">8</span>
-                                            <span class="font-weight-medium">ứng viên(s)</span>
+                                            @if ($checkCompany->id_company && $checkCompanyStatus == 1)
+                                                <a href="{{ route('employer.new.create') }}"
+                                                    class="btn btn-info font-weight-medium color-text-2 mr-1  text-white">Thêm
+                                                    tin</a>
+                                            @else
+                                                <button
+                                                    class="btn btn-info font-weight-medium color-text-2 mr-1  text-white"
+                                                    data-coreui-toggle="modal" data-coreui-target="#exampleModal"
+                                                    type="button">
+                                                    Thêm tin
+                                                </button>
+                                            @endif
+
                                         </div>
                                     </div>
                                     <div class="table-responsive">
@@ -123,5 +126,25 @@
 
     <div id="back-to-top">
         <i class="la la-angle-up" title="Go top"></i>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: red">Thông báo</h5>
+                    <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <br>
+                    <p style="text-align: center ">Tài khoản của bạn chưa cập nhật thông tin công ty.
+                    </p>
+                    <p style="text-align: center "> Để sử dụng tính năng này vui lòng cập nhật thông tin của bạn. và xác
+                        thực để có thể đăng tin</p>
+                </div>
+                <a href="/employer/profile-employer" class="btn btn-primary "
+                    style="margin-left: 36%; width: 140px; margin-top: 20px">Cập nhật ngay
+                </a>
+            </div>
+        </div>
     </div>
 @endsection
