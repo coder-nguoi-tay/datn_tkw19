@@ -13,36 +13,48 @@
                     <div class="card h-100">
                       <div class="card-body">
                         <form action="" class="d-flex" method="get">
-                          <picker-new-employer
-                            :NameDate="'start_date'"
-                            v-model="start_date"
-                            class="date-time custom-date mr-1"
-                          ></picker-new-employer>
-                          <picker-new-employer
-                            :NameDate="'end_date'"
-                            v-model="end_date"
-                            class="date-time custom-date mr-1"
-                          ></picker-new-employer>
-                          <input
-                            name="free_word"
-                            class="custom-input mr-1"
-                            placeholder="Tìm Kiếm...."
-                            :value="dataQuery.free_word"
-                            autocomplete="off"
-                            id="free_word"
-                          />
-                          <button
-                            class="
-                              btn btn-info
-                              font-weight-medium
-                              color-text-2
-                              mr-1
-                              text-white
-                            "
-                            href=""
-                          >
-                            <i class="fa fa-search"></i>
-                          </button>
+                          <div class="col-4"></div>
+                          <div class="col-8 d-flex">
+                            <picker-new-employer
+                              name="start_date"
+                              v-model="DateStart"
+                              class="date-time custom-date mr-1"
+                            ></picker-new-employer>
+                            <picker-new-employer
+                              name="end_date"
+                              v-model="DateEnd"
+                              class="date-time custom-date mr-1"
+                            ></picker-new-employer>
+                            <input
+                              name="free_word"
+                              class="custom-input imput-history mr-1"
+                              placeholder="Tìm Kiếm...."
+                              :value="Date.free_word"
+                              autocomplete="off"
+                              id="free_word"
+                            />
+                            <select
+                              name="status"
+                              class="custom-form-select border mr-1"
+                              id=""
+                            >
+                              <option value="0">Tất cả</option>
+                              <option value="1">Thành công</option>
+                              <option value="2">Thất bại</option>
+                            </select>
+                            <button
+                              class="
+                                btn btn-info
+                                font-weight-medium
+                                color-text-2
+                                mr-1
+                                text-white
+                              "
+                              href=""
+                            >
+                              <i class="fa fa-search"></i>
+                            </button>
+                          </div>
                         </form>
                         <div
                           class="col-12 form-update-company"
@@ -98,19 +110,11 @@
                         </div>
                       </div>
                     </div>
-
-                    <!-- end row -->
                   </div>
                 </div>
-                <!-- end contact-form-action -->
               </div>
-              <!-- end billing-content -->
             </div>
-            <!-- end billing-form-item -->
-
-            <!-- end billing-form-item -->
           </div>
-          <!-- end col-lg-12 -->
         </div>
       </div>
     </div>
@@ -118,6 +122,8 @@
 </template>
 
 <script>
+import Datepicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
 import moment from 'moment'
 export default {
   data: function () {
@@ -132,12 +138,14 @@ export default {
       filePreview: '',
       Image: null,
       statusImage: '',
-      dataCompany: ''
+      dataCompany: '',
+      DateStart: this.datePicker.start_date,
+      DateEnd: this.datePicker.end_date
     }
   },
-  props: ['data'],
+  props: ['data', 'datePicker'],
   created() {
-    console.log(this.data.employer)
+    console.log(this.datePicker)
     if (this.data.Company) {
       this.dataCompany = this.data.Company
     }
@@ -151,7 +159,7 @@ export default {
     }
   },
   components: {
-    datePicker
+    Datepicker
   },
   methods: {
     moment: function () {
@@ -200,6 +208,13 @@ export default {
 </script>
 
 <style>
+.custom-form-select {
+  width: 150px;
+  border-radius: 5px;
+}
+.imput-history {
+  width: 100px;
+}
 .justify-content-between {
   justify-content: space-between !important;
 }
@@ -230,8 +245,7 @@ export default {
 }
 
 .form-update-company {
-  width: 80%;
-  margin-left: 10%;
+  width: 60%;
 }
 
 .shadow-none {

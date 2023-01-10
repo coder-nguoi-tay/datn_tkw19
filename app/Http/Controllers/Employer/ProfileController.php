@@ -311,16 +311,29 @@ class ProfileController extends BaseController
             return redirect()->route('employer.change-password');
         }
     }
-    public function historyPay()
+    public function historyPay(Request $request)
     {
         $breadcrumbs = [
             'Lịch sử giao dịch'
         ];
-        $paymentHistory = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)->orderBy('created_at', 'DESC')->get();
+        $paymentHistory = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)
+            ->where(function ($q) use ($request) {
+                if (!empty($request['start_date'])) {
+                    $q->whereDate('created_at', '>=', $request['start_date']);
+                }
+                if (!empty($request['end_date'])) {
+                    $q->whereDate('created_at', '<=', $request['end_date']);
+                }
+                if (!empty($request['free_word'])) {
+                    $q->orWhere($this->escapeLikeSentence('desceibe', $request['free_word']));
+                }
+            })
+            ->orderBy('created_at', 'DESC')->get();
         return view('employer.profile.history', [
             'title' => 'Lịch sử giao dịch',
             'breadcrumbs' => $breadcrumbs,
             'paymentHistory' => $paymentHistory,
+            'request' => $request,
         ]);
     }
     public function profileEmployer()

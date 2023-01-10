@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Employer;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\ProfileUserCv;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class BoughtCvController extends Controller
+class BoughtCvController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -20,16 +21,18 @@ class BoughtCvController extends Controller
 
         $this->profileCv = $profileCv;
     }
-    public function index()
+    public function index(Request $request)
     {
         $breadcrumbs = [
             'Hồ sơ đã mua'
         ];
-        $tatalecv = $this->profileCv->where('status', Auth::guard('user')->user()->id)->get();
+        $tatalecv = $this->profileCv->where('status', Auth::guard('user')->user()->id)
+            ->get();
         return view('employer.boughtcv.index', [
             'tatalecv' => $tatalecv,
             'title' => 'Hồ sơ đã mua',
-            'breadcrumbs' => $breadcrumbs
+            'breadcrumbs' => $breadcrumbs,
+            'request' => $request
         ]);
     }
 
