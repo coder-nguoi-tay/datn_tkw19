@@ -9,6 +9,15 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="billing-form-item">
+                        @if (Auth::guard('user')->user()->id != $cv->status)
+                            <btn-payment-employer :message-confirm="{{ json_encode('Bạn có chắc muốn mua CV không ?') }}"
+                                :delete-action="{{ json_encode(route('employer.changecAcount', $cv->id)) }}"
+                                :count-getskill="{{ json_encode([
+                                    'accPayment' => $accPayment,
+                                    'total' => count(json_decode($cv->skill)) + count(json_decode($cv->project)),
+                                ]) }}">
+                            </btn-payment-employer>
+                        @endif
                         <show-cv
                             :data="{{ json_encode([
                                 'cv' => $cv,

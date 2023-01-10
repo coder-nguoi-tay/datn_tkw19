@@ -327,6 +327,13 @@ class ProfileController extends BaseController
                 if (!empty($request['free_word'])) {
                     $q->orWhere($this->escapeLikeSentence('desceibe', $request['free_word']));
                 }
+                if (!empty($request['status'])) {
+                    if ($request['status'] == 1) {
+                        $q->where('status', 1);
+                    } else {
+                        $q->where('status', 0);
+                    }
+                }
             })
             ->orderBy('created_at', 'DESC')->get();
         return view('employer.profile.history', [
