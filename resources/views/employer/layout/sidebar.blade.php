@@ -43,7 +43,7 @@
 
                 </li>
                 <li>
-                    <div class="section-block margin-top-30px mb-3 p-2 ml-2"></div>
+                    <div class="section-block margin-top-30px ml-2"></div>
                 </li>
                 <li><a href="{{ route('employer.profile.index') }}"><i class="la la-user icon-element"></i>Thông tin cá
                         nhân</a>

@@ -122,8 +122,8 @@
 </template>
 
 <script>
-import Datepicker from '@vuepic/vue-datepicker'
-import '@vuepic/vue-datepicker/dist/main.css'
+// import Datepicker from '@vuepic/vue-datepicker'
+// import '@vuepic/vue-datepicker/dist/main.css'
 import moment from 'moment'
 export default {
   data: function () {
@@ -159,7 +159,7 @@ export default {
     }
   },
   components: {
-    Datepicker
+    // Datepicker
   },
   methods: {
     moment: function () {
