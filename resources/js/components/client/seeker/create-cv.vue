@@ -486,6 +486,11 @@ export default {
   width: 200px !important;
   height: 35px !important;
 }
+.p-2{
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
 
 .wrapper-item {
   margin-top: 20px;
@@ -518,18 +523,14 @@ export default {
   color: #fff;
 }
 
-.btn-primary:hover {
-}
+
 
 .btn-group-lg > .min-width.btn,
 .min-width.btn-lg {
   min-width: 120px;
 }
 
-.nav-tabs .nav-link.active i[data-v-6f017734],
-.nav-tabs .nav-link.active p[data-v-6f017734] {
-  color: #00b14f;
-}
+
 
 .mr-2,
 .mx-2 {
