@@ -151,8 +151,8 @@
                     <div class="row">
                       <div class="col-6">
                         <CButton
-                          class="nav-link py-0 btn-next-step btn-buy-package"
-                          color="secondary"
+                          class="btn btn-success"
+                          color="white"
                           v-c-tooltip="{
                             content:
                               'Chủ tài khoản: ' +
@@ -169,7 +169,7 @@
                       </div>
                       <div class="col-6">
                         <button
-                          class="nav-link py-0 btn-next-step btn-buy-package"
+                          class="btn btn-warning btn-buy-package"
                           color="secondary"
                           name="redirect"
                         >

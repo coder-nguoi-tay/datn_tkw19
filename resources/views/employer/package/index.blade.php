@@ -28,9 +28,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="billing-form-item">
-                            <div class="billing-title-wrap">
-                                <div class="title-shape margin-top-10px"></div>
-                                <button class="btn btn-info btn-next-step" data-coreui-toggle="modal"
+                            <div class="billing-title-wrap row">
+                                <div class=" col-10"></div>
+                                <button class="btn btn-info col-2 text-white" data-coreui-toggle="modal"
                                     data-coreui-target="#exampleModalbuyPackage">
                                     mua gói cước
                                 </button>
@@ -69,16 +69,10 @@
                                                                 <div class="bread-action pt-0">
                                                                     <ul class="info-list">
                                                                         <li class="d-inline-block"><a
-                                                                                href="{{ route('employer.new.showdetai', $item->id) }}"><i
+                                                                                href="{{ route('employer.package.show', $item->id) }}"><i
                                                                                     class="la la-eye" data-toggle="tooltip"
                                                                                     data-placement="top" title=""
-                                                                                    data-original-title="Xem tất cả ứng viên đã nộp vào bài job"></i></a>
-                                                                        </li>
-                                                                        <li class="d-inline-block"><a
-                                                                                href="{{ route('employer.new.edit', $item->id) }}"><i
-                                                                                    class="la la-edit" data-toggle="tooltip"
-                                                                                    data-placement="top" title=""
-                                                                                    data-original-title="Sửa bài viết"></i></a>
+                                                                                    data-original-title="Xem chi tiết gói cước"></i></a>
                                                                         </li>
                                                                         @if ($item->status == 2)
                                                                             <li>

@@ -1,12 +1,12 @@
 <template>
   <datepicker
     autoApply
-    keepActionRow
-    :closeOnAutoApply="false"
     v-model="date"
     :monthChangeOnScroll="false"
     locale="vi"
+    year-picker
     :name="NameDate"
+    :maxDate="new Date()"
     selectText="chọn"
     cancelText="đóng lại"
     format="yyyy"
@@ -27,8 +27,10 @@ export default {
       date: new Date()
     }
   },
+  created() {},
   components: {
     Datepicker
-  }
+  },
+  methods: {}
 }
 </script>

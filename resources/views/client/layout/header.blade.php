@@ -146,16 +146,49 @@
                     <span class="burger-icon-bottom"></span>
                 </div>
             </div>
-            <div class="header-right">
-                <div class="block-signin d-flex align-items-center gap-2">
-                    <a class="text-link-bd-btom hover-up" href="#controlJobManagerRegister"
-                        data-bs-toggle="modal">Register</a>
-                    <a class="btn btn-default btn-shadow ml-30 hover-up" href="#controlJobManagerLogin"
-                        data-bs-toggle="modal">Sign in</a>
 
-
+            @if (!Auth::guard('user')->check())
+                <div class="header-right">
+                    <div class="block-signin d-flex align-items-center gap-2">
+                        <a class="text-link-bd-btom hover-up" href="#controlJobManagerRegister"
+                            data-bs-toggle="modal">Đăng ký</a>
+                        <a class="btn btn-default btn-shadow ml-30 hover-up" href="#controlJobManagerLogin"
+                            data-bs-toggle="modal">Đăng nhập</a>
+                        <a href="{{ route('register.employer') }}" class="btn btn-default btn-shadow ml-30 hover-up">
+                            Đăng tuyển & tìm hồ sơ
+                        </a>
+                    </div>
                 </div>
-            </div>
+            @else
+                {{-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
+                        aria-expanded="false">
+                        {{ Auth::guard('user')->user()->name }}
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('profile.index') }} ">Profile</a>
+                        <a class="dropdown-item" href="#">Quản lý CV</a>
+                        <a class="dropdown-item" href="#">Bài tuyển dụng đã yêu thích</a>
+                        <a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a>
+                    </div>
+                </li> --}}
+                <!-- Example single danger button -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-shadow ml-30 hover-up dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Action
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            @endif
         </div>
     </div>
 </header>

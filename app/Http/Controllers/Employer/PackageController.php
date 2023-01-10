@@ -343,88 +343,93 @@ class PackageController extends BaseController
         $vnp_Amount = $inputData['vnp_Amount'] / 100; // Số tiền thanh toán VNPAY phản hồi
         $Status = 0; // Là trạng thái thanh toán của giao dịch chưa có IPN lưu tại hệ thống của merchant chiều khởi tạo URL thanh toán.
         $orderId = $inputData['vnp_TxnRef'];
-        try {
-            //Check Orderid    
-            //Kiểm tra checksum của dữ liệu
-            if ($secureHash == $vnp_SecureHash) {
-                $invoice = jobAttractive::where('id', $lever_package)->first();
-                $checkPackage = packageofferbought::where('company_id', Auth::guard('user')->user()->id)
-                    ->leftjoin('job_attractive', 'job_attractive.id', 'package_offer_bought.package_offer_id')
-                    ->select('job_attractive.price as price')
-                    ->first();
-                if ($invoice != NULL) {
-                    if ($invoice["price"] + $checkPackage->price ?? 0 == $vnp_Amount) //Kiểm tra số tiền thanh toán của giao dịch: giả sử số tiền kiểm tra là đúng. //$order["Amount"] == $vnp_Amount
-                    {
-                        if ($invoice["status"] == NULL && $invoice["status"] == 0) {
-                            if ($inputData['vnp_ResponseCode'] == '00' && $inputData['vnp_TransactionStatus'] == '00') {
-                                $Status = 1; // Trạng thái thanh toán thành công
-                            } else {
-                                $Status = 2; // Trạng thái thanh toán thất bại / lỗi
-                            }
-                            //
-                            $checkPackage = packageofferbought::where('company_id', Auth::guard('user')->user()->id)->first();
-                            if ($checkPackage) {
-                                $package = $checkPackage;
-                                if ($lever_package == LeverPackageCompany::VIP1) {
-                                    $package->end_time = Carbon::parse($package->end_time)->addDay(1)->format('Y-m-d');
-                                } else if ($lever_package == LeverPackageCompany::VIP2) {
-                                    $package->end_time = Carbon::parse($package->end_time)->addDay(7)->format('Y-m-d');
-                                } else if ($lever_package == LeverPackageCompany::VIP3) {
-                                    $package->end_time = Carbon::parse($package->end_time)->addDay(30)->format('Y-m-d');
-                                }
-                            } else {
-                                $package = new packageofferbought();
-                                if ($lever_package == LeverPackageCompany::VIP1) {
-                                    $package->end_time = Carbon::parse(Carbon::now())->addDay(1)->format('Y-m-d');
-                                } else if ($lever_package == LeverPackageCompany::VIP2) {
-                                    $package->end_time = Carbon::parse(Carbon::now())->addDay(7)->format('Y-m-d');
-                                } else if ($lever_package == LeverPackageCompany::VIP3) {
-                                    $package->end_time = Carbon::parse(Carbon::now())->addDay(30)->format('Y-m-d');
-                                }
-                            }
-                            $package->company_id = Auth::guard('user')->user()->id;
-                            $package->package_offer_id = $lever_package;
-                            $package->status = $Status;
-                            $package->start_time = Carbon::parse(Carbon::now());
-
-                            $package->lever = $lever_package;
-                            $package->save();
-                            //
-                            $paymentHistory = new PaymentHistoryEmployer();
-                            $paymentHistory->user_id = Auth::guard('user')->user()->id;
-                            $paymentHistory->price = $vnp_Amount;
-                            $paymentHistory->status = 1;
-                            $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp gói cước Tin tuyển dụng - việc làm tốt nhất' : 'Thanh toán mua gói cước Tin tuyển dụng - việc làm tốt nhất';
-                            $paymentHistory->form = '';
-                            $paymentHistory->save();
-
-                            //
-                            $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
-                            $employer->prioritize += $lever_package;
-                            $employer->position = 1;
-                            $employer->save();
-                            $returnData['RspCode'] = '00';
-                            $returnData['Message'] = 'Xác nhận thành công';
+        // try {
+        //Check Orderid    
+        //Kiểm tra checksum của dữ liệu
+        if ($secureHash == $vnp_SecureHash) {
+            $invoice = jobAttractive::where('id', $lever_package)->first();
+            $checkPackage = packageofferbought::where('company_id', Auth::guard('user')->user()->id)
+                ->leftjoin('job_attractive', 'job_attractive.id', 'package_offer_bought.package_offer_id')
+                ->select('job_attractive.price as price')
+                ->first();
+            if ($checkPackage) {
+                $price = $checkPackage->price;
+            } else {
+                $price = 0;
+            }
+            if ($invoice != NULL) {
+                if ($invoice["price"] + $price == $vnp_Amount) //Kiểm tra số tiền thanh toán của giao dịch: giả sử số tiền kiểm tra là đúng. //$order["Amount"] == $vnp_Amount
+                {
+                    if ($invoice["status"] == NULL && $invoice["status"] == 0) {
+                        if ($inputData['vnp_ResponseCode'] == '00' && $inputData['vnp_TransactionStatus'] == '00') {
+                            $Status = 1; // Trạng thái thanh toán thành công
                         } else {
-                            $returnData['RspCode'] = '02';
-                            $returnData['Message'] = 'Đơn đặt hàng đã được xác nhận';
+                            $Status = 2; // Trạng thái thanh toán thất bại / lỗi
                         }
+                        //
+                        $checkPackage = packageofferbought::where('company_id', Auth::guard('user')->user()->id)->first();
+                        if ($checkPackage) {
+                            $package = $checkPackage;
+                            if ($lever_package == LeverPackageCompany::VIP1) {
+                                $package->end_time = Carbon::parse($package->end_time)->addDay(1)->format('Y-m-d');
+                            } else if ($lever_package == LeverPackageCompany::VIP2) {
+                                $package->end_time = Carbon::parse($package->end_time)->addDay(7)->format('Y-m-d');
+                            } else if ($lever_package == LeverPackageCompany::VIP3) {
+                                $package->end_time = Carbon::parse($package->end_time)->addDay(30)->format('Y-m-d');
+                            }
+                        } else {
+                            $package = new packageofferbought();
+                            if ($lever_package == LeverPackageCompany::VIP1) {
+                                $package->end_time = Carbon::parse(Carbon::now())->addDay(1)->format('Y-m-d');
+                            } else if ($lever_package == LeverPackageCompany::VIP2) {
+                                $package->end_time = Carbon::parse(Carbon::now())->addDay(7)->format('Y-m-d');
+                            } else if ($lever_package == LeverPackageCompany::VIP3) {
+                                $package->end_time = Carbon::parse(Carbon::now())->addDay(30)->format('Y-m-d');
+                            }
+                        }
+                        $package->company_id = Auth::guard('user')->user()->id;
+                        $package->package_offer_id = $lever_package;
+                        $package->status = $Status;
+                        $package->start_time = Carbon::parse(Carbon::now());
+
+                        $package->lever = $lever_package;
+                        $package->save();
+                        //
+                        $paymentHistory = new PaymentHistoryEmployer();
+                        $paymentHistory->user_id = Auth::guard('user')->user()->id;
+                        $paymentHistory->price = $vnp_Amount;
+                        $paymentHistory->status = 1;
+                        $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp gói cước Tin tuyển dụng - việc làm tốt nhất' : 'Thanh toán mua gói cước Tin tuyển dụng - việc làm tốt nhất';
+                        $paymentHistory->form = '';
+                        $paymentHistory->save();
+
+                        //
+                        $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
+                        $employer->prioritize += $lever_package;
+                        $employer->position = 1;
+                        $employer->save();
+                        $returnData['RspCode'] = '00';
+                        $returnData['Message'] = 'Xác nhận thành công';
                     } else {
-                        $returnData['RspCode'] = '04';
-                        $returnData['Message'] = 'Số tiền không hợp lệ';
+                        $returnData['RspCode'] = '02';
+                        $returnData['Message'] = 'Đơn đặt hàng đã được xác nhận';
                     }
                 } else {
-                    $returnData['RspCode'] = '01';
-                    $returnData['Message'] = 'Không tồn tại hóa đơn';
+                    $returnData['RspCode'] = '04';
+                    $returnData['Message'] = 'Số tiền không hợp lệ';
                 }
             } else {
-                $returnData['RspCode'] = '97';
-                $returnData['Message'] = 'Chữ ký không hợp lệ';
+                $returnData['RspCode'] = '01';
+                $returnData['Message'] = 'Không tồn tại hóa đơn';
             }
-        } catch (Exception $e) {
-            $returnData['RspCode'] = '99';
-            $returnData['Message'] = 'Lỗi không xác định';
+        } else {
+            $returnData['RspCode'] = '97';
+            $returnData['Message'] = 'Chữ ký không hợp lệ';
         }
+        // } catch (Exception $e) {
+        //     $returnData['RspCode'] = '99';
+        //     $returnData['Message'] = 'Lỗi không xác định';
+        // }
         if ($returnData['RspCode'] != 00) {
             $this->setFlash($returnData['Message'], 'error');
         } else {
