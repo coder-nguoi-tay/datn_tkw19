@@ -297,8 +297,8 @@
                               ft-medium
                               text-light
                               rounded
-                              theme-bg
-                              btn-register-employer
+                              btn-primary
+                              
                             "
                           >
                             Cập nhật
