@@ -378,9 +378,9 @@ class NewEmployerController extends BaseController
         $breadcrumbs = [
             [
                 'url' => route('employer.new.index'),
-                'name' => 'Quản lý cv'
+                'name' => 'Quản lý hồ sơ'
             ],
-            'CV đã nhận',
+            'Hồ sơ đã nhận',
 
         ];
         return view(

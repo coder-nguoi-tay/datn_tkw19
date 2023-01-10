@@ -109,7 +109,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
 
 
     //profile
-    Route::get('history', [EmployerProfileController::class, 'historyPay'])->name('employer.profile.history');
+    Route::get('history', [EmployerProfileController::class, 'historyPay'])->name('profile.history');
     Route::get('profile-employer', [EmployerProfileController::class, 'profileEmployer'])->name('employer.profileEmployer');
     Route::get('business-license', [EmployerProfileController::class, 'businessLicense'])->name('employer.businessLicense');
     Route::resource('profile', EmployerProfileController::class);

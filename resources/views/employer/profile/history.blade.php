@@ -22,7 +22,14 @@
                         </div><!-- end breadcrumb-content -->
                     </div><!-- end col-lg-12 -->
                 </div><!-- end row -->
-                <history :data="{{ json_encode([]) }}">
+                <search-cv-date :url="{{ json_encode(route('employer.quan-ly-cv.index')) }}"
+                    :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
+                    :data="{{ json_encode(2) }}">
+                </search-cv-date>
+                <history
+                    :data="{{ json_encode([
+                        'paymentHistory' => $paymentHistory,
+                    ]) }}">
                 </history>
             </div><!-- end container-fluid -->
         </div>

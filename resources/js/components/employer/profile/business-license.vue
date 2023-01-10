@@ -109,21 +109,6 @@
 
                             <div class="col-md-12" v-if="!Image">
                               <button
-                                type="button"
-                                class="
-                                  btn
-                                  min-width
-                                  btn
-                                  min-width
-                                  btn btn-secondary
-                                  mr-2
-                                  btn-lg
-                                "
-                              >
-                                <!---->
-                                Hủy
-                              </button>
-                              <button
                                 type="submit"
                                 class="btn min-width btn btn-primary btn-lg"
                               >
@@ -398,12 +383,9 @@ export default {
 }
 .btn-primary {
   color: #fff;
-
-
 }
 .btn-primary:hover {
   color: #fff;
-  
 }
 .btn-group-lg > .min-width.btn,
 .min-width.btn-lg {

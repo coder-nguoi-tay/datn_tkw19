@@ -34,7 +34,7 @@ class PackageController extends BaseController
         $this->vnpay = $vnpay;
         $this->package = $package;
     }
-    public function index()
+    public function index(Request $request)
     {
         $pachageForEmployer = Packageofferbought::leftjoin('job_attractive', 'job_attractive.id', '=', 'package_offer_bought.package_offer_id')
             ->leftjoin('users', 'users.id', '=', 'package_offer_bought.company_id')
@@ -42,6 +42,17 @@ class PackageController extends BaseController
             ->select('job_attractive.name as name_package', 'job_attractive.price as price', 'package_offer_bought.id as id', 'package_offer_bought.package_offer_id as package_id', 'package_offer_bought.start_time as start_time', 'package_offer_bought.end_time as end_time', 'package_offer_bought.lever', 'package_offer_bought.status')
             ->orderby('package_offer_bought.status', 'ASC')
             ->where('package_offer_bought.company_id', Auth::guard('user')->user()->id)
+            ->where(function ($q) use ($request) {
+                if (!empty($request['start_date'])) {
+                    $q->whereDate('package_offer_bought.created_at', '>=', $request['start_date']);
+                }
+                if (!empty($request['end_date'])) {
+                    $q->whereDate('package_offer_bought.created_at', '<=', $request['end_date']);
+                }
+                if (!empty($request['free_word'])) {
+                    $q->orWhere($this->escapeLikeSentence('job_attractive.name', $request['free_word']));
+                }
+            })
             ->get();
         $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
         $package = jobAttractive::select('*')->whereNotIn('id', $pachageForEmployer->pluck('package_id'))->get();
@@ -62,6 +73,7 @@ class PackageController extends BaseController
             'pachageForEmployer' => $pachageForEmployer,
             'packageAttractive' => $packageAttractive,
             'breadcrumbs' => $breadcrumbs,
+            'request' => $request,
             'total' => AccountPayment::where('user_id', Auth::guard('user')->user()->id)->with('user')->first(),
         ]);
     }

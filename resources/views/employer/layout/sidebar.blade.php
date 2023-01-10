@@ -17,19 +17,30 @@
                 <li><a href="{{ route('employer.package.index') }}"><i class="la la-bookmark icon-element"></i>
                         Gói cước</a>
                 </li>
-                <li><a href="{{ route('employer.package.index') }}"><i class="la la-gear icon-element"></i>
-                        Quản lý
-                        CV</a>
+                <li><a href="{{ route('employer.quan-ly-cv.index') }}"><i class="la la-gear icon-element"></i>
+                        Hồ sơ đã nhận</a>
                 </li>
-                <li><a href="{{ route('employer.package.index') }}"><i class="la la-gear icon-element"></i>
-                        CV đã mua</a>
+                <li><a href="{{ route('employer.cv-da-mua.index') }}"><i class="la la-gear icon-element"></i>
+                        Hồ sơ đã mua</a>
                 </li>
-                <li><a href="{{ route('employer.package.index') }}"><i class="la la-gear icon-element"></i>
+                <li><a href="{{ route('employer.tim-kiem-cv.index') }}"><i class="la la-gear icon-element"></i>
                         Tìm kiếm
-                        CV</a>
+                        hồ sơ</a>
+                </li>
+                {{-- <li>
+                    <a href="{{ route('employer.quan-ly-cv.index') }}"><i class="la la-gear icon-element"></i> Quản lý
+                        CV
                 </li>
                 <li>
+                    <a href="{{ route('employer.cv-da-mua.index') }}"><i class="la la-gear icon-element"></i> CV đã mua
+                </li> --}}
+                {{-- <li>
+                    <a href="{{ route('employer.tim-kiem-cv.index') }}"><i class="la la-gear icon-element"></i> Tìm kiếm
+                        CV
+                </li> --}}
+                <li>
                     <a href="{{ route('employer.new.index') }}"><i class="la la-gear icon-element"></i> Đăng tin</a>
+
                 </li>
                 <li>
                     <div class="section-block margin-top-30px mb-3 p-2 ml-2"></div>
@@ -41,6 +52,9 @@
                         Doanh</a>
                 </li>
                 <li><a href="/employer/pay-money"><i class="la la-user icon-element"></i> Nạp tiền</a>
+                </li>
+                <li><a href="{{ route('employer.profile.history') }}"><i class="la la-user icon-element"></i>Lịch sử
+                        giao dịch</a>
                 </li>
                 <li><a href="/employer/profile-employer"><i class="la la-user icon-element"></i> Công ty</a>
                 </li>
