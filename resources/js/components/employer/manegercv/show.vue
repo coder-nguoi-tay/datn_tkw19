@@ -15,21 +15,21 @@
             <h3>Thông tin cá nhân</h3>
             <div class="box_contact">
               <div class="mail">
-                <i class="fa-solid fa-envelope"></i>
+                <i class="fas fa-envelope"></i>
                 <p v-if="data.cv.status == data.CheckUser">
                   {{ data.cv.email }}
                 </p>
                 <p v-if="data.cv.status != data.CheckUser">**************</p>
               </div>
               <div class="mail">
-                <i class="fa-solid fa-envelope"></i>
+                <i class="fas fa-phone"></i>
                 <p v-if="data.cv.status == data.CheckUser">
                   {{ data.cv.phone }}
                 </p>
                 <p v-if="data.cv.status != data.CheckUser">*****************</p>
               </div>
               <div class="mail">
-                <i class="fa-solid fa-envelope"></i>
+                <i class="fas fa-map-marker-alt"></i>
                 <p v-if="data.cv.status == data.CheckUser">
                   {{ data.cv.address }}
                 </p>
@@ -38,7 +38,7 @@
                 </p>
               </div>
               <div class="mail">
-                <i class="fa-solid fa-envelope"></i>
+                <i class="fab fa-facebook"></i>
                 <p v-if="data.cv.status == data.CheckUser">
                   <a :href="data.cv.link_fb">{{ data.cv.link_fb }}</a>
                 </p>
@@ -55,8 +55,8 @@
                 class="ky_nang"
                 v-for="(item, index) in JSON.parse(this.data.cv.skill)"
               >
-                <b>{{ item.name }}</b>
-                <p>{{ item.value }}</p>
+                <b>- {{ item.name }}</b>
+                <p>- {{ item.value }}</p>
               </div>
             </div>
           </div>
@@ -103,7 +103,7 @@
               v-for="(item, index) in JSON.parse(this.data.cv.project)"
             >
               <div class="title_cv">
-                <i class="fa-solid fa-briefcase"></i>
+                <i class="fab fa-creative-commons-nd"></i>
                 <h4 v-html="item.name"></h4>
               </div>
               <div class="mt_cv">
@@ -150,9 +150,6 @@ export default {
   gap: 10px;
   align-items: center;
 }
-.title_cv > h4 {
-  color: white;
-}
 
 .title_cv > i {
   color: rgb(12 112 148 / 100%) !important;
@@ -198,26 +195,14 @@ export default {
 .box_contact > .mail {
   display: grid;
   grid-template-columns: 25px 1fr;
-  color: white;
-  font-size: 16px;
+  color: #bbbdbf;
+  font-size: 14px;
   font-weight: 400;
   gap: 5px;
 }
 
 .box_contact > .mail > p {
   margin: 0;
-  color: white;
-  font-size: 16px;
-}
-.box_contact b {
-  margin: 0;
-  color: white;
-  font-size: 16px;
-}
-.box_contact p {
-  margin: 0;
-  color: white;
-  font-size: 16px;
 }
 
 .box_contact > .mail > i {
@@ -328,8 +313,9 @@ export default {
   color: #284350;
 }
 
-.main_gt .right_cv.title_cv > i {
-  color: #ebad00;
+.main_gt i {
+  margin: auto 0;
+  color: beige;
 }
 
 .main_gt .right_cv.mt .h4 {
