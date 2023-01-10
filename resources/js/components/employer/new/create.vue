@@ -74,7 +74,7 @@
                                 as="select"
                                 v-model="model.sex"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn giới tính
@@ -99,7 +99,7 @@
                                 as="select"
                                 v-model="model.location_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Địa chỉ
@@ -178,7 +178,7 @@
                                 as="select"
                                 v-model="model.majors_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn ngành nghề
@@ -207,7 +207,7 @@
                                 as="select"
                                 v-model="model.profession_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn vị trí
@@ -248,7 +248,7 @@
                                 as="select"
                                 v-model="model.level_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Trình độ học vẫn
@@ -277,7 +277,7 @@
                                 as="select"
                                 v-model="model.experience_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Kinh nghiệm
@@ -309,7 +309,7 @@
                                 as="select"
                                 v-model="model.wage_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Mức lương
@@ -334,11 +334,11 @@
                               class="form-group user-chosen-select-container"
                             >
                               <Field
-                                name="wage_id"
+                                name="time_work_id"
                                 as="select"
                                 v-model="model.time_work_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn thời gian làm việc
@@ -404,7 +404,6 @@
                                 rules="required"
                               >
                                 <Multiselect
-                                  class="user-chosen-select"
                                   placeholder="Chọn Kỹ năng"
                                   v-model="value"
                                   mode="tags"
@@ -431,7 +430,7 @@
                                 as="select"
                                 v-model="model.wk_form_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Hình thức làm việc
@@ -462,9 +461,6 @@
                 </div>
                 <!-- end billing-content -->
               </div>
-              <!-- end billing-form-item -->
-
-              <!-- end billing-form-item -->
             </div>
             <!-- end col-lg-12 -->
           </div>
