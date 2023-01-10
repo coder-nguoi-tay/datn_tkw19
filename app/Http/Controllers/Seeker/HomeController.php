@@ -87,6 +87,7 @@ class HomeController extends BaseController
         return view('client.seeker.profile', [
             'user' => $user,
             'breadcrumbs' => $breadcrumbs,
+            'title' => 'Thông tin cá nhân',
             'lever' => $this->getlever(),
             'experience' => $this->getexperience(),
             'wage' => $this->getwage(),
@@ -259,7 +260,16 @@ class HomeController extends BaseController
     }
     public function changePassword()
     {
-        return view('client.seeker.change-password');
+        $breadcrumbs = [
+            'Đổi mật khẩu'
+        ];
+        return view(
+            'client.seeker.change-password',
+            [
+                'breadcrumbs' => $breadcrumbs,
+                'title' => 'Đổi mật khẩu',
+            ]
+        );
     }
     public function changePasswordSucsses(Request $request)
     {

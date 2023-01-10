@@ -39,7 +39,7 @@ class ManageUploadController extends BaseController
         return view('client.seeker.save-cv', [
             'breadcrumbs' => $breadcrumbs,
             'cv' => $cv,
-            'title' => '123'
+            'title' => 'Quản lý cv'
         ]);
     }
 

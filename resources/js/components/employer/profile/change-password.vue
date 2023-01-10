@@ -163,6 +163,9 @@ export default {
   margin-left: 5px;
   margin-top: 5px;
 }
+.required-lable{
+  color: red;
+}
 .size-input {
   width: 80%;
   margin: auto;

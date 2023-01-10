@@ -14,9 +14,15 @@ class ViewProfileController extends Controller
      */
     public function index()
     {
+        $breadcrumbs = [
+            ' Danh sách Nhà tuyển dụng xem CV',
+
+        ];
+
         return view('client.seeker.view-profile', [
 
-            'title' => 'NTD xem hồ sơ'
+            'title' => 'NTD xem hồ sơ',
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 

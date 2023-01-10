@@ -31,7 +31,7 @@
                                                               Notifications</p>
                                                       </div><!-- end mess__title -->
                                                       <div class="mess__body">
-                                                          <a href="#" class="d-block">
+                                                          <a href="" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="icon-element">
                                                                       <i class="la la-bolt"></i>
@@ -42,7 +42,7 @@
                                                                   </div>
                                                               </div><!-- end mess__item -->
                                                           </a>
-                                                          <a href="#" class="d-block">
+                                                          <a href="" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="icon-element">
                                                                       <i class="la la-lock"></i>
@@ -53,7 +53,7 @@
                                                                   </div>
                                                               </div><!-- end mess__item -->
                                                           </a>
-                                                          <a href="#" class="d-block">
+                                                          <a href="" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="icon-element">
                                                                       <i class="la la-check-circle"></i>
@@ -66,7 +66,7 @@
                                                                   </div>
                                                               </div><!-- end mess__item -->
                                                           </a>
-                                                          <a href="#" class="d-block">
+                                                          <a href="" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="icon-element">
                                                                       <i class="la la-user"></i>
@@ -78,7 +78,7 @@
                                                                   </div>
                                                               </div><!-- end mess__item -->
                                                           </a>
-                                                          <a href="#" class="d-block">
+                                                          <a href="" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="icon-element">
                                                                       <i class="la la-download"></i>
@@ -91,7 +91,7 @@
                                                           </a>
                                                       </div><!-- end mess__body -->
                                                       <div class="mess__item border-bottom-0 text-center">
-                                                          <a href="#" class="theme-btn w-100">View All
+                                                          <a href="" class="theme-btn w-100">View All
                                                               Notifications</a>
                                                       </div><!-- end mess__item -->
                                                   </div><!-- end mess-dropdown -->
@@ -118,7 +118,7 @@
                                                               messages</p>
                                                       </div><!-- end mess__title -->
                                                       <div class="mess__body">
-                                                          <a href="employer-dashboard-message.html" class="d-block">
+                                                          <a href="" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="avatar dot-status">
                                                                       <img src="" alt="Michelle Moreno">
@@ -131,7 +131,7 @@
                                                                   </div>
                                                               </div><!-- end mess__item -->
                                                           </a>
-                                                          <a href="employer-dashboard-message.html" class="d-block">
+                                                          <a href="" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="avatar dot-status online-status">
                                                                       <img src="" alt="Michelle Moreno">
@@ -144,7 +144,7 @@
                                                                   </div>
                                                               </div><!-- end mess__item -->
                                                           </a>
-                                                          <a href="employer-dashboard-message.html" class="d-block">
+                                                          <a href="" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="avatar dot-status">
                                                                       <img src="" alt="Michelle Moreno">
@@ -157,7 +157,7 @@
                                                                   </div>
                                                               </div><!-- end mess__item -->
                                                           </a>
-                                                          <a href="employer-dashboard-message.html" class="d-block">
+                                                          <a href="" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="avatar dot-status online-status">
                                                                       <img src="" alt="Michelle Moreno">
@@ -170,7 +170,7 @@
                                                                   </div>
                                                               </div><!-- end mess__item -->
                                                           </a>
-                                                          <a href="employer-dashboard-message.html" class="d-block">
+                                                          <a href="" class="d-block">
                                                               <div class="mess__item">
                                                                   <div class="avatar dot-status">
                                                                       <img src="" alt="Michelle Moreno">
@@ -291,7 +291,7 @@
                       <ul class="dropdown-menu-item">
                           <li><a href="employer-listing.html">Employer Listing</a></li>
                           <li><a href="employer-details.html">Employer Details</a></li>
-                          <li><a href="employer-dashboard.html">Employer Dashboard</a></li>
+                          <li><a href="">Employer Dashboard</a></li>
                           <li><a href="employer-dashboard-edit-profile.html">Edit Profile</a></li>
                           <li><a href="employer-dashboard-post-job.html">Post a Job</a></li>
                       </ul>
@@ -475,7 +475,7 @@
                       <div class="user-sidebar-item">
                           <div class="mess-dropdown">
                               <div class="mess__body">
-                                  <a href="employer-dashboard-message.html" class="d-block">
+                                  <a href="" class="d-block">
                                       <div class="mess__item">
                                           <div class="avatar dot-status">
                                               <img src="" alt="Michelle Moreno">
@@ -488,7 +488,7 @@
                                           </div>
                                       </div><!-- end mess__item -->
                                   </a>
-                                  <a href="employer-dashboard-message.html" class="d-block">
+                                  <a href="" class="d-block">
                                       <div class="mess__item">
                                           <div class="avatar dot-status online-status">
                                               <img src="" alt="Michelle Moreno">
@@ -501,7 +501,7 @@
                                           </div>
                                       </div><!-- end mess__item -->
                                   </a>
-                                  <a href="employer-dashboard-message.html" class="d-block">
+                                  <a href="" class="d-block">
                                       <div class="mess__item">
                                           <div class="avatar dot-status">
                                               <img src="" alt="Michelle Moreno">
@@ -514,7 +514,7 @@
                                           </div>
                                       </div><!-- end mess__item -->
                                   </a>
-                                  <a href="employer-dashboard-message.html" class="d-block">
+                                  <a href="" class="d-block">
                                       <div class="mess__item">
                                           <div class="avatar dot-status online-status">
                                               <img src="" alt="Michelle Moreno">
@@ -527,7 +527,7 @@
                                           </div>
                                       </div><!-- end mess__item -->
                                   </a>
-                                  <a href="employer-dashboard-message.html" class="d-block">
+                                  <a href="" class="d-block">
                                       <div class="mess__item">
                                           <div class="avatar dot-status">
                                               <img src="" alt="Michelle Moreno">
@@ -540,7 +540,7 @@
                                           </div>
                                       </div><!-- end mess__item -->
                                   </a>
-                                  <a href="employer-dashboard-message.html" class="d-block">
+                                  <a href="" class="d-block">
                                       <div class="mess__item">
                                           <div class="avatar dot-status">
                                               <img src="" alt="Michelle Moreno">
@@ -551,9 +551,9 @@
                                                   many</p>
                                               <span class="time">5 min ago</span>
                                           </div>
-                                      </div><!-- end mess__item -->
+                                      </div>
                                   </a>
-                                  <a href="employer-dashboard-message.html" class="d-block">
+                                  <a href="" class="d-block">
                                       <div class="mess__item">
                                           <div class="avatar dot-status online-status">
                                               <img src="" alt="Michelle Moreno">
@@ -564,10 +564,10 @@
                                                   many</p>
                                               <span class="time">2 hours ago</span>
                                           </div>
-                                      </div><!-- end mess__item -->
+                                      </div>
                                   </a>
-                              </div><!-- end mess__body -->
-                          </div><!-- end mess-dropdown -->
+                              </div>
+                          </div>
                       </div>
                   </div>
                   <div class="tab-pane fade" id="account-home" role="tabpanel" aria-labelledby="account-tab">
@@ -575,35 +575,35 @@
                           <div class="mess-dropdown">
                               <div class="mess__title d-flex align-items-center">
                                   <div class="image dot-status online-status">
-                                      <a href="#">
+                                      <a href="">
                                           <img src="" alt="Bluetech, Inc">
                                       </a>
                                   </div>
                                   <div class="content">
                                       <h4 class="widget-title">
-                                          <a href="#">Bluetech, Inc</a>
+                                          <a href="">Bluetech, Inc</a>
                                       </h4>
                                       <span class="email">bluetechinc@example.com</span>
                                   </div>
                               </div><!-- end mess__title -->
                               <div class="mess__body">
-                                  <a href="employer-dashboard.html" class="d-block">
+                                  <a href="" class="d-block">
                                       <i class="la la-user"></i> Account
                                   </a>
-                                  <a href="employer-dashboard-bookmark.html" class="d-block">
+                                  <a href="" class="d-block">
                                       <i class="la la-bookmark"></i> Bookmarks
                                   </a>
-                                  <a href="employer-dashboard.html" class="d-block">
+                                  <a href="" class="d-block">
                                       <i class="la la-plus"></i> Post a Job
                                   </a>
-                                  <a href="employer-dashboard.html" class="d-block">
+                                  <a href="" class="d-block">
                                       <i class="la la-question"></i> Help
                                   </a>
-                                  <a href="employer-dashboard.html" class="d-block">
+                                  <a href="" class="d-block">
                                       <i class="la la-gear"></i> Settings
                                   </a>
                                   <div class="section-block mt-2 mb-2"></div>
-                                  <a href="index.html" class="d-block">
+                                  <a href="" class="d-block">
                                       <i class="la la-power-off"></i> Logout
                                   </a>
                               </div><!-- end mess__body -->
