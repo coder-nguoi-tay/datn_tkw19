@@ -75,7 +75,7 @@
             </div>
         </div>
 
-        <section class="bg-light">
+        <section>
             <div class="container-xxl pt-2">
                 <div class="col-lg-12 col-md-12 col-sm-12">
 
@@ -176,10 +176,16 @@
                 </div>
             </div>
         </section>
-        <section class="bg-light" style="margin-top: 30px">
-            <div class="container-xxl pt-2">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <ul class="nav nav-tabs" role="tablist">
+        <section style="margin-top: 30px">
+            <div class="container-xxl pt-2 " style="background: #adb5bd0a; border-radius: 20px">
+                <div class="col-lg-12 col-md-12 col-sm-12 pl-15 pt-4">
+                    <div class="elementor-element elementor-element-ed0a5e5 m-0 elementor-widget elementor-widget-title"
+                        data-id="ed0a5e5" data-element_type="widget" data-widget_type="title.default">
+                        <div class="elementor-widget-container">
+                            <h2 class="control-heading-title m-0">Công việc liên quan</h2>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs p-3" role="tablist">
                         <li>
                             <a class="" id="nav-tab-content-writer" href="#tab-content-writer" data-bs-toggle="tab"
                                 role="tab" aria-controls="tab-content-writer" aria-selected="false" tabindex="-1">
@@ -240,16 +246,8 @@
                                 Software </a>
                         </li>
                     </ul>
-                    <div class="row align-items-center ">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                            <div class="row align-items-center justify-content-between mx-0 rounded p-3">
-                                <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 ">
-                                    <h4 class="mb-0 ft-medium fs-sm">Việc làm liên quan</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
+
+
                     <div class="row flex-row-reverse">
                         <div class="col-lg-12">
                             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-25"
