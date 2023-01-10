@@ -4,14 +4,29 @@
 @endphp
 @extends('client.layout.index')
 @section('client')
-
     <div id="main-wrapper">
         <div class="clearfix"></div>
-        <div class="bg-title py-5" data-overlay="0">
+        <div class=" py-5">
             <div class="ht-30"></div>
 
-            <div class="container">
-                <div class="row">
+            <div class="container" style="background: white">
+                <section class="section-box-2">
+                    <div class="banner-hero banner-single banner-single-bg" data-settings-id="banner-job">
+                        <div class="block-banner text-center">
+                            <h3 class="wow animate__ animate__fadeInUp animated"
+                                style="visibility: visible; animation-name: fadeInUp;"><span
+                                    class="color-brand-2">{{ count($job) }}
+                                    Công việc</span> Phù hợp</h3>
+                            <div class="font-sm color-text-paragraph-2 mt-10 wow animate__ animate__fadeInUp animated"
+                                data-wow-delay=".1s"
+                                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">Lorem
+                                ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni,<br
+                                    class="d-none d-xl-block">atque delectus molestias quis</div>
+
+                        </div>
+                    </div>
+                </section>
+                {{-- <div class="row">
                     <div class="colxl-12 col-lg-12 col-md-12">
                         <h1 class="ft-medium">Việc làm đã tìm thấy</h1>
                         <nav aria-label="breadcrumb">
@@ -34,7 +49,7 @@
                             </ol>
                         </nav>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="ht-30"></div>
         </div>
@@ -63,7 +78,8 @@
         <section class="bg-light">
             <div class="container-xxl pt-2">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="row align-items-center bg-secondary"
+
+                    {{-- <div class="row align-items-center bg-secondary"
                         style="border-top-left-radius: 30px; border-bottom-right-radius: 30px;">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                             <div class="row align-items-center justify-content-between mx-0 rounded p-3">
@@ -72,7 +88,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="row flex-row-reverse ">
                         <div class="col-lg-12">
                             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-30" id="paginated-list1">
@@ -94,7 +110,7 @@
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
                                                             text-align: justify;">
-                                                        <span class="location-small">{{ $value->address }}</span>
+                                                        <span class="location-small">{{ $value->getLocation->name }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -108,7 +124,8 @@
                                                             display: -webkit-box;
                                                             text-align: justify;">
                                                     <a href="home/detail/{{ $value->title . '-' . $value->id }}">
-                                                        {{ $value->title }}</a></h6>
+                                                        {{ $value->title }}</a>
+                                                </h6>
 
                                                 <div class="d-flex align-items-center gap-3 font-xs color-text-mutted">
                                                     <span><i class="fi-rr-briefcase ms-0 me-5"></i>Part Time</span>
@@ -123,8 +140,7 @@
                                                 <div class="card-2-bottom mt-30">
                                                     <div class="row align-items-center">
                                                         <div class="col-lg-6 col-7">
-                                                            <span
-                                                                class="card-text-price">{{ $value->getwage->name }}</span>
+                                                            <span class="card-text-price">{{ $value->getwage->name }}</span>
                                                         </div>
 
                                                         <div class="col-lg-6 col-5 text-end">
@@ -194,7 +210,7 @@
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
                                                             text-align: justify;">
-                                                        <span class="location-small">{{ $value->address }}</span>
+                                                        <span class="location-small">{{ $value->getLocation->name }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -264,5 +280,4 @@
         <!-- ============================ Main Section End ================================== -->
         <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
     </div>
-
 @endsection
