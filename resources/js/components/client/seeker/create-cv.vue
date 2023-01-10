@@ -494,11 +494,6 @@ export default {
   width: 200px !important;
   height: 35px !important;
 }
-.p-2 {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-}
 
 .wrapper-item {
   margin-top: 20px;

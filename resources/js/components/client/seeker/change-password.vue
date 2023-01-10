@@ -15,12 +15,14 @@
           enctype="multipart/form-data"
         >
           <Field type="hidden" :value="csrfToken" name="_token" />
+          
           <div class="row">
             <div class="col-lg-12">
               <div class="billing-form-item">
                 <div class="billing-content">
                   <div class="contact-form-action">
                     <div class="MultiFile-intercepted">
+                      <br>
                       <div class="row">
                         <div class="mb-4 size-input">
                           <label for="label3" class="form-label"

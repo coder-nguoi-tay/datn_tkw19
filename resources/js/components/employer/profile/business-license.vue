@@ -317,6 +317,8 @@ export default {
 
 .box-title-license {
   height: 130px;
+  margin-left: 15px !important;
+  margin-top: 15px;
 }
 .title-license {
   font-size: 16px;
@@ -329,6 +331,7 @@ export default {
   border-radius: 8px;
   cursor: pointer;
   margin-bottom: 16px;
+  margin-left: 15px !important;
   position: relative;
   text-align: center;
   transition: 0.4s;
