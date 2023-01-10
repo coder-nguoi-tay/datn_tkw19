@@ -27,19 +27,25 @@
                 </div><!-- end row -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="billing-form-item">
-                            <div class="billing-title-wrap row">
-                                <div class=" col-10"></div>
-                                <button class="btn btn-info col-2 text-white" data-coreui-toggle="modal"
-                                    data-coreui-target="#exampleModalbuyPackage">
-                                    mua gói cước
-                                </button>
-                            </div><!-- billing-title-wrap -->
-                            <div class="billing-content pb-0">
+                        <div class="billing-form-item pl-10 pr-10">
+                            <div class="manage-job-header mt-3">
+                                <div class="manage-job-count">
+                                </div>
+                                <div class="manage-job-count">
+                                    <button class="btn btn-info col-12 text-white" data-coreui-toggle="modal"
+                                        data-coreui-target="#exampleModalbuyPackage">
+                                        mua gói cước
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="billing-content">
                                 <div class="manage-job-wrap">
-
                                     <div class="table-responsive">
-                                        <table class="table text-center">
+                                        <search-cv-date :url="{{ json_encode(route('employer.package.index')) }}"
+                                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
+                                            :data="{{ json_encode(2) }}">
+                                        </search-cv-date>
+                                        <table class="table text-center mt-3">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Tên gói cước</th>

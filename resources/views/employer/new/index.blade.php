@@ -31,7 +31,7 @@
                         <div class="billing-form-item">
                             <div class="billing-content pb-0">
                                 <div class="manage-job-wrap">
-                                    <div class="manage-job-header mt-3 mb-5">
+                                    <div class="manage-job-header mt-3 mb-2">
                                         <div class="manage-job-count">
                                             <span class="font-weight-medium color-text-2 mr-1">{{ count($job) }}</span>
                                             <span class="font-weight-medium">công việc được đăng</span>
@@ -52,7 +52,11 @@
 
                                         </div>
                                     </div>
-                                    <div class="table-responsive">
+                                    <search-cv-date :url="{{ json_encode(route('employer.new.index')) }}"
+                                        :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
+                                        :data="{{ json_encode(1) }}">
+                                    </search-cv-date>
+                                    <div class="table-responsive mt-4">
                                         <table class="table">
                                             <thead>
                                                 <tr>

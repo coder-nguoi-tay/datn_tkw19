@@ -37,14 +37,10 @@ class ProfileController extends BaseController
             'Cập nhật thông tin'
         ];
         $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->with('getUser')->first();
-        $paymentHistory = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)->orderBy('created_at', 'DESC')->get();
         $Company = Company::where('id', $employer->id_company)->first();
-
         return view('employer.profile.index', [
             'title' => 'Cập nhật thông tin công ty',
             'employer' => $employer,
-            'paymentHistory' => $paymentHistory,
-
             'Company' => $Company,
             'breadcrumbs' => $breadcrumbs,
         ]);
@@ -296,8 +292,8 @@ class ProfileController extends BaseController
         $breadcrumbs = [
             'Đổi mật khẩu'
         ];
-        return view('employer.profile.change-password',[
-            'title'=> 'Đổi mật khẩu',
+        return view('employer.profile.change-password', [
+            'title' => 'Đổi mật khẩu',
             'breadcrumbs' => $breadcrumbs,
         ]);
     }
@@ -320,9 +316,11 @@ class ProfileController extends BaseController
         $breadcrumbs = [
             'Lịch sử giao dịch'
         ];
+        $paymentHistory = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)->orderBy('created_at', 'DESC')->get();
         return view('employer.profile.history', [
             'title' => 'Lịch sử giao dịch',
             'breadcrumbs' => $breadcrumbs,
+            'paymentHistory' => $paymentHistory,
         ]);
     }
     public function profileEmployer()

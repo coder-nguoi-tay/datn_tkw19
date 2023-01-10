@@ -3,94 +3,92 @@
     <!-- Lịch sử giao dịch -->
     <div class="col-12 recuitment-inner">
       <div class="card-create-employer">
-        <VeeForm
-          as="div"
-          v-slot="{ handleSubmit }"
-          @invalid-submit="onInvalidSubmit"
-        >
-          <form
-            class="recuitment-form"
-            @submit="handleSubmit($event, onSubmit)"
-            ref="formData"
-            method="POST"
-            :action="data.urlStoreCompany"
-            enctype="multipart/form-data"
-          >
-            <Field type="hidden" :value="csrfToken" name="_token" />
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="billing-form-item">
-                  <!-- billing-title-wrap -->
-                  <div class="billing-content">
-                    <div class="contact-form-action">
-                      <div class="MultiFile-intercepted">
-                        <div class="card h-100">
-                          <div class="card-body">
-                            <div
-                              class="col-12 form-update-company"
-                              v-for="item in data.paymentHistory"
-                              :key="item.id"
-                            >
-                              <div class="mb-3 row">
-                                <div data-v-79f03480="" class="card-body">
-                                  <!---->
-                                  <div
-                                    data-v-79f03480=""
-                                    class="d-flex history"
-                                  >
-                                    <span
-                                      data-v-79f03480=""
-                                      class="line-date"
-                                      >{{
-                                        moment(item.created_at).format(
-                                          'YYYY-MM-DD'
-                                        )
-                                      }}</span
-                                    >
-                                    <div data-v-79f03480="" class="line">
-                                      <div
-                                        data-v-79f03480=""
-                                        class="line-content"
-                                      >
-                                        <div data-v-79f03480="" class="content">
-                                          <p data-v-79f03480="">
-                                            <span
-                                              data-v-79f03480=""
-                                              class="time"
-                                              >Số tiền</span
-                                            ><span data-v-79f03480="">{{
-                                              new Intl.NumberFormat('de-DE', {
-                                                style: 'currency',
-                                                currency: 'VND'
-                                              }).format(item.price)
-                                            }}</span>
-                                          </p>
-                                        </div>
-                                        <div data-v-79f03480="" class="content">
-                                          <p data-v-79f03480="">
-                                            <span
-                                              data-v-79f03480=""
-                                              class="time"
-                                              >Nội dung</span
-                                            ><span data-v-79f03480="">{{
-                                              item.desceibe
-                                            }}</span>
-                                          </p>
-                                        </div>
-                                        <div data-v-79f03480="" class="content">
-                                          <p data-v-79f03480="">
-                                            <span
-                                              data-v-79f03480=""
-                                              class="time"
-                                              >Trạng thái</span
-                                            ><span data-v-79f03480="">{{
-                                              item.status == 1
-                                                ? 'Thành công'
-                                                : 'Thất bại'
-                                            }}</span>
-                                          </p>
-                                        </div>
-                                      </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="billing-form-item">
+              <!-- billing-title-wrap -->
+              <div class="billing-content">
+                <div class="contact-form-action">
+                  <div class="MultiFile-intercepted">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <form action="" class="d-flex" method="get">
+                          <picker-new-employer
+                            :NameDate="'start_date'"
+                            v-model="start_date"
+                            class="date-time custom-date mr-1"
+                          ></picker-new-employer>
+                          <picker-new-employer
+                            :NameDate="'end_date'"
+                            v-model="end_date"
+                            class="date-time custom-date mr-1"
+                          ></picker-new-employer>
+                          <input
+                            name="free_word"
+                            class="custom-input mr-1"
+                            placeholder="Tìm Kiếm...."
+                            :value="dataQuery.free_word"
+                            autocomplete="off"
+                            id="free_word"
+                          />
+                          <button
+                            class="
+                              btn btn-info
+                              font-weight-medium
+                              color-text-2
+                              mr-1
+                              text-white
+                            "
+                            href=""
+                          >
+                            <i class="fa fa-search"></i>
+                          </button>
+                        </form>
+                        <div
+                          class="col-12 form-update-company"
+                          v-for="item in data.paymentHistory"
+                          :key="item.id"
+                        >
+                          <div class="mb-3 row">
+                            <div data-v-79f03480="" class="card-body">
+                              <!---->
+                              <div data-v-79f03480="" class="d-flex history">
+                                <span data-v-79f03480="" class="line-date">{{
+                                  moment(item.created_at).format('YYYY-MM-DD')
+                                }}</span>
+                                <div data-v-79f03480="" class="line">
+                                  <div data-v-79f03480="" class="line-content">
+                                    <div data-v-79f03480="" class="content">
+                                      <p data-v-79f03480="">
+                                        <span data-v-79f03480="" class="time"
+                                          >Số tiền</span
+                                        ><span data-v-79f03480="">{{
+                                          new Intl.NumberFormat('de-DE', {
+                                            style: 'currency',
+                                            currency: 'VND'
+                                          }).format(item.price)
+                                        }}</span>
+                                      </p>
+                                    </div>
+                                    <div data-v-79f03480="" class="content">
+                                      <p data-v-79f03480="">
+                                        <span data-v-79f03480="" class="time"
+                                          >Nội dung</span
+                                        ><span data-v-79f03480="">{{
+                                          item.desceibe
+                                        }}</span>
+                                      </p>
+                                    </div>
+                                    <div data-v-79f03480="" class="content">
+                                      <p data-v-79f03480="">
+                                        <span data-v-79f03480="" class="time"
+                                          >Trạng thái</span
+                                        ><span data-v-79f03480="">{{
+                                          item.status == 1
+                                            ? 'Thành công'
+                                            : 'Thất bại'
+                                        }}</span>
+                                      </p>
                                     </div>
                                   </div>
                                 </div>
@@ -98,41 +96,30 @@
                             </div>
                           </div>
                         </div>
-
-                        <!-- end row -->
                       </div>
                     </div>
-                    <!-- end contact-form-action -->
-                  </div>
-                  <!-- end billing-content -->
-                </div>
-                <!-- end billing-form-item -->
 
-                <!-- end billing-form-item -->
+                    <!-- end row -->
+                  </div>
+                </div>
+                <!-- end contact-form-action -->
               </div>
-              <!-- end col-lg-12 -->
+              <!-- end billing-content -->
             </div>
-          </form>
-        </VeeForm>
+            <!-- end billing-form-item -->
+
+            <!-- end billing-form-item -->
+          </div>
+          <!-- end col-lg-12 -->
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Form as VeeForm, Field, defineRule, configure } from 'vee-validate'
-import { localize } from '@vee-validate/i18n'
-import * as rules from '@vee-validate/rules'
-import Editor from '@tinymce/tinymce-vue'
 import moment from 'moment'
 export default {
-  setup() {
-    Object.keys(rules).forEach((rule) => {
-      if (rule != 'default') {
-        defineRule(rule, rules[rule])
-      }
-    })
-  },
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
@@ -162,67 +149,9 @@ export default {
         this.statusImage = 1
       }
     }
-    let messError = {
-      en: {
-        // fields: {
-        //   file_cv: {
-        //     required: 'Ảnh không được để trống',
-        //     mimes: 'Ảnh chỉ hỗ trợ dạng jpeg,png,jpg,gif,svg,pdf,doc,docx',
-        //     max: 'kích thước ảnh quá lớn'
-        //   },
-        //   name: {
-        //     required: 'Xin hãy nhập tên của bạn.',
-        //     max: 'Vui lòng nhập tên của bạn trong 128 ký tự.'
-        //   },
-        //   nameCompany: {
-        //     required: 'Xin hãy nhập tên công ty.',
-        //     max: 'Vui lòng nhập tên công ty trong 128 ký tự.'
-        //   },
-        //   descriptionCompany: {
-        //     required: 'Xin hãy nhập địa chỉ công ty.',
-        //     max: 'Vui lòng nhập địa chỉ công ty trong 255 ký tự.'
-        //   },
-        //   addressCompany: {
-        //     required: 'Xin hãy nhập địa chỉ công ty.',
-        //     max: 'Vui lòng nhập địa chỉ công ty trong 128 ký tự.'
-        //   },
-        //   address: {
-        //     required: 'Xin hãy nhập địa chỉ của bạn.',
-        //     max: 'Vui lòng nhập địa chỉ công ty trong 128 ký tự.'
-        //   },
-        //   number_member: {
-        //     required: 'Vui lòng nhập quy mô công ty.'
-        //   },
-        //   phoneCompany: {
-        //     required: 'Vui lòng nhập số điện thoại công ty.'
-        //   },
-        //   phone: {
-        //     required: 'Vui lòng nhập số điện thoại .'
-        //   },
-        //   tax_code: {
-        //     required: 'Vui lòng nhập mã số thuế .'
-        //   },
-        //   emailCompany: {
-        //     required: 'Hãy điền địa chỉ email công ty.',
-        //     email: 'Vui lòng nhập đúng định dạng địa chỉ email.'
-        //     // max: 'Vui lòng nhập địa chỉ email của bạn trong 255 ký tự.'
-        //   },
-        //   email: {
-        //     required: 'Hãy điền địa chỉ email của bạn.',
-        //     email: 'Vui lòng nhập đúng định dạng địa chỉ email.'
-        //     // max: 'Vui lòng nhập địa chỉ email của bạn trong 255 ký tự.'
-        //   }
-        // }
-      }
-    }
-    configure({
-      generateMessage: localize(messError)
-    })
   },
   components: {
-    VeeForm,
-    Field,
-    Editor
+    datePicker
   },
   methods: {
     moment: function () {

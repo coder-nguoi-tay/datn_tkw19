@@ -26,26 +26,22 @@
                     </div><!-- end col-lg-12 -->
                 </div><!-- end row -->
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 text-center">
                         <div class="billing-form-item">
-                            <div class="billing-title-wrap">
-                                <h3 class="widget-title pb-0">
-                                    @if (isset($title))
-                                        <title>{{ $title }}</title>
-                                    @endif
-                                </h3>
-                                <div class="title-shape margin-top-10px"></div>
-                            </div><!-- billing-title-wrap -->
                             <div class="billing-content pb-0">
                                 <div class="manage-job-wrap">
                                     <div class="table-responsive">
-                                        <table class="table text-center">
+                                        <search-cv-date :url="{{ json_encode(route('employer.new.showdetai', $id)) }}"
+                                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
+                                            :data="{{ json_encode(2) }}">
+                                        </search-cv-date>
+                                        <table class="table text-center mt-3">
                                             <thead>
                                                 <tr>
                                                     <th>Mã CV</th>
                                                     <th>Hình ảnh</th>
-                                                    <th>Ngày nộp đơn</th>
                                                     <th>Ứng tuyển vị trí</th>
+                                                    <th>Ngày nộp đơn</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
