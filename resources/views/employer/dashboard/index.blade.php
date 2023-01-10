@@ -61,7 +61,7 @@
                     </div>
                     <!-- ./col -->
                 </div>
-
+                
                 <widgets
                     :data="{{ json_encode([
                         'countCvMoth1' => $countCvMoth1,
