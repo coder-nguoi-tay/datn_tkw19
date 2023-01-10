@@ -30,7 +30,7 @@
                         <div class="billing-form-item">
                             <div class="billing-title-wrap">
                                 <div class="title-shape margin-top-10px"></div>
-                                <button class="nav-link py-0 btn-next-step" data-coreui-toggle="modal"
+                                <button class="btn btn-info btn-next-step" data-coreui-toggle="modal"
                                     data-coreui-target="#exampleModalbuyPackage">
                                     mua gói cước
                                 </button>
