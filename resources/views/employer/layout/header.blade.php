@@ -5,7 +5,8 @@
                   <div class="col-lg-12">
                       <div class="menu-full-width">
                           <div class="logo">
-                              <a href="index.html"><img src="" alt="logo"></a>
+                              <a href="index.html"><img src="../wp-content/themes/jobbox/assets/imgs/template/logoIT.png"
+                                      alt="logo"></a>
                           </div><!-- end logo -->
 
                           <div class="logo-right-content">
