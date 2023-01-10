@@ -751,12 +751,6 @@ export default {
 .main_gt .right_cv.title_cv > h4 {
   color: #284350;
 }
-
-// .main_gt i {
-//   margin: auto 0;
-//   color: beige;
-// }
-
 .main_gt .right_cv.mt .h4 {
   font-weight: 600;
   margin: 10px 0;
