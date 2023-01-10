@@ -405,11 +405,6 @@ export default {
   padding-left: 1rem;
 }
 
-.form-update-company {
-  width: 80%;
-  margin-left: 10%;
-}
-
 .shadow-none {
   box-shadow: none !important;
 }

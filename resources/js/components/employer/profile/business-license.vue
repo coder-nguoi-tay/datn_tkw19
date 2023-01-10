@@ -334,11 +334,6 @@ export default {
   transition: 0.4s;
 }
 
-.form-update-company {
-  width: 80%;
-  margin-left: 10%;
-}
-
 .container,
 .container-fluid,
 .container-lg,
