@@ -72,6 +72,7 @@
 
                                                                     <input class="form-input input-keysearch mr-10"
                                                                         type="text" name="key" id="key"
+                                                                        style="border: none;"
                                                                         placeholder="Keywords" />
 
                                                                     <input class="btn btn-default btn-find font-sm"
