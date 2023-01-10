@@ -58,56 +58,56 @@
                           </div>
                         </form>
                         <div
-                          class="col-12 form-update-company"
+                          class="col-12 form-update-company bd-1"
                           v-for="item in data.paymentHistory"
                           :key="item.id"
                         >
-                          <div class="mb-3 row">
-                            <div data-v-79f03480="" class="card-body">
-                              <!---->
-                              <div data-v-79f03480="" class="d-flex history">
-                                <span data-v-79f03480="" class="line-date">{{
-                                  moment(item.created_at).format('YYYY-MM-DD')
-                                }}</span>
-                                <div data-v-79f03480="" class="line">
-                                  <div data-v-79f03480="" class="line-content">
-                                    <div data-v-79f03480="" class="content">
-                                      <p data-v-79f03480="">
-                                        <span data-v-79f03480="" class="time"
-                                          >Số tiền</span
-                                        ><span data-v-79f03480="">{{
-                                          new Intl.NumberFormat('de-DE', {
-                                            style: 'currency',
-                                            currency: 'VND'
-                                          }).format(item.price)
-                                        }}</span>
-                                      </p>
-                                    </div>
-                                    <div data-v-79f03480="" class="content">
-                                      <p data-v-79f03480="">
-                                        <span data-v-79f03480="" class="time"
-                                          >Nội dung</span
-                                        ><span data-v-79f03480="">{{
-                                          item.desceibe
-                                        }}</span>
-                                      </p>
-                                    </div>
-                                    <div data-v-79f03480="" class="content">
-                                      <p data-v-79f03480="">
-                                        <span data-v-79f03480="" class="time"
-                                          >Trạng thái</span
-                                        ><span data-v-79f03480="">{{
-                                          item.status == 1
-                                            ? 'Thành công'
-                                            : 'Thất bại'
-                                        }}</span>
-                                      </p>
-                                    </div>
+                          <!-- <div class="mb-3 row"> -->
+                          <div data-v-79f03480="" class="card-body">
+                            <!---->
+                            <div data-v-79f03480="" class="d-flex history">
+                              <span data-v-79f03480="" class="line-date">{{
+                                moment(item.created_at).format('YYYY-MM-DD')
+                              }}</span>
+                              <div data-v-79f03480="" class="line">
+                                <div data-v-79f03480="" class="line-content">
+                                  <div data-v-79f03480="" class="content">
+                                    <p data-v-79f03480="">
+                                      <span data-v-79f03480="" class="time"
+                                        >Số tiền</span
+                                      ><span data-v-79f03480="">{{
+                                        new Intl.NumberFormat('de-DE', {
+                                          style: 'currency',
+                                          currency: 'VND'
+                                        }).format(item.price)
+                                      }}</span>
+                                    </p>
+                                  </div>
+                                  <div data-v-79f03480="" class="content">
+                                    <p data-v-79f03480="">
+                                      <span data-v-79f03480="" class="time"
+                                        >Nội dung</span
+                                      ><span data-v-79f03480="">{{
+                                        item.desceibe
+                                      }}</span>
+                                    </p>
+                                  </div>
+                                  <div data-v-79f03480="" class="content">
+                                    <p data-v-79f03480="">
+                                      <span data-v-79f03480="" class="time"
+                                        >Trạng thái</span
+                                      ><span data-v-79f03480="">{{
+                                        item.status == 1
+                                          ? 'Thành công'
+                                          : 'Thất bại'
+                                      }}</span>
+                                    </p>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
+                          <!-- </div> -->
                         </div>
                       </div>
                     </div>
@@ -246,7 +246,12 @@ export default {
 }
 
 .form-update-company {
-  width: 60%;
+  width: 100%;
+  margin-top: 20px;
+}
+.bd-1 {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 10px;
 }
 
 .shadow-none {

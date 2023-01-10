@@ -2468,13 +2468,13 @@ body {
 
 .page-navigation .page-navigation-nav li.active .page-go-link,
 .page-navigation .page-navigation-nav li:hover .page-go-link {
-    background-color: #26ae61;
+    background-color: #3C65F5;
     color: #fff
 }
 
 .page-navigation .page-go,
 .page-navigation .page-go-link {
-    color: #26ae61;
+    color: #3C65F5;
     font-size: 16px;
     margin-left: 3px;
     -webkit-border-radius: 50%;
@@ -2514,7 +2514,7 @@ body {
 }
 
 .page-navigation .page-go:hover {
-    background-color: #26ae61;
+    background-color: #3C65F5;
     color: #fff
 }
 

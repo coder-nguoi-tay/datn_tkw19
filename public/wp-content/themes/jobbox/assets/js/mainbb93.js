@@ -52,9 +52,6 @@
     /*---------------------
         Select active
     --------------------- */
-    if ($(".select-active").length) {
-        $(".select-active").select2();
-    }
     /*---- CounterUp ----*/
     if ($(".count").length) {
         $(".count").counterUp({
@@ -169,7 +166,7 @@
         $(".more_slide_open").slideToggle();
     });
     /* --- SwiperJS --- */
-    
+
     $(".swiper-group-9").each(function () {
         var swiper_10_items = new Swiper(this, {
             spaceBetween: 20,
@@ -556,13 +553,13 @@
     checkBilled();
 
     //list/grid view
-    $(document).on('click', '.box-view-type a', function(e){
+    $(document).on('click', '.box-view-type a', function (e) {
         e.preventDefault();
         var template = $(this).data('template');
-        
+
         var sibling = $(this).siblings();
 
-        if(!$(this).hasClass('active')){
+        if (!$(this).hasClass('active')) {
             $(this).addClass('active');
             sibling.removeClass('active');
 
@@ -572,24 +569,24 @@
             sibling.find('img').removeClass('d-none');
             sibling.find('img.active').addClass('d-none');
         }
-        
-        if(template == 'list'){
+
+        if (template == 'list') {
             $('.jobbox-list-item').removeClass('d-none');
             $('.jobbox-grid-item').addClass('d-none');
         }
-        else{
+        else {
             $('.jobbox-list-item').addClass('d-none');
             $('.jobbox-grid-item').removeClass('d-none');
         }
     });
 
     //login signup form toggle
-    $(document).on('click', '.signup-toggler', function(){
+    $(document).on('click', '.signup-toggler', function () {
         $('.loginForm').removeClass('d-block').addClass('d-none');
         $('.registrationForm').removeClass('d-none').addClass('d-block');
     });
 
-    $(document).on('click', '.signin-toggler', function(){
+    $(document).on('click', '.signin-toggler', function () {
         $('.registrationForm').removeClass('d-block').addClass('d-none');
         $('.loginForm').removeClass('d-none').addClass('d-block');
     });
