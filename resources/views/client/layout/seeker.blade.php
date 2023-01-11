@@ -47,6 +47,15 @@
             JSON_UNESCAPED_UNICODE,
         ) !!};
     </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('ul li a').click(function() {
+                $('li a').removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+    </script>
     <style>
         a {
             text-decoration: none !important
