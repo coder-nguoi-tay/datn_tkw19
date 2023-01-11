@@ -160,6 +160,7 @@ Route::get('detail-blog/{id}', [NewsController::class, 'ShowBlog'])->name('detai
 //
 Route::get('majors/{id}', [ClientHomeController::class, 'searchMajors'])->name('searchMajors');
 Route::get('error-404', [HomeController::class, 'error'])->name('error404');
-Route::get('deailTin-tuc/{id}', [ClientHomeController::class, 'detailTinTuc'])->name('detailTin-tuc');
+
+// Route::get('deailTin-tuc/{id}', [ClientHomeController::class, 'detailTinTuc'])->name('detailTin-tuc');
 Route::get('test', [ClientHomeController::class, 'test'])->name('test');
 Route::get('test1', [ClientHomeController::class, 'test1'])->name('test1');

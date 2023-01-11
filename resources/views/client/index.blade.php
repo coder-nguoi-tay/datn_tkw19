@@ -1,6 +1,7 @@
 @php
     use Carbon\Carbon;
 @endphp
+
 @extends('client.layout.index')
 @section('client')
     <main class="main">
@@ -704,7 +705,8 @@
                                            overflow: hidden;
                                            text-overflow: ellipsis;
                                             ">
-                                            <a href="#">{{ $item->title }}</a></h5>
+                                            <a href="#">{{ $item->title }}</a>
+                                        </h5>
                                         <p class="mt-10 color-text-paragraph font-sm"></p>
                                         <p>
                                         <div class="blg_desc  "

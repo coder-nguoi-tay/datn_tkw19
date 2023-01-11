@@ -422,15 +422,15 @@ class HomeController extends BaseController
         $this->setFlash(__('Hãy chờ phản hồi của nhà tuyển dụng'));
         return redirect()->back();
     }
-    public function detailTinTuc($id)
-    {
-        $TinTuc = News::find($id);
-        // dd($TinTuc);
-        return view('client.Tin-tuc.index', [
-            'tinTuc' => $TinTuc,
-            'majors' => Majors::all()
-        ]);
-    }
+    // public function detailTinTuc($id)
+    // {
+    //     $TinTuc = News::find($id);
+    //     // dd($TinTuc);
+    //     return view('client.Tin-tuc.index', [
+    //         'tinTuc' => $TinTuc,
+    //         'majors' => Majors::all()
+    //     ]);
+    // }
     public function test()
     {
         return view('test');
