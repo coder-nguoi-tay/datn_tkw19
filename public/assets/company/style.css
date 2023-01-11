@@ -2700,7 +2700,7 @@ body {
     transform: translateX(0);
     background-color: #fff;
     width: 344px;
-    padding-top: 120px
+    padding-top: 100px
 }
 
 @media (max-width:1199px) {
@@ -2796,6 +2796,16 @@ body {
     -ms-transition: all .3s;
     -o-transition: all .3s;
     transition: all .3s
+}
+
+.page-active:checked,
+.page-active.page-active,
+.page-active.show,
+.page-active:first-child:active,
+.page-active:active {
+    background-color: rgba(38, 174, 97, .08);
+    color: #3C65F5;
+    border: none !important;
 }
 
 .dashboard-sidebar .dashboard-nav-container .side-menu-ul li.active,
@@ -8549,7 +8559,7 @@ body {
     width: 22px;
     line-height: 19px;
     text-align: center;
-    background-color: #3C65F5;
+    background-color: red;
     color: #fff;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;

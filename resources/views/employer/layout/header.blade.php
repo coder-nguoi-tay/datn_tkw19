@@ -5,7 +5,8 @@
                   <div class="col-lg-12">
                       <div class="menu-full-width">
                           <div class="logo">
-                              <a href="index.html"><img src="../wp-content/themes/jobbox/assets/imgs/template/logoIT.png"
+                              <a href="{{ route('employer.index') }}"><img
+                                      src="{{ asset('wp-content/themes/jobbox/assets/imgs/template/logoIT.png') }}"
                                       alt="logo"></a>
                           </div><!-- end logo -->
 
@@ -25,11 +26,9 @@
                                                       <div class="mess__title">
                                                           <h4
                                                               class="widget-title d-flex align-items-center justify-content-between">
-                                                              Notifications<a href="#"
-                                                                  class="font-size-12 color-text-3">Mark all as
-                                                                  read</a></h4>
-                                                          <p class="font-size-12 font-weight-medium">You have 5
-                                                              Notifications</p>
+                                                              Thông báo</h4>
+                                                          <p class="font-size-12 font-weight-medium">Có 5 thông báo đăng
+                                                              chờ bạn</p>
                                                       </div><!-- end mess__title -->
                                                       <div class="mess__body">
                                                           <a href="" class="d-block">
@@ -99,115 +98,24 @@
                                               </div><!-- end dropdown-menu -->
                                           </div><!-- end dropdown -->
                                       </div>
-                                      <div class="notification-item mr-3">
-                                          <div class="dropdown">
-                                              <button class="notification-btn dropdown-toggle" type="button"
-                                                  id="messageDropdownMenu" data-toggle="dropdown" aria-haspopup="true"
-                                                  aria-expanded="false">
-                                                  <i class="la la-envelope"></i>
-                                                  <span class="quantity">5</span>
-                                              </button>
-                                              <div class="dropdown-menu" aria-labelledby="messageDropdownMenu">
-                                                  <div class="mess-dropdown">
-                                                      <div class="mess__title">
-                                                          <h4
-                                                              class="widget-title d-flex align-items-center justify-content-between">
-                                                              Message <a href="#"
-                                                                  class="font-size-12 color-text-3">Mark all as
-                                                                  read</a></h4>
-                                                          <p class="font-size-12 font-weight-medium">You have 5 new
-                                                              messages</p>
-                                                      </div><!-- end mess__title -->
-                                                      <div class="mess__body">
-                                                          <a href="" class="d-block">
-                                                              <div class="mess__item">
-                                                                  <div class="avatar dot-status">
-                                                                      <img src="" alt="Michelle Moreno">
-                                                                  </div>
-                                                                  <div class="content">
-                                                                      <h4 class="widget-title">Michelle Moreno</h4>
-                                                                      <p class="text">Thanks for reaching out. I'm
-                                                                          quite busy right now on many</p>
-                                                                      <span class="time">5 min ago</span>
-                                                                  </div>
-                                                              </div><!-- end mess__item -->
-                                                          </a>
-                                                          <a href="" class="d-block">
-                                                              <div class="mess__item">
-                                                                  <div class="avatar dot-status online-status">
-                                                                      <img src="" alt="Michelle Moreno">
-                                                                  </div>
-                                                                  <div class="content">
-                                                                      <h4 class="widget-title">Alex Smith</h4>
-                                                                      <p class="text">Thanks for reaching out. I'm
-                                                                          quite busy right now on many</p>
-                                                                      <span class="time">2 days ago</span>
-                                                                  </div>
-                                                              </div><!-- end mess__item -->
-                                                          </a>
-                                                          <a href="" class="d-block">
-                                                              <div class="mess__item">
-                                                                  <div class="avatar dot-status">
-                                                                      <img src="" alt="Michelle Moreno">
-                                                                  </div>
-                                                                  <div class="content">
-                                                                      <h4 class="widget-title">Michelle Moreno</h4>
-                                                                      <p class="text">Thanks for reaching out. I'm
-                                                                          quite busy right now on many</p>
-                                                                      <span class="time">5 min ago</span>
-                                                                  </div>
-                                                              </div><!-- end mess__item -->
-                                                          </a>
-                                                          <a href="" class="d-block">
-                                                              <div class="mess__item">
-                                                                  <div class="avatar dot-status online-status">
-                                                                      <img src="" alt="Michelle Moreno">
-                                                                  </div>
-                                                                  <div class="content">
-                                                                      <h4 class="widget-title">Alex Smith</h4>
-                                                                      <p class="text">Thanks for reaching out. I'm
-                                                                          quite busy right now on many</p>
-                                                                      <span class="time">2 days ago</span>
-                                                                  </div>
-                                                              </div><!-- end mess__item -->
-                                                          </a>
-                                                          <a href="" class="d-block">
-                                                              <div class="mess__item">
-                                                                  <div class="avatar dot-status">
-                                                                      <img src="" alt="Michelle Moreno">
-                                                                  </div>
-                                                                  <div class="content">
-                                                                      <h4 class="widget-title">Alex Smith</h4>
-                                                                      <p class="text">Thanks for reaching out. I'm
-                                                                          quite busy right now on many</p>
-                                                                      <span class="time">2 days ago</span>
-                                                                  </div>
-                                                              </div><!-- end mess__item -->
-                                                          </a>
-                                                      </div><!-- end mess__body -->
-                                                      <div class="mess__item border-bottom-0 text-center">
-                                                          <a href="#" class="theme-btn w-100">View All
-                                                              Messages</a>
-                                                      </div><!-- end mess__item -->
-                                                  </div><!-- end mess-dropdown -->
-                                              </div><!-- end dropdown-menu -->
-                                          </div><!-- end dropdown -->
-                                      </div>
                                   </div>
                                   <div class="user-action-wrap">
                                       <div class="notification-item">
                                           <div class="dropdown">
-                                              <button class="notification-btn dot-status online-status dropdown-toggle"
-                                                  type="button" id="userDropdownMenu" data-toggle="dropdown"
-                                                  aria-haspopup="true" aria-expanded="false">
-                                                  <img src="" alt="Bluetech,Inc">
-                                              </button>
+                                              @if (Auth::guard('user')->check())
+                                                  <button
+                                                      class="notification-btn dot-status online-status dropdown-toggle"
+                                                      type="button" id="userDropdownMenu" data-toggle="dropdown"
+                                                      aria-haspopup="true" aria-expanded="false">
+                                                      <img src="">
+                                                  </button>
+                                              @endif
                                               <div class="dropdown-menu" aria-labelledby="userDropdownMenu">
                                                   <div class="mess-dropdown">
                                                       <div class="mess__title d-flex align-items-center">
                                                           <div class="image dot-status online-status">
                                                               <a href="#">
-                                                                  <img src="" alt="Bluetech,Inc">
+                                                                  <img src="">
                                                               </a>
                                                           </div>
                                                           <div class="content">

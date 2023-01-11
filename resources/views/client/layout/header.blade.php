@@ -135,19 +135,6 @@
                     </div>
                 </div>
             @else
-                {{-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
-                        aria-expanded="false">
-                        {{ Auth::guard('user')->user()->name }}
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ route('profile.index') }} ">Profile</a>
-                        <a class="dropdown-item" href="#">Quản lý CV</a>
-                        <a class="dropdown-item" href="#">Bài tuyển dụng đã yêu thích</a>
-                        <a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a>
-                    </div>
-                </li> --}}
-                <!-- Example single danger button -->
                 <div class="btn-group">
                     <button type="button" class="btn btn-default btn-shadow ml-30 hover-up dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false">

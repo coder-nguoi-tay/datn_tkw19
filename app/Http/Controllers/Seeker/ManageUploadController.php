@@ -6,6 +6,7 @@ use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Accuracy;
+use App\Models\Majors;
 use App\Models\ProfileUserCv;
 use App\Models\UploadCv;
 use App\Models\User;
@@ -25,10 +26,12 @@ class ManageUploadController extends BaseController
      */
     public UploadCv $upload;
     public ProfileUserCv $profileUserCv;
-    public function __construct(UploadCv $upload, ProfileUserCv $profileUserCv)
+    public Majors $majors;
+    public function __construct(UploadCv $upload, ProfileUserCv $profileUserCv, Majors $majors)
     {
         $this->upload = $upload;
         $this->profileUserCv = $profileUserCv;
+        $this->majors = $majors;
     }
     public function index()
     {
@@ -39,7 +42,8 @@ class ManageUploadController extends BaseController
         return view('client.seeker.save-cv', [
             'breadcrumbs' => $breadcrumbs,
             'cv' => $cv,
-            'title' => 'Quản lý cv'
+            'title' => 'Quản lý cv',
+            'majors' => $this->getmajors(),
         ]);
     }
 
@@ -59,6 +63,7 @@ class ManageUploadController extends BaseController
         ];
         return view('client.seeker.create-cv', [
             'breadcrumbs' => $breadcrumbs,
+            'majors' => $this->getmajors(),
         ]);
     }
 
@@ -129,6 +134,7 @@ class ManageUploadController extends BaseController
             'project' => $skill ? json_decode($skill->project) : null,
             'user_name' => User::where('id', Auth::guard('user')->user()->id)->first()->name,
             'breadcrumbs' => $breadcrumbs,
+            'majors' => $this->getmajors(),
         ]);
     }
     public function storeFormCV(Request $request)
@@ -188,7 +194,7 @@ class ManageUploadController extends BaseController
             return redirect()->back();
         } catch (\Throwable $th) {
             DB::rollBack();
-            $this->setFlash(__('Cập nhật thất bại !'));
+            $this->setFlash(__('Cập nhật thất bại !'), 'error');
             return redirect()->back();
         }
     }
