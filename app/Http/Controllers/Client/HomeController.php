@@ -138,6 +138,7 @@ class HomeController extends BaseController
         $new = News::all();
         return view('client.index', [
             'majors' => $majors,
+            'title' => 'Tuyển dung, tìm việc làm nhanh 24h',
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),
             'experience' => $this->getexperience(),
