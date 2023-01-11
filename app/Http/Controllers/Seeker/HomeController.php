@@ -70,7 +70,7 @@ class HomeController extends BaseController
         $this->workingform = $workingform;
         $this->user = $user;
         $this->SeekerSkill = $SeekerSkill;
-        $this->Jobseer = $SeekerSkill;
+        // $this->Jobseer = $SeekerSkill;
         $this->Jobseeker = $Jobseeker;
     }
     public function index()
