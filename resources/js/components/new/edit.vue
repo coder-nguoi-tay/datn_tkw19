@@ -50,7 +50,6 @@
             cols="30"
             rows="10"
           ></textarea>
-
           <ErrorMessage class="error" name="describe" />
         </div>
         <div class="mb-4">
