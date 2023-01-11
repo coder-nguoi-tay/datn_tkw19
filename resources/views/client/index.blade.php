@@ -72,8 +72,7 @@
 
                                                                     <input class="form-input input-keysearch mr-10"
                                                                         type="text" name="key" id="key"
-                                                                        style="border: none;"
-                                                                        placeholder="Keywords" />
+                                                                        style="border: none;" placeholder="Keywords" />
 
                                                                     <input class="btn btn-default btn-find font-sm"
                                                                         type="submit" value="Search">
@@ -679,65 +678,62 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row justify-content-center">
-
-
-
-
-                        <!-- Single Item -->
                         @foreach ($new as $item)
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                                <div class="blg_grid_box">
-                                    <div class="blg_grid_thumb">
-                                        <a href="blog-detail.html"><img src="{{ $item->new_image }}"
-                                                class="img-fluid w-75 rounded "
-                                                style="display : block;
-                                                   margin-left: auto;
-                                                   margin-right: auto;
-                                                   margin-top: 10px;"alt=""></a>
+                            <div class="col-xl-4 col-lg-3 col-md-6 col-sm-12">
+                                <div
+                                    class="card-grid-3 hover-up post-28 post type-post status-publish format-standard has-post-thumbnail hentry category-events tag-beauty tag-nature tag-travel-tips ">
+                                    <div class="text-center card-grid-3-image">
+                                        <a href="#">
+                                            <figure><img
+                                                    style="width:403px !important; height:257px !important; object-fit: cover; "
+                                                    src="{{ $item->new_image }}" class=" img-fluid wp-post-image"
+                                                    alt="" decoding="async" loading="lazy"></figure>
+                                        </a>
                                     </div>
-                                    <div class="blg_grid_caption">
-                                        <p class="theme-cl px-3 py-1 rounded bg-light-success d-inline-flex">
+                                    <div class="card-block-info">
+
+                                        <p class=" px-3   py-1 rounded bg-light-primary d-inline-flex"
+                                            style="color : rgb(60,101,245) ; font-weight: 550">
                                             {{ $item->majors }}
                                         </p>
-                                        <div class="blg_title">
-                                            <h4><a href="blog-detail.html">{{ $item->title }}</a></h4>
-                                        </div>
+
+                                        <h5 style="
+                                           max-height: 25px;
+                                           overflow: hidden;
+                                           text-overflow: ellipsis;
+                                            "><a href="#">{{ $item->title }}</a></h5>
+                                        <p class="mt-10 color-text-paragraph font-sm"></p>
+                                        <p>
                                         <div class="blg_desc  "
                                             style="
                                            max-height: 20px;
                                            overflow: hidden;
-                                           text-overflow: ellipsis !important;
+                                           text-overflow: ellipsis;
                                             ">
-                                            <p>{{ $item->describe }}...</p>
+                                            <p>{{ $item->describe }}</p>
                                         </div>
-                                    </div>
-                                    <div class="crs_grid_foot">
-                                        <div
-                                            class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
-                                            <div class="crs_fl_first">
-                                                <div class="crs_tutor">
-                                                    <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                                src="assets/img/team-5.jpg" class="img-fluid circle"
-                                                                width="35" alt=""></a></div>
+                                        </p>
+                                        <p></p>
+                                        <div class="card-2-bottom mt-20">
+                                            <div class="row d-flex align-items-end">
+                                                <div class="col-lg-6 col-6">
+                                                    <div class="d-flex align-items-center">
+                                                        <img alt=""
+                                                            src="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/user10-150x150.png"
+                                                            srcset="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/user10-150x150.png 2x"
+                                                            class="avatar avatar-64 photo img-rounded" height="35"
+                                                            width="35" loading="lazy" decoding="async">
+                                                        <div class="info-right-img d-grid">
+                                                            <span class="font-sm font-bold color-brand-1 op-70">Azumi
+                                                                Rose</span>
+                                                            <span
+                                                                class="font-xs color-text-paragraph-2">{{ $item->created_at->format('m-d-Y') }}</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="crs_fl_last">
-                                                <div class="foot_list_info">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="elsio_ic"><i class="fa fa-eye text-success"></i>
-                                                            </div>
-                                                            <div class="elsio_tx">10k Views</div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="elsio_ic"><i class="fa fa-clock text-warning"></i>
-                                                            </div>
-                                                            <div class="elsio_tx">
-                                                                {{ $item->created_at->format('m-d-Y') }}</div>
-                                                        </li>
-                                                    </ul>
+                                                <div class="col-lg-6 text-end col-6">
+                                                    <span class="color-text-paragraph-2 font-xs">2 mins to read</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -745,10 +741,7 @@
                                 </div>
                             </div>
                         @endforeach
-
-
                     </div>
-
                 </div>
             </section>
         </div>
@@ -761,7 +754,6 @@
                         <div class="col-xl-3 col-12 text-center d-none d-xl-block">
                             <img src="../wp-content/uploads/2022/12/newsletter-left.png" alt="Newsletter">
                         </div>
-
                         <div class="col-lg-12 col-xl-6 col-12">
                             <h2 class="text-md-newsletter text-center">Những điều mới sẽ luôn cập nhật thường xuyên</h2>
                             <div class="box-form-newsletter mt-40">
@@ -771,11 +763,9 @@
                                     <button class="btn btn-default font-heading icon-send-letter"
                                         type="submit">Subscribe</button>
                                 </form>
-
                             </div>
                             <div id="mc-response" class="mt-15"></div>
                         </div>
-
                         <div class="col-xl-3 col-12 text-center d-none d-xl-block">
                             <img src="../wp-content/uploads/2022/12/newsletter-right.png" alt="Newsletter">
                         </div>
@@ -786,53 +776,13 @@
             </div>
         </section>
     </main>
-
-    {{-- <div class="modal fade control-job-manager-login" id="controlJobManagerLogin" aria-hidden="true"
-        aria-labelledby="controlJobManagerLoginLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="controlJobManagerLoginLabel">Login</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form name="loginform" id="loginform" action="https://jthemes.com/themes/wp/jobbox/wp-login.php"
-                        method="post">
-                        <p class="login-username">
-                            <label for="user_login">Username or Email Address</label>
-                            <input type="text" name="log" id="user_login" autocomplete="username" class="input"
-                                value="" size="20" />
-                        </p>
-                        <p class="login-password">
-                            <label for="user_pass">Password</label>
-                            <input type="password" name="pwd" id="user_pass" autocomplete="current-password"
-                                class="input" value="" size="20" />
-                        </p>
-                        <p class="login-remember"><label><input name="rememberme" type="checkbox" id="rememberme"
-                                    value="forever" /> Remember Me</label></p>
-                        <p class="login-submit">
-                            <input type="submit" name="wp-submit" id="wp-submit" class="button button-primary"
-                                value="Log In" />
-                            <input type="hidden" name="redirect_to" value="index.html" />
-                        </p>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    Don&#039;t have an Account? <a href="#" class="btn-link"
-                        data-bs-target="#controlJobManagerRegister" data-bs-toggle="modal">Register</a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
     <div class="modal fade" id="controlJobManagerRegister" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="--bs-backdrop-zindex: none;">
                     <h5 class="modal-title" id="exampleModalLabel">Chào mừng bạn đến với ITWork</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
                 <div class="modal-body">
@@ -847,45 +797,4 @@
             </div>
         </div>
     </div>
-    {{-- <div class="modal fade" id="controlJobManagerRegister" aria-hidden="true"
-        aria-labelledby="controlJobManagerLoginLabel2" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="controlJobManagerLoginLabel2">Register</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-
-                    <form name="registerform" id="registerform"
-                        action="https://jthemes.com/themes/wp/jobbox/wp-login.php?action=register" method="post"
-                        novalidate="novalidate">
-                        <p>
-                            <label for="user_login">Username</label>
-                            <input type="text" name="user_login" id="user_login" class="input" value=""
-                                size="20" autocapitalize="off" autocomplete="username" />
-                        </p>
-                        <p>
-                            <label for="user_email">Email</label>
-                            <input type="email" name="user_email" id="user_email" class="input" value=""
-                                size="25" autocomplete="email" />
-                        </p>
-                        <p id="reg_passmail">
-                            Registration confirmation will be emailed to you. </p>
-                        <br class="clear" />
-                        <input type="hidden" name="redirect_to" value="index.html" />
-                        <p class="submit">
-                            <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-primary"
-                                value="Register" />
-                        </p>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    Already have an Account? <a href="#" class="btn-link" data-bs-target="#controlJobManagerLogin"
-                        data-bs-toggle="modal">Login</a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 @endsection
