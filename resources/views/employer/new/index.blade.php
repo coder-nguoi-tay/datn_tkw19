@@ -76,9 +76,39 @@
                                                                 <h2 class="widget-title pb-1"><a href="job-details.html"
                                                                         class="color-text-2">{{ $item->title }}</a></h2>
                                                                 <p>
-                                                                    <span><i class="la la-clock-o font-size-16"></i>Còn lại:
-                                                                        10
-                                                                        ngày</span>
+                                                                    @if (Carbon::parse(Carbon::now())->format('d') > Carbon::parse($item->end_job_time)->format('d'))
+                                                                        <span class="badge badge-secondary"><i
+                                                                                class="la la-clock-o font-size-16"></i>Hết
+                                                                            hạn</span>
+                                                                    @else
+                                                                        <i
+                                                                            class="la la-clock-o font-size-16"></i>{{ $item->convert_date }}
+                                                                        ngày
+                                                                    @endif
+
+                                                                    {{-- @if (Carbon::parse($item->end_job_time)->format('m') == $m)
+                                                                        @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
+                                                                            <span class="badge badge-secondary"><i
+                                                                                    class="la la-clock-o font-size-16"></i>Hết
+                                                                                hạn</span>
+                                                                        @else
+                                                                            <i class="la la-clock-o font-size-16"></i>
+                                                                            {{ Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') }}
+                                                                            ngày
+                                                                        @endif
+                                                                    @else
+                                                                        @if ($all_day - Carbon::parse($item->job_time)->format('d') + ($mon - ($mon - Carbon::parse($item->end_job_time)->format('d'))) <= 0)
+                                                                            <span class="badge badge-secondary"><i
+                                                                                    class="la la-clock-o font-size-16"></i>Hết
+                                                                                hạn</span>
+                                                                        @else
+                                                                            <i class="la la-clock-o font-size-16"></i>
+                                                                            {{ $all_day -
+                                                                                Carbon::parse(Carbon::now())->format('d') +
+                                                                                ($mon + 1 - ($mon - Carbon::parse($item->end_job_time)->format('d'))) }}
+                                                                            ngày
+                                                                        @endif
+                                                                    @endif --}}
                                                                 </p>
                                                             </div>
                                                         </td>

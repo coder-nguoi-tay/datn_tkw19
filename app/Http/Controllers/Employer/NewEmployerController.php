@@ -170,7 +170,7 @@ class NewEmployerController extends BaseController
     {
         $end_time = Carbon::parse($request['data']['end_job_time'])->format('Y-m-d');
         $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
-       
+
         try {
             $end_time = Carbon::parse($request['data']['end_job_time'])->format('Y-m-d');
             $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
