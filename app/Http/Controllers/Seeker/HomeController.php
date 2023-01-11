@@ -97,7 +97,7 @@ class HomeController extends BaseController
             'majors' => $this->getmajors(),
             'location' => $this->getlocation(),
             'workingform' => $this->getworkingform(),
-            'getskill' => $getskill
+            'getskill' => $getskill,
         ]);
     }
 
@@ -224,6 +224,7 @@ class HomeController extends BaseController
         return view('client.seeker.favourite', [
             'breadcrumbs' => $breadcrumbs,
             'job' => $job,
+            'majors' => $this->getmajors(),
         ]);
     }
     public function userShowFavouriteId($id)
@@ -268,6 +269,7 @@ class HomeController extends BaseController
             [
                 'breadcrumbs' => $breadcrumbs,
                 'title' => 'Đổi mật khẩu',
+                'majors' => $this->getmajors(),
             ]
         );
     }

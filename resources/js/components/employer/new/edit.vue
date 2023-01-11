@@ -451,6 +451,23 @@
                             </div>
                           </div>
                         </div>
+                        <div class="col-lg-4 column-lg-full">
+                          <div class="input-box">
+                            <label class="label-text">Trạng thái</label>
+                            <div
+                              class="form-group user-chosen-select-container"
+                            >
+                              <Toggle
+                                name="status_profile"
+                                v-model="status_profile"
+                                class="toggle-flag"
+                                on-label=""
+                                off-label=""
+                                id="status_profile"
+                              />
+                            </div>
+                          </div>
+                        </div>
                         <!-- end col-lg-12 -->
                       </div>
                       <div class="rec-submit">

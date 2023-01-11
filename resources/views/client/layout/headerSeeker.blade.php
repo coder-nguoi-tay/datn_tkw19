@@ -5,7 +5,9 @@
                 <div class="col-lg-12">
                     <div class="menu-full-width">
                         <div class="logo">
-                            <a href="index.html"><img src="" alt="logo"></a>
+                            <a href="{{ route('profile.index') }}"><img
+                                    src="{{ asset('wp-content/themes/jobbox/assets/imgs/template/logoIT.png') }}"
+                                    alt="logo"></a>
                         </div><!-- end logo -->
                         <div class="main-menu-content">
                             <nav>
@@ -13,25 +15,19 @@
                                     <li>
                                         <a href="#">Lĩnh vực <i class="la la-angle-down"></i></a>
                                         <ul class="dropdown-menu-item">
-                                            <li><a href="index.html">Home 1</a></li>
-                                            <li><a href="index2.html">Home 2</a></li>
-                                            <li><a href="index3.html">Home 3</a></li>
-                                            <li><a href="index4.html">Home 4</a></li>
+                                            @foreach ($majors as $item)
+                                                <li><a
+                                                        href="{{ route('searchMajors', $item->id) }}">{{ $item->label }}</a>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="#">Việc làm </a>
+                                        <a href="{{ route('home.search') }}">Việc làm </a>
 
                                     </li>
                                     <li>
-                                        <a href="#">Công ty <i class="la la-angle-down"></i></a>
-                                        <ul class="dropdown-menu-item">
-                                            <li><a href="candidate-listing.html">Candidate Listing</a></li>
-                                            <li><a href="candidate-details.html">Candidate Details</a></li>
-                                            <li><a href="candidate-dashboard.html">Candidate Dashboard</a></li>
-                                            <li><a href="candidate-dashboard-edit-profile.html">Edit Profile</a></li>
-                                            <li><a href="candidate-add-resume.html">Add a Resume</a></li>
-                                        </ul>
+                                        <a href="{{ route('company') }}">Công ty</a>
                                     </li>
                                     <li>
                                         <a href="#">Tin tức </a>
@@ -41,13 +37,15 @@
                                         <a href="#">Câu hỏi thường gặp </a>
 
                                     </li>
-                                    <li>
-                                        <a href="#">Xem hồ sơ <i class="la la-angle-down"></i></a>
-                                        <ul class="dropdown-menu-item">
-                                            <li><a href="job-listing.html">Quản lý hồ sơ</a></li>
-                                            <li><a href="job-grid-view.html">Quản lý cv</a></li>
-                                        </ul>
-                                    </li>
+                                    @if (Auth::guard('user')->check())
+                                        <li>
+                                            <a href="#">Xem hồ sơ <i class="la la-angle-down"></i></a>
+                                            <ul class="dropdown-menu-item">
+                                                <li><a href="{{ route('profile.index') }}">Thông tin cá nhân</a></li>
+                                                <li><a href="{{ route('quan-ly-cv.index') }}">Quản lý hồ sơ</a></li>
+                                            </ul>
+                                        </li>
+                                    @endif
                                 </ul>
                             </nav>
                         </div><!-- end main-menu-content -->
@@ -137,166 +135,6 @@
                                                         <a href="#" class="theme-btn w-100">View All
                                                             Notifications</a>
                                                     </div><!-- end mess__item -->
-                                                </div><!-- end mess-dropdown -->
-                                            </div><!-- end dropdown-menu -->
-                                        </div><!-- end dropdown -->
-                                    </div>
-                                    <div class="notification-item mr-3">
-                                        <div class="dropdown">
-                                            <button class="notification-btn dropdown-toggle" type="button"
-                                                id="messageDropdownMenu" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
-                                                <i class="la la-envelope"></i>
-                                                <span class="quantity">5</span>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="messageDropdownMenu">
-                                                <div class="mess-dropdown">
-                                                    <div class="mess__title">
-                                                        <h4
-                                                            class="widget-title d-flex align-items-center justify-content-between">
-                                                            Message <a href="#"
-                                                                class="font-size-12 color-text-3">Mark all as read</a>
-                                                        </h4>
-                                                        <p class="font-size-12 font-weight-medium">You have 5 new
-                                                            messages</p>
-                                                    </div><!-- end mess__title -->
-                                                    <div class="mess__body">
-                                                        <a href="employer-dashboard-message.html" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="avatar dot-status">
-                                                                    <img src="" alt="Michelle Moreno">
-                                                                </div>
-                                                                <div class="content">
-                                                                    <h4 class="widget-title">Michelle Moreno</h4>
-                                                                    <p class="text">Thanks for reaching out. I'm
-                                                                        quite busy right now on many</p>
-                                                                    <span class="time">5 min ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="employer-dashboard-message.html" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="avatar dot-status online-status">
-                                                                    <img src="" alt="Michelle Moreno">
-                                                                </div>
-                                                                <div class="content">
-                                                                    <h4 class="widget-title">Alex Smith</h4>
-                                                                    <p class="text">Thanks for reaching out. I'm
-                                                                        quite busy right now on many</p>
-                                                                    <span class="time">2 days ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="employer-dashboard-message.html" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="avatar dot-status">
-                                                                    <img src="" alt="Michelle Moreno">
-                                                                </div>
-                                                                <div class="content">
-                                                                    <h4 class="widget-title">Michelle Moreno</h4>
-                                                                    <p class="text">Thanks for reaching out. I'm
-                                                                        quite busy right now on many</p>
-                                                                    <span class="time">5 min ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="employer-dashboard-message.html" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="avatar dot-status online-status">
-                                                                    <img src="" alt="Michelle Moreno">
-                                                                </div>
-                                                                <div class="content">
-                                                                    <h4 class="widget-title">Alex Smith</h4>
-                                                                    <p class="text">Thanks for reaching out. I'm
-                                                                        quite busy right now on many</p>
-                                                                    <span class="time">2 days ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="employer-dashboard-message.html" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="avatar dot-status">
-                                                                    <img src="" alt="Michelle Moreno">
-                                                                </div>
-                                                                <div class="content">
-                                                                    <h4 class="widget-title">Alex Smith</h4>
-                                                                    <p class="text">Thanks for reaching out. I'm
-                                                                        quite busy right now on many</p>
-                                                                    <span class="time">2 days ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                    </div><!-- end mess__body -->
-                                                    <div class="mess__item border-bottom-0 text-center">
-                                                        <a href="#" class="theme-btn w-100">View All
-                                                            Messages</a>
-                                                    </div><!-- end mess__item -->
-                                                </div><!-- end mess-dropdown -->
-                                            </div><!-- end dropdown-menu -->
-                                        </div><!-- end dropdown -->
-                                    </div>
-                                </div>
-                                <div class="user-action-wrap">
-                                    <div class="notification-item">
-                                        <div class="dropdown">
-                                            <button class="notification-btn dot-status online-status dropdown-toggle"
-                                                type="button" id="userDropdownMenu" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                                <img src="" alt="Bluetech,Inc">
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="userDropdownMenu">
-                                                <div class="mess-dropdown">
-                                                    <div class="mess__title d-flex align-items-center">
-                                                        <div class="image dot-status online-status">
-                                                            <a href="#">
-                                                                <img src="" alt="Bluetech,Inc">
-                                                            </a>
-                                                        </div>
-                                                        <div class="content">
-                                                            <h4 class="widget-title font-size-16">
-                                                                <a href="#">Bluetech, Inc</a>
-                                                            </h4>
-                                                            <span class="email">bluetechinc@example.com</span>
-                                                        </div>
-                                                    </div><!-- end mess__title -->
-                                                    <div class="mess__body">
-                                                        <ul class="list-items">
-                                                            <li class="mb-0">
-                                                                <a href="employer-dashboard.html" class="d-block">
-                                                                    <i class="la la-user"></i> Account
-                                                                </a>
-                                                            </li>
-                                                            <li class="mb-0">
-                                                                <a href="employer-dashboard-bookmark.html"
-                                                                    class="d-block">
-                                                                    <i class="la la-bookmark"></i> Bookmarks
-                                                                </a>
-                                                            </li>
-                                                            <li class="mb-0">
-                                                                <a href="employer-dashboard.html" class="d-block">
-                                                                    <i class="la la-plus"></i> Post a Job
-                                                                </a>
-                                                            </li>
-                                                            <li class="mb-0">
-                                                                <a href="employer-dashboard.html" class="d-block">
-                                                                    <i class="la la-question"></i> Help
-                                                                </a>
-                                                            </li>
-                                                            <li class="mb-0">
-                                                                <a href="employer-dashboard.html" class="d-block">
-                                                                    <i class="la la-gear"></i> Settings
-                                                                </a>
-                                                            </li>
-                                                            <li class="mb-0">
-                                                                <div class="section-block mt-2 mb-2"></div>
-                                                            </li>
-                                                            <li class="mb-0">
-                                                                <a href="index.html" class="d-block">
-                                                                    <i class="la la-power-off"></i> Logout
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!-- end mess__body -->
                                                 </div><!-- end mess-dropdown -->
                                             </div><!-- end dropdown-menu -->
                                         </div><!-- end dropdown -->
