@@ -4,59 +4,163 @@
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="row flex-row-reverse">
           <div class="col-lg-12">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-30" id="paginated-list1">
-              <div class="col jobbox-grid-item" v-for="(item, index) in data.job">
+            <div
+              class="
+                row row-cols-1 row-cols-md-2 row-cols-lg-4
+                job_listings
+                mt-30
+              "
+              id="paginated-list1"
+            >
+              <div
+                class="col jobbox-grid-item"
+                v-for="(item, index) in data.job"
+              >
                 <div class="card-grid-2 hover-up">
                   <div class="card-grid-2-image-left">
-                    <div class="image-box" data-toggle="tooltip" title="" data-placement="top" data-container="body"
-                      :data-original-title="item.logo"><img src="{{ asset(item.logo) }}" width="52" alt="Percepta">
+                    <div
+                      class="image-box"
+                      data-toggle="tooltip"
+                      title=""
+                      data-placement="top"
+                      data-container="body"
+                      :data-original-title="item.logo"
+                    >
+                      <img
+                        src="{{ asset(item.logo) }}"
+                        width="52"
+                        alt="Percepta"
+                      />
                     </div>
-                    <div class="right-info"><a href=""><span class="name-job"
-                          style="-webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; display: -webkit-box;"
-                          data-toggle="tooltip" title="" data-placement="top" data-container="body"
-                          :data-original-title="item.title">{{
-                            item.title
-                          }}</span></a>
+                    <div class="right-info">
+                      <a :href="'/detail-company/' + item.id_company"
+                        ><span
+                          class="name-job"
+                          style="
+                            -webkit-line-clamp: 1;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                          "
+                          data-toggle="tooltip"
+                          title=""
+                          data-placement="top"
+                          data-container="body"
+                          :data-original-title="item.name_company"
+                          >{{ item.name_company }}</span
+                        ></a
+                      >
                       <div
-                        style="-webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; text-align: justify;">
-                        <span class="location-small" data-toggle="tooltip" data-html="true" title=""
-                          data-placement="top" data-container="body" :data-original-title="item.getlocation.name">{{
-                            item.getlocation.name
-                          }}</span>
+                        style="
+                          -webkit-line-clamp: 1;
+                          -webkit-box-orient: vertical;
+                          overflow: hidden;
+                          text-overflow: ellipsis;
+                          display: -webkit-box;
+                          text-align: justify;
+                        "
+                      >
+                        <span
+                          class="location-small"
+                          data-toggle="tooltip"
+                          data-html="true"
+                          title=""
+                          data-placement="top"
+                          data-container="body"
+                          :data-original-title="item.getlocation.name"
+                          >{{ item.getlocation.name }}</span
+                        >
                       </div>
                     </div>
                   </div>
                   <div class="card-block-info">
-                    <h6 class="mb-1" data-toggle="tooltip" title="" data-placement="top" data-container="body"
-                      target="_blank" :data-original-title="item.name_company"
-                      style="-webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; text-align: justify;">
-                      <a href="home/detail/Tuyển dụng 1-2"> {{ item.name_company }}</a>
+                    <h6
+                      class="mb-1"
+                      data-toggle="tooltip"
+                      title=""
+                      data-placement="top"
+                      data-container="body"
+                      target="_blank"
+                      :data-original-title="item.name_company"
+                      style="
+                        -webkit-line-clamp: 1;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        text-align: justify;
+                      "
+                    >
+                      <a href="/home/detail/Tuyển dụng 1-2">
+                        {{ item.title }}</a
+                      >
                     </h6>
-                    <div class="d-flex align-items-center gap-3 font-xs color-text-mutted"><span><i
-                          class="fi-rr-briefcase ms-0 me-5"></i>Part Time</span><span><i
-                          class="fi-rr-clock ms-0 me-5"></i><time datetime="2022-09-27">2023-01-28</time></span></div>
+                    <div
+                      class="
+                        d-flex
+                        align-items-center
+                        gap-3
+                        font-xs
+                        color-text-mutted
+                      "
+                    >
+                      <span
+                        ><i class="fi-rr-briefcase ms-0 me-5"></i>Part
+                        Time</span
+                      ><span
+                        ><i class="fi-rr-clock ms-0 me-5"></i
+                        ><time datetime="2022-09-27">2023-01-28</time></span
+                      >
+                    </div>
                     <div class="card-2-bottom mt-30">
                       <div class="row align-items-center">
-                        <div class="col-lg-6 col-7"><span class="card-text-price" data-toggle="tooltip" title=""
-                            data-placement="top" data-container="body" target="_blank"
-                            :data-original-title="item.name_company">{{ item.get_wage.name }}</span></div>
-                        <div class="col-lg-6 col-5 text-end"><a class="btn btn-apply-now" data-toggle="tooltip" title=""
-                            data-placement="top" data-container="body" target="_blank" :data-original-title="item.id"
-                            href="#">Apply now</a></div>
+                        <div class="col-lg-6 col-7">
+                          <span
+                            class="card-text-price"
+                            data-toggle="tooltip"
+                            title=""
+                            data-placement="top"
+                            data-container="body"
+                            target="_blank"
+                            :data-original-title="item.name_company"
+                            >{{ item.get_wage.name }}</span
+                          >
+                        </div>
+                        <div class="col-lg-6 col-5 text-end">
+                          <a
+                            class="btn btn-apply-now"
+                            data-toggle="tooltip"
+                            title=""
+                            data-placement="top"
+                            data-container="body"
+                            target="_blank"
+                            :data-original-title="item.id"
+                            href="#"
+                            >Apply now</a
+                          >
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div><!--row job_listings-->
-          </div><!--col-lg-9-->
-        </div><!-- All jobs -->
+            </div>
+            <!--row job_listings-->
+          </div>
+          <!--col-lg-9-->
+        </div>
+        <!-- All jobs -->
         <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12"><br><br><span
-              class="page-item text-center pagination-container d-flex">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <br /><br /><span
+              class="page-item text-center pagination-container d-flex"
+            >
               <div id="pagination-numbers"></div>
-            </span></div>
-        </div><!-- paginate -->
+            </span>
+          </div>
+        </div>
+        <!-- paginate -->
       </div>
     </div>
   </section>

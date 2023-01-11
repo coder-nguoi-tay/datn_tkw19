@@ -29,9 +29,9 @@
     <link rel="stylesheet" href="{{ asset('assets/company/chosen.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/company/jquery-te-1.4.0.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/company/style.css') }}">
-    <link rel="stylesheet" href="assets/css/adminlte.min.css">
-    <link rel='stylesheet' id='jobbox-style-css' href='../wp-content/themes/jobbox/assets/css/style8a54.css?ver=1.0.0'
-        media='all' />
+    <link rel="stylesheet" href="/assets/css/adminlte.min.css">
+    <link rel='stylesheet' id='jobbox-style-css'
+        href='../../../wp-content/themes/jobbox/assets/css/style8a54.css?ver=1.0.0' media='all' />
     <script src="{{ asset('js/adminApp.js') }}" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/css/coreui.min.css" rel="stylesheet"
         integrity="sha384-UkVD+zxJKGsZP3s/JuRzapi4dQrDDuEf/kHphzg8P3v8wuQ6m9RLjTkPGeFcglQU" crossorigin="anonymous">
@@ -62,7 +62,7 @@
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
-                <div class="text-center"><img src="../wp-content/themes/jobbox/assets/imgs/template/loading.gif"
+                <div class="text-center"><img src="../../wp-content/themes/jobbox/assets/imgs/template/loading.gif"
                         alt="">
                 </div>
             </div>
@@ -104,6 +104,6 @@
 <script src="{{ asset('assets/js/gmap-script.js') }}"></script>
 <script src="{{ asset('assets/js/jquery-te-1.4.0.min.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
-<script src='../wp-content/themes/jobbox/assets/js/mainbb93.js?ver=5.0.0' id='jobbox-main-js'></script>
+<script src='../../../wp-content/themes/jobbox/assets/js/mainbb93.js?ver=5.0.0' id='jobbox-main-js'></script>
 
 </html>

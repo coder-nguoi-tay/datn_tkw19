@@ -25,6 +25,12 @@ defineRule('telephone', (value) => {
         /^0(\d{9,10})+$/i.test(value.trim())
     )
 })
+$(document).ready(function () {
+    $('ul li a').click(function () {
+        $('li a').removeClass("active");
+        $(this).addClass("active");
+    });
+});
 import Editor from '@tinymce/tinymce-vue';
 // import tinymce from 'tinymce/tinymce';
 

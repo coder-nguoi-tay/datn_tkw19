@@ -9,20 +9,24 @@
             <div class="humburger-menu-lines side-menu-close"></div><!-- end humburger-menu-lines -->
         </div><!-- end humburger-menu -->
         <div class="side-menu-wrap">
+
             <ul class="side-menu-ul">
-                <li class="page-active"><a href="{{ route('user.favourite') }}"><i class="fas fa-heart icon-element"></i>
+
+                <li class="{{ request()->is('*user/new/favourite*') ? 'active' : '' }}"><a href="{{ route('user.favourite') }}"><i
+                            class="fas fa-heart icon-element"></i>
                         Công việc đã yêu thích</a></li>
-                <li>
+                <li class="{{ request()->is('*quan-ly-cv*') ? 'active' : '' }}">
                     <a href="{{ route('quan-ly-cv.index') }}"><i class="fas fa-tasks icon-element"></i> Quản lý
                         CV</a>
                 </li>
-                <li>
-                    <a href="{{ route('xem-ho-so.index') }}"><i class="fas fa-address-card icon-element"></i> Xem hồ sơ</a>
+                <li class="{{ request()->is('*xem-ho-so*') ? 'active' : '' }}">
+                    <a href="{{ route('xem-ho-so.index') }}"><i class="fas fa-address-card icon-element"></i> Xem hồ
+                        sơ</a>
                 </li>
-                <li>
+                <li class="{{ request()->is('*profile*') ? 'active' : '' }}">
                     <a href="{{ route('profile.index') }}"><i class="fas fa-user icon-element"></i>Thông tin cá nhân</a>
                 </li>
-                <li>
+                <li class="{{ request()->is('*change-password*') ? 'active' : '' }}">
                     <a href="{{ route('user.changepass') }}"><i class="fas fa-lock icon-element"></i> Đổi mật
                         khẩu</a>
                 </li>
