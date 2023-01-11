@@ -93,7 +93,6 @@ class HomeEmployerController extends BaseController
             'totalMonnyMouth10' => $this->getDataYear(10),
             'totalMonnyMouth11' => $this->getDataYear(11),
             'totalMonnyMouth12' => $this->getDataYear(12),
-            'totalcv' => $totalcv,
         ]);
     }
 
