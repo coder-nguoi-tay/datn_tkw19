@@ -2,7 +2,6 @@
 @section('client')
     <div class=" py-5">
         <div class="ht-30"></div>
-
         <div class="container" style="background: white">
             <section class="section-box-2">
                 <div class="banner-hero banner-single banner-single-bg" data-settings-id="banner-job">

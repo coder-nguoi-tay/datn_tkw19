@@ -154,6 +154,10 @@ Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 's
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
 Route::get('tim-viec-lam', [SearchController::class, 'create'])->name('home.search');
 //trang giới thiệu các công ty
+Route::get(
+    'detail-company/{id}',
+    [DetailCompanyController::class, 'detailCompany']
+)->name('detail.company');
 Route::get('blog', [NewsController::class, 'index'])->name('blog');
 Route::get('detail-blog/{id}', [NewsController::class, 'ShowBlog'])->name('detail.blog');
 // Route::get('detailNew/{id}', [NewsController::class, 'showTinTuc'])->name('detailNew');
