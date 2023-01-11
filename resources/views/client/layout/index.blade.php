@@ -101,6 +101,20 @@
     <link rel="apple-touch-icon" href="../wp-content/uploads/2022/09/favicon.png" />
     <meta name="msapplication-TileImage"
         content="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/favicon.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+    </script>
     <!-- use the latest release -->
     <script>
         window.Laravel = {!! json_encode(

@@ -678,65 +678,62 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row justify-content-center">
-
-
-
-
-                        <!-- Single Item -->
                         @foreach ($new as $item)
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                                <div class="blg_grid_box">
-                                    <div class="blg_grid_thumb">
-                                        <a href="blog-detail.html"><img src="{{ $item->new_image }}"
-                                                class="img-fluid w-75 rounded "
-                                                style="display : block;
-                                                   margin-left: auto;
-                                                   margin-right: auto;
-                                                   margin-top: 10px;"alt=""></a>
+                            <div class="col-xl-4 col-lg-3 col-md-6 col-sm-12">
+                                <div
+                                    class="card-grid-3 hover-up post-28 post type-post status-publish format-standard has-post-thumbnail hentry category-events tag-beauty tag-nature tag-travel-tips ">
+                                    <div class="text-center card-grid-3-image">
+                                        <a href="#">
+                                            <figure><img
+                                                    style="width:403px !important; height:257px !important; object-fit: cover; "
+                                                    src="{{ $item->new_image }}" class=" img-fluid wp-post-image"
+                                                    alt="" decoding="async" loading="lazy"></figure>
+                                        </a>
                                     </div>
-                                    <div class="blg_grid_caption">
-                                        <p class="theme-cl px-3 py-1 rounded bg-light-success d-inline-flex">
+                                    <div class="card-block-info">
+
+                                        <p class=" px-3   py-1 rounded bg-light-primary d-inline-flex"
+                                            style="color : rgb(60,101,245) ; font-weight: 550">
                                             {{ $item->majors }}
                                         </p>
-                                        <div class="blg_title">
-                                            <h4><a href="blog-detail.html">{{ $item->title }}</a></h4>
-                                        </div>
+
+                                        <h5 style="
+                                           max-height: 25px;
+                                           overflow: hidden;
+                                           text-overflow: ellipsis;
+                                            "><a href="#">{{ $item->title }}</a></h5>
+                                        <p class="mt-10 color-text-paragraph font-sm"></p>
+                                        <p>
                                         <div class="blg_desc  "
                                             style="
                                            max-height: 20px;
                                            overflow: hidden;
-                                           text-overflow: ellipsis !important;
+                                           text-overflow: ellipsis;
                                             ">
-                                            <p>{{ $item->describe }}...</p>
+                                            <p>{{ $item->describe }}</p>
                                         </div>
-                                    </div>
-                                    <div class="crs_grid_foot">
-                                        <div
-                                            class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
-                                            <div class="crs_fl_first">
-                                                <div class="crs_tutor">
-                                                    <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                                src="assets/img/team-5.jpg" class="img-fluid circle"
-                                                                width="35" alt=""></a></div>
+                                        </p>
+                                        <p></p>
+                                        <div class="card-2-bottom mt-20">
+                                            <div class="row d-flex align-items-end">
+                                                <div class="col-lg-6 col-6">
+                                                    <div class="d-flex align-items-center">
+                                                        <img alt=""
+                                                            src="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/user10-150x150.png"
+                                                            srcset="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/user10-150x150.png 2x"
+                                                            class="avatar avatar-64 photo img-rounded" height="35"
+                                                            width="35" loading="lazy" decoding="async">
+                                                        <div class="info-right-img d-grid">
+                                                            <span class="font-sm font-bold color-brand-1 op-70">Azumi
+                                                                Rose</span>
+                                                            <span
+                                                                class="font-xs color-text-paragraph-2">{{ $item->created_at->format('m-d-Y') }}</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="crs_fl_last">
-                                                <div class="foot_list_info">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="elsio_ic"><i class="fa fa-eye text-success"></i>
-                                                            </div>
-                                                            <div class="elsio_tx">10k Views</div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="elsio_ic"><i class="fa fa-clock text-warning"></i>
-                                                            </div>
-                                                            <div class="elsio_tx">
-                                                                {{ $item->created_at->format('m-d-Y') }}</div>
-                                                        </li>
-                                                    </ul>
+                                                <div class="col-lg-6 text-end col-6">
+                                                    <span class="color-text-paragraph-2 font-xs">2 mins to read</span>
                                                 </div>
                                             </div>
                                         </div>
