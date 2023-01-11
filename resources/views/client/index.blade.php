@@ -72,8 +72,7 @@
 
                                                                     <input class="form-input input-keysearch mr-10"
                                                                         type="text" name="key" id="key"
-                                                                        style="border: none;"
-                                                                        placeholder="Keywords" />
+                                                                        style="border: none;" placeholder="Keywords" />
 
                                                                     <input class="btn btn-default btn-find font-sm"
                                                                         type="submit" value="Search">
@@ -745,10 +744,7 @@
                                 </div>
                             </div>
                         @endforeach
-
-
                     </div>
-
                 </div>
             </section>
         </div>
@@ -761,7 +757,6 @@
                         <div class="col-xl-3 col-12 text-center d-none d-xl-block">
                             <img src="../wp-content/uploads/2022/12/newsletter-left.png" alt="Newsletter">
                         </div>
-
                         <div class="col-lg-12 col-xl-6 col-12">
                             <h2 class="text-md-newsletter text-center">Những điều mới sẽ luôn cập nhật thường xuyên</h2>
                             <div class="box-form-newsletter mt-40">
@@ -771,11 +766,9 @@
                                     <button class="btn btn-default font-heading icon-send-letter"
                                         type="submit">Subscribe</button>
                                 </form>
-
                             </div>
                             <div id="mc-response" class="mt-15"></div>
                         </div>
-
                         <div class="col-xl-3 col-12 text-center d-none d-xl-block">
                             <img src="../wp-content/uploads/2022/12/newsletter-right.png" alt="Newsletter">
                         </div>
@@ -786,53 +779,13 @@
             </div>
         </section>
     </main>
-
-    {{-- <div class="modal fade control-job-manager-login" id="controlJobManagerLogin" aria-hidden="true"
-        aria-labelledby="controlJobManagerLoginLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="controlJobManagerLoginLabel">Login</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form name="loginform" id="loginform" action="https://jthemes.com/themes/wp/jobbox/wp-login.php"
-                        method="post">
-                        <p class="login-username">
-                            <label for="user_login">Username or Email Address</label>
-                            <input type="text" name="log" id="user_login" autocomplete="username" class="input"
-                                value="" size="20" />
-                        </p>
-                        <p class="login-password">
-                            <label for="user_pass">Password</label>
-                            <input type="password" name="pwd" id="user_pass" autocomplete="current-password"
-                                class="input" value="" size="20" />
-                        </p>
-                        <p class="login-remember"><label><input name="rememberme" type="checkbox" id="rememberme"
-                                    value="forever" /> Remember Me</label></p>
-                        <p class="login-submit">
-                            <input type="submit" name="wp-submit" id="wp-submit" class="button button-primary"
-                                value="Log In" />
-                            <input type="hidden" name="redirect_to" value="index.html" />
-                        </p>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    Don&#039;t have an Account? <a href="#" class="btn-link"
-                        data-bs-target="#controlJobManagerRegister" data-bs-toggle="modal">Register</a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
     <div class="modal fade" id="controlJobManagerRegister" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="--bs-backdrop-zindex: none;">
                     <h5 class="modal-title" id="exampleModalLabel">Chào mừng bạn đến với ITWork</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
                 <div class="modal-body">
@@ -847,45 +800,4 @@
             </div>
         </div>
     </div>
-    {{-- <div class="modal fade" id="controlJobManagerRegister" aria-hidden="true"
-        aria-labelledby="controlJobManagerLoginLabel2" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="controlJobManagerLoginLabel2">Register</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-
-                    <form name="registerform" id="registerform"
-                        action="https://jthemes.com/themes/wp/jobbox/wp-login.php?action=register" method="post"
-                        novalidate="novalidate">
-                        <p>
-                            <label for="user_login">Username</label>
-                            <input type="text" name="user_login" id="user_login" class="input" value=""
-                                size="20" autocapitalize="off" autocomplete="username" />
-                        </p>
-                        <p>
-                            <label for="user_email">Email</label>
-                            <input type="email" name="user_email" id="user_email" class="input" value=""
-                                size="25" autocomplete="email" />
-                        </p>
-                        <p id="reg_passmail">
-                            Registration confirmation will be emailed to you. </p>
-                        <br class="clear" />
-                        <input type="hidden" name="redirect_to" value="index.html" />
-                        <p class="submit">
-                            <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-primary"
-                                value="Register" />
-                        </p>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    Already have an Account? <a href="#" class="btn-link" data-bs-target="#controlJobManagerLogin"
-                        data-bs-toggle="modal">Login</a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 @endsection

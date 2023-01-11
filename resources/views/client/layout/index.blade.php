@@ -55,7 +55,7 @@
         href='{{ asset('wp-content/themes/jobbox/assets/css/plugins/perfect-scrollbar8a54.css?ver=1.0.0') }}'
         media='all' />
     <link rel='stylesheet' id='jobbox-animate-css'
-        href='../wp-content/themes/jobbox/assets/css/plugins/animate.min49eb.css?ver=3.5.2' media='all' />
+        href='{{ url('wp-content/themes/jobbox/assets/css/plugins/animate.min49eb.css?ver=3.5.2') }}' media='all' />
     <link rel='stylesheet' id='jobbox-theme-css' href='../wp-content/themes/jobbox/assets/css/theme8a54.css?ver=1.0.0'
         media='all' />
     <link rel='stylesheet' id='jobbox-style-css' href='../wp-content/themes/jobbox/assets/css/style8a54.css?ver=1.0.0'
@@ -66,7 +66,8 @@
         href='../wp-content/themes/jobbox/assets/css/wp-job-managercb18.css?ver=1.0.9' media='all' />
     <link rel='stylesheet' id='jobbox-css' href='../wp-content/themes/jobbox/style6a4d.css?ver=6.1.1' media='all' />
     <link rel='stylesheet' id='control-elementor-css'
-        href='../wp-content/plugins/control-elementor/assets/css/control-elementor8a54.css?ver=1.0.0' media='all' />
+        href='{{ asset('wp-content/plugins/control-elementor/assets/css/control-elementor8a54.css?ver=1.0.0') }}'
+        media='all' />
     <link rel='stylesheet' id='elementor-icons-css'
         href='../wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min91ce.css?ver=5.16.0'
         media='all' />
