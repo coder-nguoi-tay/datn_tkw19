@@ -4,14 +4,29 @@
 @endphp
 @extends('client.layout.index')
 @section('client')
-
     <div id="main-wrapper">
         <div class="clearfix"></div>
-        <div class="bg-title py-5" data-overlay="0">
+        <div class=" py-5">
             <div class="ht-30"></div>
 
-            <div class="container">
-                <div class="row">
+            <div class="container" style="background: white">
+                <section class="section-box-2">
+                    <div class="banner-hero banner-single banner-single-bg" data-settings-id="banner-job">
+                        <div class="block-banner text-center">
+                            <h3 class="wow animate__ animate__fadeInUp animated"
+                                style="visibility: visible; animation-name: fadeInUp;"><span
+                                    class="color-brand-2">{{ count($job) }}
+                                    Công việc</span> Phù hợp</h3>
+                            <div class="font-sm color-text-paragraph-2 mt-10 wow animate__ animate__fadeInUp animated"
+                                data-wow-delay=".1s"
+                                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">Lorem
+                                ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni,<br
+                                    class="d-none d-xl-block">atque delectus molestias quis</div>
+
+                        </div>
+                    </div>
+                </section>
+                {{-- <div class="row">
                     <div class="colxl-12 col-lg-12 col-md-12">
                         <h1 class="ft-medium">Việc làm đã tìm thấy</h1>
                         <nav aria-label="breadcrumb">
@@ -34,7 +49,7 @@
                             </ol>
                         </nav>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="ht-30"></div>
         </div>
@@ -63,7 +78,9 @@
         <section class="bg-light">
             <div class="container-xxl pt-2">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="row align-items-center bg-secondary">
+
+                    {{-- <div class="row align-items-center bg-secondary"
+                        style="border-top-left-radius: 30px; border-bottom-right-radius: 30px;">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                             <div class="row align-items-center justify-content-between mx-0 rounded p-3">
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
@@ -71,8 +88,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row flex-row-reverse mt-30">
+                    </div> --}}
+                    <div class="row flex-row-reverse ">
                         <div class="col-lg-12">
                             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-30" id="paginated-list1">
                                 @foreach ($job as $value)
@@ -83,53 +100,51 @@
                                                     <img src="{{ asset($value->logo) }}" width="52" alt="Percepta">
                                                 </div>
                                                 <div class="right-info">
-                                                    <a
-                                                        href="https://jthemes.com/themes/wp/jobbox/?post_type=job_listing&amp;p=576">
-                                                        <span class="name-job">Percepta2222</span>
+                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                        <span class="name-job">{{ $value->nameCompany }}</span>
                                                     </a>
-                                                    <span class="location-small">Germany</span>
+                                                    <div
+                                                        style=" -webkit-line-clamp: 1;
+                                                            -webkit-box-orient: vertical;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            display: -webkit-box;
+                                                            text-align: justify;">
+                                                        <span class="location-small">{{ $value->getLocation->name }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
 
                                             <div class="card-block-info">
-                                                <h6 class="mb-1"><a
-                                                        href="https://jthemes.com/themes/wp/jobbox/?post_type=job_listing&amp;p=576">React
-                                                        Native Web Developer</a></h6>
+                                                <h6 class="mb-1"
+                                                    style=" -webkit-line-clamp: 1;
+                                                            -webkit-box-orient: vertical;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            display: -webkit-box;
+                                                            text-align: justify;">
+                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                        {{ $value->title }}</a>
+                                                </h6>
 
                                                 <div class="d-flex align-items-center gap-3 font-xs color-text-mutted">
                                                     <span><i class="fi-rr-briefcase ms-0 me-5"></i>Part Time</span>
                                                     <span><i class="fi-rr-clock ms-0 me-5"></i><time
-                                                            datetime="2022-09-27">Posted 4 months
-                                                            ago</time></span>
+                                                            datetime="2022-09-27">{{ $value->end_job_time }}</time></span>
                                                 </div>
 
-                                                <p class="font-sm color-text-paragraph mt-15">Lorem ipsum dolor sit amet,
-                                                    consectetur
-                                                    adipisicing elit. Recusandae architecto eveniet, dolor quo repellendus
-                                                    pariatur</p>
+                                                {{-- <p class="font-sm color-text-paragraph mt-15">
+                                                    {!! $value->describe !!}</p> --}}
 
-                                                <div class="mt-30 d-flex flex-wrap gap-5">
-                                                    <span class="btn btn-grey-small"
-                                                        href="https://jthemes.com/themes/wp/jobbox/candidate/skill/app/">
-                                                        App </span>
-                                                    <span class="btn btn-grey-small"
-                                                        href="https://jthemes.com/themes/wp/jobbox/candidate/skill/figma/">
-                                                        Figma </span>
-                                                    <span class="btn btn-grey-small"
-                                                        href="https://jthemes.com/themes/wp/jobbox/candidate/skill/psd/">
-                                                        PSD </span>
-                                                </div>
 
                                                 <div class="card-2-bottom mt-30">
                                                     <div class="row align-items-center">
                                                         <div class="col-lg-6 col-7">
-                                                            <span class="card-text-price">$800</span><span
-                                                                class="font-xs text-muted">/Hour</span>
+                                                            <span class="card-text-price">{{ $value->getwage->name }}</span>
                                                         </div>
 
                                                         <div class="col-lg-6 col-5 text-end">
-                                                            <a class="btn btn-apply-now"
-                                                                href="https://jthemes.com/themes/wp/jobbox/?post_type=job_listing&amp;p=576">Apply
+                                                            <a class="btn btn-apply-now" href="">Apply
                                                                 now</a>
                                                         </div>
                                                     </div>
@@ -146,65 +161,7 @@
                         </div>
                         <!--col-lg-9-->
                     </div>
-                    {{-- <div class="row justify-content-center">
-                        <div class="container p-3">
-                            <div class="row g-2 g-lg-3" id="paginated-list1">
-                                @foreach ($job as $value)
-                                    <div class="col-4 render-job-search1 view overlay rounded">
-                                        <div class="hover-div border p-2">
-                                            <div class="position-absolute ab-right"><a type="button"
-                                                    class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
-                                                        class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></a>
-                                            </div>
-                                            <div class="row" style="height: 80px;">
-                                                <div class="job_grid_thumb mb-3 title-name px-3 col-4"><a
-                                                        href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                        class="d-block m-auto" style="width: 68px; height: 68px;"><img
-                                                            src="{{ asset($value->logo) }}" class="img-rounded"
-                                                            alt="" style=""></a>
-                                                </div>
-                                                <div class="job_grid_caption title-name px-3 col-8 g-1">
-                                                    <h4 class="mb-0 ft-medium medium ml-20"><a
-                                                            href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                            class="text-dark fs-md" data-bs-toggle="tooltip"
-                                                            data-bs-placement="top" title="Tooltip on top">
-                                                            <p
-                                                                style="width: 200px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap;">
-                                                                {{ $value->title }}</p>
-                                                        </a></h4>
-                                                    <div class="jbl_location ml-20" style="margin-top: -10px;"><a
-                                                            href=""
-                                                            class="text-dark fs-md">{{ $value->nameCompany }}</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
-                                                <div class="df-1 text-muted"><i
-                                                        class="lni lni-wallet mr-1"></i>{{ $value->getwage->name }}
-                                                </div>
-                                                <div class="df-1 text-muted ml-2"><i
-                                                        class="lni lni-timer mr-1"></i>{{ $value->end_job_time }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <br>
-                                    <br>
-                                    <br>
-                                    <br>
-                                    <span class="page-item text-center pagination-container">
-                                        <div id="pagination-numbers1">
-                                        </div>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
+
                     <!-- All jobs -->
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12"> <br><br>
@@ -222,74 +179,122 @@
         <section class="bg-light">
             <div class="container-xxl pt-2">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="row align-items-center bg-secondary">
+                    {{-- <div class="row align-items-center ">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                             <div class="row align-items-center justify-content-between mx-0 rounded p-3">
-                                <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
+                                <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 ">
                                     <h6 class="mb-0 ft-medium fs-sm">Việc làm liên quan</h6>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="container p-3">
-                            <div class="row g-2 g-lg-3" id="paginated-list2">
+                    </div> --}}
+                    <section class="section-box" style="
+    background: #c9b7b7;">
+                        <div class="breacrumb-cover " style="">
+                            <div class="container">
+                                <div class="row d-grid d-md-flex gap-30 gap-lg-0 align-items-end">
+                                    <div class="col-lg-6">
+                                        <h3 class="mb-0">Sản phẩm liên quan</h3>
+
+                                    </div>
+                                    <div class="col-lg-6 text-lg-end">
+                                        <ul class="breadcrumbs list-unstyled">
+                                            <!-- Breadcrumb NavXT 7.1.0 -->
+                                            <li class="home"><span property="itemListElement" typeof="ListItem"><a
+                                                        property="item" typeof="WebPage" title="Go to Jobbox."
+                                                        href="" class="home home-icon"><span
+                                                            property="name">Home</span></a>
+                                                    <meta property="position" content="1">
+                                                </span></li>
+                                            <li class="post-root post post-post current-item"><span
+                                                    property="itemListElement" typeof="ListItem"><span property="name"
+                                                        class="post-root post post-post current-item">Blog</span>
+                                                    <meta property="url" content="">
+                                                    <meta property="position" content="2">
+                                                </span></li>
+                                            <!-- <li><a class="home-icon" href="#">Home</a></li> -->
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="row flex-row-reverse">
+                        <div class="col-lg-12">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-30" id="paginated-list2">
                                 @foreach ($datalq as $value)
-                                    <div class="col-4 render-job-search2 view overlay rounded">
-                                        <div class="hover-div border p-2">
-                                            <div class="position-absolute ab-right"><a type="button"
-                                                    class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
-                                                        class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></a>
-                                            </div>
-                                            <div class="row" style="height: 80px;">
-                                                <div class="job_grid_thumb mb-3 title-name px-3 col-4"><a
-                                                        href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                        class="d-block m-auto" style="width: 68px; height: 68px;"><img
-                                                            src="{{ asset($value->logo) }}" class="img-rounded"
-                                                            alt="" style=""></a>
+                                    <div class="col jobbox-grid-item ">
+                                        <div class="card-grid-2 hover-up">
+                                            <div class="card-grid-2-image-left">
+                                                <div class="image-box">
+                                                    <img src="{{ asset($value->logo) }}" width="52" alt="Percepta">
                                                 </div>
-                                                <div class="job_grid_caption title-name px-3 col-8 g-1">
-                                                    <h4 class="mb-0 ft-medium medium ml-20"><a
-                                                            href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                            class="text-dark fs-md" data-bs-toggle="tooltip"
-                                                            data-bs-placement="top" title="Tooltip on top">
-                                                            <p
-                                                                style="width: 200px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap;">
-                                                                {{ $value->title }}</p>
-                                                        </a></h4>
-                                                    <div class="jbl_location ml-20" style="margin-top: -10px;"><a
-                                                            href=""
-                                                            class="text-dark fs-md">{{ $value->nameCompany }}</a>
+                                                <div class="right-info">
+                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                        <span class="name-job">{{ $value->nameCompany }}</span>
+                                                    </a>
+                                                    <div
+                                                        style=" -webkit-line-clamp: 1;
+                                                            -webkit-box-orient: vertical;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            display: -webkit-box;
+                                                            text-align: justify;">
+                                                        <span
+                                                            class="location-small">{{ $value->getLocation->name }}</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div
-                                                class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
-                                                <div class="df-1 text-muted"><i
-                                                        class="lni lni-wallet mr-1"></i>{{ $value->getwage->name }}
+
+                                            <div class="card-block-info">
+                                                <h6 class="mb-1"
+                                                    style=" -webkit-line-clamp: 1;
+                                                            -webkit-box-orient: vertical;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            display: -webkit-box;
+                                                            text-align: justify;">
+                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                        {{ $value->title }}</a>
+                                                </h6>
+
+                                                <div class="d-flex align-items-center gap-3 font-xs color-text-mutted">
+                                                    <span><i class="fi-rr-briefcase ms-0 me-5"></i>Part Time</span>
+                                                    <span><i class="fi-rr-clock ms-0 me-5"></i><time
+                                                            datetime="2022-09-27">{{ $value->end_job_time }}</time></span>
                                                 </div>
-                                                <div class="df-1 text-muted ml-2"><i
-                                                        class="lni lni-timer mr-1"></i>{{ $value->end_job_time }}
+                                                {{-- <div>
+                                                    <p class="font-sm color-text-paragraph mt-15">
+                                                        {!! $value->describe !!}</p>
+                                                </div> --}}
+
+                                                <div class="card-2-bottom mt-30">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-lg-6 col-7">
+                                                            <span
+                                                                class="card-text-price">{{ $value->getwage->name }}</span>
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-5 text-end">
+                                                            <a class="btn btn-apply-now" href="">Apply
+                                                                now</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
+
+
+
                             </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <br>
-                                    <br>
-                                    <br>
-                                    <br>
-                                    <span class="page-item text-center pagination-container">
-                                        <div id="pagination-numbers2">
-                                        </div>
-                                    </span>
-                                </div>
-                            </div>
+                            <!--row job_listings-->
                         </div>
+                        <!--col-lg-9-->
                     </div>
+
                     <!-- All jobs -->
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12"> <br><br>
@@ -307,5 +312,4 @@
         <!-- ============================ Main Section End ================================== -->
         <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
     </div>
-
 @endsection
