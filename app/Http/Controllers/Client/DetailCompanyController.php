@@ -116,6 +116,6 @@ class DetailCompanyController extends Controller
             ->where('company.id', $id)
             ->with(['getWage', 'getlocation', 'getMajors'])
             ->get();
-        return view('client.blog.index', ['company' => Company::where('id', $id)->first(), 'job' => $jobCompany, 'majors' => Majors::all()]);
+        return view('client.company.index', ['company' => Company::where('id', $id)->first(), 'job' => $jobCompany, 'majors' => Majors::all()]);
     }
 }

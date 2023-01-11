@@ -607,7 +607,7 @@
                                                             <div class="card-grid-2 grid-bd-16 hover-up">
                                                                 <div class="card-block-info pt-25">
                                                                     <h6><a
-                                                                            href="home/detail/{{ $item->title . '-' . $item->id }}l">{{ $item->title }}</a>
+                                                                            href="home/detail/{{ $item->title . '-' . $item->id }}">{{ $item->title }}</a>
                                                                     </h6>
                                                                     <div class="d-flex flex-wrap gap-15 mt-5">
                                                                         <span><i class="fi-rr-briefcase ms-0 me-5"></i>Full

@@ -33,6 +33,7 @@ class Job extends Authenticatable
         'employer_id',
         'status',
         'expired',
+        
     ];
     protected $appends = [
         'convert_date',
