@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers\Employer;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
+use App\Models\Majors;
 use Illuminate\Http\Request;
 
-class ViewProfileController extends Controller
+class ViewProfileController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public Majors $majors;
+    public function __construct(Majors $majors)
+    {
+        $this->majors = $majors;
+    }
     public function index()
     {
         $breadcrumbs = [
@@ -23,6 +30,7 @@ class ViewProfileController extends Controller
 
             'title' => 'NTD xem hồ sơ',
             'breadcrumbs' => $breadcrumbs,
+            'majors' => $this->getmajors(),
         ]);
     }
 

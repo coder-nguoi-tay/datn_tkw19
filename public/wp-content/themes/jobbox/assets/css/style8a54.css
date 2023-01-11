@@ -142,7 +142,7 @@ p {
 }
 
 ::selection {
-  background: var(--jobbox-color-brand);
+  background: blue;
   /* WebKit/Blink Browsers */
   color: #fff;
 }
