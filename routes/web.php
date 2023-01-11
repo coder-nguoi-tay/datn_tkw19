@@ -64,7 +64,7 @@ Route::resource('forgotPasswordSuccess', forgotPasswordSuccessController::class)
 Route::middleware('user')->name('employer.')->prefix('employer')->group(function () {
     // Route::resource('', HomeEmployerController::class);
     Route::get('logout', [HomeEmployerController::class, 'logout'])->name('logout');
-    Route::get('', [HomeEmployerController::class, 'index'])->name('index');
+    Route::get('dashboard', [HomeEmployerController::class, 'index'])->name('index');
 
     // Route::resource('new', NewEmployerController::class);
     Route::post('new/store', [NewEmployerController::class, 'store'])->name('new.store');
@@ -110,7 +110,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
 
     //profile
     Route::get('history', [EmployerProfileController::class, 'historyPay'])->name('profile.history');
-    Route::get('profile-employer', [EmployerProfileController::class, 'profileEmployer'])->name('employer.profileEmployer');
+    Route::get('company', [EmployerProfileController::class, 'profileEmployer'])->name('employer.profileEmployer');
     Route::get('business-license', [EmployerProfileController::class, 'businessLicense'])->name('employer.businessLicense');
     Route::resource('profile', EmployerProfileController::class);
     Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');

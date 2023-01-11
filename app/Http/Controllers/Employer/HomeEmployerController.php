@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AccountPayment;
 use App\Models\Employer;
 use App\Models\Job;
+use App\Models\Jobseeker;
 use App\Models\location;
 use App\Models\PaymentHistoryEmployer;
 use App\Models\ProfileUserCv;
@@ -31,7 +32,8 @@ class HomeEmployerController extends BaseController
     public Job $job;
     public SaveCv $savecv;
     public ProfileUserCv $profileCv;
-    public function __construct(ProfileUserCv $profileCv, location $location, Employer $employer, User $user, Job $job, SaveCv $savecv)
+    public Jobseeker $jobseeker;
+    public function __construct(ProfileUserCv $profileCv, location $location, Employer $employer, User $user, Job $job, SaveCv $savecv, Jobseeker $jobseeker)
     {
         $this->location = $location;
         $this->employer = $employer;
@@ -39,6 +41,7 @@ class HomeEmployerController extends BaseController
         $this->job = $job;
         $this->savecv = $savecv;
         $this->profileCv = $profileCv;
+        $this->jobseeker = $jobseeker;
     }
     public function index(Request $request)
     {
@@ -90,6 +93,7 @@ class HomeEmployerController extends BaseController
             'totalMonnyMouth10' => $this->getDataYear(10),
             'totalMonnyMouth11' => $this->getDataYear(11),
             'totalMonnyMouth12' => $this->getDataYear(12),
+            'totalcv' => $totalcv,
         ]);
     }
 

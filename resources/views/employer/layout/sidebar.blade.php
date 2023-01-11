@@ -10,12 +10,12 @@
         </div><!-- end humburger-menu -->
         <div class="side-menu-wrap">
             <ul class="side-menu-ul">
-                <li class="{{ request()->is('*employer.index*') ? 'active' : '' }}"><a
-                        href="{{ route('employer.index') }}"><i class="fas fa-chart-line icon-element"></i>
+                <li class="{{ request()->is('*dashboard*') ? 'active' : '' }}"><a href="/employer/dashboard"><i
+                            class="fas fa-chart-line icon-element"></i>
                         Thống kê</a></li>
 
-                <li class="{{ request()->is('*package*') ? 'active' : '' }}"><a
-                        href="{{ route('employer.package.index') }}"><i class="fas fa-box-open icon-element"></i>
+                <li class="{{ request()->is('*package*') ? 'active' : '' }}"><a href="/employer/package"><i
+                            class="fas fa-box-open icon-element"></i>
                         Gói cước</a>
                 </li>
                 <li class="{{ request()->is('*quan-ly-cv*') ? 'active' : '' }}"><a
@@ -30,7 +30,7 @@
                 <li class="{{ request()->is('*tim-kiem-cv*') ? 'active' : '' }}"><a
                         href="{{ route('employer.tim-kiem-cv.index') }}"><i class="fas fa-search icon-element"></i></i>
                         Tìm kiếm
-                        hồ sơ</a>
+                        ứng viên</a>
                 </li>
                 <li class="{{ request()->is('*new*') ? 'active' : '' }}">
                     <a href="{{ route('employer.new.index') }}"><i class="fas fa-upload icon-element"></i> Đăng tin</a>
@@ -56,8 +56,8 @@
                         sử
                         giao dịch</a>
                 </li>
-                <li class="{{ request()->is('*profile-employer*') ? 'active' : '' }}"><a
-                        href="/employer/profile-employer"><i class="fas fa-building icon-element"></i>
+                <li class="{{ request()->is('*company*') ? 'active' : '' }}"><a href="/employer/company"><i
+                            class="fas fa-building icon-element"></i>
                         Công ty</a>
                 </li>
                 <li class="{{ request()->is('*change-password*') ? 'active' : '' }}"><a
