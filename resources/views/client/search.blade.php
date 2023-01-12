@@ -26,13 +26,13 @@
                         </div>
                     </div>
                 </section>
-                
+
             </div>
             <div class="ht-30"></div>
         </div>
         <!-- ======================= Top Breadcrubms ======================== -->
-        <div class="container-xxl pt-4 pb-4">
-            <div class="col-lg-12 ">
+        <div class="container-xxl  pt-2">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <home-search
                     :data="{{ json_encode([
                         'lever' => $lever,
@@ -53,8 +53,13 @@
         </div>
 
         <section>
-            <div class="container-xxl pt-2">
-                <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="container-xxl pt-2"
+                style=" background: #ffffff; box-shadow: var(--jobbox-box-shadow-1); border-radius: 8px;">
+                <div class="col-lg-12 col-md-12 col-sm-12 pl-15 pt-4">
+
+                    <div class="elementor-widget-container">
+                        <h2 class="control-heading-title m-0">Việc làm tìm thấy</h2>
+                    </div>
 
                     <div class="row flex-row-reverse ">
                         <div class="col-lg-12">
@@ -144,7 +149,8 @@
             </div>
         </section>
         <section style="margin-top: 30px">
-            <div class="container-xxl pt-2 " style="background: #adb5bd0a; border-radius: 20px">
+            <div class="container-xxl pt-2 "
+                style=" background: #ffffff; box-shadow: var(--jobbox-box-shadow-1); border-radius: 8px;">
                 <div class="col-lg-12 col-md-12 col-sm-12 pl-15 pt-4">
                     <div class="elementor-element elementor-element-ed0a5e5 m-0 elementor-widget elementor-widget-title"
                         data-id="ed0a5e5" data-element_type="widget" data-widget_type="title.default">
