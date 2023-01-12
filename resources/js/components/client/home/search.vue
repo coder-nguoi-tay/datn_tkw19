@@ -177,7 +177,6 @@ export default {
 <style lang="scss">
 .custom-input {
   border-radius: 5px !important;
-  display: flex;
 }
 
 .gap_row_form {
