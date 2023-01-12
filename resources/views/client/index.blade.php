@@ -715,7 +715,7 @@
                                            overflow: hidden;
                                            text-overflow: ellipsis;
                                             ">
-                                            <p>{{ $item->describe }}</p>
+                                            <p>{!! $item->describe !!}</p>
                                         </div>
                                         </p>
                                         <p></p>

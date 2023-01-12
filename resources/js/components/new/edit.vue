@@ -40,16 +40,10 @@
           <ErrorMessage class="error" name="new_image" />
         </div>
         <div class="col">
-          <label class="form-label">Mô tả</label>
-          <textarea
-            type="text"
-            name="describe"
-            rules="required"
-            v-model="model.describe"
-            class="form-control"
-            cols="30"
-            rows="10"
-          ></textarea>
+          <div>
+            <Editor v-model="model.describe" name="describe" />
+          </div>
+
           <ErrorMessage class="error" name="describe" />
         </div>
         <div class="mb-4">
@@ -100,6 +94,7 @@ import {
   defineRule,
   configure
 } from 'vee-validate'
+import Editor from '@tinymce/tinymce-vue'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 export default {
@@ -113,7 +108,8 @@ export default {
   components: {
     VeeForm,
     Field,
-    ErrorMessage
+    ErrorMessage,
+    Editor
   },
   props: ['data'],
   data: function() {

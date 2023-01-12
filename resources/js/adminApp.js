@@ -2,6 +2,7 @@ import './bootstrap';
 import { configure, defineRule } from 'vee-validate'
 import { createApp } from 'vue';
 import CoreuiVue from "@coreui/vue";
+import $ from "jquery";
 defineRule('password_rule', (value) => {
     return /^[A-Za-z0-9]*$/i.test(value)
 })
@@ -24,7 +25,7 @@ defineRule('telephone', (value) => {
         /^0(\d{2}-\d{3}-\d{4})+$/i.test(value.trim()) ||
         /^0(\d{9,10})+$/i.test(value.trim())
     )
-})
+});
 $(document).ready(function () {
     $('ul li a').click(function () {
         $('li a').removeClass("active");
