@@ -138,19 +138,10 @@ class HomeController extends BaseController
         $new = News::select('id', 'title', 'profession_id', 'new_image', 'describe', 'majors', 'created_at')->paginate(3);
 
 
-
         return view('client.index', [
             'majors' => $majors,
             'title' => 'Tuyển dung, tìm việc làm nhanh 24h',
-            'profestion' => $this->getprofession(),
-            'lever' => $this->getlever(),
-            'experience' => $this->getexperience(),
-            'wage' => $this->getwage(),
-            'skill' => $this->getskill(),
-            'timework' => $this->gettimework(),
-            'profession' => $this->getprofession(),
             'majors' => $this->majors->get(),
-            'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
             'user' => $user ?? '',
             'getskill' => $getskill ?? '',
