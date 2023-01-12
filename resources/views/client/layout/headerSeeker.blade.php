@@ -26,9 +26,9 @@
                                         <a href="{{ route('home.search') }}">Việc làm </a>
 
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <a href="{{ route('company') }}">Công ty</a>
-                                    </li>
+                                    </li> --}}
                                     <li>
                                         <a href="#">Tin tức </a>
 

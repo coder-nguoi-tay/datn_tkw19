@@ -154,12 +154,18 @@ Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 's
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
 Route::get('tim-viec-lam', [SearchController::class, 'create'])->name('home.search');
 //trang giới thiệu các công ty
-Route::get('News', [NewsController::class, 'index'])->name('company');
-Route::get('detail-company/{id}', [DetailCompanyController::class, 'detailCompany'])->name('detail.company');
+Route::get(
+    'detail-company/{id}',
+    [DetailCompanyController::class, 'detailCompany']
+)->name('detail.company');
+
+
+Route::get('blog', [NewsController::class, 'index'])->name('blog');
+Route::get('detail-blog/{id}', [NewsController::class, 'ShowBlog'])->name('detail.blog');
 // Route::get('detailNew/{id}', [NewsController::class, 'showTinTuc'])->name('detailNew');
 //
 Route::get('majors/{id}', [ClientHomeController::class, 'searchMajors'])->name('searchMajors');
 Route::get('error-404', [HomeController::class, 'error'])->name('error404');
-Route::get('deailTin-tuc/{id}', [ClientHomeController::class, 'detailTinTuc'])->name('detailTin-tuc');
+
 Route::get('test', [ClientHomeController::class, 'test'])->name('test');
 Route::get('test1', [ClientHomeController::class, 'test1'])->name('test1');

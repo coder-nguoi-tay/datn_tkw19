@@ -73,7 +73,8 @@
                                                     <tr>
                                                         <td>
                                                             <div class="manage-candidate-wrap">
-                                                                <h2 class="widget-title pb-1"><a href="job-details.html"
+                                                                <h2 class="widget-title pb-1"><a
+                                                                        href="{{ route('employer.new.edit', $item->id) }}"
                                                                         class="color-text-2">{{ $item->title }}</a></h2>
                                                                 <p>
                                                                     @if (Carbon::parse(Carbon::now())->format('d') > Carbon::parse($item->end_job_time)->format('d'))

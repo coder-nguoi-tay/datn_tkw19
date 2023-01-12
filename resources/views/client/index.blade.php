@@ -1,6 +1,7 @@
 @php
     use Carbon\Carbon;
 @endphp
+
 @extends('client.layout.index')
 @section('client')
     <main class="main">
@@ -606,7 +607,7 @@
                                                             <div class="card-grid-2 grid-bd-16 hover-up">
                                                                 <div class="card-block-info pt-25">
                                                                     <h6><a
-                                                                            href="home/detail/{{ $item->title . '-' . $item->id }}l">{{ $item->title }}</a>
+                                                                            href="home/detail/{{ $item->title . '-' . $item->id }}">{{ $item->title }}</a>
                                                                     </h6>
                                                                     <div class="d-flex flex-wrap gap-15 mt-5">
                                                                         <span><i class="fi-rr-briefcase ms-0 me-5"></i>Full
@@ -684,7 +685,7 @@
                                 <div
                                     class="card-grid-3 hover-up post-28 post type-post status-publish format-standard has-post-thumbnail hentry category-events tag-beauty tag-nature tag-travel-tips ">
                                     <div class="text-center card-grid-3-image">
-                                        <a href="#">
+                                        <a href="{{ route('detail.blog', $item->id) }}">
                                             <figure><img
                                                     style="width:403px !important; height:257px !important; object-fit: cover; "
                                                     src="{{ $item->new_image }}" class=" img-fluid wp-post-image"
@@ -698,11 +699,14 @@
                                             {{ $item->majors }}
                                         </p>
 
-                                        <h5 style="
+                                        <h5
+                                            style="
                                            max-height: 25px;
                                            overflow: hidden;
                                            text-overflow: ellipsis;
-                                            "><a href="#">{{ $item->title }}</a></h5>
+                                            ">
+                                            <a href="#">{{ $item->title }}</a>
+                                        </h5>
                                         <p class="mt-10 color-text-paragraph font-sm"></p>
                                         <p>
                                         <div class="blg_desc  "
@@ -725,8 +729,8 @@
                                                             class="avatar avatar-64 photo img-rounded" height="35"
                                                             width="35" loading="lazy" decoding="async">
                                                         <div class="info-right-img d-grid">
-                                                            <span class="font-sm font-bold color-brand-1 op-70">Azumi
-                                                                Rose</span>
+                                                            <span
+                                                                class="font-sm font-bold color-brand-1 op-70">Admin</span>
                                                             <span
                                                                 class="font-xs color-text-paragraph-2">{{ $item->created_at->format('m-d-Y') }}</span>
                                                         </div>

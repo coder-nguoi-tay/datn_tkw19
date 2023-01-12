@@ -173,32 +173,7 @@
                             <li
                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-menu-ancestor current-menu-parent menu-item-has-children menu-item-93 has-children">
                                 <a href="../index.html" class="active">Home</a>
-                                <ul class="sub-menu">
-                                    <li
-                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1348">
-                                        <a href="../index.html">Home 1</a>
-                                    </li>
-                                    <li
-                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1347">
-                                        <a href="../home-2/index.html">Home 2</a>
-                                    </li>
-                                    <li
-                                        class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1341 current_page_item menu-item-1346">
-                                        <a href="index.html" aria-current="page" class="active">Home 3</a>
-                                    </li>
-                                    <li
-                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1368">
-                                        <a href="../home-4/index.html">Home 4</a>
-                                    </li>
-                                    <li
-                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1409">
-                                        <a href="../home-5/index.html">Home 5</a>
-                                    </li>
-                                    <li
-                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1408">
-                                        <a href="../home-6/index.html">Home 6</a>
-                                    </li>
-                                </ul>
+
                             </li>
                             <li
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-145 has-children">
@@ -258,16 +233,16 @@
                             </li>
                             <li
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-96 has-children">
-                                <a href="../blog/index.html">Blog</a>
-                                <ul class="sub-menu">
+                                <a href="{{ route('blog') }}">Blog</a>
+                                {{-- <ul class="sub-menu">
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-851">
-                                        <a href="../blog/index.html">Blog Grid</a>
+                                        <a href="">Blog Grid</a>
                                     </li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-850">
                                         <a href="../how-to-write-an-application-letter-with-examples-2/index.html">Blog
                                             Single</a>
                                     </li>
-                                </ul>
+                                </ul> --}}
                             </li>
                             <li
                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-123 has-children">

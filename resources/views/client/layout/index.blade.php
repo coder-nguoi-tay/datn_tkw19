@@ -125,6 +125,21 @@
             JSON_UNESCAPED_UNICODE,
         ) !!};
     </script>
+    {{-- <style>
+        .sticky-bar.stick {
+            -webkit-animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
+            animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
+            box-shadow: 0 8px 20px 0 rgb(0 0 0 / 5%);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            left: 0;
+            transition: all 0.3s ease 0s;
+            border-bottom: 1px solid var(--jobbox-border-color);
+            background: #fff;
+        }
+    </style> --}}
 
 </head>
 

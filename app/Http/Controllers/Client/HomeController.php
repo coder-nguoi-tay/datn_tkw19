@@ -135,7 +135,9 @@ class HomeController extends BaseController
             }
         }
         $majors = Majors::with('majors')->get();
-        $new = News::select('title', 'profession_id', 'new_image', 'describe', 'majors', 'created_at')->paginate(3);
+        $new = News::select('id', 'title', 'profession_id', 'new_image', 'describe', 'majors', 'created_at')->paginate(3);
+
+
 
         return view('client.index', [
             'majors' => $majors,
@@ -421,15 +423,15 @@ class HomeController extends BaseController
         $this->setFlash(__('Hãy chờ phản hồi của nhà tuyển dụng'));
         return redirect()->back();
     }
-    public function detailTinTuc($id)
-    {
-        $TinTuc = News::find($id);
-        // dd($TinTuc);
-        return view('client.Tin-tuc.index', [
-            'tinTuc' => $TinTuc,
-            'majors' => Majors::all()
-        ]);
-    }
+    // public function detailTinTuc($id)
+    // {
+    //     $TinTuc = News::find($id);
+    //     // dd($TinTuc);
+    //     return view('client.Tin-tuc.index', [
+    //         'tinTuc' => $TinTuc,
+    //         'majors' => Majors::all()
+    //     ]);
+    // }
     public function test()
     {
         return view('test');
