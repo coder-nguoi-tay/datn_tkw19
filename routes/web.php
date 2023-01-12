@@ -64,7 +64,7 @@ Route::resource('forgotPasswordSuccess', forgotPasswordSuccessController::class)
 Route::middleware('user')->name('employer.')->prefix('employer')->group(function () {
     // Route::resource('', HomeEmployerController::class);
     Route::get('logout', [HomeEmployerController::class, 'logout'])->name('logout');
-    Route::get('', [HomeEmployerController::class, 'index'])->name('index');
+    Route::get('dashboard', [HomeEmployerController::class, 'index'])->name('index');
 
     // Route::resource('new', NewEmployerController::class);
     Route::post('new/store', [NewEmployerController::class, 'store'])->name('new.store');
@@ -110,7 +110,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
 
     //profile
     Route::get('history', [EmployerProfileController::class, 'historyPay'])->name('profile.history');
-    Route::get('profile-employer', [EmployerProfileController::class, 'profileEmployer'])->name('employer.profileEmployer');
+    Route::get('company', [EmployerProfileController::class, 'profileEmployer'])->name('employer.profileEmployer');
     Route::get('business-license', [EmployerProfileController::class, 'businessLicense'])->name('employer.businessLicense');
     Route::resource('profile', EmployerProfileController::class);
     Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');
@@ -154,12 +154,18 @@ Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 's
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
 Route::get('tim-viec-lam', [SearchController::class, 'create'])->name('home.search');
 //trang giới thiệu các công ty
-Route::get('News', [NewsController::class, 'index'])->name('company');
-Route::get('detail-company/{id}', [DetailCompanyController::class, 'detailCompany'])->name('detail.company');
+Route::get(
+    'detail-company/{id}',
+    [DetailCompanyController::class, 'detailCompany']
+)->name('detail.company');
+
+
+Route::get('blog', [NewsController::class, 'index'])->name('blog');
+Route::get('detail-blog/{id}', [NewsController::class, 'ShowBlog'])->name('detail.blog');
 // Route::get('detailNew/{id}', [NewsController::class, 'showTinTuc'])->name('detailNew');
 //
 Route::get('majors/{id}', [ClientHomeController::class, 'searchMajors'])->name('searchMajors');
 Route::get('error-404', [HomeController::class, 'error'])->name('error404');
-Route::get('deailTin-tuc/{id}', [ClientHomeController::class, 'detailTinTuc'])->name('detailTin-tuc');
+
 Route::get('test', [ClientHomeController::class, 'test'])->name('test');
 Route::get('test1', [ClientHomeController::class, 'test1'])->name('test1');

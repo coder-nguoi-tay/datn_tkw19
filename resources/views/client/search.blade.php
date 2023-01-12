@@ -26,30 +26,7 @@
                         </div>
                     </div>
                 </section>
-                {{-- <div class="row">
-                    <div class="colxl-12 col-lg-12 col-md-12">
-                        <h1 class="ft-medium">Việc làm đã tìm thấy</h1>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('index') }}" class="text-light">Home</a>
-                                </li>
-                                @if (isset($breadcrumbs))
-                                    @foreach ($breadcrumbs as $key => $breadcrumb)
-                                        @if ($key != count($breadcrumbs) - 1)
-                                            <li class="breadcrumb-item">
-                                            <li class="breadcrumb-item"><a href="{{ $breadcrumb['url'] }}"
-                                                    class="text-light">{{ $breadcrumb['name'] }}</a></li>
-                                            </li>
-                                        @else
-                                            <li class="breadcrumb-item active theme-cl" aria-current="page">
-                                                {{ $breadcrumb }}</li>
-                                        @endif
-                                    @endforeach
-                                @endif
-                            </ol>
-                        </nav>
-                    </div>
-                </div> --}}
+                
             </div>
             <div class="ht-30"></div>
         </div>
@@ -79,16 +56,6 @@
             <div class="container-xxl pt-2">
                 <div class="col-lg-12 col-md-12 col-sm-12">
 
-                    {{-- <div class="row align-items-center bg-secondary"
-                        style="border-top-left-radius: 30px; border-bottom-right-radius: 30px;">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                            <div class="row align-items-center justify-content-between mx-0 rounded p-3">
-                                <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
-                                    <h6 class="mb-0 ft-medium fs-sm">{{ count($job) }} Công việc được tìm thấy</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="row flex-row-reverse ">
                         <div class="col-lg-12">
                             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-30" id="paginated-list1">

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\JobStatus;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -32,6 +33,10 @@ class Job extends Authenticatable
         'employer_id',
         'status',
         'expired',
+        
+    ];
+    protected $appends = [
+        'convert_date',
     ];
     public function getLevel()
     {
@@ -76,5 +81,9 @@ class Job extends Authenticatable
     public function AllCv()
     {
         return $this->hasMany(SaveCv::class, 'id_job', 'id');
+    }
+    public function getConvertDateAttribute()
+    {
+        return date("d", Carbon::parse($this->end_job_time)->diffInRealMilliseconds(Carbon::parse(Carbon::now())) / 1000);
     }
 }
