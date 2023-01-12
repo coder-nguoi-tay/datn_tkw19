@@ -658,7 +658,7 @@
                                 <div
                                     class="card-grid-3 hover-up post-28 post type-post status-publish format-standard has-post-thumbnail hentry category-events tag-beauty tag-nature tag-travel-tips ">
                                     <div class="text-center card-grid-3-image">
-                                        <a href="{{ route('detail.blog', $item->id) }}">
+                                        <a href="{{ route('detailNew', $item->id) }}">
                                             <figure><img
                                                     style="width:403px !important; height:257px !important; object-fit: cover; "
                                                     src="{{ $item->new_image }}" class=" img-fluid wp-post-image"
