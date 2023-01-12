@@ -190,7 +190,7 @@ export default {
   border-radius: 8px;
 
   width: 100%;
-  margin-left: 5px;
+  margin-left: 3px;
   padding: 10px 10px;
 }
 </style>
