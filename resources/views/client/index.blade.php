@@ -606,14 +606,23 @@
                                                         <div class="col">
                                                             <div class="card-grid-2 grid-bd-16 hover-up">
                                                                 <div class="card-block-info pt-25">
-                                                                    <h6><a
+                                                                    <h6
+                                                                        style="
+                                                                         -webkit-line-clamp: 1;
+                                                                         -webkit-box-orient: vertical;
+                                                                         overflow: hidden;
+                                                                         text-overflow: ellipsis;
+                                                                         display: -webkit-box;
+                                                                         ">
+                                                                        <a
                                                                             href="home/detail/{{ $item->title . '-' . $item->id }}">{{ $item->title }}</a>
                                                                     </h6>
                                                                     <div class="d-flex flex-wrap gap-15 mt-5">
-                                                                        <span><i class="fi-rr-briefcase ms-0 me-5"></i>Full
-                                                                            Time</span>
+                                                                        <span><i
+                                                                                class="fi-rr-briefcase ms-0 me-5"></i>{{ $item->getTime_work->name }}</span>
                                                                         <span><i class="fi-rr-clock ms-0 me-5"></i><time
-                                                                                datetime="2022-09-27">Posted 3 months
+                                                                                datetime="2022-09-27">Posted
+                                                                                {{ $item->convert_date }} months
                                                                                 ago</time></span>
                                                                     </div>
                                                                     <div class="mt-20 border-bottom pb-20">
@@ -641,7 +650,7 @@
                                                                                     <div class="info-right-img">
                                                                                         <h6
                                                                                             class="color-brand-1 lh-14 mb-0">
-                                                                                            Ashford</h6>
+                                                                                            CT</h6>
                                                                                         <span
                                                                                             class="card-location font-xxs pl-15 color-text-paragraph-2">France</span>
                                                                                     </div>
@@ -649,8 +658,7 @@
                                                                             </div>
                                                                             <div class="col-lg-4 col-md-4 text-end">
                                                                                 <span
-                                                                                    class="card-text-price">$500</span><span
-                                                                                    class="font-xs text-muted">/Hour</span>
+                                                                                    class="card-text-price">{{ $item->getwage->name }}</span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
