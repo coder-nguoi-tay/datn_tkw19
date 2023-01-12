@@ -24,12 +24,7 @@
                 </div><!-- end row -->
                 <profile-employer
                     :data="{{ json_encode([
-                        'email' => Auth::guard('user')->user()->email,
-                        'urlStore' => route('employer.new.store'),
-                    
-                        'urlAccuracyCompany' => route('employer.profile.ImageAccuracy'),
-                    
-                        // 'Company' => $Company,
+                        'Company' => $Company,
                         'urlStoreCompany' => route('employer.register-company.store'),
                     ]) }}">
                 </profile-employer>

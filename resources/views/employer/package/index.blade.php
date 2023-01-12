@@ -81,11 +81,12 @@
                                                                                     data-original-title="Xem chi tiết gói cước"></i></a>
                                                                         </li>
                                                                         @if ($item->status == 2)
-                                                                            <li>
+                                                                            <li class="d-inline-block">
                                                                                 <btn-payment-extend-employer
                                                                                     :message-confirm="{{ json_encode('Bạn có chắc muốn gia hạn với mức giá ' . number_format($item->price) . 'đ' . ' không ?') }}"
                                                                                     :delete-action="{{ json_encode(route('employer.package.updateTimePayment', $item->id)) }}"
-                                                                                    :price="{{ json_encode($item->price) }}">
+                                                                                    :price="{{ json_encode($item->price) }}"
+                                                                                    :acc-payment="{{ json_encode($accPayment) }}">
                                                                                 </btn-payment-extend-employer>
                                                                             </li>
                                                                         @endif

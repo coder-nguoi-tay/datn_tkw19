@@ -103,7 +103,7 @@
                             <div class="elementor-element elementor-element-ed0a5e5 m-0 elementor-widget elementor-widget-title"
                                 data-id="ed0a5e5" data-element_type="widget" data-widget_type="title.default">
                                 <div class="elementor-widget-container">
-                                    <h2 class="control-heading-title m-0">Công việc mới nhất</h2>
+                                    <h2 class="control-heading-title m-0">Tin tuyển dụng- việc làm tốt nhất</h2>
                                 </div>
                             </div>
                             <div class="elementor-element elementor-element-ce85727 m-0 elementor-widget elementor-widget-title"
@@ -123,7 +123,7 @@
                                                 aria-labelledby="tab-content-writer">
                                                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 text-start"
                                                     id="paginated-list">
-                                                    @foreach ($jobAttractive as $item)
+                                                    @foreach ($job as $item)
                                                         <div class="col render-job-search">
                                                             <div class="card-grid-2 grid-bd-16 hover-up">
                                                                 <div class="card-block-info pt-25">

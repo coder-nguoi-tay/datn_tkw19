@@ -118,7 +118,6 @@
                             </div>
                           </div>
                         </div>
-
                         <!-- end row -->
                       </div>
                     </div>
@@ -189,7 +188,7 @@ export default {
   },
   props: ['data'],
   created() {
-    console.log(this.data.employer)
+    console.log(this.data)
     if (this.data.Company) {
       this.dataCompany = this.data.Company
     }

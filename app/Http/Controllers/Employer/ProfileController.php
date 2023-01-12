@@ -37,11 +37,9 @@ class ProfileController extends BaseController
             'Cập nhật thông tin'
         ];
         $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->with('getUser')->first();
-        $Company = Company::where('id', $employer->id_company)->first();
         return view('employer.profile.index', [
             'title' => 'Cập nhật thông tin công ty',
             'employer' => $employer,
-            'Company' => $Company,
             'breadcrumbs' => $breadcrumbs,
         ]);
     }
@@ -307,7 +305,7 @@ class ProfileController extends BaseController
             return redirect()->route('employer.change-password');
         } catch (\Throwable $th) {
             DB::rollBack();
-            $this->setFlash(_('Đã có một lỗi xảy ra'));
+            $this->setFlash(_('Đã có một lỗi xảy ra'), 'error');
             return redirect()->route('employer.change-password');
         }
     }
@@ -348,9 +346,12 @@ class ProfileController extends BaseController
         $breadcrumbs = [
             'Cập nhật thông tin công ty'
         ];
+        $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->with('getUser')->first();
+        $Company = Company::where('id', $employer->id_company)->first();
         return view('employer.profile.profile-employer', [
             'title' => 'Thông tin công ty',
             'breadcrumbs' => $breadcrumbs,
+            'Company' => $Company,
         ]);
     }
     public function businessLicense()
