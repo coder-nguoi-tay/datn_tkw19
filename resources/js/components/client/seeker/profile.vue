@@ -642,7 +642,7 @@ export default {
     object-fit: cover
     max-width: 250px
     width: 250px
-    margin-left: 3%
+    margin-left: 6%
 
   img
     vertical-align: middle

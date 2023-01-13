@@ -14,6 +14,7 @@ class NewsController extends Controller
     public function index()
     {
         $News = News::select('id', 'title', 'new_image', 'describe', 'created_at', 'majors')->get();
+
         return view('client.blog.blog', [
             'company' => Company::all(),
             'news' => $News,

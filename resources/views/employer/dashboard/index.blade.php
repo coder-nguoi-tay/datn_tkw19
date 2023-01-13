@@ -2,7 +2,7 @@
 @section('content')
     <section class="dashboard-area">
         <div class="dashboard-content-wrap">
-            <div class="container-fluid">
+            <div class="container-fluid ">
 
                 <div class="row">
                     <div class="col-lg-3 col-6">
@@ -61,7 +61,7 @@
                     </div>
                     <!-- ./col -->
                 </div>
-                
+
                 <widgets
                     :data="{{ json_encode([
                         'countCvMoth1' => $countCvMoth1,

@@ -5,9 +5,15 @@
         <div class="box_img">
           <img
             class="custom-image-cv"
+            style="
+              width: 340px;
+              height: 300px;
+              padding-top: 10px !important;
+              object-fit: cover;
+            "
             :src="'http://127.0.0.1:8000/' + data.cv.images"
             alt=""
-            style="width: 100%"
+            
           />
         </div>
         <div class="box-content">
