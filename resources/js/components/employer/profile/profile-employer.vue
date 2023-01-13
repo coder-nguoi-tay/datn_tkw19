@@ -132,7 +132,7 @@
                                   placeholder="Nhập mô tả công ty"
                                   name="desceibe"
                                   class="ckedit"
-                                  v-model="model.desceibe"
+                                  v-model="dataCompany.desceibe"
                                   id="desceibe"
                                   rules="required|max:255"
                                 />
@@ -146,7 +146,7 @@
                               <div>
                                 <Field
                                   type="file"
-                                  v-model="model.logo"
+                                  v-model="dataCompany.logo"
                                   name="logo"
                                   id="logo"
                                   class="form-control"
@@ -159,7 +159,7 @@
                               <input
                                 type="hidden"
                                 name="logo"
-                                v-model="model.logo"
+                                v-model="dataCompany.logo"
                               />
                               <img
                                 :src="
@@ -171,21 +171,6 @@
                               />
                             </div>
                             <div class="col-md-12">
-                              <button
-                                type="button"
-                                class="
-                                  btn
-                                  min-width
-                                  btn
-                                  min-width
-                                  btn btn-secondary
-                                  mr-2
-                                  btn-lg
-                                "
-                              >
-                                <!---->
-                                Hủy
-                              </button>
                               <button
                                 type="submit"
                                 class="btn min-width btn btn-primary btn-lg"
@@ -240,32 +225,15 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: this.data.Company ?? '',
-      employer: this.data.employer,
-      preview: null,
-      image: null,
-      preview_list: [],
-      image_list: [],
-      filePreview: '',
-      Image: null,
-      statusImage: '',
       dataCompany: ''
     }
   },
   props: ['data'],
   created() {
-    console.log(this.data.employer)
     if (this.data.Company) {
       this.dataCompany = this.data.Company
     }
-    if (this.data.accuracy) {
-      this.Image = this.data.accuracy.images
-      if (this.data.accuracy.status == 0) {
-        this.statusImage = 0
-      } else {
-        this.statusImage = 1
-      }
-    }
+
     let messError = {
       en: {
         fields: {
@@ -330,23 +298,6 @@ export default {
     ErrorMessage
   },
   methods: {
-    moment: function () {
-      return moment()
-    },
-    chooseImage() {
-      this.$refs['fileInput'].click()
-    },
-    onChange(e) {
-      let fileInput = this.$refs.fileInput
-      let imgFile = fileInput.files
-      if (imgFile && imgFile[0]) {
-        let reader = new FileReader()
-        reader.onload = (e) => {
-          this.filePreview = e.target.result
-        }
-        reader.readAsDataURL(imgFile[0])
-      }
-    },
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0]
       this.$el.querySelector('input[name=' + firstInputError + ']').focus()
@@ -359,17 +310,6 @@ export default {
     },
     onSubmit() {
       this.$refs.formData.submit()
-    },
-    previewImage: function (event) {
-      var input = event.target
-      if (input.files) {
-        var reader = new FileReader()
-        reader.onload = (e) => {
-          this.preview = e.target.result
-        }
-        this.image = input.files[0]
-        reader.readAsDataURL(input.files[0])
-      }
     }
   }
 }

@@ -55,6 +55,7 @@ class PackageController extends BaseController
             })
             ->get();
         $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
+
         $package = jobAttractive::select('*')->whereNotIn('id', $pachageForEmployer->pluck('package_id'))->get();
 
         $checkPackage = packageofferbought::where('company_id', Auth::guard('user')->user()->id)
@@ -164,6 +165,7 @@ class PackageController extends BaseController
                 $paymentHistory->price = $request['price'];
                 $paymentHistory->desceibe = 'Gia hạn gói cước VIP ' . $payment->lever;
                 $paymentHistory->form = '';
+                $paymentHistory->status = 1;
                 $paymentHistory->save();
                 //
                 $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();

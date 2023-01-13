@@ -110,21 +110,6 @@
                             </div>
                           </div>
                           <div class="col-md-12">
-                            <button
-                              type="button"
-                              class="
-                                btn
-                                min-width
-                                btn
-                                min-width
-                                btn btn-secondary
-                                mr-2
-                                btn-lg
-                              "
-                            >
-                              <!---->
-                              Hủy
-                            </button>
                             <input type="hidden" name="redirect" id="" />
                             <button
                               type="submit"
@@ -192,9 +177,11 @@ export default {
           bank: {
             required: 'Vui lòng chọn ngân hàng thanh toán.'
           },
-
           pay_member: {
             required: 'Vui lòng nhập số tiền muốn nạp .'
+          },
+          desceibe: {
+            required: 'Vui lòng nhập mô tả .'
           }
         }
       }
@@ -277,7 +264,6 @@ a {
 }
 .btn-primary {
   color: #fff;
-  
 }
 .btn-group-lg > .min-width.btn,
 .min-width.btn-lg {

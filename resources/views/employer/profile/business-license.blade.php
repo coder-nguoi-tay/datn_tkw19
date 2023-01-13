@@ -25,8 +25,8 @@
                 <business-license
                     :data="{{ json_encode([
                         'email' => Auth::guard('user')->user()->email,
-                    
                         'urlAccuracyCompany' => route('employer.profile.ImageAccuracy'),
+                        'accuracy' => $accuracy,
                     ]) }}">
                 </business-license>
             </div><!-- end container-fluid -->

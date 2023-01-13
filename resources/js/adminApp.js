@@ -25,7 +25,8 @@ defineRule('telephone', (value) => {
         /^0(\d{2}-\d{3}-\d{4})+$/i.test(value.trim()) ||
         /^0(\d{9,10})+$/i.test(value.trim())
     )
-});
+})
+import $ from "jquery";
 $(document).ready(function () {
     $('ul li a').click(function () {
         $('li a').removeClass("active");

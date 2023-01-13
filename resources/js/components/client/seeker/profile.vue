@@ -1,32 +1,76 @@
 <template>
   <section>
-    <div class="container">
+    <div class="container profile">
       <div class="row d-flex">
         <div class="col col-lg-12 mb-4 mb-lg-0">
           <div class="card mb-3" style="border-radius: 0.5rem">
-            <VeeForm as="div" v-slot="{ handleSubmit }" @invalid-submit="onInvalidSubmit">
-              <form @submit="handleSubmit($event, onSubmit)" ref="formData" enctype="multipart/form-data"
-                :action="data.urlStore" method="POST">
+            <VeeForm
+              as="div"
+              v-slot="{ handleSubmit }"
+              @invalid-submit="onInvalidSubmit"
+            >
+              <form
+                @submit="handleSubmit($event, onSubmit)"
+                ref="formData"
+                enctype="multipart/form-data"
+                :action="data.urlStore"
+                method="POST"
+              >
                 <Field type="hidden" :value="csrfToken" name="_token" />
                 <div class="row g-0">
-                  <div class="col-md-4 gradient-custom text-center text-white" style="
+                  <!-- <div
+                    class="col-md-4 gradient-custom text-center text-white"
+                    style="
                       border-top-left-radius: 0.5rem;
                       border-bottom-left-radius: 0.5rem;
-                    ">
-                    <div class="img-fluid" id="img-preview" @click="chooseImage()" role="button">
-                      <img v-if="Media === '' && checkImage == '' && !filePreview"
-                        src="https://i.pinimg.com/236x/15/46/2e/15462ed447e25356837b32a7e22e538f.jpg" alt="" />
+                    "
+                  >
+                    <div
+                      class="img-fluid"
+                      id="img-preview"
+                      @click="chooseImage()"
+                      role="button"
+                    >
+                      <img
+                        v-if="Media === '' && checkImage == '' && !filePreview"
+                        src="https://i.pinimg.com/236x/15/46/2e/15462ed447e25356837b32a7e22e538f.jpg"
+                        alt=""
+                      />
                       <div style="display: none">
-                        <input type="file" @change="onChange" ref="fileInput" accept="image/*" name="images" />
+                        <input
+                          type="file"
+                          @change="onChange"
+                          ref="fileInput"
+                          accept="image/*"
+                          name="images"
+                        />
                       </div>
-                      <img v-if="!filePreview && Media != ''" :src="Media" class="img-fluid my-4 p-4 rounded-9" />
+                      <img
+                        v-if="!filePreview && Media != ''"
+                        :src="Media"
+                        class="img-fluid my-4 p-4 rounded-9"
+                      />
 
-                      <div id="img-preview" @click="chooseImage()" role="button">
+                      <div
+                        id="img-preview"
+                        @click="chooseImage()"
+                        role="button"
+                      >
                         <div style="display: none">
-                          <input type="file" id="file" @change="onChange" ref="fileInput" accept="image/*"
-                            name="images" />
+                          <input
+                            type="file"
+                            id="file"
+                            @change="onChange"
+                            ref="fileInput"
+                            accept="image/*"
+                            name="images"
+                          />
                         </div>
-                        <img v-if="filePreview" :src="filePreview" class="img-fluid my-5 p-5" />
+                        <img
+                          v-if="filePreview"
+                          :src="filePreview"
+                          class="img-fluid my-5 p-5"
+                        />
                       </div>
                     </div>
                     <input type="hidden" name="images" v-model="model.images" />
@@ -37,46 +81,139 @@
                     <h5>{{ model.name }}</h5>
 
                     <i class="far fa-edit mb-5"></i>
+                  </div> -->
+                  <div class="col-sm-4" id="sidebar">
+                    <div class="box box-white text-center-sm">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="profile-avatar">
+                            <img
+                              src="https://toigingiuvedep.vn/wp-content/uploads/2021/01/hinh-anh-cute-de-thuong-600x600.jpg"
+                              alt=""
+                            />
+                          </div>
+                          <div class="text-center">
+                            <input
+                              type="file"
+                              name="avatar"
+                              style="display: none"
+                              id="img-avatar"
+                            />
+                            <a
+                              style="
+                                font-size: 11px;
+                                padding: 3px 5px;
+                                margin: 6px 0px;
+                                color: #777;
+                                font-style: italic;
+                              "
+                              id="btn-upload-avatar"
+                            >
+                              Cập nhật ảnh
+                            </a>
+                          </div>
+                        </div>
+                        <br />
+                        <div class="col-md-12">
+                          <h4 class="profile-fullname text-center">
+                            Nguyễn Văn Hùng PH 1 4 8 2 0
+                          </h4>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 15px">
+                        <input type="hidden" id="currentStatus" value="1" />
+                        <div id="on-off-job-waiting" class="on">
+                          <div class="col-xs-12">
+                            <Toggle
+                              name="status_profile"
+                              class="toggle-flag"
+                              on-label=""
+                              off-label=""
+                              id="status_profile"
+                            />
+                            <span class="">
+                              <strong>Trạng thái tìm việc </strong>
+                            </span>
+                          </div>
+
+                          <div class="col-xs-12">
+                            <p
+                              class="job-waiting-description text-gray"
+                              id="job-waiting-text"
+                            ></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-md-8">
+                  <!-- <div class="col-md-8">
                     <div class="card-body p-4">
                       <div class="row pt-1">
                         <div class="col-6 mb-3">
                           <h6>Name</h6>
-                          <Field type="text" class="form-control rounded" name="name" rules="required|max:255"
-                            v-model="model.name" />
+                          <Field
+                            type="text"
+                            class="form-control rounded"
+                            name="name"
+                            rules="required|max:255"
+                            v-model="model.name"
+                          />
                           <ErrorMessage class="error" name="name" />
                         </div>
                         <div class="col-6 mb-3">
                           <h6>Phone</h6>
-                          <Field type="text" class="form-control" v-model="valueSelect.phone" name="phone"
-                            rules="required|telephone" />
+                          <Field
+                            type="text"
+                            class="form-control"
+                            v-model="valueSelect.phone"
+                            name="phone"
+                            rules="required|telephone"
+                          />
                           <ErrorMessage class="error" name="phone" />
                         </div>
                       </div>
                       <div class="row pt-1">
                         <div class="col-6 mb-3">
                           <h6>Email</h6>
-                          <Field type="email" class="form-control" v-model="model.email" rules="required|email|max:255"
-                            name="email" />
+                          <Field
+                            type="email"
+                            class="form-control"
+                            v-model="model.email"
+                            rules="required|email|max:255"
+                            name="email"
+                          />
                           <ErrorMessage class="error" name="email" />
                         </div>
                         <div class="col-6 mb-3">
                           <h6>Địa chỉ</h6>
-                          <Field type="text" v-model="valueSelect.address" class="form-control" name="address"
-                            rules="required|max:255" />
+                          <Field
+                            type="text"
+                            v-model="valueSelect.address"
+                            class="form-control"
+                            name="address"
+                            rules="required|max:255"
+                          />
                           <ErrorMessage class="error" name="address" />
                         </div>
                       </div>
                       <div class="row pt-1">
                         <div class="col-6 mb-3">
                           <h6>Kinh Nghiệm</h6>
-                          <Field name="experience_id" as="select" v-model="valueSelect.experience_id" rules="required"
-                            class="form-control">
+                          <Field
+                            name="experience_id"
+                            as="select"
+                            v-model="valueSelect.experience_id"
+                            rules="required"
+                            class="form-control"
+                          >
                             <option value disabled selected>
                               Chọn Kinh Nghiệm
                             </option>
-                            <option v-for="item in data.experience" :key="item.id" :value="item.id">
+                            <option
+                              v-for="item in data.experience"
+                              :key="item.id"
+                              :value="item.id"
+                            >
                               {{ item.label }}
                             </option>
                           </Field>
@@ -84,10 +221,19 @@
                         </div>
                         <div class="col-6 mb-3">
                           <h6>Trình độ</h6>
-                          <Field name="lever_id" as="select" v-model="valueSelect.lever_id" rules="required"
-                            class="form-control">
+                          <Field
+                            name="lever_id"
+                            as="select"
+                            v-model="valueSelect.lever_id"
+                            rules="required"
+                            class="form-control"
+                          >
                             <option value disabled selected>Kinh Nghiệm</option>
-                            <option v-for="item in data.lever" :key="item.id" :value="item.id">
+                            <option
+                              v-for="item in data.lever"
+                              :key="item.id"
+                              :value="item.id"
+                            >
                               {{ item.label }}
                             </option>
                           </Field>
@@ -97,12 +243,21 @@
                       <div class="row pt-1">
                         <div class="col-6 mb-3">
                           <h6>Mức lương</h6>
-                          <Field name="wage_id" as="select" v-model="valueSelect.wage_id" rules="required"
-                            class="form-control">
+                          <Field
+                            name="wage_id"
+                            as="select"
+                            v-model="valueSelect.wage_id"
+                            rules="required"
+                            class="form-control"
+                          >
                             <option value disabled selected>
                               Chọn Mức Lương
                             </option>
-                            <option v-for="item in data.wage" :key="item.id" :value="item.id">
+                            <option
+                              v-for="item in data.wage"
+                              :key="item.id"
+                              :value="item.id"
+                            >
                               {{ item.label }}
                             </option>
                           </Field>
@@ -110,12 +265,21 @@
                         </div>
                         <div class="col-6 mb-3">
                           <h6>Ngành Nghề</h6>
-                          <Field name="profession_id" as="select" v-model="valueSelect.profession_id" rules="required"
-                            class="form-control">
+                          <Field
+                            name="profession_id"
+                            as="select"
+                            v-model="valueSelect.profession_id"
+                            rules="required"
+                            class="form-control"
+                          >
                             <option value disabled selected>
                               Chọn Ngành Nghề
                             </option>
-                            <option v-for="item in data.profession" :key="item.id" :value="item.id">
+                            <option
+                              v-for="item in data.profession"
+                              :key="item.id"
+                              :value="item.id"
+                            >
                               {{ item.label }}
                             </option>
                           </Field>
@@ -125,51 +289,123 @@
                       <div class="row pt-1">
                         <div class="col-6 mb-3">
                           <h6>Thời gian làm việc</h6>
-                          <Field name="time_work_id" as="select" v-model="valueSelect.time_work_id" rules="required"
-                            class="form-control">
+                          <Field
+                            name="time_work_id"
+                            as="select"
+                            v-model="valueSelect.time_work_id"
+                            rules="required"
+                            class="form-control"
+                          >
                             <option value disabled selected>
                               Chọn Thời Gian
                             </option>
-                            <option v-for="item in data.timework" :key="item.id" :value="item.id">
+                            <option
+                              v-for="item in data.timework"
+                              :key="item.id"
+                              :value="item.id"
+                            >
                               {{ item.label }}
                             </option>
                           </Field>
                           <ErrorMessage class="error" name="time_work_id" />
                         </div>
-                        <!-- /// -->
+                        
                         <div class="col-6 mb-3 column-lg-full">
                           <div class="input-box">
                             <label class="label-text">Kỹ năng</label>
-                            <div class="form-group user-chosen-select-container">
-                              <Field class="form-control" v-model="value" name="skill_id" rules="required">
-                                <Multiselect placeholder="Chọn Kỹ năng" v-model="value" mode="tags" :searchable="true"
-                                  :options="options" label="label" track-by="label" :infinite="true" :object="true"
-                                  :loading="isLoading" :internal-search="false" :clear-on-select="false"
-                                  :close-on-select="false" :options-limit="300" :limit="3" :limit-text="limitText"
-                                  :max-height="600" :show-no-results="false" :hide-selected="true"
-                                  @input="updateSelected" />
+                            <div
+                              class="form-group user-chosen-select-container"
+                            >
+                              <Field
+                                class="form-control"
+                                v-model="value"
+                                name="skill_id"
+                                rules="required"
+                              >
+                                <Multiselect
+                                  placeholder="Chọn Kỹ năng"
+                                  v-model="value"
+                                  mode="tags"
+                                  :searchable="true"
+                                  :options="options"
+                                  label="label"
+                                  track-by="label"
+                                  :infinite="true"
+                                  :object="true"
+                                  :loading="isLoading"
+                                  :internal-search="false"
+                                  :clear-on-select="false"
+                                  :close-on-select="false"
+                                  :options-limit="300"
+                                  :limit="3"
+                                  :limit-text="limitText"
+                                  :max-height="600"
+                                  :show-no-results="false"
+                                  :hide-selected="true"
+                                  @input="updateSelected"
+                                />
                               </Field>
                               <ErrorMessage class="error" name="skill_id" />
                             </div>
                           </div>
                         </div>
                       </div>
-                      <!-- skill -->
+         
                       <input type="hidden" name="skill[]" v-model="skill" />
                       <div class="col-xl-12 col-lg-12">
                         <div class="form-group">
-                          <button type="submit" class="
+                          <button
+                            type="submit"
+                            class="
                               btn btn-md
                               ft-medium
                               text-light
                               rounded
                               btn-primary
-                              
-                            ">
+                            "
+                          >
                             Cập nhật
                           </button>
                         </div>
                       </div>
+                    </div>
+                  </div> -->
+
+                  <div class="col-8">
+                    <div class="box-block">
+                      <div class="box-header">
+                        <h1 class="title">CV đã tạo trên TopCV</h1>
+                      </div>
+                      <div class="box-upload text-center">
+                        <p class="icon">
+                          <i class="fas fa-cloud-upload-alt"></i>
+                        </p>
+                        <div class="not-cv">
+                          <p>
+                            Kéo CV của bạn vào đây hoặc bấm để chọn file CV của
+                            bạn
+                          </p>
+                        </div>
+                        <Field
+                          type="file"
+                          name="file_cv"
+                          class="file-upload-cv"
+                          id="file-upload-cv"
+                          rules="required|mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx|max:2048"
+                        />
+                        <br />
+                        <ErrorMessage class="error" name="file_cv" />
+                      </div>
+                      <div class="file-format">
+                        <div>Files hỗ trợ: PDF, DOC, DOCX</div>
+                        <div>File tải lên không quá: 5 MB</div>
+                      </div>
+                      <button
+                        class="btn btn-info btn-create-cv"
+                        style="margin-top: 10px; margin-left: 45%"
+                      >
+                        Tải lên
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -192,6 +428,7 @@ import {
 import Multiselect from '@vueform/multiselect'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
+import Toggle from '@vueform/toggle'
 import $ from 'jquery'
 import axios from 'axios'
 import { Notyf } from 'notyf'
@@ -207,6 +444,7 @@ export default {
   components: {
     VeeForm,
     Field,
+    Toggle,
     ErrorMessage,
     Multiselect
   },
@@ -364,32 +602,88 @@ export default {
   }
 }
 </script>
-<style>
-.error {
-  color: rgb(255, 80, 80);
-  margin-left: 5px;
-  margin-top: 5px;
-}
+<style lang="sass">
+.container
+  
+  .error
+    color: rgb(255, 80, 80)
+    margin-left: 5px
+    margin-top: 5px
 
-.display-div_custom {
-  border: solid 1px;
-  border-radius: 4px;
-  height: 170px;
-  width: 200px;
-}
+  .display-div_custom
+    border: solid 1px
+    border-radius: 4px
+    height: 170px
+    width: 200px
 
-.img-display_author {
-  height: 168px;
-  max-width: 200px;
-}
+  .img-display_author
+    height: 168px
+    max-width: 200px
 
-.img {
-  max-width: 135px;
-  margin-left: 30px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
+  .img
+    max-width: 135px
+    margin-left: 30px
+    margin-top: 15px
+    margin-bottom: 15px
+
+  .box-white
+    background-color: #f1f3f4
+    margin: 10px
+    border-radius: 5px
+    box-shadow: -1px 1px 6px rgb(0 0 0 / 5%)
+
+  .box
+    margin-bottom: 20px
+    padding: 20px
+
+  .profile-avatar img
+    border-radius: 50%
+    height: 250px
+    object-fit: cover
+    max-width: 250px
+    width: 250px
+    margin-left: 3%
+
+  img
+    vertical-align: middle
+
+  img
+    border: 0
+
+  .text-center
+    text-align: center
+
+  .profile-fullname
+    font-size: 20px
+    font-weight: 700
+    margin-bottom: 10px
+    margin-top: 3px
+    position: relative
+
+  .box-block
+    background: #f1f3f4
+    border-radius: 5px
+    box-shadow: -1px 1px 6px rgb(0 0 0 / 5%)
+    margin-bottom: 16px
+    margin-top: 10px
+    padding: 24px 24px 8px
+
+
+  & .box-header
+    align-items: center
+    display: flex
+    justify-content: space-between
+    margin-bottom: 12px
+
+
+  & .box-header .title
+    color: #000
+    font-size: 19px
+    font-weight: 700
+    line-height: 24px
+    margin: 0
 </style>
-<style src="@vueform/multiselect/themes/default.css">
 
+
+<style src="@vueform/multiselect/themes/default.css">
 </style>

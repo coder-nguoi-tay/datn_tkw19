@@ -20,7 +20,7 @@ class NewsController extends Controller
             'majors' => Majors::all()
         ]);
     }
-    public function ShowBlog($id)
+    public function showTinTuc($id)
     {
         $Blog = News::find($id);
         return view('client.blog.index', [
