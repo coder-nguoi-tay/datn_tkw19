@@ -167,7 +167,7 @@ class HomeController extends BaseController
                 ])
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                 ->orderBy('employer.prioritize', 'desc')
-                ->get(),
+                ->paginate(12),
             'jobForUser' => $jobForUser ?? ''
 
         ]);
