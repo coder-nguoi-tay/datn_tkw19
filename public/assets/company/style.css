@@ -2234,7 +2234,8 @@ body {
 }
 
 .info-list li .la {
-    color: #26ae61;
+
+    color: #3C65F5;
     margin-right: 2px;
     font-size: 16px;
     width: 30px;
@@ -2253,11 +2254,11 @@ body {
 }
 
 .info-list li:hover a {
-    color: #26ae61
+    color: #3C65F5
 }
 
 .info-list li:hover .la {
-    background-color: #26ae61;
+    background-color: #3C65F5;
     color: #fff
 }
 
