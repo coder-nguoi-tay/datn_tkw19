@@ -27,18 +27,19 @@
                                                 <div class="elementor-widget-container">
                                                     <h1
                                                         class="control-heading-title text-42 color-white wow animate__ animate__fadeInUp animated mb-0">
-                                                        The #1 <span class="color-green">Job Board for</span><br
-                                                            class="d-none d-lg-block">Hiring or Find your next job</h1>
+                                                        Bảng công việc số 1 <span class="color-green">cho
+
+                                                            Tuyển dụng hoặc</span><br class="d-none d-lg-block">Tìm công
+                                                        việc tiếp theo của bạn</h1>
                                                 </div>
                                             </div>
                                             <div class="elementor-element elementor-element-7b9da113 mb-0 elementor-widget elementor-widget-title"
                                                 data-id="7b9da113" data-element_type="widget"
                                                 data-widget_type="title.default">
                                                 <div class="elementor-widget-container">
-                                                    <div class="control-heading-title font-lg text-white mt-20">Each
-                                                        month, more than 3 million job seekers turn to website in their
-                                                        search for work, making over 140,000 applications every single
-                                                        day</div>
+                                                    <div class="control-heading-title font-lg text-white mt-20">Mỗi tháng,
+                                                        hơn 3 triệu người tìm việc truy cập trang web để tìm việc, thực hiện
+                                                        hơn 140.000 đơn đăng ký mỗi ngày</div>
                                                 </div>
                                             </div>
                                             <div class="elementor-element elementor-element-56e62b6d elementor-widget elementor-widget-template"
@@ -73,7 +74,7 @@
 
                                                                     <input class="form-input input-keysearch mr-10"
                                                                         type="text" name="key" id="key"
-                                                                        style="border: none;" placeholder="Keywords" />
+                                                                        style="border: none;" placeholder="Nhập từ khóa" />
 
                                                                     <input class="btn btn-default btn-find font-sm"
                                                                         type="submit" value="Search">
@@ -127,7 +128,14 @@
                                                         <div class="col render-job-search">
                                                             <div class="card-grid-2 grid-bd-16 hover-up">
                                                                 <div class="card-block-info pt-25">
-                                                                    <h6><a href="home/detail/{{ $item->title . '-' . $item->id }}"
+                                                                    <h6
+                                                                        style=" display: -webkit-box;
+                                                                                                     line-height: 1;
+                                                                                                    -webkit-line-clamp: 1;
+                                                                                                    -webkit-box-orient: vertical;
+                                                                                                    overflow: hidden;
+                                                                                                    text-overflow: ellipsis;">
+                                                                        <a href="home/detail/{{ $item->title . '-' . $item->id }}"
                                                                             data-toggle="tooltip" title=""
                                                                             data-placement="top" data-container="body"
                                                                             data-original-title="{{ $item->nameCompany }}">{{ $item->title }}</a>
@@ -149,7 +157,13 @@
                                                                                         style="width: 35px; height: 35px"
                                                                                         alt="Ashford">
                                                                                     <div class="info-right-img">
-                                                                                        <h6 class="color-brand-1 lh-14 mb-0"
+                                                                                        <h6 style=" display: -webkit-box;
+                                                                                                     line-height: 1;
+                                                                                                    -webkit-line-clamp: 1;
+                                                                                                    -webkit-box-orient: vertical;
+                                                                                                    overflow: hidden;
+                                                                                                    text-overflow: ellipsis;"
+                                                                                            class="color-brand-1 lh-14 mb-0"
                                                                                             data-toggle="tooltip"
                                                                                             title=""
                                                                                             data-placement="top"
@@ -161,9 +175,9 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-lg-4 col-md-4 text-end">
-                                                                                <span
-                                                                                    class="card-text-price">{{ $item->getwage->name }}</span>
+                                                                            <div class="col-lg-3 col-md-4 text-end">
+                                                                                <span class="card-text-price">
+                                                                                    {{ $item->getwage->name }}</span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -322,7 +336,14 @@
                                                         <div class="col">
                                                             <div class="card-grid-2 grid-bd-16 hover-up">
                                                                 <div class="card-block-info pt-25">
-                                                                    <h6><a
+                                                                    <h6
+                                                                        style=" display: -webkit-box;
+                                                                                                     line-height: 1;
+                                                                                                    -webkit-line-clamp: 1;
+                                                                                                    -webkit-box-orient: vertical;
+                                                                                                    overflow: hidden;
+                                                                                                    text-overflow: ellipsis;">
+                                                                        <a
                                                                             href="home/detail/{{ $item->title . '-' . $item->id }}">{{ $item->title }}</a>
                                                                     </h6>
                                                                     <div class="d-flex flex-wrap gap-15 mt-5">
@@ -342,7 +363,12 @@
                                                                                         style="width: 35px; height: 35px"
                                                                                         alt="Ashford">
                                                                                     <div class="info-right-img">
-                                                                                        <h6
+                                                                                        <h6 style=" display: -webkit-box;
+                                                                                                     line-height: 1;
+                                                                                                    -webkit-line-clamp: 1;
+                                                                                                    -webkit-box-orient: vertical;
+                                                                                                    overflow: hidden;
+                                                                                                    text-overflow: ellipsis;"
                                                                                             class="color-brand-1 lh-14 mb-0">
                                                                                             {{ $item->nameCompany }}
                                                                                         </h6>
@@ -351,7 +377,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-lg-4 col-md-4 text-end">
+                                                                            <div class="col-lg-3 col-md-4 text-end">
                                                                                 <span
                                                                                     class="card-text-price">{{ $item->getwage->name }}</span>
                                                                             </div>
@@ -454,7 +480,7 @@
                                                 data-id="67f68714" data-element_type="widget"
                                                 data-widget_type="title.default">
                                                 <div class="elementor-widget-container">
-                                                    <h2 class="control-heading-title text-52 m-0">Tìm người phù hợp bạn
+                                                    <h2 class="control-heading-title text-52 m-0">Về chúng tôi
                                                     </h2>
                                                 </div>
                                             </div>
@@ -462,24 +488,16 @@
                                                 data-id="6e6d5458" data-element_type="widget"
                                                 data-widget_type="title.default">
                                                 <div class="elementor-widget-container">
-                                                    <p class="control-heading-title m-0">Tìm kiếm tất cả các vị trí mở trên
-                                                        web. Nhận ước tính lương cá nhân của riêng bạn. Đọc đánh giá về hơn
-                                                        600.000 công ty trên toàn thế giới. Công việc phù hợp là ngoài kia
-                                                    </p>
+                                                    <p class="control-heading-title m-0">ITWORK là một Website nhân sự, với
+                                                        năng lực và sứ mệnh của ITWORK đặt ra cho mình là thay đổi thị
+                                                        trường tuyển dụng - nhân sự ngày một hiệu quả hơn. Bằng công nghệ,
+                                                        chúng tôi tạo ra nền tảng cho phép người dùng tạo CV Phát triển được
+                                                        kĩ năng cá nhân xây dựng hình ảnh chuyên nghiệp trong mắt nhà tuyển
+                                                        dụng và tiếp cận được với các công việc phù hợp</p>
+
                                                 </div>
                                             </div>
-                                            <div class="elementor-element elementor-element-5d4fe94c elementor-widget elementor-widget-text-editor"
-                                                data-id="5d4fe94c" data-element_type="widget"
-                                                data-widget_type="text-editor.default">
-                                                <div class="elementor-widget-container">
-                                                    <div class="mt-40">
-                                                        <div class="wow animate__ animate__fadeInUp animated"
-                                                            style="visibility: visible; animation-name: fadeInUp;"><a
-                                                                class="btn btn-default" href="../jobs/index.html">Tìm
-                                                                kiếm</a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
