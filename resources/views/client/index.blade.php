@@ -681,13 +681,13 @@
                     </div>
                     <div class="row justify-content-center">
                         @foreach ($new as $item)
-                            <div class="col-xl-4 col-lg-3 col-md-6 col-sm-12">
+                            <div class="col-xl-3 col-lg-2 col-md-4 col-sm-12">
                                 <div
                                     class="card-grid-3 hover-up post-28 post type-post status-publish format-standard has-post-thumbnail hentry category-events tag-beauty tag-nature tag-travel-tips ">
                                     <div class="text-center card-grid-3-image">
                                         <a href="{{ route('detail.blog', $item->id) }}">
                                             <figure><img
-                                                    style="width:403px !important; height:257px !important; object-fit: cover; "
+                                                    style="width:303px !important; height:157px !important; object-fit: cover; "
                                                     src="{{ $item->new_image }}" class=" img-fluid wp-post-image"
                                                     alt="" decoding="async" loading="lazy"></figure>
                                         </a>
@@ -695,7 +695,7 @@
                                     <div class="card-block-info">
 
                                         <p class=" px-3   py-1 rounded bg-light-primary d-inline-flex"
-                                            style="color : rgb(60,101,245) ; font-weight: 550">
+                                            style="color : rgb(60,101,245) ; font-weight: 550 ; ">
                                             {{ $item->majors }}
                                         </p>
 

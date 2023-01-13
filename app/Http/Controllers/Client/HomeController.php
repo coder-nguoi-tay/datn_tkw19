@@ -135,7 +135,7 @@ class HomeController extends BaseController
             }
         }
         $majors = Majors::with('majors')->get();
-        $new = News::select('id', 'title', 'profession_id', 'new_image', 'describe', 'majors', 'created_at')->paginate(3);
+        $new = News::select('id', 'title', 'profession_id', 'new_image', 'describe', 'majors', 'created_at')->paginate(4);
 
 
 
