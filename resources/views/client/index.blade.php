@@ -362,6 +362,10 @@
                                                         </div>
                                                     @endforeach
                                                 </div>
+                                                <div class="col-sm-12">
+                                                    <a href="{{route('home.search')}}"
+                                                        class="btn btn-default btn-find font-sm">Xem tất cả</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
