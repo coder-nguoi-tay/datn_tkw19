@@ -120,7 +120,7 @@
                           </h4>
                         </div>
                       </div>
-                      <div class="row" style="margin-top: 15px">
+                      <div class="row" style="margin-top: 15px; margin-left: 25px">
                         <input type="hidden" id="currentStatus" value="1" />
                         <div id="on-off-job-waiting" class="on">
                           <div class="col-xs-12">
@@ -131,7 +131,7 @@
                               off-label=""
                               id="status_profile"
                             />
-                            <span class="">
+                            <span class="text-center">
                               <strong>Trạng thái tìm việc </strong>
                             </span>
                           </div>
@@ -642,7 +642,7 @@ export default {
     object-fit: cover
     max-width: 250px
     width: 250px
-    margin-left: 6%
+    margin-left: 15%
 
   img
     vertical-align: middle
