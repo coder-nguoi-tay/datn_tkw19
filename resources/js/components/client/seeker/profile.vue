@@ -83,7 +83,10 @@
                     <i class="far fa-edit mb-5"></i>
                   </div> -->
                   <div class="col-sm-4" id="sidebar">
-                    <div class="box box-white text-center-sm">
+                    <div
+                      class="box box-white text-center-sm"
+                      style="height: 940px"
+                    >
                       <div class="row">
                         <div class="col-md-12">
                           <div class="profile-avatar">
@@ -120,7 +123,10 @@
                           </h4>
                         </div>
                       </div>
-                      <div class="row" style="margin-top: 15px; margin-left: 25px">
+                      <div
+                        class="row"
+                        style="margin-top: 15px; margin-left: 25px"
+                      >
                         <input type="hidden" id="currentStatus" value="1" />
                         <div id="on-off-job-waiting" class="on">
                           <div class="col-xs-12">
@@ -372,40 +378,130 @@
                   </div> -->
 
                   <div class="col-8">
-                    <div class="box-block">
-                      <div class="box-header">
-                        <h1 class="title">CV đã tạo trên TopCV</h1>
-                      </div>
-                      <div class="box-upload text-center">
-                        <p class="icon">
-                          <i class="fas fa-cloud-upload-alt"></i>
-                        </p>
-                        <div class="not-cv">
-                          <p>
-                            Kéo CV của bạn vào đây hoặc bấm để chọn file CV của
-                            bạn
-                          </p>
+                    <div class="col-md-12">
+                      <div class="box-block">
+                        <div class="box-header">
+                          <h1 class="title">Tạo CV</h1>
                         </div>
-                        <Field
-                          type="file"
-                          name="file_cv"
-                          class="file-upload-cv"
-                          id="file-upload-cv"
-                          rules="required|mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx|max:2048"
-                        />
-                        <br />
-                        <ErrorMessage class="error" name="file_cv" />
+                        <div class="box-upload text-center">
+                          <p class="icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                          </p>
+                          <div class="not-cv">
+                            <p>
+                              Kéo CV của bạn vào đây hoặc bấm để chọn file CV
+                              của bạn
+                            </p>
+                          </div>
+                          <Field
+                            type="file"
+                            name="file_cv"
+                            class="file-upload-cv"
+                            id="file-upload-cv"
+                            rules="required|mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx|max:2048"
+                          />
+                          <br />
+                          <ErrorMessage class="error" name="file_cv" />
+                        </div>
+                        <div class="file-format">
+                          <div>Files hỗ trợ: PDF, DOC, DOCX</div>
+                          <div>File tải lên không quá: 5 MB</div>
+                        </div>
+                        <button
+                          class="btn btn-info btn-create-cv"
+                          style="margin-top: 10px; margin-left: 45%"
+                        >
+                          Tải lên
+                        </button>
                       </div>
-                      <div class="file-format">
-                        <div>Files hỗ trợ: PDF, DOC, DOCX</div>
-                        <div>File tải lên không quá: 5 MB</div>
+                    </div>
+
+                    <br />
+                    <div class="col-md-12">
+                      <div id="cv-upload-list" class="box-block">
+                        <div class="box-header">
+                          <h1 class="title">CV đã tải lên</h1>
+                        </div>
+                        <div class="box-content">
+                          <div class="row">
+                            <div class="col-md-6 col-12 pr-12">
+                              <div class="box-cv">
+                                <img
+                                  src="https://i.pinimg.com/originals/91/71/bb/9171bb2449bfb1b7d7f4a707b51dc82b.jpg"
+                                  data-src="https://i.pinimg.com/originals/91/71/bb/9171bb2449bfb1b7d7f4a707b51dc82b.jpg"
+                                  class="img-responsive"
+                                />
+                                <div class="box-bg">
+                                  <div class="box-info">
+                                    <h4 class="title-cv">
+                                      <a
+                                        href="https://static.topcv.vn/topcv-cv-uploads/64a9983c31c9b2d720a277814b3b8512.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=0"
+                                        target="_blank"
+                                        class="title-445516"
+                                        >Nguyen-Van-Hung</a
+                                      >
+                                    </h4>
+                                    <p class="update_at">
+                                      Cập nhật lần cuối
+                                      <span>13-01-2023 10:44 AM</span>
+                                    </p>
+                                    <ul class="action">
+                                      <li>
+                                        <a
+                                          href="javascript:void(true)"
+                                          class="btn btn-sm bold"
+                                          ><i
+                                            class="fa-solid fa-down-to-line"
+                                          ></i>
+                                          Tải xuống</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12 pr-12">
+                              <div class="box-cv">
+                                <img
+                                  src="https://i.pinimg.com/originals/91/71/bb/9171bb2449bfb1b7d7f4a707b51dc82b.jpg"
+                                  data-src="https://i.pinimg.com/originals/91/71/bb/9171bb2449bfb1b7d7f4a707b51dc82b.jpg"
+                                  class="img-responsive"
+                                />
+                                <div class="box-bg">
+                                  <div class="box-info">
+                                    <h4 class="title-cv">
+                                      <a
+                                        href="https://static.topcv.vn/topcv-cv-uploads/64a9983c31c9b2d720a277814b3b8512.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=0"
+                                        target="_blank"
+                                        class="title-445516"
+                                        >Nguyen-Van-Hung</a
+                                      >
+                                    </h4>
+                                    <p class="update_at">
+                                      Cập nhật lần cuối
+                                      <span>13-01-2023 10:44 AM</span>
+                                    </p>
+                                    <ul class="action">
+                                      <li>
+                                        <a
+                                          href="javascript:void(true)"
+                                          class="btn btn-sm bold"
+                                          ><i
+                                            class="fa-solid fa-down-to-line"
+                                          ></i>
+                                          Tải xuống</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="text-center"></div>
+                        </div>
                       </div>
-                      <button
-                        class="btn btn-info btn-create-cv"
-                        style="margin-top: 10px; margin-left: 45%"
-                      >
-                        Tải lên
-                      </button>
                     </div>
                   </div>
                 </div>
@@ -604,7 +700,7 @@ export default {
 </script>
 <style lang="sass">
 .container
-  
+
   .error
     color: rgb(255, 80, 80)
     margin-left: 5px
@@ -668,13 +764,11 @@ export default {
     margin-top: 10px
     padding: 24px 24px 8px
 
-
   & .box-header
     align-items: center
     display: flex
     justify-content: space-between
     margin-bottom: 12px
-
 
   & .box-header .title
     color: #000
@@ -684,6 +778,100 @@ export default {
     margin: 0
 </style>
 
-
+<style>
+#cv-upload-list .box-cv {
+  border-radius: 5px;
+  height: 310px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  position: relative;
+}
+#manager-cv #cv-list .box-cv img,
+#manager-cv #cv-upload-list .box-cv img {
+  left: 0;
+  -o-object-fit: cover;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  transition: 0.3s;
+  width: 100%;
+  z-index: 1;
+}
+.img-responsive {
+  display: inline-block;
+  max-width: 100%;
+}
+#cv-upload-list .box-cv .box-bg {
+  background: linear-gradient(180deg, hsla(0, 0%, 100%, 0), #212f3f);
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+#cv-upload-list .box-cv .box-info {
+  bottom: 16px;
+  color: #fff;
+  left: 16px;
+  position: absolute;
+  right: 16px;
+  z-index: 3;
+}
+.box-cv .box-info .title-cv {
+  display: flex;
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+#cv-upload-list .box-cv .box-info .title-cv a:first-child {
+  max-width: 80%;
+  word-break: break-word;
+}
+#cv-upload-list .box-cv .box-info .title-cv a {
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color: #fff;
+  display: -webkit-box;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-right: 8px;
+  overflow: hidden;
+}
+a {
+  color: #666;
+}
+a {
+  text-decoration: none;
+}
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+a {
+  background-color: transparent;
+}
+.box-cv .box-info .update_at {
+  color: #fff;
+  font-size: 15px;
+  line-height: 20px;
+  margin-bottom: 16px;
+}
+#cv-upload-list .box-cv .box-info .action {
+  align-items: center;
+  display: flex;
+  list-style: none;
+  margin-bottom: 0;
+}
+.box-cv .box-info .action a {
+  background: hsla(0, 0%, 100%, 0.2);
+  border-radius: 30px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 16px;
+  margin-right: 8px;
+  padding: 4px 8px;
+}
+</style>
 <style src="@vueform/multiselect/themes/default.css">
 </style>
