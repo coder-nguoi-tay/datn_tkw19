@@ -107,7 +107,6 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     // giấy xác thực
     Route::post('image-accuracy', [ManagerUploadCvController::class, 'ImageAccuracy'])->name('profile.ImageAccuracy');
 
-
     //profile
     Route::get('history', [EmployerProfileController::class, 'historyPay'])->name('profile.history');
     Route::get('company', [EmployerProfileController::class, 'profileEmployer'])->name('employer.profileEmployer');
@@ -122,6 +121,9 @@ Route::post('register/create', [HomeEmployerController::class, 'store'])->name('
 
 // seeker
 Route::resource('profile', SeekerHomeController::class);
+Route::post('profile/update-title-cv/{id}', [SeekerHomeController::class, 'updateTitleCv']);
+Route::get('profile/delete-cv/{id}', [SeekerHomeController::class, 'deleteCv']);
+Route::post('profile/update-avatar', [SeekerHomeController::class, 'updateAvatar'])->name('profile.updateAvatar');
 Route::resource('login', ClientLoginController::class);
 Route::get('register-client', [ClientLoginController::class, 'registerClient'])->name('register');
 

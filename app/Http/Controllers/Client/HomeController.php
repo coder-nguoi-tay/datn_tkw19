@@ -351,11 +351,6 @@ class HomeController extends BaseController
     }
     public function upCv(Request $request)
     {
-        $seeker = $this->Jobseeker->where('user_role', Auth::guard('user')->user()->id)->first();
-        if (!$seeker) {
-            $this->setFlash(__('Bạn cần hoàn thiện hồ sơ để có thể nộp được CV'), 'error');
-            return redirect()->back();
-        }
         $checkJob = $this->savecv->where([
             ['id_job', $request->id_job],
             ['user_id', Auth::guard('user')->user()->id]
@@ -400,12 +395,13 @@ class HomeController extends BaseController
                 $cv->save();
             }
         } else {
+
             $cvSave = $this->upload->where('id', $request->cv_for_save)->first();
             if ($cvSave) {
                 $cvUpload = new $this->savecv();
                 $cvUpload->title = $cvSave->title;
                 $cvUpload->token = rand(00000, 99999);
-                $cvUpload->user_id = $cvSave->user_id;
+                $cvUpload->user_id = Auth::guard('user')->user()->id;
                 $cvUpload->file_cv = $cvSave->file_cv;
                 $cvUpload->id_job = $request->id_job;
                 $cvUpload->save();
@@ -414,15 +410,6 @@ class HomeController extends BaseController
         $this->setFlash(__('Hãy chờ phản hồi của nhà tuyển dụng'));
         return redirect()->back();
     }
-    // public function detailTinTuc($id)
-    // {
-    //     $TinTuc = News::find($id);
-    //     // dd($TinTuc);
-    //     return view('client.Tin-tuc.index', [
-    //         'tinTuc' => $TinTuc,
-    //         'majors' => Majors::all()
-    //     ]);
-    // }
     public function test()
     {
         return view('test');

@@ -135,7 +135,7 @@
                                                                                                     -webkit-box-orient: vertical;
                                                                                                     overflow: hidden;
                                                                                                     text-overflow: ellipsis;">
-                                                                        <a href="home/detail/{{ $item->title . '-' . $item->id }}"
+                                                                        <a href="/home/detail/{{ $item->title . '-' . $item->id }}"
                                                                             data-toggle="tooltip" title=""
                                                                             data-placement="top" data-container="body"
                                                                             data-original-title="{{ $item->nameCompany }}">{{ $item->title }}</a>
@@ -389,7 +389,7 @@
                                                     @endforeach
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <a href="{{route('home.search')}}"
+                                                    <a href="{{ route('home.search') }}"
                                                         class="btn btn-default btn-find font-sm">Xem tất cả</a>
                                                 </div>
                                             </div>
