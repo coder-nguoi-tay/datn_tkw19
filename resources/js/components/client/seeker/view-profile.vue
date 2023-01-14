@@ -45,10 +45,7 @@
                                   "
                                 >
                                   <div class="text-highlight employer-name">
-                                    NTQ Solution
-                                    <span class="text-gray text-small"
-                                      >Trưởng nhóm</span
-                                    >
+                                    Thực tập sinh php
                                   </div>
                                   <div
                                     class="company-name text-gray"
@@ -63,7 +60,7 @@
                                       class="text-gray"
                                       rel="nooppener noreferrer"
                                     >
-                                      NTQ Solution</a
+                                      FPT software</a
                                     >
                                   </div>
                                 </div>
@@ -101,10 +98,7 @@
                                   "
                                 >
                                   <div class="text-highlight employer-name">
-                                    Đào Xuân Quý
-                                    <span class="text-gray text-small"
-                                      >Trưởng phòng</span
-                                    >
+                                    Thực Tập Sinh Lập Trình Phần Mềm
                                   </div>
                                   <div
                                     class="company-name text-gray"
@@ -119,7 +113,7 @@
                                       class="text-gray"
                                       rel="nooppener noreferrer"
                                     >
-                                      Apero Technologies Group</a
+                                      FPT software</a
                                     >
                                   </div>
                                 </div>
@@ -157,10 +151,7 @@
                                   "
                                 >
                                   <div class="text-highlight employer-name">
-                                    Chị Tuyền
-                                    <span class="text-gray text-small"
-                                      >Bộ phận tuyển dụng</span
-                                    >
+                                    Thực Tập Sinh Lập Trình Nodejs -Reactjs
                                   </div>
                                   <div
                                     class="company-name text-gray"
@@ -213,10 +204,7 @@
                                   "
                                 >
                                   <div class="text-highlight employer-name">
-                                    Ms Mai
-                                    <span class="text-gray text-small"
-                                      >Trưởng nhóm</span
-                                    >
+                                    Thực Tập Sinh Lập Trình Viên JavaScript
                                   </div>
                                   <div
                                     class="company-name text-gray"

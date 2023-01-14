@@ -22,7 +22,7 @@ class ViewProfileController extends BaseController
     public function index()
     {
         $breadcrumbs = [
-            ' Danh sách Nhà tuyển dụng xem CV',
+            ' Danh sách công việc đã nộp',
 
         ];
 
