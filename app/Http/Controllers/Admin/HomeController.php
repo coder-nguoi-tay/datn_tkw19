@@ -93,8 +93,5 @@ class HomeController extends BaseController
     {
         //
     }
-    public function error()
-    {
-        return view('client.404');
-    }
+  
 }
