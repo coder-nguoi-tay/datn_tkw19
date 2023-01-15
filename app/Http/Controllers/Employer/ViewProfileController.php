@@ -22,13 +22,13 @@ class ViewProfileController extends BaseController
     public function index()
     {
         $breadcrumbs = [
-            ' Danh sách công việc đã nộp',
+            'Danh sách công việc đã nộp',
 
         ];
 
         return view('client.seeker.view-profile', [
 
-            'title' => 'NTD xem hồ sơ',
+            'title' => 'Danh sách công việc đã nộp',
             'breadcrumbs' => $breadcrumbs,
             'majors' => $this->getmajors(),
         ]);

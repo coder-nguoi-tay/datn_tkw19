@@ -136,8 +136,6 @@ class HomeController extends BaseController
         }
         $majors = Majors::with('majors')->get();
         $new = News::select('id', 'title', 'profession_id', 'new_image', 'describe', 'majors', 'created_at')->paginate(3);
-
-
         return view('client.index', [
             'majors' => $majors,
             'title' => 'Tuyển dung, tìm việc làm nhanh 24h',
@@ -409,13 +407,5 @@ class HomeController extends BaseController
         }
         $this->setFlash(__('Hãy chờ phản hồi của nhà tuyển dụng'));
         return redirect()->back();
-    }
-    public function test()
-    {
-        return view('test');
-    }
-    public function test1()
-    {
-        return view('test1');
     }
 }

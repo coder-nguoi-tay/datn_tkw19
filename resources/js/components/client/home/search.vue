@@ -8,7 +8,6 @@
             name="key"
             style="border: none"
             v-model="model.key"
-            ref="formData"
           />
         </fieldset>
       </div>
@@ -90,25 +89,24 @@
         class="col-lg-3 align-self-center border p-2"
         style="border: none !important"
       >
-        <Multiselect
-          placeholder="Chọn Kỹ năng"
-          v-model="value"
-          mode="tags"
-          :searchable="true"
-          :options="options"
-          style="height: 44px"
-          label="label"
-          track-by="label"
-          :infinite="true"
-          :object="true"
-        />
-
-        <input
-          style="border: none !important"
-          type="hidden"
-          name="skill[]"
-          v-model="skill"
-        />
+        <fieldset class="custom-multiselect">
+          <Multiselect
+            placeholder="Chọn Kỹ năng"
+            mode="tags"
+            v-model="value"
+            :searchable="true"
+            :options="options"
+            label="label"
+            track-by="label"
+            :infinite="true"
+            :object="true"
+            :filterResults="true"
+            :clearOnSearch="true"
+            :clearOnSelect="true"
+            @input="updateSelected"
+          />
+        </fieldset>
+        <input type="hidden" name="skill[]" v-model="skill" />
       </div>
       <div class="col-lg-2 align-self-center p-2">
         <fieldset>

@@ -181,6 +181,7 @@ class ManagerUploadCvController extends BaseController
             $paymentHistory->price = 30000;
             $paymentHistory->desceibe = 'Thanh toán mua CV ' . $upcv->name;
             $paymentHistory->form = '';
+            $paymentHistory->status = 1;
             $paymentHistory->save();
             //tk
             $account = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();

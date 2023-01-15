@@ -16,8 +16,8 @@
                         href="{{ route('user.favourite') }}"><i class="fas fa-heart icon-element"></i>
                         Công việc đã yêu thích</a></li>
                 <li class="{{ request()->is('*xem-ho-so*') ? 'active' : '' }}">
-                    <a href="{{ route('xem-ho-so.index') }}"><i class="fas fa-address-card icon-element"></i> Xem hồ
-                        sơ</a>
+                    <a href="{{ route('xem-ho-so.index') }}"><i class="fas fa-address-card icon-element"></i>Những công
+                        việc đã nộp</a>
                 </li>
                 <li class="{{ request()->is('*profile*') ? 'active' : '' }}">
                     <a href="{{ route('profile.index') }}"><i class="fas fa-user icon-element"></i>Quản lý hồ sơ</a>

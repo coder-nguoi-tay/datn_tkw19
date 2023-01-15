@@ -14,15 +14,8 @@
                     <div class="banner-hero banner-single banner-single-bg" data-settings-id="banner-job">
                         <div class="block-banner text-center">
                             <h3 class="wow animate__ animate__fadeInUp animated"
-                                style="visibility: visible; animation-name: fadeInUp;"><span
-                                    class="color-brand-2">{{ count($job) }}
+                                style="visibility: visible; animation-name: fadeInUp;"><span class="color-brand-2">
                                     Công việc</span> Phù hợp</h3>
-                            <div class="font-sm color-text-paragraph-2 mt-10 wow animate__ animate__fadeInUp animated"
-                                data-wow-delay=".1s"
-                                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">Lorem
-                                ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni,<br
-                                    class="d-none d-xl-block">atque delectus molestias quis</div>
-
                         </div>
                     </div>
                 </section>
@@ -107,7 +100,6 @@
 
                                                 {{-- <p class="font-sm color-text-paragraph mt-15">
                                                     {!! $value->describe !!}</p> --}}
-
 
                                                 <div class="card-2-bottom mt-30">
                                                     <div class="row align-items-center">

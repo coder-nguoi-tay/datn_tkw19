@@ -49,10 +49,10 @@
                                             <p class="font-size-15">
                                                 <span class="mr-2">{{ $item->majors_name }}</span>
                                             </p>
-                                            <p class="mt-2 font-size-15">
+                                            {{-- <p class="mt-2 font-size-15">
                                                 <span class="mr-2"><i
                                                         class="la la-map-marker mr-1"></i>{{ $item->address }}</span>
-                                            </p>
+                                            </p> --}}
                                         </div>
                                         <div class="manage-candidate-content">
                                             <h2 class="widget-title pb-2 mx-5"><a href="#" class="color-text-2">Ngày

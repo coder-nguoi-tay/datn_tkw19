@@ -99,7 +99,6 @@
 
 <body
     class="job_listing-template-default single single-job_listing postid-259 wp-embed-responsive theme-jobbox woocommerce-no-js jobbox elementor-default elementor-kit-16">
-
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
@@ -305,10 +304,11 @@
                                                             width="85">
                                                     </figure>
                                                     <div class="sidebar-info">
-                                                        <span class="sidebar-company">
-                                                            {{ $jobCompany[0]->name }} </span>
-                                                        <span
-                                                            class="card-location">{{ $jobCompany[0]->address }}</span>
+                                                        <a href="{{ route('detail.company', $job->idCompany) }}"
+                                                            class="sidebar-company">
+                                                            {{ $job->nameCompany }} </a>
+                                                        {{-- <span
+                                                            class="card-location">{{ $jobCompany[0]->address }}</span> --}}
 
 
                                                     </div>
@@ -316,8 +316,8 @@
                                             </div>
                                             <div class="sidebar-list-job">
                                                 <ul class="ul-disc">
-                                                    <li>Address : {{ $jobCompany[0]->address }}</li>
-                                                    <li>Email : {{ $jobCompany[0]->email }}</li>
+                                                    <li>Address : {{ $job->addressCompany }}</li>
+                                                    <li>Email : {{ $job->emailCompany }}</li>
                                                 </ul>
                                             </div>
                                         </div>

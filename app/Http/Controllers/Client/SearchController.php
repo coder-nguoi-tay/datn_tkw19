@@ -69,6 +69,7 @@ class SearchController extends BaseController
      */
     public function create(Request $request)
     {
+        // dd($request->all());
         $breadcrumbs = [
             'Tìm kiếm việc làm ' . $request->key
         ];
