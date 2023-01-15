@@ -231,7 +231,6 @@ $(document).ready(function () {
     }
 });
 $(document).ready(function () {
-    var array = []
     axios.get('/favourite-love/' + $('.icon-save-cv')[0].id.split(',')[0])
         .then((x) => {
             if (x.data.data) {
@@ -257,8 +256,6 @@ $(document).ready(function () {
                                                 if (u.data.data == null) {
                                                     axios.post('/favourite/' + $('.icon-save-cv')[0].id.split(',')[0])
                                                         .then((b) => {
-                                                            array.remove(2);
-                                                            array.push(1)
                                                         })
                                                 }
                                             })
@@ -271,47 +268,25 @@ $(document).ready(function () {
                 $('.icon-save-cv').click(function (e) {
                     $('.icon-save-cv').removeClass('btn-un-icon-love')
                     $('.icon-save-cv').addClass('btn-icon-love')
-                    axios.post('/favourite/' + $('.icon-save-cv')[0].id.split(',')[0])
-                        .then((x) => {
-                            console.log(x);
-                        }).catch((y) => {
-                            console.log(y);
+                    axios.get('/favourite-love/' + $('.icon-save-cv')[0].id.split(',')[0])
+                        .then((u) => {
                         })
                 })
                 $('.icon-save-cv').click(function (e) {
                     axios.get('/favourite-love/' + $('.icon-save-cv')[0].id.split(',')[0])
                         .then((u) => {
-                            if (u.data.data) {
-                                $('.icon-save-cv').addClass('btn-icon-love')
-                                $('.icon-save-cv').removeClass('btn-un-icon-love')
-                                axios.get('/favourite-love/' + $('.icon-save-cv')[0].id.split(',')[0])
-                                    .then((u) => {
-                                        if (u.data.data == null) {
-                                            axios.post('/favourite/' + $('.icon-save-cv')[0].id.split(',')[0])
-                                                .then((b) => {
-                                                    array.remove(2);
-                                                    array.push(1)
-                                                })
-                                        }
-                                    })
-                            }
+                            $('.icon-save-cv').click(function (e) {
+                                if (!u.data.data) {
+                                    $('.icon-save-cv').removeClass('btn-icon-love')
+                                    $('.icon-save-cv').addClass('btn-un-icon-love')
+                                }
+                            })
                         })
                 })
             }
         }).catch((y) => {
             console.log(y);
         })
-    // if ($('.icon-save-cv')[0].id.split(',')[0] == $('.icon-save-cv')[0].id.split(',')[1]) {
-    //     $('.icon-save-cv').addClass('btn-icon-love')
-    //     $('.icon-save-cv').click(function (e) {
-    //         $('.icon-save-cv').remove('btn-icon-love')
-    //     })
-    // } else {
-    //     $('.icon-save-cv').remove('btn-icon-love')
-    //     $('.icon-save-cv').click(function (e) {
-    //         $('.icon-save-cv').addClass('btn-icon-love')
-    //     })
-    // }
 
 })
 
