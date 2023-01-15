@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Employer;
 use App\Models\Experience;
+use App\Models\Favourite;
 use App\Models\Job;
 use App\Models\Jobseeker;
 use App\Models\Jobskill;
@@ -207,7 +208,12 @@ class HomeController extends BaseController
         if (Auth::guard('user')->check()) {
             $seeker = $this->Jobseeker->where('user_role', Auth::guard('user')->user()->id)->first();
         }
-
+        $checklove = Favourite::where('job_id', $id)->first();
+        if ($checklove) {
+            $love = $checklove->job_id;
+        } else {
+            $love = null;
+        }
         $job = $this->job
             // ->with(['getWage', 'getlocation', 'getskill', 'getMajors'])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
@@ -274,6 +280,7 @@ class HomeController extends BaseController
             'profileUser' => $profileUser ?? '',
             'seeker' => $seeker ?? '',
             'majors' => $this->majors->get(),
+            'checklove' => $love,
         ]);
     }
 

@@ -230,6 +230,90 @@ $(document).ready(function () {
         });
     }
 });
+$(document).ready(function () {
+    var array = []
+    axios.get('/favourite-love/' + $('.icon-save-cv')[0].id.split(',')[0])
+        .then((x) => {
+            if (x.data.data) {
+                if (x.data.data.job_id == $('.icon-save-cv')[0].id.split(',')[0]) {
+                    $('.icon-save-cv').addClass('btn-icon-love')
+                    $('.icon-save-cv').removeClass('btn-un-icon-love')
+                    $('.icon-save-cv').click(function (e) {
+                        $('.icon-save-cv').addClass('btn-un-icon-love')
+                        $('.icon-save-cv').removeClass('btn-icon-love')
+                        axios.post('/favourite/' + $('.icon-save-cv')[0].id.split(',')[0])
+                            .then((a) => {
+                            }).catch((y) => {
+
+                            })
+                        $('.icon-save-cv').click(function (e) {
+                            axios.get('/favourite-love/' + $('.icon-save-cv')[0].id.split(',')[0])
+                                .then((u) => {
+                                    if (u.data.data) {
+                                        $('.icon-save-cv').addClass('btn-icon-love')
+                                        $('.icon-save-cv').removeClass('btn-un-icon-love')
+                                        axios.get('/favourite-love/' + $('.icon-save-cv')[0].id.split(',')[0])
+                                            .then((u) => {
+                                                if (u.data.data == null) {
+                                                    axios.post('/favourite/' + $('.icon-save-cv')[0].id.split(',')[0])
+                                                        .then((b) => {
+                                                            array.remove(2);
+                                                            array.push(1)
+                                                        })
+                                                }
+                                            })
+                                    }
+                                })
+                        })
+                    })
+                }
+            } else {
+                $('.icon-save-cv').click(function (e) {
+                    $('.icon-save-cv').removeClass('btn-un-icon-love')
+                    $('.icon-save-cv').addClass('btn-icon-love')
+                    axios.post('/favourite/' + $('.icon-save-cv')[0].id.split(',')[0])
+                        .then((x) => {
+                            console.log(x);
+                        }).catch((y) => {
+                            console.log(y);
+                        })
+                })
+                $('.icon-save-cv').click(function (e) {
+                    axios.get('/favourite-love/' + $('.icon-save-cv')[0].id.split(',')[0])
+                        .then((u) => {
+                            if (u.data.data) {
+                                $('.icon-save-cv').addClass('btn-icon-love')
+                                $('.icon-save-cv').removeClass('btn-un-icon-love')
+                                axios.get('/favourite-love/' + $('.icon-save-cv')[0].id.split(',')[0])
+                                    .then((u) => {
+                                        if (u.data.data == null) {
+                                            axios.post('/favourite/' + $('.icon-save-cv')[0].id.split(',')[0])
+                                                .then((b) => {
+                                                    array.remove(2);
+                                                    array.push(1)
+                                                })
+                                        }
+                                    })
+                            }
+                        })
+                })
+            }
+        }).catch((y) => {
+            console.log(y);
+        })
+    // if ($('.icon-save-cv')[0].id.split(',')[0] == $('.icon-save-cv')[0].id.split(',')[1]) {
+    //     $('.icon-save-cv').addClass('btn-icon-love')
+    //     $('.icon-save-cv').click(function (e) {
+    //         $('.icon-save-cv').remove('btn-icon-love')
+    //     })
+    // } else {
+    //     $('.icon-save-cv').remove('btn-icon-love')
+    //     $('.icon-save-cv').click(function (e) {
+    //         $('.icon-save-cv').addClass('btn-icon-love')
+    //     })
+    // }
+
+})
 
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
@@ -298,6 +382,7 @@ app.component('job-manager', jobManager);
 import Abcxyz from "./components/client/seeker/test.vue";
 app.component('home-test', Abcxyz);
 import HomeSearch from "./components/client/home/search.vue";
+import axios from 'axios'
 app.component('home-search', HomeSearch);
 
 app.mount('#app')

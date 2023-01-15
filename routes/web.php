@@ -150,6 +150,7 @@ Route::post('owner/update/register', [ClientLoginController::class, 'updateRegis
 //client
 Route::resource('', ClientHomeController::class);
 Route::post('favourite/{id}', [SeekerHomeController::class, 'userFavouriteId']); // api
+Route::get('favourite-love/{id}', [SeekerHomeController::class, 'getDatalove']); // api
 Route::get('home/detail/{title}-{id}', [ClientHomeController::class, 'showDetail'])->name('home.detail.show');
 Route::post('home/detail/upcv', [ClientHomeController::class, 'upCv'])->name('home.detail.upcv');
 Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 'searchLocation'])->name('home.search.location');

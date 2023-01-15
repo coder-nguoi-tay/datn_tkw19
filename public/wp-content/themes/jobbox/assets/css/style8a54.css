@@ -9424,4 +9424,20 @@ div.job_listings .job-manager-pagination {
   }
 }
 
+.btn-icon-love {
+  color: pink !important;
+  padding: 4px;
+  border: 1px solid pink;
+  border-radius: 5px;
+  font-size: 20px !important
+}
+
+.btn-un-icon-love {
+  color: #ccc !important;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 20px !important
+}
+
 /*# sourceMappingURL=style.css.map */

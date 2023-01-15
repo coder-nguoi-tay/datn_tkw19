@@ -134,11 +134,12 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-12 text-lg-end">
-                                    <a class="btn btn-default btn-shadow ml-30 hover-up" data-bs-toggle="modal"
+                                    <a class="btn-border mr-15 mb-5 active" data-bs-toggle="modal"
                                         data-bs-target="#ModalApplyJobForm">Ứng
                                         tuyển</a>
+                                    <a class="mr-15 mb-5"><i class="far fa-heart icon-save-cv btn-un-icon-love"
+                                            id="{{ $job->id . ',' . $checklove }}"></i></a>
                                 </div>
-                                <!-- Button trigger modal -->
                             </div>
                             <div class="border-bottom pt-10 pb-10"></div>
                             <section class="section-box mt-50">
@@ -146,7 +147,6 @@
                                     <div class="col-lg-8 col-md-12 col-sm-12 col-12">
                                         <div class="job-overview">
                                             <h5 class="border-bottom pb-15 mb-30">Thông tin tuyển dụng</h5>
-
                                             <div class="row">
                                                 <div class="col-md-6 d-flex">
                                                     <div class="sidebar-icon-item">
@@ -223,7 +223,8 @@
                                                     </div>
                                                     <div class="sidebar-text-info ml-10">
                                                         <span class="text-description mb-10">Deadline</span>
-                                                        <strong class="small-heading">{{ $job->end_job_time }}</strong>
+                                                        <strong
+                                                            class="small-heading">{{ $job->end_job_time }}</strong>
                                                     </div>
                                                 </div>
 

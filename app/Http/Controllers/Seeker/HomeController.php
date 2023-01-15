@@ -257,20 +257,20 @@ class HomeController extends BaseController
                 ->where('job.id', $id)->first()
         ]);
     }
-    public function userFavouriteId(Request $request)
+    public function userFavouriteId($id)
     {
         $favourite = Favourite::select('*')->get();
-        if ($favourite->whereIn('job_id', $request->id)->first()) {
-            Favourite::where('job_id', $request->id)->delete();
+        if ($favourite->whereIn('job_id', $id)->first()) {
+            Favourite::where('job_id', $id)->delete();
             return response()->json([
-                'status' => 'xóa thanh công'
+                'status' => StatusCode::OK
             ]);
         }
         Favourite::create([
-            'job_id' => $request->id
+            'job_id' => $id
         ])->save();
         return response()->json([
-            'status' => 'thêm thanh công'
+            'status' => StatusCode::OK
         ]);
     }
     public function deleteFavourite($id)
@@ -345,5 +345,11 @@ class HomeController extends BaseController
             $this->setFlash(_('Đã có một lỗi xảy ra'));
             return redirect()->back();
         }
+    }
+    public function getDatalove($id)
+    {
+        return response()->json([
+            'data' => Favourite::where('job_id', $id)->first()
+        ]);
     }
 }
