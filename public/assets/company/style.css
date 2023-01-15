@@ -2700,8 +2700,7 @@ body {
     -o-transform: translateX(0);
     transform: translateX(0);
     background-color: #fff;
-    width: 240px;
-    margin-top: -40px;
+    width: 240px !important;
     padding-top: 100px
 }
 

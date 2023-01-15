@@ -238,7 +238,10 @@ class HomeController extends BaseController
             'Tin tuyển dụng yêu thích'
         ];
         $job = Job::join('favourite', 'favourite.job_id', '=', 'job.id')
-            ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->where('favourite.user_id', Auth::guard('user')->user()->id)
+            ->select('favourite.*', 'company.logo as logo', 'company.name as nameCompany', 'company.id as idCompany', 'employer.id as idEmployer', 'job.title as title')
             ->get();
         return view('client.seeker.favourite', [
             'breadcrumbs' => $breadcrumbs,
@@ -276,8 +279,16 @@ class HomeController extends BaseController
     }
     public function deleteFavourite($id)
     {
-        Favourite::where('id', $id)->delete();
-        return redirect()->back();
+        if (Favourite::where('id', $id)->delete()) {
+            return response()->json([
+                'message' => 'Xóa công việc thành công',
+                'status' => StatusCode::OK,
+            ], StatusCode::OK);
+        }
+        return response()->json([
+            'message' => 'một lỗi đã xảy ra',
+            'status' => StatusCode::OK,
+        ], StatusCode::INTERNAL_ERR);
     }
     public function changePassword()
     {
