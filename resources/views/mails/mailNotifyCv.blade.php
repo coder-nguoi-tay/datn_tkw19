@@ -18,17 +18,17 @@
         <br>
         <div class="mail-content" style="  padding: 30px;">
             <p>Kính gửi Quý khách hàng sssss</p>
-            <p>TopCV xin thông báo, tài khoản nhà tuyển dụng của Quý khách chưa xác thực số điện thoại.</p>
+            <p>ITWork xin thông báo, tài khoản nhà tuyển dụng của Quý khách chưa xác thực số điện thoại.</p>
 
-            <p>Để bảo vệ tài khoản nhà tuyển dụng của mình và trải nghiệm dịch vụ của TopCV một cách tốt
+            <p>Để bảo vệ tài khoản nhà tuyển dụng của mình và trải nghiệm dịch vụ của ITWork một cách tốt
                 nhất,
                 Quý
                 khách vui lòng nhấn
                 vào đây để tiến hành xác thực.</p>
             <p>Trong trường hợp cần hỗ trợ thêm thông tin, Quý khách vui lòng liên hệ:</p>
 
-            <p>Tổng đài CSKH: SĐT: (024) 7107 9799</p>
-            <p style="text-align: center">Email CSKH: cskh@topcv.vn</p>
+            <p>Tổng đài CSKH: SĐT: (096) 252 3872</p>
+            <p style="text-align: center">Email CSKH: hungnvph14820@fpt.edu.vn</p>
             <p>Trân trọng,</p>
         </div>
     </div>
