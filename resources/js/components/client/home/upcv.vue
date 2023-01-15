@@ -311,25 +311,7 @@ export default {
       }
     },
     onSubmit() {
-      if (!this.data.seeker) {
-        const notyf = new Notyf({
-          duration: 6000,
-          position: {
-            x: 'right',
-            y: 'bottom'
-          },
-          types: [
-            {
-              type: 'error',
-              duration: 8000,
-              dismissible: true
-            }
-          ]
-        })
-        return notyf.error('Bạn cần hoàn thiện hồ sơ để có thể nộp được CV')
-      } else {
-        this.$refs.formData.submit()
-      }
+      this.$refs.formData.submit()
     }
   }
 }

@@ -59,10 +59,9 @@ class ManagerUploadCvController extends BaseController
     public function index(Request $request)
     {
         $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
-        $cv = $this->jobseeker
-            ->join('save_cv', 'job-seeker.user_role', '=', 'save_cv.user_id')
+        $cv = $this->savecv
             ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->leftjoin('users', 'users.id', '=', 'job-seeker.user_role')
+            ->leftjoin('users', 'users.id', '=', 'save_cv.user_id')
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->leftjoin('majors', 'majors.id', '=', 'job.majors_id')
             ->where('job.employer_id', $checkCompany->id)
@@ -79,7 +78,7 @@ class ManagerUploadCvController extends BaseController
                     $q->orWhere($this->escapeLikeSentence('save_cv.token', $request['free_word']));
                 }
             })
-            ->select('users.name as user_name', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'job-seeker.*', 'majors.name as majors_name', 'save_cv.created_at as create_at_sv', 'save_cv.token as token')
+            ->select('users.name as user_name', 'users.images as images', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'majors.name as majors_name', 'save_cv.created_at as create_at_sv', 'save_cv.token as token')
             ->get();
         $breadcrumbs = [
             'Hồ sơ đã nhận',

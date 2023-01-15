@@ -39,7 +39,7 @@
                                             #{{ $item->token }}
                                         </div>
                                         <div class="bread-img flex-shrink-0">
-                                            <a href="{{ route('employer.quan-ly-cv.show', $item->id) }}" class="d-block">
+                                            <a href="" class="d-block">
                                                 <img src="{{ asset($item->images) }}" alt="">
                                             </a>
                                         </div>

@@ -17,6 +17,7 @@ use App\Models\Lever;
 use App\Models\location;
 use App\Models\Majors;
 use App\Models\Profession;
+use App\Models\SaveCv;
 use App\Models\Skill;
 use App\Models\Timework;
 use App\Models\User;
@@ -49,8 +50,9 @@ class NewEmployerController extends BaseController
     public WorkingForm $workingform;
     public User $user;
     public Jobseeker $jobseeker;
+    public SaveCv $savecv;
 
-    public function __construct(Jobseeker $jobseeker, User $user, Lever $lever, Experience $experience, Wage $wage, Skill $skill, Timework $timework, Profession $profession, Jobskill $jobskill, Job $job, Majors $majors, Employer $employer, Company $company, location $location, WorkingForm $workingform)
+    public function __construct(SaveCv $savecv, Jobseeker $jobseeker, User $user, Lever $lever, Experience $experience, Wage $wage, Skill $skill, Timework $timework, Profession $profession, Jobskill $jobskill, Job $job, Majors $majors, Employer $employer, Company $company, location $location, WorkingForm $workingform)
     {
         $this->lever = $lever;
         $this->experience = $experience;
@@ -67,6 +69,7 @@ class NewEmployerController extends BaseController
         $this->workingform = $workingform;
         $this->user = $user;
         $this->jobseeker = $jobseeker;
+        $this->savecv = $savecv;
     }
     public function index(Request $request)
     {
@@ -356,10 +359,9 @@ class NewEmployerController extends BaseController
     }
     public function detailNew($id, Request $request)
     {
-        $cv = $this->jobseeker
-            ->join('save_cv', 'job-seeker.user_role', '=', 'save_cv.user_id')
+        $cv = $this->savecv
             ->join('job', 'job.id', '=', 'save_cv.id_job')
-            ->leftjoin('users', 'users.id', '=', 'job-seeker.user_role')
+            ->leftjoin('users', 'users.id', '=', 'save_cv.user_id')
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->leftjoin('majors', 'majors.id', '=', 'job.majors_id')
             ->where('job.id', $id)
@@ -376,8 +378,9 @@ class NewEmployerController extends BaseController
                     $q->orWhere($this->escapeLikeSentence('save_cv.token', $request['free_word']));
                 }
             })
-            ->select('users.name as user_name', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'job-seeker.*', 'majors.name as majors_name', 'save_cv.created_at as create_at_sv', 'save_cv.token as token')
+            ->select('users.name as user_name', 'users.images as images', 'save_cv.status as status', 'save_cv.id as cv_id', 'save_cv.file_cv as file_cv', 'save_cv.user_id as user_id', 'majors.name as majors_name', 'save_cv.created_at as create_at_sv', 'save_cv.token as token')
             ->get();
+        // dd($cv);
         $breadcrumbs = [
             [
                 'url' => route('employer.new.index'),

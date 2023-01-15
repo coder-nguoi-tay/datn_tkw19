@@ -202,12 +202,12 @@
                   <h3>CHỨNG CHỈ</h3>
                   <div class="box_contact">
                     <div class="mb-3">
-                      <Editor
+                      <textarea
                         name="certificate"
                         v-model="model.certificate"
-                        class="form-control box-up-cv cus-tom-ckediter-cv"
+                        class="form-control mb-5"
                         rules="required|max:255"
-                        style="float: left"
+                        style="float: left; height: 300px"
                       />
                     </div>
                   </div>
@@ -242,12 +242,12 @@
                 <span class="bd_cv"></span>
                 <div class="mt">
                   <div>
-                    <Editor
+                    <textarea
                       name="target"
                       v-model="model.target"
                       class="form-control box-up-cv cus-tom-ckediter-cv"
                       rules="required|max:255"
-                      style="height: 100px !important"
+                      style="height: 250px !important"
                     />
                   </div>
                 </div>
@@ -377,7 +377,7 @@ export default {
     }
   },
   created() {
-    console.log(this.data.user)
+    console.log(this.model.certificate)
     if (this.data.user != null) {
       this.data.skill.map((x) => {
         this.skill_cv_info.push({

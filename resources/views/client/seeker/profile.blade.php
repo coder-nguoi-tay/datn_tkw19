@@ -32,13 +32,15 @@
                         'skill' => $skill,
                         'timework' => $timework,
                         'profession' => $profession,
-                        // 'majors' => $majors,
+                        'cv' => $cv,
                         'location' => $location,
                         'workingform' => $workingform,
                         'user' => $user,
                         'urlStore' => route('profile.store'),
                         'urlBack' => route('profile.index'),
                         'getskill' => $getskill ?? '',
+                        'urlUpdateAvatar' => route('profile.updateAvatar'),
+                        'user' => Auth::guard('user')->user(),
                     ]) }}">
                 </user-profile>
             </div>

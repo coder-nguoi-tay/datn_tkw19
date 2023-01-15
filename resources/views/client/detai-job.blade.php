@@ -110,6 +110,12 @@
     </div>
     @include('client.layout.header')
     <main class="main" id="app">
+        @if (session()->get('Message.flash'))
+            <notyf :data="{{ json_encode(session()->get('Message.flash')[0]) }}"></notyf>
+        @endif
+        @php
+            session()->forget('Message.flash');
+        @endphp
         <div class="post-loop-grid">
             <div class="container">
                 <div class="row">
