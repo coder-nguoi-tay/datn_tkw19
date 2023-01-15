@@ -1,5 +1,5 @@
 @php
-use App\Enums\Onoff;
+    use App\Enums\Onoff;
 @endphp
 @extends('master')
 @section('content')
@@ -44,11 +44,6 @@ use App\Enums\Onoff;
                                                 </div>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                {{-- @if ($item->id == Auth::guard('user')->user()->id)
-                                                    <span class="badge badge-sm bg-gradient-success">Online</span>
-                                                @else
-                                                    <span class="badge badge-sm bg-gradient-danger">Offline</span>
-                                                @endif --}}
                                                 <span
                                                     class="badge badge-sm bg-gradient-success">{{ Onoff::getDescription($item->role) }}</span>
                                             </td>

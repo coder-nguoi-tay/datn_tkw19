@@ -117,15 +117,9 @@
                                         </div>
                                     </div>
                                 @endforeach
-
-
-
                             </div>
-                            <!--row job_listings-->
                         </div>
-                        <!--col-lg-9-->
                     </div>
-
                     <!-- All jobs -->
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12"> <br><br>

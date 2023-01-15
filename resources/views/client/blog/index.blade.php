@@ -4,13 +4,6 @@
 @extends('client.layout.index')
 @section('client')
     <main class="main">
-
-
-
-
-
-
-
         <div class="section-box">
             <div class="text-center"><img width="1280" height="514"
                     src="../wp-content/uploads/2022/09/jobbox-post-7-1280x514.jpg" class="img-fluid img-fluid wp-post-image"
