@@ -13,11 +13,11 @@
           </div>
           <div class="logo">
             <img
-              src="/assets/img/user/banner-5.jpg"
+              src="/assets/img/logo_it.jpg"
               width="160px"
               class="logo-lg"
             />
-            <img src="/assets/img/user/banner-5.jpg" class="logo-mobile" />
+            <img src="/assets/img/logo_it.jpg" class="logo-mobile" />
           </div>
         </div>
 
@@ -26,8 +26,10 @@
           Cùng tạo dựng lợi thế cho doanh nghiệp bằng trải nghiệm công nghệ
           tuyển dụng ứng dụng sâu AI & Hiring Funnel
         </p>
+        <!-- <br>   -->
       </div>
     </div>
+    <br>
     <div class="container form-employer-register">
       <div class="card login-card">
         <div class="row no-gutters">
@@ -504,7 +506,7 @@ export default {
 <style scoped>
 body {
   font-family: 'Karla', sans-serif;
-  background-color: #f1f2f6;
+  /* background-color: #f1f2f6; */
   min-height: 100vh;
 }
 .container-fluid {
@@ -522,7 +524,7 @@ body {
 }
 .register-header-box .overlay {
   position: absolute;
-  background: #747474;
+  /* background: #6c8cff; */
   width: 100%;
   height: 100%;
   left: 0;
