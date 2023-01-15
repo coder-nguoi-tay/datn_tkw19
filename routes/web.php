@@ -30,7 +30,7 @@ use App\Http\Controllers\Employer\RegisterCompanyController;
 use App\Http\Controllers\Employer\SearchCvController;
 use App\Http\Controllers\Employer\ViewProfileController;
 use App\Http\Controllers\TestController;
-use Illuminate\Routing\Router;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -168,4 +168,3 @@ Route::get('detail-blog/{id}', [NewsController::class, 'ShowBlog'])->name('detai
 Route::get('detailNew/{id}', [NewsController::class, 'showTinTuc'])->name('detailNew');
 //
 Route::get('majors/{id}', [ClientHomeController::class, 'searchMajors'])->name('searchMajors');
-Route::get('error-404', [HomeController::class, 'error'])->name('error404');
