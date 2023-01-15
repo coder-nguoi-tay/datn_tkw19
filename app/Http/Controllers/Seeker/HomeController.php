@@ -260,14 +260,15 @@ class HomeController extends BaseController
     public function userFavouriteId($id)
     {
         $favourite = Favourite::select('*')->get();
-        if ($favourite->whereIn('job_id', $id)->first()) {
+        if ($favourite->where('user_id', Auth::guard('user')->user()->id)->whereIn('job_id', $id)->first()) {
             Favourite::where('job_id', $id)->delete();
             return response()->json([
                 'status' => StatusCode::OK
             ]);
         }
         Favourite::create([
-            'job_id' => $id
+            'job_id' => $id,
+            'user_id' => Auth::guard('user')->user()->id,
         ])->save();
         return response()->json([
             'status' => StatusCode::OK
@@ -349,7 +350,10 @@ class HomeController extends BaseController
     public function getDatalove($id)
     {
         return response()->json([
-            'data' => Favourite::where('job_id', $id)->first()
+            'data' => Favourite::where([
+                ['job_id', $id],
+                ['user_id', Auth::guard('user')->user()->id],
+            ])->first()
         ]);
     }
 }

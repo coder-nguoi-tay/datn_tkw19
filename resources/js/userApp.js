@@ -236,52 +236,23 @@ $(document).ready(function () {
             if (x.data.data) {
                 if (x.data.data.job_id == $('.icon-save-cv')[0].id.split(',')[0]) {
                     $('.icon-save-cv').addClass('btn-icon-love')
-                    $('.icon-save-cv').removeClass('btn-un-icon-love')
-                    $('.icon-save-cv').click(function (e) {
-                        $('.icon-save-cv').addClass('btn-un-icon-love')
-                        $('.icon-save-cv').removeClass('btn-icon-love')
+                    const btnLike = document.querySelector('.icon-save-cv')
+                    btnLike.addEventListener("click", function (e) {
                         axios.post('/favourite/' + $('.icon-save-cv')[0].id.split(',')[0])
                             .then((a) => {
                             }).catch((y) => {
-
                             })
-                        $('.icon-save-cv').click(function (e) {
-                            axios.get('/favourite-love/' + $('.icon-save-cv')[0].id.split(',')[0])
-                                .then((u) => {
-                                    if (u.data.data) {
-                                        $('.icon-save-cv').addClass('btn-icon-love')
-                                        $('.icon-save-cv').removeClass('btn-un-icon-love')
-                                        axios.get('/favourite-love/' + $('.icon-save-cv')[0].id.split(',')[0])
-                                            .then((u) => {
-                                                if (u.data.data == null) {
-                                                    axios.post('/favourite/' + $('.icon-save-cv')[0].id.split(',')[0])
-                                                        .then((b) => {
-                                                        })
-                                                }
-                                            })
-                                    }
-                                })
-                        })
+                        e.currentTarget.classList.toggle('btn-icon-love')
                     })
                 }
             } else {
-                $('.icon-save-cv').click(function (e) {
-                    $('.icon-save-cv').removeClass('btn-un-icon-love')
-                    $('.icon-save-cv').addClass('btn-icon-love')
-                    axios.get('/favourite-love/' + $('.icon-save-cv')[0].id.split(',')[0])
-                        .then((u) => {
+                const btnLike = document.querySelector('.icon-save-cv')
+                btnLike.addEventListener("click", function (e) {
+                    axios.post('/favourite/' + $('.icon-save-cv')[0].id.split(',')[0])
+                        .then((a) => {
+                        }).catch((y) => {
                         })
-                })
-                $('.icon-save-cv').click(function (e) {
-                    axios.get('/favourite-love/' + $('.icon-save-cv')[0].id.split(',')[0])
-                        .then((u) => {
-                            $('.icon-save-cv').click(function (e) {
-                                if (!u.data.data) {
-                                    $('.icon-save-cv').removeClass('btn-icon-love')
-                                    $('.icon-save-cv').addClass('btn-un-icon-love')
-                                }
-                            })
-                        })
+                    e.currentTarget.classList.toggle('btn-icon-love')
                 })
             }
         }).catch((y) => {

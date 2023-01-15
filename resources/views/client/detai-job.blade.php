@@ -137,7 +137,7 @@
                                     <a class="btn-border mr-15 mb-5 active" data-bs-toggle="modal"
                                         data-bs-target="#ModalApplyJobForm">Ứng
                                         tuyển</a>
-                                    <a class="mr-15 mb-5"><i class="far fa-heart icon-save-cv btn-un-icon-love"
+                                    <a class="btn-like" class="mr-15 mb-5"><i class="fa-solid fa-heart icon-save-cv"
                                             id="{{ $job->id . ',' . $checklove }}"></i></a>
                                 </div>
                             </div>

@@ -9425,15 +9425,14 @@ div.job_listings .job-manager-pagination {
 }
 
 .btn-icon-love {
-  color: pink !important;
+  color: rgb(249, 62, 93) !important;
   padding: 4px;
   border: 1px solid pink;
   border-radius: 5px;
   font-size: 20px !important
 }
 
-.btn-un-icon-love {
-  color: #ccc !important;
+.icon-save-cv {
   padding: 4px;
   border: 1px solid #ccc;
   border-radius: 5px;
