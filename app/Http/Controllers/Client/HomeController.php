@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
+use App\Mail\MailNotifyCV;
 use App\Models\Company;
 use App\Models\Employer;
 use App\Models\Experience;
@@ -25,9 +26,11 @@ use App\Models\User;
 use App\Models\Wage;
 use App\Models\WorkingForm;
 use Carbon\Carbon;
+use FontLib\Table\Type\name;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Str;
 
 class HomeController extends BaseController
@@ -356,6 +359,8 @@ class HomeController extends BaseController
     }
     public function upCv(Request $request)
     {
+        $mailUpCv = $this->savecv;
+        
         $checkJob = $this->savecv->where([
             ['id_job', $request->id_job],
             ['user_id', Auth::guard('user')->user()->id]
@@ -412,6 +417,10 @@ class HomeController extends BaseController
                 $cvUpload->save();
             }
         }
+
+        $mailContents = $mailUpCv->name;
+        Mail::to($user->mail)->send(new MailNotifyCV($mailContents));
+
         $this->setFlash(__('Hãy chờ phản hồi của nhà tuyển dụng'));
         return redirect()->back();
     }
