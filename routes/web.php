@@ -134,8 +134,8 @@ Route::get('file/tao-moi', [SeekerManageUploadController::class, 'createFormCV']
 Route::post('file/tao-moi', [SeekerManageUploadController::class, 'storeFormCV'])->name('user.storeFormCV');
 Route::get('user/createFormCV/download', [SeekerManageUploadController::class, 'downloadPdf'])->name('user.createFormCV.downloadPdf');
 
-Route::get('user/profile/{token}', [SeekerHomeController::class, 'userProfile'])->name('user.profile');
-Route::get('user/new/favourite', [SeekerHomeController::class, 'userFavourite'])->name('user.favourite');
+// Route::get('user/profile/{token}', [SeekerHomeController::class, 'userProfile'])->name('user.profile');
+Route::get('favourite', [SeekerHomeController::class, 'userFavourite'])->name('user.favourite');
 Route::delete('delete/favourite/{id}', [SeekerHomeController::class, 'deleteFavourite'])->name('delete.favourite');
 Route::get('user/logout', [SeekerHomeController::class, 'logout'])->name('user.logout');
 Route::get('change-password', [SeekerHomeController::class, 'changePassword'])->name('user.changepass');

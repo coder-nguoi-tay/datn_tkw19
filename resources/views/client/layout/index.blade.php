@@ -124,12 +124,6 @@
             JSON_UNESCAPED_UNICODE,
         ) !!};
     </script>
-    <style>
-        .btn-icon-love {
-            background-color: pink !important;
-            color: pink !important
-        }
-    </style>
 </head>
 
 <body

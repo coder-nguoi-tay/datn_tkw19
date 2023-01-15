@@ -25,6 +25,12 @@ defineRule('telephone', (value) => {
         /^0(\d{9,10})+$/i.test(value.trim())
     )
 })
+$(document).ready(function () {
+    $('ul li a').click(function () {
+        $('li a').removeClass("active");
+        $(this).addClass("active");
+    });
+});
 
 $(document).ready(function () {
 
@@ -306,8 +312,6 @@ import businessLicense from "./components/employer/profile/business-license.vue"
 app.component('business-license', businessLicense);
 
 
-
-
 import modalContract from "./components/client/modal/modalContact.vue";
 app.component('modal-contract', modalContract);
 
@@ -331,4 +335,7 @@ import HomeSearch from "./components/client/home/search.vue";
 import axios from 'axios'
 app.component('home-search', HomeSearch);
 
+//job love
+import btnDeleteJobLove from './components/common/btnDeleteJobLove.vue'
+app.component('btn-delete-job-love', btnDeleteJobLove)
 app.mount('#app')

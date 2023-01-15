@@ -9439,4 +9439,9 @@ div.job_listings .job-manager-pagination {
   font-size: 20px !important
 }
 
+.custom-css-delete-job {
+  border-radius: 5px !important;
+  border: 1px solid #ccc !important;
+}
+
 /*# sourceMappingURL=style.css.map */
