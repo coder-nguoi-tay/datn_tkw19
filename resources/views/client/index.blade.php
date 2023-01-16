@@ -216,6 +216,7 @@
 
                                     <div class="section-box mb-30">
                                         <div class="container">
+
                                             <div class="box-we-hiring">
                                                 <div class="text-1"><span class="text-we-are">We are</span><span
                                                         class="text-hiring">Hiring</span></div>
@@ -235,6 +236,199 @@
                     </div>
                 </div>
             </section>
+            <section class="section-box mt-50">
+                <div class="section-box wow animate__animated animate__fadeIn">
+                    <div class="container">
+                        <div class="text-start">
+                            <h2 class="section-title mb-10 wow animate__animated animate__fadeInUp">Việc làm nổi bật</h2>
+                            <p class="font-lg color-text-paragraph-2 wow animate__animated animate__fadeInUp">Tìm kiếm và
+                                kết nối với các ứng viên phù hợp nhanh hơn.</p>
+                        </div>
+                        <div class="box-swiper mt-50">
+                            <div class="swiper-container swiper-group-6 mh-none swiper categories-slide-2">
+                                <div
+                                    class="swiper swiper-wrapper swiper-initialized swiper-horizontal swiper-pointer-events pb-70 pt-5">
+                                    <div class="swiper-wrapper"
+                                        style="transition-duration: 0ms; transform: translate3d(-1452px, 0px, 0px);">
+                                        <div class="swiper-slide swiper-slide-duplicate swiper-slide-active"
+                                            data-swiper-slide-index="4" style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big2.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Advertising</h6>
+                                                                <p class="color-white font-xs"><span>10</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-duplicate swiper-slide-next"
+                                            data-swiper-slide-index="5" style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big3.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Advertising</h6>
+                                                                <p class="color-white font-xs"><span>10</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide" data-swiper-slide-index="0"
+                                            style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big1.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Software</h6>
+                                                                <p class="color-white font-xs"><span>55</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide" data-swiper-slide-index="1"
+                                            style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big2.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Finance</h6>
+                                                                <p class="color-white font-xs"><span>35</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-duplicate-active"
+                                            data-swiper-slide-index="2" style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big3.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Recruting</h6>
+                                                                <p class="color-white font-xs"><span>20</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="3"
+                                            style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big1.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Management</h6>
+                                                                <p class="color-white font-xs"><span>15</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide" data-swiper-slide-index="4"
+                                            style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big2.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Advertising</h6>
+                                                                <p class="color-white font-xs"><span>10</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-duplicate-next" data-swiper-slide-index="5"
+                                            style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big3.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Advertising</h6>
+                                                                <p class="color-white font-xs"><span>10</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="0"
+                                            style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big1.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Software</h6>
+                                                                <p class="color-white font-xs"><span>55</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="1"
+                                            style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big2.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Finance</h6>
+                                                                <p class="color-white font-xs"><span>35</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <section
                 class="elementor-section elementor-top-section elementor-element elementor-element-d98c6ff elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                 data-id="d98c6ff" data-element_type="section">
@@ -248,6 +442,7 @@
                                     <h2 class="control-heading-title m-0">Tất cả việc làm</h2>
                                 </div>
                             </div>
+
                             <div class="elementor-element elementor-element-54a362e text-center elementor-widget elementor-widget-template"
                                 data-id="54a362e" data-element_type="widget" data-widget_type="template.default">
                                 <div class="elementor-widget-container">
@@ -327,6 +522,7 @@
                                             </li>
                                         </ul>
                                     </div>
+
                                     <div class="mt-10">
                                         <div class="tab-content" id="myTabContent-2">
                                             <div class="tab-pane fade show active" id="tab-content-writer"

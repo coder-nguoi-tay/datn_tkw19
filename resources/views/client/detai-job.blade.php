@@ -273,28 +273,14 @@
                                                 <li>{!! $job->candidate_requirements !!}</li>
 
                                             </ul>
+                                            <h4>Kỹ năng</h4>
+                                            @foreach ($job->getskill as $item)
+                                                <li><span
+                                                        class="px-2 py-1 medium skill-bg rounded text-dark">{{ $item->name }}</span>
+                                                </li>
+                                            @endforeach
 
                                         </div>
-                                        <div class="author-single">
-                                            <span>Baseball Saving</span>
-                                        </div>
-
-                                        <div class="single-apply-jobs mt-50">
-                                            <div class="row">
-
-                                                <div class="col-md-6">
-                                                    <div
-                                                        class="job-manager-form wp-job-manager-bookmarks-form border-0 m-0 pt-20">
-                                                        <div>
-                                                            <a class="bookmark-notice btn btn-border"
-                                                                href="#controlJobManagerLogin"
-                                                                data-bs-toggle="modal">Lưu công việc</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
                                     <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15">
                                         <div class="sidebar-border">

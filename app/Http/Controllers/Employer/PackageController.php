@@ -111,6 +111,19 @@ class PackageController extends BaseController
             'data' => jobAttractive::where('id', $id)->first()
         ]);
     }
+    public function show($id)
+    {
+        $breadcrumbs = [
+            'Chi tiết gói cước',
+        ];
+
+        $package = jobAttractive::where('id', $id)->first();
+        return view('employer.package.show', [
+            'breadcrumbs' => $breadcrumbs,
+            'title' => 'Chi tiết gói cước',
+            'package' => $package
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.
