@@ -417,7 +417,9 @@ class HomeController extends BaseController
                 $cvUpload->save();
             }
         }
-
+        $user = $this->job->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('users', 'users.id', '=', 'employer.user_id')
+            ->select('users.email as email')->first();
         $mailContents = $mailUpCv->name;
         Mail::to($user->mail)->send(new MailNotifyCV($mailContents));
 
