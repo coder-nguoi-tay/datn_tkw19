@@ -5,7 +5,7 @@
 @section('content')
     <section class="dashboard-area">
         <div class="dashboard-content-wrap">
-            <div class="container-fluid">
+            <div class="container-fluid mt-4">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="breadcrumb-content d-flex flex-wrap justify-content-between align-items-center">
