@@ -6,27 +6,25 @@
         <CCard class="mb-4">
           <CCardBody style="height: 470px">
             <CRow>
-              <CCol :sm="10">
+              <CCol :sm="8">
                 <div class="small text-medium-emphasis">
                   Thống kê năm: <b>{{ model.date ?? newdate }}</b>
                 </div>
               </CCol>
-              <CCol :sm="2" class="d-flex">
+              <CCol :sm="4" class="d-flex">
                 <form action="" method="get" class="row">
-                  <div class="col-10 text-center">
-                    <div class="small text-medium-emphasis d-flex">
+                  <div class="col-8 text-center">
+                    <div class="small text-medium-emphasis">
                       <DatePicker
-                        year-picker
-                        name="date"
                         v-model="model.date"
+                        name="date"
+                        year-picker
                         textInput
                       />
                     </div>
                   </div>
                   <div class="col-2">
-                    <div class="small text-medium-emphasis">
-                      <button class="nav-link py-0 btn-next-step">Lọc</button>
-                    </div>
+                    <button class="btn btn-info">Lọc</button>
                   </div>
                 </form>
               </CCol>
@@ -55,9 +53,6 @@ import DatePicker from './../common/datePickerYear.vue'
 import { ref } from '@vue/reactivity'
 
 export default {
-  created() {
-    console.log(this.data)
-  },
   props: ['data'],
   name: 'Dashboard',
   components: {
@@ -200,3 +195,4 @@ export default {
   }
 }
 </script>
+

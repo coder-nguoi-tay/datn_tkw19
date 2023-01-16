@@ -67,7 +67,7 @@ class RegisterCompanyController extends BaseController
             $company->save();
             $employer->id_company = $company->id;
             $employer->save();
-            $this->setFlash(__('Thêm công ty thành công'));
+            $this->setFlash(__('Cập nhật thông tin thành công!'));
             return redirect()->back();
         } catch (\Throwable $th) {
             DB::rollBack();

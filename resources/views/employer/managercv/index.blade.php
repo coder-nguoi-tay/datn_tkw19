@@ -1,86 +1,106 @@
 @php
     use Carbon\Carbon;
-    use App\Enums\UserRecruit;
 @endphp
-@extends('layouts.admin')
+@extends('employer.layout.index')
 @section('content')
-    <div class="container">
-        <div class="fade-in">
+    <div class="dashboard-content-wrap">
+        <div class="container-fluid mt-4">
             <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <header class="header header-sticky">
-                                <div class="container-fluid">
-                                    <label class=" px-md-0 me-md-3">Quản lý CV</label>
-                                    <ul class="header-nav ms-3 d-flex">
-                                        <search-cv-date :url="{{ json_encode(route('employer.quan-ly-cv.index')) }}"
-                                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
-                                        </search-cv-date>
-                                    </ul>
-                                </div>
-                            </header>
-                        </div>
-                        <div class="card-body">
-                            <div class="row gy-3">
-                                @if (!$cv->isEmpty())
-                                    <table class="table table-striped table-hover table-bordered text-center">
-                                        <thead>
-                                            <th scope="col">Mã CV</th>
-                                            <th scope="col">Hình ảnh</th>
-                                            <th scope="col">Họ và Tên</th>
-                                            <th scope="col">Ứng tuyển vị trí</th>
-                                            <th scope="col">Ngày nộp đơn</th>
-                                            <th scope="col">thao tác</th>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($cv as $item)
-                                                <tr>
-                                                    <td scope="row">{{ $item->token }}</td>
-                                                    <td><img src="{{ asset($item->images) }}" alt="" width="150"
-                                                            height="150"></td>
-                                                    <td>{{ $item->user_name }}</td>
-                                                    <td>{{ $item->majors_name }}</td>
-
-                                                    <td>{{ Carbon::parse($item->create_at_sv)->format('d-m-Y') }}</td>
-                                                    {{-- <td>{{ $item->status == 0 ? 'chưa xem' : 'đã xem' }}</td> --}}
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <button class="btn btn-warning btn-radius-auto dropdown-toggle"
-                                                                id="action" type="button" data-coreui-toggle="dropdown"
-                                                                aria-expanded="false">Chức năng</button>
-                                                            <ul class="dropdown-menu" aria-labelledby="action">
-                                                                <li>
-                                                                    <a class="dropdown-item"
-                                                                        href="{{ asset($item->file_cv) }}" target="_blank"
-                                                                        class="dropdown-item">
-                                                                        <i class="fa fa-eye"></i>Xem Chi Tiết
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                @else
-                                    <div class="container">
-                                        <div class="alert alert-danger alert-dismissible fade show text-center"
-                                            role="alert">
-                                            Không tìm thấy dữ liệu mà bạn mong muốn!
+                <div class="col-lg-12">
+                    <div class="breadcrumb-content d-flex flex-wrap justify-content-between align-items-center">
+                        <ul class="list-items d-flex align-items-center">
+                            @if (isset($breadcrumbs))
+                                @foreach ($breadcrumbs as $key => $breadcrumb)
+                                    @if ($key != count($breadcrumbs) - 1)
+                                        <li class="active__list-item">
+                                            <a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['name'] }}</a>
+                                        </li>
+                                    @else
+                                        <li class="active__list-item active">{{ $breadcrumb }}</li>
+                                    @endif
+                                @endforeach
+                            @endif
+                        </ul>
+                    </div><!-- end breadcrumb-content -->
+                </div><!-- end col-lg-12 -->
+            </div><!-- end row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="billing-form-item p-5">
+                        <search-cv-date :url="{{ json_encode(route('employer.quan-ly-cv.index')) }}"
+                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
+                            :data="{{ json_encode(2) }}">
+                        </search-cv-date>
+                        @foreach ($cv as $item)
+                            <div class="billing-content pb-0 mt-5">
+                                <div class="manage-candidate-wrap d-flex align-items-center justify-content-between pb-4">
+                                    <div class="bread-details d-flex">
+                                        <div class="bread-img flex-shrink-0">
+                                            #{{ $item->token }}
                                         </div>
-                                    </div>
-                                @endif
+                                        <div class="bread-img flex-shrink-0">
+                                            <a href="" class="d-block">
+                                                <img src="{{ asset($item->images) }}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="manage-candidate-content">
+                                            <h2 class="widget-title pb-2"><a href="{{ asset($item->file_cv) }}"
+                                                    target="_blank" class="color-text-2">{{ $item->user_name }}</a></h2>
+                                            <p class="font-size-15">
+                                                <span class="mr-2">{{ $item->majors_name }}</span>
+                                            </p>
+                                            {{-- <p class="mt-2 font-size-15">
+                                                <span class="mr-2"><i
+                                                        class="la la-map-marker mr-1"></i>{{ $item->address }}</span>
+                                            </p> --}}
+                                        </div>
+                                        <div class="manage-candidate-content">
+                                            <h2 class="widget-title pb-2 mx-5"><a href="#" class="color-text-2">Ngày
+                                                    nộp hồ sơ</a></h2>
+                                            <p class="font-size-15 mx-5">
+                                                <span
+                                                    class="mr-2">{{ Carbon::parse($item->created_at)->format('d-m-Y') }}</span>
+                                            </p>
+                                        </div>
 
-                            </div>
-                            <div class="group-paginate">
-                                {{-- {{ $news->appends(SearchQueryComponent::alterQuery($request))->links('pagination.admin') }} --}}
-                            </div>
+                                    </div>
+                                    <div class="bread-action">
+                                        <ul class="info-list">
+                                            <li class="d-inline-block mb-0"><a href="{{ asset($item->file_cv) }}"
+                                                    target="_blank"><i class="la la-eye" data-toggle="tooltip"
+                                                        data-placement="top" title=""
+                                                        data-original-title="View"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- end manage-candidate-wrap -->
+                                <div class="section-block"></div>
+                            </div><!-- end billing-content -->
+                        @endforeach
+
+                    </div><!-- end billing-form-item -->
+                </div><!-- end col-lg-12 -->
+            </div><!-- end row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-navigation-wrap mt-4">
+                        <div class="page-navigation mx-auto">
+                            <a href="#" class="page-go page-prev">
+                                <i class="la la-arrow-left"></i>
+                            </a>
+                            <ul class="page-navigation-nav">
+                                <li><a href="#" class="page-go-link">1</a></li>
+                                <li class="active"><a href="#" class="page-go-link">2</a></li>
+                                <li><a href="#" class="page-go-link">3</a></li>
+                                <li><a href="#" class="page-go-link">4</a></li>
+                                <li><a href="#" class="page-go-link">5</a></li>
+                            </ul>
+                            <a href="#" class="page-go page-next">
+                                <i class="la la-arrow-right"></i>
+                            </a>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </div><!-- end page-navigation-wrap -->
+                </div><!-- end col-lg-12 -->
+            </div><!-- end row -->
+        </div><!-- end container-fluid -->
     </div>
 @endsection

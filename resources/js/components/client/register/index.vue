@@ -4,7 +4,7 @@
       <div class="row no-gutters">
         <div class="col-md-6">
           <img
-            src="https://scontent.fhan2-5.fna.fbcdn.net/v/t1.6435-9/95454650_545763709455532_686842777610223616_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=V2lc7o_y3KQAX9p1HMO&_nc_ht=scontent.fhan2-5.fna&oh=00_AfDCEkeoKviTCbCsbQ2NPoLI0kKl_7qoeVzIOytdWqV3UA&oe=63DCFA6F"
+            src="assets/img/login.jpg"
             alt="login"
             class="login-card-img"
           />
@@ -12,7 +12,7 @@
         <div class="col-md-6">
           <div class="card-body">
             <div class="brand-wrapper">
-              <img src="assets/images/logo.svg" alt="logo" class="logo" />
+              <img src="assets/img/logo_it.jpg" alt="logo" class="logo" />
               <br />
               <p class="login-card-description">Chào mừng bạn đến với ITWork</p>
             </div>
@@ -56,7 +56,21 @@
                 </div>
                 <div class="form-group mb-4">
                   <label for="password" class="form-label"
-                    >Password<span class="required-label">*</span></label
+                    >Mật khẩu<span class="required-label">*</span></label
+                  >
+                  <Field
+                    type="password"
+                    name="password"
+                    rules="required|min:8|max:16"
+                    id="password"
+                    class="form-control"
+                    placeholder="***********"
+                  />
+                  <ErrorMessage class="error" name="password" />
+                </div>
+                <div class="form-group mb-4">
+                  <label for="password" class="form-label"
+                    >Nhập lại mật khẩu<span class="required-label">*</span></label
                   >
                   <Field
                     type="password"

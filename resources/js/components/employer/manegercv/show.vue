@@ -1,65 +1,77 @@
 <template>
-  <div style="margin: 30px 0; padding: 0; box-sizing: border-box">
+  <div>
     <div class="main_gt">
       <div class="left_cv">
         <div class="box_img">
           <img
-            class="p-4 custom-image-cv"
+            class="custom-image-cv"
+            style="
+              width: 340px;
+              height: 300px;
+              padding-top: 10px !important;
+              object-fit: cover;
+            "
             :src="'http://127.0.0.1:8000/' + data.cv.images"
             alt=""
-            style="width: 100%"
+            
           />
         </div>
-        <div class="contact">
-          <h3>Thông tin cá nhân</h3>
-          <div class="box_contact">
-            <div class="mail">
-              <i class="fa-solid fa-envelope"></i>
-              <p v-if="data.cv.status == data.CheckUser">{{ data.cv.email }}</p>
-              <p v-if="data.cv.status != data.CheckUser">**************</p>
-            </div>
-            <div class="mail">
-              <i class="fa-solid fa-envelope"></i>
-              <p v-if="data.cv.status == data.CheckUser">{{ data.cv.phone }}</p>
-              <p v-if="data.cv.status != data.CheckUser">*****************</p>
-            </div>
-            <div class="mail">
-              <i class="fa-solid fa-envelope"></i>
-              <p v-if="data.cv.status == data.CheckUser">
-                {{ data.cv.address }}
-              </p>
-              <p v-if="data.cv.status != data.CheckUser">
-                ********************
-              </p>
-            </div>
-            <div class="mail">
-              <i class="fa-solid fa-envelope"></i>
-              <p v-if="data.cv.status == data.CheckUser">
-                <a :href="data.cv.link_fb">{{ data.cv.link_fb }}</a>
-              </p>
-              <p v-if="data.cv.status != data.CheckUser">
-                <a :href="data.cv.link_fb">*************</a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="contact">
-          <h3>CÁC KỸ NĂNG</h3>
-          <div class="box_contact">
-            <div
-              class="ky_nang"
-              v-for="(item, index) in JSON.parse(this.data.cv.skill)"
-            >
-              <b>{{ item.name }}</b>
-              <p>{{ item.value }}</p>
+        <div class="box-content">
+          <div class="contact">
+            <h3>Thông tin cá nhân</h3>
+            <div class="box_contact">
+              <div class="mail">
+                <i class="fas fa-envelope"></i>
+                <p v-if="data.cv.status == data.CheckUser">
+                  {{ data.cv.email }}
+                </p>
+                <p v-if="data.cv.status != data.CheckUser">**************</p>
+              </div>
+              <div class="mail">
+                <i class="fas fa-phone"></i>
+                <p v-if="data.cv.status == data.CheckUser">
+                  {{ data.cv.phone }}
+                </p>
+                <p v-if="data.cv.status != data.CheckUser">*****************</p>
+              </div>
+              <div class="mail">
+                <i class="fas fa-map-marker-alt"></i>
+                <p v-if="data.cv.status == data.CheckUser">
+                  {{ data.cv.address }}
+                </p>
+                <p v-if="data.cv.status != data.CheckUser">
+                  ********************
+                </p>
+              </div>
+              <div class="mail">
+                <i class="fab fa-facebook"></i>
+                <p v-if="data.cv.status == data.CheckUser">
+                  <a :href="data.cv.link_fb">{{ data.cv.link_fb }}</a>
+                </p>
+                <p v-if="data.cv.status != data.CheckUser">
+                  <a :href="data.cv.link_fb">*************</a>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="contact">
-          <h3>CHỨNG CHỈ</h3>
-          <div class="box_contact">
-            <div class="ky_nang">
-              <p v-html="data.cv.certificate"></p>
+          <div class="contact">
+            <h3>CÁC KỸ NĂNG</h3>
+            <div class="box_contact">
+              <div
+                class="ky_nang"
+                v-for="(item, index) in JSON.parse(this.data.cv.skill)"
+              >
+                <b>- {{ item.name }}</b>
+                <p>- {{ item.value }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="contact">
+            <h3>CHỨNG CHỈ</h3>
+            <div class="box_contact">
+              <div class="ky_nang">
+                <p v-html="data.cv.certificate"></p>
+              </div>
             </div>
           </div>
         </div>
@@ -97,7 +109,7 @@
               v-for="(item, index) in JSON.parse(this.data.cv.project)"
             >
               <div class="title_cv">
-                <i class="fa-solid fa-briefcase"></i>
+                <i class="fab fa-creative-commons-nd"></i>
                 <h4 v-html="item.name"></h4>
               </div>
               <div class="mt_cv">
@@ -124,7 +136,7 @@ export default {
 
  <style>
 .box_cv h3 {
-  border: 1px solid #ffbb00;
+  border: 1px solid rgb(12 112 148 / 100%) !important;
   border-radius: 8px;
   width: 250px;
   text-align: center;
@@ -144,17 +156,14 @@ export default {
   gap: 10px;
   align-items: center;
 }
-.title_cv > h4 {
-  color: #284350;
-}
 
 .title_cv > i {
-  color: #ebad00;
+  color: rgb(12 112 148 / 100%) !important;
   margin-top: -10px;
 }
 
 .main_gt {
-  width: 1100px;
+  width: 100% !important;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 350px 1fr;
@@ -165,16 +174,22 @@ export default {
   height: auto;
   width: 100%;
   color: #bbbdbf;
-  /* background: #284350; */
+  background: #0a6586 !important;
+  padding: 0px !important;
+}
+.box-content {
+  height: auto;
+  width: 100%;
   padding: 10px;
 }
-
 .left_cv .box_img {
   width: 100%;
   margin-bottom: 10px;
+  background: rgb(12 112 148 / 100%);
 }
 
 .left_cv .box_img > img {
+  padding: 10px;
   height: 300px !important;
 }
 
@@ -207,7 +222,7 @@ export default {
   text-transform: uppercase;
   margin: 10px 0;
   font-size: 18px;
-  border-bottom: 1px solid #ffc628;
+  border-bottom: 1px solid rgb(244, 244, 244) !important;
 }
 
 .left_cv > .contact .box_contact {
@@ -216,13 +231,14 @@ export default {
 }
 
 .left_cv > .contact h4 {
-  font-size: 12px;
+  font-size: 16px;
   text-transform: capitalize;
   color: #f1f1f1;
 }
 
 .left_cv > .contact .box_contact .ky_nang {
-  font-size: 14px;
+  font-size: 16px;
+  color: #f1f1f1;
 }
 
 .text-first {
@@ -240,7 +256,7 @@ export default {
 }
 
 .main_gt .right_cv .box_cv {
-  border-top: 1px solid #ffc628;
+  border-top: 1px solid rgb(12 112 148 / 100%) !important;
   position: relative;
   padding-left: 35px;
   color: #284350;
@@ -303,8 +319,9 @@ export default {
   color: #284350;
 }
 
-.main_gt .right_cv.title_cv > i {
-  color: #ebad00;
+.main_gt i {
+  margin: auto 0;
+  color: beige;
 }
 
 .main_gt .right_cv.mt .h4 {

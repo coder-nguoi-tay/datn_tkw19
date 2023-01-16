@@ -6,39 +6,26 @@
 @section('client')
     <div id="main-wrapper">
         <div class="clearfix"></div>
-        <div class="bg-title py-5" data-overlay="0">
+        <div class=" py-5">
             <div class="ht-30"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="colxl-12 col-lg-12 col-md-12">
-                        <h1 class="ft-medium">Việc làm đã tìm thấy</h1>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('index') }}" class="text-light">Home</a>
-                                </li>
-                                @if (isset($breadcrumbs))
-                                    @foreach ($breadcrumbs as $key => $breadcrumb)
-                                        @if ($key != count($breadcrumbs) - 1)
-                                            <li class="breadcrumb-item">
-                                            <li class="breadcrumb-item"><a href="{{ $breadcrumb['url'] }}"
-                                                    class="text-light">{{ $breadcrumb['name'] }}</a></li>
-                                            </li>
-                                        @else
-                                            <li class="breadcrumb-item active theme-cl" aria-current="page">
-                                                {{ $breadcrumb }}</li>
-                                        @endif
-                                    @endforeach
-                                @endif
-                            </ol>
-                        </nav>
+
+            <div class="container" style="background: white">
+                <section class="section-box-2">
+                    <div class="banner-hero banner-single banner-single-bg" data-settings-id="banner-job">
+                        <div class="block-banner text-center">
+                            <h3 class="wow animate__ animate__fadeInUp animated"
+                                style="visibility: visible; animation-name: fadeInUp;"><span class="color-brand-2">
+                                    Công việc</span> Phù hợp</h3>
+                        </div>
                     </div>
-                </div>
+                </section>
+
             </div>
             <div class="ht-30"></div>
         </div>
         <!-- ======================= Top Breadcrubms ======================== -->
-        <div class="container-xxl pt-4 pb-4">
-            <div class="col-lg-12 ">
+        <div class="container-xxl  pt-2">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <home-search
                     :data="{{ json_encode([
                         'lever' => $lever,
@@ -58,74 +45,84 @@
             </div>
         </div>
 
-        <section class="bg-light">
-            <div class="container-xxl pt-2">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="row align-items-center bg-secondary">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                            <div class="row align-items-center justify-content-between mx-0 rounded p-3">
-                                <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
-                                    <h6 class="mb-0 ft-medium fs-sm">{{ count($job) }} Công việc được tìm thấy</h6>
-                                </div>
-                            </div>
-                        </div>
+        <section>
+            <div class="container-xxl pt-2"
+                style=" background: #ffffff; box-shadow: var(--jobbox-box-shadow-1); border-radius: 8px;">
+                <div class="col-lg-12 col-md-12 col-sm-12 pl-15 pt-4">
+
+                    <div class="elementor-widget-container">
+                        <h2 class="control-heading-title m-0">Việc làm tìm thấy</h2>
                     </div>
-                    <div class="row justify-content-center">
-                        <div class="container p-3">
-                            <div class="row g-2 g-lg-3" id="paginated-list1">
+
+                    <div class="row flex-row-reverse ">
+                        <div class="col-lg-12">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-30" id="paginated-list1">
                                 @foreach ($job as $value)
-                                    <div class="col-4 render-job-search1 view overlay rounded">
-                                        <div class="hover-div border p-2">
-                                            <div class="position-absolute ab-right"><a type="button"
-                                                    class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
-                                                        class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></a>
-                                            </div>
-                                            <div class="row" style="height: 80px;">
-                                                <div class="job_grid_thumb mb-3 title-name px-3 col-4"><a
-                                                        href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                        class="d-block m-auto" style="width: 68px; height: 68px;"><img
-                                                            src="{{ asset($value->logo) }}" class="img-rounded"
-                                                            alt="" style=""></a>
+                                    <div class="col jobbox-grid-item ">
+                                        <div class="card-grid-2 hover-up">
+                                            <div class="card-grid-2-image-left">
+                                                <div class="image-box">
+                                                    <img src="{{ asset($value->logo) }}" width="52" alt="Percepta">
                                                 </div>
-                                                <div class="job_grid_caption title-name px-3 col-8 g-1">
-                                                    <h4 class="mb-0 ft-medium medium ml-20"><a
-                                                            href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                            class="text-dark fs-md" data-bs-toggle="tooltip"
-                                                            data-bs-placement="top" title="Tooltip on top">
-                                                            <p
-                                                                style="width: 200px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap;">
-                                                                {{ $value->title }}</p>
-                                                        </a></h4>
-                                                    <div class="jbl_location ml-20" style="margin-top: -10px;"><a
-                                                            href=""
-                                                            class="text-dark fs-md">{{ $value->nameCompany }}</a>
+                                                <div class="right-info">
+                                                    <a style=" -webkit-line-clamp: 1;
+                                                            -webkit-box-orient: vertical;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            display: -webkit-box;
+                                                            text-align: left;"
+                                                        href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                        <span class="name-job">{{ $value->nameCompany }}</span>
+                                                    </a>
+                                                    <div
+                                                        style=" -webkit-line-clamp: 1;
+                                                            -webkit-box-orient: vertical;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            display: -webkit-box;
+                                                            text-align: justify;">
+                                                        <span class="location-small">{{ $value->getLocation->name }}</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div
-                                                class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
-                                                <div class="df-1 text-muted"><i
-                                                        class="lni lni-wallet mr-1"></i>{{ $value->getwage->name }}
+
+                                            <div class="card-block-info">
+                                                <h6 class="mb-1"
+                                                    style=" -webkit-line-clamp: 1;
+                                                            -webkit-box-orient: vertical;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            display: -webkit-box;
+                                                            text-align: justify;">
+                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                        {{ $value->title }}</a>
+                                                </h6>
+
+                                                <div class="d-flex align-items-center gap-3 font-xs color-text-mutted">
+                                                    <span><i class="fi-rr-briefcase ms-0 me-5"></i>Part Time</span>
+                                                    <span><i class="fi-rr-clock ms-0 me-5"></i><time
+                                                            datetime="2022-09-27">{{ $value->end_job_time }}</time></span>
                                                 </div>
-                                                <div class="df-1 text-muted ml-2"><i
-                                                        class="lni lni-timer mr-1"></i>{{ $value->end_job_time }}
+
+                                                {{-- <p class="font-sm color-text-paragraph mt-15">
+                                                    {!! $value->describe !!}</p> --}}
+
+                                                <div class="card-2-bottom mt-30">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-lg-6 col-7">
+                                                            <span class="card-text-price">{{ $value->getwage->name }}</span>
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-5 text-end">
+                                                            <a class="btn btn-apply-now" href="">Apply
+                                                                now</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <br>
-                                    <br>
-                                    <br>
-                                    <br>
-                                    <span class="page-item text-center pagination-container">
-                                        <div id="pagination-numbers1">
-                                        </div>
-                                    </span>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -143,77 +140,161 @@
                 </div>
             </div>
         </section>
-        <section class="bg-light">
-            <div class="container-xxl pt-2">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="row align-items-center bg-secondary">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                            <div class="row align-items-center justify-content-between mx-0 rounded p-3">
-                                <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
-                                    <h6 class="mb-0 ft-medium fs-sm">Việc làm liên quan</h6>
-                                </div>
-                            </div>
+        <section style="margin-top: 30px">
+            <div class="container-xxl pt-2 "
+                style=" background: #ffffff; box-shadow: var(--jobbox-box-shadow-1); border-radius: 8px;">
+                <div class="col-lg-12 col-md-12 col-sm-12 pl-15 pt-4">
+                    <div class="elementor-element elementor-element-ed0a5e5 m-0 elementor-widget elementor-widget-title"
+                        data-id="ed0a5e5" data-element_type="widget" data-widget_type="title.default">
+                        <div class="elementor-widget-container">
+                            <h2 class="control-heading-title m-0">Công việc liên quan</h2>
                         </div>
                     </div>
-                    <div class="row justify-content-center">
-                        <div class="container p-3">
-                            <div class="row g-2 g-lg-3" id="paginated-list2">
+                    <ul class="nav nav-tabs p-3" role="tablist">
+                        <li>
+                            <a class="" id="nav-tab-content-writer" href="#tab-content-writer" data-bs-toggle="tab"
+                                role="tab" aria-controls="tab-content-writer" aria-selected="false" tabindex="-1">
+                                <img decoding="async" src="wp-content/uploads/2022/10/security-icon.png" width="18"
+                                    alt="Content Writer">
+                                Content Writer </a>
+                        </li>
+                        <li>
+                            <a class="" id="nav-tab-finance" href="#tab-finance" data-bs-toggle="tab" role="tab"
+                                aria-controls="tab-finance" aria-selected="false" tabindex="-1">
+                                <img decoding="async" src="wp-content/uploads/2022/10/bank.png" width="18"
+                                    alt="Finance">
+                                Finance </a>
+                        </li>
+                        <li>
+                            <a class="" id="nav-tab-human-resource" href="#tab-human-resource" data-bs-toggle="tab"
+                                role="tab" aria-controls="tab-human-resource" aria-selected="false" tabindex="-1">
+                                <img decoding="async" src="wp-content/uploads/2022/10/human-resource.png" width="18"
+                                    alt="Human Resource">
+                                Human Resource </a>
+                        </li>
+                        <li>
+                            <a class="active" id="nav-tab-management" href="#tab-management" data-bs-toggle="tab"
+                                role="tab" aria-controls="tab-management" aria-selected="true">
+                                <img decoding="async" src="wp-content/uploads/2022/10/management-icon.png" width="18"
+                                    alt="Management">
+                                Management </a>
+                        </li>
+                        <li>
+                            <a class="" id="nav-tab-market-research" href="#tab-market-research"
+                                data-bs-toggle="tab" role="tab" aria-controls="tab-market-research"
+                                aria-selected="false" tabindex="-1">
+                                <img decoding="async" src="wp-content/uploads/2022/10/research-icon.png" width="18"
+                                    alt="Market Research">
+                                Market Research </a>
+                        </li>
+                        <li>
+                            <a class="" id="nav-tab-marketing-sale" href="#tab-marketing-sale"
+                                data-bs-toggle="tab" role="tab" aria-controls="tab-marketing-sale"
+                                aria-selected="false" tabindex="-1">
+                                <img decoding="async" src="wp-content/uploads/2022/10/career-icon.png" width="18"
+                                    alt="Marketing &amp; Sale">
+                                Marketing &amp; Sale </a>
+                        </li>
+                        <li>
+                            <a class="" id="nav-tab-retail-products" href="#tab-retail-products"
+                                data-bs-toggle="tab" role="tab" aria-controls="tab-retail-products"
+                                aria-selected="false" tabindex="-1">
+                                <img decoding="async" src="wp-content/uploads/2022/10/retail-icon.png" width="18"
+                                    alt="Retail &amp; Products">
+                                Retail &amp; Products </a>
+                        </li>
+                        <li>
+                            <a class="" id="nav-tab-software" href="#tab-software" data-bs-toggle="tab"
+                                role="tab" aria-controls="tab-software" aria-selected="false" tabindex="-1">
+                                <img decoding="async" src="wp-content/uploads/2022/10/lamp-icon.png" width="18"
+                                    alt="Software">
+                                Software </a>
+                        </li>
+                    </ul>
+
+
+                    <div class="row flex-row-reverse">
+                        <div class="col-lg-12">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-25"
+                                id="paginated-list2">
                                 @foreach ($datalq as $value)
-                                    <div class="col-4 render-job-search2 view overlay rounded">
-                                        <div class="hover-div border p-2">
-                                            <div class="position-absolute ab-right"><a type="button"
-                                                    class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
-                                                        class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></a>
-                                            </div>
-                                            <div class="row" style="height: 80px;">
-                                                <div class="job_grid_thumb mb-3 title-name px-3 col-4"><a
-                                                        href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                        class="d-block m-auto" style="width: 68px; height: 68px;"><img
-                                                            src="{{ asset($value->logo) }}" class="img-rounded"
-                                                            alt="" style=""></a>
+                                    <div class="col jobbox-grid-item ">
+                                        <div class="card-grid-2 hover-up">
+                                            <div class="card-grid-2-image-left">
+                                                <div class="image-box">
+                                                    <img src="{{ asset($value->logo) }}" width="52" alt="Percepta">
                                                 </div>
-                                                <div class="job_grid_caption title-name px-3 col-8 g-1">
-                                                    <h4 class="mb-0 ft-medium medium ml-20"><a
-                                                            href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                            class="text-dark fs-md" data-bs-toggle="tooltip"
-                                                            data-bs-placement="top" title="Tooltip on top">
-                                                            <p
-                                                                style="width: 200px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap;">
-                                                                {{ $value->title }}</p>
-                                                        </a></h4>
-                                                    <div class="jbl_location ml-20" style="margin-top: -10px;"><a
-                                                            href=""
-                                                            class="text-dark fs-md">{{ $value->nameCompany }}</a>
+                                                <div class="right-info">
+                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                        <span class="name-job"
+                                                            style=" -webkit-line-clamp: 1;
+                                                            -webkit-box-orient: vertical;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            display: -webkit-box;
+                                                            text-align: left;">{{ $value->nameCompany }}</span>
+                                                    </a>
+                                                    <div
+                                                        style=" -webkit-line-clamp: 1;
+                                                            -webkit-box-orient: vertical;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            display: -webkit-box;
+                                                            text-align: justify;">
+                                                        <span
+                                                            class="location-small">{{ $value->getLocation->name }}</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div
-                                                class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
-                                                <div class="df-1 text-muted"><i
-                                                        class="lni lni-wallet mr-1"></i>{{ $value->getwage->name }}
+
+                                            <div class="card-block-info">
+                                                <h6 class="mb-1"
+                                                    style=" -webkit-line-clamp: 1;
+                                                            -webkit-box-orient: vertical;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            display: -webkit-box;
+                                                            text-align: justify;">
+                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                        {{ $value->title }}</a>
+                                                </h6>
+
+                                                <div class="d-flex align-items-center gap-3 font-xs color-text-mutted">
+                                                    <span><i class="fi-rr-briefcase ms-0 me-5"></i>Part Time</span>
+                                                    <span><i class="fi-rr-clock ms-0 me-5"></i><time
+                                                            datetime="2022-09-27">{{ $value->end_job_time }}</time></span>
                                                 </div>
-                                                <div class="df-1 text-muted ml-2"><i
-                                                        class="lni lni-timer mr-1"></i>{{ $value->end_job_time }}
+                                                {{-- <div>
+                                                    <p class="font-sm color-text-paragraph mt-15">
+                                                        {!! $value->describe !!}</p>
+                                                </div> --}}
+
+                                                <div class="card-2-bottom mt-30">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-lg-6 col-7">
+                                                            <span
+                                                                class="card-text-price">{{ $value->getwage->name }}</span>
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-5 text-end">
+                                                            <a class="btn btn-apply-now" href="">Apply
+                                                                now</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
+
+
+
                             </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <br>
-                                    <br>
-                                    <br>
-                                    <br>
-                                    <span class="page-item text-center pagination-container">
-                                        <div id="pagination-numbers2">
-                                        </div>
-                                    </span>
-                                </div>
-                            </div>
+                            <!--row job_listings-->
                         </div>
+                        <!--col-lg-9-->
                     </div>
+
                     <!-- All jobs -->
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12"> <br><br>
@@ -231,5 +312,4 @@
         <!-- ============================ Main Section End ================================== -->
         <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
     </div>
-
 @endsection

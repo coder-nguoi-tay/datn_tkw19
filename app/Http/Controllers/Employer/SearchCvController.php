@@ -83,23 +83,19 @@ class SearchCvController extends BaseController
         $cv = $this->profileCv
             ->where('status_profile', 1)
             ->where(function ($q) use ($request) {
-                $q->orWhere($this->escapeLikeSentence('majors', $request['free_word']));
-                // $q->orWhere($this->escapeLikeSentence('name', $request['free_word']));
+                if (!empty($request['free_word'])) {
+                    $q->orWhere($this->escapeLikeSentence('majors', $request['free_word']));
+                }
             })
             ->with('user')->get();
+        $breadcrumbs = [
+            'Tìm kiếm ứng viên',
+
+        ];
         return view('employer.searchcv.index', [
-            'profestion' => $this->getprofession(),
-            'lever' => $this->getlever(),
-            'experience' => $this->getexperience(),
-            'wage' => $this->getwage(),
-            'skill' => $this->getskill(),
-            'timework' => $this->gettimework(),
-            'profession' => $this->getprofession(),
-            'majors' => $this->majors->get(),
-            'workingform' => $this->getworkingform(),
-            'location' => $this->getlocation(),
             'cv' => $cv,
             'request' => $request,
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 

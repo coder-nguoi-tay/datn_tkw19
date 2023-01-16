@@ -29,7 +29,7 @@
           <div class="main_gt">
             <div class="left_cv">
               <div
-                class="img-fluid custum-box-image-cv"
+                class="img-fluid custum-box-image-cv box_img"
                 id="img-preview"
                 @click="chooseImage()"
                 role="button"
@@ -46,7 +46,7 @@
                 <img
                   v-if="Imgage && !filePreview"
                   :src="'http://127.0.0.1:8000/' + Imgage"
-                  class="img-fluid"
+                  class="img-fluid custom-image-cv"
                 />
                 <div id="img-preview" @click="chooseImage()" role="button">
                   <div style="display: none">
@@ -63,145 +63,153 @@
                     v-if="filePreview"
                     :src="filePreview"
                     class="img-fluid p-2"
+                    style="
+                      width: 300px;
+                      height: 300px;
+                      padding-top: 10px !important;
+                      object-fit: cover;
+                    "
                   />
                 </div>
                 <input type="hidden" name="images" v-model="Imgage" />
               </div>
-              <div class="contact">
-                <h3>Thông tin cá nhân</h3>
-                <div class="box_contact">
-                  <div class="mb-3">
-                    <label
-                      for="exampleFormControlInput1"
-                      class="form-label custom-label"
-                      >Email
-                    </label>
-                    <Field
-                      type="text"
-                      v-model="model.email"
-                      class="form-control box-up-cv it-1"
-                      id="exampleFormControlInput1"
-                      placeholder="name@example.com"
-                      name="email"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label
-                      for="exampleFormControlInput1"
-                      class="form-label custom-label"
-                      >Địa chỉ</label
-                    >
-                    <Field
-                      type="text"
-                      v-model="model.address"
-                      class="form-control box-up-cv it-1"
-                      id="exampleFormControlInput1"
-                      placeholder="Nhập địa chỉ"
-                      name="address"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label
-                      for="exampleFormControlInput1"
-                      class="form-label custom-label"
-                      >SDT</label
-                    >
-                    <Field
-                      type="text"
-                      v-model="model.phone"
-                      class="form-control box-up-cv it-1"
-                      id="exampleFormControlInput1"
-                      placeholder="Nhập số điện thoại"
-                      name="phone"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label
-                      for="exampleFormControlInput1"
-                      class="form-label custom-label"
-                      >Link FB</label
-                    >
-                    <Field
-                      type="text"
-                      v-model="model.link_fb"
-                      class="form-control box-up-cv it-1"
-                      id="exampleFormControlInput1"
-                      placeholder="facebook.com"
-                      name="link_fb"
-                    />
+              <div class="box-content">
+                <div class="contact">
+                  <h3>Thông tin cá nhân</h3>
+                  <div class="box_contact">
+                    <div class="mb-3">
+                      <label
+                        for="exampleFormControlInput1"
+                        class="form-label custom-label"
+                        >Email
+                      </label>
+                      <Field
+                        type="text"
+                        v-model="model.email"
+                        class="form-control box-up-cv it-1"
+                        id="exampleFormControlInput1"
+                        placeholder="name@example.com"
+                        name="email"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label
+                        for="exampleFormControlInput1"
+                        class="form-label custom-label"
+                        >Địa chỉ</label
+                      >
+                      <Field
+                        type="text"
+                        v-model="model.address"
+                        class="form-control box-up-cv it-1"
+                        id="exampleFormControlInput1"
+                        placeholder="Nhập địa chỉ"
+                        name="address"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label
+                        for="exampleFormControlInput1"
+                        class="form-label custom-label"
+                        >SDT</label
+                      >
+                      <Field
+                        type="text"
+                        v-model="model.phone"
+                        class="form-control box-up-cv it-1"
+                        id="exampleFormControlInput1"
+                        placeholder="Nhập số điện thoại"
+                        name="phone"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label
+                        for="exampleFormControlInput1"
+                        class="form-label custom-label"
+                        >Link FB</label
+                      >
+                      <Field
+                        type="text"
+                        v-model="model.link_fb"
+                        class="form-control box-up-cv it-1"
+                        id="exampleFormControlInput1"
+                        placeholder="facebook.com"
+                        name="link_fb"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="contact">
-                <h3>CÁC KỸ NĂNG</h3>
-                <div class="box_contact">
-                  <div class="mb-3">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                      <div
-                        v-for="(item, index) in skill_cv_info"
-                        class="wrapper-item"
-                      >
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="mb-2">
-                              <Field
-                                v-model="item.skill"
-                                rules="required"
-                                :name="'skill[ ' + index + ' ]'"
-                                :disabled="isReadOnly"
-                                type="text"
-                                class="form-control custom-input-cv"
-                                id="exampleFormControlInput1"
-                                placeholder="kỹ năng"
-                              />
-                              <ErrorMessage
-                                class="error"
-                                :name="'skill[' + index + ']'"
-                              />
-                              <Field
-                                type="text"
-                                v-model="item.title_skill"
-                                rules="required"
-                                :name="'title_skill[ ' + index + ' ]'"
-                                :disabled="isReadOnly"
-                                class="form-control cus-tom-input-skill"
-                                id="exampleFormControlInput1"
-                                placeholder="Mô tả"
-                              />
-                              <ErrorMessage
-                                class="error"
-                                :name="'title_skill[' + index + ']'"
-                              />
+                <div class="contact">
+                  <h3>CÁC KỸ NĂNG</h3>
+                  <div class="box_contact">
+                    <div class="mb-3">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div
+                          v-for="(item, index) in skill_cv_info"
+                          class="wrapper-item"
+                        >
+                          <div class="row">
+                            <div class="col-6">
+                              <div class="mb-2">
+                                <Field
+                                  v-model="item.skill"
+                                  rules="required"
+                                  :name="'skill[ ' + index + ' ]'"
+                                  :disabled="isReadOnly"
+                                  type="text"
+                                  class="form-control custom-input-cv"
+                                  id="exampleFormControlInput1"
+                                  placeholder="kỹ năng"
+                                />
+                                <ErrorMessage
+                                  class="error"
+                                  :name="'skill[' + index + ']'"
+                                />
+                                <Field
+                                  type="text"
+                                  v-model="item.title_skill"
+                                  rules="required"
+                                  :name="'title_skill[ ' + index + ' ]'"
+                                  :disabled="isReadOnly"
+                                  class="form-control cus-tom-input-skill"
+                                  id="exampleFormControlInput1"
+                                  placeholder="Mô tả"
+                                />
+                                <ErrorMessage
+                                  class="error"
+                                  :name="'title_skill[' + index + ']'"
+                                />
+                              </div>
                             </div>
-                          </div>
-                          <div class="col-6">
-                            <span @click.prevent="addForm()"
-                              ><i class="fas fa-plus"></i
-                            ></span>
-                            <span
-                              v-if="skill_cv_info.length > 1"
-                              @click.prevent="deleteItem(index)"
-                              style="margin-left: 5px"
-                              ><i class="fas fa-trash-alt"></i
-                            ></span>
+                            <div class="col-6">
+                              <span @click.prevent="addForm()"
+                                ><i class="fas fa-plus"></i
+                              ></span>
+                              <span
+                                v-if="skill_cv_info.length > 1"
+                                @click.prevent="deleteItem(index)"
+                                style="margin-left: 5px"
+                                ><i class="fas fa-trash-alt"></i
+                              ></span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="contact">
-                <h3>CHỨNG CHỈ</h3>
-                <div class="box_contact">
-                  <div class="mb-3">
-                    <Editor
-                      name="certificate"
-                      v-model="model.certificate"
-                      class="form-control box-up-cv cus-tom-ckediter-cv"
-                      rules="required|max:255"
-                      style="float: left"
-                    />
+                <div class="contact">
+                  <h3>CHỨNG CHỈ</h3>
+                  <div class="box_contact">
+                    <div class="mb-3">
+                      <textarea
+                        name="certificate"
+                        v-model="model.certificate"
+                        class="form-control mb-5"
+                        rules="required|max:255"
+                        style="float: left; height: 300px"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -234,12 +242,12 @@
                 <span class="bd_cv"></span>
                 <div class="mt">
                   <div>
-                    <Editor
+                    <textarea
                       name="target"
                       v-model="model.target"
                       class="form-control box-up-cv cus-tom-ckediter-cv"
                       rules="required|max:255"
-                      style="height: 100px !important"
+                      style="height: 250px !important"
                     />
                   </div>
                 </div>
@@ -255,7 +263,7 @@
                   KINH NGHIỆM LÀM VIỆC
                 </h3>
                 <span class="bd_cv"></span>
-                <div class="box_2_cv" style="margin-bottom: 30px">
+                <div class="row" style="margin-bottom: 30px">
                   <div class="col-md-12 col-sm-12 col-xs-12 p-2">
                     <div
                       v-for="(item1, index) in experience_cv_info"
@@ -369,7 +377,7 @@ export default {
     }
   },
   created() {
-    console.log(this.data.user)
+    console.log(this.model.certificate)
     if (this.data.user != null) {
       this.data.skill.map((x) => {
         this.skill_cv_info.push({
@@ -516,23 +524,11 @@ export default {
 
 .btn-primary {
   color: #fff;
-  background-color: #00b14f;
-  border-color: #00b14f;
-}
-
-.btn-primary:hover {
-  background-color: #00b14f;
-  border-color: #00b14f;
 }
 
 .btn-group-lg > .min-width.btn,
 .min-width.btn-lg {
   min-width: 120px;
-}
-
-.nav-tabs .nav-link.active i[data-v-6f017734],
-.nav-tabs .nav-link.active p[data-v-6f017734] {
-  color: #00b14f;
 }
 
 .mr-2,
@@ -563,27 +559,39 @@ export default {
   text-align: left;
 }
 
-.gradient-custom {
-  /* fallback for old browsers */
-  background: #f6d365;
+.custom-label {
+  float: left;
+}
 
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(
-    to right bottom,
-    rgba(246, 211, 101, 1),
-    rgba(253, 160, 133, 1)
-  );
+.box_cv h3 {
+  border: 1px solid rgb(12 112 148 / 100%) !important;
+  border-radius: 8px;
+  width: 250px;
+  text-align: center;
+  padding: 8px 5px;
+  position: absolute;
+  top: -20px;
+  color: #284350;
+  background: white;
+}
 
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(
-    to right bottom,
-    rgba(246, 211, 101, 1),
-    rgba(253, 160, 133, 1)
-  );
+.box_cv .mt {
+  margin: 40px 0;
+}
+
+.title_cv {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.title_cv > i {
+  color: rgb(12 112 148 / 100%) !important;
+  margin-top: -10px;
 }
 
 .main_gt {
-  width: 1100px;
+  width: 100% !important;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 350px 1fr;
@@ -593,15 +601,24 @@ export default {
 .left_cv {
   height: auto;
   width: 100%;
-  color: #323232;
-  background: #f2f8de;
+  color: #bbbdbf;
+  background: #0a6586 !important;
+  padding: 0px !important;
+}
+.box-content {
+  height: auto;
+  width: 100%;
   padding: 10px;
 }
-
 .left_cv .box_img {
   width: 100%;
   margin-bottom: 10px;
-  height: 335px !important;
+  background: rgb(12 112 148 / 100%);
+}
+
+.left_cv .box_img > img {
+  padding: 10px;
+  height: 300px !important;
 }
 
 .left_cv > .contact {
@@ -629,10 +646,11 @@ export default {
 }
 
 .left_cv .contact > h3 {
+  color: #f1f1f1;
   text-transform: uppercase;
   margin: 10px 0;
   font-size: 18px;
-  border-bottom: 1px solid #ffc628;
+  border-bottom: 1px solid rgb(244, 244, 244) !important;
 }
 
 .left_cv > .contact .box_contact {
@@ -641,12 +659,14 @@ export default {
 }
 
 .left_cv > .contact h4 {
-  font-size: 12px;
+  font-size: 16px;
   text-transform: capitalize;
+  color: #f1f1f1;
 }
 
 .left_cv > .contact .box_contact .ky_nang {
-  font-size: 14px;
+  font-size: 16px;
+  color: #f1f1f1;
 }
 
 .text-first {
@@ -664,7 +684,7 @@ export default {
 }
 
 .main_gt .right_cv .box_cv {
-  border-top: 1px solid #ffc628;
+  border-top: 1px solid rgb(12 112 148 / 100%) !important;
   position: relative;
   padding-left: 35px;
   color: #284350;
@@ -726,11 +746,6 @@ export default {
 .main_gt .right_cv.title_cv > h4 {
   color: #284350;
 }
-
-.main_gt .right_cv.title_cv > i {
-  color: #ebad00;
-}
-
 .main_gt .right_cv.mt .h4 {
   font-weight: 600;
   margin: 10px 0;
@@ -745,9 +760,5 @@ export default {
   color: #284350;
   padding: 10px 0;
   font-size: 14px;
-}
-
-.custom-label {
-  float: left;
 }
 </style>

@@ -1,140 +1,167 @@
 @php
     use Carbon\Carbon;
 @endphp
-@extends('layouts.admin')
+@extends('employer.layout.index')
 @section('content')
-    <div class="container">
-        <div class="fade-in">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <header class="header header-sticky">
-                                <div class="container-fluid">
-                                    <label class=" px-md-0 me-md-3">Quản Lý Đăng Tin</label>
-                                    <ul class="header-nav ms-3 d-flex">
-                                        <search-cv-date :url="{{ json_encode(route('employer.new.index')) }}"
-                                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
-                                            :data="{{ json_encode(1) }}">
-                                        </search-cv-date>
-                                        @if ($checkCompany->id_company && $checkCompanyStatus == 1)
-                                            <a class="nav-link py-0 btn-next-step"
-                                                href="{{ route('employer.new.create') }}">
-                                                Thêm tin
-                                            </a>
+
+    <section class="dashboard-area">
+        <div class="dashboard-content-wrap">
+            <div class="container-fluid mt-4">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-content d-flex flex-wrap justify-content-between align-items-center">
+                            <ul class="list-items d-flex align-items-center">
+                                @if (isset($breadcrumbs))
+                                    @foreach ($breadcrumbs as $key => $breadcrumb)
+                                        @if ($key != count($breadcrumbs) - 1)
+                                            <li class="active__list-item">
+                                                <a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['name'] }}</a>
+                                            </li>
                                         @else
-                                            <button class="nav-link py-0 btn-next-step" data-coreui-toggle="modal"
-                                                data-coreui-target="#exampleModal" type="button">
-                                                Thêm tin
-                                            </button>
+                                            <li class="active__list-item active">{{ $breadcrumb }}</li>
                                         @endif
+                                    @endforeach
+                                @endif
+                            </ul>
+                        </div><!-- end breadcrumb-content -->
+                    </div><!-- end col-lg-12 -->
+                </div><!-- end row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="billing-form-item">
+                            <div class="billing-content pb-0">
+                                <div class="manage-job-wrap">
+                                    <div class="manage-job-header mt-3 mb-2">
+                                        <div class="manage-job-count">
+                                            <span class="font-weight-medium color-text-2 mr-1">{{ count($job) }}</span>
+                                            <span class="font-weight-medium">công việc được đăng</span>
+                                        </div>
+                                        <div class="manage-job-count">
+                                            @if ($checkCompany->id_company && $checkCompanyStatus == 1)
+                                                <a href="{{ route('employer.new.create') }}"
+                                                    class="btn btn-info font-weight-medium color-text-2 mr-1  text-white">Thêm
+                                                    tin</a>
+                                            @else
+                                                <button
+                                                    class="btn btn-info font-weight-medium color-text-2 mr-1  text-white"
+                                                    data-coreui-toggle="modal" data-coreui-target="#exampleModal"
+                                                    type="button">
+                                                    Thêm tin
+                                                </button>
+                                            @endif
 
-                                    </ul>
-                                </div>
-                            </header>
-                        </div>
-                        <div class="card-body">
-                            <div>
-                                @if (!$job->isEmpty())
-                                    <table class="table table-striped table-hover table-bordered text-center">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Tiêu Đề</th>
-                                                <th scope="col">Vị trí làm việc</th>
-                                                <th scope="col"> Hình thức làm việc</th>
-                                                <th scope="col"> Trạng Thái</th>
-                                                <th scope="col">Số lượng hồ sơ đã nhân</th>
-                                                <th scope="col"> Thời gian bắt đầu</th>
-                                                <th scope="col">Thời gian còn lại</th>
-                                                <th scope="col">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($job as $item)
+                                        </div>
+                                    </div>
+                                    <search-cv-date :url="{{ json_encode(route('employer.new.index')) }}"
+                                        :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
+                                        :data="{{ json_encode(1) }}">
+                                    </search-cv-date>
+                                    <div class="table-responsive mt-4">
+                                        <table class="table">
+                                            <thead>
                                                 <tr>
-                                                    <td>{{ $item->title }}</td>
-                                                    <td>{{ $item->getprofession->name }}</td>
-                                                    <td>{{ $item->getwk_form->name }}</td>
-                                                    <td>
-                                                        <span
-                                                            class="badge {{ $item->status == 1 ? 'bg-success' : 'bg-secondary' }}">{{ $item->status == 0 ? 'Bản nháp' : 'Đang hoạt động' }}</span>
-                                                    </td>
-
-                                                    <td>{{ count($item->AllCv) }}</td>
-                                                    <td>{{ $item->job_time }}</td>
-                                                    <td>
-                                                        @if (Carbon::parse($item->end_job_time)->format('m') == $m)
-                                                            <h5>
-                                                                @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
-                                                                    <span class="badge bg-secondary">Hết hạn</span>
-                                                                @else
-                                                                    {{ Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') }}
-                                                                    ngày
-                                                                @endif
-                                                            @else
-                                                                @if ($all_day -
-                                                                    Carbon::parse($item->job_time)->format('d') +
-                                                                    ($mon - ($mon - Carbon::parse($item->end_job_time)->format('d'))) <=
-                                                                    0)
-                                                                    <h5>
-                                                                        <span class="badge bg-secondary">Hết hạn</span>
+                                                    <th>Tiêu đề</th>
+                                                    <th>Ứng tuyển</th>
+                                                    <th>Ngày đăng</th>
+                                                    <th>Ngày hết hạn</th>
+                                                    <th>Trạng thái</th>
+                                                    <th class="text-center">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($job as $item)
+                                                    <tr>
+                                                        <td>
+                                                            <div class="manage-candidate-wrap">
+                                                                <h2 class="widget-title pb-1"><a
+                                                                        href="{{ route('employer.new.edit', $item->id) }}"
+                                                                        class="color-text-2">{{ $item->title }}</a></h2>
+                                                                <p>
+                                                                    @if (Carbon::parse(Carbon::now())->format('d') > Carbon::parse($item->end_job_time)->format('d'))
+                                                                        <span class="badge badge-secondary"><i
+                                                                                class="la la-clock-o font-size-16"></i>Hết
+                                                                            hạn</span>
                                                                     @else
-                                                                        <h5>
+                                                                        <i
+                                                                            class="la la-clock-o font-size-16"></i>{{ $item->convert_date }}
+                                                                        ngày
+                                                                    @endif
+
+                                                                    {{-- @if (Carbon::parse($item->end_job_time)->format('m') == $m)
+                                                                        @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
+                                                                            <span class="badge badge-secondary"><i
+                                                                                    class="la la-clock-o font-size-16"></i>Hết
+                                                                                hạn</span>
+                                                                        @else
+                                                                            <i class="la la-clock-o font-size-16"></i>
+                                                                            {{ Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') }}
+                                                                            ngày
+                                                                        @endif
+                                                                    @else
+                                                                        @if ($all_day - Carbon::parse($item->job_time)->format('d') + ($mon - ($mon - Carbon::parse($item->end_job_time)->format('d'))) <= 0)
+                                                                            <span class="badge badge-secondary"><i
+                                                                                    class="la la-clock-o font-size-16"></i>Hết
+                                                                                hạn</span>
+                                                                        @else
+                                                                            <i class="la la-clock-o font-size-16"></i>
                                                                             {{ $all_day -
                                                                                 Carbon::parse(Carbon::now())->format('d') +
                                                                                 ($mon + 1 - ($mon - Carbon::parse($item->end_job_time)->format('d'))) }}
                                                                             ngày
-                                                                @endif
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <button class="btn btn-warning btn-radius-auto dropdown-toggle"
-                                                                id="action" type="button" data-coreui-toggle="dropdown"
-                                                                aria-expanded="false">Chức năng</button>
-                                                            <ul class="dropdown-menu" aria-labelledby="action">
-                                                                <li>
-                                                                    <a class="dropdown-item"
-                                                                        href="{{ route('employer.new.edit', $item->id) }}"
-                                                                        class="dropdown-item">
-                                                                        <i class="fa fa-eye"></i>xem chi tiết
-                                                                    </a>
-                                                                </li>
-                                                                <li class="dropdown-divider"></li>
-                                                                <li>
-                                                                    <a class="dropdown-item"
-                                                                        href="{{ route('employer.new.showdetai', $item->id) }}"
-                                                                        class="dropdown-item">
-                                                                        <i class="fa fa-eye"></i>Tất cả hồ sơ đã nhận
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                @else
-                                    <div class="container">
-                                        <div class="alert alert-danger alert-dismissible fade show text-center"
-                                            role="alert">
-                                            Không tìm thấy dữ liệu mà bạn mong muốn!
-                                        </div>
+                                                                        @endif
+                                                                    @endif --}}
+                                                                </p>
+                                                            </div>
+                                                        </td>
+                                                        <td>{{ count($item->AllCv) }}</td>
+                                                        <td>{{ $item->job_time }}</td>
+                                                        <td>{{ $item->end_job_time }}</td>
+                                                        <td><span
+                                                                class="badge p-1 {{ $item->status == 1 ? 'bg-success text-white' : 'bg-secondary text-white' }}">{{ $item->status == 0 ? 'Bản nháp' : 'Đang hoạt động' }}</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="manage-candidate-wrap">
+                                                                <div class="bread-action pt-0">
+                                                                    <ul class="info-list">
+                                                                        <li class="d-inline-block"><a
+                                                                                href="{{ route('employer.new.showdetai', $item->id) }}"><i
+                                                                                    class="la la-eye" data-toggle="tooltip"
+                                                                                    data-placement="top" title=""
+                                                                                    data-original-title="Xem tất cả ứng viên đã nộp vào bài job"></i></a>
+                                                                        </li>
+                                                                        <li class="d-inline-block"><a
+                                                                                href="{{ route('employer.new.edit', $item->id) }}"><i
+                                                                                    class="la la-edit" data-toggle="tooltip"
+                                                                                    data-placement="top" title=""
+                                                                                    data-original-title="Sửa bài viết"></i></a>
+                                                                        </li>
+                                                                        <li class="d-inline-block"><a href="#"><i
+                                                                                    class="la la-trash"
+                                                                                    data-toggle="tooltip"
+                                                                                    data-placement="top" title=""
+                                                                                    data-original-title="xóa bài viết"></i></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
-                                @endif
-                            </div>
-                            <div class="group-paginate">
-                                {{-- {{ $news->appends(SearchQueryComponent::alterQuery($request))->links('pagination.admin') }} --}}
-                            </div>
-                        </div>
-                    </div>
+                                </div>
+                            </div><!-- end billing-content -->
+                        </div><!-- end billing-form-item -->
+                    </div><!-- end col-lg-12 -->
                 </div>
-            </div>
+            </div><!-- end container-fluid -->
         </div>
-    </div>
+    </section><!-- end dashboard-area -->
 
-    <!-- Modal -->
+    <div id="back-to-top">
+        <i class="la la-angle-up" title="Go top"></i>
+    </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -149,7 +176,7 @@
                     <p style="text-align: center "> Để sử dụng tính năng này vui lòng cập nhật thông tin của bạn. và xác
                         thực để có thể đăng tin</p>
                 </div>
-                <a href="{{ route('employer.profile.index') }}" class="btn btn-primary "
+                <a href="/employer/profile-employer" class="btn btn-primary "
                     style="margin-left: 36%; width: 140px; margin-top: 20px">Cập nhật ngay
                 </a>
             </div>

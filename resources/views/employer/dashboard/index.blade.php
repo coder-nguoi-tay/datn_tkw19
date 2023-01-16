@@ -1,12 +1,9 @@
-@extends('layouts.admin')
-
+@extends('employer.layout.index')
 @section('content')
-    <div>
-        <div class="content">
-            <div class="container-fluid">
-                <br>
-                {{-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12"> --}}
-                <!-- Small boxes (Stat box) -->
+    <section class="dashboard-area">
+        <div class="dashboard-content-wrap">
+            <div class="container-fluid mt-4">
+
                 <div class="row">
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
@@ -96,8 +93,10 @@
                     ]) }}">
                 </widgets>
             </div>
-
         </div>
+    </section>
 
+    <div id="back-to-top">
+        <i class="la la-angle-up" title="Go top"></i>
     </div>
 @endsection

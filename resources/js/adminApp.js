@@ -25,6 +25,13 @@ defineRule('telephone', (value) => {
         /^0(\d{9,10})+$/i.test(value.trim())
     )
 })
+import $ from "jquery";
+$(document).ready(function () {
+    $('ul li a').click(function () {
+        $('li a').removeClass("active");
+        $(this).addClass("active");
+    });
+});
 import Editor from '@tinymce/tinymce-vue';
 // import tinymce from 'tinymce/tinymce';
 
@@ -82,6 +89,16 @@ app.component('change-password-employer', ChangePasswordEmployer);
 import DatePickerCustom from "./components/common/datePickerCustom.vue";
 app.component('picker-new-employer', DatePickerCustom);
 
+import History from "./components/employer/profile/history.vue";
+app.component('history', History);
+
+import profileEmployer from "./components/employer/profile/profile-employer.vue";
+app.component('profile-employer', profileEmployer);
+
+import businessLicense from "./components/employer/profile/business-license.vue";
+app.component('business-license', businessLicense);
+
+
 
 // client
 import clientLogin from "./components/client/login/index.vue";
@@ -111,8 +128,7 @@ app.component('search-find-cv', SearchCvFin);
 import Seeker from './components/employer/manegercv/searchSeeker.vue'
 app.component('search-seeker', Seeker);
 
-import settingProfile from "./components/employer/profile/setting-profile.vue";
-app.component('setting-profile', settingProfile);
+
 import payMoney from "./components/employer/profile/pay-money.vue";
 app.component('pay-money', payMoney);
 import SeaechCv from "./components/employer/searchCv/index.vue";

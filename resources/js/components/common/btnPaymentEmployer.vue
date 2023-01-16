@@ -1,6 +1,14 @@
 <template>
   <a
-    class="nav-link py-0 btn-next-step"
+    class="
+      mt-2
+      btn btn-info
+      font-weight-medium
+      color-text-2
+      mr-1
+      text-white
+      btn-link-unlock
+    "
     color="primary"
     @click="
       () => {
@@ -30,7 +38,16 @@
       }}</CModalBody
     >
     <CModalFooter>
-      <CButton class="nav-link py-0 btn-next-step" @click="showAlert"
+      <CButton
+        class="
+          mt-2
+          btn btn-info
+          font-weight-medium
+          color-text-2
+          mr-1
+          text-white
+        "
+        @click="showAlert"
         >Thanh Toán</CButton
       >
     </CModalFooter>
@@ -139,3 +156,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.btn-link-unlock {
+  margin-left: 90%;
+}
+</style>

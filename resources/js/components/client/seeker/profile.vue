@@ -1,310 +1,241 @@
 <template>
-  <section style="background-color: #f4f5f7">
-    <div class="container">
-      <div class="row d-flex justify-content-center align-items-center">
-        <div class="col col-lg-10 mb-4 mb-lg-0">
+  <section>
+    <div class="container profile">
+      <div class="row d-flex">
+        <div class="col col-lg-12 mb-4 mb-lg-0">
           <div class="card mb-3" style="border-radius: 0.5rem">
-            <VeeForm
-              as="div"
-              v-slot="{ handleSubmit }"
-              @invalid-submit="onInvalidSubmit"
-            >
-              <form
-                @submit="handleSubmit($event, onSubmit)"
-                ref="formData"
-                enctype="multipart/form-data"
-                :action="data.urlStore"
-                method="POST"
-              >
-                <Field type="hidden" :value="csrfToken" name="_token" />
-                <div class="row g-0">
-                  <div
-                    class="col-md-4 gradient-custom text-center text-white"
-                    style="
-                      border-top-left-radius: 0.5rem;
-                      border-bottom-left-radius: 0.5rem;
-                    "
+            <div class="row g-0">
+              <div class="col-sm-4" id="sidebar">
+                <div class="box box-white text-center-sm" style="height: 940px">
+                  <VeeForm
+                    as="div"
+                    v-slot="{ handleSubmit }"
+                    @invalid-submit="onInvalidSubmit"
                   >
-                    <div
-                      class="img-fluid my-5"
-                      id="img-preview"
-                      @click="chooseImage()"
-                      role="button"
+                    <form
+                      @submit="handleSubmit($event, onSubmit)"
+                      ref="formData"
+                      enctype="multipart/form-data"
+                      :action="data.urlUpdateAvatar"
+                      method="POST"
                     >
-                      <img
-                        v-if="Media === '' && checkImage == '' && !filePreview"
-                        src="https://i.pinimg.com/236x/15/46/2e/15462ed447e25356837b32a7e22e538f.jpg"
-                        alt=""
-                      />
-                      <div style="display: none">
-                        <input
-                          type="file"
-                          @change="onChange"
-                          ref="fileInput"
-                          accept="image/*"
-                          name="images"
-                        />
-                      </div>
-                      <img
-                        v-if="!filePreview && Media != ''"
-                        :src="Media"
-                        class="img-fluid my-5 p-5 rounded-9"
-                      />
-
-                      <div
-                        id="img-preview"
-                        @click="chooseImage()"
-                        role="button"
-                      >
-                        <div style="display: none">
-                          <input
-                            type="file"
-                            id="file"
-                            @change="onChange"
-                            ref="fileInput"
-                            accept="image/*"
-                            name="images"
-                          />
-                        </div>
-                        <img
-                          v-if="filePreview"
-                          :src="filePreview"
-                          class="img-fluid my-5 p-5"
-                        />
-                      </div>
-                    </div>
-                    <input type="hidden" name="images" v-model="model.images" />
-                    <div class="text-center">
-                      <span class="error">{{ errmsgCheckImage }}</span>
-                    </div>
-
-                    <h5>{{ model.name }}</h5>
-
-                    <i class="far fa-edit mb-5"></i>
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body p-4">
-                      <h6>Thông tin tài khoản của bạn</h6>
-                      <hr class="mt-0 mb-4" />
-                      <div class="row pt-1">
-                        <div class="col-6 mb-3">
-                          <h6>Name</h6>
-                          <Field
-                            type="text"
-                            class="form-control rounded"
-                            name="name"
-                            rules="required|max:255"
-                            v-model="model.name"
-                          />
-                          <ErrorMessage class="error" name="name" />
-                        </div>
-                        <div class="col-6 mb-3">
-                          <h6>Phone</h6>
-                          <Field
-                            type="text"
-                            class="form-control"
-                            v-model="valueSelect.phone"
-                            name="phone"
-                            rules="required|telephone"
-                          />
-                          <ErrorMessage class="error" name="phone" />
-                        </div>
-                      </div>
-                      <div class="row pt-1">
-                        <div class="col-6 mb-3">
-                          <h6>Email</h6>
-                          <Field
-                            type="email"
-                            class="form-control"
-                            v-model="model.email"
-                            rules="required|email|max:255"
-                            name="email"
-                          />
-                          <ErrorMessage class="error" name="email" />
-                        </div>
-                        <div class="col-6 mb-3">
-                          <h6>Địa chỉ</h6>
-                          <Field
-                            type="text"
-                            v-model="valueSelect.address"
-                            class="form-control"
-                            name="address"
-                            rules="required|max:255"
-                          />
-                          <ErrorMessage class="error" name="address" />
-                        </div>
-                      </div>
-                      <div class="row pt-1">
-                        <div class="col-6 mb-3">
-                          <h6>Kinh Nghiệm</h6>
-                          <Field
-                            name="experience_id"
-                            as="select"
-                            v-model="valueSelect.experience_id"
-                            rules="required"
-                            class="form-control"
+                      <Field type="hidden" :value="csrfToken" name="_token" />
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div
+                            class="profile-avatar"
+                            @click="chooseImage()"
+                            role="button"
                           >
-                            <option value disabled selected>
-                              Chọn Kinh Nghiệm
-                            </option>
-                            <option
-                              v-for="item in data.experience"
-                              :key="item.id"
-                              :value="item.id"
-                            >
-                              {{ item.label }}
-                            </option>
-                          </Field>
-                          <ErrorMessage class="error" name="experience_id" />
-                        </div>
-                        <div class="col-6 mb-3">
-                          <h6>Trình độ</h6>
-                          <Field
-                            name="lever_id"
-                            as="select"
-                            v-model="valueSelect.lever_id"
-                            rules="required"
-                            class="form-control"
-                          >
-                            <option value disabled selected>Kinh Nghiệm</option>
-                            <option
-                              v-for="item in data.lever"
-                              :key="item.id"
-                              :value="item.id"
-                            >
-                              {{ item.label }}
-                            </option>
-                          </Field>
-                          <ErrorMessage class="error" name="lever_id" />
-                        </div>
-                      </div>
-                      <div class="row pt-1">
-                        <div class="col-6 mb-3">
-                          <h6>Mức lương</h6>
-                          <Field
-                            name="wage_id"
-                            as="select"
-                            v-model="valueSelect.wage_id"
-                            rules="required"
-                            class="form-control"
-                          >
-                            <option value disabled selected>
-                              Chọn Mức Lương
-                            </option>
-                            <option
-                              v-for="item in data.wage"
-                              :key="item.id"
-                              :value="item.id"
-                            >
-                              {{ item.label }}
-                            </option>
-                          </Field>
-                          <ErrorMessage class="error" name="wage_id" />
-                        </div>
-                        <div class="col-6 mb-3">
-                          <h6>Ngành Nghề</h6>
-                          <Field
-                            name="profession_id"
-                            as="select"
-                            v-model="valueSelect.profession_id"
-                            rules="required"
-                            class="form-control"
-                          >
-                            <option value disabled selected>
-                              Chọn Ngành Nghề
-                            </option>
-                            <option
-                              v-for="item in data.profession"
-                              :key="item.id"
-                              :value="item.id"
-                            >
-                              {{ item.label }}
-                            </option>
-                          </Field>
-                          <ErrorMessage class="error" name="profession_id" />
-                        </div>
-                      </div>
-                      <div class="row pt-1">
-                        <div class="col-6 mb-3">
-                          <h6>Thời gian làm việc</h6>
-                          <Field
-                            name="time_work_id"
-                            as="select"
-                            v-model="valueSelect.time_work_id"
-                            rules="required"
-                            class="form-control"
-                          >
-                            <option value disabled selected>
-                              Chọn Thời Gian
-                            </option>
-                            <option
-                              v-for="item in data.timework"
-                              :key="item.id"
-                              :value="item.id"
-                            >
-                              {{ item.label }}
-                            </option>
-                          </Field>
-                          <ErrorMessage class="error" name="time_work_id" />
-                        </div>
-                        <div class="col-6 mb-3">
-                          <h6>Kĩ năng</h6>
-                          <Field
-                            class="form-control"
-                            v-model="value"
-                            name="skill_id"
-                            rules="required"
-                          >
-                            <Multiselect
-                              placeholder="Chọn Kỹ năng"
-                              v-model="value"
-                              mode="tags"
-                              :searchable="true"
-                              :options="options"
-                              label="label"
-                              track-by="label"
-                              :infinite="true"
-                              :object="true"
-                              :loading="isLoading"
-                              :internal-search="false"
-                              :clear-on-select="false"
-                              :close-on-select="false"
-                              :options-limit="300"
-                              :limit="3"
-                              :limit-text="limitText"
-                              :max-height="600"
-                              :show-no-results="false"
-                              :hide-selected="true"
-                              @input="updateSelected"
+                            <img
+                              v-if="!filePreview"
+                              :src="data.user.images"
+                              alt=""
                             />
-                          </Field>
-                          <ErrorMessage class="error" name="skill_id" />
+                            <img v-if="filePreview" :src="filePreview" />
+                          </div>
+                          <div class="text-center" style="display: none">
+                            <input
+                              type="file"
+                              @change="onChange"
+                              ref="fileInput"
+                              accept="image/*"
+                              name="images"
+                            />
+                          </div>
+                          <div class="text-center">
+                            <button
+                              class="btn"
+                              style="
+                                font-size: 14px;
+                                padding: 3px 5px;
+                                margin: 6px 0px;
+                                color: #777;
+                                font-style: italic;
+                              "
+                              id="btn-upload-avatar"
+                            >
+                              Cập nhật ảnh
+                            </button>
+                          </div>
+                        </div>
+                        <br />
+                        <div class="col-md-12">
+                          <h4 class="profile-fullname text-center">
+                            {{ data.user.name }}
+                          </h4>
                         </div>
                       </div>
-                      <!-- skill -->
-                      <input type="hidden" name="skill[]" v-model="skill" />
-                      <div class="col-xl-12 col-lg-12">
-                        <div class="form-group">
-                          <button
-                            type="submit"
-                            class="
-                              btn btn-md
-                              ft-medium
-                              text-light
-                              rounded
-                              theme-bg
-                              btn-register-employer
-                            "
-                          >
-                            Cập nhật
-                          </button>
+                    </form>
+                  </VeeForm>
+                </div>
+              </div>
+              <div class="col-8">
+                <VeeForm
+                  as="div"
+                  v-slot="{ handleSubmit }"
+                  @invalid-submit="onInvalidSubmit"
+                >
+                  <form
+                    @submit="handleSubmit($event, onSubmit)"
+                    ref="formData"
+                    enctype="multipart/form-data"
+                    :action="data.urlStore"
+                    method="POST"
+                  >
+                    <Field type="hidden" :value="csrfToken" name="_token" />
+                    <div class="col-md-12">
+                      <div class="box-block">
+                        <div class="box-header">
+                          <h1 class="title">Tạo CV</h1>
                         </div>
+                        <div class="box-upload text-center">
+                          <p class="icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                          </p>
+                          <div class="not-cv">
+                            <p>
+                              Kéo CV của bạn vào đây hoặc bấm để chọn file CV
+                              của bạn
+                            </p>
+                          </div>
+                          <Field
+                            type="file"
+                            name="file_cv"
+                            class="file-upload-cv"
+                            id="file-upload-cv"
+                            rules="required|mimes:pdf,doc,docx|max:2048"
+                          />
+                          <br />
+                          <ErrorMessage class="error" name="file_cv" />
+                        </div>
+                        <div class="file-format">
+                          <div>Files hỗ trợ: PDF, DOC, DOCX</div>
+                          <div>File tải lên không quá: 5 MB</div>
+                        </div>
+                        <button
+                          class="btn btn-info btn-create-cv"
+                          style="margin-top: 10px; margin-left: 45%"
+                        >
+                          Tải lên
+                        </button>
                       </div>
+                    </div>
+                  </form>
+                </VeeForm>
+                <br />
+                <div class="col-md-12">
+                  <div id="cv-upload-list" class="box-block">
+                    <div class="box-header">
+                      <h1 class="title">CV đã tải lên</h1>
+                    </div>
+                    <div class="box-content">
+                      <div class="row">
+                        <!--  -->
+                        <div
+                          class="col-md-6 col-12 pr-12"
+                          v-for="(item, index) in cv"
+                        >
+                          <div class="box-cv">
+                            <img
+                              src="https://media.istockphoto.com/id/1142275061/vi/vec-to/bi%E1%BB%83u-m%E1%BA%ABu-cv-t%C3%A0i-li%E1%BB%87u-v%C3%A0-h%C3%ACnh-minh-h%E1%BB%8Da-vector-d%E1%BB%AF-li%E1%BB%87u-c%C3%A1-nh%C3%A2n-c%E1%BB%8Dc-ho%E1%BA%B7c-ng%C4%83n-x%E1%BA%BFp-t%C3%A0i-li%E1%BB%87u-gi%E1%BA%A5y.jpg?s=1024x1024&w=is&k=20&c=_vo4WAl7TTVVYR4oRVqRVibFVseGOngIElVG2Rt5w8U="
+                              data-src="https://media.istockphoto.com/id/1142275061/vi/vec-to/bi%E1%BB%83u-m%E1%BA%ABu-cv-t%C3%A0i-li%E1%BB%87u-v%C3%A0-h%C3%ACnh-minh-h%E1%BB%8Da-vector-d%E1%BB%AF-li%E1%BB%87u-c%C3%A1-nh%C3%A2n-c%E1%BB%8Dc-ho%E1%BA%B7c-ng%C4%83n-x%E1%BA%BFp-t%C3%A0i-li%E1%BB%87u-gi%E1%BA%A5y.jpg?s=1024x1024&w=is&k=20&c=_vo4WAl7TTVVYR4oRVqRVibFVseGOngIElVG2Rt5w8U="
+                              class="img-responsive"
+                            />
+                            <div class="box-bg">
+                              <div class="box-info">
+                                <h4
+                                  class="title-cv"
+                                  v-if="
+                                    checkTitle == true &&
+                                    checkTrueTitle != item.id
+                                  "
+                                >
+                                  <a
+                                    :href="item.file_cv"
+                                    target="_blank"
+                                    class="title-445516"
+                                    >{{ item.title }}</a
+                                  >
+                                  <i
+                                    @click="checkTitleCv(item.id, item.title)"
+                                    class="
+                                      fas
+                                      fa-pencil-alt
+                                      custom-icon-form-cv
+                                    "
+                                  ></i>
+                                </h4>
+                                <h4
+                                  class="title-cv"
+                                  v-if="checkTrueTitle == item.id"
+                                >
+                                  <input
+                                    type="text"
+                                    name="title"
+                                    v-model="item.title"
+                                    @keyup="textTitle(item.title)"
+                                    class="custom-form-create-cv"
+                                  />
+                                  <i
+                                    class="fas fa-times custom-icon-form-cv"
+                                    @click="checkFalseTitleCv(item.id)"
+                                  ></i>
+                                  <i
+                                    class="
+                                      fas
+                                      fa-paper-plane
+                                      custom-icon-form-cv
+                                    "
+                                    @click="updateTitleCv(item.id)"
+                                  ></i>
+                                </h4>
+                                <p class="update_at">
+                                  Cập nhật lần cuối
+                                  <span>{{
+                                    getHumanDate(item.created_at)
+                                  }}</span>
+                                </p>
+                                <ul class="action">
+                                  <li>
+                                    <a
+                                      href="javascript:void(true)"
+                                      class="btn btn-sm bold"
+                                      ><i class="fa-solid fa-down-to-line"></i>
+                                      Tải xuống</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      :href="'profile/delete-cv/' + item.id"
+                                      class="btn btn-sm bold"
+                                      ><i class="fa-solid fa-down-to-line"></i>
+                                      xóa</a
+                                    >
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--  -->
+                      </div>
+                      <div class="text-center"></div>
                     </div>
                   </div>
                 </div>
-              </form>
-            </VeeForm>
+                <div class="col-md-12">
+                  <div id="cv-upload-list" class="box-block">
+                    <div class="box-header row">
+                      <h1 class="title col-10">CV đã Đã tạo</h1>
+                      <a href="/file/tao-moi" class="btn btn-info col-2"
+                        >Xem cv đã tạo</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -319,9 +250,11 @@ import {
   defineRule,
   configure
 } from 'vee-validate'
+import moment from 'moment'
 import Multiselect from '@vueform/multiselect'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
+import Toggle from '@vueform/toggle'
 import $ from 'jquery'
 import axios from 'axios'
 import { Notyf } from 'notyf'
@@ -337,6 +270,7 @@ export default {
   components: {
     VeeForm,
     Field,
+    Toggle,
     ErrorMessage,
     Multiselect
   },
@@ -344,83 +278,53 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: this.data.user ?? '',
+      baseUrl: Laravel.baseUrl,
+      model: {},
       filePreview: '',
-      loading: false,
-      value: [],
-      options: [],
-      valueSelect: this.data.user.get_profile_use ?? {},
       checkImage: '',
       errmsgCheckImage: '',
       Media: '',
       deleteImage: '',
-      skill: [],
-      isLoading: false
+      cv: [],
+      checkTitle: true,
+      checkTrueTitle: '',
+      nametitle: ''
     }
   },
 
   created() {
-    let array = []
-    this.Media = this.data.user.get_profile_use
-      ? this.data.user.get_profile_use.images
-      : 1
-    if (this.data.getskill.getskill != null) {
-      this.data.getskill.getskill.map((e) => {
-        this.value.push({
-          value: e.id,
-          label: e.name
-        })
-        array.push(e.id)
-        this.skill = array
-      })
+    if (this.data.cv) {
+      this.cv = this.data.cv
     }
+    console.log(this.cv)
+    // let array = []
+    // this.Media = this.data.user.get_profile_use
+    //   ? this.data.user.get_profile_use.images
+    //   : 1
+    // if (this.data.getskill.getskill != null) {
+    //   this.data.getskill.getskill.map((e) => {
+    //     this.value.push({
+    //       value: e.id,
+    //       label: e.name
+    //     })
+    //     array.push(e.id)
+    //     this.skill = array
+    //   })
+    // }
 
-    this.data.skill.map((e) => {
-      this.options.push({
-        value: e.id,
-        label: e.label
-      })
-    })
+    // this.data.skill.map((e) => {
+    //   this.options.push({
+    //     value: e.id,
+    //     label: e.label
+    //   })
+    // })
     let messError = {
       en: {
         fields: {
-          images: {
-            required: 'Ảnh không được để trống'
-          },
-          name: {
-            required: 'Tên không được để trống',
-            max: 'Tên không được vượt quá 255 ký tự'
-          },
-          email: {
-            required: 'Email không được để trống',
-            max: 'Email không được vượt quá 255 ký tự',
-            email: 'Email không đúng định dạng'
-          },
-          phone: {
-            required: 'Số điện thoại không được để trống',
-            telephone: 'Số điện thoại không đúng định dạng'
-          },
-          address: {
-            required: 'Địa chỉ không được để trống',
-            max: 'Địa chỉ không được vượt quá 255 ký tự'
-          },
-          experience_id: {
-            required: 'Kinh nghiệm không được bỏ trống'
-          },
-          lever_id: {
-            required: 'Trình độ không được bỏ trống'
-          },
-          wage_id: {
-            required: 'Mức lương không được bỏ trống'
-          },
-          profession_id: {
-            required: 'Ngành nghề không được bỏ trống'
-          },
-          time_work_id: {
-            required: 'Thời gian không được bỏ trống'
-          },
-          skill_id: {
-            required: 'Kỹ năng không được bỏ trống'
+          file_cv: {
+            required: 'Ảnh không được để trống',
+            mimes: 'Ảnh chỉ hỗ trợ dạng pdf,doc,docx',
+            max: 'kích thước ảnh quá lớn'
           }
         }
       }
@@ -430,16 +334,52 @@ export default {
     })
   },
   methods: {
-    limitText(count) {
-      return `and ${count} other countries`
+    getHumanDate: function (date) {
+      return moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY')
     },
-    updateSelected(e) {
-      let array = []
-      e.map((x) => {
-        array.push(x.value)
-      })
-      array = [...new Set(array)]
-      this.skill = array
+    textTitle(e) {
+      this.nametitle = e
+    },
+    checkTitleCv(id, title) {
+      this.checkTrueTitle = id
+      this.nametitle = title
+    },
+    checkFalseTitleCv(id) {
+      this.checkTrueTitle = -1
+      this.checkTitle = true
+    },
+    updateTitleCv(id) {
+      console.log(this.nametitle)
+      axios
+        .post('profile/update-title-cv/' + id, {
+          _token: Laravel.csrfToken,
+          title: this.nametitle
+        })
+        .then((data) => {
+          const notyf = new Notyf({
+            duration: 6000,
+            position: {
+              x: 'right',
+              y: 'bottom'
+            },
+            types: [
+              {
+                type: 'error',
+                duration: 8000,
+                dismissible: true
+              }
+            ]
+          })
+          if (data.data.status == 403) {
+            return notyf.error(data.data.message)
+          }
+          setTimeout(() => {
+            this.checkTrueTitle = -1
+            this.checkTitle = true
+          }, 1000)
+          return notyf.success(data.data.message)
+        })
+        .catch((error) => {})
     },
     onInvalidSubmit({ values, errors, results }) {
       if (this.checkImage == 1) {
@@ -494,30 +434,192 @@ export default {
   }
 }
 </script>
-<style>
-.error {
-  color: rgb(255, 80, 80);
+<style lang="sass">
+.container
+  .error
+    color: rgb(255, 80, 80)
+    margin-left: 5px
+    margin-top: 5px
+
+  .display-div_custom
+    border: solid 1px
+    border-radius: 4px
+    height: 170px
+    width: 200px
+
+  .img-display_author
+    height: 168px
+    max-width: 200px
+
+  .img
+    max-width: 135px
+    margin-left: 30px
+    margin-top: 15px
+    margin-bottom: 15px
+
+  .box-white
+    background-color: #f1f3f4
+    margin: 10px
+    border-radius: 5px
+    box-shadow: -1px 1px 6px rgb(0 0 0 / 5%)
+
+  .box
+    margin-bottom: 20px
+    padding: 20px
+
+  .profile-avatar img
+    border-radius: 50%
+    height: 250px
+    object-fit: cover
+    max-width: 250px
+    width: 250px
+    margin-left: 15%
+
+  img
+    vertical-align: middle
+
+  img
+    border: 0
+
+  .text-center
+    text-align: center
+
+  .profile-fullname
+    font-size: 20px
+    font-weight: 700
+    margin-bottom: 10px
+    margin-top: 3px
+    position: relative
+
+  .box-block
+    background: #f1f3f4
+    border-radius: 5px
+    box-shadow: -1px 1px 6px rgb(0 0 0 / 5%)
+    margin-bottom: 16px
+    margin-top: 10px
+    padding: 24px 24px 8px
+
+  & .box-header
+    align-items: center
+    display: flex
+    justify-content: space-between
+    margin-bottom: 12px
+
+  & .box-header .title
+    color: #000
+    font-size: 19px
+    font-weight: 700
+    line-height: 24px
+    margin: 0
+</style>
+
+<style lang="scss">
+.box-content {
+  height: 340px !important;
+}
+.custom-form-create-cv {
+  margin-right: 5px !important;
+  width: 180px !important;
+  border: none;
+  font-size: 16px !important;
+}
+.custom-icon-form-cv {
+  cursor: pointer;
+  font-size: 15px;
   margin-left: 5px;
-  margin-top: 5px;
 }
-
-.display-div_custom {
-  border: solid 1px;
-  border-radius: 4px;
-  height: 170px;
-  width: 200px;
+#cv-upload-list .box-cv {
+  border-radius: 5px;
+  height: 310px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  position: relative;
 }
-
-.img-display_author {
-  height: 168px;
-  max-width: 200px;
+#manager-cv #cv-list .box-cv img,
+#manager-cv #cv-upload-list .box-cv img {
+  left: 0;
+  -o-object-fit: cover;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  transition: 0.3s;
+  width: 100%;
+  z-index: 1;
 }
-
-.img {
-  max-width: 135px;
-  margin-left: 30px;
-  margin-top: 15px;
-  margin-bottom: 15px;
+.img-responsive {
+  display: inline-block;
+  max-width: 100%;
+}
+#cv-upload-list .box-cv .box-bg {
+  background: linear-gradient(180deg, hsla(0, 0%, 100%, 0), #212f3f);
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+#cv-upload-list .box-cv .box-info {
+  bottom: 16px;
+  color: #fff;
+  left: 16px;
+  position: absolute;
+  right: 16px;
+  z-index: 3;
+}
+.box-cv .box-info .title-cv {
+  display: flex;
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+#cv-upload-list .box-cv .box-info .title-cv a:first-child {
+  max-width: 80%;
+  word-break: break-word;
+}
+#cv-upload-list .box-cv .box-info .title-cv a {
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color: #fff;
+  display: -webkit-box;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-right: 8px;
+  overflow: hidden;
+}
+a {
+  color: #666;
+}
+a {
+  text-decoration: none;
+}
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+a {
+  background-color: transparent;
+}
+.box-cv .box-info .update_at {
+  color: #fff;
+  font-size: 15px;
+  line-height: 20px;
+  margin-bottom: 16px;
+}
+#cv-upload-list .box-cv .box-info .action {
+  align-items: center;
+  display: flex;
+  list-style: none;
+  margin-bottom: 0;
+}
+.box-cv .box-info .action a {
+  background: hsla(0, 0%, 100%, 0.2);
+  border-radius: 30px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 16px;
+  margin-right: 8px;
+  padding: 4px 8px;
 }
 </style>
 <style src="@vueform/multiselect/themes/default.css">

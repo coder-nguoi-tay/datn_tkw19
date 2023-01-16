@@ -33,23 +33,24 @@ class ProfileController extends BaseController
     }
     public function index()
     {
+        $breadcrumbs = [
+            'Cập nhật thông tin'
+        ];
         $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->with('getUser')->first();
-        $paymentHistory = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)->orderBy('created_at', 'DESC')->get();
-        $Company = Company::where('id', $employer->id_company)->first();
-        $accuracy = Accuracy::where('user_id', Auth::guard('user')->user()->id)->first();
         return view('employer.profile.index', [
             'title' => 'Cập nhật thông tin công ty',
             'employer' => $employer,
-            'paymentHistory' => $paymentHistory,
-            'accuracy' => $accuracy,
-            'Company' => $Company,
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
     public function payMoney()
     {
+        $breadcrumbs = [
+            'Nạp tiền vào tài khoản'
+        ];
         return view('employer.profile.paymoney', [
             'title' => 'Nạp tiền vào tài khoản',
-
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
     /**
@@ -286,7 +287,13 @@ class ProfileController extends BaseController
 
     public function changePassword()
     {
-        return view('employer.profile.change-password');
+        $breadcrumbs = [
+            'Đổi mật khẩu'
+        ];
+        return view('employer.profile.change-password', [
+            'title' => 'Đổi mật khẩu',
+            'breadcrumbs' => $breadcrumbs,
+        ]);
     }
     public function changePasswordSucsses(Request $request)
     {
@@ -298,8 +305,65 @@ class ProfileController extends BaseController
             return redirect()->route('employer.change-password');
         } catch (\Throwable $th) {
             DB::rollBack();
-            $this->setFlash(_('Đã có một lỗi xảy ra'));
+            $this->setFlash(_('Đã có một lỗi xảy ra'), 'error');
             return redirect()->route('employer.change-password');
         }
+    }
+    public function historyPay(Request $request)
+    {
+        $breadcrumbs = [
+            'Lịch sử giao dịch'
+        ];
+        $paymentHistory = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)
+            ->where(function ($q) use ($request) {
+                if (!empty($request['start_date'])) {
+                    $q->whereDate('created_at', '>=', $request['start_date']);
+                }
+                if (!empty($request['end_date'])) {
+                    $q->whereDate('created_at', '<=', $request['end_date']);
+                }
+                if (!empty($request['free_word'])) {
+                    $q->orWhere($this->escapeLikeSentence('desceibe', $request['free_word']));
+                }
+                if (!empty($request['status'])) {
+                    if ($request['status'] == 1) {
+                        $q->where('status', 1);
+                    } else {
+                        $q->where('status', 0);
+                    }
+                }
+            })
+            ->orderBy('created_at', 'DESC')->get();
+        return view('employer.profile.history', [
+            'title' => 'Lịch sử giao dịch',
+            'breadcrumbs' => $breadcrumbs,
+            'paymentHistory' => $paymentHistory,
+            'request' => $request,
+        ]);
+    }
+    public function profileEmployer()
+    {
+        $breadcrumbs = [
+            'Cập nhật thông tin công ty'
+        ];
+        $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->with('getUser')->first();
+        $Company = Company::where('id', $employer->id_company)->first();
+        return view('employer.profile.profile-employer', [
+            'title' => 'Thông tin công ty',
+            'breadcrumbs' => $breadcrumbs,
+            'Company' => $Company,
+        ]);
+    }
+    public function businessLicense()
+    {
+        $breadcrumbs = [
+            'Thông tin giấy phép kinh doanh'
+        ];
+        $accuracy = Accuracy::where('user_id', Auth::guard('user')->user()->id)->first();
+        return view('employer.profile.business-license', [
+            'title' => 'Giấy phép kinh doanh',
+            'breadcrumbs' => $breadcrumbs,
+            'accuracy' => $accuracy,
+        ]);
     }
 }

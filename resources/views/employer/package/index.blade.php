@@ -1,108 +1,112 @@
 @php
     use Carbon\Carbon;
 @endphp
-@extends('layouts.admin')
+@extends('employer.layout.index')
 @section('content')
-    <div class="container">
-        <div class="fade-in">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <header class="header header-sticky">
-                                <div class="container-fluid">
-                                    <label class=" px-md-0 me-md-3">Quản lý Các Gói Cước Đã Mua </label>
-                                    <ul class="header-nav ms-3 d-flex">
-                                        <form action="{{ route('employer.package.index') }}" class="d-flex" method="get">
-                                            <input name="free_word" class="custom-input" placeholder="Tìm Kiếm...."
-                                                value="" autocomplete="off" id="free_word">
-                                            <button class="nav-link py-0 btn-next-step"
-                                                href="{{ route('employer.package.create') }}">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </form>
-                                        <button class="nav-link py-0 btn-next-step" data-coreui-toggle="modal"
-                                            data-coreui-target="#exampleModalbuyPackage">
-                                            mua gói cước
-                                        </button>
-                                    </ul>
+    <section class="dashboard-area">
+        <div class="dashboard-content-wrap">
+            <div class="container-fluid mt-4">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-content d-flex flex-wrap justify-content-between align-items-center">
+                            <ul class="list-items d-flex align-items-center">
+                                @if (isset($breadcrumbs))
+                                    @foreach ($breadcrumbs as $key => $breadcrumb)
+                                        @if ($key != count($breadcrumbs) - 1)
+                                            <li class="active__list-item">
+                                                <a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['name'] }}</a>
+                                            </li>
+                                        @else
+                                            <li class="active__list-item active">{{ $breadcrumb }}</li>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </ul>
+                        </div><!-- end breadcrumb-content -->
+                    </div><!-- end col-lg-12 -->
+                </div><!-- end row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="billing-form-item pl-10 pr-10">
+                            <div class="manage-job-header mt-3">
+                                <div class="manage-job-count">
                                 </div>
-                            </header>
-                        </div>
-                        <div class="card-body">
-                            @if (!$pachageForEmployer->isEmpty())
-                                <table class="table table-striped table-hover table-bordered text-center">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Tên gói cước</th>
-                                            <th scope="col">Giá</th>
-                                            <th scope="col">Cấp bậc</th>
-                                            <th scope="col">Thời gian mua</th>
-                                            <th scope="col">Thời gian hết hạn</th>
-                                            <th scope="col">Trạng Thái</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($pachageForEmployer as $item)
-                                            <tr>
-                                                <td>{{ $item->name_package }}</td>
-                                                <td>{{ number_format($item->price) }}đ</td>
-                                                <td>{{ $item->lever_package }}</td>
-                                                <td>{{ $item->start_time }}</td>
-                                                <td>{{ $item->end_time }}</td>
-                                                <td>
-                                                    <span
-                                                        class="badge {{ $item->status == 1 ? 'bg-success' : 'bg-secondary' }}">{{ $item->status_package }}</span>
-                                                </td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-warning btn-radius-auto dropdown-toggle"
-                                                            id="action" type="button" data-coreui-toggle="dropdown"
-                                                            aria-expanded="false">Chức năng</button>
-                                                        <ul class="dropdown-menu" aria-labelledby="action">
-                                                            <li>
-                                                                <a class="dropdown-item" href=""
-                                                                    class="dropdown-item">
-                                                                    <i class="fa fa-eye"></i>xem chi tiết
-                                                                </a>
-                                                            </li>
-                                                            @if ($item->status == 2)
-                                                                <li class="dropdown-divider"></li>
-                                                                <li>
-                                                                    <btn-payment-extend-employer
-                                                                        :message-confirm="{{ json_encode('Bạn có chắc muốn gia hạn với mức giá ' . number_format($item->price) . 'đ' . ' không ?') }}"
-                                                                        :delete-action="{{ json_encode(route('employer.package.updateTimePayment', $item->id)) }}"
-                                                                        :price="{{ json_encode($item->price) }}">
-                                                                    </btn-payment-extend-employer>
-                                                                </li>
-                                                            @endif
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                <div class="manage-job-count">
+                                    <button class="btn btn-info col-12 text-white" data-coreui-toggle="modal"
+                                        data-coreui-target="#exampleModalbuyPackage">
+                                        mua gói cước
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="billing-content">
+                                <div class="manage-job-wrap">
+                                    <div class="table-responsive">
+                                        <search-cv-date :url="{{ json_encode(route('employer.package.index')) }}"
+                                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
+                                            :data="{{ json_encode(2) }}">
+                                        </search-cv-date>
+                                        <table class="table text-center mt-3">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Tên gói cước</th>
+                                                    <th scope="col">Giá</th>
+                                                    <th scope="col">Cấp bậc</th>
+                                                    <th scope="col">Thời gian mua</th>
+                                                    <th scope="col">Thời gian hết hạn</th>
+                                                    <th scope="col">Trạng Thái</th>
+                                                    <th class="text-center">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($pachageForEmployer as $item)
+                                                    <tr>
 
-                                    </tbody>
-                                </table>
-                            @else
-                                <div class="container">
-                                    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                                        Không tìm thấy dữ liệu mà bạn mong muốn!
+                                                        <td>{{ $item->name_package }}</td>
+                                                        <td>{{ number_format($item->price) }}đ</td>
+                                                        <td>{{ $item->lever_package }}</td>
+                                                        <td>{{ $item->start_time }}</td>
+                                                        <td>{{ $item->end_time }}</td>
+                                                        <td>
+                                                            <span
+                                                                class="badge  p-1 {{ $item->status == 1 ? 'bg-success text-white' : 'bg-secondary text-white' }}">{{ $item->status_package }}</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="manage-candidate-wrap">
+                                                                <div class="bread-action pt-0">
+                                                                    <ul class="info-list">
+                                                                        <li class="d-inline-block"><a
+                                                                                href="{{ route('employer.package.show', $item->id) }}"><i
+                                                                                    class="la la-eye" data-toggle="tooltip"
+                                                                                    data-placement="top" title=""
+                                                                                    data-original-title="Xem chi tiết gói cước"></i></a>
+                                                                        </li>
+                                                                        @if ($item->status == 2)
+                                                                            <li class="d-inline-block">
+                                                                                <btn-payment-extend-employer
+                                                                                    :message-confirm="{{ json_encode('Bạn có chắc muốn gia hạn với mức giá ' . number_format($item->price) . 'đ' . ' không ?') }}"
+                                                                                    :delete-action="{{ json_encode(route('employer.package.updateTimePayment', $item->id)) }}"
+                                                                                    :price="{{ json_encode($item->price) }}"
+                                                                                    :acc-payment="{{ json_encode($accPayment) }}">
+                                                                                </btn-payment-extend-employer>
+                                                                            </li>
+                                                                        @endif
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                            @endif
-                        </div>
-                        <div class="group-paginate">
-                            {{-- {{ $news->appends(SearchQueryComponent::alterQuery($request))->links('pagination.admin') }} --}}
-                        </div>
-                    </div>
+                            </div><!-- end billing-content -->
+                        </div><!-- end billing-form-item -->
+                    </div><!-- end col-lg-12 -->
                 </div>
-            </div>
+            </div><!-- end container-fluid -->
         </div>
-    </div>
-
-    <!-- Modal by payment -->
+    </section><!-- end dashboard-area -->
     <account-payment
         :data="{{ json_encode([
             'urlStore' => route('employer.package.payment'),
@@ -113,4 +117,7 @@
             'checkPackage' => $checkPackage,
         ]) }}">
     </account-payment>
+    <div id="back-to-top">
+        <i class="la la-angle-up" title="Go top"></i>
+    </div>
 @endsection

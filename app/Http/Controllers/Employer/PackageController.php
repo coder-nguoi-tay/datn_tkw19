@@ -34,7 +34,7 @@ class PackageController extends BaseController
         $this->vnpay = $vnpay;
         $this->package = $package;
     }
-    public function index()
+    public function index(Request $request)
     {
         $pachageForEmployer = Packageofferbought::leftjoin('job_attractive', 'job_attractive.id', '=', 'package_offer_bought.package_offer_id')
             ->leftjoin('users', 'users.id', '=', 'package_offer_bought.company_id')
@@ -42,8 +42,20 @@ class PackageController extends BaseController
             ->select('job_attractive.name as name_package', 'job_attractive.price as price', 'package_offer_bought.id as id', 'package_offer_bought.package_offer_id as package_id', 'package_offer_bought.start_time as start_time', 'package_offer_bought.end_time as end_time', 'package_offer_bought.lever', 'package_offer_bought.status')
             ->orderby('package_offer_bought.status', 'ASC')
             ->where('package_offer_bought.company_id', Auth::guard('user')->user()->id)
+            ->where(function ($q) use ($request) {
+                if (!empty($request['start_date'])) {
+                    $q->whereDate('package_offer_bought.created_at', '>=', $request['start_date']);
+                }
+                if (!empty($request['end_date'])) {
+                    $q->whereDate('package_offer_bought.created_at', '<=', $request['end_date']);
+                }
+                if (!empty($request['free_word'])) {
+                    $q->orWhere($this->escapeLikeSentence('job_attractive.name', $request['free_word']));
+                }
+            })
             ->get();
         $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
+
         $package = jobAttractive::select('*')->whereNotIn('id', $pachageForEmployer->pluck('package_id'))->get();
 
         $checkPackage = packageofferbought::where('company_id', Auth::guard('user')->user()->id)
@@ -51,12 +63,18 @@ class PackageController extends BaseController
             ->select('job_attractive.price as price')
             ->first();
         $packageAttractive = jobAttractive::whereNotIn('id', $pachageForEmployer->pluck('package_id'))->where('price', '>', $checkPackage->price ?? '')->get();
+        $breadcrumbs = [
+            'Gói cước',
+
+        ];
         return view('employer.package.index', [
             'data' => $package,
             'checkPackage' => $checkPackage,
             'accPayment' => $accPayment,
             'pachageForEmployer' => $pachageForEmployer,
             'packageAttractive' => $packageAttractive,
+            'breadcrumbs' => $breadcrumbs,
+            'request' => $request,
             'total' => AccountPayment::where('user_id', Auth::guard('user')->user()->id)->with('user')->first(),
         ]);
     }
@@ -147,10 +165,12 @@ class PackageController extends BaseController
                 $paymentHistory->price = $request['price'];
                 $paymentHistory->desceibe = 'Gia hạn gói cước VIP ' . $payment->lever;
                 $paymentHistory->form = '';
+                $paymentHistory->status = 1;
                 $paymentHistory->save();
                 //
                 $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
                 $employer->prioritize = $payment->lever;
+                $employer->position = 1;
                 $employer->save();
 
                 return response()->json([
@@ -293,6 +313,15 @@ class PackageController extends BaseController
                 die;
             } else {
                 $this->setFlash(__('Giao dịch bị hủy bỏ'), 'error');
+                $lever_package = explode(',', $request->vnp_OrderInfo)[1];
+                $checkPackage = packageofferbought::where('company_id', Auth::guard('user')->user()->id)->first();
+                $paymentHistory = new PaymentHistoryEmployer();
+                $paymentHistory->user_id = Auth::guard('user')->user()->id;
+                $paymentHistory->price = $request->vnp_Amount / 100;
+                $paymentHistory->status = 0;
+                $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp gói cước ' . explode(',', $request->vnp_OrderInfo)[0] . 'gói VIP ' . $lever_package : 'Thanh toán mua gói cước ' . explode(',', $request->vnp_OrderInfo)[0] . 'gói VIP ' . $lever_package;
+                $paymentHistory->form = '';
+                $paymentHistory->save();
             }
         } else {
             $lever_package = explode(',', $request->vnp_OrderInfo)[1];
@@ -301,7 +330,7 @@ class PackageController extends BaseController
             $paymentHistory->user_id = Auth::guard('user')->user()->id;
             $paymentHistory->price = $request->vnp_Amount;
             $paymentHistory->status = 0;
-            $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp' : 'Thanh toán mua ' . explode(',', $request->vnp_OrderInfo)[0] . 'gói VIP ' . $lever_package;
+            $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp gói cước ' . explode(',', $request->vnp_OrderInfo)[0] . 'gói VIP ' . $lever_package : 'Thanh toán mua gói cước ' . explode(',', $request->vnp_OrderInfo)[0] . 'gói VIP ' . $lever_package;
             $paymentHistory->form = '';
             $paymentHistory->save();
             $this->setFlash(__('chu ky khong hop le'), 'error');
@@ -347,8 +376,13 @@ class PackageController extends BaseController
                     ->leftjoin('job_attractive', 'job_attractive.id', 'package_offer_bought.package_offer_id')
                     ->select('job_attractive.price as price')
                     ->first();
+                if ($checkPackage) {
+                    $price = $checkPackage->price;
+                } else {
+                    $price = 0;
+                }
                 if ($invoice != NULL) {
-                    if ($invoice["price"] + $checkPackage->price ?? 0 == $vnp_Amount) //Kiểm tra số tiền thanh toán của giao dịch: giả sử số tiền kiểm tra là đúng. //$order["Amount"] == $vnp_Amount
+                    if ($invoice["price"] - $price == $vnp_Amount) //Kiểm tra số tiền thanh toán của giao dịch: giả sử số tiền kiểm tra là đúng. //$order["Amount"] == $vnp_Amount
                     {
                         if ($invoice["status"] == NULL && $invoice["status"] == 0) {
                             if ($inputData['vnp_ResponseCode'] == '00' && $inputData['vnp_TransactionStatus'] == '00') {
@@ -389,13 +423,13 @@ class PackageController extends BaseController
                             $paymentHistory->user_id = Auth::guard('user')->user()->id;
                             $paymentHistory->price = $vnp_Amount;
                             $paymentHistory->status = 1;
-                            $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp gói cước Tin tuyển dụng - việc làm tốt nhất' : 'Thanh toán mua gói cước Tin tuyển dụng - việc làm tốt nhất';
+                            $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp gói cước Tin tuyển dụng - việc làm tốt nhất VIP ' . $lever_package  : 'Thanh toán mua gói cước Tin tuyển dụng - việc làm tốt nhất VIP ' . $lever_package;
                             $paymentHistory->form = '';
                             $paymentHistory->save();
 
                             //
                             $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
-                            $employer->prioritize += $lever_package;
+                            $employer->prioritize = $lever_package;
                             $employer->position = 1;
                             $employer->save();
                             $returnData['RspCode'] = '00';
@@ -471,7 +505,7 @@ class PackageController extends BaseController
             $paymentHistory->user_id = Auth::guard('user')->user()->id;
             $paymentHistory->price = $request['price'];
             $paymentHistory->status = 1;
-            $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp gói cước Tin tuyển dụng - việc làm tốt nhất' : 'Thanh toán mua gói cước Tin tuyển dụng - việc làm tốt nhất ';
+            $paymentHistory->desceibe = $checkPackage ? 'Nâng cấp gói cước Tin tuyển dụng - việc làm tốt nhất VIP ' . $request['data']['lever_package'] : 'Thanh toán mua gói cước Tin tuyển dụng - việc làm tốt nhất VIP ' . $request['data']['lever_package'];
             $paymentHistory->form = '';
             $paymentHistory->save();
             return response()->json([

@@ -30,7 +30,7 @@ use App\Http\Controllers\Employer\RegisterCompanyController;
 use App\Http\Controllers\Employer\SearchCvController;
 use App\Http\Controllers\Employer\ViewProfileController;
 use App\Http\Controllers\TestController;
-use Illuminate\Routing\Router;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ Route::resource('forgotPasswordSuccess', forgotPasswordSuccessController::class)
 Route::middleware('user')->name('employer.')->prefix('employer')->group(function () {
     // Route::resource('', HomeEmployerController::class);
     Route::get('logout', [HomeEmployerController::class, 'logout'])->name('logout');
-    Route::get('', [HomeEmployerController::class, 'index'])->name('index');
+    Route::get('dashboard', [HomeEmployerController::class, 'index'])->name('index');
 
     // Route::resource('new', NewEmployerController::class);
     Route::post('new/store', [NewEmployerController::class, 'store'])->name('new.store');
@@ -96,8 +96,8 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
         Route::get('change-status', [ManagerUploadCvController::class, 'changeStatus'])->name('changestatus');
     });
     Route::resource('register-company', RegisterCompanyController::class);
-    //profile
-    Route::resource('profile', EmployerProfileController::class);
+
+
     Route::get('pay-money', [EmployerProfileController::class, 'payMoney'])->name('employer.profile.paymoney');
     Route::post('pay-money-payment', [EmployerProfileController::class, 'payMoneyPayment'])->name('profile.paymoney.payment');
     Route::get('pay-money-payment-return', [EmployerProfileController::class, 'vnpayReturn'])->name('profile.paymoney.payment.return');
@@ -106,6 +106,13 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::post('change-password', [ProfileController::class, 'changePasswordSucsses'])->name('employer.changePasswordSucsses');
     // giấy xác thực
     Route::post('image-accuracy', [ManagerUploadCvController::class, 'ImageAccuracy'])->name('profile.ImageAccuracy');
+
+    //profile
+    Route::get('history', [EmployerProfileController::class, 'historyPay'])->name('profile.history');
+    Route::get('company', [EmployerProfileController::class, 'profileEmployer'])->name('employer.profileEmployer');
+    Route::get('business-license', [EmployerProfileController::class, 'businessLicense'])->name('employer.businessLicense');
+    Route::resource('profile', EmployerProfileController::class);
+    Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');
 });
 
 
@@ -114,6 +121,9 @@ Route::post('register/create', [HomeEmployerController::class, 'store'])->name('
 
 // seeker
 Route::resource('profile', SeekerHomeController::class);
+Route::post('profile/update-title-cv/{id}', [SeekerHomeController::class, 'updateTitleCv']);
+Route::get('profile/delete-cv/{id}', [SeekerHomeController::class, 'deleteCv']);
+Route::post('profile/update-avatar', [SeekerHomeController::class, 'updateAvatar'])->name('profile.updateAvatar');
 Route::resource('login', ClientLoginController::class);
 Route::get('register-client', [ClientLoginController::class, 'registerClient'])->name('register');
 
@@ -124,8 +134,8 @@ Route::get('file/tao-moi', [SeekerManageUploadController::class, 'createFormCV']
 Route::post('file/tao-moi', [SeekerManageUploadController::class, 'storeFormCV'])->name('user.storeFormCV');
 Route::get('user/createFormCV/download', [SeekerManageUploadController::class, 'downloadPdf'])->name('user.createFormCV.downloadPdf');
 
-Route::get('user/profile/{token}', [SeekerHomeController::class, 'userProfile'])->name('user.profile');
-Route::get('user/new/favourite', [SeekerHomeController::class, 'userFavourite'])->name('user.favourite');
+// Route::get('user/profile/{token}', [SeekerHomeController::class, 'userProfile'])->name('user.profile');
+Route::get('favourite', [SeekerHomeController::class, 'userFavourite'])->name('user.favourite');
 Route::delete('delete/favourite/{id}', [SeekerHomeController::class, 'deleteFavourite'])->name('delete.favourite');
 Route::get('user/logout', [SeekerHomeController::class, 'logout'])->name('user.logout');
 Route::get('change-password', [SeekerHomeController::class, 'changePassword'])->name('user.changepass');
@@ -139,18 +149,23 @@ Route::post('owner/update/register', [ClientLoginController::class, 'updateRegis
 // });
 //client
 Route::resource('', ClientHomeController::class);
-// Route::get('{title}-{id}', [SearchController::class, 'searchMajos'])->name('searchMajos');
 Route::post('favourite/{id}', [SeekerHomeController::class, 'userFavouriteId']); // api
+Route::get('favourite-love/{id}', [SeekerHomeController::class, 'getDatalove']); // api
 Route::get('home/detail/{title}-{id}', [ClientHomeController::class, 'showDetail'])->name('home.detail.show');
 Route::post('home/detail/upcv', [ClientHomeController::class, 'upCv'])->name('home.detail.upcv');
 Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 'searchLocation'])->name('home.search.location');
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
 Route::get('tim-viec-lam', [SearchController::class, 'create'])->name('home.search');
 //trang giới thiệu các công ty
-Route::get('News', [NewsController::class, 'index'])->name('company');
-Route::get('detail-company/{id}', [DetailCompanyController::class, 'detailCompany'])->name('detail.company');
-// Route::get('detailNew/{id}', [NewsController::class, 'showTinTuc'])->name('detailNew');
+Route::get(
+    'detail-company/{id}',
+    [DetailCompanyController::class, 'detailCompany']
+)->name('detail.company');
+
+
+Route::get('blog', [NewsController::class, 'index'])->name('blog');
+Route::get('detail-blog/{id}', [NewsController::class, 'ShowBlog'])->name('detail.blog');
+Route::get('detailNew/{id}', [NewsController::class, 'showTinTuc'])->name('detailNew');
 //
 Route::get('majors/{id}', [ClientHomeController::class, 'searchMajors'])->name('searchMajors');
-Route::get('error-404', [HomeController::class, 'error'])->name('error404');
-Route::get('deailTin-tuc/{id}', [ClientHomeController::class, 'detailTinTuc'])->name('detailTin-tuc');
+// Route::get('error-404',[ClientHomeController::class, 'error404'])->name('error404');

@@ -1,64 +1,91 @@
 <template>
-  <div class="_dashboard_content_body py-3 px-3">
-    <VeeForm
-      as="div"
-      v-slot="{ handleSubmit }"
-      @invalid-submit="onInvalidSubmit"
-    >
-      <form
-        @submit="handleSubmit($event, onSubmit)"
-        ref="formData"
-        method="POST"
-        enctype="multipart/form-data"
-        class="text-center"
-        :action="data.urlStore"
+  <div class="col-12 recuitment-inner">
+    <div class="card-create-employer">
+      <VeeForm
+        as="div"
+        v-slot="{ handleSubmit }"
+        @invalid-submit="onInvalidSubmit"
       >
-        <Field type="hidden" :value="csrfToken" name="_token" />
-
-        <div class="container">
-          <div class="mb-4 size-input">
-            <label for="label3" class="form-label"
-              >Mật khẩu<span class="required-lable">*</span></label
-            >
-            <Field
-              type="password"
-              class="form-control"
-              rules="required|max:16|min:8|password_rule"
-              v-model="model.password"
-              name="password"
-              id="label3"
-              placeholder="Mật khẩu"
-            />
-            <ErrorMessage class="error" name="password" />
-          </div>
-          <div class="mb-4 size-input">
-            <label for="label4" class="form-label"
-              >Nhập lại mật khẩu<span class="required-lable">*</span></label
-            >
-            <Field
-              type="password"
-              class="form-control"
-              rules="required|confirmed:@password"
-              v-model="model.password_old"
-              name="password_old"
-              placeholder="Nhập lại mật khẩu"
-              id="label4"
-            />
-            <ErrorMessage class="error" name="password_old" />
-          </div>
-          <div class="col-xl-12 col-lg-12">
-            <div class="form-group">
-              <button
-                type="submit"
-                class="btn btn-md ft-medium text-light rounded theme-bg"
-              >
-                Cập nhật
-              </button>
+        <form
+          class="recuitment-form"
+          @submit="handleSubmit($event, onSubmit)"
+          ref="formData"
+          method="POST"
+          :action="data.urlStore"
+          enctype="multipart/form-data"
+        >
+          <Field type="hidden" :value="csrfToken" name="_token" />
+          
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="billing-form-item">
+                <div class="billing-content">
+                  <div class="contact-form-action">
+                    <div class="MultiFile-intercepted">
+                      <br>
+                      <div class="row">
+                        <div class="mb-4 size-input">
+                          <label for="label3" class="form-label"
+                            >Mật khẩu<span class="required-lable"
+                              >*</span
+                            ></label
+                          >
+                          <Field
+                            type="password"
+                            class="form-control"
+                            rules="required|max:16|min:8|password_rule"
+                            v-model="model.password"
+                            name="password"
+                            id="label3"
+                            placeholder="Mật khẩu"
+                          />
+                          <ErrorMessage class="error" name="password" />
+                        </div>
+                        <div class="mb-4 size-input">
+                          <label for="label4" class="form-label"
+                            >Nhập lại mật khẩu<span class="required-lable"
+                              >*</span
+                            ></label
+                          >
+                          <Field
+                            type="password"
+                            class="form-control"
+                            rules="required|confirmed:@password"
+                            v-model="model.password_old"
+                            name="password_old"
+                            placeholder="Nhập lại mật khẩu"
+                            id="label4"
+                          />
+                          <ErrorMessage class="error" name="password_old" />
+                        </div>
+                        <div class="col-xl-12 col-lg-12">
+                          <div class="form-group">
+                            <button
+                              type="submit"
+                              style="margin-left: 10%"
+                              class="
+                                btn btn-md
+                                ft-medium
+                                text-light
+                                rounded
+                                theme-bg
+                                btn-primary
+                              "
+                            >
+                              Cập nhật
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </form>
-    </VeeForm>
+        </form>
+      </VeeForm>
+    </div>
   </div>
 </template>
 <script>

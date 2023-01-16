@@ -1,466 +1,799 @@
 @php
     use Carbon\Carbon;
 @endphp
+
 @extends('client.layout.index')
 @section('client')
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
+    <main class="main">
+        <div data-elementor-type="wp-page" data-elementor-id="1341" class="elementor elementor-1341">
+            <section
+                class="elementor-section elementor-top-section elementor-element elementor-element-7931cbd7 elementor-section-full_width banner-hero hero-2 hero-3 elementor-section-height-default elementor-section-height-default"
+                data-id="7931cbd7" data-element_type="section"
+                data-settings="{&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_gallery&quot;:[],&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_duration&quot;:5000,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_transition_duration&quot;:500}">
+                <div class="elementor-container elementor-column-gap-default">
+                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-556cdc8a"
+                        data-id="556cdc8a" data-element_type="column">
+                        <div class="elementor-widget-wrap elementor-element-populated">
+                            <section
+                                class="elementor-section elementor-inner-section elementor-element elementor-element-4989c9a3 banner-inner elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                                data-id="4989c9a3" data-element_type="section">
+                                <div class="elementor-container elementor-column-gap-default">
+                                    <div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-5ff9a4b1"
+                                        data-id="5ff9a4b1" data-element_type="column">
+                                        <div class="elementor-widget-wrap elementor-element-populated">
+                                            <div class="elementor-element elementor-element-37d9d732 mb-0 elementor-widget elementor-widget-title"
+                                                data-id="37d9d732" data-element_type="widget"
+                                                data-widget_type="title.default">
+                                                <div class="elementor-widget-container">
+                                                    <h1
+                                                        class="control-heading-title text-42 color-white wow animate__ animate__fadeInUp animated mb-0">
+                                                        Bảng công việc số 1 <span class="color-green">cho
 
-    <body>
-        <div class="home-banner margin-bottom-0" style="background:#00ab46 url('banner-bg.jpg')" data-overlay="5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="container">
-                            <div class="col-lg-12">
-                                <form id="search-form" action="{{ route('home.search') }}" name="gs" method="submit"
-                                    role="search">
-                                    <div class="row">
-                                        <div class="col-lg-3 align-self-center">
-                                            <fieldset>
-                                                <input type="address" name="key" class="searchText"
-                                                    placeholder="Tìm Kiêm..." autocomplete="on">
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-3 align-self-center">
-                                            <fieldset>
-                                                <select class="form-select" name="majors">
-                                                    <option selected disabled>Chuyên Ngành</option>
-                                                    @foreach ($majors as $item)
-                                                        <option value="{{ $item->id }}">
-                                                            {{ $item->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-3 align-self-center">
-                                            <fieldset>
-                                                <select class="form-select" name="location">
-                                                    <option selected disabled>Địa chỉ</option>
-                                                    @foreach ($location as $item)
-                                                        <option value="{{ $item->id }}">
-                                                            {{ $item->label }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <fieldset>
-                                                <button class="main-button"><i class="fa fa-search"></i> Tìm Kiếm</button>
-                                            </fieldset>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <section class="middle space gray">
-            <div class="container bg-white">
-                <div class="container container-header-box border ">
-                    <h1 class="header-box">Tìm việc làm nhanh 24h, việc làm mới nhất trên toàn quốc</h1>
-                    <p class="header-box-description">Tiếp cận 30,000+ tin tuyển dụng việc làm mới mỗi ngày từ hàng nghìn
-                        doanh nghiệp uy tín tại Việt Nam</p>
-                    @if (!Auth::guard('user')->check())
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            Hệ thống mong muốn bạn đăng nhập để có thể
-                            hiển thị các việc làm phù hợp nhất!, <strong><a href="#" class="show-turn-on-location"
-                                    data-toggle="modal" data-target="#exampleModallogin">Đăng
-                                    nhập tại đây!</a></strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">X</span>
-                            </button>
-                        </div>
-                    @endif
+                                                            Tuyển dụng hoặc</span><br class="d-none d-lg-block">Tìm công
+                                                        việc tiếp theo của bạn</h1>
+                                                </div>
+                                            </div>
+                                            <div class="elementor-element elementor-element-7b9da113 mb-0 elementor-widget elementor-widget-title"
+                                                data-id="7b9da113" data-element_type="widget"
+                                                data-widget_type="title.default">
+                                                <div class="elementor-widget-container">
+                                                    <div class="control-heading-title font-lg text-white mt-20">Mỗi tháng,
+                                                        hơn 3 triệu người tìm việc truy cập trang web để tìm việc, thực hiện
+                                                        hơn 140.000 đơn đăng ký mỗi ngày</div>
+                                                </div>
+                                            </div>
+                                            <div class="elementor-element elementor-element-56e62b6d elementor-widget elementor-widget-template"
+                                                data-id="56e62b6d" data-element_type="widget"
+                                                data-widget_type="template.default">
+                                                <div class="elementor-widget-container">
 
-                    <div class="alert alert-info alert-dismissible fade show" role="alert">
-                        Hãy báo cáo cho tôi nếu bạn gặp phải sự cố hoặc bạn phát hiện ai đó có hành vi lừa đảo!, <strong><a
-                                href="{{ route('index') }}" class="show-turn-on-location">Liên hệ!</a></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">X</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="search-book">
-                    <h2 class="ft-bold">Tin tuyển dụng, việc làm tốt nhất</h2>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="container p-3">
+                                                    <div class="banner-hero p-0">
+                                                        <div class="block-banner p-0">
+                                                            <div class="form-find mt-40 wow animate__animated animate__fadeIn"
+                                                                data-wow-delay=".2s">
+                                                                <form method="get" action="{{ route('home.search') }}">
 
-                        <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" id="paginated-list">
-                            @foreach ($job as $value)
-                                <div class="col-4 render-job-search view overlay rounded">
-                                    <div class="hover-div border p-2">
-                                        <div class="position-absolute ab-right"><a type="button"
-                                                class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
-                                                    class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></a>
-                                        </div>
-                                        <div class="row" style="height: 80px;">
-                                            <div class="job_grid_thumb mb-3 title-name px-3 col-4"><a
-                                                    href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                    class="d-block m-auto" style="width: 68px; height: 68px;"><img
-                                                        src="{{ asset($value->logo) }}" class="img-rounded" alt=""
-                                                        style=""></a>
-                                            </div>
-                                            <div class="job_grid_caption title-name px-3 col-8 g-1">
-                                                <h4 class="mb-0 ft-medium medium ml-20"><a
-                                                        href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                        class="text-dark fs-md" data-toggle="tooltip" title=""
-                                                        data-placement="top" data-container="body"
-                                                        data-original-title="{{ $value->title }}">
-                                                        <p
-                                                            style="width: 200px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap;">
-                                                            {{ $value->title }}</p>
-                                                    </a></h4>
-                                                <div class="jbl_location ml-20" style="margin-top: -10px;"><a
-                                                        data-toggle="tooltip" title="" data-placement="top"
-                                                        data-container="body"
-                                                        data-original-title="{{ $value->nameCompany }}"
-                                                        href="{{ route('detail.company', $value->idCompany) }}"
-                                                        class="text-dark fs-md">{{ $value->nameCompany }}</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
-                                            <div class="df-1 text-muted"><i
-                                                    class="lni lni-wallet mr-1"></i>{{ $value->getwage->name }}
-                                            </div>
-                                            <div class="df-1 text-muted ml-2"><i
-                                                    class="lni lni-timer mr-1"></i>{{ $value->end_job_time }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <span class="page-item text-center pagination-container">
-                                    <div id="pagination-numbers">
-                                    </div>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end -->
-            </div>
-        </section>
-        <section class="space gray" data-aos="zoom-in-up">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class="sec_title position-relative text-center mb-5">
-                            <h2 class="ft-bold">Ngành Nghề Trọng Điểm</h2>
-                        </div>
-                    </div>
-                </div>
-                <!-- row -->
-                <div class="row justify-content-center">
-                    <div class="page-white-100">
-                        <div id="box-discover">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                <div class="review-slide px-3">
-                                    <!-- single review -->
-                                    @foreach ($majors as $item)
-                                        <div class="single_review px-2">
-                                            <div class="reviews_wrap position-relative bg-white rounded py-4 px-4">
-                                                <div class="col-xl-12">
-                                                    <img src="{{ asset($item->image_majors) }}" alt=""
-                                                        width="30" height="30">
-                                                </div>
-                                                <br>
-                                                <div class="col-xl-12">
-                                                    <h4 class="title-company"><a
-                                                            href="{{ route('searchMajors', $item->id) }}">{{ $item->name }}</a>
-                                                    </h4>
-                                                    <p class="number-job">{{ count($item->majors) }} Việc làm
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="middle space gray" data-aos="fade-up">
-            <div class="container-xxl p-0 bg-white text-dark">
-                <!-- Item Wrap Start -->
-                <div class="col-lg-12 p-0" style="background: rgba(255, 255, 255, 0.904);">
-                    <!-- row -->
-                    <div class="p-1 pl-3 mb-2 alert alert-secondary rounded">
-                        <h2 class="ft-bold">Tất cả việc làm</h2>
-                    </div>
-                    <div class="row justify-content-center">
-                        <!-- Single -->
-                        <div class="row justify-content-center">
-                            <div class="container p-3">
-                                <div class="row g-2 g-lg-3" id="paginated-list1">
-                                    @foreach ($jobAttractive as $value)
-                                        <div class="col-3 render-job-search1 view overlay rounded">
-                                            <div class="hover-div border p-2">
-                                                <div class="position-absolute ab-right"><a type="button"
-                                                        class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
-                                                            class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></a>
-                                                </div>
-                                                <div class="row" style="height: 80px;">
-                                                    <div class="job_grid_thumb mb-3 title-name px-3 col-4"><a
-                                                            href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                            class="d-block m-auto" style="width: 68px; height: 68px;"><img
-                                                                src="{{ asset($value->logo) }}" class="img-rounded"
-                                                                alt="" style=""></a>
-                                                    </div>
-                                                    <div class="job_grid_caption title-name px-3 col-8 g-1">
-                                                        <h4 class="mb-0 ft-medium medium ml-20"><a
-                                                                href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                                class="text-dark fs-md" data-toggle="tooltip"
-                                                                title="" data-placement="top" data-container="body"
-                                                                data-original-title="{{ $value->title }}">
-                                                                <p
-                                                                    style="width: 200px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap;">
-                                                                    {{ $value->title }}</p>
-                                                            </a></h4>
-                                                        <div class="jbl_location ml-20" style="margin-top: -10px;"><a
-                                                                data-toggle="tooltip" title="" data-placement="top"
-                                                                data-container="body"
-                                                                data-original-title="{{ $value->nameCompany }}"
-                                                                href="{{ route('detail.company', $value->idCompany) }}"
-                                                                class="text-dark fs-md">{{ $value->nameCompany }}</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
-                                                    <div class="df-1 text-muted"><i
-                                                            class="lni lni-wallet mr-1"></i>{{ $value->getwage->name }}
-                                                    </div>
-                                                    <div class="df-1 text-muted ml-2"><i
-                                                            class="lni lni-timer mr-1"></i>{{ $value->end_job_time }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <span class="page-item text-center pagination-container">
-                                            <div id="pagination-numbers1">
-                                            </div>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- row -->
-                </div>
-            </div>
-        </section>
-        @if (Auth::guard('user')->check())
-            @if (!$user->getProfileUse == null)
-                <section class="middle space gray" data-aos="fade-up">
-                    <div class="container-xxl p-0 bg-white text-dark">
-                        <!-- Item Wrap Start -->
-                        <div class="col-lg-12 p-0">
-                            <!-- row -->
-                            <div class="p-1 pl-3 mb-2 alert alert-secondary rounded">
-                                <h2 class="ft-bold">Việc làm phù hợp với bạn</h2>
-                            </div>
-                            <div class="row justify-content-center">
-                                <!-- Single -->
-                                <div class="row justify-content-center">
-                                    <div class="container p-3">
-                                        <div class="row g-2 g-lg-3" id="paginated-list2">
-                                            @foreach ($jobForUser as $value)
-                                                <div class="col-4 render-job-search2 view overlay rounded">
-                                                    <div class="hover-div border p-2">
-                                                        <div class="position-absolute ab-right"><a type="button"
-                                                                class="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"><i
-                                                                    class="lni lni-heart-filled position-absolute snackbar-wishlist"></i></a>
-                                                        </div>
-                                                        <div class="row" style="height: 80px;">
-                                                            <div class="job_grid_thumb mb-3 title-name px-3 col-4"><a
-                                                                    href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                                    class="d-block m-auto"
-                                                                    style="width: 68px; height: 68px;"><img
-                                                                        src="{{ asset($value->logo) }}"
-                                                                        class="img-rounded" alt=""
-                                                                        style=""></a>
+                                                                    <select class="form-input mr-10 select-active w-200"
+                                                                        name="majors">
+                                                                        <option value="">Chọn ngành nghề</option>
+                                                                        @foreach ($majors as $item)
+                                                                            <option value="{{ $item->id }}">
+                                                                                {{ $item->name }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+
+                                                                    <select class="form-input mr-10 select-active"
+                                                                        name="location" id="location">
+                                                                        <option value="">Chọn địa chỉ</option>
+                                                                        @foreach ($location as $item)
+                                                                            <option value="{{ $item->id }}">
+                                                                                {{ $item->label }}</option>
+                                                                        @endforeach
+                                                                    </select>
+
+                                                                    <input class="form-input input-keysearch mr-10"
+                                                                        type="text" name="key" id="key"
+                                                                        style="border: none;" placeholder="Nhập từ khóa" />
+
+                                                                    <input class="btn btn-default btn-find font-sm"
+                                                                        type="submit" value="Search">
+
+                                                                </form>
                                                             </div>
-                                                            <div class="job_grid_caption title-name px-3 col-8 g-1">
-                                                                <h4 class="mb-0 ft-medium medium ml-20"><a
-                                                                        href="home/detail/{{ $value->title . '-' . $value->id }}"
-                                                                        class="text-dark fs-md" data-toggle="tooltip"
-                                                                        title="" data-placement="top"
-                                                                        data-container="body"
-                                                                        data-original-title="{{ $item->title }}">
-                                                                        <p
-                                                                            style="width: 200px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap;">
-                                                                            {{ $value->title }}</p>
-                                                                    </a></h4>
-                                                                <div class="jbl_location ml-20"
-                                                                    style="margin-top: -10px;"><a data-toggle="tooltip"
-                                                                        title="" data-placement="top"
-                                                                        data-container="body"
-                                                                        data-original-title="{{ $value->nameCompany }}"
-                                                                        href="{{ route('detail.company', $value->idCompany) }}"
-                                                                        class="text-dark fs-md">{{ $value->nameCompany }}</a>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section
+                class="elementor-section elementor-top-section elementor-element elementor-element-d98c6ff elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                data-id="d98c6ff" data-element_type="section">
+                <div class="elementor-container elementor-column-gap-no">
+                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-1c22a67"
+                        data-id="1c22a67" data-element_type="column">
+                        <div class="elementor-widget-wrap elementor-element-populated">
+                            <div class="elementor-element elementor-element-ed0a5e5 m-0 elementor-widget elementor-widget-title"
+                                data-id="ed0a5e5" data-element_type="widget" data-widget_type="title.default">
+                                <div class="elementor-widget-container">
+                                    <h2 class="control-heading-title m-0">Tin tuyển dụng- việc làm tốt nhất</h2>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-ce85727 m-0 elementor-widget elementor-widget-title"
+                                data-id="ce85727" data-element_type="widget" data-widget_type="title.default">
+                                <div class="elementor-widget-container">
+                                    <p class="control-heading-title font-lg text-muted m-0">Tìm kiếm và kết nối với các ứng
+                                        cử viên phù hợp nhanh hơn</p>
+                                </div>
+                            </div>
+                            {{-- @dd($jobAttractive) --}}
+                            <div class="elementor-element elementor-element-54a362e text-center elementor-widget elementor-widget-template"
+                                data-id="54a362e" data-element_type="widget" data-widget_type="template.default">
+                                <div class="elementor-widget-container">
+                                    <div class="mt-10">
+                                        <div class="tab-content" id="myTabContent-2">
+                                            <div class="tab-pane fade show active" id="tab-content-writer" role="tabpanel"
+                                                aria-labelledby="tab-content-writer">
+                                                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 text-start"
+                                                    id="paginated-list">
+                                                    @foreach ($job as $item)
+                                                        <div class="col render-job-search">
+                                                            <div class="card-grid-2 grid-bd-16 hover-up">
+                                                                <div class="card-block-info pt-25">
+                                                                    <h6
+                                                                        style=" display: -webkit-box;
+                                                                                                     line-height: 1;
+                                                                                                    -webkit-line-clamp: 1;
+                                                                                                    -webkit-box-orient: vertical;
+                                                                                                    overflow: hidden;
+                                                                                                    text-overflow: ellipsis;">
+                                                                        <a href="/home/detail/{{ $item->title . '-' . $item->id }}"
+                                                                            data-toggle="tooltip" title=""
+                                                                            data-placement="top" data-container="body"
+                                                                            data-original-title="{{ $item->nameCompany }}">{{ $item->title }}</a>
+                                                                    </h6>
+                                                                    <div
+                                                                        class="d-flex flex-wrap gap-15 mt-5 border-bottom p-2">
+                                                                        <span><i
+                                                                                class="fi-rr-briefcase ms-0 me-5"></i>{{ $item->getTime_work->name }}</span>
+                                                                        <span><i class="fi-rr-clock ms-0 me-5"></i><time
+                                                                                datetime="2022-09-27">{{ $item->end_job_time }}</time></span>
+                                                                    </div>
+                                                                    <div class="card-2-bottom mt-20">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-8 col-md-8">
+                                                                                <div class="d-flex gap-15">
+                                                                                    <img decoding="async"
+                                                                                        class="rounded-circle"
+                                                                                        src="{{ asset($item->logo) }}"
+                                                                                        style="width: 35px; height: 35px"
+                                                                                        alt="Ashford">
+                                                                                    <div class="info-right-img">
+                                                                                        <h6 style=" display: -webkit-box;
+                                                                                                     line-height: 1;
+                                                                                                    -webkit-line-clamp: 1;
+                                                                                                    -webkit-box-orient: vertical;
+                                                                                                    overflow: hidden;
+                                                                                                    text-overflow: ellipsis;"
+                                                                                            class="color-brand-1 lh-14 mb-0"
+                                                                                            data-toggle="tooltip"
+                                                                                            title=""
+                                                                                            data-placement="top"
+                                                                                            data-container="body"
+                                                                                            data-original-title="{{ $item->nameCompany }}">
+                                                                                            {{ $item->nameCompany }}</h6>
+                                                                                        <span
+                                                                                            class="card-location font-xxs pl-15 color-text-paragraph-2">{{ $item->getlocation->name }}</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-3 col-md-4 text-end">
+                                                                                <span class="card-text-price">
+                                                                                    {{ $item->getwage->name }}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div
-                                                            class="job_grid_footer d-flex align-items-center justify-content-between text-mute-footer">
-                                                            <div class="df-1 text-muted"><i
-                                                                    class="lni lni-wallet mr-1"></i>{{ $value->getwage->name }}
+                                                    @endforeach
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                                        <span class="page-item">
+                                                            <div id="pagination-numbers">
                                                             </div>
-                                                            <div class="df-1 text-muted ml-2"><i
-                                                                    class="lni lni-timer mr-1"></i>{{ $value->end_job_time }}
-                                                            </div>
-                                                        </div>
+                                                        </span>
                                                     </div>
                                                 </div>
-                                            @endforeach
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                                <br>
-                                                <br>
-                                                <br>
-                                                <br>
-                                                <span class="page-item text-center pagination-container">
-                                                    <div id="pagination-numbers2">
-                                                    </div>
-                                                </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- row -->
-                        </div>
-                    </div>
-                </section>
-            @endif
-        @endif
-        <!-- ======================= Blog Start ============================ -->
-        <section class="space min gray">
-            <div class="container">
-
-                <div class="row justify-content-center">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class="sec_title position-relative text-center mb-4">
-                            <h2 class="ft-bold">Tin Tức
-                            </h2>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center">
+            </section>
+            <section
+                class="elementor-section elementor-top-section elementor-element elementor-element-3988092 elementor-section-full_width elementor-section-height-default elementor-section-height-default"
+                data-id="3988092" data-element_type="section">
+                <div class="elementor-container elementor-column-gap-default">
+                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-7926be8"
+                        data-id="7926be8" data-element_type="column">
+                        <div class="elementor-widget-wrap elementor-element-populated">
+                            <div class="elementor-element elementor-element-b21152e elementor-widget elementor-widget-template"
+                                data-id="b21152e" data-element_type="widget" data-widget_type="template.default">
+                                <div class="elementor-widget-container">
 
-                    <!-- Single Item -->
-                    @foreach ($new as $item)
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                            <div class="blg_grid_box">
-                                <div class="blg_grid_thumb">
-                                    <a href="{{ route('detailTin-tuc', $item->id) }}"><img src="{{ $item->new_image }}"
-                                            class="img-fluid w-75 rounded "
-                                            style="display : block;
-                                                   margin-left: auto;
-                                                   margin-right: auto;
-                                                   margin-top: 10px;
-                                                   height: 300px;"alt=""></a>
-                                </div>
-                                <div class="blg_grid_caption">
-                                    <p class="theme-cl px-3 py-1 rounded bg-light-success d-inline-flex">
-                                        {{ $item->majors }}
-                                    </p>
-                                    <div class="blg_title">
-                                        <h4><a href="#">{{ $item->title }}</a></h4>
-                                    </div>
-                                    <div class="blg_desc  "
-                                        style="
-                                           max-height: 20px;
-                                           overflow: hidden;
-                                           text-overflow: ellipsis !important;
-                                            ">
-                                        <p>{{ $item->describe }}...</p>
+                                    <div class="section-box mb-30">
+                                        <div class="container">
+                                            <div class="box-we-hiring">
+                                                <div class="text-1"><span class="text-we-are">We are</span><span
+                                                        class="text-hiring">Hiring</span></div>
+                                                <div class="text-2">Let&rsquo;s <span class="color-brand-1">Work</span>
+                                                    Together<br> &amp; <span class="color-brand-1">Explore</span>
+                                                    Opportunities</div>
+                                                <div class="text-3">
+                                                    <a href="../jobs/index.html"
+                                                        class="btn btn-apply btn-apply-icon">Apply Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
                 </div>
-            </div>
-        </section>
-        {{--  --}}
-        <modal-care></modal-care>
+            </section>
+            <section
+                class="elementor-section elementor-top-section elementor-element elementor-element-d98c6ff elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                data-id="d98c6ff" data-element_type="section">
+                <div class="elementor-container elementor-column-gap-no">
+                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-1c22a67"
+                        data-id="1c22a67" data-element_type="column">
+                        <div class="elementor-widget-wrap elementor-element-populated">
+                            <div class="elementor-element elementor-element-ed0a5e5 m-0 elementor-widget elementor-widget-title"
+                                data-id="ed0a5e5" data-element_type="widget" data-widget_type="title.default">
+                                <div class="elementor-widget-container">
+                                    <h2 class="control-heading-title m-0">Tất cả việc làm</h2>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-54a362e text-center elementor-widget elementor-widget-template"
+                                data-id="54a362e" data-element_type="widget" data-widget_type="template.default">
+                                <div class="elementor-widget-container">
 
-    </body>
-    @if (Auth::guard('user')->check())
-        @if ($user->getProfileUse == null)
-            <div class="loading-div">
-                <div class="loader-img"></div>
-            </div>
-            <div class="modal fade" id="checkmodalProfile" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title " id="exampleModalLabel"
-                                style="margin-left: 15%; font-size: 24px; font-weight: 500">Vui lòng bổ sung các thông tin
-                                dưới đây để hoàn tất đăng ký tài khoản
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">X</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <user-profile
-                                :data="{{ json_encode([
-                                    'lever' => $lever,
-                                    'experience' => $experience,
-                                    'wage' => $wage,
-                                    'skill' => $skill,
-                                    'timework' => $timework,
-                                    'profession' => $profession,
-                                    'majors' => $majors,
-                                    'location' => $location,
-                                    'workingform' => $workingform,
-                                    'user' => $user,
-                                    'urlStore' => route('profile.store'),
-                                    'urlBack' => route('profile.index'),
-                                    'getskill' => $getskill,
-                                ]) }}">
-                            </user-profile>
+                                    <div class="list-tabs list-tabs-2 mt-30">
+                                        <ul class="nav nav-tabs ps-0" role="tablist">
+                                            <li>
+                                                <a class="active" id="nav-tab-content-writer" href="#tab-content-writer"
+                                                    data-bs-toggle="tab" role="tab"
+                                                    aria-controls="tab-content-writer" aria-selected="true">
+                                                    <img decoding="async"
+                                                        src="../wp-content/uploads/2022/10/security-icon.png"
+                                                        width="18" alt="Content Writer">
+                                                    Content Writer </a>
+                                            </li>
+                                            <li>
+                                                <a class="" id="nav-tab-finance" href="#tab-finance"
+                                                    data-bs-toggle="tab" role="tab" aria-controls="tab-finance"
+                                                    aria-selected="true">
+                                                    <img decoding="async" src="../wp-content/uploads/2022/10/bank.png"
+                                                        width="18" alt="Finance">
+                                                    Finance </a>
+                                            </li>
+                                            <li>
+                                                <a class="" id="nav-tab-human-resource" href="#tab-human-resource"
+                                                    data-bs-toggle="tab" role="tab"
+                                                    aria-controls="tab-human-resource" aria-selected="true">
+                                                    <img decoding="async"
+                                                        src="../wp-content/uploads/2022/10/human-resource.png"
+                                                        width="18" alt="Human Resource">
+                                                    Human Resource </a>
+                                            </li>
+                                            <li>
+                                                <a class="" id="nav-tab-management" href="#tab-management"
+                                                    data-bs-toggle="tab" role="tab" aria-controls="tab-management"
+                                                    aria-selected="true">
+                                                    <img decoding="async"
+                                                        src="../wp-content/uploads/2022/10/management-icon.png"
+                                                        width="18" alt="Management">
+                                                    Management </a>
+                                            </li>
+                                            <li>
+                                                <a class="" id="nav-tab-market-research"
+                                                    href="#tab-market-research" data-bs-toggle="tab" role="tab"
+                                                    aria-controls="tab-market-research" aria-selected="true">
+                                                    <img decoding="async"
+                                                        src="../wp-content/uploads/2022/10/research-icon.png"
+                                                        width="18" alt="Market Research">
+                                                    Market Research </a>
+                                            </li>
+                                            <li>
+                                                <a class="" id="nav-tab-marketing-sale" href="#tab-marketing-sale"
+                                                    data-bs-toggle="tab" role="tab"
+                                                    aria-controls="tab-marketing-sale" aria-selected="true">
+                                                    <img decoding="async"
+                                                        src="../wp-content/uploads/2022/10/career-icon.png" width="18"
+                                                        alt="Marketing &amp; Sale">
+                                                    Marketing &amp; Sale </a>
+                                            </li>
+                                            <li>
+                                                <a class="" id="nav-tab-retail-products"
+                                                    href="#tab-retail-products" data-bs-toggle="tab" role="tab"
+                                                    aria-controls="tab-retail-products" aria-selected="true">
+                                                    <img decoding="async"
+                                                        src="../wp-content/uploads/2022/10/retail-icon.png" width="18"
+                                                        alt="Retail &amp; Products">
+                                                    Retail &amp; Products </a>
+                                            </li>
+                                            <li>
+                                                <a class="" id="nav-tab-software" href="#tab-software"
+                                                    data-bs-toggle="tab" role="tab" aria-controls="tab-software"
+                                                    aria-selected="true">
+                                                    <img decoding="async"
+                                                        src="../wp-content/uploads/2022/10/lamp-icon.png" width="18"
+                                                        alt="Software">
+                                                    Software </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="mt-10">
+                                        <div class="tab-content" id="myTabContent-2">
+                                            <div class="tab-pane fade show active" id="tab-content-writer"
+                                                role="tabpanel" aria-labelledby="tab-content-writer">
+                                                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 text-start">
+                                                    @foreach ($jobAttractive as $item)
+                                                        <div class="col">
+                                                            <div class="card-grid-2 grid-bd-16 hover-up">
+                                                                <div class="card-block-info pt-25">
+                                                                    <h6
+                                                                        style=" display: -webkit-box;
+                                                                                                     line-height: 1;
+                                                                                                    -webkit-line-clamp: 1;
+                                                                                                    -webkit-box-orient: vertical;
+                                                                                                    overflow: hidden;
+                                                                                                    text-overflow: ellipsis;">
+                                                                        <a
+                                                                            href="home/detail/{{ $item->title . '-' . $item->id }}">{{ $item->title }}</a>
+                                                                    </h6>
+                                                                    <div class="d-flex flex-wrap gap-15 mt-5">
+                                                                        <span><i
+                                                                                class="fi-rr-briefcase ms-0 me-5"></i>{{ $item->getTime_work->name }}</span>
+                                                                        <span><i class="fi-rr-clock ms-0 me-5"></i><time
+                                                                                datetime="2022-09-27">{{ $item->end_job_time }}</time></span>
+                                                                    </div>
+
+                                                                    <div class="card-2-bottom mt-20">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-8 col-md-8">
+                                                                                <div class="d-flex gap-15">
+                                                                                    <img decoding="async"
+                                                                                        class="rounded-circle"
+                                                                                        src="{{ asset($item->logo) }}"
+                                                                                        style="width: 35px; height: 35px"
+                                                                                        alt="Ashford">
+                                                                                    <div class="info-right-img">
+                                                                                        <h6 style=" display: -webkit-box;
+                                                                                                     line-height: 1;
+                                                                                                    -webkit-line-clamp: 1;
+                                                                                                    -webkit-box-orient: vertical;
+                                                                                                    overflow: hidden;
+                                                                                                    text-overflow: ellipsis;"
+                                                                                            class="color-brand-1 lh-14 mb-0">
+                                                                                            {{ $item->nameCompany }}
+                                                                                        </h6>
+                                                                                        <span
+                                                                                            class="card-location font-xxs pl-15 color-text-paragraph-2">{{ $item->getlocation->name }}</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-3 col-md-4 text-end">
+                                                                                <span
+                                                                                    class="card-text-price">{{ $item->getwage->name }}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <a href="{{ route('home.search') }}"
+                                                        class="btn btn-default btn-find font-sm">Xem tất cả</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </section>
+            <section
+                class="elementor-section elementor-top-section elementor-element elementor-element-70bda6af elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                data-id="70bda6af" data-element_type="section">
+                <div class="elementor-container elementor-column-gap-no">
+                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-56806d45"
+                        data-id="56806d45" data-element_type="column">
+                        <div class="elementor-widget-wrap elementor-element-populated">
+                            <section
+                                class="elementor-section elementor-inner-section elementor-element elementor-element-2d8adcca elementor-section-full_width elementor-section-content-middle elementor-section-height-default elementor-section-height-default"
+                                data-id="2d8adcca" data-element_type="section">
+                                <div class="elementor-container elementor-column-gap-wider">
+                                    <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-3af251f5"
+                                        data-id="3af251f5" data-element_type="column">
+                                        <div class="elementor-widget-wrap elementor-element-populated">
+                                            <div class="elementor-element elementor-element-4fae4bb0 elementor-widget elementor-widget-text-editor"
+                                                data-id="4fae4bb0" data-element_type="widget"
+                                                data-widget_type="text-editor.default">
+                                                <div class="elementor-widget-container">
+                                                    <style>
+                                                        /*! elementor - v3.9.2 - 21-12-2022 */
+                                                        .elementor-widget-text-editor.elementor-drop-cap-view-stacked .elementor-drop-cap {
+                                                            background-color: #818a91;
+                                                            color: #fff
+                                                        }
+
+                                                        .elementor-widget-text-editor.elementor-drop-cap-view-framed .elementor-drop-cap {
+                                                            color: #818a91;
+                                                            border: 3px solid;
+                                                            background-color: transparent
+                                                        }
+
+                                                        .elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap {
+                                                            margin-top: 8px
+                                                        }
+
+                                                        .elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap-letter {
+                                                            width: 1em;
+                                                            height: 1em
+                                                        }
+
+                                                        .elementor-widget-text-editor .elementor-drop-cap {
+                                                            float: left;
+                                                            text-align: center;
+                                                            line-height: 1;
+                                                            font-size: 50px
+                                                        }
+
+                                                        .elementor-widget-text-editor .elementor-drop-cap-letter {
+                                                            display: inline-block
+                                                        }
+                                                    </style>
+                                                    <div class="box-image-job">
+
+                                                        <img decoding="async" class="img-job-1"
+                                                            src="../wp-content/uploads/2022/10/Card.png" alt="jobBox"
+                                                            width="390" /><img decoding="async" class="img-job-2"
+                                                            src="../wp-content/uploads/2022/10/Medium_Safety.png"
+                                                            alt="jobBox" width="335" />
+                                                        <figure class=""
+                                                            style="visibility: visible; animation-name: fadeIn;"><img
+                                                                decoding="async"
+                                                                src="../wp-content/uploads/2022/09/img1.png"
+                                                                alt="jobBox" /></figure>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-717e9e71 my-auto"
+                                        data-id="717e9e71" data-element_type="column">
+                                        <div class="elementor-widget-wrap elementor-element-populated">
+                                            <div class="elementor-element elementor-element-81c68 m-0 elementor-widget elementor-widget-title"
+                                                data-id="81c68" data-element_type="widget"
+                                                data-widget_type="title.default">
+                                                <div class="elementor-widget-container">
+                                                    <span class="control-heading-title color-text-mutted text-32 m-0">Hàng
+                                                        triệu công việc</span>
+                                                </div>
+                                            </div>
+                                            <div class="elementor-element elementor-element-67f68714 m-0 elementor-widget elementor-widget-title"
+                                                data-id="67f68714" data-element_type="widget"
+                                                data-widget_type="title.default">
+                                                <div class="elementor-widget-container">
+                                                    <h2 class="control-heading-title text-52 m-0">Về chúng tôi
+                                                    </h2>
+                                                </div>
+                                            </div>
+                                            <div class="elementor-element elementor-element-6e6d5458 mt-lg-40 mt-20 pr-50 text-md-lh28 mb-md-0 elementor-widget elementor-widget-title"
+                                                data-id="6e6d5458" data-element_type="widget"
+                                                data-widget_type="title.default">
+                                                <div class="elementor-widget-container">
+                                                    <p class="control-heading-title m-0">ITWORK là một Website nhân sự, với
+                                                        năng lực và sứ mệnh của ITWORK đặt ra cho mình là thay đổi thị
+                                                        trường tuyển dụng - nhân sự ngày một hiệu quả hơn. Bằng công nghệ,
+                                                        chúng tôi tạo ra nền tảng cho phép người dùng tạo CV Phát triển được
+                                                        kĩ năng cá nhân xây dựng hình ảnh chuyên nghiệp trong mắt nhà tuyển
+                                                        dụng và tiếp cận được với các công việc phù hợp</p>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {{-- @if (Auth::guard('user')->check())
+                <section
+                    class="elementor-section elementor-top-section elementor-element elementor-element-d98c6ff elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                    data-id="d98c6ff" data-element_type="section">
+                    <div class="elementor-container elementor-column-gap-no">
+                        <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-1c22a67"
+                            data-id="1c22a67" data-element_type="column">
+                            <div class="elementor-widget-wrap elementor-element-populated">
+                                <div class="elementor-element elementor-element-ed0a5e5 m-0 elementor-widget elementor-widget-title"
+                                    data-id="ed0a5e5" data-element_type="widget" data-widget_type="title.default">
+                                    <div class="elementor-widget-container">
+                                        <h2 class="control-heading-title m-0">Việc làm phù hợp với bạn</h2>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-54a362e text-center elementor-widget elementor-widget-template"
+                                    data-id="54a362e" data-element_type="widget" data-widget_type="template.default">
+                                    <div class="elementor-widget-container">
+
+                                        <div class="list-tabs list-tabs-2 mt-30">
+                                            <ul class="nav nav-tabs ps-0" role="tablist">
+                                                <li>
+                                                    <a class="active" id="nav-tab-content-writer"
+                                                        href="#tab-content-writer" data-bs-toggle="tab" role="tab"
+                                                        aria-controls="tab-content-writer" aria-selected="true">
+                                                        <img decoding="async"
+                                                            src="../wp-content/uploads/2022/10/security-icon.png"
+                                                            width="18" alt="Content Writer">
+                                                        Content Writer </a>
+                                                </li>
+                                                <li>
+                                                    <a class="" id="nav-tab-finance" href="#tab-finance"
+                                                        data-bs-toggle="tab" role="tab" aria-controls="tab-finance"
+                                                        aria-selected="true">
+                                                        <img decoding="async" src="../wp-content/uploads/2022/10/bank.png"
+                                                            width="18" alt="Finance">
+                                                        Finance </a>
+                                                </li>
+                                                <li>
+                                                    <a class="" id="nav-tab-human-resource"
+                                                        href="#tab-human-resource" data-bs-toggle="tab" role="tab"
+                                                        aria-controls="tab-human-resource" aria-selected="true">
+                                                        <img decoding="async"
+                                                            src="../wp-content/uploads/2022/10/human-resource.png"
+                                                            width="18" alt="Human Resource">
+                                                        Human Resource </a>
+                                                </li>
+                                                <li>
+                                                    <a class="" id="nav-tab-management" href="#tab-management"
+                                                        data-bs-toggle="tab" role="tab"
+                                                        aria-controls="tab-management" aria-selected="true">
+                                                        <img decoding="async"
+                                                            src="../wp-content/uploads/2022/10/management-icon.png"
+                                                            width="18" alt="Management">
+                                                        Management </a>
+                                                </li>
+                                                <li>
+                                                    <a class="" id="nav-tab-market-research"
+                                                        href="#tab-market-research" data-bs-toggle="tab" role="tab"
+                                                        aria-controls="tab-market-research" aria-selected="true">
+                                                        <img decoding="async"
+                                                            src="../wp-content/uploads/2022/10/research-icon.png"
+                                                            width="18" alt="Market Research">
+                                                        Market Research </a>
+                                                </li>
+                                                <li>
+                                                    <a class="" id="nav-tab-marketing-sale"
+                                                        href="#tab-marketing-sale" data-bs-toggle="tab" role="tab"
+                                                        aria-controls="tab-marketing-sale" aria-selected="true">
+                                                        <img decoding="async"
+                                                            src="../wp-content/uploads/2022/10/career-icon.png"
+                                                            width="18" alt="Marketing &amp; Sale">
+                                                        Marketing &amp; Sale </a>
+                                                </li>
+                                                <li>
+                                                    <a class="" id="nav-tab-retail-products"
+                                                        href="#tab-retail-products" data-bs-toggle="tab" role="tab"
+                                                        aria-controls="tab-retail-products" aria-selected="true">
+                                                        <img decoding="async"
+                                                            src="../wp-content/uploads/2022/10/retail-icon.png"
+                                                            width="18" alt="Retail &amp; Products">
+                                                        Retail &amp; Products </a>
+                                                </li>
+                                                <li>
+                                                    <a class="" id="nav-tab-software" href="#tab-software"
+                                                        data-bs-toggle="tab" role="tab" aria-controls="tab-software"
+                                                        aria-selected="true">
+                                                        <img decoding="async"
+                                                            src="../wp-content/uploads/2022/10/lamp-icon.png"
+                                                            width="18" alt="Software">
+                                                        Software </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="mt-10">
+                                            <div class="tab-content" id="myTabContent-2">
+                                                <div class="tab-pane fade show active" id="tab-content-writer"
+                                                    role="tabpanel" aria-labelledby="tab-content-writer">
+                                                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 text-start">
+                                                        @foreach ($jobForUser as $item)
+                                                            <div class="col">
+                                                                <div class="card-grid-2 grid-bd-16 hover-up">
+                                                                    <div class="card-block-info pt-25">
+                                                                        <h6><a
+                                                                                href="home/detail/{{ $item->title . '-' . $item->id }}">{{ $item->title }}</a>
+                                                                        </h6>
+                                                                        <div class="d-flex flex-wrap gap-15 mt-5">
+                                                                            <span><i
+                                                                                    class="fi-rr-briefcase ms-0 me-5"></i>{{ $item->getTime_work->name }}</span>
+                                                                            <span><i
+                                                                                    class="fi-rr-clock ms-0 me-5"></i><time
+                                                                                    datetime="2022-09-27">{{ $item->end_job_time }}</time></span>
+                                                                        </div>
+
+                                                                        <div class="card-2-bottom mt-20">
+                                                                            <div class="row">
+                                                                                <div class="col-lg-8 col-md-8">
+                                                                                    <div class="d-flex gap-15">
+                                                                                        <img decoding="async"
+                                                                                            class="rounded-circle"
+                                                                                            src="../wp-content/uploads/2022/09/brand-7.png"
+                                                                                            style="width: 35px; height: 35px"
+                                                                                            alt="Ashford">
+                                                                                        <div class="info-right-img">
+                                                                                            <h6
+                                                                                                class="color-brand-1 lh-14 mb-0">
+                                                                                                {{ $item->nameCompany }}
+                                                                                            </h6>
+                                                                                            <span
+                                                                                                class="card-location font-xxs pl-15 color-text-paragraph-2">{{ $item->getlocation->name }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-4 col-md-4 text-end">
+                                                                                    <span
+                                                                                        class="card-text-price">{{ $item->getwage->name }}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            @endif --}}
+            <section
+                class="elementor-section elementor-top-section elementor-element elementor-element-acd8c1d elementor-section-boxed elementor-section-height-default elementor-section-height-default">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="sec_title position-relative text-center mb-4">
+                                {{-- <h6 class="text-muted mb-0">Latest News</h6> --}}
+                                <h2 class="ft-bold">Tin Tức</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        @foreach ($new as $item)
+                            <div class="col-xl-4 col-lg-3 col-md-6 col-sm-12">
+                                <div
+                                    class="card-grid-3 hover-up post-28 post type-post status-publish format-standard has-post-thumbnail hentry category-events tag-beauty tag-nature tag-travel-tips ">
+                                    <div class="text-center card-grid-3-image">
+                                        <a href="{{ route('detailNew', $item->id) }}">
+                                            <figure><img
+                                                    style="width:403px !important; height:257px !important; object-fit: cover; "
+                                                    src="{{ $item->new_image }}" class=" img-fluid wp-post-image"
+                                                    alt="" decoding="async" loading="lazy"></figure>
+                                        </a>
+                                    </div>
+                                    <div class="card-block-info">
+
+                                        <p class=" px-3   py-1 rounded bg-light-primary d-inline-flex"
+                                            style="color : rgb(60,101,245) ; font-weight: 550">
+                                            {{ $item->majors }}
+                                        </p>
+
+                                        <h5
+                                            style="
+                                           max-height: 25px;
+                                           overflow: hidden;
+                                           text-overflow: ellipsis;
+                                            ">
+                                            <a href="#">{{ $item->title }}</a>
+                                        </h5>
+                                        <p class="mt-10 color-text-paragraph font-sm"></p>
+                                        <p>
+                                        <div class="blg_desc  "
+                                            style="
+                                           max-height: 20px;
+                                           overflow: hidden;
+                                           text-overflow: ellipsis;
+                                            ">
+                                            <p>{{ $item->describe }}</p>
+                                        </div>
+                                        </p>
+                                        <p></p>
+                                        <div class="card-2-bottom mt-20">
+                                            <div class="row d-flex align-items-end">
+                                                <div class="col-lg-6 col-6">
+                                                    <div class="d-flex align-items-center">
+                                                        <img alt=""
+                                                            src="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/user10-150x150.png"
+                                                            srcset="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/user10-150x150.png 2x"
+                                                            class="avatar avatar-64 photo img-rounded" height="35"
+                                                            width="35" loading="lazy" decoding="async">
+                                                        <div class="info-right-img d-grid">
+                                                            <span
+                                                                class="font-sm font-bold color-brand-1 op-70">Admin</span>
+                                                            <span
+                                                                class="font-xs color-text-paragraph-2">{{ $item->created_at->format('m-d-Y') }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 text-end col-6">
+                                                    <span class="color-text-paragraph-2 font-xs">2 mins to read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="section-box mt-50 mb-20">
+            <div class="container">
+                <div class="box-newsletter">
+                    <div class="row align-items-center">
+
+                        <div class="col-xl-3 col-12 text-center d-none d-xl-block">
+                            <img src="../wp-content/uploads/2022/12/newsletter-left.png" alt="Newsletter">
+                        </div>
+                        <div class="col-lg-12 col-xl-6 col-12">
+                            <h2 class="text-md-newsletter text-center">Những điều mới sẽ luôn cập nhật thường xuyên</h2>
+                            <div class="box-form-newsletter mt-40">
+                                <form id="mc-form" class="form-newsletter">
+                                    <input id="mc-email" class="input-newsletter" type="email"
+                                        placeholder="Enter your email" required="required">
+                                    <button class="btn btn-default font-heading icon-send-letter"
+                                        type="submit">Subscribe</button>
+                                </form>
+                            </div>
+                            <div id="mc-response" class="mt-15"></div>
+                        </div>
+                        <div class="col-xl-3 col-12 text-center d-none d-xl-block">
+                            <img src="../wp-content/uploads/2022/12/newsletter-right.png" alt="Newsletter">
+                        </div>
+
+                    </div>
+                    <!--row-->
+                </div>
             </div>
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    $("#checkmodalProfile").modal('show');
-                });
-            </script>
-        @endif
-    @endif
-
+        </section>
+    </main>
+    <div class="modal fade" id="controlJobManagerRegister" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="--bs-backdrop-zindex: none;">
+                    <h5 class="modal-title" id="exampleModalLabel">Chào mừng bạn đến với ITWork</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <client-login
+                        :data="{{ json_encode([
+                            'urlStore' => route('owner.store'),
+                            'urlRegister' => route('owner.update.register'),
+                            'message' => $message ?? '',
+                        ]) }}">
+                        <client-login>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
