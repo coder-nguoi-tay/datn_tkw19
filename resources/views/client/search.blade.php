@@ -65,7 +65,13 @@
                                                     <img src="{{ asset($value->logo) }}" width="52" alt="Percepta">
                                                 </div>
                                                 <div class="right-info">
-                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                    <a style=" -webkit-line-clamp: 1;
+                                                            -webkit-box-orient: vertical;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            display: -webkit-box;
+                                                            text-align: left;"
+                                                        href="home/detail/{{ $value->title . '-' . $value->id }}">
                                                         <span class="name-job">{{ $value->nameCompany }}</span>
                                                     </a>
                                                     <div
@@ -220,7 +226,13 @@
                                                 </div>
                                                 <div class="right-info">
                                                     <a href="home/detail/{{ $value->title . '-' . $value->id }}">
-                                                        <span class="name-job">{{ $value->nameCompany }}</span>
+                                                        <span class="name-job"
+                                                            style=" -webkit-line-clamp: 1;
+                                                            -webkit-box-orient: vertical;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            display: -webkit-box;
+                                                            text-align: left;">{{ $value->nameCompany }}</span>
                                                     </a>
                                                     <div
                                                         style=" -webkit-line-clamp: 1;

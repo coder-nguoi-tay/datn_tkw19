@@ -281,6 +281,12 @@
                                             @endforeach
 
                                         </div>
+                                        <div class="author-single">
+                                            <span> {{ $job->nameCompany }}</span>
+                                        </div>
+
+
+
                                     </div>
                                     <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15">
                                         <div class="sidebar-border">
