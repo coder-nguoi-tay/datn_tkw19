@@ -276,24 +276,10 @@
 
                                         </div>
                                         <div class="author-single">
-                                            <span>Baseball Saving</span>
+                                            <span> {{ $job->nameCompany }}</span>
                                         </div>
 
-                                        <div class="single-apply-jobs mt-50">
-                                            <div class="row">
 
-                                                <div class="col-md-6">
-                                                    <div
-                                                        class="job-manager-form wp-job-manager-bookmarks-form border-0 m-0 pt-20">
-                                                        <div>
-                                                            <a class="bookmark-notice btn btn-border"
-                                                                href="#controlJobManagerLogin"
-                                                                data-bs-toggle="modal">Lưu công việc</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                     </div>
                                     <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15">

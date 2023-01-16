@@ -10,7 +10,7 @@ use Throwable;
 class Handler extends ExceptionHandler
 {
 
-    
+
 
 
     /**
@@ -41,17 +41,42 @@ class Handler extends ExceptionHandler
         'password',
         'password_confirmation',
     ];
-   
+
     /**
      * Register the exception handling callbacks for the application.
      *
      * @return void
      */
-   
+
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-     
         });
+    }
+
+    /**
+     * Render an exception into an HTTP response
+     * 
+     * @param \Exception $e
+     * @param \Illuminate\Http\Response $response
+     * @return \Illuminate\Http\Response
+     */
+    public function render($request, Throwable $e)
+    {
+        // return parent::render($request, $e);
+        if ($this->isHttpException($e)) {
+
+            $statusCode = $e->getStatusCode();
+            if ($statusCode == '404') {
+                return response()->view('errors.404');
+            }
+            if ($statusCode == '500') {
+                return response()->view('errors.500');
+            }
+            if ($statusCode == '419') {
+                return response()->view('errors.419');
+            }
+        }
+        return parent::render($request, $e);
     }
 }

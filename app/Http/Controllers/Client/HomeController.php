@@ -360,7 +360,7 @@ class HomeController extends BaseController
     public function upCv(Request $request)
     {
         $mailUpCv = $this->savecv;
-        
+
         $checkJob = $this->savecv->where([
             ['id_job', $request->id_job],
             ['user_id', Auth::guard('user')->user()->id]
@@ -423,5 +423,9 @@ class HomeController extends BaseController
 
         $this->setFlash(__('Hãy chờ phản hồi của nhà tuyển dụng'));
         return redirect()->back();
+    }
+    public function error404()
+    {
+        return view('errors.404');
     }
 }
