@@ -28,10 +28,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="billing-form-item p-5">
-                        <search-cv-date :url="{{ json_encode(route('employer.cv-da-mua.index')) }}"
-                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
-                            :data="{{ json_encode(2) }}">
-                        </search-cv-date>
+                        <div style="float: right !important">
+                            <search-cv-date :url="{{ json_encode(route('employer.cv-da-mua.index')) }}"
+                                :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
+                                :data="{{ json_encode(2) }}">
+                            </search-cv-date>
+                        </div>
+                        <br>
                         @foreach ($tatalecv as $item)
                             <div class="billing-content pb-0 mt-5">
                                 <div class="manage-candidate-wrap d-flex align-items-center justify-content-between pb-4">
