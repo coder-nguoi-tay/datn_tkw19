@@ -135,7 +135,7 @@
                                                                                                     -webkit-box-orient: vertical;
                                                                                                     overflow: hidden;
                                                                                                     text-overflow: ellipsis;">
-                                                                        <a href="/home/detail/{{ $item->title . '-' . $item->id }}"
+                                                                        <a href="/home/detail/{{ $item->title . '/' . $item->id }}"
                                                                             data-toggle="tooltip" title=""
                                                                             data-placement="top" data-container="body"
                                                                             data-original-title="{{ $item->nameCompany }}">{{ $item->title }}</a>
@@ -540,7 +540,7 @@
                                                                                                     overflow: hidden;
                                                                                                     text-overflow: ellipsis;">
                                                                         <a
-                                                                            href="home/detail/{{ $item->title . '-' . $item->id }}">{{ $item->title }}</a>
+                                                                            href="home/detail/{{ $item->title . '/' . $item->id }}">{{ $item->title }}</a>
                                                                     </h6>
                                                                     <div class="d-flex flex-wrap gap-15 mt-5">
                                                                         <span><i

@@ -62,7 +62,7 @@
                                   ">
                                                                                 <div class="text-highlight employer-name">
                                                                                     <a
-                                                                                        href="/home/detail/{{ $item->title . '-' . $item->job_id }}">{{ $item->title }}</a>
+                                                                                        href="/home/detail/{{ $item->title . '/' . $item->job_id }}">{{ $item->title }}</a>
                                                                                 </div>
                                                                                 <div class="company-name text-gray"
                                                                                     style="

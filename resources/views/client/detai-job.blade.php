@@ -325,7 +325,7 @@
                                                                 class="card-list-4 wow animate__animated animate__fadeIn hover-up">
                                                                 <div class="image">
                                                                     <a
-                                                                        href="/home/detail/{{ $item->title . '-' . $item->id }}">
+                                                                        href="/home/detail/{{ $item->title . '/' . $item->id }}">
                                                                         <img src="{{ asset($item->logo) }}"
                                                                             width="50" alt="wanderu">
                                                                     </a>
@@ -333,7 +333,7 @@
                                                                 <div class="info-text">
                                                                     <h5 class="font-md font-bold color-brand-1">
                                                                         <a
-                                                                            href="/home/detail/{{ $item->title . '-' . $item->id }}">UI
+                                                                            href="/home/detail/{{ $item->title . '/' . $item->id }}">UI
                                                                             {{ $item->title }}</a>
                                                                     </h5>
                                                                     <div

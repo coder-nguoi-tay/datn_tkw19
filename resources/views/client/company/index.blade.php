@@ -97,7 +97,7 @@
                                                         </div>
                                                         <div class="col-lg-5 col-5 text-end">
                                                             <a class="btn btn-apply-now"
-                                                                href="/home/detail/{{ $job->title . '-' . $job->id }}">Chi
+                                                                href="/home/detail/{{ $job->title . '/' . $job->id }}">Chi
                                                                 tiết</a>
                                                         </div>
                                                     </div>

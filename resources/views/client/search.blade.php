@@ -71,7 +71,7 @@
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
                                                             text-align: left;"
-                                                        href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                        href="home/detail/{{ $value->title . '/' . $value->id }}">
                                                         <span class="name-job">{{ $value->nameCompany }}</span>
                                                     </a>
                                                     <div
@@ -94,7 +94,7 @@
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
                                                             text-align: justify;">
-                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                    <a href="home/detail/{{ $value->title . '/' . $value->id }}">
                                                         {{ $value->title }}</a>
                                                 </h6>
 
@@ -225,7 +225,7 @@
                                                     <img src="{{ asset($value->logo) }}" width="52" alt="Percepta">
                                                 </div>
                                                 <div class="right-info">
-                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                    <a href="home/detail/{{ $value->title . '/' . $value->id }}">
                                                         <span class="name-job"
                                                             style=" -webkit-line-clamp: 1;
                                                             -webkit-box-orient: vertical;
@@ -255,7 +255,7 @@
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
                                                             text-align: justify;">
-                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                    <a href="home/detail/{{ $value->title . '/' . $value->id }}">
                                                         {{ $value->title }}</a>
                                                 </h6>
 
