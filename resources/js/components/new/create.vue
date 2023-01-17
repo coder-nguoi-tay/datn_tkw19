@@ -40,7 +40,7 @@
         <div class="col">
           <label class="form-label">Mô tả</label>
           <span class="required-lable">*</span>
-          <!-- <textarea
+          <textarea
             type="text"
             name="describe"
             rules="required"
@@ -48,8 +48,8 @@
             class="form-control"
             cols="30"
             rows="10"
-          ></textarea> -->
-          <Editor v-model="model.describe" name="describe" />
+          ></textarea>
+
           <ErrorMessage class="error" name="describe" />
         </div>
         <div class="mb-4">

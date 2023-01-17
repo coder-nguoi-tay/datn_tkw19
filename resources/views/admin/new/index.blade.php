@@ -1,5 +1,5 @@
 @php
-use App\Enums\Onoff;
+    use App\Enums\Onoff;
 @endphp
 @extends('master')
 @section('content')
@@ -20,22 +20,20 @@ use App\Enums\Onoff;
                             <table class="table align-items-center mb-0 table  table-striped ">
                                 <thead class="table-danger ">
                                     <tr class="">
-                                        <th class="text-dark text-center text-secondary  text-dark font-weight-bolder opacity-7">
+                                        <th
+                                            class="text-dark text-center text-secondary  text-dark font-weight-bolder opacity-7">
                                             ID
                                         </th>
-                                        <th
-                                            class=" text-dark text-secondary  font-weight-bolder opacity-7">
+                                        <th class=" text-dark text-secondary  font-weight-bolder opacity-7">
                                             Tiêu Dề
                                         </th>
-                                        <th
-                                            class=" text-dark text-secondary  font-weight-bolder opacity-7 w-25">
+                                        <th class=" text-dark text-secondary  font-weight-bolder opacity-7 w-25">
                                             Hình ảnh
                                         </th>
                                         <th class=" text-dark text-secondary  font-weight-bolder opacity-7">
                                             Chuyên ngành
                                         </th>
-                                        <th
-                                            class=" text-dark text-secondary  font-weight-bolder opacity-7">
+                                        <th class=" text-dark text-secondary  font-weight-bolder opacity-7">
                                             Ngày Tạo
                                         </th>
                                         <th class="text-secondary opacity-7"></th>
@@ -52,47 +50,44 @@ use App\Enums\Onoff;
                                             </td>
                                             <td class="  ">
                                                 <div class="font-weight-bold " style="margin-left: 20px">
-                                                    <p class=" text-secondary mb-0" style="
+                                                    <p class=" text-secondary mb-0"
+                                                        style="
                                                     max-height: 21px;
                                                     max-width: 150px;
                                                     overflow: hidden;
                                                     text-overflow: ellipsis !important;
-                                                     ">{{ $item->title }}</p>
+                                                     ">
+                                                        {{ $item->title }}</p>
                                                 </div>
                                             </td>
                                             <td class=" " style=" width: 250px;">
-                                                <div class="" >
+                                                <div class="">
 
-                                                    <label for="upload" >
-                                                        <img
-                                                            src="{{ asset($item->new_image) }}"
-                                                            class="img-thumbnail border-radius-lgc w-50"
-                                                            alt="..."
-                                                        />                                               
+                                                    <label for="upload">
+                                                        <img src="{{ asset($item->new_image) }}"
+                                                            class="img-thumbnail border-radius-lgc w-50" alt="..." />
                                                     </label>
 
                                                     <br>
                                                 </div>
                                             </td>
                                             <td class="align-middle ">
-                                                <span
-                                                    class="text-secondary  font-weight-bold">{{ $item->majors }}</span>
+                                                <span class="text-secondary  font-weight-bold">{{ $item->majors }}</span>
                                             </td>
                                             <td class="align-middle ">
                                                 <span
                                                     class="text-secondary  font-weight-bold">{{ $item->created_at }}</span>
                                             </td>
                                             <td class="align-middle">
-                                                <div class=""
-                                                    style="display: flex; max-width: 80%; margin-left: 7% ">
+                                                <div class="" style="display: flex; max-width: 80%; margin-left: 7% ">
                                                     <div style="margin-right: 10%">
                                                         <btn-delete-confirm
+                                                 
                                                             :message-confirm="{{ json_encode('Bạn có chắc muốn xóa không ?') }}"
                                                             :delete-action="{{ json_encode(route('admin.new.destroy', $item->id)) }}">
                                                         </btn-delete-confirm>
                                                     </div>
-                                                    <div style="margin-bottom: 20px; margin-left: 20%"
-                                                        class="">
+                                                    <div style="margin-bottom: 20px; margin-left: 20%" class="">
                                                         <a href="{{ route('admin.new.edit', $item->id) }}"
                                                             class="dropdown-item"><svg xmlns="http://www.w3.org/2000/svg"
                                                                 width="25" height="25" fill="currentColor"

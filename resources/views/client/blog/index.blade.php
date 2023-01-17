@@ -7,7 +7,7 @@
         <div class="row">
             <div id="header">
 
-                {{-- <div class="bg-white">
+                <div class="bg-white">
                     <div class="container">
                         <div id="cover-body">
                             <div id="company-logo">
@@ -19,7 +19,7 @@
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
                 <div id="nav">
                     <div class="container">
                         <div class="row jobfair-header">
@@ -171,7 +171,8 @@
                                         @foreach ($job as $item)
                                             <div class="lists-job">
                                                 <div class="job-item render-job-search job-ta result-job-hover"
-                                                    data-job-id="880173" data-job-position="6" data-box="BoxSearchResult">
+                                                    data-job-id="880173" data-job-position="6"
+                                                    data-box="BoxSearchResult">
 
                                                     <div class="body">
                                                         <div class="content">

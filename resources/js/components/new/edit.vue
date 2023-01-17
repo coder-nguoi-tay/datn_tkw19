@@ -40,9 +40,17 @@
           <ErrorMessage class="error" name="new_image" />
         </div>
         <div class="col">
-          <div>
-            <Editor v-model="model.describe" name="describe" />
-          </div>
+          <label class="form-label">Mô tả</label>
+          <span class="required-lable">*</span>
+          <textarea
+            type="text"
+            name="describe"
+            rules="required"
+            v-model="model.describe"
+            class="form-control"
+            cols="30"
+            rows="10"
+          ></textarea>
 
           <ErrorMessage class="error" name="describe" />
         </div>
