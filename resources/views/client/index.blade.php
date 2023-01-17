@@ -386,7 +386,7 @@
                 <div class="section-box wow animate__animated animate__fadeIn">
                     <div class="container">
                         <div class="text-start">
-                            <h2 class="section-title mb-10 wow animate__animated animate__fadeInUp">Việc làm nổi bật</h2>
+                            <h2 class="section-title mb-10 wow animate__animated animate__fadeInUp">Ngành nghề nổi bật</h2>
                             <p class="font-lg color-text-paragraph-2 wow animate__animated animate__fadeInUp">Tìm kiếm và
                                 kết nối với các ứng viên phù hợp nhanh hơn.</p>
                         </div>
