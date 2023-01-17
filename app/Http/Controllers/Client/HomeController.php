@@ -206,7 +206,7 @@ class HomeController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showDetail($name, $id)
+    public function showDetail($id)
     {
         if (Auth::guard('user')->check()) {
             $seeker = $this->Jobseeker->where('user_role', Auth::guard('user')->user()->id)->first();
