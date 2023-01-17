@@ -540,7 +540,7 @@
                                                                                                     overflow: hidden;
                                                                                                     text-overflow: ellipsis;">
                                                                         <a
-                                                                            href="home/detail/{{ $item->title . '-' . $item->id }}">{{ $item->title }}</a>
+                                                                            href="home/detail/{{ $item->title . '-' . $item->id }}">{{ $item->title }}a</a>
                                                                     </h6>
                                                                     <div class="d-flex flex-wrap gap-15 mt-5">
                                                                         <span><i
