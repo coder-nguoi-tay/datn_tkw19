@@ -90,30 +90,14 @@
                                                         <strong class="small-heading"></strong>
                                                     </div>
                                                 </div>
-
                                             </div>
-
                                             <br>
                                             <div class="content-single">
 
-                                                <h4>Quyền lợi gói cước</h4>
-                                                <ul>
-                                                    <li>{{ $package->describe }}</li>
-                                                </ul>
+
                                                 <h4>Mô tả gói cước</h4>
                                                 <ul>
-                                                    <li>{{ $package->describe }}</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15">
-
-                                        <div class="sidebar-border">
-                                            <h6 class="f-18">Gói cước liên quan</h6>
-                                            <div class="sidebar-list-job">
-                                                <ul>
+                                                    <li style="font-style: 20px">{{ $package->describe }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -121,13 +105,12 @@
 
                                 </div>
                             </section>
-
-                        </div><!-- end billing-form-item -->
-                    </div><!-- end col-lg-12 -->
+                        </div>
+                    </div>
                 </div>
-            </div><!-- end container-fluid -->
+            </div>
         </div>
-    </section><!-- end dashboard-area -->
+    </section>
 
     <div id="back-to-top">
         <i class="la la-angle-up" title="Go top"></i>
