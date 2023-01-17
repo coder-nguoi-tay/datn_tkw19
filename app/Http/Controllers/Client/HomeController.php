@@ -91,6 +91,17 @@ class HomeController extends BaseController
                 return redirect(route('employer.index'));
             }
         }
+        $jobForUser = $this->job
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->where([
+                ['job.status', 1],
+                ['job.expired', 0],
+                ['employer.position', 1],
+            ])
+            ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+            ->orderBy('employer.prioritize', 'desc')
+            ->get();
         if (Auth::guard('user')->check()) {
             $user = $this->user->with('getProfileUse')->where('id', Auth::guard('user')->user()->id)->first();
 
@@ -98,7 +109,7 @@ class HomeController extends BaseController
                 $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
                 $skill_id = $getskill->getskill->pluck('id');
                 $getProfile = $user->getProfileUse;
-                $jobForUser = $this->job
+                $job = $this->job
                     ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
                     ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
                     ->join('employer', 'employer.id', '=', 'job.employer_id')
@@ -106,6 +117,7 @@ class HomeController extends BaseController
                     ->where([
                         ['job.status', 1],
                         ['job.expired', 0],
+                        ['employer.position', 1],
                     ])
                     ->where(function ($query) use ($getProfile, $skill_id) {
                         $query->orWhere(function ($q) use ($skill_id) {
@@ -136,29 +148,31 @@ class HomeController extends BaseController
                     ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                     ->orderBy('employer.prioritize', 'desc')
                     ->get();
+            } else {
+                $job = $jobForUser;
             }
+        } else {
+            $job = $jobForUser;
         }
         $majors = Majors::with('majors')->get();
         $new = News::select('id', 'title', 'profession_id', 'new_image', 'describe', 'majors', 'created_at')->paginate(3);
         return view('client.index', [
             'majors' => $majors,
             'title' => 'Tuyển dung, tìm việc làm nhanh 24h',
+            'profestion' => $this->getprofession(),
+            'lever' => $this->getlever(),
+            'experience' => $this->getexperience(),
+            'wage' => $this->getwage(),
+            'skill' => $this->getskill(),
+            'timework' => $this->gettimework(),
+            'profession' => $this->getprofession(),
             'majors' => $this->majors->get(),
+            'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
             'user' => $user ?? '',
-            'getskill' => $getskill ?? '',
-            'job' => $this->job
-                ->join('employer', 'employer.id', '=', 'job.employer_id')
-                ->join('company', 'company.id', '=', 'employer.id_company')
-                ->where([
-                    ['job.status', 1],
-                    ['job.expired', 0],
-                    ['employer.position', 1],
-                ])
-                ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
-                ->orderBy('employer.prioritize', 'desc')
-                ->get(),
+            'job' => $job,
             'new' => $new,
+            'getskill' => $getskill ?? '',
             'jobAttractive' => $this->job
                 ->join('employer', 'employer.id', '=', 'job.employer_id')
                 ->join('company', 'company.id', '=', 'employer.id_company')
@@ -170,8 +184,6 @@ class HomeController extends BaseController
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                 ->orderBy('employer.prioritize', 'desc')
                 ->paginate(12),
-            'jobForUser' => $jobForUser ?? ''
-
         ]);
     }
 
@@ -206,7 +218,7 @@ class HomeController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showDetail($name, $id)
+    public function showDetail($id)
     {
         if (Auth::guard('user')->check()) {
             $seeker = $this->Jobseeker->where('user_role', Auth::guard('user')->user()->id)->first();
@@ -417,7 +429,9 @@ class HomeController extends BaseController
                 $cvUpload->save();
             }
         }
-
+        $user = $this->job->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('users', 'users.id', '=', 'employer.user_id')
+            ->select('users.email as email')->first();
         $mailContents = $mailUpCv->name;
         Mail::to($user->mail)->send(new MailNotifyCV($mailContents));
 
