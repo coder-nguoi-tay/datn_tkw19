@@ -122,6 +122,7 @@ Route::post('register/create', [HomeEmployerController::class, 'store'])->name('
 
 // seeker
 Route::resource('profile', SeekerHomeController::class);
+Route::post('profile/update-profile', [SeekerHomeController::class, 'updatePrifileUser'])->name('profile.updateProfile');
 Route::post('profile/update-title-cv/{id}', [SeekerHomeController::class, 'updateTitleCv']);
 Route::get('profile/delete-cv/{id}', [SeekerHomeController::class, 'deleteCv']);
 Route::post('profile/update-avatar', [SeekerHomeController::class, 'updateAvatar'])->name('profile.updateAvatar');
