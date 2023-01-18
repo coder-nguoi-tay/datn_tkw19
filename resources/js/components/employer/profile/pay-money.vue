@@ -65,7 +65,7 @@
                                   Chọn hình thức thanh toán
                                 </option>
                                 <option value="1">Online</option>
-                                <option value="2">Offline</option>
+                               
                               </Field>
                               <ErrorMessage class="error" name="payments" />
                             </div>

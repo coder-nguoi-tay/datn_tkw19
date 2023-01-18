@@ -1,40 +1,5 @@
 @extends('client.layout.index')
 @section('client')
-    {{-- <section class="middle">
-        <div class="container">
-
-
-            <div class="row">
-                @foreach ($company as $item)
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 hover-div1">
-                        <a href="{{ route('detail.company', $item->id) }}">
-                            <div class="_blog_wrap">
-                                <div class="_blog_thumb mb-2 p-2">
-                                    <a href="{{ route('detail.company', $item->id) }}" class="d-block"><img
-                                            src="{{ $item->logo }}" class="img-fluid rounded" alt="" /></a>
-                                </div>
-                                <div class="_blog_caption">
-                                    <span class="text-muted"> {{ $item->created_at->format('d-m-Y') }}</span>
-                                    <h5 class="bl_title lh-1 maxTextCompany"><a
-                                            href="{{ route('detail.company', $item->id) }}">{{ $item->name }}</a></h5>
-
-                                    <div class="maxText">
-                                        <p>{!! $item->desceibe !!}</p>
-                                    </div>
-                                    <a href="{{ route('detail.company', $item->id) }}" class="text-dark fs-sm">Continue
-                                        Reading..</a>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
-
-            </div>
-
-
-
-        </div>
-    </section> --}}
     <main class="main">
 
         <section class="section-box">
@@ -62,8 +27,6 @@
                                         <meta property="url" content="index.html">
                                         <meta property="position" content="2">
                                     </span></li>
-                                <!-- <li><a class="home-icon" href="#">Home</a></li> -->
-
                             </ul>
                         </div>
                     </div>
@@ -98,12 +61,8 @@
                             </div>
                         </div>
                     @endforeach
-
-
                 </div>
             </div>
         </section>
-
-
     </main>
 @endsection

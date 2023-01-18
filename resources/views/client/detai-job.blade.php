@@ -99,7 +99,6 @@
 
 <body
     class="job_listing-template-default single single-job_listing postid-259 wp-embed-responsive theme-jobbox woocommerce-no-js jobbox elementor-default elementor-kit-16">
-
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
@@ -110,6 +109,12 @@
     </div>
     @include('client.layout.header')
     <main class="main" id="app">
+        @if (session()->get('Message.flash'))
+            <notyf :data="{{ json_encode(session()->get('Message.flash')[0]) }}"></notyf>
+        @endif
+        @php
+            session()->forget('Message.flash');
+        @endphp
         <div class="post-loop-grid">
             <div class="container">
                 <div class="row">
@@ -129,11 +134,12 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-12 text-lg-end">
-                                    <a class="btn btn-default btn-shadow ml-30 hover-up" data-bs-toggle="modal"
+                                    <a class="btn-border mr-15 mb-5 active" data-bs-toggle="modal"
                                         data-bs-target="#ModalApplyJobForm">Ứng
                                         tuyển</a>
+                                    <a class="btn-like" class="mr-15 mb-5"><i class="fa-solid fa-heart icon-save-cv"
+                                            id="{{ $job->id . ',' . $checklove }}"></i></a>
                                 </div>
-                                <!-- Button trigger modal -->
                             </div>
                             <div class="border-bottom pt-10 pb-10"></div>
                             <section class="section-box mt-50">
@@ -141,7 +147,6 @@
                                     <div class="col-lg-8 col-md-12 col-sm-12 col-12">
                                         <div class="job-overview">
                                             <h5 class="border-bottom pb-15 mb-30">Thông tin tuyển dụng</h5>
-
                                             <div class="row">
                                                 <div class="col-md-6 d-flex">
                                                     <div class="sidebar-icon-item">
@@ -218,7 +223,8 @@
                                                     </div>
                                                     <div class="sidebar-text-info ml-10">
                                                         <span class="text-description mb-10">Deadline</span>
-                                                        <strong class="small-heading">{{ $job->end_job_time }}</strong>
+                                                        <strong
+                                                            class="small-heading">{{ $job->end_job_time }}</strong>
                                                     </div>
                                                 </div>
 
@@ -267,27 +273,19 @@
                                                 <li>{!! $job->candidate_requirements !!}</li>
 
                                             </ul>
+                                            <h4>Kỹ năng</h4>
+                                            @foreach ($job->getskill as $item)
+                                                <li><span
+                                                        class="px-2 py-1 medium skill-bg rounded text-dark">{{ $item->name }}</span>
+                                                </li>
+                                            @endforeach
 
                                         </div>
                                         <div class="author-single">
-                                            <span>Baseball Saving</span>
+                                            <span> {{ $job->nameCompany }}</span>
                                         </div>
 
-                                        <div class="single-apply-jobs mt-50">
-                                            <div class="row">
 
-                                                <div class="col-md-6">
-                                                    <div
-                                                        class="job-manager-form wp-job-manager-bookmarks-form border-0 m-0 pt-20">
-                                                        <div>
-                                                            <a class="bookmark-notice btn btn-border"
-                                                                href="#controlJobManagerLogin"
-                                                                data-bs-toggle="modal">Lưu công việc</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                     </div>
                                     <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15">
@@ -299,10 +297,11 @@
                                                             width="85">
                                                     </figure>
                                                     <div class="sidebar-info">
-                                                        <span class="sidebar-company">
-                                                            {{ $jobCompany[0]->name }} </span>
-                                                        <span
-                                                            class="card-location">{{ $jobCompany[0]->address }}</span>
+                                                        <a href="{{ route('detail.company', $job->idCompany) }}"
+                                                            class="sidebar-company">
+                                                            {{ $job->nameCompany }} </a>
+                                                        {{-- <span
+                                                            class="card-location">{{ $jobCompany[0]->address }}</span> --}}
 
 
                                                     </div>
@@ -310,8 +309,8 @@
                                             </div>
                                             <div class="sidebar-list-job">
                                                 <ul class="ul-disc">
-                                                    <li>Address : {{ $jobCompany[0]->address }}</li>
-                                                    <li>Email : {{ $jobCompany[0]->email }}</li>
+                                                    <li>Address : {{ $job->addressCompany }}</li>
+                                                    <li>Email : {{ $job->emailCompany }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -325,16 +324,14 @@
                                                             <div
                                                                 class="card-list-4 wow animate__animated animate__fadeIn hover-up">
                                                                 <div class="image">
-                                                                    <a
-                                                                        href="/home/detail/{{ $item->title . '-' . $item->id }}">
+                                                                    <a href="/home/detail/{{ $item->id }}">
                                                                         <img src="{{ asset($item->logo) }}"
                                                                             width="50" alt="wanderu">
                                                                     </a>
                                                                 </div>
                                                                 <div class="info-text">
                                                                     <h5 class="font-md font-bold color-brand-1">
-                                                                        <a
-                                                                            href="/home/detail/{{ $item->title . '-' . $item->id }}">UI
+                                                                        <a href="/home/detail/{{ $item->id }}">UI
                                                                             {{ $item->title }}</a>
                                                                     </h5>
                                                                     <div

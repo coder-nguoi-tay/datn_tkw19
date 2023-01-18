@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
+use App\Mail\MailNotifyCV;
 use App\Models\Company;
 use App\Models\Employer;
 use App\Models\Experience;
+use App\Models\Favourite;
 use App\Models\Job;
 use App\Models\Jobseeker;
 use App\Models\Jobskill;
@@ -24,9 +26,11 @@ use App\Models\User;
 use App\Models\Wage;
 use App\Models\WorkingForm;
 use Carbon\Carbon;
+use FontLib\Table\Type\name;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Str;
 
 class HomeController extends BaseController
@@ -87,6 +91,17 @@ class HomeController extends BaseController
                 return redirect(route('employer.index'));
             }
         }
+        $jobForUser = $this->job
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->where([
+                ['job.status', 1],
+                ['job.expired', 0],
+                ['employer.position', 1],
+            ])
+            ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+            ->orderBy('employer.prioritize', 'desc')
+            ->get();
         if (Auth::guard('user')->check()) {
             $user = $this->user->with('getProfileUse')->where('id', Auth::guard('user')->user()->id)->first();
 
@@ -94,7 +109,7 @@ class HomeController extends BaseController
                 $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
                 $skill_id = $getskill->getskill->pluck('id');
                 $getProfile = $user->getProfileUse;
-                $jobForUser = $this->job
+                $job = $this->job
                     ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
                     ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
                     ->join('employer', 'employer.id', '=', 'job.employer_id')
@@ -102,6 +117,7 @@ class HomeController extends BaseController
                     ->where([
                         ['job.status', 1],
                         ['job.expired', 0],
+                        ['employer.position', 1],
                     ])
                     ->where(function ($query) use ($getProfile, $skill_id) {
                         $query->orWhere(function ($q) use ($skill_id) {
@@ -132,7 +148,11 @@ class HomeController extends BaseController
                     ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                     ->orderBy('employer.prioritize', 'desc')
                     ->get();
+            } else {
+                $job = $jobForUser;
             }
+        } else {
+            $job = $jobForUser;
         }
         $majors = Majors::with('majors')->get();
         $new = News::select('id', 'title', 'profession_id', 'new_image', 'describe', 'majors', 'created_at')->paginate(4);
@@ -141,22 +161,20 @@ class HomeController extends BaseController
         return view('client.index', [
             'majors' => $majors,
             'title' => 'Tuyển dung, tìm việc làm nhanh 24h',
+            'profestion' => $this->getprofession(),
+            'lever' => $this->getlever(),
+            'experience' => $this->getexperience(),
+            'wage' => $this->getwage(),
+            'skill' => $this->getskill(),
+            'timework' => $this->gettimework(),
+            'profession' => $this->getprofession(),
             'majors' => $this->majors->get(),
+            'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
             'user' => $user ?? '',
-            'getskill' => $getskill ?? '',
-            'job' => $this->job
-                ->join('employer', 'employer.id', '=', 'job.employer_id')
-                ->join('company', 'company.id', '=', 'employer.id_company')
-                ->where([
-                    ['job.status', 1],
-                    ['job.expired', 0],
-                    ['employer.position', 1],
-                ])
-                ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
-                ->orderBy('employer.prioritize', 'desc')
-                ->get(),
+            'job' => $job,
             'new' => $new,
+            'getskill' => $getskill ?? '',
             'jobAttractive' => $this->job
                 ->join('employer', 'employer.id', '=', 'job.employer_id')
                 ->join('company', 'company.id', '=', 'employer.id_company')
@@ -167,9 +185,7 @@ class HomeController extends BaseController
                 ])
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                 ->orderBy('employer.prioritize', 'desc')
-                ->get(),
-            'jobForUser' => $jobForUser ?? ''
-
+                ->paginate(12),
         ]);
     }
 
@@ -204,12 +220,17 @@ class HomeController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showDetail($name, $id)
+    public function showDetail($id)
     {
         if (Auth::guard('user')->check()) {
             $seeker = $this->Jobseeker->where('user_role', Auth::guard('user')->user()->id)->first();
         }
-
+        $checklove = Favourite::where('job_id', $id)->first();
+        if ($checklove) {
+            $love = $checklove->job_id;
+        } else {
+            $love = null;
+        }
         $job = $this->job
             // ->with(['getWage', 'getlocation', 'getskill', 'getMajors'])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
@@ -276,6 +297,7 @@ class HomeController extends BaseController
             'profileUser' => $profileUser ?? '',
             'seeker' => $seeker ?? '',
             'majors' => $this->majors->get(),
+            'checklove' => $love,
         ]);
     }
 
@@ -351,11 +373,8 @@ class HomeController extends BaseController
     }
     public function upCv(Request $request)
     {
-        $seeker = $this->Jobseeker->where('user_role', Auth::guard('user')->user()->id)->first();
-        if (!$seeker) {
-            $this->setFlash(__('Bạn cần hoàn thiện hồ sơ để có thể nộp được CV'), 'error');
-            return redirect()->back();
-        }
+        $mailUpCv = $this->savecv;
+
         $checkJob = $this->savecv->where([
             ['id_job', $request->id_job],
             ['user_id', Auth::guard('user')->user()->id]
@@ -400,35 +419,29 @@ class HomeController extends BaseController
                 $cv->save();
             }
         } else {
+
             $cvSave = $this->upload->where('id', $request->cv_for_save)->first();
             if ($cvSave) {
                 $cvUpload = new $this->savecv();
                 $cvUpload->title = $cvSave->title;
                 $cvUpload->token = rand(00000, 99999);
-                $cvUpload->user_id = $cvSave->user_id;
+                $cvUpload->user_id = Auth::guard('user')->user()->id;
                 $cvUpload->file_cv = $cvSave->file_cv;
                 $cvUpload->id_job = $request->id_job;
                 $cvUpload->save();
             }
         }
+        $user = $this->job->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('users', 'users.id', '=', 'employer.user_id')
+            ->select('users.email as email')->first();
+        $mailContents = $mailUpCv->name;
+        Mail::to($user->mail)->send(new MailNotifyCV($mailContents));
+
         $this->setFlash(__('Hãy chờ phản hồi của nhà tuyển dụng'));
         return redirect()->back();
     }
-    // public function detailTinTuc($id)
-    // {
-    //     $TinTuc = News::find($id);
-    //     // dd($TinTuc);
-    //     return view('client.Tin-tuc.index', [
-    //         'tinTuc' => $TinTuc,
-    //         'majors' => Majors::all()
-    //     ]);
-    // }
-    public function test()
+    public function error404()
     {
-        return view('test');
-    }
-    public function test1()
-    {
-        return view('test1');
+        return view('errors.404');
     }
 }

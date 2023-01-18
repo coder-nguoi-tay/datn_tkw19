@@ -27,18 +27,19 @@
                                                 <div class="elementor-widget-container">
                                                     <h1
                                                         class="control-heading-title text-42 color-white wow animate__ animate__fadeInUp animated mb-0">
-                                                        The #1 <span class="color-green">Job Board for</span><br
-                                                            class="d-none d-lg-block">Hiring or Find your next job</h1>
+                                                        Bảng công việc số 1 <span class="color-green">cho
+
+                                                            Tuyển dụng hoặc</span><br class="d-none d-lg-block">Tìm công
+                                                        việc tiếp theo của bạn</h1>
                                                 </div>
                                             </div>
                                             <div class="elementor-element elementor-element-7b9da113 mb-0 elementor-widget elementor-widget-title"
                                                 data-id="7b9da113" data-element_type="widget"
                                                 data-widget_type="title.default">
                                                 <div class="elementor-widget-container">
-                                                    <div class="control-heading-title font-lg text-white mt-20">Each
-                                                        month, more than 3 million job seekers turn to website in their
-                                                        search for work, making over 140,000 applications every single
-                                                        day</div>
+                                                    <div class="control-heading-title font-lg text-white mt-20">Mỗi tháng,
+                                                        hơn 3 triệu người tìm việc truy cập trang web để tìm việc, thực hiện
+                                                        hơn 140.000 đơn đăng ký mỗi ngày</div>
                                                 </div>
                                             </div>
                                             <div class="elementor-element elementor-element-56e62b6d elementor-widget elementor-widget-template"
@@ -73,7 +74,7 @@
 
                                                                     <input class="form-input input-keysearch mr-10"
                                                                         type="text" name="key" id="key"
-                                                                        style="border: none;" placeholder="Keywords" />
+                                                                        style="border: none;" placeholder="Nhập từ khóa" />
 
                                                                     <input class="btn btn-default btn-find font-sm"
                                                                         type="submit" value="Search">
@@ -127,7 +128,14 @@
                                                         <div class="col render-job-search">
                                                             <div class="card-grid-2 grid-bd-16 hover-up">
                                                                 <div class="card-block-info pt-25">
-                                                                    <h6><a href="home/detail/{{ $item->title . '-' . $item->id }}"
+                                                                    <h6
+                                                                        style=" display: -webkit-box;
+                                                                                                     line-height: 1;
+                                                                                                    -webkit-line-clamp: 1;
+                                                                                                    -webkit-box-orient: vertical;
+                                                                                                    overflow: hidden;
+                                                                                                    text-overflow: ellipsis;">
+                                                                        <a href="/home/detail/{{ $item->id }}"
                                                                             data-toggle="tooltip" title=""
                                                                             data-placement="top" data-container="body"
                                                                             data-original-title="{{ $item->nameCompany }}">{{ $item->title }}</a>
@@ -149,7 +157,13 @@
                                                                                         style="width: 35px; height: 35px"
                                                                                         alt="Ashford">
                                                                                     <div class="info-right-img">
-                                                                                        <h6 class="color-brand-1 lh-14 mb-0"
+                                                                                        <h6 style=" display: -webkit-box;
+                                                                                                     line-height: 1;
+                                                                                                    -webkit-line-clamp: 1;
+                                                                                                    -webkit-box-orient: vertical;
+                                                                                                    overflow: hidden;
+                                                                                                    text-overflow: ellipsis;"
+                                                                                            class="color-brand-1 lh-14 mb-0"
                                                                                             data-toggle="tooltip"
                                                                                             title=""
                                                                                             data-placement="top"
@@ -161,9 +175,9 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-lg-4 col-md-4 text-end">
-                                                                                <span
-                                                                                    class="card-text-price">{{ $item->getwage->name }}</span>
+                                                                            <div class="col-lg-3 col-md-4 text-end">
+                                                                                <span class="card-text-price">
+                                                                                    {{ $item->getwage->name }}</span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -202,6 +216,7 @@
 
                                     <div class="section-box mb-30">
                                         <div class="container">
+
                                             <div class="box-we-hiring">
                                                 <div class="text-1"><span class="text-we-are">We are</span><span
                                                         class="text-hiring">Hiring</span></div>
@@ -221,6 +236,199 @@
                     </div>
                 </div>
             </section>
+            <section class="section-box mt-50">
+                <div class="section-box wow animate__animated animate__fadeIn">
+                    <div class="container">
+                        <div class="text-start">
+                            <h2 class="section-title mb-10 wow animate__animated animate__fadeInUp">Việc làm nổi bật</h2>
+                            <p class="font-lg color-text-paragraph-2 wow animate__animated animate__fadeInUp">Tìm kiếm và
+                                kết nối với các ứng viên phù hợp nhanh hơn.</p>
+                        </div>
+                        <div class="box-swiper mt-50">
+                            <div class="swiper-container swiper-group-6 mh-none swiper categories-slide-2">
+                                <div
+                                    class="swiper swiper-wrapper swiper-initialized swiper-horizontal swiper-pointer-events pb-70 pt-5">
+                                    <div class="swiper-wrapper"
+                                        style="transition-duration: 0ms; transform: translate3d(-1452px, 0px, 0px);">
+                                        <div class="swiper-slide swiper-slide-duplicate swiper-slide-active"
+                                            data-swiper-slide-index="4" style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big2.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Advertising</h6>
+                                                                <p class="color-white font-xs"><span>10</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-duplicate swiper-slide-next"
+                                            data-swiper-slide-index="5" style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big3.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Advertising</h6>
+                                                                <p class="color-white font-xs"><span>10</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide" data-swiper-slide-index="0"
+                                            style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big1.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Software</h6>
+                                                                <p class="color-white font-xs"><span>55</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide" data-swiper-slide-index="1"
+                                            style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big2.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Finance</h6>
+                                                                <p class="color-white font-xs"><span>35</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-duplicate-active"
+                                            data-swiper-slide-index="2" style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big3.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Recruting</h6>
+                                                                <p class="color-white font-xs"><span>20</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="3"
+                                            style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big1.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Management</h6>
+                                                                <p class="color-white font-xs"><span>15</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide" data-swiper-slide-index="4"
+                                            style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big2.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Advertising</h6>
+                                                                <p class="color-white font-xs"><span>10</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-duplicate-next" data-swiper-slide-index="5"
+                                            style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big3.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Advertising</h6>
+                                                                <p class="color-white font-xs"><span>10</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="0"
+                                            style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big1.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Software</h6>
+                                                                <p class="color-white font-xs"><span>55</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="1"
+                                            style="width: 333px; margin-right: 30px;">
+                                            <div class="swiper-slide hover-up">
+                                                <div class="card-grid-5 card-category hover-up"
+                                                    style="background-image:url(assets/imgs/page/homepage2/img-big2.png)">
+                                                    <a href="/jobs-grid">
+                                                        <div class="box-cover-img">
+                                                            <div class="content-bottom">
+                                                                <h6 class="color-white mb-5">Finance</h6>
+                                                                <p class="color-white font-xs"><span>35</span><span> Jobs
+                                                                        Available</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <section
                 class="elementor-section elementor-top-section elementor-element elementor-element-d98c6ff elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                 data-id="d98c6ff" data-element_type="section">
@@ -234,6 +442,7 @@
                                     <h2 class="control-heading-title m-0">Tất cả việc làm</h2>
                                 </div>
                             </div>
+
                             <div class="elementor-element elementor-element-54a362e text-center elementor-widget elementor-widget-template"
                                 data-id="54a362e" data-element_type="widget" data-widget_type="template.default">
                                 <div class="elementor-widget-container">
@@ -313,6 +522,7 @@
                                             </li>
                                         </ul>
                                     </div>
+
                                     <div class="mt-10">
                                         <div class="tab-content" id="myTabContent-2">
                                             <div class="tab-pane fade show active" id="tab-content-writer"
@@ -322,8 +532,15 @@
                                                         <div class="col">
                                                             <div class="card-grid-2 grid-bd-16 hover-up">
                                                                 <div class="card-block-info pt-25">
-                                                                    <h6><a
-                                                                            href="home/detail/{{ $item->title . '-' . $item->id }}">{{ $item->title }}</a>
+                                                                    <h6
+                                                                        style=" display: -webkit-box;
+                                                                                                     line-height: 1;
+                                                                                                    -webkit-line-clamp: 1;
+                                                                                                    -webkit-box-orient: vertical;
+                                                                                                    overflow: hidden;
+                                                                                                    text-overflow: ellipsis;">
+                                                                        <a
+                                                                            href="home/detail/{{ $item->id }}">{{ $item->title }}</a>
                                                                     </h6>
                                                                     <div class="d-flex flex-wrap gap-15 mt-5">
                                                                         <span><i
@@ -342,7 +559,12 @@
                                                                                         style="width: 35px; height: 35px"
                                                                                         alt="Ashford">
                                                                                     <div class="info-right-img">
-                                                                                        <h6
+                                                                                        <h6 style=" display: -webkit-box;
+                                                                                                     line-height: 1;
+                                                                                                    -webkit-line-clamp: 1;
+                                                                                                    -webkit-box-orient: vertical;
+                                                                                                    overflow: hidden;
+                                                                                                    text-overflow: ellipsis;"
                                                                                             class="color-brand-1 lh-14 mb-0">
                                                                                             {{ $item->nameCompany }}
                                                                                         </h6>
@@ -351,7 +573,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-lg-4 col-md-4 text-end">
+                                                                            <div class="col-lg-3 col-md-4 text-end">
                                                                                 <span
                                                                                     class="card-text-price">{{ $item->getwage->name }}</span>
                                                                             </div>
@@ -361,6 +583,10 @@
                                                             </div>
                                                         </div>
                                                     @endforeach
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <a href="{{ route('home.search') }}"
+                                                        class="btn btn-default btn-find font-sm">Xem tất cả</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -454,7 +680,7 @@
                                                 data-id="67f68714" data-element_type="widget"
                                                 data-widget_type="title.default">
                                                 <div class="elementor-widget-container">
-                                                    <h2 class="control-heading-title text-52 m-0">Tìm người phù hợp bạn
+                                                    <h2 class="control-heading-title text-52 m-0">Về chúng tôi
                                                     </h2>
                                                 </div>
                                             </div>
@@ -462,24 +688,16 @@
                                                 data-id="6e6d5458" data-element_type="widget"
                                                 data-widget_type="title.default">
                                                 <div class="elementor-widget-container">
-                                                    <p class="control-heading-title m-0">Tìm kiếm tất cả các vị trí mở trên
-                                                        web. Nhận ước tính lương cá nhân của riêng bạn. Đọc đánh giá về hơn
-                                                        600.000 công ty trên toàn thế giới. Công việc phù hợp là ngoài kia
-                                                    </p>
+                                                    <p class="control-heading-title m-0">ITWORK là một Website nhân sự, với
+                                                        năng lực và sứ mệnh của ITWORK đặt ra cho mình là thay đổi thị
+                                                        trường tuyển dụng - nhân sự ngày một hiệu quả hơn. Bằng công nghệ,
+                                                        chúng tôi tạo ra nền tảng cho phép người dùng tạo CV Phát triển được
+                                                        kĩ năng cá nhân xây dựng hình ảnh chuyên nghiệp trong mắt nhà tuyển
+                                                        dụng và tiếp cận được với các công việc phù hợp</p>
+
                                                 </div>
                                             </div>
-                                            <div class="elementor-element elementor-element-5d4fe94c elementor-widget elementor-widget-text-editor"
-                                                data-id="5d4fe94c" data-element_type="widget"
-                                                data-widget_type="text-editor.default">
-                                                <div class="elementor-widget-container">
-                                                    <div class="mt-40">
-                                                        <div class="wow animate__ animate__fadeInUp animated"
-                                                            style="visibility: visible; animation-name: fadeInUp;"><a
-                                                                class="btn btn-default" href="../jobs/index.html">Tìm
-                                                                kiếm</a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -488,159 +706,6 @@
                     </div>
                 </div>
             </section>
-            {{-- @if (Auth::guard('user')->check())
-                <section
-                    class="elementor-section elementor-top-section elementor-element elementor-element-d98c6ff elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-                    data-id="d98c6ff" data-element_type="section">
-                    <div class="elementor-container elementor-column-gap-no">
-                        <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-1c22a67"
-                            data-id="1c22a67" data-element_type="column">
-                            <div class="elementor-widget-wrap elementor-element-populated">
-                                <div class="elementor-element elementor-element-ed0a5e5 m-0 elementor-widget elementor-widget-title"
-                                    data-id="ed0a5e5" data-element_type="widget" data-widget_type="title.default">
-                                    <div class="elementor-widget-container">
-                                        <h2 class="control-heading-title m-0">Việc làm phù hợp với bạn</h2>
-                                    </div>
-                                </div>
-                                <div class="elementor-element elementor-element-54a362e text-center elementor-widget elementor-widget-template"
-                                    data-id="54a362e" data-element_type="widget" data-widget_type="template.default">
-                                    <div class="elementor-widget-container">
-
-                                        <div class="list-tabs list-tabs-2 mt-30">
-                                            <ul class="nav nav-tabs ps-0" role="tablist">
-                                                <li>
-                                                    <a class="active" id="nav-tab-content-writer"
-                                                        href="#tab-content-writer" data-bs-toggle="tab" role="tab"
-                                                        aria-controls="tab-content-writer" aria-selected="true">
-                                                        <img decoding="async"
-                                                            src="../wp-content/uploads/2022/10/security-icon.png"
-                                                            width="18" alt="Content Writer">
-                                                        Content Writer </a>
-                                                </li>
-                                                <li>
-                                                    <a class="" id="nav-tab-finance" href="#tab-finance"
-                                                        data-bs-toggle="tab" role="tab" aria-controls="tab-finance"
-                                                        aria-selected="true">
-                                                        <img decoding="async" src="../wp-content/uploads/2022/10/bank.png"
-                                                            width="18" alt="Finance">
-                                                        Finance </a>
-                                                </li>
-                                                <li>
-                                                    <a class="" id="nav-tab-human-resource"
-                                                        href="#tab-human-resource" data-bs-toggle="tab" role="tab"
-                                                        aria-controls="tab-human-resource" aria-selected="true">
-                                                        <img decoding="async"
-                                                            src="../wp-content/uploads/2022/10/human-resource.png"
-                                                            width="18" alt="Human Resource">
-                                                        Human Resource </a>
-                                                </li>
-                                                <li>
-                                                    <a class="" id="nav-tab-management" href="#tab-management"
-                                                        data-bs-toggle="tab" role="tab"
-                                                        aria-controls="tab-management" aria-selected="true">
-                                                        <img decoding="async"
-                                                            src="../wp-content/uploads/2022/10/management-icon.png"
-                                                            width="18" alt="Management">
-                                                        Management </a>
-                                                </li>
-                                                <li>
-                                                    <a class="" id="nav-tab-market-research"
-                                                        href="#tab-market-research" data-bs-toggle="tab" role="tab"
-                                                        aria-controls="tab-market-research" aria-selected="true">
-                                                        <img decoding="async"
-                                                            src="../wp-content/uploads/2022/10/research-icon.png"
-                                                            width="18" alt="Market Research">
-                                                        Market Research </a>
-                                                </li>
-                                                <li>
-                                                    <a class="" id="nav-tab-marketing-sale"
-                                                        href="#tab-marketing-sale" data-bs-toggle="tab" role="tab"
-                                                        aria-controls="tab-marketing-sale" aria-selected="true">
-                                                        <img decoding="async"
-                                                            src="../wp-content/uploads/2022/10/career-icon.png"
-                                                            width="18" alt="Marketing &amp; Sale">
-                                                        Marketing &amp; Sale </a>
-                                                </li>
-                                                <li>
-                                                    <a class="" id="nav-tab-retail-products"
-                                                        href="#tab-retail-products" data-bs-toggle="tab" role="tab"
-                                                        aria-controls="tab-retail-products" aria-selected="true">
-                                                        <img decoding="async"
-                                                            src="../wp-content/uploads/2022/10/retail-icon.png"
-                                                            width="18" alt="Retail &amp; Products">
-                                                        Retail &amp; Products </a>
-                                                </li>
-                                                <li>
-                                                    <a class="" id="nav-tab-software" href="#tab-software"
-                                                        data-bs-toggle="tab" role="tab" aria-controls="tab-software"
-                                                        aria-selected="true">
-                                                        <img decoding="async"
-                                                            src="../wp-content/uploads/2022/10/lamp-icon.png"
-                                                            width="18" alt="Software">
-                                                        Software </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="mt-10">
-                                            <div class="tab-content" id="myTabContent-2">
-                                                <div class="tab-pane fade show active" id="tab-content-writer"
-                                                    role="tabpanel" aria-labelledby="tab-content-writer">
-                                                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 text-start">
-                                                        @foreach ($jobForUser as $item)
-                                                            <div class="col">
-                                                                <div class="card-grid-2 grid-bd-16 hover-up">
-                                                                    <div class="card-block-info pt-25">
-                                                                        <h6><a
-                                                                                href="home/detail/{{ $item->title . '-' . $item->id }}">{{ $item->title }}</a>
-                                                                        </h6>
-                                                                        <div class="d-flex flex-wrap gap-15 mt-5">
-                                                                            <span><i
-                                                                                    class="fi-rr-briefcase ms-0 me-5"></i>{{ $item->getTime_work->name }}</span>
-                                                                            <span><i
-                                                                                    class="fi-rr-clock ms-0 me-5"></i><time
-                                                                                    datetime="2022-09-27">{{ $item->end_job_time }}</time></span>
-                                                                        </div>
-
-                                                                        <div class="card-2-bottom mt-20">
-                                                                            <div class="row">
-                                                                                <div class="col-lg-8 col-md-8">
-                                                                                    <div class="d-flex gap-15">
-                                                                                        <img decoding="async"
-                                                                                            class="rounded-circle"
-                                                                                            src="../wp-content/uploads/2022/09/brand-7.png"
-                                                                                            style="width: 35px; height: 35px"
-                                                                                            alt="Ashford">
-                                                                                        <div class="info-right-img">
-                                                                                            <h6
-                                                                                                class="color-brand-1 lh-14 mb-0">
-                                                                                                {{ $item->nameCompany }}
-                                                                                            </h6>
-                                                                                            <span
-                                                                                                class="card-location font-xxs pl-15 color-text-paragraph-2">{{ $item->getlocation->name }}</span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-lg-4 col-md-4 text-end">
-                                                                                    <span
-                                                                                        class="card-text-price">{{ $item->getwage->name }}</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            @endif --}}
             <section
                 class="elementor-section elementor-top-section elementor-element elementor-element-acd8c1d elementor-section-boxed elementor-section-height-default elementor-section-height-default">
                 <div class="container">
@@ -753,6 +818,42 @@
             </div>
         </section>
     </main>
+    @if (Auth::guard('user')->check())
+        @if ($user->getProfileUse == null)
+            <div class="modal fade" id="checkmodalProfile" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <job-target
+                                :data="{{ json_encode([
+                                    'lever' => $lever,
+                                    'experience' => $experience,
+                                    'wage' => $wage,
+                                    'skill' => $skill,
+                                    'timework' => $timework,
+                                    'profession' => $profession,
+                                    'majors' => $majors,
+                                    'location' => $location,
+                                    'workingform' => $workingform,
+                                    'user' => $user,
+                                    'urlStore' => route('profile.updateProfile'),
+                                    'getskill' => $getskill,
+                                ]) }}">
+                            </job-target>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#checkmodalProfile").modal('show');
+                });
+            </script>
+        @endif
+    @endif
     <div class="modal fade" id="controlJobManagerRegister" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">

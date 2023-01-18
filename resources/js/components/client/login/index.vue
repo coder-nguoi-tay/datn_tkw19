@@ -210,7 +210,7 @@ export default {
             if (data.data.data == 1) {
               location.reload()
             } else if (data.data.data == 2) {
-              window.location.href = '/test'
+              window.location.href = '/employer/profile'
             }
           })
           .catch(function (error) {

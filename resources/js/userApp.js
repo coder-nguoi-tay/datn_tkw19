@@ -25,6 +25,12 @@ defineRule('telephone', (value) => {
         /^0(\d{9,10})+$/i.test(value.trim())
     )
 })
+$(document).ready(function () {
+    $('ul li a').click(function () {
+        $('li a').removeClass("active");
+        $(this).addClass("active");
+    });
+});
 
 $(document).ready(function () {
 
@@ -230,6 +236,36 @@ $(document).ready(function () {
         });
     }
 });
+$(document).ready(function () {
+    axios.get('/favourite-love/' + $('.icon-save-cv')[0].id.split(',')[0])
+        .then((x) => {
+            if (x.data.data) {
+                if (x.data.data.job_id == $('.icon-save-cv')[0].id.split(',')[0]) {
+                    $('.icon-save-cv').addClass('btn-icon-love')
+                    const btnLike = document.querySelector('.icon-save-cv')
+                    btnLike.addEventListener("click", function (e) {
+                        axios.post('/favourite/' + $('.icon-save-cv')[0].id.split(',')[0])
+                            .then((a) => {
+                            }).catch((y) => {
+                            })
+                        e.currentTarget.classList.toggle('btn-icon-love')
+                    })
+                }
+            } else {
+                const btnLike = document.querySelector('.icon-save-cv')
+                btnLike.addEventListener("click", function (e) {
+                    axios.post('/favourite/' + $('.icon-save-cv')[0].id.split(',')[0])
+                        .then((a) => {
+                        }).catch((y) => {
+                        })
+                    e.currentTarget.classList.toggle('btn-icon-love')
+                })
+            }
+        }).catch((y) => {
+            console.log(y);
+        })
+
+})
 
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
@@ -276,8 +312,6 @@ import businessLicense from "./components/employer/profile/business-license.vue"
 app.component('business-license', businessLicense);
 
 
-
-
 import modalContract from "./components/client/modal/modalContact.vue";
 app.component('modal-contract', modalContract);
 
@@ -298,6 +332,13 @@ app.component('job-manager', jobManager);
 import Abcxyz from "./components/client/seeker/test.vue";
 app.component('home-test', Abcxyz);
 import HomeSearch from "./components/client/home/search.vue";
+import axios from 'axios'
 app.component('home-search', HomeSearch);
 
+//job love
+import btnDeleteJobLove from './components/common/btnDeleteJobLove.vue'
+app.component('btn-delete-job-love', btnDeleteJobLove)
+// job target 
+import jobTarget from './components/client/seeker/jobTarget.vue'
+app.component('job-target', jobTarget)
 app.mount('#app')

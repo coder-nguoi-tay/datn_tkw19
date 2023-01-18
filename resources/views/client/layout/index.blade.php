@@ -65,9 +65,8 @@
     <link rel='stylesheet' id='wp-job-manager-css'
         href='../wp-content/themes/jobbox/assets/css/wp-job-managercb18.css?ver=1.0.9' media='all' />
     <link rel='stylesheet' id='jobbox-css' href='../wp-content/themes/jobbox/style6a4d.css?ver=6.1.1' media='all' />
-    <link rel='stylesheet' id='control-elementor-css'
-        href='{{ asset('wp-content/plugins/control-elementor/assets/css/control-elementor8a54.css?ver=1.0.0') }}'
-        media='all' />
+    {{-- <link rel='stylesheet' id='control-elementor-css'
+        href='../wp-content/plugins/control-elementor/assets/css/control-elementor8a54.css?ver=1.0.0' media='all' /> --}}
     <link rel='stylesheet' id='elementor-icons-css'
         href='../wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min91ce.css?ver=5.16.0'
         media='all' />
@@ -125,22 +124,6 @@
             JSON_UNESCAPED_UNICODE,
         ) !!};
     </script>
-    {{-- <style>
-        .sticky-bar.stick {
-            -webkit-animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
-            animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
-            box-shadow: 0 8px 20px 0 rgb(0 0 0 / 5%);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 999;
-            left: 0;
-            transition: all 0.3s ease 0s;
-            border-bottom: 1px solid var(--jobbox-border-color);
-            background: #fff;
-        }
-    </style> --}}
-
 </head>
 
 <body
@@ -191,8 +174,8 @@
         "ajax": "https:\/\/jthemes.com\/themes\/wp\/jobbox\/wp-admin\/admin-ajax.php"
     };
 </script>
-<script src='../wp-content/plugins/control-job-manager/assets/js/control-job-manager0ba6.js?ver=1.0.6'
-    id='control-job-manager-js'></script>
+{{-- <script src='../wp-content/plugins/control-job-manager/assets/js/control-job-manager0ba6.js?ver=1.0.6'
+    id='control-job-manager-js'></script> --}}
 <script id='wp-job-manager-bookmarks-bookmark-js-js-extra'>
     var job_manager_bookmarks = {
         "i18n_confirm_delete": "Are you sure you want to delete this bookmark?",
@@ -201,8 +184,8 @@
         "spinner_url": "https:\/\/jthemes.com\/themes\/wp\/jobbox\/wp-includes\/images\/spinner.gif"
     };
 </script>
-<script src='../wp-content/plugins/control-job-manager/vendor/tags/assets/dist/js/tag-filter0ba6.js?ver=1.0.6'
-    id='wp-job-manager-ajax-tag-filters-js'></script>
+{{-- <script src='../wp-content/plugins/control-job-manager/vendor/tags/assets/dist/js/tag-filter0ba6.js?ver=1.0.6'
+    id='wp-job-manager-ajax-tag-filters-js'></script> --}}
 <script src='../wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min8bd8.js?ver=2.7.0-wc.7.2.2'
     id='jquery-blockui-js'></script>
 
@@ -212,5 +195,5 @@
 <script src='../wp-content/themes/jobbox/assets/js/mainbb93.js?ver=5.0.0' id='jobbox-main-js'></script>
 <script src='../wp-content/plugins/elementor/assets/lib/jquery-numerator/jquery-numerator.min3958.js?ver=0.2.1'
     id='jquery-numerator-js'></script>
-<script src='../wp-content/plugins/control-email-subscriber/jquery.ajaxchimp.min6f3e.js?ver=1.3.0'
-    id='jquery-ajaxchimp-js'></script>
+{{-- <script src='../wp-content/plugins/control-email-subscriber/jquery.ajaxchimp.min6f3e.js?ver=1.3.0'
+    id='jquery-ajaxchimp-js'></script> --}}

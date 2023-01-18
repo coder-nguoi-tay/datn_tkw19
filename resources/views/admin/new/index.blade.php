@@ -64,8 +64,9 @@
                                                 <div class="">
 
                                                     <label for="upload">
-                                                        <img src="{{ asset($item->new_image) }}"
-                                                            class="img-thumbnail border-radius-lgc w-50" alt="..." />
+                                                        <img style=" height: 150px; width: 150px"
+                                                            src="{{ asset($item->new_image) }}"
+                                                            class="img-thumbnail border-radius-lgc" alt="..." />
                                                     </label>
 
                                                     <br>
