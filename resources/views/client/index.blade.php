@@ -27,10 +27,12 @@
                                                 <div class="elementor-widget-container">
                                                     <h1
                                                         class="control-heading-title text-42 color-white wow animate__ animate__fadeInUp animated mb-0">
-                                                        Bảng công việc số 1 <span class="color-green">cho
-
-                                                            Tuyển dụng hoặc</span><br class="d-none d-lg-block">Tìm công
-                                                        việc tiếp theo của bạn</h1>
+                                                        Trang tìm kiếm việc làm IT 
+                                                        <!-- <span class="color-green">cho Tuyển dụng hoặc</span> -->
+                                                         <br class="d-none d-lg-block">
+                                                        <span class="color-green">nhanh chóng</span>
+                                                        và 
+                                                        <span class="color-green">hiệu quả</span> 
                                                 </div>
                                             </div>
                                             <div class="elementor-element elementor-element-7b9da113 mb-0 elementor-widget elementor-widget-title"
