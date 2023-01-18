@@ -109,29 +109,71 @@
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="col-7 ">
+                <br>
+                <div class="bg-white br-8">
+                    <div class="section ">
+                        <div class="job-home-page-section">
+                            <div class="section-header">
+                                <h2 class="section-title">Tin tuyển dụng</h2>
+                            </div>
+                            <div class="section-body">
+                                <div class="box-search-job-home-page box">
+                                    <form id="frm-search-job" method="GET" action="">
+                                        <div class="box-search">
+                                            <div class="col-input">
+                                                <input class="form-control input-search ui-autocomplete-input"
+                                                    name="tim-kiem" value=""
+                                                    placeholder="Tên công việc, vị trí bạn muốn ứng tuyển ..."
+                                                    id="keyword" autocomplete="off">
+                                            </div>
+                                            <div class="col-button">
+                                                <button class="btn btn-topcv btn-search-job bg-premium" type="submit"><i
+                                                        class="fa-solid fa-magnifying-glass"></i>
+                                                    <span>Tìm kiếm</span></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="job-section-home-page">
+                                    <div class="section-header">
+                                        <h2 class="section-title">Hiện tại đang tuyển dụng <span
+                                                class="color-premium">{{ count($job) }}</span> vị trí</h2>
+                                    </div>
+                                    <div class="section-body" id="paginated-list">
+                                        @foreach ($job as $item)
+                                            <div class="lists-job">
+                                                <div class="job-item render-job-search job-ta result-job-hover"
+                                                    data-job-id="880173" data-job-position="6" data-box="BoxSearchResult">
 
-
-
-
-        <section class="section-box mt-50 mb-20">
-            <div class="container">
-                <div class="box-newsletter">
-                    <div class="row align-items-center">
-
-                        <div class="col-xl-3 col-12 text-center d-none d-xl-block">
-                            <img src="../wp-content/uploads/2022/12/newsletter-left.png" alt="Newsletter">
-                        </div>
-
-                        <div class="col-lg-12 col-xl-6 col-12">
-                            <h2 class="text-md-newsletter text-center">New Things Will Always Update Regularly</h2>
-                            <div class="box-form-newsletter mt-40">
-                                <form id="mc-form" class="form-newsletter">
-                                    <input id="mc-email" class="input-newsletter" type="email"
-                                        placeholder="Enter your email" required="required">
-                                    <button class="btn btn-default font-heading icon-send-letter"
-                                        type="submit">Subscribe</button>
-                                </form>
+                                                    <div class="body">
+                                                        <div class="content">
+                                                            <div class="ml-auto">
+                                                                <h3 class="title">
+                                                                    <a target="_blank" class="underline-box-job"
+                                                                        href="">
+                                                                        <span class="bold transform-job-title"
+                                                                            data-toggle="tooltip" title=""
+                                                                            data-placement="top" data-container="body"
+                                                                            data-original-title="{{ $item->title }}">Nhân
+                                                                            {{ $item->title }}</span>
+                                                                    </a>
+                                                                </h3>
+                                                            </div>
+                                                            <div class="mr-auto text-right">
+                                                                <p class="deadline">
+                                                                    Còn <strong>5</strong> ngày để ứng tuyển
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex">
+                                                            <div class="label-content ml-auto">
+                                                                <label class="salary">{{ $item->getWage->name }}</label>
+                                                                <label class="address" data-toggle="tooltip"
+                                                                    data-html="true" title="" data-placement="top"
+                                                                    data-container="body"
+                                                                    data-original-title="{{ $item->getlocation->name }}">{{ $item->getlocation->name }}</label>
+                                                            </div>
 
                             </div>
                             <div id="mc-response" class="mt-15"></div>

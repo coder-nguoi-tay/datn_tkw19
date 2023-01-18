@@ -41,6 +41,7 @@
         </div>
         <div class="col">
           <label class="form-label">Mô tả</label>
+          <span class="required-lable">*</span>
           <textarea
             type="text"
             name="describe"
@@ -50,6 +51,7 @@
             cols="30"
             rows="10"
           ></textarea>
+
           <ErrorMessage class="error" name="describe" />
         </div>
         <div class="mb-4">
@@ -100,6 +102,7 @@ import {
   defineRule,
   configure
 } from 'vee-validate'
+import Editor from '@tinymce/tinymce-vue'
 import { localize } from '@vee-validate/i18n'
 import * as rules from '@vee-validate/rules'
 export default {
@@ -113,7 +116,8 @@ export default {
   components: {
     VeeForm,
     Field,
-    ErrorMessage
+    ErrorMessage,
+    Editor
   },
   props: ['data'],
   data: function() {
