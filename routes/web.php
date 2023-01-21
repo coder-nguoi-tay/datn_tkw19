@@ -110,7 +110,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
 
     //profile
     Route::get('history', [EmployerProfileController::class, 'historyPay'])->name('profile.history');
-    Route::get('company', [EmployerProfileController::class, 'profileEmployer'])->name('employer.profileEmployer');
+    Route::get('company', [EmployerProfileController::class, 'profileEmployer'])->name('profileEmployer');
     Route::get('business-license', [EmployerProfileController::class, 'businessLicense'])->name('employer.businessLicense');
     Route::resource('profile', EmployerProfileController::class);
     Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');
@@ -119,29 +119,30 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
 
 Route::get('register', [HomeEmployerController::class, 'register'])->name('register.employer');
 Route::post('register/create', [HomeEmployerController::class, 'store'])->name('register.employer.create');
-
-// seeker
-Route::resource('profile', SeekerHomeController::class);
-Route::post('profile/update-profile', [SeekerHomeController::class, 'updatePrifileUser'])->name('profile.updateProfile');
-Route::post('profile/update-title-cv/{id}', [SeekerHomeController::class, 'updateTitleCv']);
-Route::get('profile/delete-cv/{id}', [SeekerHomeController::class, 'deleteCv']);
-Route::post('profile/update-avatar', [SeekerHomeController::class, 'updateAvatar'])->name('profile.updateAvatar');
+// login 
 Route::resource('login', ClientLoginController::class);
 Route::get('register-client', [ClientLoginController::class, 'registerClient'])->name('register');
+// seeker
+Route::middleware('user')->group(function () {
+    Route::resource('profile', SeekerHomeController::class);
+    Route::post('profile/update-profile', [SeekerHomeController::class, 'updatePrifileUser'])->name('profile.updateProfile');
+    Route::post('profile/update-title-cv/{id}', [SeekerHomeController::class, 'updateTitleCv']);
+    Route::get('profile/delete-cv/{id}', [SeekerHomeController::class, 'deleteCv']);
+    Route::post('profile/update-avatar', [SeekerHomeController::class, 'updateAvatar'])->name('profile.updateAvatar');
+    Route::resource('quan-ly-cv', SeekerManageUploadController::class);
+    Route::get('job-manager', [DetailCompanyController::class, 'jobManager'])->name('jobManager');
+    Route::resource('xem-ho-so', ViewProfileController::class);
+    Route::get('file/tao-moi', [SeekerManageUploadController::class, 'createFormCV'])->name('user.createFormCV');
+    Route::post('file/tao-moi', [SeekerManageUploadController::class, 'storeFormCV'])->name('user.storeFormCV');
+    Route::get('user/createFormCV/download', [SeekerManageUploadController::class, 'downloadPdf'])->name('user.createFormCV.downloadPdf');
 
-Route::resource('quan-ly-cv', SeekerManageUploadController::class);
-Route::get('job-manager', [DetailCompanyController::class, 'jobManager'])->name('jobManager');
-Route::resource('xem-ho-so', ViewProfileController::class);
-Route::get('file/tao-moi', [SeekerManageUploadController::class, 'createFormCV'])->name('user.createFormCV');
-Route::post('file/tao-moi', [SeekerManageUploadController::class, 'storeFormCV'])->name('user.storeFormCV');
-Route::get('user/createFormCV/download', [SeekerManageUploadController::class, 'downloadPdf'])->name('user.createFormCV.downloadPdf');
+    Route::get('favourite', [SeekerHomeController::class, 'userFavourite'])->name('user.favourite');
+    Route::delete('delete/favourite/{id}', [SeekerHomeController::class, 'deleteFavourite'])->name('delete.favourite');
+    Route::get('user/logout', [SeekerHomeController::class, 'logout'])->name('user.logout');
+    Route::get('change-password', [SeekerHomeController::class, 'changePassword'])->name('user.changepass');
+    Route::post('change-password', [SeekerHomeController::class, 'changePasswordSucsses'])->name('user.changePasswordSucsses');
+});
 
-// Route::get('user/profile/{token}', [SeekerHomeController::class, 'userProfile'])->name('user.profile');
-Route::get('favourite', [SeekerHomeController::class, 'userFavourite'])->name('user.favourite');
-Route::delete('delete/favourite/{id}', [SeekerHomeController::class, 'deleteFavourite'])->name('delete.favourite');
-Route::get('user/logout', [SeekerHomeController::class, 'logout'])->name('user.logout');
-Route::get('change-password', [SeekerHomeController::class, 'changePassword'])->name('user.changepass');
-Route::post('change-password', [SeekerHomeController::class, 'changePasswordSucsses'])->name('user.changePasswordSucsses');
 
 // Route::group(function () {
 // login

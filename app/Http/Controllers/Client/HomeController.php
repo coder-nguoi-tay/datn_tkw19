@@ -376,6 +376,10 @@ class HomeController extends BaseController
     }
     public function upCv(Request $request)
     {
+        if (!Auth::guard('user')->check()) {
+            $this->setFlash(__('Bạn cần đăng nhập hoặc đăng ký để trải nghiệm dịch vụ của chúng tôi'), 'error');
+            return redirect()->back();
+        }
         $mailUpCv = $this->savecv;
 
         $checkJob = $this->savecv->where([

@@ -49,30 +49,6 @@
                           <br />
                           <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label"
-                              >Hình thức thanh toán<span class="required-lable"
-                                >*</span
-                              >
-                            </label>
-                            <div class="col-sm-9">
-                              <Field
-                                class="form-select"
-                                name="payments"
-                                rules="required"
-                                as="select"
-                                aria-label="Default select example"
-                              >
-                                <option value disabled selected>
-                                  Chọn hình thức thanh toán
-                                </option>
-                                <option value="1">Online</option>
-                               
-                              </Field>
-                              <ErrorMessage class="error" name="payments" />
-                            </div>
-                          </div>
-                          <br />
-                          <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label"
                               >Ngân hàng<span class="required-lable">*</span>
                             </label>
                             <div class="col-sm-9">
@@ -170,9 +146,6 @@ export default {
           name: {
             required: 'Xin hãy nhập tên của bạn.',
             max: 'Vui lòng nhập tên của bạn trong 128 ký tự.'
-          },
-          payments: {
-            required: 'Vui lòng nhập hình thức thanh toán.'
           },
           bank: {
             required: 'Vui lòng chọn ngân hàng thanh toán.'

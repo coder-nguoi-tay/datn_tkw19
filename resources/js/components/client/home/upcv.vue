@@ -145,8 +145,8 @@
                     <br />
                     <span v-if="cv.length == 0" class="text-danger"
                       >Bạn chưa có cv nào, hãy bắt đầu
-                      <a :href="data.urlStoreCv">Tạo mới Cv</a> hoặc tải cv từ
-                      máy tính cá nhân
+                      <a href="/profile">Tạo mới Cv</a> hoặc tải cv từ máy tính
+                      cá nhân
                     </span>
                   </div>
                   <div class="modal-footer">

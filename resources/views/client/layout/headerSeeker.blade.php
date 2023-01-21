@@ -59,8 +59,8 @@
                                                 aria-haspopup="true" aria-expanded="false">
 
 
-                                                <img src="https://static.topcv.vn/avatars/uba56Qd3TeeNRSTQUDmV_62e0fdaa610c7_cvtpl.jpg"
-                                                    alt="Nguyễn Văn Hùng PH 1 4 8 2 0" class="img-profile">
+                                                <img src="{{ asset(Auth::guard('user')->user()->images) }}"
+                                                    alt="" class="img-profile">
                                                 <span class="fullname"> &nbsp; {{ Auth::guard('user')->user()->name }}
                                                 </span>
 
