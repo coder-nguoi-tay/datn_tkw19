@@ -1,5 +1,5 @@
 <header class="header-area header-desktop">
-    <div class="header-menu-wrapper ">
+    <div class="header-menu-wrapper custom-menu-emplyer">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">

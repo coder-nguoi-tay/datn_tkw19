@@ -1,7 +1,6 @@
 <header class="header sticky-bar">
     <div class="container">
         <div class="main-header">
-
             <div class="header-left">
                 <div class="header-logo">
                     <a class="d-flex" href="{{ route('index') }}">

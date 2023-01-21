@@ -68,7 +68,6 @@
     </div>
 
     <div id="app">
-
         @include('employer.layout.header')
         @include('employer.layout.sidebar')
         @yield('content')

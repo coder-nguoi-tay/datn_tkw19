@@ -8357,8 +8357,12 @@ body {
     -webkit-box-shadow: 0 0 40px rgba(82, 85, 90, .1);
     -moz-box-shadow: 0 0 40px rgba(82, 85, 90, .1);
     box-shadow: 0 0 40px rgba(82, 85, 90, .1);
-    background: #f00125;
+    /* background: #f00125; */
     color: black;
+}
+
+.custom-menu-emplyer {
+    background: #f00125;
 }
 
 @media (max-width:1199px) {
