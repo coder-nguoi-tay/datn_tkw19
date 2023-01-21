@@ -7,6 +7,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\AccountPayment;
 use App\Models\Accuracy;
+use App\Models\Company;
 use App\Models\Employer;
 use App\Models\Job;
 use App\Models\Jobseeker;
@@ -200,9 +201,15 @@ class ManagerUploadCvController extends BaseController
     }
     public function ImageAccuracy(Request $request)
     {
+        $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
+        if (!$employer->id_company) {
+            $this->setFlash(__('Bạn chưa cập nhật thông tin công ty!'), 'error');
+            return redirect()->back();
+        }
         try {
+            $company = Company::where('id', $employer->id_company)->first();
             $accy = new Accuracy();
-            $accy->user_id = Auth::guard('user')->user()->id;
+            $accy->user_id = $company->id;
             $accy->status = 0;
             if ($request->hasFile('images')) {
                 $accy->images = $request->images->storeAs('images/cv', $request->images->hashName());

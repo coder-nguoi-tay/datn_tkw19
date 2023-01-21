@@ -95,8 +95,8 @@
 <script src="{{ asset('assets/js/purecounter.js') }}"></script>
 <script src="{{ asset('assets/js/progresscircle.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.MultiFile.min.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYzby4yYDVaXPmtu4jZAGR258K6IYwjIY&amp;libraries">
-</script>
+{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYzby4yYDVaXPmtu4jZAGR258K6IYwjIY&amp;libraries">
+</script> --}}
 <script src="{{ asset('assets/js/gmap-script.js') }}"></script>
 <script src="{{ asset('assets/js/jquery-te-1.4.0.min.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>

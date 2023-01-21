@@ -53,10 +53,10 @@
                                         </div>
                                     </div>
                                     <div style="float: right !important">
-                                    <search-cv-date :url="{{ json_encode(route('employer.new.index')) }}"
-                                        :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
-                                        :data="{{ json_encode(1) }}">
-                                    </search-cv-date>
+                                        <search-cv-date :url="{{ json_encode(route('employer.new.index')) }}"
+                                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
+                                            :data="{{ json_encode(1) }}">
+                                        </search-cv-date>
                                     </div>
                                     <br>
                                     <div class="table-responsive mt-4">

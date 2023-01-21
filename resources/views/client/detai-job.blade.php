@@ -384,7 +384,6 @@
                             'checkLogin' => Auth::guard('user')->check(),
                             'cv' => $cv,
                             'urlStore' => route('home.detail.upcv'),
-                            'urlStoreCv' => route('quan-ly-cv.create'),
                             'jobId' => $job->id,
                             'checkUser' => $profileUser,
                             'seeker' => $seeker,

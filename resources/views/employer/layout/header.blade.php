@@ -9,7 +9,7 @@
                             <span class="text-white">Trước tiên bạn cần xác thực công ty và chụp giấy phép kinh doanh để
                                 chúng tôi có
                                 thể đảm bảo các quyền lợi cho bạn khi sử dụng hệ thống <a class="text-black"
-                                    href="">Xác thực tại
+                                    href="/employer/company">Xác thực tại
                                     đây</a></span>
 
                         </div>

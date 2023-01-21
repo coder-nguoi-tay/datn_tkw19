@@ -4,7 +4,7 @@
             <div class="header-left">
                 <div class="header-logo">
                     <a class="d-flex" href="{{ route('index') }}">
-                        <img alt="ITWORK" src="../wp-content/themes/jobbox/assets/imgs/template/logoIT.png">
+                        <img alt="ITWORK" src="../../wp-content/themes/jobbox/assets/imgs/template/logoIT.png">
                     </a>
                 </div>
             </div>
@@ -135,17 +135,11 @@
                 </div>
             @else
                 <div class="btn-group">
-                    <button 
-                        type="button" 
-                        style="border-radius: 20px;padding: 4px 8px 4px 0"
-                        class="btn btn-default btn-shadow ml-30 hover-up dropdown-toggle" 
-                        data-bs-toggle="dropdown" 
+                    <button type="button" style="border-radius: 20px;padding: 4px 8px 4px 0"
+                        class="btn btn-default btn-shadow ml-30 hover-up dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img 
-                            src="https://images.unsplash.com/photo-1674017739150-8d8a528dc7c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" 
-                            style="width: 35px;height: 35px;margin : 0 20px 0 4px"
-                            class="rounded-circle img-fluid" 
-                            >
+                        <img src="{{ asset(Auth::guard('user')->user()->images) }}"
+                            style="width: 35px;height: 35px;margin : 0 20px 0 4px" class="rounded-circle img-fluid">
                         <p class="d-inline text-white">{{ Auth::guard('user')->user()->name }}</p>
                     </button>
                     <ul class="dropdown-menu">
