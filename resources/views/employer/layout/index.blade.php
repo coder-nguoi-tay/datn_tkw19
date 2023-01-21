@@ -52,8 +52,6 @@
         a {
             text-decoration: none !important
         }
-
-       
     </style>
 
 </head>
@@ -68,7 +66,9 @@
             </div>
         </div>
     </div>
+
     <div id="app">
+
         @include('employer.layout.header')
         @include('employer.layout.sidebar')
         @yield('content')

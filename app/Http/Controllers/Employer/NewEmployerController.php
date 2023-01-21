@@ -81,9 +81,7 @@ class NewEmployerController extends BaseController
         $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         $checkCompanyXt = Accuracy::where('user_id', Auth::guard('user')->user()->id)->first();
         if ($checkCompanyXt) {
-            $checkCompanyStatus = 1;
-        } else {
-            $checkCompanyStatus = 0;
+            $checkCompanyStatus = $checkCompanyXt->status;
         }
         $job = $this->job->where([
             ['job.employer_id', $checkCompany->id],
@@ -121,7 +119,7 @@ class NewEmployerController extends BaseController
             'title' => 'Tin Tuyển Dụng',
             'checkCompany' => $checkCompany,
             'request' => $request,
-            'checkCompanyStatus' => $checkCompanyStatus,
+            'checkCompanyStatus' => $checkCompanyStatus ?? '',
             'breadcrumbs' => $breadcrumbs,
         ]);
     }

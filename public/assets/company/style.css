@@ -2701,7 +2701,7 @@ body {
     transform: translateX(0);
     background-color: #fff;
     width: 240px !important;
-    padding-top: 100px
+    padding-top: 50px
 }
 
 @media (max-width:1199px) {
@@ -8354,7 +8354,9 @@ body {
     border-bottom: 1px solid rgba(128, 137, 150, .2);
     -webkit-box-shadow: 0 0 40px rgba(82, 85, 90, .1);
     -moz-box-shadow: 0 0 40px rgba(82, 85, 90, .1);
-    box-shadow: 0 0 40px rgba(82, 85, 90, .1)
+    box-shadow: 0 0 40px rgba(82, 85, 90, .1);
+    background: #f00125;
+    color: black;
 }
 
 @media (max-width:1199px) {
@@ -8820,7 +8822,7 @@ body {
 .dashboard-content-wrap {
     height: 100vh;
     width: 100%;
-    padding-top: 70px;
+    padding-top: 50px;
     padding-left: 240px;
     padding-right: 10px
 }
