@@ -12,48 +12,23 @@
                 <nav class="primary-menu-container nav-main-menu">
                     <ul id="primary-menu-list" class="menu-wrapper main-menu list-unstyled mb-0">
                         <li id="menu-item-93"
-                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-menu-ancestor current-menu-parent menu-item-has-children menu-item-93 has-children">
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-menu-ancestor current-menu-parent menu-item-has-children menu-item-93 ">
                             <a href="{{ route('index') }}" class="active">Trang chủ</a>
 
                         </li>
                         <li id="menu-item-145"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-145 has-children">
-                            <a href="../jobs/index.html">Việc làm</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-566"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-566">
-                                    <a href="../jobs/index.html">Tất cả việc làm</a>
-                                </li>
-                                <li id="menu-item-643"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-643">
-                                    <a href="../job-dashboard/index.html">Job Dashboard</a>
-                                </li>
-                                <li id="menu-item-1442"
-                                    class="menu-item menu-item-type-post_type menu-item-object-job_listing menu-item-1442">
-                                    <a href="../job/lead-quality-control-qa-2/index.html">Job Details with Form</a>
-                                </li>
-                                <li id="menu-item-1440"
-                                    class="menu-item menu-item-type-post_type menu-item-object-job_listing menu-item-1440">
-                                    <a href="../job/senior-system-engineer-3/index.html">Job Details with Email</a>
-                                </li>
-                                <li id="menu-item-1441"
-                                    class="menu-item menu-item-type-post_type menu-item-object-job_listing menu-item-1441">
-                                    <a href="../job/full-stack-engineer-3/index.html">Job with Custom Link</a>
-                                </li>
-                            </ul>
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-145 ">
+                            <a href="{{ route('home.search') }}">Việc làm</a>
+
                         </li>
                         <li id="menu-item-134"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-134 has-children">
-                            <a href="../recruiters/index.html">Công ty</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-135"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-135">
-                                    <a href="../recruiters/index.html">Tất cả công ty</a>
-                                </li>
-                                <li id="menu-item-136"
-                                    class="menu-item menu-item-type-post_type menu-item-object-ctrljm_recruiter menu-item-136">
-                                    <a href="../company/fireworks/index.html">Company Details</a>
-                                </li>
+                            <a href="../recruiters/index.html">Lĩnh vực</a>
+                            <ul class="dropdown-menu-item">
+                                @foreach ($majors as $item)
+                                    <li><a href="{{ route('searchMajors', $item->id) }}">{{ $item->name }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
                         <li id="menu-item-139"
@@ -75,19 +50,9 @@
                             </ul>
                         </li>
                         <li id="menu-item-96"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-96 has-children">
-                            <a href="../blog/index.html">Bài viết</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-851"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-851">
-                                    <a href="../blog/index.html">Tất cả bài viết</a>
-                                </li>
-                                <li id="menu-item-850"
-                                    class="menu-item menu-item-type-post_type menu-item-object-post menu-item-850">
-                                    <a href="../how-to-write-an-application-letter-with-examples-2/index.html">Blog
-                                        Single</a>
-                                </li>
-                            </ul>
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-96">
+                            <a href="{{ route('blog') }}">Bài viết</a>
+
                         </li>
                         <li id="menu-item-123"
                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-123 has-children">
@@ -135,17 +100,11 @@
                 </div>
             @else
                 <div class="btn-group">
-                    <button 
-                        type="button" 
-                        style="border-radius: 20px;padding: 4px 8px 4px 0"
-                        class="btn btn-default btn-shadow ml-30 hover-up dropdown-toggle" 
-                        data-bs-toggle="dropdown" 
+                    <button type="button" style="border-radius: 20px;padding: 4px 8px 4px 0"
+                        class="btn btn-default btn-shadow ml-30 hover-up dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img 
-                            src="https://images.unsplash.com/photo-1674017739150-8d8a528dc7c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" 
-                            style="width: 35px;height: 35px;margin : 0 20px 0 4px"
-                            class="rounded-circle img-fluid" 
-                            >
+                        <img src="https://images.unsplash.com/photo-1674017739150-8d8a528dc7c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
+                            style="width: 35px;height: 35px;margin : 0 20px 0 4px" class="rounded-circle img-fluid">
                         <p class="d-inline text-white">{{ Auth::guard('user')->user()->name }}</p>
                     </button>
                     <ul class="dropdown-menu">
