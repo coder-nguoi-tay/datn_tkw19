@@ -79,7 +79,7 @@
                                                                         style="border: none;" placeholder="Nhập từ khóa" />
 
                                                                     <input class="btn btn-default btn-find font-sm"
-                                                                        type="submit" value="Search">
+                                                                        type="submit" value="Tìm kiếm">
 
                                                                 </form>
                                                             </div>

@@ -104,20 +104,6 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="footer-col-6 col-md-3 col-sm-12">
-                        <div id="block-10" class="widget widget_block">
-                            <h6 class="mb-20">Download App</h6>
-                        </div>
-                        <div id="block-11" class="widget widget_block">
-                            <p class="small">Download our Apps and get extra 15% Discount on your first Order…!</p>
-                        </div>
-                        <div id="block-12" class="widget widget_block">
-                            <div class="d-flex mt-15"><a class="mr-5" href="#"><img decoding="async"
-                                        src="../wp-content/uploads/2022/10/apple.png" width="102"
-                                        alt="joxBox"></a><a href="#"><img decoding="async" width="102"
-                                        src="../wp-content/uploads/2022/10/google.png" alt="joxBox"></a></div>
-                        </div>
-                    </div>
                 </div><!-- .row -->
             </div><!-- .container -->
             <div class="container">
