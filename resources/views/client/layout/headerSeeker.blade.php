@@ -57,8 +57,13 @@
                                             <button class="notification-btn dropdown-toggle" type="button"
                                                 id="notificationDropdownMenu" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
-                                                <i class="la la-bell"></i>
-                                                <span class="quantity">5</span>
+
+
+                                                <img src="https://static.topcv.vn/avatars/uba56Qd3TeeNRSTQUDmV_62e0fdaa610c7_cvtpl.jpg"
+                                                    alt="Nguyễn Văn Hùng PH 1 4 8 2 0" class="img-profile">
+                                                <span class="fullname">  &nbsp; {{ Auth::guard('user')->user()->name }} </span>
+
+
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="notificationDropdownMenu">
                                                 <div class="mess-dropdown">

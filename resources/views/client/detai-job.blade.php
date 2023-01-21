@@ -331,7 +331,7 @@
                                                                 </div>
                                                                 <div class="info-text">
                                                                     <h5 class="font-md font-bold color-brand-1">
-                                                                        <a href="/home/detail/{{ $item->id }}">UI
+                                                                        <a href="/home/detail/{{ $item->id }}">
                                                                             {{ $item->title }}</a>
                                                                     </h5>
                                                                     <div

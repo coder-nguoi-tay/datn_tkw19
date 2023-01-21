@@ -109,6 +109,7 @@ class ProfileController extends BaseController
             $employer->name = $request->name;
             $employer->phone = $request->phone;
             $employer->address = $request->address;
+            dd($employer);
             $employer->save();
             //
             $user = $this->user->where('id', Auth::guard('user')->user()->id)->first();

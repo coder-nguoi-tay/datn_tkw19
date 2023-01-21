@@ -170,4 +170,3 @@ Route::get('detail-blog/{id}', [NewsController::class, 'ShowBlog'])->name('detai
 Route::get('detailNew/{id}', [NewsController::class, 'showTinTuc'])->name('detailNew');
 //
 Route::get('majors/{id}', [ClientHomeController::class, 'searchMajors'])->name('searchMajors');
-// Route::get('error-404',[ClientHomeController::class, 'error404'])->name('error404');

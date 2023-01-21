@@ -28,9 +28,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="billing-form-item p-3">
-                        <search-find-cv :url="{{ json_encode(route('employer.tim-kiem-cv.index')) }}"
-                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
-                        </search-find-cv>
+                        <div style="float: right !important">
+                            <search-find-cv :url="{{ json_encode(route('employer.tim-kiem-cv.index')) }}"
+                                :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
+                            </search-find-cv>
+                        </div>
+                        <br>
                         @foreach ($cv as $item)
                             <div class="billing-content pb-0 mt-4">
                                 <div class="manage-candidate-wrap d-flex align-items-center justify-content-between pb-4">

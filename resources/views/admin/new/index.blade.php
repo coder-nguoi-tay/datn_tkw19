@@ -20,20 +20,24 @@
                             <table class="table align-items-center mb-0 table  table-striped ">
                                 <thead class="table-danger ">
                                     <tr class="">
+                                        
                                         <th
                                             class="text-dark text-center text-secondary  text-dark font-weight-bolder opacity-7">
                                             ID
                                         </th>
                                         <th class=" text-dark text-secondary  font-weight-bolder opacity-7">
+                                       
                                             Tiêu Dề
                                         </th>
                                         <th class=" text-dark text-secondary  font-weight-bolder opacity-7 w-25">
+                                        
                                             Hình ảnh
                                         </th>
                                         <th class=" text-dark text-secondary  font-weight-bolder opacity-7">
                                             Chuyên ngành
                                         </th>
                                         <th class=" text-dark text-secondary  font-weight-bolder opacity-7">
+                                        
                                             Ngày Tạo
                                         </th>
                                         <th class="text-secondary opacity-7"></th>
@@ -52,11 +56,13 @@
                                                 <div class="font-weight-bold " style="margin-left: 20px">
                                                     <p class=" text-secondary mb-0"
                                                         style="
+                                                    
                                                     max-height: 21px;
                                                     max-width: 150px;
                                                     overflow: hidden;
                                                     text-overflow: ellipsis !important;
                                                      ">
+                                                        
                                                         {{ $item->title }}</p>
                                                 </div>
                                             </td>
@@ -64,9 +70,13 @@
                                                 <div class="">
 
                                                     <label for="upload">
+
                                                         <img style=" height: 150px; width: 150px"
                                                             src="{{ asset($item->new_image) }}"
                                                             class="img-thumbnail border-radius-lgc" alt="..." />
+
+                                                       
+
                                                     </label>
 
                                                     <br>
@@ -74,6 +84,7 @@
                                             </td>
                                             <td class="align-middle ">
                                                 <span class="text-secondary  font-weight-bold">{{ $item->majors }}</span>
+                                                
                                             </td>
                                             <td class="align-middle ">
                                                 <span
@@ -81,8 +92,10 @@
                                             </td>
                                             <td class="align-middle">
                                                 <div class="" style="display: flex; max-width: 80%; margin-left: 7% ">
+                                                
                                                     <div style="margin-right: 10%">
                                                         <btn-delete-confirm
+                                                 
                                                             :message-confirm="{{ json_encode('Bạn có chắc muốn xóa không ?') }}"
                                                             :delete-action="{{ json_encode(route('admin.new.destroy', $item->id)) }}">
                                                         </btn-delete-confirm>
