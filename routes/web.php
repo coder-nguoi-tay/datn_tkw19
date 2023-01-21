@@ -97,17 +97,13 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
         Route::get('change-status', [ManagerUploadCvController::class, 'changeStatus'])->name('changestatus');
     });
     Route::resource('register-company', RegisterCompanyController::class);
-
-
     Route::get('pay-money', [EmployerProfileController::class, 'payMoney'])->name('employer.profile.paymoney');
     Route::post('pay-money-payment', [EmployerProfileController::class, 'payMoneyPayment'])->name('profile.paymoney.payment');
     Route::get('pay-money-payment-return', [EmployerProfileController::class, 'vnpayReturn'])->name('profile.paymoney.payment.return');
-
     Route::get('change-password', [ProfileController::class, 'changePassword'])->name('employer.change-password');
     Route::post('change-password', [ProfileController::class, 'changePasswordSucsses'])->name('employer.changePasswordSucsses');
     // giấy xác thực
     Route::post('image-accuracy', [ManagerUploadCvController::class, 'ImageAccuracy'])->name('profile.ImageAccuracy');
-
     //profile
     Route::get('history', [EmployerProfileController::class, 'historyPay'])->name('profile.history');
     Route::get('company', [EmployerProfileController::class, 'profileEmployer'])->name('profileEmployer');
@@ -143,13 +139,10 @@ Route::middleware('user')->group(function () {
     Route::post('change-password', [SeekerHomeController::class, 'changePasswordSucsses'])->name('user.changePasswordSucsses');
 });
 
-
-// Route::group(function () {
 // login
 Route::resource('owner', ClientLoginController::class);
-// Route::get('owner/register', [ClientLoginController::class, 'showRegister'])->name('owner.show.register');
 Route::post('owner/update/register', [ClientLoginController::class, 'updateRegister'])->name('owner.update.register');
-// });
+
 //client
 Route::resource('', ClientHomeController::class);
 Route::post('favourite/{id}', [SeekerHomeController::class, 'userFavouriteId']); // api
