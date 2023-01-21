@@ -48,11 +48,6 @@
                     <div class="col-lg-10 mx-auto">
 
                         <div class="entry-content">
-
-
-
-
-
                             <figure class="wp-block-image alignwide size-large"><img decoding="async" loading="lazy"
                                     width="1024" height="456"
                                     src="../wp-content/uploads/2022/09/img-content-1024x456.png" alt=""
@@ -60,21 +55,11 @@
                                     srcset="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content-1024x456.png 1024w, https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content-300x133.png 300w, https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content-768x342.png 768w, https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content-600x267.png 600w, https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content.png 1160w"
                                     sizes="(max-width: 1024px) 100vw, 1024px"></figure>
 
-
-
                             <p>{{ $blog->describe }}</p>
 
 
 
                             <h4>{{ $blog->title }}</h4>
-
-
-
-
-
-
-
-
 
 
                         </div>
@@ -175,18 +160,19 @@
                                                                     data-original-title="{{ $item->getlocation->name }}">{{ $item->getlocation->name }}</label>
                                                             </div>
 
-                            </div>
-                            <div id="mc-response" class="mt-15"></div>
-                        </div>
+                                                        </div>
+                                                        <div id="mc-response" class="mt-15"></div>
+                                                    </div>
 
-                        <div class="col-xl-3 col-12 text-center d-none d-xl-block">
-                            <img src="../wp-content/uploads/2022/12/newsletter-right.png" alt="Newsletter">
-                        </div>
+                                                    <div class="col-xl-3 col-12 text-center d-none d-xl-block">
+                                                        <img src="../wp-content/uploads/2022/12/newsletter-right.png"
+                                                            alt="Newsletter">
+                                                    </div>
 
-                    </div>
-                    <!--row-->
-                </div>
-            </div>
-        </section>
+                                                </div>
+                                                <!--row-->
+                                            </div>
+                                    </div>
+                                    </section>
     </main>
 @endsection
