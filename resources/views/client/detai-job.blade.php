@@ -385,8 +385,6 @@
                             'cv' => $cv,
                             'urlStore' => route('home.detail.upcv'),
                             'jobId' => $job->id,
-                            'checkUser' => $profileUser,
-                            'seeker' => $seeker,
                         ]) }}">
                     </up-cv>
                 </div>

@@ -42,6 +42,7 @@ use App\Http\Controllers\TestController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// create route
 
 Route::middleware('admin')->prefix('dashboard')->name('admin.')->group(function () {
     Route::resource('', HomeController::class);

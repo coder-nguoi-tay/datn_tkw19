@@ -9,13 +9,7 @@
                         <h3 class="wow animate__ animate__fadeInUp animated"
                             style="visibility: visible; animation-name: fadeInUp;"><span
                                 class="color-brand-2">{{ count($job) }}
-                                Công việc</span> Phù hợp</h3>
-                        <div class="font-sm color-text-paragraph-2 mt-10 wow animate__ animate__fadeInUp animated"
-                            data-wow-delay=".1s"
-                            style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">Lorem
-                            ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni,<br
-                                class="d-none d-xl-block">atque delectus molestias quis</div>
-
+                                Công việc</span> Tìm thấy</h3>
                     </div>
                 </div>
             </section>

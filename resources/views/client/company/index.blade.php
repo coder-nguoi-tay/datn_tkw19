@@ -54,7 +54,6 @@
 
                                 </div>
 
-
                             </div>
                             <div class="box-related-job content-page">
                                 <h5 class="mb-30">Công việc công ty đã đăng</h5>
