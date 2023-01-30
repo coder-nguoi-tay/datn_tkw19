@@ -12,6 +12,7 @@ use App\Http\Controllers\Employer\ProfileController;
 use App\Http\Controllers\Admin\ResetPasswordController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\DetailCompanyController;
+use App\Http\Controllers\Client\FagsController;
 use App\Http\Controllers\Client\HomeController as ClientHomeController;
 use App\Http\Controllers\Client\JobSuggestController;
 use App\Http\Controllers\Client\LoginController as ClientLoginController;
@@ -147,6 +148,7 @@ Route::post('owner/update/register', [ClientLoginController::class, 'updateRegis
 
 //client
 Route::resource('', ClientHomeController::class);
+Route::resource('faqs', FagsController::class);
 Route::post('favourite/{id}', [SeekerHomeController::class, 'userFavouriteId']); // api
 Route::get('favourite-love/{id}', [SeekerHomeController::class, 'getDatalove']); // api
 Route::get('home/detail/{id}', [ClientHomeController::class, 'showDetail'])->name('home.detail.show');
