@@ -57,8 +57,14 @@
                                             <button class="notification-btn dropdown-toggle" type="button"
                                                 id="notificationDropdownMenu" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
-                                                <i class="la la-bell"></i>
-                                                <span class="quantity">5</span>
+
+
+                                                <img src="{{ asset(Auth::guard('user')->user()->images) }}"
+                                                    alt="" class="img-profile">
+                                                <span class="fullname"> &nbsp; {{ Auth::guard('user')->user()->name }}
+                                                </span>
+
+
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="notificationDropdownMenu">
                                                 <div class="mess-dropdown">

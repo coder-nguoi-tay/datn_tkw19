@@ -52,10 +52,13 @@
 
                                         </div>
                                     </div>
-                                    <search-cv-date :url="{{ json_encode(route('employer.new.index')) }}"
-                                        :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
-                                        :data="{{ json_encode(1) }}">
-                                    </search-cv-date>
+                                    <div style="float: right !important">
+                                        <search-cv-date :url="{{ json_encode(route('employer.new.index')) }}"
+                                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
+                                            :data="{{ json_encode(1) }}">
+                                        </search-cv-date>
+                                    </div>
+                                    <br>
                                     <div class="table-responsive mt-4">
                                         <table class="table">
                                             <thead>
@@ -77,7 +80,7 @@
                                                                         href="{{ route('employer.new.edit', $item->id) }}"
                                                                         class="color-text-2">{{ $item->title }}</a></h2>
                                                                 <p>
-                                                                    @if (Carbon::parse(Carbon::now())->format('d') > Carbon::parse($item->end_job_time)->format('d'))
+                                                                    {{-- @if (Carbon::parse(Carbon::now())->format('d') > Carbon::parse($item->end_job_time)->format('d'))
                                                                         <span class="badge badge-secondary"><i
                                                                                 class="la la-clock-o font-size-16"></i>Hết
                                                                             hạn</span>
@@ -85,9 +88,9 @@
                                                                         <i
                                                                             class="la la-clock-o font-size-16"></i>{{ $item->convert_date }}
                                                                         ngày
-                                                                    @endif
+                                                                    @endif --}}
 
-                                                                    {{-- @if (Carbon::parse($item->end_job_time)->format('m') == $m)
+                                                                    @if (Carbon::parse($item->end_job_time)->format('m') == $m)
                                                                         @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
                                                                             <span class="badge badge-secondary"><i
                                                                                     class="la la-clock-o font-size-16"></i>Hết
@@ -98,7 +101,11 @@
                                                                             ngày
                                                                         @endif
                                                                     @else
-                                                                        @if ($all_day - Carbon::parse($item->job_time)->format('d') + ($mon - ($mon - Carbon::parse($item->end_job_time)->format('d'))) <= 0)
+                                                                        @if (
+                                                                            $all_day -
+                                                                                Carbon::parse($item->job_time)->format('d') +
+                                                                                ($mon - ($mon - Carbon::parse($item->end_job_time)->format('d'))) <=
+                                                                                0)
                                                                             <span class="badge badge-secondary"><i
                                                                                     class="la la-clock-o font-size-16"></i>Hết
                                                                                 hạn</span>
@@ -109,7 +116,7 @@
                                                                                 ($mon + 1 - ($mon - Carbon::parse($item->end_job_time)->format('d'))) }}
                                                                             ngày
                                                                         @endif
-                                                                    @endif --}}
+                                                                    @endif
                                                                 </p>
                                                             </div>
                                                         </td>
@@ -176,7 +183,7 @@
                     <p style="text-align: center "> Để sử dụng tính năng này vui lòng cập nhật thông tin của bạn. và xác
                         thực để có thể đăng tin</p>
                 </div>
-                <a href="/employer/profile-employer" class="btn btn-primary "
+                <a href="/employer/company" class="btn btn-primary"
                     style="margin-left: 36%; width: 140px; margin-top: 20px">Cập nhật ngay
                 </a>
             </div>

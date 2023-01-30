@@ -2701,7 +2701,7 @@ body {
     transform: translateX(0);
     background-color: #fff;
     width: 240px !important;
-    padding-top: 100px
+    padding-top: 50px
 }
 
 @media (max-width:1199px) {
@@ -4912,6 +4912,8 @@ body {
 .logo-right-content {
     position: relative;
     z-index: 1;
+    width: 230px;
+
     display: -webkit-flex;
     display: -ms-flex;
     display: flex;
@@ -8354,7 +8356,13 @@ body {
     border-bottom: 1px solid rgba(128, 137, 150, .2);
     -webkit-box-shadow: 0 0 40px rgba(82, 85, 90, .1);
     -moz-box-shadow: 0 0 40px rgba(82, 85, 90, .1);
-    box-shadow: 0 0 40px rgba(82, 85, 90, .1)
+    box-shadow: 0 0 40px rgba(82, 85, 90, .1);
+    /* background: #f00125; */
+    color: black;
+}
+
+.custom-menu-emplyer {
+    background: #f00125;
 }
 
 @media (max-width:1199px) {
@@ -8511,15 +8519,20 @@ body {
     border-radius: 50%
 }
 
+.img-profile {
+    margin-left: 7px;
+    width: 30px;
+    border-radius: 50%;
+}
+
 .notification-btn {
     position: relative;
     border: none;
-    width: 40px;
+    width: auto;
     height: 40px;
+    padding-right: 5px;
     line-height: 40px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
+    border-radius: 20px;
     background-color: rgba(38, 174, 97, .1);
     color: #3C65F5;
     font-size: 21px;
@@ -8820,7 +8833,7 @@ body {
 .dashboard-content-wrap {
     height: 100vh;
     width: 100%;
-    padding-top: 70px;
+    padding-top: 50px;
     padding-left: 240px;
     padding-right: 10px
 }

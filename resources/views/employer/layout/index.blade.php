@@ -1,3 +1,23 @@
+@php
+    use App\Models\Employer;
+    use App\Models\Company;
+    use App\Models\Accuracy;
+    $status = [];
+    $checkCompany = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
+    if ($checkCompany->id_company) {
+        $checkCompanyXt = Accuracy::where('user_id', $checkCompany->id_company)->first();
+        if (!$checkCompanyXt) {
+            $status = 1;
+        }
+        if ($checkCompanyXt) {
+            if ($checkCompanyXt->status == 0) {
+                $status = 1;
+            }
+        }
+    } else {
+        $status = 1;
+    }
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,8 +72,6 @@
         a {
             text-decoration: none !important
         }
-
-       
     </style>
 
 </head>
@@ -68,8 +86,11 @@
             </div>
         </div>
     </div>
+
     <div id="app">
-        @include('employer.layout.header')
+        @if ($status == 1)
+            @include('employer.layout.header')
+        @endif
         @include('employer.layout.sidebar')
         @yield('content')
 
@@ -99,8 +120,8 @@
 <script src="{{ asset('assets/js/purecounter.js') }}"></script>
 <script src="{{ asset('assets/js/progresscircle.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.MultiFile.min.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYzby4yYDVaXPmtu4jZAGR258K6IYwjIY&amp;libraries">
-</script>
+{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYzby4yYDVaXPmtu4jZAGR258K6IYwjIY&amp;libraries">
+</script> --}}
 <script src="{{ asset('assets/js/gmap-script.js') }}"></script>
 <script src="{{ asset('assets/js/jquery-te-1.4.0.min.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>

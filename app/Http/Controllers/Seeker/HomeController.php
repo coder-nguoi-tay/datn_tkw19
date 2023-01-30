@@ -147,36 +147,36 @@ class HomeController extends BaseController
         } else {
             $user = new $this->Jobseeker();
         }
-        // try {
-        $user->images = '';
-        $user->phone = '';
-        $user->address = '';
-        $user->user_role = Auth::guard('user')->user()->id;
-        $user->experience_id = $request->experience_id;
-        $user->lever_id = $request->lever_id;
-        $user->wage_id = $request->wage_id;
-        $user->profession_id = $request->profession_id;
-        $user->time_work_id = $request->time_work_id;
-        $user->save();
-        if (isset($Jobseeker->getProfileUse)) {
-            $jobskill =  $this->SeekerSkill->where('job-seeker_id', $user->id)->get();
-            foreach ($jobskill as $value) {
-                $this->SeekerSkill->find($value->id)->delete();
+        try {
+            $user->images = '';
+            $user->phone = '';
+            $user->address = '';
+            $user->user_role = Auth::guard('user')->user()->id;
+            $user->experience_id = $request->experience_id;
+            $user->lever_id = $request->lever_id;
+            $user->wage_id = $request->wage_id;
+            $user->profession_id = $request->profession_id;
+            $user->time_work_id = $request->time_work_id;
+            $user->save();
+            if (isset($Jobseeker->getProfileUse)) {
+                $jobskill =  $this->SeekerSkill->where('job-seeker_id', $user->id)->get();
+                foreach ($jobskill as $value) {
+                    $this->SeekerSkill->find($value->id)->delete();
+                }
             }
+            foreach (explode(',', $request->skill[0]) as $value) {
+                $this->SeekerSkill->create([
+                    'job-seeker_id' => $user->id,
+                    'skill_id' => $value,
+                ])->save();
+            }
+            $this->setFlash(_('Cập nhật thành công!'));
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            DB::rollback();
+            $this->setFlash(_('Đã có một lỗi xảy ra'), 'error');
+            return redirect()->back();
         }
-        foreach (explode(',', $request->skill[0]) as $value) {
-            $this->SeekerSkill->create([
-                'job-seeker_id' => $user->id,
-                'skill_id' => $value,
-            ])->save();
-        }
-        $this->setFlash(_('Cập nhật thành công!'));
-        return redirect()->back();
-        // } catch (\Throwable $th) {
-        //     DB::rollback();
-        //     $this->setFlash(_('Đã có một lỗi xảy ra'), 'error');
-        //     return redirect()->back();
-        // }
     }
 
     /**

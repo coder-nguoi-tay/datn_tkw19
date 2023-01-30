@@ -196,6 +196,7 @@ class SearchController extends BaseController
                 ->get();
             if ($request->skill != null) {
                 $skill = explode(',', $request->skill[0]);
+                
                 foreach ($skill as $item) {
                     $skillSearch[] = $this->skill->where('id', $item)->first();
                 }

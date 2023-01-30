@@ -23,29 +23,17 @@
                                 {{ $company->name }}
                                 <span class="card-location font-regular ml-20">{{ $company->address }}</span>
                             </h5>
-
-                            <p class="mt-5 font-md color-text-paragraph-2 mb-15">Our Mission to make working life simple</p>
-
                         </div>
 
                         <div class="col-lg-4 col-md-12 text-lg-end">
-                            <a class="btn btn-call-icon btn-apply btn-apply-big" href="">
-                                Contact Us </a>
+                            <div class="box-nav-tabs">
+                                <a class="btn btn-border mr-15 mb-5 aboutus-icon active" href="#tab-about-us"
+                                    data-bs-toggle="tab" role="tab" aria-controls="tab-about-us"
+                                    aria-selected="true">Theo dõi</a>
+                            </div>
                         </div>
 
                     </div>
-                </div>
-
-
-                <div class="box-nav-tabs mt-40 mb-5">
-                    <ul class="nav" role="tablist">
-                        <li>
-                            <a class="btn btn-border mr-15 mb-5 aboutus-icon active" href="#tab-about-us"
-                                data-bs-toggle="tab" role="tab" aria-controls="tab-about-us" aria-selected="true">About
-                                Us</a>
-                        </li>
-
-                    </ul>
                 </div>
                 <div class="border-bottom pt-10 pb-10"></div>
             </div>
@@ -66,38 +54,35 @@
 
                                 </div>
 
-
                             </div>
-
                             <div class="box-related-job content-page">
                                 <h5 class="mb-30">Công việc công ty đã đăng</h5>
-                                @foreach ($job as $job)
+                                @foreach ($job as $value)
                                     <div class="col-xl-12 col-12 jobbox-list-item ">
                                         <div class="card-grid-2 hover-up">
 
 
                                             <div class="card-block-info">
                                                 <h4 class="font-lg fw-semibold mb-1">
-                                                    <a
-                                                        href="../../job/full-stack-engineer/index.html">{{ $job->title }}</a>
+                                                    <a href="/home/detail/{{ $value->idjob }}">{{ $value->title }}</a>
                                                 </h4>
 
                                                 <div class="d-flex align-items-center gap-3 font-xs color-text-mutted">
                                                     <span><i
-                                                            class="fi-rr-briefcase ms-0 me-5"></i>{{ $job->getTime_work->name }}</span>
-                                                    <span><i class="fi-rr-clock ms-0 me-5"></i>{{ $job->convert_date }}
+                                                            class="fi-rr-briefcase ms-0 me-5"></i>{{ $value->getTime_work->name }}</span>
+                                                    <span><i class="fi-rr-clock ms-0 me-5"></i>{{ $value->convert_date }}
                                                         ngày</span>
                                                 </div>
-
 
                                                 <div class="card-2-bottom mt-20">
                                                     <div class="row align-items-center">
                                                         <div class="col-lg-7 col-7">
-                                                            <span class="card-text-price">{{ $job->getMajors->name }}</span>
+                                                            <span
+                                                                class="card-text-price">{{ $value->getMajors->name }}</span>
                                                         </div>
                                                         <div class="col-lg-5 col-5 text-end">
                                                             <a class="btn btn-apply-now"
-                                                                href="/home/detail/{{ $job->id }}">Chi
+                                                                href="/home/detail/{{ $value->idjob }}">Chi
                                                                 tiết</a>
                                                         </div>
                                                     </div>
@@ -139,13 +124,13 @@
 
                             <div class="sidebar-list-job">
                                 <ul class="ul-disc">
-                                    <li>205 North Michigan Avenue, Suite 810 Chicago, 60601, USA</li>
+                                    <li>{{ $company->address }}</li>
                                     <li>Quy mô: {{ $company->number_tax }}</li>
                                     <li>Email: {{ $company->email }}</li>
                                 </ul>
 
                                 <div class="mt-30">
-                                    <a class="btn btn-send-message" href="mailto:contact@Evara.com">Send Message</a>
+                                    <a class="btn btn-send-message" href="{{ $company->email }}">Gửi mail đến công ty</a>
                                 </div>
                             </div>
                         </div>

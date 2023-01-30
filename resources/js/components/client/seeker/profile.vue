@@ -29,7 +29,7 @@
                           >
                             <img
                               v-if="!filePreview"
-                              :src="data.user.images"
+                              :src="'http://127.0.0.1:8000/' + data.user.images"
                               alt=""
                             />
                             <img v-if="filePreview" :src="filePreview" />

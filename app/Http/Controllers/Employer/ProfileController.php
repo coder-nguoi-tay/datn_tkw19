@@ -109,6 +109,7 @@ class ProfileController extends BaseController
             $employer->name = $request->name;
             $employer->phone = $request->phone;
             $employer->address = $request->address;
+            dd($employer);
             $employer->save();
             //
             $user = $this->user->where('id', Auth::guard('user')->user()->id)->first();
@@ -359,11 +360,16 @@ class ProfileController extends BaseController
         $breadcrumbs = [
             'Thông tin giấy phép kinh doanh'
         ];
-        $accuracy = Accuracy::where('user_id', Auth::guard('user')->user()->id)->first();
+        $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
+        if ($employer->id_company) {
+            $company = Company::where('id', $employer->id_company)->first();
+            $accuracy = Accuracy::where('user_id', $company->id)->first();
+        }
+
         return view('employer.profile.business-license', [
             'title' => 'Giấy phép kinh doanh',
             'breadcrumbs' => $breadcrumbs,
-            'accuracy' => $accuracy,
+            'accuracy' => $accuracy ?? '',
         ]);
     }
 }

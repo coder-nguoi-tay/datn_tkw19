@@ -88,6 +88,7 @@
                                           v-if="filePreview"
                                           :src="filePreview"
                                           class="img-fluid img-show"
+                                          style="width: 200px; height: 200px"
                                         />
                                       </div>
                                     </div>
@@ -95,6 +96,7 @@
                                       v-if="Image != null"
                                       :src="'http://127.0.0.1:8000/' + Image"
                                       class="img-fluid"
+                                      style="width: 200px; height: 200px"
                                     />
                                   </div>
                                   <ErrorMessage class="error" name="images" />

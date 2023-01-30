@@ -79,12 +79,13 @@ class NewEmployerController extends BaseController
         $all_day = cal_days_in_month(CAL_GREGORIAN, $m, $y);
         $mon = Carbon::parse(new Carbon('last day of last month'))->format('d');
         $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
-        $checkCompanyXt = Accuracy::where('user_id', Auth::guard('user')->user()->id)->first();
-        if ($checkCompanyXt) {
-            $checkCompanyStatus = 1;
-        } else {
-            $checkCompanyStatus = 0;
+        if ($checkCompany->id_company) {
+            $checkCompanyXt = Accuracy::where('user_id', $checkCompany->id_company)->first();
+            if ($checkCompanyXt) {
+                $checkCompanyStatus = $checkCompanyXt->status;
+            }
         }
+
         $job = $this->job->where([
             ['job.employer_id', $checkCompany->id],
         ])->where(function ($q) use ($request) {
@@ -121,7 +122,7 @@ class NewEmployerController extends BaseController
             'title' => 'Tin Tuyển Dụng',
             'checkCompany' => $checkCompany,
             'request' => $request,
-            'checkCompanyStatus' => $checkCompanyStatus,
+            'checkCompanyStatus' => $checkCompanyStatus ?? '',
             'breadcrumbs' => $breadcrumbs,
         ]);
     }
@@ -133,6 +134,18 @@ class NewEmployerController extends BaseController
      */
     public function create()
     {
+        $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
+        if ($checkCompany->id_company) {
+            $checkCompanyXt = Accuracy::where('user_id', $checkCompany->id_company)->first();
+            if (!$checkCompanyXt) {
+                return redirect()->route('employer.new.index');
+            }
+            if ($checkCompanyXt->status == 0) {
+                return redirect()->route('employer.new.index');
+            }
+        } else {
+            return redirect()->route('employer.new.index');
+        }
         $breadcrumbs = [
             [
                 'url' => route('employer.new.index'),

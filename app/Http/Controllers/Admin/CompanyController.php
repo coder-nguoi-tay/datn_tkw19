@@ -25,10 +25,13 @@ class CompanyController extends Controller
 
     public function index()
     {
-        $company = Company::select('company.*', 'accuracy.id as idAccuracy', 'accuracy.status as status')
-            ->leftjoin('employer', 'employer.id_company', 'company.id')
-            ->leftjoin('accuracy', 'accuracy.user_id', 'employer.user_id')
-            ->whereNotNull('accuracy.user_id')
+        // $company = Company::select('company.*', 'accuracy.id as idAccuracy', 'accuracy.status as status')
+        //     ->leftjoin('employer', 'employer.id_company', 'company.id')
+        //     ->leftjoin('accuracy', 'accuracy.user_id', 'employer.user_id')
+        //     ->whereNotNull('accuracy.user_id')
+        //     ->get();
+        $company = Accuracy::leftjoin('company', 'company.id', 'accuracy.user_id')
+            ->select('company.*', 'accuracy.status as status', 'accuracy.id as idAccuracy')
             ->get();
         return view('admin.company.index', [
             'company' => $company,
