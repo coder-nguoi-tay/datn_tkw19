@@ -29,7 +29,6 @@ use App\Http\Controllers\Employer\ProfileController as EmployerProfileController
 use App\Http\Controllers\Employer\RegisterCompanyController;
 use App\Http\Controllers\Employer\SearchCvController;
 use App\Http\Controllers\Employer\ViewProfileController;
-use App\Http\Controllers\TestController;
 
 
 /*

@@ -1,3 +1,7 @@
+@php
+    use App\Models\Majors;
+    $majors = Majors::all();
+@endphp
 <header class="header sticky-bar">
     <div class="container">
         <div class="main-header">
