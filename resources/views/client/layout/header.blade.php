@@ -1,3 +1,7 @@
+@php
+    use App\Models\Majors;
+    $majors = Majors::all();
+@endphp
 <header class="header sticky-bar">
     <div class="container">
         <div class="main-header">
@@ -32,22 +36,9 @@
                             </ul>
                         </li>
                         <li id="menu-item-139"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-139 has-children">
-                            <a href="../candidates/index.html">CV</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-140"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-140">
-                                    <a href="../candidates/index.html">Quản lý cv</a>
-                                </li>
-                                <li id="menu-item-141"
-                                    class="menu-item menu-item-type-post_type menu-item-object-ctrljm_candidate menu-item-141">
-                                    <a href="../candidate/jacob-jones/index.html">Candidate Details</a>
-                                </li>
-                                <li id="menu-item-1445"
-                                    class="menu-item menu-item-type-post_type menu-item-object-ctrljm_candidate menu-item-1445">
-                                    <a href="../candidate/cody-fisher/index.html">Candidate with Video</a>
-                                </li>
-                            </ul>
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-139 ">
+                            <a href="{{ route('getCompany') }}">Công ty</a>
+
                         </li>
                         <li id="menu-item-96"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-96">
@@ -89,10 +80,9 @@
             @if (!Auth::guard('user')->check())
                 <div class="header-right">
                     <div class="block-signin d-flex align-items-center gap-2">
-                        <a class="text-link-bd-btom hover-up" href="#controlJobManagerRegister"
-                            data-bs-toggle="modal">Đăng ký</a>
-                        <a class="btn btn-default btn-shadow ml-30 hover-up" href="#controlJobManagerLogin"
-                            data-bs-toggle="modal">Đăng nhập</a>
+                        <a class="text-link-bd-btom hover-up" href="{{ route('register') }}">Đăng ký</a>
+                        <a class="btn btn-default btn-shadow ml-30 hover-up" href="{{ route('login.index') }}">Đăng
+                            nhập</a>
                         <a href="{{ route('register.employer') }}" class="btn btn-default btn-shadow ml-30 hover-up">
                             Đăng tuyển & tìm hồ sơ
                         </a>
@@ -219,7 +209,6 @@
                                 data-bs-toggle="modal">Đăng ký</a>
                             <a class="btn btn-default btn-shadow ml-30 hover-up" href="#controlJobManagerLogin"
                                 data-bs-toggle="modal">Đăng nhập</a>
-
 
                         </div>
                     </div>

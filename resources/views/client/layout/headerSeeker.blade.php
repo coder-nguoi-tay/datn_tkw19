@@ -1,3 +1,7 @@
+@php
+    use App\Models\Majors;
+    $majors = Majors::all();
+@endphp
 <header class="header-area header-desktop">
     <div class="header-menu-wrapper">
         <div class="container-fluid">

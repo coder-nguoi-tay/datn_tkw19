@@ -80,16 +80,6 @@
                                                                         href="{{ route('employer.new.edit', $item->id) }}"
                                                                         class="color-text-2">{{ $item->title }}</a></h2>
                                                                 <p>
-                                                                    {{-- @if (Carbon::parse(Carbon::now())->format('d') > Carbon::parse($item->end_job_time)->format('d'))
-                                                                        <span class="badge badge-secondary"><i
-                                                                                class="la la-clock-o font-size-16"></i>Hết
-                                                                            hạn</span>
-                                                                    @else
-                                                                        <i
-                                                                            class="la la-clock-o font-size-16"></i>{{ $item->convert_date }}
-                                                                        ngày
-                                                                    @endif --}}
-
                                                                     @if (Carbon::parse($item->end_job_time)->format('m') == $m)
                                                                         @if (Carbon::parse($item->end_job_time)->format('d') - Carbon::parse(Carbon::now())->format('d') <= 0)
                                                                             <span class="badge badge-secondary"><i
@@ -142,7 +132,8 @@
                                                                                     data-placement="top" title=""
                                                                                     data-original-title="Sửa bài viết"></i></a>
                                                                         </li>
-                                                                        <li class="d-inline-block"><a href="#"><i
+                                                                        <li class="d-inline-block"><a
+                                                                                href="{{ route('employer.new.destroy', $item->id) }}"><i
                                                                                     class="la la-trash"
                                                                                     data-toggle="tooltip"
                                                                                     data-placement="top" title=""

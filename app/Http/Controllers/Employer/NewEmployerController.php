@@ -149,7 +149,7 @@ class NewEmployerController extends BaseController
         $breadcrumbs = [
             [
                 'url' => route('employer.new.index'),
-                'name' => 'Quản lý cv'
+                'name' => 'Quản lý đăng tin'
             ],
             'Thêm tin',
 
@@ -166,13 +166,6 @@ class NewEmployerController extends BaseController
             'location' => $this->getlocation(),
             'workingform' => $this->getworkingform(),
             'breadcrumbs' => $breadcrumbs,
-            'user' =>  $this->user
-                ->join('employer', 'employer.user_id', '=', 'users.id')
-                ->where('users.id', Auth::guard('user')->user()->id)
-                ->get(),
-            'company' => $this->employer->where('user_id', Auth::guard('user')->user()->id)
-                ->join('company', 'company.id', '=', 'employer.id_company')
-                ->get()
         ]);
     }
 
@@ -182,52 +175,45 @@ class NewEmployerController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) //EmployerCreateRequest
+    public function store(EmployerCreateRequest $request) //EmployerCreateRequest
     {
-        $end_time = Carbon::parse($request['data']['end_job_time'])->format('Y-m-d');
+        $end_time = Carbon::parse($request->end_job_time)->format('Y-m-d');
         $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
-
         try {
-            $end_time = Carbon::parse($request['data']['end_job_time'])->format('Y-m-d');
-            $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
             $job = new $this->job();
-            $job->title = $request['data']['title'];
-            $job->quatity = $request['data']['quatity'];
-            $job->sex = $request['data']['sex'];
-            $job->describe = $request['data']['describe'];
-            $job->level_id = $request['data']['level_id'];
-            $job->experience_id = $request['data']['experience_id'];
-            $job->wage_id = $request['data']['wage_id'];
-            $job->benefit = $request['data']['benefit'];
-            $job->profession_id = $request['data']['profession_id'];
-            $job->location_id = $request['data']['location_id'];
-            $job->address = $request['data']['address'];
-            $job->majors_id = $request['data']['majors_id'];
-            $job->wk_form_id = $request['data']['wk_form_id'];
+            $job->title = $request->title;
+            $job->quatity = $request->quatity;
+            $job->sex = $request->sex;
+            $job->describe = $request->describe;
+            $job->level_id = $request->level_id;
+            $job->experience_id = $request->experience_id;
+            $job->wage_id = $request->wage_id;
+            $job->benefit = $request->benefit;
+            $job->profession_id = $request->profession_id;
+            $job->location_id = $request->location_id;
+            $job->address = $request->address;
+            $job->majors_id = $request->majors_id;
+            $job->wk_form_id = $request->wk_form_id;
             $job->job_time = Carbon::now();
             $job->end_job_time = $end_time;
-            $job->status = $request['data']['status_profile'] ? 1 : 0;
-            $job->time_work_id = $request['data']['time_work_id'];
-            $job->candidate_requirements = $request['data']['candidate_requirements'];
+            $job->status = $request->status_profile ? 1 : 0;
+            $job->time_work_id = $request->time_work_id;
+            $job->candidate_requirements = $request->candidate_requirements;
             $job->employer_id = $employer->id;
             $job->save();
             //create to jobskill
-            foreach ($request['skill'] as $item) {
+            foreach (explode(',', $request->skill[0]) as $item) {
                 $this->jobskill->create([
                     'job_id' => $job->id,
-                    'skill_id' => $item['value']
+                    'skill_id' => $item
                 ])->save();
             }
-            return response()->json([
-                'message' => 'Cập nhật thành công',
-                'status' => StatusCode::OK
-            ], StatusCode::OK);
+            $this->setFlash(__('Thêm tin tuyển dụng thành công'));
+            return redirect()->route('employer.new.index');
         } catch (\Throwable $th) {
             DB::rollback();
-            return response()->json([
-                'message' => 'Đã có một lỗi xảy ra',
-                'status' => StatusCode::FORBIDDEN,
-            ], StatusCode::OK);
+            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
+            return redirect()->route('employer.new.index');
         }
     }
 
@@ -252,9 +238,9 @@ class NewEmployerController extends BaseController
         $breadcrumbs = [
             [
                 'url' => route('employer.new.index'),
-                'name' => 'Quản lý cv'
+                'name' => 'Quản lý đăng tin'
             ],
-            'Thêm tin',
+            'Sửa tin',
 
         ];
         return view('employer.new.edit', [
@@ -282,51 +268,46 @@ class NewEmployerController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmployerCreateRequest $request, $id) //EmployerCreateRequest
     {
-        $end_time = Carbon::parse($request['data']['end_job_time'])->format('Y-m-d');
+        $end_time = Carbon::parse($request->end_job_time)->format('Y-m-d');
         try {
             $job =  $this->job->where('id', $id)->first();
-            $job->title = $request['data']['title'];
-            $job->quatity = $request['data']['quatity'];
-            $job->sex = $request['data']['sex'];
-            $job->describe = $request['data']['describe'];
-            $job->level_id = $request['data']['level_id'];
-            $job->experience_id = $request['data']['experience_id'];
-            $job->wage_id = $request['data']['wage_id'];
-            $job->benefit = $request['data']['benefit'];
-            $job->profession_id = $request['data']['profession_id'];
-            $job->location_id = $request['data']['location_id'];
-            $job->address = $request['data']['address'];
-            $job->majors_id = $request['data']['majors_id'];
-            $job->wk_form_id = $request['data']['wk_form_id'];
-            $job->status = $request['status_profile'] ? 1 : 0;
-            // $job->job_time = Carbon::now();
+            $job->title = $request->title;
+            $job->quatity = $request->quatity;
+            $job->sex = $request->sex;
+            $job->describe = $request->describe;
+            $job->level_id = $request->level_id;
+            $job->experience_id = $request->experience_id;
+            $job->wage_id = $request->wage_id;
+            $job->benefit = $request->benefit;
+            $job->profession_id = $request->profession_id;
+            $job->location_id = $request->location_id;
+            $job->address = $request->address;
+            $job->majors_id = $request->majors_id;
+            $job->wk_form_id = $request->wk_form_id;
             $job->end_job_time = $end_time;
-            $job->time_work_id = $request['data']['time_work_id'];
-            $job->candidate_requirements = $request['data']['candidate_requirements'];
+            $job->status = $request->status_profile ? 1 : 0;
+            $job->time_work_id = $request->time_work_id;
+            $job->candidate_requirements = $request->candidate_requirements;
             $job->save();
             //create to jobskill
             $jobskill =  $this->jobskill->where('job_id', $id)->get();
             foreach ($jobskill as $value) {
                 $this->jobskill->find($value->id)->delete();
             }
-            foreach ($request['skill'] as $item) {
+            foreach (explode(',', $request->skill[0]) as $item) {
                 $this->jobskill->create([
                     'job_id' => $job->id,
-                    'skill_id' => $item['value']
+                    'skill_id' => $item
                 ])->save();
             }
-            return response()->json([
-                'message' => 'Cập nhật thành công',
-                'status' => StatusCode::OK
-            ], StatusCode::OK);
+            $this->setFlash(__('Cập nhật tin tuyển dụng thành công'));
+            return redirect()->route('employer.new.index');
         } catch (\Throwable $th) {
             DB::rollback();
-            return response()->json([
-                'message' => 'Đã có một lỗi xảy ra',
-                'status' => StatusCode::FORBIDDEN,
-            ], StatusCode::FORBIDDEN);
+            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
+            return redirect()->route('employer.new.index');
         }
     }
 
@@ -352,6 +333,7 @@ class NewEmployerController extends BaseController
             return redirect()->back();
         }
     }
+    // bỏ
     public function changeStus(Request $request, $id)
     {
         try {

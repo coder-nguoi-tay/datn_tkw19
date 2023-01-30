@@ -334,7 +334,7 @@
                               class="form-group user-chosen-select-container"
                             >
                               <Field
-                                name="wage_id"
+                                name="time_work_id"
                                 as="select"
                                 v-model="model.time_work_id"
                                 rules="required"
@@ -409,16 +409,25 @@
                               >
                                 <Multiselect
                                   placeholder="Chọn Kỹ năng"
-                                  v-model="value"
                                   mode="tags"
+                                  v-model="value"
                                   :searchable="true"
                                   :options="options"
                                   label="label"
                                   track-by="label"
                                   :infinite="true"
                                   :object="true"
+                                  :filterResults="true"
+                                  :clearOnSearch="true"
+                                  :clearOnSelect="true"
+                                  @input="updateSelected"
                                 />
                               </Field>
+                              <input
+                                type="hidden"
+                                name="skill[]"
+                                v-model="skill"
+                              />
                               <ErrorMessage class="error" name="skill_id" />
                             </div>
                           </div>
@@ -532,16 +541,19 @@ export default {
       model: this.data.job,
       status_profile: this.data.job.status == 1 ? true : false,
       value: [],
-      options: []
+      options: [],
+      skill: []
     }
   },
   created() {
-    console.log(this.data.job.status)
+    let array = []
     this.data.job.getskill.map((e) => {
       this.value.push({
         value: e.id,
         label: e.name
       })
+      array.push(e.id)
+      this.skill = array
     })
     this.data.skill.map((e) => {
       this.options.push({
@@ -618,6 +630,14 @@ export default {
     })
   },
   methods: {
+    updateSelected(e) {
+      let array = []
+      e.map((x) => {
+        array.push(x.value)
+      })
+      array = [...new Set(array)]
+      this.skill = array
+    },
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0]
       this.$el.querySelector('input[name=' + firstInputError + ']').focus()
@@ -629,42 +649,7 @@ export default {
       )
     },
     onSubmit() {
-      let that = this
-      let id = this.data.job.id
-      axios
-        .post('/employer/new/update/' + id, {
-          _token: this.csrfToken,
-          data: this.model,
-          skill: this.value,
-          status_profile: this.status_profile
-        })
-        .then(function (response) {
-          console.log(response)
-          const notyf = new Notyf({
-            duration: 6000,
-            position: {
-              x: 'right',
-              y: 'bottom'
-            },
-            types: [
-              {
-                type: 'error',
-                duration: 8000,
-                dismissible: true
-              }
-            ]
-          })
-          if (response.data.status == 403) {
-            return notyf.error(response.data.message)
-          }
-          setTimeout(function () {
-            window.location.href = that.data.urlBack
-          }, 1100)
-          return notyf.success(response.data.message)
-        })
-        .catch((error) => {
-          location.reload()
-        })
+      this.$refs.formData.submit()
     }
   }
 }

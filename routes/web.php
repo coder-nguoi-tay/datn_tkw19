@@ -30,7 +30,6 @@ use App\Http\Controllers\Employer\ProfileController as EmployerProfileController
 use App\Http\Controllers\Employer\RegisterCompanyController;
 use App\Http\Controllers\Employer\SearchCvController;
 use App\Http\Controllers\Employer\ViewProfileController;
-use App\Http\Controllers\TestController;
 
 
 /*
@@ -160,6 +159,10 @@ Route::get(
     'detail-company/{id}',
     [DetailCompanyController::class, 'detailCompany']
 )->name('detail.company');
+Route::get(
+    'GetCompany',
+    [DetailCompanyController::class, 'index']
+)->name('getCompany');
 
 
 Route::get('blog', [NewsController::class, 'index'])->name('blog');
