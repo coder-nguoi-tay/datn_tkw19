@@ -37,21 +37,11 @@
                                             <span class="font-weight-medium">công việc được đăng</span>
                                         </div>
                                         <div class="manage-job-count">
-                                            <a href="{{ route('employer.new.topNew') }}"
-                                                class="btn btn-info font-weight-medium color-text-2 mr-1  text-white">Công
-                                                việc đăng Top</a>
-                                            @if ($checkCompany->id_company && $checkCompanyStatus == 1)
-                                                <a href="{{ route('employer.new.create') }}"
-                                                    class="btn btn-info font-weight-medium color-text-2 mr-1  text-white">Thêm
-                                                    tin</a>
-                                            @else
-                                                <button
-                                                    class="btn btn-info font-weight-medium color-text-2 mr-1  text-white"
-                                                    data-coreui-toggle="modal" data-coreui-target="#exampleModal"
-                                                    type="button">
-                                                    Thêm tin
-                                                </button>
-                                            @endif
+                                            <button class="btn btn-info font-weight-medium color-text-2 mr-1  text-white"
+                                                data-coreui-toggle="modal" data-coreui-target="#exampleModal"
+                                                type="button">
+                                                Thêm tin vào top
+                                            </button>
                                         </div>
                                     </div>
                                     <div style="float: right !important">
@@ -166,15 +156,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color: red">Thông báo</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: red">Thêm bài viết vào Top hiển thị</h5>
                     <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <br>
-                    <p style="text-align: center ">Tài khoản của bạn chưa cập nhật thông tin công ty.
+                    <p style="text-align: center ">Số lượng bài bài viết được tải lên top của bạn phụ thuộc vào gói cước mà
+                        bạn đã mua <a href="">Xem chi tiết ở đây</a>
                     </p>
-                    <p style="text-align: center "> Để sử dụng tính năng này vui lòng cập nhật thông tin của bạn. và xác
-                        thực để có thể đăng tin</p>
                 </div>
                 <a href="/employer/company" class="btn btn-primary"
                     style="margin-left: 36%; width: 140px; margin-top: 20px">Cập nhật ngay

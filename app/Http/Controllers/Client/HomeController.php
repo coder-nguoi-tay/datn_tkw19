@@ -97,6 +97,7 @@ class HomeController extends BaseController
             ->where([
                 ['job.status', 1],
                 ['job.expired', 0],
+                ['job.package_id_position', 1],
                 ['employer.position', 1],
             ])
             ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
@@ -117,6 +118,7 @@ class HomeController extends BaseController
                     ->where([
                         ['job.status', 1],
                         ['job.expired', 0],
+                        ['job.package_id_position', 1],
                         ['employer.position', 1],
                     ])
                     ->where(function ($query) use ($getProfile, $skill_id) {
@@ -319,19 +321,6 @@ class HomeController extends BaseController
     {
         //
     }
-    // public function searchLocation($name, $id)
-    // {
-    //     $job =  $this->job->where('location_id', $id)
-    //         ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getExperience', 'getLevel', 'getTime_work', 'getwk_form', 'getMajors'])
-    //         ->paginate(10);
-    //     $breadcrumbs = [
-    //         'Tìm kiếm việc làm'
-    //     ];
-    //     return view('client.search', [
-    //         'job' => $job,
-    //         'breadcrumbs' => $breadcrumbs,
-    //     ]);
-    // }
     public function searchMajors($id)
     {
         $job =  $this->job->where('majors_id', $id)

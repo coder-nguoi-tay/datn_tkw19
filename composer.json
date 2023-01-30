@@ -26,6 +26,8 @@
         "mservice/payment": "dev-master",
         "orangehill/iseed": "^3.0",
         "rennokki/laravel-eloquent-query-cache": "^3.3",
+        "smalot/pdfparser": "^2.3",
+        "spatie/pdf-to-text": "^1.52",
         "stripe/stripe-php": "^9.6",
         "twilio/sdk": "^6.41",
         "tymon/jwt-auth": "^1.0"

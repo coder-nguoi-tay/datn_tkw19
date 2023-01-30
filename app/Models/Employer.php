@@ -21,6 +21,7 @@ class Employer extends Model
         'user_id',
         'prioritize',
         'position',
+        'amount_job'
     ];
     public function getCompany()
     {

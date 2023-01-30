@@ -9,7 +9,7 @@
                 <div class="col-lg-12">
                     <div class="menu-full-width">
                         <div class="logo">
-                            <a href="{{ route('profile.index') }}"><img
+                            <a href="{{ route('index') }}"><img
                                     src="{{ asset('wp-content/themes/jobbox/assets/imgs/template/logoIT.png') }}"
                                     alt="logo"></a>
                         </div><!-- end logo -->
@@ -19,11 +19,11 @@
                                     <li>
                                         <a href="#">Lĩnh vực <i class="la la-angle-down"></i></a>
                                         <ul class="dropdown-menu-item">
-                                            {{-- @foreach ($majors as $item)
+                                            @foreach ($majors as $item)
                                                 <li><a
-                                                        href="{{ route('searchMajors', $item->id) }}">{{ $item->label }}</a>
+                                                        href="{{ route('searchMajors', $item->id) }}">{{ $item->name }}</a>
                                                 </li>
-                                            @endforeach --}}
+                                            @endforeach
                                         </ul>
                                     </li>
                                     <li>

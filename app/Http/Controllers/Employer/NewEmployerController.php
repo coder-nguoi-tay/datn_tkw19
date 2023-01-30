@@ -394,4 +394,57 @@ class NewEmployerController extends BaseController
             ]
         );
     }
+    public function topNew(Request $request)
+    {
+        $date = getdate();
+        $m = $date['mon'];
+        $y = $date['year'];
+        $all_day = cal_days_in_month(CAL_GREGORIAN, $m, $y);
+        $mon = Carbon::parse(new Carbon('last day of last month'))->format('d');
+        $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
+        $job = $this->job->where([
+            ['job.employer_id', $checkCompany->id],
+        ])->where(function ($q) use ($request) {
+            if (!empty($request['start_date'])) {
+                $q->whereDate('job.job_time', '>=', $request['start_date']);
+            }
+            if (!empty($request['end_date'])) {
+                $q->whereDate('job.end_job_time', '<=', $request['end_date']);
+            }
+            if (!empty($request['expired'])) {
+                if ($request['expired'] == 1) {
+                    $q->where('job.expired', 0);
+                } else {
+                    $q->where('job.expired', 1);
+                }
+            }
+            if (!empty($request['free_word'])) {
+                $q->orWhere($this->escapeLikeSentence('job.title', $request['free_word']));
+            }
+        })->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill', 'AllCv'])
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->select('job.*', 'company.logo as logo')
+            ->where('job.package_id_position', 1)
+            ->Orderby('job.expired', 'ASC')
+            ->get();
+        $breadcrumbs = [
+            [
+                'url' => route('employer.new.index'),
+                'name' => 'Đăng tin'
+            ],
+            'Bài viết đăng top',
+
+        ];
+        return view('employer.new.top', [
+            'job' => $job,
+            'all_day' => $all_day,
+            'm' => $m,
+            'mon' => $mon,
+            'title' => 'Tin Tuyển Dụng',
+            'checkCompany' => $checkCompany,
+            'request' => $request,
+            'breadcrumbs' => $breadcrumbs,
+        ]);
+    }
 }

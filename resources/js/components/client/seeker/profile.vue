@@ -296,28 +296,6 @@ export default {
     if (this.data.cv) {
       this.cv = this.data.cv
     }
-    console.log(this.cv)
-    // let array = []
-    // this.Media = this.data.user.get_profile_use
-    //   ? this.data.user.get_profile_use.images
-    //   : 1
-    // if (this.data.getskill.getskill != null) {
-    //   this.data.getskill.getskill.map((e) => {
-    //     this.value.push({
-    //       value: e.id,
-    //       label: e.name
-    //     })
-    //     array.push(e.id)
-    //     this.skill = array
-    //   })
-    // }
-
-    // this.data.skill.map((e) => {
-    //   this.options.push({
-    //     value: e.id,
-    //     label: e.label
-    //   })
-    // })
     let messError = {
       en: {
         fields: {
