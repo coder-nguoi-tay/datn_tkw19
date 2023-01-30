@@ -6,6 +6,7 @@ use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\CheckLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
+use App\Models\location;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -136,6 +137,8 @@ class LoginController extends BaseController
                     'data' => 'Đăng ký tài khoản thành công',
                     'status' => StatusCode::OK
                 ]);
+                   
+
             }
         }
         return response()->json([

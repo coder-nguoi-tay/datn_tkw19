@@ -158,6 +158,10 @@ Route::get(
     'detail-company/{id}',
     [DetailCompanyController::class, 'detailCompany']
 )->name('detail.company');
+Route::get(
+    'GetCompany',
+    [DetailCompanyController::class, 'index']
+)->name('getCompany');
 
 
 Route::get('blog', [NewsController::class, 'index'])->name('blog');
