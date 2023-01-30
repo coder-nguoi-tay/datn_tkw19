@@ -49,7 +49,7 @@
                                             </search-cv-date>
                                         </div>
                                         <br>
-                                        <br>    
+                                        <br>
                                         <table class="table text-center mt-3">
                                             <thead>
                                                 <tr>
@@ -80,7 +80,7 @@
                                                                 <div class="bread-action pt-0">
                                                                     <ul class="info-list">
                                                                         <li class="d-inline-block"><a
-                                                                                href="{{ route('employer.package.show', $item->id) }}"><i
+                                                                                href="{{ route('employer.package.show', $item->lever) }}"><i
                                                                                     class="la la-eye" data-toggle="tooltip"
                                                                                     data-placement="top" title=""
                                                                                     data-original-title="Xem chi tiết gói cước"></i></a>

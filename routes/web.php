@@ -77,9 +77,11 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::post('new/update/{id}', [NewEmployerController::class, 'update'])->name('new.update');
     Route::post('new/change-status/{id}', [NewEmployerController::class, 'changeStus'])->name('new.changeStus');
     Route::get('new/show-all-cv/{id}', [NewEmployerController::class, 'detailNew'])->name('new.showdetai');
+    Route::get('new/top-new', [NewEmployerController::class, 'topNew'])->name('new.topNew');
+
     //
     Route::resource('package', EmployerPackageController::class);
-    Route::post('package/{id}', [EmployerPackageController::class, 'show'])->name('package.show');
+    Route::get('package/{id}', [EmployerPackageController::class, 'show'])->name('package.show');
     Route::post('package/update-time/{id}', [EmployerPackageController::class, 'updateTimePayment'])->name('package.updateTimePayment');
     Route::post('package/payment', [EmployerPackageController::class, 'Payment'])->name('package.payment');
     Route::get('package/payment/return', [EmployerPackageController::class, 'vnpayReturn'])->name('package.payment.return');

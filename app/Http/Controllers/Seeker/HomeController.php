@@ -22,11 +22,13 @@ use App\Models\UploadCv;
 use App\Models\User;
 use App\Models\Wage;
 use App\Models\WorkingForm;
-use Database\Seeders\SkillSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Smalot\PdfParser\Parser;
+use Smalot\PdfParser\Config;
+
 
 use function GuzzleHttp\Promise\all;
 
