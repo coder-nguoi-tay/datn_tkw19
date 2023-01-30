@@ -172,7 +172,15 @@
                                                 </div>
                                                 <!--row-->
                                             </div>
+                                        @endforeach
                                     </div>
-                                    </section>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 @endsection

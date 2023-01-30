@@ -158,9 +158,9 @@ Route::get(
     [DetailCompanyController::class, 'detailCompany']
 )->name('detail.company');
 Route::get(
-    'GetCompany',
+    'Cong-Ty',
     [DetailCompanyController::class, 'index']
-)->name('getCompany');
+)->name('CongTy');
 
 
 Route::get('blog', [NewsController::class, 'index'])->name('blog');
