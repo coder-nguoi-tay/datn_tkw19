@@ -3966,6 +3966,9 @@ select.form-control {
     border-color: #e5e5e5;
 }
 
+.s00{
+    padding: 10px 15px !important;
+}
 .form-control.form-control.lg {
     height: 60px !important;
     padding: 10px 15px;

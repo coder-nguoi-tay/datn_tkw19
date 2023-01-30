@@ -87,17 +87,19 @@
                                         <img
                                           v-if="filePreview"
                                           :src="filePreview"
-                                          class="img-fluid img-show"
+                                          class="img-fluid img-show border"
                                           style="width: 200px; height: 200px"
                                         />
                                       </div>
                                     </div>
-                                    <img
-                                      v-if="Image != null"
-                                      :src="'http://127.0.0.1:8000/' + Image"
-                                      class="img-fluid"
-                                      style="width: 200px; height: 200px"
-                                    />
+                                    <div class=" text-center border" style="width: 220px; height: 220px; margin-left: 20px;">
+                                      <img
+                                        v-if="Image != null"
+                                        :src="'http://127.0.0.1:8000/' + Image"
+                                        class="img-fluid"
+                                        style="width: 200px; height: 200px; margin-top: 10px;"
+                                      />
+                                    </div>
                                   </div>
                                   <ErrorMessage class="error" name="images" />
                                   <input
