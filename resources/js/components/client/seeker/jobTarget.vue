@@ -2,7 +2,7 @@
   <section style="background-color: #f4f5f7">
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center">
-        <div class="col col-lg-10 mb-4 mb-lg-0">
+        <div class="col col-lg-11 mb-4 mb-lg-0">
           <div class="card mb-3" style="border-radius: 0.5rem">
             <VeeForm
               as="div"
@@ -20,13 +20,24 @@
                 <div class="g-0">
                   <div class="col-md-12">
                     <div class="card-body">
-                      <h6 class="text-center">
-                        Bạn vui lòng hoàn thiện các thông tin dưới đây
+                      <h6>
+                        NHỮNG THUẬN LỢI KHI BẠN CẬP NHẬT THÔNG TIN TÌM VIỆC ?
                       </h6>
-                      <p class="text-center">(*) Các thông tin bắt buộc</p>
+                      <p style="font-size: 15px">- Tạo điều kiện cho nhà tuyển dụng dễ tìm thấy bạn.</p>
+                      <p style="font-size: 15px; margin-top: -10px !important ">- Được gợi ý các công việc phù hợp với bạn.</p>
+
                       <hr class="mt-0 mb-4" />
                       <div class="row pt-1">
-                        <div class="col-md-12 " style="color: #3C65F5; font-weight: 550;">KINH NGHIỆM THỰC TẾ</div>
+                        <h6 class="text-center">
+                          Bạn vui lòng hoàn thiện các thông tin dưới đây
+                        </h6>
+                        <p class="text-center">(*) Các thông tin bắt buộc</p>
+                        <div
+                          class="col-md-12"
+                          style="color: #3c65f5; font-weight: 550"
+                        >
+                          KINH NGHIỆM THỰC TẾ
+                        </div>
                         <br />
                         <br />
                         <div class="mb-3 row">
@@ -226,7 +237,7 @@
                       <div class="col-xl-12 col-lg-12">
                         <div class="form-group">
                           <button
-                            style="background: #3C65F5 !important;"
+                            style="background: #3c65f5 !important"
                             type="submit"
                             class="
                               btn btn-md

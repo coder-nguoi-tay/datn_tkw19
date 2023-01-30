@@ -15,11 +15,11 @@
                                     <li>
                                         <a href="#">Lĩnh vực <i class="la la-angle-down"></i></a>
                                         <ul class="dropdown-menu-item">
-                                            @foreach ($majors as $item)
+                                            {{-- @foreach ($majors as $item)
                                                 <li><a
                                                         href="{{ route('searchMajors', $item->id) }}">{{ $item->label }}</a>
                                                 </li>
-                                            @endforeach
+                                            @endforeach --}}
                                         </ul>
                                     </li>
                                     <li>

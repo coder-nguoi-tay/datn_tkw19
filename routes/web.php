@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ResetPasswordController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\DetailCompanyController;
 use App\Http\Controllers\Client\HomeController as ClientHomeController;
+use App\Http\Controllers\Client\JobSuggestController;
 use App\Http\Controllers\Client\LoginController as ClientLoginController;
 use App\Http\Controllers\Client\NewsController;
 use App\Http\Controllers\Employer\HomeEmployerController;
@@ -122,6 +123,7 @@ Route::get('register-client', [ClientLoginController::class, 'registerClient'])-
 // seeker
 Route::middleware('user')->group(function () {
     Route::resource('profile', SeekerHomeController::class);
+    Route::resource('goi-y-viec-lam', JobSuggestController::class);
     Route::post('profile/update-profile', [SeekerHomeController::class, 'updatePrifileUser'])->name('profile.updateProfile');
     Route::post('profile/update-title-cv/{id}', [SeekerHomeController::class, 'updateTitleCv']);
     Route::get('profile/delete-cv/{id}', [SeekerHomeController::class, 'deleteCv']);
