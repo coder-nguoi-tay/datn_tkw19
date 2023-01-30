@@ -3,11 +3,7 @@
     <div class="card login-card">
       <div class="row no-gutters">
         <div class="col-md-6">
-          <img
-            src="assets/img/login.jpg"
-            alt="login"
-            class="login-card-img"
-          />
+          <img src="assets/img/login.jpg" alt="login" class="login-card-img" />
         </div>
         <div class="col-md-6">
           <div class="card-body">
@@ -16,79 +12,36 @@
               <br />
               <p class="login-card-description">Chào mừng bạn đến với ITWork</p>
             </div>
-            <VeeForm
-              as="div"
-              v-slot="{ handleSubmit }"
-              @invalid-submit="onInvalidSubmit"
-            >
-              <form
-                @submit="handleSubmit($event, onSubmit)"
-                ref="formData"
-                method="POST"
-              >
+            <VeeForm as="div" v-slot="{ handleSubmit }" @invalid-submit="onInvalidSubmit">
+              <form @submit="handleSubmit($event, onSubmit)" ref="formData" method="POST">
+                <input type="hidden" :value="csrfToken" name="_token" />
+                <input type="hidden" :value="1" name="form" />
                 <div class="form-group">
-                  <label for="name" class="form-label"
-                    >Họ và Tên<span class="required-label">*</span></label
-                  >
-                  <Field
-                    type="text"
-                    name="name"
-                    rules="required|max:255"
-                    id="name"
-                    class="form-control"
-                    placeholder="Nhập họ và tên"
-                  />
+                  <label for="name" class="form-label">Họ và Tên<span class="required-label">*</span></label>
+                  <Field type="text" name="name" v-model="model.name" rules="required|max:255" class="form-control"
+                    placeholder="Nhập họ và tên" />
                   <ErrorMessage class="error" name="name" />
                 </div>
                 <div class="form-group">
-                  <label for="email" class="form-label"
-                    >Email<span class="required-label">*</span></label
-                  >
-                  <Field
-                    type="text"
-                    name="email"
-                    rules="required|email"
-                    id="email"
-                    class="form-control"
-                    placeholder="Email address"
-                  />
+                  <label for="email" class="form-label">Email<span class="required-label">*</span></label>
+                  <Field type="text" name="email" v-model="model.email" rules="required|email" id="email"
+                    class="form-control" placeholder="Email address" />
                   <ErrorMessage class="error" name="email" />
                 </div>
                 <div class="form-group mb-4">
-                  <label for="password" class="form-label"
-                    >Mật khẩu<span class="required-label">*</span></label
-                  >
-                  <Field
-                    type="password"
-                    name="password"
-                    rules="required|min:8|max:16"
-                    id="password"
-                    class="form-control"
-                    placeholder="***********"
-                  />
+                  <label for="password" class="form-label">Mật khẩu<span class="required-label">*</span></label>
+                  <Field type="password" name="password" v-model="model.password" rules="required|min:8|max:16"
+                    id="password" class="form-control" placeholder="***********" />
                   <ErrorMessage class="error" name="password" />
                 </div>
-                <div class="form-group mb-4">
-                  <label for="password" class="form-label"
-                    >Nhập lại mật khẩu<span class="required-label">*</span></label
-                  >
-                  <Field
-                    type="password"
-                    name="password"
-                    rules="required|min:8|max:16"
-                    id="password"
-                    class="form-control"
-                    placeholder="***********"
-                  />
+                <!-- <div class="form-group mb-4">
+                  <label for="password" class="form-label">Nhập lại mật khẩu<span
+                      class="required-label">*</span></label>
+                  <Field type="password" name="password" rules="required|min:8|max:16" id="password"
+                    class="form-control" placeholder="***********" />
                   <ErrorMessage class="error" name="password" />
-                </div>
-                <input
-                  name="login"
-                  id="login"
-                  class="btn btn-block login-btn mb-4"
-                  type="submit"
-                  value="Đăng ký"
-                />
+                </div> -->
+                <button class="btn btn-block login-btn mb-4">Đăng kí</button>
               </form>
             </VeeForm>
           </div>
@@ -126,11 +79,12 @@ export default {
   props: ['data'],
   data: function () {
     return {
-      csrfToken: Laravel.csrfToken
-     
+      csrfToken: Laravel.csrfToken,
+      model: {},
+      msgSucsess: ''
     }
   },
-  mounted() {},
+  mounted() { },
   created() {
     let messError = {
       en: {
@@ -156,7 +110,7 @@ export default {
     })
   },
   methods: {
-    onInvalidSubmit({ values, errors, results }) {
+    onInvalidSubmit({ errors }) {
       let firstInputError = Object.entries(errors)[0][0]
       this.$el.querySelector('input[name=' + firstInputError + ']').focus()
       $('html, body').animate(
@@ -168,7 +122,28 @@ export default {
     },
 
     onSubmit() {
-      this.$refs.formData.submit()
+      let that = this
+      let url = this.data.urlRegister
+      axios
+        .post(url, {
+          name: that.model.name,
+          email: that.model.email,
+          password: that.model.password
+        })
+        .then(function (data) {
+          console.log(data)
+          if (data.data.status == 403) {
+            that.msgLogin = data.data.data
+          } else {
+            // that.msgLogin = ''
+            that.msgSucsess = data.data.data
+            // that.checkForm = 1
+          }
+          window.location.href = '/login' 
+        })
+        .catch(function () {
+          location.reload()
+        })
     }
   }
 }

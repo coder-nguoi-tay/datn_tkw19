@@ -6,7 +6,7 @@
                             <h3>ITWORK</h3>
                         </div>
                         <div id="block-13" class="widget widget_block widget_text">
-                            <p class="small mt-20 mb-20">ITOWORK là trang tuyển dụng it nhanh chóng và 
+                            <p class="small mt-20 mb-20">ITOWORK là trang tuyển dụng it nhanh chóng và
                                 tiện lợi. Với mong muốn giúp mọi người có thể tìm kiếm công việc phù hợp với bản thân
                             </p>
                         </div>
@@ -103,6 +103,15 @@
                                 </ul>
                             </nav>
                         </div>
+                    </div>
+                    <div class="footer-col-6 col-md-3 col-sm-12">
+                        <div id="block-10" class="widget widget_block">
+                            <h6 class="mb-20">Download App</h6>
+                        </div>
+                        <div id="block-11" class="widget widget_block">
+                            <p class="small">Download our Apps and get extra 15% Discount on your first Order…!</p>
+                        </div>
+
                     </div>
                 </div><!-- .row -->
             </div><!-- .container -->

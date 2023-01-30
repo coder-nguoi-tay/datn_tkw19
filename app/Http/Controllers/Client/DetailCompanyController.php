@@ -17,9 +17,15 @@ class DetailCompanyController extends Controller
      */
     public function index()
     {
-        return view('client.detail-company.index', [
-            'title' => 'Thông tin công ty ',
-            'majors ' => Majors::all(),
+        // return view(
+        //     'client.company.getCompany',[
+        //     'company' => Company::all()
+        //     ]
+        //     // 'title' => 'Thông tin công ty ',
+        //     // 'majors ' => Majors::all(),
+        // );
+        return view('client.company.getCompany', [
+            'company' => Company::all()
         ]);
     }
 

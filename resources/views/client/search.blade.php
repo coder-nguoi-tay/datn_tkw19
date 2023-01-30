@@ -15,7 +15,7 @@
                         <div class="block-banner text-center">
                             <h3 class="wow animate__ animate__fadeInUp animated"
                                 style="visibility: visible; animation-name: fadeInUp;"><span class="color-brand-2">
-                                    Công việc</span> Phù hợp</h3>
+                                    {{ count($job) }} Công việc</span> Phù hợp</h3>
                         </div>
                     </div>
                 </section>
