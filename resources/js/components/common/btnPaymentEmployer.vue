@@ -107,7 +107,8 @@ export default {
             $('.loading-div').removeClass('hidden')
             axios
               .post(that.deleteAction, {
-                _token: Laravel.csrfToken
+                _token: Laravel.csrfToken,
+                total: that.getSkill
               })
               .then(function (response) {
                 that.flagShowLoader = false

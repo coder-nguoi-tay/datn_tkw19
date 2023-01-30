@@ -27,12 +27,12 @@
                                                 <div class="elementor-widget-container">
                                                     <h1
                                                         class="control-heading-title text-42 color-white wow animate__ animate__fadeInUp animated mb-0">
-                                                        Trang tìm kiếm việc làm IT 
+                                                        Trang tìm kiếm việc làm IT
                                                         <!-- <span class="color-green">cho Tuyển dụng hoặc</span> -->
-                                                         <br class="d-none d-lg-block">
+                                                        <br class="d-none d-lg-block">
                                                         <span class="color-green">nhanh chóng</span>
-                                                        và 
-                                                        <span class="color-green">hiệu quả</span> 
+                                                        và
+                                                        <span class="color-green">hiệu quả</span>
                                                 </div>
                                             </div>
                                             <div class="elementor-element elementor-element-7b9da113 mb-0 elementor-widget elementor-widget-title"
@@ -715,7 +715,7 @@
         </section>
     </main>
     @if (Auth::guard('user')->check())
-        @if ($user->getProfileUse == null)
+        @if (!$user->getProfileUse == null)
             <div class="modal fade" id="checkmodalProfile" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">

@@ -169,9 +169,25 @@ class ManagerUploadCvController extends BaseController
     {
         //
     }
-    public function changeStatus($id)
+    public function changeStatus($id, Request $request)
     {
         try {
+            //tk
+            $account = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
+            if (!$account) {
+                return response()->json([
+                    'message' => 'Bạn hay đăng ký tài khoản trước khi sử dụng dịch vụ của chúng tôi!',
+                    'status' => StatusCode::FORBIDDEN,
+                ], StatusCode::OK);
+            }
+            if ($account->surplus < $request->total) {
+                return response()->json([
+                    'message' => 'Số dư của bạn không đủ để sử dụng dịch vụ của chúng tôi!',
+                    'status' => StatusCode::FORBIDDEN,
+                ], StatusCode::OK);
+            }
+            $account->surplus -= $request->total;
+            $account->save();
             //muacv
             $upcv = ProfileUserCv::where('id', $id)->first();
             $upcv->status = Auth::guard('user')->user()->id;
@@ -179,20 +195,19 @@ class ManagerUploadCvController extends BaseController
             //lsgd
             $paymentHistory = new PaymentHistoryEmployer();
             $paymentHistory->user_id = Auth::guard('user')->user()->id;
-            $paymentHistory->price = 30000;
+            $paymentHistory->price = $request->total;
             $paymentHistory->desceibe = 'Thanh toán mua CV ' . $upcv->name;
             $paymentHistory->form = '';
             $paymentHistory->status = 1;
             $paymentHistory->save();
-            //tk
-            $account = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
-            $account->surplus -= 30000;
-            $account->save();
+
+
             return response()->json([
                 'message' => 'Mua cv thành công',
                 'status' => StatusCode::OK,
             ], StatusCode::OK);
         } catch (\Throwable $th) {
+            DB::rollBack();
             return response()->json([
                 'message' => 'Đã có một lỗi không xác định sảy ra',
                 'status' => StatusCode::FORBIDDEN,
