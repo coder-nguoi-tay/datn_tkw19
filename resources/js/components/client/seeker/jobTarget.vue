@@ -310,11 +310,12 @@ export default {
   },
 
   created() {
+    console.log(this.data);
     let array = []
     this.Media = this.data.user.get_profile_use
       ? this.data.user.get_profile_use.images
       : 1
-    if (this.data.getskill.getskill != null) {
+    if (this.data.getskill ) {
       this.data.getskill.getskill.map((e) => {
         this.value.push({
           value: e.id,
@@ -406,6 +407,7 @@ export default {
     },
     onSubmit() {
       this.$refs.formData.submit()
+      
     }
   }
 }

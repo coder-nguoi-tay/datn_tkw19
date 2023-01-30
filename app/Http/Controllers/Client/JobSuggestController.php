@@ -6,7 +6,6 @@ use App\Http\Controllers\BaseController;
 use App\Models\Company;
 use App\Models\Employer;
 use App\Models\Experience;
-
 use App\Models\Job;
 use App\Models\Jobseeker;
 use App\Models\Jobskill;
@@ -81,6 +80,7 @@ class JobSuggestController extends BaseController
             ->first();
         $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
         $cv = UploadCv::where('user_id', Auth::guard('user')->user()->id)->get();
+        // dd($getskill);
         return view('client.goi-y.index', [
             'title' => 'Gợi ý việc làm',
             'breadcrumbs' => $breadcrumbs,
