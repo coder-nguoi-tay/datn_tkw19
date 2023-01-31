@@ -9,7 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\StatusCode;
 use App\Http\Requests\RegisterAdminRequest;
+use App\Models\Job;
 use App\Models\Majors;
+use App\Models\News;
+use App\Models\PaymentHistoryEmployer;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends BaseController
@@ -27,8 +31,26 @@ class HomeController extends BaseController
     }
     public function index()
     {
+        $total_money = PaymentHistoryEmployer::where('status', 1)
+            ->sum('price');
+        $total_seeker = User::select('id')->where('status', 2)
+            ->where('role_id', '=', 1)
+            ->count('id');
+        $total_employer = User::select('id')->where('status', 2)
+            ->where('role_id', '=', 2)
+            ->count('id');
+        $total_job = Job::where('status', 1)->count('id');
+
+        $payment_history = PaymentHistoryEmployer::where('status', 1)->get();
+        $user_seeker = User::select('*')->where('status', 2)->where('role_id', '=', 1)->get();
+        $user_employer = User::select('*')->where('status', 2)->where('role_id', '=', 2)->get();
+
         return view('admin.dashboard', [
-            'title' => 'Admin'
+            'title' => 'Admin',
+            'total_money' => $total_money,
+            'total_seeker' => $total_seeker,
+            'total_employer' => $total_employer,
+            'total_job' => $total_job,
         ]);
     }
 
@@ -93,5 +115,4 @@ class HomeController extends BaseController
     {
         //
     }
-  
 }
