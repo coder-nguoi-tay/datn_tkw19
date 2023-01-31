@@ -715,7 +715,7 @@
         </section>
     </main>
     @if (Auth::guard('user')->check())
-        @if (!$user->getProfileUse == null)
+        @if ($user->getProfileUse == null)
             <div class="modal fade" id="checkmodalProfile" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">

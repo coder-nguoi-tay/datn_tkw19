@@ -65,6 +65,40 @@
                             {{ data.user.name }}
                           </h4>
                         </div>
+                        <div class="col-md-12">
+                          <h4 class="profile-fullname text-center">
+                            <Toggle
+                              name="status_profile"
+                              v-model="status_profile"
+                              class="toggle-flag"
+                              on-label=""
+                              off-label=""
+                              id="status_profile"
+                              @change="ChangeStatus"
+                            />
+                            <label for="">Bật tìm kiếm việc làm</label>
+                          </h4>
+                        </div>
+                        <div class="col-xs-12">
+                          <p
+                            class="
+                              job-waiting-description
+                              text-gray
+                              alert-secondary
+                              p-3
+                            "
+                            id="job-waiting-text"
+                          >
+                            <span style="color: red">Lưu ý</span>: Nếu bạn muốn
+                            nhà tuyển dụng có thể nhìn thấy thông tin của bạn
+                            sớm hơn thì chúng tôi khuyên cáo bạn nên điền đầy đủ
+                            thông tin trong phần
+                            <a href="/goi-y-viec-lam" style="color: blue"
+                              >Gợi ý việc làm</a
+                            >
+                            để nhà tuyển dụng có thể tiếp cận bạn sớm hơn
+                          </p>
+                        </div>
                       </div>
                     </form>
                   </VeeForm>
@@ -281,18 +315,18 @@ export default {
       baseUrl: Laravel.baseUrl,
       model: {},
       filePreview: '',
-      checkImage: '',
-      errmsgCheckImage: '',
-      Media: '',
-      deleteImage: '',
       cv: [],
       checkTitle: true,
       checkTrueTitle: '',
-      nametitle: ''
+      nametitle: '',
+      status_profile: ''
     }
   },
 
   created() {
+    if (this.data.checkProfile == 1) {
+      this.status_profile = true
+    }
     if (this.data.cv) {
       this.cv = this.data.cv
     }
@@ -312,6 +346,56 @@ export default {
     })
   },
   methods: {
+    ChangeStatus(e) {
+      let that = this
+      if (e == true) {
+        axios
+          .post(that.data.changeStatusProfile, {
+            _token: Laravel.csrfToken,
+            data: 1
+          })
+          .then((a) => {
+            const notyf = new Notyf({
+              duration: 6000,
+              position: {
+                x: 'right',
+                y: 'bottom'
+              },
+              types: [
+                {
+                  type: 'error',
+                  duration: 8000,
+                  dismissible: true
+                }
+              ]
+            })
+            return notyf.success(a.data.message)
+          })
+      } else {
+        axios
+          .post(that.data.changeStatusProfile, {
+            _token: Laravel.csrfToken,
+            data: 0
+          })
+          .then((a) => {
+            const notyf = new Notyf({
+              duration: 6000,
+              position: {
+                x: 'right',
+                y: 'bottom'
+              },
+              types: [
+                {
+                  type: 'error',
+                  duration: 8000,
+                  dismissible: true
+                }
+              ]
+            })
+            return notyf.success(a.data.message)
+          })
+      }
+    },
     getHumanDate: function (date) {
       return moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY')
     },

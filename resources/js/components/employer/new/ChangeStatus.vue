@@ -6,6 +6,7 @@
     on-label=""
     off-label=""
     id="status_profile"
+    @change="ChangeStatus"
   />
 </template>
 
@@ -15,12 +16,12 @@ import '@vueform/toggle/themes/default.css'
 import axios from 'axios'
 import { Notyf } from 'notyf'
 export default {
-  props: ['data', 'route'],
+  props: ['data'],
   created() {
-    if (this.data == 0) {
-      this.status_profile = false
-    } else {
+    if (this.data == true) {
       this.status_profile = true
+    } else {
+      this.status_profile = false
     }
   },
   data: function () {
@@ -34,6 +35,7 @@ export default {
   },
   methods: {
     ChangeStatus(e) {
+      console.log(e)
       let that = this
       if (e == true) {
         axios

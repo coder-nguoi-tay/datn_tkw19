@@ -15,6 +15,7 @@ use App\Models\Lever;
 use App\Models\location;
 use App\Models\Majors;
 use App\Models\Profession;
+use App\Models\ProfileUserCv;
 use App\Models\SeekerSkill;
 use App\Models\Skill;
 use App\Models\Timework;
@@ -89,7 +90,6 @@ class HomeController extends BaseController
             ->first();
         $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
         $cv = UploadCv::where('user_id', Auth::guard('user')->user()->id)->get();
-
         return view('client.seeker.profile', [
             'user' => $user,
             'breadcrumbs' => $breadcrumbs,
@@ -365,5 +365,23 @@ class HomeController extends BaseController
                 ['user_id', Auth::guard('user')->user()->id],
             ])->first()
         ]);
+    }
+    public function updateStatusProfile(Request $request)
+    {
+        try {
+            $profile = ProfileUserCv::where('user_id', Auth::guard('user')->user()->id)->first();
+            $profile->status_profile = $request['data'];
+            $profile->save();
+            return response()->json([
+                'message' => 'Cập nhật thành công',
+                'status' => StatusCode::OK
+            ], StatusCode::OK);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json([
+                'message' => 'Đã có một lỗi xảy ra',
+                'status' => StatusCode::FORBIDDEN,
+            ], StatusCode::FORBIDDEN);
+        }
     }
 }

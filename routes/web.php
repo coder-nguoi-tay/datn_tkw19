@@ -78,6 +78,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::post('new/change-status/{id}', [NewEmployerController::class, 'changeStus'])->name('new.changeStus');
     Route::get('new/show-all-cv/{id}', [NewEmployerController::class, 'detailNew'])->name('new.showdetai');
     Route::get('new/top-new', [NewEmployerController::class, 'topNew'])->name('new.topNew');
+    Route::post('new/top-new', [NewEmployerController::class, 'upTopNew'])->name('new.uopTopNew');
 
     //
     Route::resource('package', EmployerPackageController::class);
@@ -125,6 +126,7 @@ Route::get('register-client', [ClientLoginController::class, 'registerClient'])-
 // seeker
 Route::middleware('user')->group(function () {
     Route::resource('profile', SeekerHomeController::class);
+    Route::post('profile/update-status-profile', [SeekerHomeController::class, 'updateStatusProfile'])->name('profile.updateStatusProfile');
     Route::resource('goi-y-viec-lam', JobSuggestController::class);
     Route::post('profile/update-profile', [SeekerHomeController::class, 'updatePrifileUser'])->name('profile.updateProfile');
     Route::post('profile/update-title-cv/{id}', [SeekerHomeController::class, 'updateTitleCv']);
