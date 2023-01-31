@@ -97,7 +97,7 @@
                                         v-if="Image != null"
                                         :src="'http://127.0.0.1:8000/' + Image"
                                         class="img-fluid"
-                                        style="width: 200px; height: 200px; margin-top: 10px;"
+                                        style="width: 200px; height: 200px; margin-top: 10px; object-fit: cover"
                                       />
                                     </div>
                                   </div>
