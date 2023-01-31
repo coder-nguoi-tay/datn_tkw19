@@ -88,7 +88,7 @@
                                           v-if="filePreview"
                                           :src="filePreview"
                                           class="img-fluid img-show border"
-                                          style="width: 200px; height: 200px"
+                                          style="width: 200px; height: 200px; ob"
                                         />
                                       </div>
                                     </div>

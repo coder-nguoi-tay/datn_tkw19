@@ -31,10 +31,12 @@
                             <div class="billing-content pb-0">
                                 <div class="manage-job-wrap">
                                     <div class="table-responsive">
-                                        <search-cv-date :url="{{ json_encode(route('employer.new.showdetai', $id)) }}"
-                                            :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
-                                            :data="{{ json_encode(2) }}">
-                                        </search-cv-date>
+                                        <div style="float: right !important">
+                                            <search-cv-date :url="{{ json_encode(route('employer.new.showdetai', $id)) }}"
+                                                :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
+                                                :data="{{ json_encode(2) }}">
+                                            </search-cv-date>
+                                        </div>
                                         <table class="table text-center mt-3">
                                             <thead>
                                                 <tr>
