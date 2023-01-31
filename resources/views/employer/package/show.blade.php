@@ -38,32 +38,26 @@
                                             </h5>
                                             <div class="row">
 
-                                                <div class="col-md-6 d-flex">
+                                                <div class="col-md-12  d-flex">
                                                     <div class="sidebar-icon-item">
                                                         <img src="../../wp-content/themes/jobbox/assets/imgs/page/job-single/salary.svg"
                                                             alt="Salary">
                                                     </div>
-                                                    <div class="sidebar-text-info ml-10">
-                                                        <span class="text-description salary-icon mb-10"
-                                                            style="font-size: 24px;">Giá:
+                                                    <div class="sidebar-text-info " style="width: 100%;">
+                                                        <span class=" mb-10"
+                                                            style="font-size: 24px; width:  100% !important;">Giá:
                                                             {{ number_format($package->price) }}đ</span>
-                                                        <strong class="small-heading"></strong>
+
                                                     </div>
                                                 </div>
 
-                                            </div>
-
-
-                                            <div class="row mt-25">
-
-                                                <div class="col-md-6 d-flex ">
+                                                <div class="col-md-12 d-flex ">
                                                     <div class="sidebar-icon-item">
                                                         <img src="../../wp-content/themes/jobbox/assets/imgs/page/job-single/job-type.svg"
                                                             alt="Job type">
                                                     </div>
-                                                    <div class="sidebar-text-info ml-10">
-                                                        <span class="text-description jobtype-icon mb-10"
-                                                            style="font-size: 24px;">Thời
+                                                    <div class="sidebar-text-info " style="width: 100%;">
+                                                        <span class=" mb-10" style="font-size: 24px; width: 100%;">Thời
                                                             gian:@if ($package->lever_package)
                                                                 @if ($package->lever_package == 1)
                                                                     1 ngày
@@ -74,22 +68,27 @@
                                                                 @endif
                                                             @endif
                                                         </span>
-                                                        <strong class="small-heading"></strong>
+
 
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6 d-flex">
+                                                <div class="col-md-12  d-flex">
                                                     <div class="sidebar-icon-item">
                                                         <img src="../../wp-content/themes/jobbox/assets/imgs/page/job-single/updated.svg"
                                                             alt="Updated">
                                                     </div>
-                                                    <div class="sidebar-text-info ml-10" style="width: 200px !important;">
-                                                        <span class="text-description jobtype-icon mb-10 "
-                                                            style="font-size: 24px;">Ngày
+                                                    <div class="sidebar-text-info ml-10" style="width: 100%;">
+                                                        <span class="mb-10" style="font-size: 24px; width: 100%;">Ngày
                                                             đăng: {{ $package->created_at }}</span>
-                                                        <strong class="small-heading"></strong>
+
                                                     </div>
                                                 </div>
+
+                                            </div>
+
+
+                                            <div class="row mt-25">
+
                                             </div>
                                             <br>
                                             <div class="content-single">
