@@ -34,7 +34,7 @@
                                     <div class="manage-job-header mt-3 mb-2">
                                         <div class="manage-job-count">
                                             <span class="font-weight-medium color-text-2 mr-1">{{ count($job) }}</span>
-                                            <span class="font-weight-medium">công việc được đăng</span>
+                                            <span class="font-weight-medium">công việc được hiển thị trên Top</span>
                                         </div>
                                         <div class="manage-job-count">
                                             <button class="btn btn-info font-weight-medium color-text-2 mr-1  text-white"
@@ -45,7 +45,7 @@
                                         </div>
                                     </div>
                                     <div style="float: right !important">
-                                        <search-cv-date :url="{{ json_encode(route('employer.new.index')) }}"
+                                        <search-cv-date :url="{{ json_encode(route('employer.new.topNew')) }}"
                                             :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}"
                                             :data="{{ json_encode(1) }}">
                                         </search-cv-date>
@@ -161,13 +161,25 @@
                 </div>
                 <div class="modal-body">
                     <br>
-                    <p style="text-align: center ">Số lượng bài bài viết được tải lên top của bạn phụ thuộc vào gói cước mà
-                        bạn đã mua <a href="">Xem chi tiết ở đây</a>
-                    </p>
+                    <form action="{{ route('employer.new.uopTopNew') }}" method="post"
+                        class="user-chosen-select-container">
+                        @csrf
+                        <p style="text-align: center ">Số lượng bài bài viết được tải lên top của bạn phụ thuộc vào gói cước
+                            mà
+                            bạn đã mua <a href="">Xem chi tiết ở đây</a>
+                        </p>
+                        <select name="job[]" id="" class="user-chosen-select" style="display: none" multiple>
+                            @foreach ($allJob as $item)
+                                <option value="{{ $item->id }}">{{ $item->title }}</option>
+                            @endforeach
+                        </select>
+                        <button class="btn btn-info font-weight-medium color-text-2 mr-1  text-white"
+                            style="margin-left: 36%; width: 140px; margin-top: 20px" type="submit">Cập nhật ngay
+                        </button>
+                    </form>
+
                 </div>
-                <a href="/employer/company" class="btn btn-primary"
-                    style="margin-left: 36%; width: 140px; margin-top: 20px">Cập nhật ngay
-                </a>
+
             </div>
         </div>
     </div>

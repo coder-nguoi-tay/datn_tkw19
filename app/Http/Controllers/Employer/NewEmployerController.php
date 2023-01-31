@@ -16,6 +16,7 @@ use App\Models\Jobskill;
 use App\Models\Lever;
 use App\Models\location;
 use App\Models\Majors;
+use App\Models\PaymentHistoryEmployer;
 use App\Models\Profession;
 use App\Models\SaveCv;
 use App\Models\Skill;
@@ -379,7 +380,7 @@ class NewEmployerController extends BaseController
         $breadcrumbs = [
             [
                 'url' => route('employer.new.index'),
-                'name' => 'Quản lý hồ sơ'
+                'name' => 'Quản lý đăng tin'
             ],
             'Hồ sơ đã nhận',
 
@@ -402,7 +403,7 @@ class NewEmployerController extends BaseController
         $all_day = cal_days_in_month(CAL_GREGORIAN, $m, $y);
         $mon = Carbon::parse(new Carbon('last day of last month'))->format('d');
         $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
-        $job = $this->job->where([
+        $jobNew = $this->job->where([
             ['job.employer_id', $checkCompany->id],
         ])->where(function ($q) use ($request) {
             if (!empty($request['start_date'])) {
@@ -428,6 +429,11 @@ class NewEmployerController extends BaseController
             ->where('job.package_id_position', 1)
             ->Orderby('job.expired', 'ASC')
             ->get();
+        $allJob = $this->job->where([
+            ['employer_id', $checkCompany->id],
+            ['expired', 0],
+            ['package_id_position', 0],
+        ])->select('id', 'title')->get();
         $breadcrumbs = [
             [
                 'url' => route('employer.new.index'),
@@ -437,7 +443,8 @@ class NewEmployerController extends BaseController
 
         ];
         return view('employer.new.top', [
-            'job' => $job,
+            'job' => $jobNew,
+            'allJob' => $allJob,
             'all_day' => $all_day,
             'm' => $m,
             'mon' => $mon,
@@ -446,5 +453,31 @@ class NewEmployerController extends BaseController
             'request' => $request,
             'breadcrumbs' => $breadcrumbs,
         ]);
+    }
+    public function upTopNew(Request $request)
+    {
+        $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
+        $allJob = $this->job->where([
+            ['employer_id', $checkCompany->id],
+            ['expired', 0],
+            ['package_id_position', 1],
+        ])->count();
+        if ($allJob == $checkCompany->amount_job) {
+            $this->setFlash(__('Số lượng bài viết được hiển thị trên top của bạn đã quá múc cho phép'), 'error');
+            return redirect()->back();
+        }
+        try {
+            foreach ($request->job as $value) {
+                $job = $this->job->where('id', $value)->first();
+                $job->package_id_position = 1;
+                $job->save();
+            }
+            $this->setFlash(__('Quá trình thực thiện thành công!'));
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->setFlash(__('Có một lỗi không mong muốn đã xảy ra'), 'error');
+            return redirect()->back();
+        }
     }
 }
