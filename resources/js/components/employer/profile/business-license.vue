@@ -56,7 +56,7 @@
                                       id="img-preview"
                                       @click="chooseImage()"
                                       role="button"
-                                      style="height: 200px; width: 200px"
+                                      style="height: 200px; width: 200px; object-fit: cover;"
                                       v-if="!Image"
                                     >
                                       <div style="display: none">
@@ -88,7 +88,7 @@
                                           v-if="filePreview"
                                           :src="filePreview"
                                           class="img-fluid img-show border"
-                                          style="width: 200px; height: 200px; ob"
+                                          style="width: 200px; height: 200px; object-fit: cover;"
                                         />
                                       </div>
                                     </div>
