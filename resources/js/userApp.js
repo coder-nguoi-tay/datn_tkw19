@@ -334,7 +334,6 @@ app.component('home-test', Abcxyz);
 import HomeSearch from "./components/client/home/search.vue";
 import axios from 'axios'
 app.component('home-search', HomeSearch);
-
 //job love
 import btnDeleteJobLove from './components/common/btnDeleteJobLove.vue'
 app.component('btn-delete-job-love', btnDeleteJobLove)
