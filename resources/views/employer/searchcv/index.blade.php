@@ -35,366 +35,159 @@
                         </div> --}}
                         <div class="billing-content">
                             <div class="contact-form-action">
-                                <form method="post" class="MultiFile-intercepted">
+                                <form method="get" action="{{ route('employer.tim-kiem-cv.index') }}"
+                                    class="MultiFile-intercepted">
                                     <div class="row">
                                         <div class="col-lg-4 column-lg-full">
                                             <div class="input-box">
-                                                <label class="label-text">Job Title</label>
+                                                <label class="label-text">Từ khóa</label>
                                                 <div class="form-group">
                                                     <span class="la la-briefcase form-icon"></span>
-                                                    <input class="form-control" type="text" name="text"
-                                                        placeholder="Enter job title">
+                                                    <input class="form-control" type="text" name="name"
+                                                        placeholder="Tìm kiếm"
+                                                        value="{{ !empty($request) ? $request->name : '' }}">
                                                 </div>
                                             </div>
                                         </div><!-- end col-lg-4 -->
                                         <div class="col-lg-4 column-lg-full">
                                             <div class="input-box">
-                                                <label class="label-text">Username</label>
-                                                <div class="form-group">
-                                                    <span class="la la-pencil-square-o form-icon"></span>
-                                                    <input class="form-control" type="text" name="text"
-                                                        placeholder="Username">
-                                                </div>
-                                            </div>
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 column-lg-full">
-                                            <div class="input-box">
-                                                <label class="label-text">Career Level</label>
+                                                <label class="label-text">Chọn nơi làm việc</label>
                                                 <div class="form-group user-chosen-select-container">
-                                                    <select class="user-chosen-select" style="display: none;">
-                                                        <option value="">Choose One</option>
-                                                        <option value="1">Manager</option>
-                                                        <option value="2">Officer</option>
-                                                        <option value="3">Mobile Designer</option>
-                                                        <option value="4">Web Designer</option>
-                                                        <option value="5">Product Designer</option>
-                                                        <option value="6">Creative Director</option>
-                                                        <option value="7">Art Director</option>
-                                                        <option value="8">Interaction Designer</option>
-                                                        <option value="9">Motion Designer</option>
-                                                        <option value="10">Illustrator</option>
-                                                        <option value="11">Animator</option>
-                                                        <option value="12">Student</option>
-                                                        <option value="13">Executive</option>
-                                                        <option value="14">Brand Designer</option>
-                                                        <option value="15">Mobile Developer</option>
-                                                        <option value="16">Front-end Developer</option>
-                                                        <option value="17">Content Writer</option>
-                                                        <option value="18">Other</option>
+                                                    <select class="user-chosen-select" style="display: none;"
+                                                        name="location">
+                                                        <option value="">Chọn nơi làm việc</option>
+                                                        @foreach ($location as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ $request->location == $item->id ? 'selected' : '' }}>
+                                                                {{ $item->label }}</option>
+                                                        @endforeach
                                                     </select>
-                                                    <div class="chosen-container chosen-container-single"
-                                                        style="width: 321px;" title=""><a class="chosen-single"
-                                                            tabindex="-1"><span>Choose One</span>
-                                                            <div><b></b></div>
-                                                        </a>
-                                                        <div class="chosen-drop">
-                                                            <div class="chosen-search"><input type="text"
-                                                                    autocomplete="off"></div>
-                                                            <ul class="chosen-results"></ul>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end form-group -->
-                                            </div>
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 column-lg-full">
-                                            <div class="input-box">
-                                                <label class="label-text">category</label>
-                                                <div class="form-group user-chosen-select-container">
-                                                    <select class="user-chosen-select" style="display: none;">
-                                                        <option value="">Select a category</option>
-                                                        <option value="1">All Category</option>
-                                                        <option value="2">Accounting / Finance</option>
-                                                        <option value="3">Education</option>
-                                                        <option value="4">Design &amp; Creative</option>
-                                                        <option value="5">Health Care</option>
-                                                        <option value="6">Engineer &amp; Architects</option>
-                                                        <option value="7">Marketing &amp; Sales</option>
-                                                        <option value="8">Garments / Textile</option>
-                                                        <option value="9">Customer Support</option>
-                                                        <option value="10">Digital Media</option>
-                                                        <option value="11">Telecommunication</option>
-                                                    </select>
-                                                    <div class="chosen-container chosen-container-single"
-                                                        style="width: 321px;" title=""><a class="chosen-single"
-                                                            tabindex="-1"><span>Select a category</span>
-                                                            <div><b></b></div>
-                                                        </a>
-                                                        <div class="chosen-drop">
-                                                            <div class="chosen-search"><input type="text"
-                                                                    autocomplete="off"></div>
-                                                            <ul class="chosen-results">
-                                                                <li class="active-result result-selected"
-                                                                    data-option-array-index="0" style="">Select a
-                                                                    category</li>
-                                                                <li class="active-result" data-option-array-index="1"
-                                                                    style="">All Category</li>
-                                                                <li class="active-result" data-option-array-index="2"
-                                                                    style="">Accounting / Finance</li>
-                                                                <li class="active-result" data-option-array-index="3"
-                                                                    style="">Education</li>
-                                                                <li class="active-result" data-option-array-index="4"
-                                                                    style="">Design &amp; Creative</li>
-                                                                <li class="active-result" data-option-array-index="5"
-                                                                    style="">Health Care</li>
-                                                                <li class="active-result" data-option-array-index="6"
-                                                                    style="">Engineer &amp; Architects</li>
-                                                                <li class="active-result" data-option-array-index="7"
-                                                                    style="">Marketing &amp; Sales</li>
-                                                                <li class="active-result" data-option-array-index="8"
-                                                                    style="">Garments / Textile</li>
-                                                                <li class="active-result" data-option-array-index="9"
-                                                                    style="">Customer Support</li>
-                                                                <li class="active-result" data-option-array-index="10"
-                                                                    style="">Digital Media</li>
-                                                                <li class="active-result" data-option-array-index="11"
-                                                                    style="">Telecommunication</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end form-group -->
-                                            </div>
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 column-lg-full">
-                                            <div class="input-box">
-                                                <label class="label-text">Offered Salary</label>
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <span class="la la-dollar-sign form-icon"></span>
-                                                            <input class="form-control" type="number" placeholder="Min">
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <span class="la la-dollar-sign form-icon"></span>
-                                                            <input class="form-control" type="number" placeholder="Max">
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                </div><!-- end row -->
-                                            </div>
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 column-lg-full">
-                                            <div class="input-box">
-                                                <label class="label-text">Experience</label>
-                                                <div class="form-group user-chosen-select-container">
-                                                    <select class="user-chosen-select" style="display: none;">
-                                                        <option value="">Choose Experience</option>
-                                                        <option value="1">No Experience</option>
-                                                        <option value="2">Less than 1 Year</option>
-                                                        <option value="3">1 to 2 Year(s)</option>
-                                                        <option value="4">2 to 4 Year(s)</option>
-                                                        <option value="5">3 to 5 Year(s)</option>
-                                                        <option value="3">2 Years</option>
-                                                        <option value="4">3 Years</option>
-                                                        <option value="5">4 Years</option>
-                                                        <option value="6">Over 5 Years</option>
-                                                    </select>
-                                                    <div class="chosen-container chosen-container-single"
-                                                        style="width: 321px;" title=""><a class="chosen-single"
-                                                            tabindex="-1"><span>Choose Experience</span>
-                                                            <div><b></b></div>
-                                                        </a>
-                                                        <div class="chosen-drop">
-                                                            <div class="chosen-search"><input type="text"
-                                                                    autocomplete="off"></div>
-                                                            <ul class="chosen-results"></ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 column-lg-full">
-                                            <div class="input-box">
-                                                <label class="label-text">Qualification</label>
-                                                <div class="form-group user-chosen-select-container">
-                                                    <select class="user-chosen-select" style="display: none;">
-                                                        <option value="">Choose Qualification</option>
-                                                        <option value="1">No Experience</option>
-                                                        <option value="2">Matriculation</option>
-                                                        <option value="3">Intermediate</option>
-                                                        <option value="4">Diploma</option>
-                                                        <option value="5">Graduate</option>
-                                                        <option value="6">Certificate</option>
-                                                        <option value="7">Associate Degree</option>
-                                                        <option value="8">Bachelor's Degree</option>
-                                                        <option value="9">Master's Degree</option>
-                                                        <option value="10">Doctorate Degree</option>
-                                                    </select>
-                                                    <div class="chosen-container chosen-container-single"
-                                                        style="width: 321px;" title=""><a class="chosen-single"
-                                                            tabindex="-1"><span>Choose Qualification</span>
-                                                            <div><b></b></div>
-                                                        </a>
-                                                        <div class="chosen-drop">
-                                                            <div class="chosen-search"><input type="text"
-                                                                    autocomplete="off"></div>
-                                                            <ul class="chosen-results"></ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 column-lg-full">
-                                            <div class="input-box">
-                                                <label class="label-text">Gender</label>
-                                                <div class="form-group user-chosen-select-container">
-                                                    <select class="user-chosen-select" style="display: none;">
-                                                        <option value="">Choose Gender</option>
-                                                        <option value="1">Male or Female</option>
-                                                        <option value="2">Male</option>
-                                                        <option value="3">Female</option>
-                                                    </select>
-                                                    <div class="chosen-container chosen-container-single"
-                                                        style="width: 321px;" title=""><a class="chosen-single"
-                                                            tabindex="-1"><span>Choose Gender</span>
-                                                            <div><b></b></div>
-                                                        </a>
-                                                        <div class="chosen-drop">
-                                                            <div class="chosen-search"><input type="text"
-                                                                    autocomplete="off"></div>
-                                                            <ul class="chosen-results"></ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 column-lg-full">
-                                            <div class="input-box">
-                                                <label class="label-text">Industry</label>
-                                                <div class="form-group user-chosen-select-container">
-                                                    <select class="user-chosen-select" style="display: none;">
-                                                        <option value="">Select industry</option>
-                                                        <option value="1">IT Contractor</option>
-                                                        <option value="2">Accountancy</option>
-                                                        <option value="3">Banking</option>
-                                                        <option value="4">Charity &amp; Voluntary</option>
-                                                        <option value="5">Digital &amp; Creative</option>
-                                                        <option value="6">Legal jobs</option>
-                                                        <option value="7">Leisure &amp; Tourism</option>
-                                                        <option value="8">Media</option>
-                                                        <option value="9">Marketing &amp; PR</option>
-                                                        <option value="0">Motoring &amp; Automotive</option>
-                                                        <option value="10">Retail</option>
-                                                        <option value="11">Sales &amp; Marketing</option>
-                                                    </select>
-                                                    <div class="chosen-container chosen-container-single"
-                                                        style="width: 321px;" title=""><a class="chosen-single"
-                                                            tabindex="-1"><span>Select industry</span>
-                                                            <div><b></b></div>
-                                                        </a>
-                                                        <div class="chosen-drop">
-                                                            <div class="chosen-search"><input type="text"
-                                                                    autocomplete="off"></div>
-                                                            <ul class="chosen-results"></ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 column-lg-full">
-                                            <div class="input-box">
-                                                <label class="label-text d-flex align-items-center ">Job Tags<span
-                                                        class="text-muted ml-1">(optional)</span>
-                                                    <i class="la la-question tip ml-1" data-toggle="tooltip"
-                                                        data-placement="top" title=""
-                                                        data-original-title="Comma separate tags, such as required skills or technologies, for this job. Maximum of 5 keywords"></i>
-                                                </label>
-                                                <div class="form-group user-chosen-select-container">
-                                                    <select class="user-chosen-select" multiple=""
-                                                        style="display: none;">
-                                                        <option>UI &amp; UX Design</option>
-                                                        <option>iOS</option>
-                                                        <option>Android</option>
-                                                        <option>PHP</option>
-                                                        <option>Development</option>
-                                                        <option>Laravel</option>
-                                                    </select>
-                                                    <div class="chosen-container chosen-container-multi"
-                                                        style="width: 321px;" title="">
-                                                        <ul class="chosen-choices">
-                                                            <li class="search-field"><input type="text"
-                                                                    value="Select Some Options" class="default"
-                                                                    autocomplete="off" style="width: 165.913px;"></li>
-                                                        </ul>
-                                                        <div class="chosen-drop">
-                                                            <ul class="chosen-results"></ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 column-lg-full">
-                                            <div class="input-box">
-                                                <label class="label-text">Skill Requirements</label>
-                                                <div class="form-group user-chosen-select-container">
-                                                    <select class="user-chosen-select" multiple=""
-                                                        style="display: none;">
-                                                        <option>HTML5</option>
-                                                        <option>CSS3</option>
-                                                        <option>PHP</option>
-                                                        <option>Javascript</option>
-                                                        <option>Laravel</option>
-                                                        <option>Photoshop</option>
-                                                        <option>WordPress</option>
-                                                        <option>Vuejs</option>
-                                                        <option>React</option>
-                                                    </select>
-                                                    <div class="chosen-container chosen-container-multi"
-                                                        style="width: 321px;" title="">
-                                                        <ul class="chosen-choices">
-                                                            <li class="search-field"><input type="text"
-                                                                    value="Select Some Options" class="default"
-                                                                    autocomplete="off" style="width: 165.913px;"></li>
-                                                        </ul>
-                                                        <div class="chosen-drop">
-                                                            <ul class="chosen-results"></ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 column-lg-full">
-                                            <div class="input-box">
-                                                <label class="label-text">No. Of Vacancy</label>
-                                                <div class="form-group user-chosen-select-container">
-                                                    <select class="user-chosen-select" multiple=""
-                                                        style="display: none;">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                        <option>8</option>
-                                                        <option>9</option>
-                                                        <option>10</option>
-                                                    </select>
-                                                    <div class="chosen-container chosen-container-multi"
-                                                        style="width: 321px;" title="">
-                                                        <ul class="chosen-choices">
-                                                            <li class="search-field"><input type="text"
-                                                                    value="Select Some Options" class="default"
-                                                                    autocomplete="off" style="width: 165.913px;"></li>
-                                                        </ul>
-                                                        <div class="chosen-drop">
-                                                            <ul class="chosen-results"></ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 column-lg-full">
-                                            <div class="input-box">
-                                                <label class="label-text">Application Deadline Date</label>
-                                                <div class="form-group">
-                                                    <span class="la la-calendar form-icon"></span>
-                                                    <input class="date-range form-control" type="text"
-                                                        name="daterange" value="2/25/2020">
-                                                </div>
-                                            </div>
-                                        </div><!-- end col-lg-4 -->
 
+                                                </div>
+                                            </div>
+                                        </div><!-- end col-lg-4 -->
+                                        <div class="col-lg-4 column-lg-full">
+                                            <div class="input-box">
+                                                <label class="label-text">Chọn Ngành Nghề</label>
+                                                <div class="form-group user-chosen-select-container">
+                                                    <select class="user-chosen-select" style="display: none;"
+                                                        name="majors">
+                                                        <option value="">Chọn Ngành Nghề</option>
+                                                        @foreach ($majors as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ $request->majors == $item->id ? 'selected' : '' }}>
+                                                                {{ $item->name }}</option>
+                                                        @endforeach
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        </div><!-- end col-lg-4 -->
+                                        <div class="col-lg-4 column-lg-full">
+                                            <div class="input-box">
+                                                <label class="label-text">Chọn Chuyên Ngành</label>
+                                                <div class="form-group user-chosen-select-container">
+                                                    <select class="user-chosen-select" style="display: none;"
+                                                        name="profession">
+                                                        <option value="">Chọn Chuyên Ngành</option>
+                                                        @foreach ($profession as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ $request->profession == $item->id ? 'selected' : '' }}>
+                                                                {{ $item->label }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        </div><!-- end col-lg-4 -->
+                                        <div class="col-lg-4 column-lg-full">
+                                            <div class="input-box">
+                                                <label class="label-text">Chọn Trình Độ</label>
+                                                <div class="form-group user-chosen-select-container">
+                                                    <select class="user-chosen-select" style="display: none;"
+                                                        name="lever">
+                                                        <option value="">Chọn Trình Độ</option>
+                                                        @foreach ($lever as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ $request->lever == $item->id ? 'selected' : '' }}>
+                                                                {{ $item->label }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        </div><!-- end col-lg-4 -->
+                                        <div class="col-lg-4 column-lg-full">
+                                            <div class="input-box">
+                                                <label class="label-text">Chọn Kinh Nghiệm</label>
+                                                <div class="form-group user-chosen-select-container">
+                                                    <select class="user-chosen-select" style="display: none;"
+                                                        name="experience">
+                                                        <option value="">Chọn Kinh Nghiệm</option>
+                                                        @foreach ($experience as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ $request->experience == $item->id ? 'selected' : '' }}>
+                                                                {{ $item->label }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        </div><!-- end col-lg-4 -->
+                                        <div class="col-lg-4 column-lg-full">
+                                            <div class="input-box">
+                                                <label class="label-text">Kỹ Năng</label>
+                                                <div class="form-group user-chosen-select-container">
+                                                    <select class="user-chosen-select" multiple="" style="display: none;"
+                                                        name="skill[]">
+                                                        @foreach ($skill as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ in_array($item->id, $request->skill) ? 'selected' : '' }}>
+                                                                {{ $item->label }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div><!-- end col-lg-4 -->
+                                        <div class="col-lg-4 column-lg-full">
+                                            <div class="input-box">
+                                                <label class="label-text">Thời Gian Làm Việc</label>
+                                                <div class="form-group user-chosen-select-container">
+                                                    <select class="user-chosen-select" style="display: none;"
+                                                        name="timework">
+                                                        <option value="">Chọn Thời Gian Làm Việc</option>
+                                                        @foreach ($timework as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ $request->timework == $item->id ? 'selected' : '' }}>
+                                                                {{ $item->label }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div><!-- end col-lg-4 -->
+                                        <div class="col-lg-4 column-lg-full">
+                                            <div class="input-box">
+                                                <label class="label-text">Hình Thức Làm Việc</label>
+                                                <div class="form-group user-chosen-select-container">
+                                                    <select class="user-chosen-select" style="display: none;"
+                                                        name="workingform">
+                                                        <option value="">Chọn Hình Thức Làm Việc</option>
+                                                        @foreach ($workingform as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ $request->workingform == $item->id ? 'selected' : '' }}>
+                                                                {{ $item->label }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div><!-- end col-lg-4 -->
+                                        <button class="btn btn-info col-12 text-white">Tìm kiếm</button>
                                     </div><!-- end row -->
                                 </form>
                             </div><!-- end contact-form-action -->
