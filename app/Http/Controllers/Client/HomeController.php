@@ -159,9 +159,17 @@ class HomeController extends BaseController
         $majors = Majors::with('majors')->get();
 
         $new = News::select('id', 'title', 'profession_id', 'new_image', 'describe', 'majors', 'created_at')->paginate(4);
-
+        $totalSeeker = User::select('id')->where('status', 2)
+            ->count('id');
+        $totalEmployer = User::select('id')->where('status', 2)
+            ->where('role_id', '=', 2)
+            ->count('id');
+        $totalJob = Job::count();
         return view('client.index', [
             'majors' => $majors,
+            'totalJob' => $totalJob,
+            'totalSeeker' => $totalSeeker,
+            'totalEmployer' => $totalEmployer,
             'title' => 'Tuyển dung, tìm việc làm nhanh 24h',
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),
