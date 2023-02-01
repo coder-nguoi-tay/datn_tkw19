@@ -96,6 +96,7 @@
                     </div>
                 </div>
             </section>
+            {{-- {{ dd($majors) }} --}}
             <section
                 class="elementor-section elementor-top-section elementor-element elementor-element-d98c6ff elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                 data-id="d98c6ff" data-element_type="section">
@@ -413,7 +414,8 @@
                                             alt="">
                                     </div>
                                     <div class="title">{{ $item->name }}</div>
-                                    <p class="count">(<span class="number count_job_manager">2,122</span> việc làm)
+                                    <p class="count">(<span
+                                            class="number count_job_manager">{{ count($item->majors) }}</span> việc làm)
                                     </p>
                                     <div>
                                         <a href="{{ route('searchMajors', $item->id) }}" class="see-more">Khám

@@ -93,7 +93,11 @@
                               <option value disabled selected>
                                 --Chọn Nghành nghề--
                               </option>
-                              <option v-for="item in data.majors" :key="item.id" :value="item.id">
+                              <option
+                                v-for="item in data.majors"
+                                :key="item.id"
+                                :value="item.id"
+                              >
                                 {{ item.name }}
                               </option>
                             </Field>

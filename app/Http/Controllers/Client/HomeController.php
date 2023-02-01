@@ -178,7 +178,7 @@ class HomeController extends BaseController
             'skill' => $this->getskill(),
             'timework' => $this->gettimework(),
             'profession' => $this->getprofession(),
-            'majors' => $this->majors->get(),
+            // 'majors' => $this->majors->get(),
             'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
             'user' => $user ?? '',

@@ -22,7 +22,7 @@
 }
 
 #box-discover .list-discover .items:hover {
-    background: white;
+    /* background: var(--jobbox-color-brand-2); */
     cursor: pointer;
 }
 
