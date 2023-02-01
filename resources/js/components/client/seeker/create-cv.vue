@@ -14,17 +14,6 @@
         :action="data.urlStore"
       >
         <Field type="hidden" :value="csrfToken" name="_token" />
-        <div class="col-4">
-          <Toggle
-            name="status_profile"
-            v-model="status_profile"
-            class="toggle-flag"
-            on-label=""
-            off-label=""
-            id="status_profile"
-          />
-          <label for="" class="form-label">Bật Tìm Kiếm Công Việc</label>
-        </div>
         <div style="margin: 30px 0; padding: 0; box-sizing: border-box">
           <div class="main_gt">
             <div class="left_cv">
@@ -366,7 +355,6 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
       model: this.data.user ?? {},
-      status_profile: '',
       filePreview: '',
       isReadOnly: false,
       skill_cv_info: [],
@@ -392,12 +380,6 @@ export default {
           project_detail: x.value
         })
       })
-      console.log(this.model)
-      if (this.data.user.status_profile == 0) {
-        this.status_profile = false
-      } else {
-        this.status_profile = true
-      }
     } else {
       this.skill_cv_info.push({
         skill: '',

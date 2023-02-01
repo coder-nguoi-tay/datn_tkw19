@@ -39,11 +39,8 @@ class EmployerCreateRequest extends FormRequest
             'majors_id' => 'required',
             'time_work_id' => 'required',
             'candidate_requirements' => 'required|max:255',
-            'skill_id' => 'required',
-            'addressEmployer' => 'required|max:255',
-            'logo' => 'required|max:255', //|mimes:jpeg,jpg,png,gif|max:100000
-            'nameEmployer' => 'required|max:255',
-            'phoneEmployer' => 'required|max:10',
+            'skill' => 'required',
+            'end_job_time' => 'required',
         ];
     }
 }

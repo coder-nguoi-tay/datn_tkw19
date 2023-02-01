@@ -1,3 +1,46 @@
+@php
+    use App\Models\Employer;
+    use App\Models\Company;
+    use App\Models\Accuracy;
+    use Illuminate\Support\Facades\Auth;
+    use App\Models\PaymentHistoryEmployer;
+    use Carbon\Carbon;
+    $status = [];
+    $checkCompany = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
+    if ($checkCompany->id_company) {
+        $checkCompanyXt = Accuracy::where('user_id', $checkCompany->id_company)->first();
+        if (!$checkCompanyXt) {
+            $status = 1;
+        }
+        if ($checkCompanyXt) {
+            if ($checkCompanyXt->status == 0) {
+                $status = 1;
+            }
+        }
+    } else {
+        $status = 1;
+    }
+    // payment
+    $formatday = Carbon::parse(Carbon::now())->format('d');
+    $paymentHistory = PaymentHistoryEmployer::where('user_id', Auth::guard('user')->user()->id)
+        ->whereTime('created_at', '>=', '00:00:00')
+        ->whereTime('created_at', '<=', '23:59:00')
+        ->whereDay('created_at', '=', $formatday)
+        ->get()
+        ->pluck('price');
+    $totalPaymentInDay = [];
+    foreach ($paymentHistory as $item) {
+        $totalPaymentInDay[] = $item;
+        if ($checkCompany->check_prioritize == 0) {
+            if (array_sum($totalPaymentInDay) >= 5000000) {
+                $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
+                $employer->prioritize += 1;
+                $employer->check_prioritize = 1;
+                $employer->save();
+            }
+        }
+    }
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,8 +95,6 @@
         a {
             text-decoration: none !important
         }
-
-       
     </style>
 
 </head>
@@ -68,8 +109,11 @@
             </div>
         </div>
     </div>
+
     <div id="app">
-        @include('employer.layout.header')
+        @if ($status == 1)
+            @include('employer.layout.header')
+        @endif
         @include('employer.layout.sidebar')
         @yield('content')
 
@@ -99,8 +143,8 @@
 <script src="{{ asset('assets/js/purecounter.js') }}"></script>
 <script src="{{ asset('assets/js/progresscircle.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.MultiFile.min.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYzby4yYDVaXPmtu4jZAGR258K6IYwjIY&amp;libraries">
-</script>
+{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYzby4yYDVaXPmtu4jZAGR258K6IYwjIY&amp;libraries">
+</script> --}}
 <script src="{{ asset('assets/js/gmap-script.js') }}"></script>
 <script src="{{ asset('assets/js/jquery-te-1.4.0.min.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>

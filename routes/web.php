@@ -12,7 +12,9 @@ use App\Http\Controllers\Employer\ProfileController;
 use App\Http\Controllers\Admin\ResetPasswordController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\DetailCompanyController;
+use App\Http\Controllers\Client\FagsController;
 use App\Http\Controllers\Client\HomeController as ClientHomeController;
+use App\Http\Controllers\Client\JobSuggestController;
 use App\Http\Controllers\Client\LoginController as ClientLoginController;
 use App\Http\Controllers\Client\NewsController;
 use App\Http\Controllers\Employer\HomeEmployerController;
@@ -29,7 +31,6 @@ use App\Http\Controllers\Employer\ProfileController as EmployerProfileController
 use App\Http\Controllers\Employer\RegisterCompanyController;
 use App\Http\Controllers\Employer\SearchCvController;
 use App\Http\Controllers\Employer\ViewProfileController;
-use App\Http\Controllers\TestController;
 
 
 /*
@@ -42,6 +43,7 @@ use App\Http\Controllers\TestController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// create route
 
 Route::middleware('admin')->prefix('dashboard')->name('admin.')->group(function () {
     Route::resource('', HomeController::class);
@@ -75,8 +77,12 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::post('new/update/{id}', [NewEmployerController::class, 'update'])->name('new.update');
     Route::post('new/change-status/{id}', [NewEmployerController::class, 'changeStus'])->name('new.changeStus');
     Route::get('new/show-all-cv/{id}', [NewEmployerController::class, 'detailNew'])->name('new.showdetai');
+    Route::get('new/top-new', [NewEmployerController::class, 'topNew'])->name('new.topNew');
+    Route::post('new/top-new', [NewEmployerController::class, 'upTopNew'])->name('new.uopTopNew');
+
     //
     Route::resource('package', EmployerPackageController::class);
+    Route::get('package/{id}', [EmployerPackageController::class, 'show'])->name('package.show');
     Route::post('package/update-time/{id}', [EmployerPackageController::class, 'updateTimePayment'])->name('package.updateTimePayment');
     Route::post('package/payment', [EmployerPackageController::class, 'Payment'])->name('package.payment');
     Route::get('package/payment/return', [EmployerPackageController::class, 'vnpayReturn'])->name('package.payment.return');
@@ -96,20 +102,16 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
         Route::get('change-status', [ManagerUploadCvController::class, 'changeStatus'])->name('changestatus');
     });
     Route::resource('register-company', RegisterCompanyController::class);
-
-
     Route::get('pay-money', [EmployerProfileController::class, 'payMoney'])->name('employer.profile.paymoney');
     Route::post('pay-money-payment', [EmployerProfileController::class, 'payMoneyPayment'])->name('profile.paymoney.payment');
     Route::get('pay-money-payment-return', [EmployerProfileController::class, 'vnpayReturn'])->name('profile.paymoney.payment.return');
-
     Route::get('change-password', [ProfileController::class, 'changePassword'])->name('employer.change-password');
     Route::post('change-password', [ProfileController::class, 'changePasswordSucsses'])->name('employer.changePasswordSucsses');
     // giấy xác thực
     Route::post('image-accuracy', [ManagerUploadCvController::class, 'ImageAccuracy'])->name('profile.ImageAccuracy');
-
     //profile
     Route::get('history', [EmployerProfileController::class, 'historyPay'])->name('profile.history');
-    Route::get('company', [EmployerProfileController::class, 'profileEmployer'])->name('employer.profileEmployer');
+    Route::get('company', [EmployerProfileController::class, 'profileEmployer'])->name('profileEmployer');
     Route::get('business-license', [EmployerProfileController::class, 'businessLicense'])->name('employer.businessLicense');
     Route::resource('profile', EmployerProfileController::class);
     Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');
@@ -118,40 +120,42 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
 
 Route::get('register', [HomeEmployerController::class, 'register'])->name('register.employer');
 Route::post('register/create', [HomeEmployerController::class, 'store'])->name('register.employer.create');
-
-// seeker
-Route::resource('profile', SeekerHomeController::class);
-Route::post('profile/update-title-cv/{id}', [SeekerHomeController::class, 'updateTitleCv']);
-Route::get('profile/delete-cv/{id}', [SeekerHomeController::class, 'deleteCv']);
-Route::post('profile/update-avatar', [SeekerHomeController::class, 'updateAvatar'])->name('profile.updateAvatar');
+// login 
 Route::resource('login', ClientLoginController::class);
 Route::get('register-client', [ClientLoginController::class, 'registerClient'])->name('register');
+// seeker
+Route::middleware('user')->group(function () {
+    Route::resource('profile', SeekerHomeController::class);
+    Route::post('profile/update-status-profile', [SeekerHomeController::class, 'updateStatusProfile'])->name('profile.updateStatusProfile');
+    Route::resource('goi-y-viec-lam', JobSuggestController::class);
+    Route::post('profile/update-profile', [SeekerHomeController::class, 'updatePrifileUser'])->name('profile.updateProfile');
+    Route::post('profile/update-title-cv/{id}', [SeekerHomeController::class, 'updateTitleCv']);
+    Route::get('profile/delete-cv/{id}', [SeekerHomeController::class, 'deleteCv']);
+    Route::post('profile/update-avatar', [SeekerHomeController::class, 'updateAvatar'])->name('profile.updateAvatar');
+    Route::resource('quan-ly-cv', SeekerManageUploadController::class);
+    Route::get('job-manager', [DetailCompanyController::class, 'jobManager'])->name('jobManager');
+    Route::resource('xem-ho-so', ViewProfileController::class);
+    Route::get('file/tao-moi', [SeekerManageUploadController::class, 'createFormCV'])->name('user.createFormCV');
+    Route::post('file/tao-moi', [SeekerManageUploadController::class, 'storeFormCV'])->name('user.storeFormCV');
+    Route::get('user/createFormCV/download', [SeekerManageUploadController::class, 'downloadPdf'])->name('user.createFormCV.downloadPdf');
 
-Route::resource('quan-ly-cv', SeekerManageUploadController::class);
-Route::get('job-manager', [DetailCompanyController::class, 'jobManager'])->name('jobManager');
-Route::resource('xem-ho-so', ViewProfileController::class);
-Route::get('file/tao-moi', [SeekerManageUploadController::class, 'createFormCV'])->name('user.createFormCV');
-Route::post('file/tao-moi', [SeekerManageUploadController::class, 'storeFormCV'])->name('user.storeFormCV');
-Route::get('user/createFormCV/download', [SeekerManageUploadController::class, 'downloadPdf'])->name('user.createFormCV.downloadPdf');
+    Route::get('favourite', [SeekerHomeController::class, 'userFavourite'])->name('user.favourite');
+    Route::delete('delete/favourite/{id}', [SeekerHomeController::class, 'deleteFavourite'])->name('delete.favourite');
+    Route::get('user/logout', [SeekerHomeController::class, 'logout'])->name('user.logout');
+    Route::get('change-password', [SeekerHomeController::class, 'changePassword'])->name('user.changepass');
+    Route::post('change-password', [SeekerHomeController::class, 'changePasswordSucsses'])->name('user.changePasswordSucsses');
+});
 
-// Route::get('user/profile/{token}', [SeekerHomeController::class, 'userProfile'])->name('user.profile');
-Route::get('favourite', [SeekerHomeController::class, 'userFavourite'])->name('user.favourite');
-Route::delete('delete/favourite/{id}', [SeekerHomeController::class, 'deleteFavourite'])->name('delete.favourite');
-Route::get('user/logout', [SeekerHomeController::class, 'logout'])->name('user.logout');
-Route::get('change-password', [SeekerHomeController::class, 'changePassword'])->name('user.changepass');
-Route::post('change-password', [SeekerHomeController::class, 'changePasswordSucsses'])->name('user.changePasswordSucsses');
-
-// Route::group(function () {
 // login
 Route::resource('owner', ClientLoginController::class);
-// Route::get('owner/register', [ClientLoginController::class, 'showRegister'])->name('owner.show.register');
 Route::post('owner/update/register', [ClientLoginController::class, 'updateRegister'])->name('owner.update.register');
-// });
+
 //client
 Route::resource('', ClientHomeController::class);
+Route::resource('faqs', FagsController::class);
 Route::post('favourite/{id}', [SeekerHomeController::class, 'userFavouriteId']); // api
 Route::get('favourite-love/{id}', [SeekerHomeController::class, 'getDatalove']); // api
-Route::get('home/detail/{title}-{id}', [ClientHomeController::class, 'showDetail'])->name('home.detail.show');
+Route::get('home/detail/{id}', [ClientHomeController::class, 'showDetail'])->name('home.detail.show');
 Route::post('home/detail/upcv', [ClientHomeController::class, 'upCv'])->name('home.detail.upcv');
 Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 'searchLocation'])->name('home.search.location');
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
@@ -161,6 +165,10 @@ Route::get(
     'detail-company/{id}',
     [DetailCompanyController::class, 'detailCompany']
 )->name('detail.company');
+Route::get(
+    'Cong-Ty',
+    [DetailCompanyController::class, 'index']
+)->name('CongTy');
 
 
 Route::get('blog', [NewsController::class, 'index'])->name('blog');
@@ -168,4 +176,3 @@ Route::get('detail-blog/{id}', [NewsController::class, 'ShowBlog'])->name('detai
 Route::get('detailNew/{id}', [NewsController::class, 'showTinTuc'])->name('detailNew');
 //
 Route::get('majors/{id}', [ClientHomeController::class, 'searchMajors'])->name('searchMajors');
-// Route::get('error-404',[ClientHomeController::class, 'error404'])->name('error404');

@@ -7,6 +7,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\AccountPayment;
 use App\Models\Accuracy;
+use App\Models\Company;
 use App\Models\Employer;
 use App\Models\Job;
 use App\Models\Jobseeker;
@@ -168,9 +169,25 @@ class ManagerUploadCvController extends BaseController
     {
         //
     }
-    public function changeStatus($id)
+    public function changeStatus($id, Request $request)
     {
         try {
+            //tk
+            $account = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
+            if (!$account) {
+                return response()->json([
+                    'message' => 'Bạn hay đăng ký tài khoản trước khi sử dụng dịch vụ của chúng tôi!',
+                    'status' => StatusCode::FORBIDDEN,
+                ], StatusCode::OK);
+            }
+            if ($account->surplus < $request->total) {
+                return response()->json([
+                    'message' => 'Số dư của bạn không đủ để sử dụng dịch vụ của chúng tôi!',
+                    'status' => StatusCode::FORBIDDEN,
+                ], StatusCode::OK);
+            }
+            $account->surplus -= $request->total;
+            $account->save();
             //muacv
             $upcv = ProfileUserCv::where('id', $id)->first();
             $upcv->status = Auth::guard('user')->user()->id;
@@ -178,20 +195,19 @@ class ManagerUploadCvController extends BaseController
             //lsgd
             $paymentHistory = new PaymentHistoryEmployer();
             $paymentHistory->user_id = Auth::guard('user')->user()->id;
-            $paymentHistory->price = 30000;
+            $paymentHistory->price = $request->total;
             $paymentHistory->desceibe = 'Thanh toán mua CV ' . $upcv->name;
             $paymentHistory->form = '';
             $paymentHistory->status = 1;
             $paymentHistory->save();
-            //tk
-            $account = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
-            $account->surplus -= 30000;
-            $account->save();
+
+
             return response()->json([
                 'message' => 'Mua cv thành công',
                 'status' => StatusCode::OK,
             ], StatusCode::OK);
         } catch (\Throwable $th) {
+            DB::rollBack();
             return response()->json([
                 'message' => 'Đã có một lỗi không xác định sảy ra',
                 'status' => StatusCode::FORBIDDEN,
@@ -200,9 +216,15 @@ class ManagerUploadCvController extends BaseController
     }
     public function ImageAccuracy(Request $request)
     {
+        $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
+        if (!$employer->id_company) {
+            $this->setFlash(__('Bạn chưa cập nhật thông tin công ty!'), 'error');
+            return redirect()->back();
+        }
         try {
+            $company = Company::where('id', $employer->id_company)->first();
             $accy = new Accuracy();
-            $accy->user_id = Auth::guard('user')->user()->id;
+            $accy->user_id = $company->id;
             $accy->status = 0;
             if ($request->hasFile('images')) {
                 $accy->images = $request->images->storeAs('images/cv', $request->images->hashName());

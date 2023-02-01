@@ -92,9 +92,7 @@
                         text-align: justify;
                       "
                     >
-                      <a href="/home/detail/Tuyển dụng 1-2">
-                        {{ item.title }}</a
-                      >
+                      <a :href="'/home/detail/' + item.id"> {{ item.title }}</a>
                     </h6>
                     <div
                       class="
@@ -137,7 +135,7 @@
                             target="_blank"
                             :data-original-title="item.id"
                             href="#"
-                            >Apply now</a
+                            >Xem chi tiết</a
                           >
                         </div>
                       </div>

@@ -111,6 +111,19 @@ class PackageController extends BaseController
             'data' => jobAttractive::where('id', $id)->first()
         ]);
     }
+    public function show($id)
+    {
+        $breadcrumbs = [
+            'Chi tiết gói cước',
+        ];
+
+        $package = jobAttractive::where('id', $id)->first();
+        return view('employer.package.show', [
+            'breadcrumbs' => $breadcrumbs,
+            'title' => 'Chi tiết gói cước',
+            'package' => $package
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -170,6 +183,7 @@ class PackageController extends BaseController
                 //
                 $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
                 $employer->prioritize = $payment->lever;
+                $employer->amount_job = $payment->lever;
                 $employer->position = 1;
                 $employer->save();
 
@@ -430,6 +444,7 @@ class PackageController extends BaseController
                             //
                             $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
                             $employer->prioritize = $lever_package;
+                            $employer->amount_job = $lever_package;
                             $employer->position = 1;
                             $employer->save();
                             $returnData['RspCode'] = '00';
@@ -466,7 +481,8 @@ class PackageController extends BaseController
         try {
             //
             $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
-            $employer->prioritize += $request['data']['lever_package'];
+            $employer->prioritize = $request['data']['lever_package'];
+            $employer->amount_job = $request['data']['lever_package'];
             $employer->position = 1;
             $employer->save();
             //

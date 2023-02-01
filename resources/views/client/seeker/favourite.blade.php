@@ -5,7 +5,7 @@
 @section('content')
     <section class="dashboard-area">
         <div class="dashboard-content-wrap">
-            <div class="container-fluid" style="margin-top: 30px">
+            <div class="container-fluid  mt-2">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="breadcrumb-content d-flex flex-wrap justify-content-between align-items-center">
@@ -62,7 +62,7 @@
                                   ">
                                                                                 <div class="text-highlight employer-name">
                                                                                     <a
-                                                                                        href="/home/detail/{{ $item->title . '-' . $item->job_id }}">{{ $item->title }}</a>
+                                                                                        href="/home/detail/{{ $item->job_id }}">{{ $item->title }}</a>
                                                                                 </div>
                                                                                 <div class="company-name text-gray"
                                                                                     style="

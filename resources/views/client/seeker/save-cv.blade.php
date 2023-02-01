@@ -5,7 +5,7 @@
 @extends('client.layout.seeker')
 @section('content')
     <div class="dashboard-content-wrap" style="background: #ffff">
-        <div class="container-fluid">
+        <div class="container-fluid  mt-2">
             <div class="row">
                 <div class="col-lg-12 row">
                     <div class="col-10 breadcrumb-content d-flex flex-wrap justify-content-between align-items-center">

@@ -33,6 +33,8 @@ class Job extends Authenticatable
         'employer_id',
         'status',
         'expired',
+        'amount_job',
+        'package_id_position'
 
     ];
     protected $appends = [

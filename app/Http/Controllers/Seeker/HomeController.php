@@ -15,6 +15,7 @@ use App\Models\Lever;
 use App\Models\location;
 use App\Models\Majors;
 use App\Models\Profession;
+use App\Models\ProfileUserCv;
 use App\Models\SeekerSkill;
 use App\Models\Skill;
 use App\Models\Timework;
@@ -22,11 +23,13 @@ use App\Models\UploadCv;
 use App\Models\User;
 use App\Models\Wage;
 use App\Models\WorkingForm;
-use Database\Seeders\SkillSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Smalot\PdfParser\Parser;
+use Smalot\PdfParser\Config;
+
 
 use function GuzzleHttp\Promise\all;
 
@@ -87,7 +90,6 @@ class HomeController extends BaseController
             ->first();
         $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
         $cv = UploadCv::where('user_id', Auth::guard('user')->user()->id)->get();
-
         return view('client.seeker.profile', [
             'user' => $user,
             'breadcrumbs' => $breadcrumbs,
@@ -138,48 +140,45 @@ class HomeController extends BaseController
             $this->setFlash(__('đã có một lỗi không rõ nguyên nhân xảy ra'), 'error');
             return redirect()->back();
         }
-        // $Jobseeker = $this->user->where('id', Auth::guard('user')->user()->id)->first();
-        // if (isset($Jobseeker->getProfileUse)) {
-        //     $user = $this->Jobseeker->where('user_role', Auth::guard('user')->user()->id)->first();
-        // } else {
-        //     $user = new $this->Jobseeker();
-        // }
-        // try {
-        //     $updateUser = $this->user->where('id', Auth::guard('user')->user()->id)->first();
-        //     $updateUser->name = $request->name;
-        //     $updateUser->email = $request->email;
-        //     $updateUser->save();
-        //     $user->address = $request->address;
-        //     if ($request->hasFile('images')) {
-        //         $user->images = $request->images->storeAs('images/cv', $request->images->hashName());
-        //     }
-        //     $user->phone = $request->phone;
-        //     $user->user_role = Auth::guard('user')->user()->id;
-        //     $user->experience_id = $request->experience_id;
-        //     $user->lever_id = $request->lever_id;
-        //     $user->wage_id = $request->wage_id;
-        //     $user->profession_id = $request->profession_id;
-        //     $user->time_work_id = $request->time_work_id;
-        //     $user->save();
-        //     if (isset($Jobseeker->getProfileUse)) {
-        //         $jobskill =  $this->SeekerSkill->where('job-seeker_id', $user->id)->get();
-        //         foreach ($jobskill as $value) {
-        //             $this->SeekerSkill->find($value->id)->delete();
-        //         }
-        //     }
-        //     foreach (explode(',', $request->skill[0]) as $value) {
-        //         $this->SeekerSkill->create([
-        //             'job-seeker_id' => $user->id,
-        //             'skill_id' => $value,
-        //         ])->save();
-        //     }
-        //     $this->setFlash(_('Cập nhật thành công!'));
-        //     return redirect()->back();
-        // } catch (\Throwable $th) {
-        //     DB::rollback();
-        //     $this->setFlash(_('Đã có một lỗi xảy ra'), 'error');
-        //     return redirect()->back();
-        // }
+    }
+    public function updatePrifileUser(Request $request)
+    {
+        $Jobseeker = $this->user->where('id', Auth::guard('user')->user()->id)->first();
+        if (isset($Jobseeker->getProfileUse)) {
+            $user = $this->Jobseeker->where('user_role', Auth::guard('user')->user()->id)->first();
+        } else {
+            $user = new $this->Jobseeker();
+        }
+        try {
+            $user->images = '';
+            $user->phone = '';
+            $user->address = '';
+            $user->user_role = Auth::guard('user')->user()->id;
+            $user->experience_id = $request->experience_id;
+            $user->lever_id = $request->lever_id;
+            $user->wage_id = $request->wage_id;
+            $user->profession_id = $request->profession_id;
+            $user->time_work_id = $request->time_work_id;
+            $user->save();
+            if (isset($Jobseeker->getProfileUse)) {
+                $jobskill =  $this->SeekerSkill->where('job-seeker_id', $user->id)->get();
+                foreach ($jobskill as $value) {
+                    $this->SeekerSkill->find($value->id)->delete();
+                }
+            }
+            foreach (explode(',', $request->skill[0]) as $value) {
+                $this->SeekerSkill->create([
+                    'job-seeker_id' => $user->id,
+                    'skill_id' => $value,
+                ])->save();
+            }
+            $this->setFlash(_('Cập nhật thành công!'));
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            DB::rollback();
+            $this->setFlash(_('Đã có một lỗi xảy ra'), 'error');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -366,5 +365,23 @@ class HomeController extends BaseController
                 ['user_id', Auth::guard('user')->user()->id],
             ])->first()
         ]);
+    }
+    public function updateStatusProfile(Request $request)
+    {
+        try {
+            $profile = ProfileUserCv::where('user_id', Auth::guard('user')->user()->id)->first();
+            $profile->status_profile = $request['data'];
+            $profile->save();
+            return response()->json([
+                'message' => 'Cập nhật thành công',
+                'status' => StatusCode::OK
+            ], StatusCode::OK);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json([
+                'message' => 'Đã có một lỗi xảy ra',
+                'status' => StatusCode::FORBIDDEN,
+            ], StatusCode::FORBIDDEN);
+        }
     }
 }

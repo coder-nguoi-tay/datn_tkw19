@@ -25,7 +25,7 @@
                       <div class="MultiFile-intercepted">
                         <div class="container rounded bg-white mt-5 mb-5">
                           <div class="row">
-                            <div class="col-md-3 border-right">
+                            <div class="col-md-3 border-right" style=" margin-left: -20px">
                               <div
                                 class="
                                   flex-column
@@ -39,7 +39,7 @@
                                   src="https://png.pngtree.com/png-vector/20190223/ourlarge/pngtree-admin-rolls-glyph-black-icon-png-image_691507.jpg"
                                   alt="Admin"
                                   class="rounded-circle"
-                                  width="150"
+                                  width="200"
                                 /><span class="font-weight-bold">
                                   {{ employer.name }}</span
                                 >

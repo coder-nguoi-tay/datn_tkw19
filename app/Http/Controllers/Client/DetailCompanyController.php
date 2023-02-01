@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Job;
 use App\Models\Majors;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DetailCompanyController extends Controller
 {
@@ -15,11 +16,19 @@ class DetailCompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('client.detail-company.index', [
-            'title' => 'Thông tin công ty ',
-            'majors ' => Majors::all(),
+        $search = $request->get('search');
+        $company = DB::table('company')->where(function ($q) use ($search) {
+            if ($search) {
+                $q->where('name', 'LIKE', '%' . $search . '%');
+            }
+        })->get();
+        return view('client.company.getCompany', [
+            'company' => $company,
+            'request' => $request,
+
+
         ]);
     }
 

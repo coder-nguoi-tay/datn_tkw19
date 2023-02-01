@@ -1,3 +1,7 @@
+@php
+    use App\Models\Majors;
+    $majors = Majors::all();
+@endphp
 <header class="header-area header-desktop">
     <div class="header-menu-wrapper">
         <div class="container-fluid">
@@ -5,7 +9,7 @@
                 <div class="col-lg-12">
                     <div class="menu-full-width">
                         <div class="logo">
-                            <a href="{{ route('profile.index') }}"><img
+                            <a href="{{ route('index') }}"><img
                                     src="{{ asset('wp-content/themes/jobbox/assets/imgs/template/logoIT.png') }}"
                                     alt="logo"></a>
                         </div><!-- end logo -->
@@ -17,7 +21,7 @@
                                         <ul class="dropdown-menu-item">
                                             @foreach ($majors as $item)
                                                 <li><a
-                                                        href="{{ route('searchMajors', $item->id) }}">{{ $item->label }}</a>
+                                                        href="{{ route('searchMajors', $item->id) }}">{{ $item->name }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -57,8 +61,14 @@
                                             <button class="notification-btn dropdown-toggle" type="button"
                                                 id="notificationDropdownMenu" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
-                                                <i class="la la-bell"></i>
-                                                <span class="quantity">5</span>
+
+
+                                                <img src="{{ asset(Auth::guard('user')->user()->images) }}"
+                                                    alt="" class="img-profile">
+                                                <span class="fullname"> &nbsp; {{ Auth::guard('user')->user()->name }}
+                                                </span>
+
+
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="notificationDropdownMenu">
                                                 <div class="mess-dropdown">

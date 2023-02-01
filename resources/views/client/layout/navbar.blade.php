@@ -19,13 +19,21 @@
                     <a href="{{ route('xem-ho-so.index') }}"><i class="fas fa-address-card icon-element"></i>Những công
                         việc đã nộp</a>
                 </li>
+                <li class="{{ request()->is('*company*') ? 'active' : '' }}">
+                    <a href="{{ route('xem-ho-so.index') }}"><i class="fas fa-bookmark icon-element"></i>Công ty đã
+                        theo dõi</a>
+                </li>
                 <li class="{{ request()->is('*profile*') ? 'active' : '' }}">
                     <a href="{{ route('profile.index') }}"><i class="fas fa-user icon-element"></i>Quản lý hồ sơ</a>
+                </li>
+                <li class="{{ request()->is('*goi-y-viec-lam*') ? 'active' : '' }}">
+                    <a href="{{ route('goi-y-viec-lam.index') }}"><i class="fas fa-user icon-element"></i>Gợi ý việc làm</a>
                 </li>
                 <li class="{{ request()->is('*change-password*') ? 'active' : '' }}">
                     <a href="{{ route('user.changepass') }}"><i class="fas fa-lock icon-element"></i> Đổi mật
                         khẩu</a>
                 </li>
+
                 <li><a href="{{ route('user.logout') }}"><i class="la la-power-off icon-element"></i> Logout</a>
                 </li>
             </ul>

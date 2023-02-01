@@ -49,7 +49,7 @@
             cols="30"
             rows="10"
           ></textarea>
-          <!-- <Editor v-model="model.describe" name="describe" /> -->
+
           <ErrorMessage class="error" name="describe" />
         </div>
         <div class="mb-4">

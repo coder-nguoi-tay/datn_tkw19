@@ -5,7 +5,7 @@
 @extends('client.layout.seeker')
 @section('content')
     <div class="dashboard-content-wrap" style="background: #ffff">
-        <div class="container-fluid">
+        <div class="container-fluid  mt-2">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-content d-flex flex-wrap justify-content-between align-items-center">
@@ -24,23 +24,17 @@
                         </ul>
                     </div>
                 </div>
+                {{-- {{ dd($user) }} --}}
+                </change-status-new>
                 <user-profile
                     :data="{{ json_encode([
-                        'lever' => $lever,
-                        'experience' => $experience,
-                        'wage' => $wage,
-                        'skill' => $skill,
-                        'timework' => $timework,
-                        'profession' => $profession,
                         'cv' => $cv,
-                        'location' => $location,
-                        'workingform' => $workingform,
                         'user' => $user,
+                        'checkProfile' => $user->getCheckUser->status_profile ?? null,
                         'urlStore' => route('profile.store'),
                         'urlBack' => route('profile.index'),
-                        'getskill' => $getskill ?? '',
                         'urlUpdateAvatar' => route('profile.updateAvatar'),
-                        'user' => Auth::guard('user')->user(),
+                        'changeStatusProfile' => route('profile.updateStatusProfile'),
                     ]) }}">
                 </user-profile>
             </div>

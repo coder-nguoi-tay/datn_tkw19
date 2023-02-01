@@ -6,6 +6,7 @@ use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\CheckLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
+use App\Models\location;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,7 +55,7 @@ class LoginController extends BaseController
     public function store(CheckLoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
-        if (Auth::guard('user')->attempt($credentials, $request->save ?? '')) {
+        if (Auth::guard('user')->attempt($credentials, true)) {
             if (Auth::guard('user')->user()->role_id == 2) {
                 return response()->json([
                     'data' => 2,
@@ -117,7 +118,7 @@ class LoginController extends BaseController
     }
     public function registerClient()
     {
-        return view('client.register.register',[
+        return view('client.register.register', [
             'title' => 'Đăng ký tài khoản',
         ]);
     }

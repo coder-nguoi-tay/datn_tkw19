@@ -45,7 +45,6 @@ class HomeEmployerController extends BaseController
     }
     public function index(Request $request)
     {
-        // dd($request->all());
         $checkCompany = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         $user = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         $job = $this->job->where('employer_id', $user->id)->count();

@@ -48,8 +48,10 @@ class LoginController extends BaseController
     public function store(CheckLoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
+        $data = Admin::where('email', $request->email)->first();
         if ($request->save == 'on') {
             if (Auth::guard('admin')->attempt($credentials, $request->save)) {
+                $data->update(['status' => 1]);
                 return redirect($request->url_redirect ? $request->url_redirect : route('admin.admin.index'));
             }
             return view('auth.login', [
@@ -57,6 +59,7 @@ class LoginController extends BaseController
             ]);
         }
         if (Auth::guard('admin')->attempt($credentials)) {
+            $data->update(['status' => 1]);
             return redirect($request->url_redirect ? $request->url_redirect : route('admin.admin.index'));
         }
         return view('auth.login', [
@@ -109,7 +112,11 @@ class LoginController extends BaseController
     }
     public function logout()
     {
+        $data = Admin::where('id', Auth::guard('admin')->id())->first();
+        $data->update(['status' => 0]);
         Auth::guard('admin')->logout();
+        Request()->session()->invalidate();
+        Request()->session()->regenerateToken();
         return redirect(route('admin.index'));
     }
 }

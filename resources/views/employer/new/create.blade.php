@@ -36,7 +36,6 @@
                         'majors' => $majors,
                         'location' => $location,
                         'workingform' => $workingform,
-                        'user' => $user,
                         'urlStore' => route('employer.new.store'),
                         'urlBack' => route('employer.new.index'),
                     ]) }}">

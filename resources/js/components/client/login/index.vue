@@ -7,67 +7,30 @@
       <span class="success">{{ msgSucsess }}</span>
     </div>
     <br />
-    <form
-      class="pt-3"
-      @submit="handleSubmit($event, onSubmit)"
-      ref="formData"
-      method="POST"
-    >
+    <form class="pt-3" @submit="handleSubmit($event, onSubmit)" ref="formData" method="POST">
       <div class="container row text-center">
         <div class="col-6">
-          <a
-            class="custom-buttom-checkform"
-            @click="checkFormData(1)"
-            :class="{ active: checkForm == 1 }"
-            >Đăng nhập</a
-          >
+          <a class="custom-buttom-checkform" @click="checkFormData(1)" :class="{ active: checkForm == 1 }">Đăng nhập</a>
         </div>
         <div class="col-6">
-          <a
-            class="custom-buttom-checkform"
-            @click="checkFormData(2)"
-            :class="{ active: checkForm == 2 }"
-            >Đăng ký</a
-          >
+          <a class="custom-buttom-checkform" @click="checkFormData(2)" :class="{ active: checkForm == 2 }">Đăng ký</a>
         </div>
       </div>
       <br />
       <div class="form-login-user" v-if="checkForm == 1">
         <input type="hidden" :value="csrfToken" name="_token" />
         <p>Email</p>
-        <Field
-          type="text"
-          name="email"
-          v-model="model.email"
-          rules="required|email"
-          placeholder="Email"
-          class="form-control"
-        />
+        <Field type="text" name="email" v-model="model.email" rules="required|email" placeholder="Email"
+          class="form-control" />
         <ErrorMessage class="error" name="email" />
         <p>Password</p>
-        <Field
-          type="password"
-          name="password"
-          v-model="model.password"
-          rules="required|min:8|max:16"
-          placeholder="Password"
-          class="form-control"
-        />
+        <Field type="password" name="password" v-model="model.password" rules="required|min:8|max:16"
+          placeholder="Password" class="form-control" />
         <ErrorMessage class="error" name="password" />
         <div class="d-flex">
-          <Field
-            name="save"
-            v-model="model.save"
-            class="form-check-input text-checkbok"
-            type="checkbox"
-            id="rememberMe"
-            value="on"
-          />
-          <label
-            class="form-check-label mb-0 ms-3 text-rememberMe"
-            for="rememberMe"
-            >Remember me</label
-          >
+          <Field name="save" v-model="model.save" class="form-check-input text-checkbok" type="checkbox" id="rememberMe"
+            value="on" />
+          <label class="form-check-label mb-0 ms-3 text-rememberMe" for="rememberMe">Remember me</label>
           <a href="" class="text-danger ms-auto">Quên mật khẩu</a>
         </div>
         <div class="text-center mt-5">
@@ -78,34 +41,16 @@
         <input type="hidden" :value="csrfToken" name="_token" />
         <input type="hidden" :value="1" name="form" />
         <p>Họ và Tên</p>
-        <Field
-          type="text"
-          name="name"
-          v-model="model.name"
-          rules="required|max:255"
-          placeholder="Họ và Tên"
-          class="form-control"
-        />
+        <Field type="text" name="name" v-model="model.name" rules="required|max:255" placeholder="Họ và Tên"
+          class="form-control" />
         <ErrorMessage class="error" name="name" />
         <p>Email</p>
-        <Field
-          type="text"
-          name="email"
-          v-model="model.email"
-          rules="required|email"
-          placeholder="Email"
-          class="form-control"
-        />
+        <Field type="text" name="email" v-model="model.email" rules="required|email" placeholder="Email"
+          class="form-control" />
         <ErrorMessage class="error" name="email" />
         <p>Password</p>
-        <Field
-          type="password"
-          name="password"
-          v-model="model.password"
-          rules="required|min:8|max:16"
-          placeholder="Password"
-          class="form-control"
-        />
+        <Field type="password" name="password" v-model="model.password" rules="required|min:8|max:16"
+          placeholder="Password" class="form-control" />
         <ErrorMessage class="error" name="password" />
         <br />
         <div class="text-center">
@@ -150,7 +95,7 @@ export default {
       msgSucsess: ''
     }
   },
-  mounted() {},
+  mounted() { },
   created() {
     let messError = {
       en: {
@@ -210,7 +155,7 @@ export default {
             if (data.data.data == 1) {
               location.reload()
             } else if (data.data.data == 2) {
-              window.location.href = '/test'
+              window.location.href = '/employer/profile'
             }
           })
           .catch(function (error) {
@@ -265,6 +210,7 @@ export default {
 .text-rememberMe {
   margin-top: 16px !important;
 }
+
 .pt-3 {
   .active {
     color: rgb(2, 0, 0) !important;
@@ -276,17 +222,21 @@ export default {
     border-top-right-radius: 3px !important;
     border-top-left-radius: 3px !important;
   }
+
   .custom-buttom-checkform:hover {
     border: solid 0px #ccc;
   }
+
   .custom-buttom-checkform {
     font-size: 17px !important;
     padding: 10px 55px 10px 55px;
   }
 }
+
 .success {
   color: green;
 }
+
 .btn-all {
   background-color: #ccc;
 }

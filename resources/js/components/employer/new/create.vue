@@ -35,7 +35,7 @@
                                 v-model="model.title"
                                 rules="required|max:255"
                                 class="form-control"
-                                placeholder="Enter job title"
+                                placeholder="Tiêu đề"
                               />
                               <ErrorMessage class="error" name="title" />
                             </div>
@@ -405,16 +405,25 @@
                               >
                                 <Multiselect
                                   placeholder="Chọn Kỹ năng"
-                                  v-model="value"
                                   mode="tags"
+                                  v-model="value"
                                   :searchable="true"
                                   :options="options"
                                   label="label"
                                   track-by="label"
                                   :infinite="true"
                                   :object="true"
+                                  :filterResults="true"
+                                  :clearOnSearch="true"
+                                  :clearOnSelect="true"
+                                  @input="updateSelected"
                                 />
                               </Field>
+                              <input
+                                type="hidden"
+                                name="skill[]"
+                                v-model="skill"
+                              />
                               <ErrorMessage class="error" name="skill_id" />
                             </div>
                           </div>
@@ -526,7 +535,8 @@ export default {
         status_profile: false
       },
       value: [],
-      options: []
+      options: [],
+      skill: []
     }
   },
   created() {
@@ -608,6 +618,14 @@ export default {
     })
   },
   methods: {
+    updateSelected(e) {
+      let array = []
+      e.map((x) => {
+        array.push(x.value)
+      })
+      array = [...new Set(array)]
+      this.skill = array
+    },
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0]
       this.$el.querySelector('input[name=' + firstInputError + ']').focus()
@@ -619,39 +637,7 @@ export default {
       )
     },
     onSubmit() {
-      let that = this
-      axios
-        .post('/employer/new/store', {
-          _token: this.csrfToken,
-          data: this.model,
-          skill: this.value
-        })
-        .then(function (response) {
-          const notyf = new Notyf({
-            duration: 6000,
-            position: {
-              x: 'right',
-              y: 'bottom'
-            },
-            types: [
-              {
-                type: 'error',
-                duration: 8000,
-                dismissible: true
-              }
-            ]
-          })
-          if (response.data.status == 403) {
-            return notyf.error(response.data.message)
-          }
-          setTimeout(function () {
-            window.location.href = that.data.urlBack
-          }, 1100)
-          return notyf.success(response.data.message)
-        })
-        .catch((error) => {
-          location.reload()
-        })
+      this.$refs.formData.submit()
     }
   }
 }

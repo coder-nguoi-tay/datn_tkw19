@@ -15,7 +15,7 @@
                         <div class="block-banner text-center">
                             <h3 class="wow animate__ animate__fadeInUp animated"
                                 style="visibility: visible; animation-name: fadeInUp;"><span class="color-brand-2">
-                                    Công việc</span> Phù hợp</h3>
+                                    {{ count($job) }} Công việc</span> Phù hợp</h3>
                         </div>
                     </div>
                 </section>
@@ -71,7 +71,7 @@
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
                                                             text-align: left;"
-                                                        href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                        href="home/detail/{{ $value->id }}">
                                                         <span class="name-job">{{ $value->nameCompany }}</span>
                                                     </a>
                                                     <div
@@ -94,7 +94,7 @@
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
                                                             text-align: justify;">
-                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                    <a href="home/detail/{{ $value->id }}">
                                                         {{ $value->title }}</a>
                                                 </h6>
 
@@ -225,7 +225,7 @@
                                                     <img src="{{ asset($value->logo) }}" width="52" alt="Percepta">
                                                 </div>
                                                 <div class="right-info">
-                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                    <a href="home/detail/{{ $value->id }}">
                                                         <span class="name-job"
                                                             style=" -webkit-line-clamp: 1;
                                                             -webkit-box-orient: vertical;
@@ -255,7 +255,7 @@
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
                                                             text-align: justify;">
-                                                    <a href="home/detail/{{ $value->title . '-' . $value->id }}">
+                                                    <a href="home/detail/{{ $value->id }}">
                                                         {{ $value->title }}</a>
                                                 </h6>
 

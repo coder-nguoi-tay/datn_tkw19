@@ -73,13 +73,6 @@
 
                                             </td>
 
-                                            <td class="align-middle">
-                                                <btn-delete-admin
-                                                    :message-confirm="{{ json_encode('Bạn có chắc muốn xóa không ?') }}"
-                                                    :delete-action="{{ json_encode(route('admin.company.destroy', $item->id)) }}">
-                                                </btn-delete-admin>
-                                            </td>
-
                                         </tr>
                                     @endforeach
                                 </tbody>

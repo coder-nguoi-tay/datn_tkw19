@@ -91,6 +91,18 @@ class HomeController extends BaseController
                 return redirect(route('employer.index'));
             }
         }
+        $jobForUser = $this->job
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->where([
+                ['job.status', 1],
+                ['job.expired', 0],
+                ['job.package_id_position', 1],
+                ['employer.position', 1],
+            ])
+            ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+            ->orderBy('employer.prioritize', 'desc')
+            ->get();
         if (Auth::guard('user')->check()) {
             $user = $this->user->with('getProfileUse')->where('id', Auth::guard('user')->user()->id)->first();
 
@@ -98,7 +110,7 @@ class HomeController extends BaseController
                 $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
                 $skill_id = $getskill->getskill->pluck('id');
                 $getProfile = $user->getProfileUse;
-                $jobForUser = $this->job
+                $job = $this->job
                     ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
                     ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
                     ->join('employer', 'employer.id', '=', 'job.employer_id')
@@ -106,6 +118,8 @@ class HomeController extends BaseController
                     ->where([
                         ['job.status', 1],
                         ['job.expired', 0],
+                        ['job.package_id_position', 1],
+                        ['employer.position', 1],
                     ])
                     ->where(function ($query) use ($getProfile, $skill_id) {
                         $query->orWhere(function ($q) use ($skill_id) {
@@ -136,29 +150,33 @@ class HomeController extends BaseController
                     ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                     ->orderBy('employer.prioritize', 'desc')
                     ->get();
+            } else {
+                $job = $jobForUser;
             }
+        } else {
+            $job = $jobForUser;
         }
         $majors = Majors::with('majors')->get();
-        $new = News::select('id', 'title', 'profession_id', 'new_image', 'describe', 'majors', 'created_at')->paginate(3);
+
+        $new = News::select('id', 'title', 'profession_id', 'new_image', 'describe', 'majors', 'created_at')->paginate(4);
+
         return view('client.index', [
             'majors' => $majors,
             'title' => 'Tuyển dung, tìm việc làm nhanh 24h',
+            'profestion' => $this->getprofession(),
+            'lever' => $this->getlever(),
+            'experience' => $this->getexperience(),
+            'wage' => $this->getwage(),
+            'skill' => $this->getskill(),
+            'timework' => $this->gettimework(),
+            'profession' => $this->getprofession(),
             'majors' => $this->majors->get(),
+            'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
             'user' => $user ?? '',
-            'getskill' => $getskill ?? '',
-            'job' => $this->job
-                ->join('employer', 'employer.id', '=', 'job.employer_id')
-                ->join('company', 'company.id', '=', 'employer.id_company')
-                ->where([
-                    ['job.status', 1],
-                    ['job.expired', 0],
-                    ['employer.position', 1],
-                ])
-                ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
-                ->orderBy('employer.prioritize', 'desc')
-                ->get(),
+            'job' => $job,
             'new' => $new,
+            'getskill' => $getskill ?? '',
             'jobAttractive' => $this->job
                 ->join('employer', 'employer.id', '=', 'job.employer_id')
                 ->join('company', 'company.id', '=', 'employer.id_company')
@@ -170,8 +188,6 @@ class HomeController extends BaseController
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                 ->orderBy('employer.prioritize', 'desc')
                 ->paginate(12),
-            'jobForUser' => $jobForUser ?? ''
-
         ]);
     }
 
@@ -206,11 +222,8 @@ class HomeController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showDetail($name, $id)
+    public function showDetail($id)
     {
-        if (Auth::guard('user')->check()) {
-            $seeker = $this->Jobseeker->where('user_role', Auth::guard('user')->user()->id)->first();
-        }
         $checklove = Favourite::where('job_id', $id)->first();
         if ($checklove) {
             $love = $checklove->job_id;
@@ -218,7 +231,6 @@ class HomeController extends BaseController
             $love = null;
         }
         $job = $this->job
-            // ->with(['getWage', 'getlocation', 'getskill', 'getMajors'])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany', 'company.address as addressCompany', 'company.Desceibe as desceibeCompany', 'company.number_member as number_member', 'company.email as emailCompany')
@@ -237,10 +249,6 @@ class HomeController extends BaseController
             ->where('job.expired', 0)
             ->select('job.*', 'company.logo as logo')
             ->get();
-        //
-        $title = $this->convert_name($job->title);
-        $getMajors = $this->convert_name($job->getMajors->name);
-        $location = $this->convert_name($job->getlocation->name);
         // tin cùng cty
         $jobCompany = $this->job
             ->select(
@@ -261,11 +269,9 @@ class HomeController extends BaseController
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->where('company.id', $job->idCompany)
-            // ->with(['getWage', 'getlocation', 'getMajors'])
             ->paginate(4);
         if (Auth::guard('user')->check()) {
             $cv = $this->upload->where('user_id', Auth::guard('user')->user()->id)->get();
-            $profileUser = $this->user->where('id', Auth::guard('user')->user()->id)->with('getProfile')->first();
         }
         $breadcrumbs = [
             $job->title
@@ -273,15 +279,10 @@ class HomeController extends BaseController
         return view('client.detai-job', [
             'job' => $job,
             'jobCompany' => $jobCompany,
-            'title' => $title,
-            'getMajors' => $getMajors,
-            'location' => $location,
             'locationAll' => $this->location->get(),
             'rules' => $relate,
             'breadcrumbs' => $breadcrumbs,
             'cv' => $cv ?? '',
-            'profileUser' => $profileUser ?? '',
-            'seeker' => $seeker ?? '',
             'majors' => $this->majors->get(),
             'checklove' => $love,
         ]);
@@ -320,19 +321,6 @@ class HomeController extends BaseController
     {
         //
     }
-    public function searchLocation($name, $id)
-    {
-        $job =  $this->job->where('location_id', $id)
-            ->with(['getWage', 'getlocation', 'getskill', 'getprofession', 'getExperience', 'getLevel', 'getTime_work', 'getwk_form', 'getMajors'])
-            ->paginate(10);
-        $breadcrumbs = [
-            'Tìm kiếm việc làm'
-        ];
-        return view('client.search', [
-            'job' => $job,
-            'breadcrumbs' => $breadcrumbs,
-        ]);
-    }
     public function searchMajors($id)
     {
         $job =  $this->job->where('majors_id', $id)
@@ -350,7 +338,7 @@ class HomeController extends BaseController
             $item['duration'] = Carbon::parse($item->end_job_time)->diffInRealMilliseconds(Carbon::parse(Carbon::now()));
         }
         return view('client.job-manager.index', [
-            'title' => 'Việc làm quản lý ',
+            'title' => 'Việc làm quản lý',
             'majors' => Majors::all(),
             'breadcrumbs' => $breadcrumbs,
             'job' => $job,
@@ -359,6 +347,10 @@ class HomeController extends BaseController
     }
     public function upCv(Request $request)
     {
+        if (!Auth::guard('user')->check()) {
+            $this->setFlash(__('Bạn cần đăng nhập hoặc đăng ký để trải nghiệm dịch vụ của chúng tôi'), 'error');
+            return redirect()->back();
+        }
         $mailUpCv = $this->savecv;
 
         $checkJob = $this->savecv->where([
@@ -417,7 +409,9 @@ class HomeController extends BaseController
                 $cvUpload->save();
             }
         }
-
+        $user = $this->job->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('users', 'users.id', '=', 'employer.user_id')
+            ->select('users.email as email')->first();
         $mailContents = $mailUpCv->name;
         Mail::to($user->mail)->send(new MailNotifyCV($mailContents));
 

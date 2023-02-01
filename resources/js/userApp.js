@@ -334,8 +334,10 @@ app.component('home-test', Abcxyz);
 import HomeSearch from "./components/client/home/search.vue";
 import axios from 'axios'
 app.component('home-search', HomeSearch);
-
 //job love
 import btnDeleteJobLove from './components/common/btnDeleteJobLove.vue'
 app.component('btn-delete-job-love', btnDeleteJobLove)
+// job target 
+import jobTarget from './components/client/seeker/jobTarget.vue'
+app.component('job-target', jobTarget)
 app.mount('#app')

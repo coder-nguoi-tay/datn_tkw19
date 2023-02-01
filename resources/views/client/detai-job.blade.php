@@ -273,6 +273,12 @@
                                                 <li>{!! $job->candidate_requirements !!}</li>
 
                                             </ul>
+                                            <h4>Kỹ năng</h4>
+                                            @foreach ($job->getskill as $item)
+                                                <li><span
+                                                        class="px-2 py-1 medium skill-bg rounded text-dark">{{ $item->name }}</span>
+                                                </li>
+                                            @endforeach
 
                                         </div>
                                         <div class="author-single">
@@ -318,16 +324,14 @@
                                                             <div
                                                                 class="card-list-4 wow animate__animated animate__fadeIn hover-up">
                                                                 <div class="image">
-                                                                    <a
-                                                                        href="/home/detail/{{ $item->title . '-' . $item->id }}">
+                                                                    <a href="/home/detail/{{ $item->id }}">
                                                                         <img src="{{ asset($item->logo) }}"
                                                                             width="50" alt="wanderu">
                                                                     </a>
                                                                 </div>
                                                                 <div class="info-text">
                                                                     <h5 class="font-md font-bold color-brand-1">
-                                                                        <a
-                                                                            href="/home/detail/{{ $item->title . '-' . $item->id }}">UI
+                                                                        <a href="/home/detail/{{ $item->id }}">
                                                                             {{ $item->title }}</a>
                                                                     </h5>
                                                                     <div
@@ -380,10 +384,7 @@
                             'checkLogin' => Auth::guard('user')->check(),
                             'cv' => $cv,
                             'urlStore' => route('home.detail.upcv'),
-                            'urlStoreCv' => route('quan-ly-cv.create'),
                             'jobId' => $job->id,
-                            'checkUser' => $profileUser,
-                            'seeker' => $seeker,
                         ]) }}">
                     </up-cv>
                 </div>
