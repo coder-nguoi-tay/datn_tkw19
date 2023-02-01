@@ -64,8 +64,10 @@
 
 
                                                 <img src="{{ asset(Auth::guard('user')->user()->images) }}"
-                                                    alt="" class="img-profile">
-                                                <span class="fullname"> &nbsp; {{ Auth::guard('user')->user()->name }}
+                                                    alt="" style="width: 35px;height: 35px;margin : 0 "
+                                                    class="rounded-circle img-fluid">
+                                                <span class="fullname"> &nbsp;
+                                                    {{ Auth::guard('user')->user()->name }}
                                                 </span>
 
 
