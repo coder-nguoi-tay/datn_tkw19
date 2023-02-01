@@ -37,7 +37,7 @@
                         </li>
                         <li id="menu-item-139"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-139 ">
-                            <a href="{{ route('getCompany') }}">Công ty</a>
+                            <a href="{{ route('CongTy') }}">Công ty</a>
 
                         </li>
                         <li id="menu-item-96"
