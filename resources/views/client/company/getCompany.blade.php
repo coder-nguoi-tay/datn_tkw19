@@ -110,39 +110,5 @@
 
             </div>
         </section>
-
-
-        {{-- <section class="section-box mt-50 mb-20">
-            <div class="container">
-                <div class="box-newsletter">
-                    <div class="row align-items-center">
-
-                        <div class="col-xl-3 col-12 text-center d-none d-xl-block">
-                            <img src="../wp-content/uploads/2022/12/newsletter-left.png" alt="Newsletter">
-                        </div>
-
-                        <div class="col-lg-12 col-xl-6 col-12">
-                            <h2 class="text-md-newsletter text-center">New Things Will Always Update Regularly</h2>
-                            <div class="box-form-newsletter mt-40">
-                                <form id="mc-form" class="form-newsletter">
-                                    <input id="mc-email" class="input-newsletter" type="email"
-                                        placeholder="Enter your email" required="required">
-                                    <button class="btn btn-default font-heading icon-send-letter"
-                                        type="submit">Subscribe</button>
-                                </form>
-
-                            </div>
-                            <div id="mc-response" class="mt-15"></div>
-                        </div>
-
-                        <div class="col-xl-3 col-12 text-center d-none d-xl-block">
-                            <img src="../wp-content/uploads/2022/12/newsletter-right.png" alt="Newsletter">
-                        </div>
-
-                    </div>
-                    <!--row-->
-                </div>
-            </div>
-        </section> --}}
     </main>
 @endsection
