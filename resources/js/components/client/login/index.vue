@@ -155,7 +155,7 @@ export default {
             if (data.data.data == 1) {
               location.reload()
             } else if (data.data.data == 2) {
-              window.location.href = '/employer/profile'
+              window.location.href = '/employer/dashboard'
             }
           })
           .catch(function (error) {

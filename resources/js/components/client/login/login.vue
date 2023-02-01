@@ -148,7 +148,7 @@ export default {
           if (data.data.data == 1) {
             window.location.href = '/'
           } else if (data.data.data == 2) {
-            window.location.href = '/employer/profile'
+            window.location.href = '/employer/dashboard'
           }
           console.log(data.data.data);
         })
