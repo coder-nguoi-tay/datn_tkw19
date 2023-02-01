@@ -133,6 +133,9 @@ app.component('show-cv', showCV);
 import showCvClient from "./components/client/seeker/create-cv.vue";
 app.component('show-cv-client', showCvClient);
 
+import Statistical from "./components/admin/statistical.vue";
+app.component('statistical', Statistical);
+
 import Widgets from "./components/employer/widgets.vue";
 app.component('widgets', Widgets);
 import btnStatusCompany from "./components/admin/company/buttomStatus.vue";

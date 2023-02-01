@@ -319,6 +319,9 @@ app.component('business-license', businessLicense);
 import modalContract from "./components/client/modal/modalContact.vue";
 app.component('modal-contract', modalContract);
 
+import Statistical from "./components/admin/statistical.vue";
+app.component('statistical', Statistical);
+
 import modalRequired from "./components/client/modal/modalRequired.vue";
 app.component('modal-required', modalRequired);
 
