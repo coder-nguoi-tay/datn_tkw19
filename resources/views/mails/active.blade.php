@@ -202,7 +202,7 @@
                                                                                                     <p
                                                                                                         style="margin:0;padding:0;font-weight:500;font-size:18px;line-height:140%;letter-spacing:-0.01em;color:#666;margin-top:8px;font-family:inherit">
                                                                                                         Xin chào
-                                                                                                        {{ $data['name'] }}
+                                                                                                        {{ $data }}
                                                                                                         <br><br>Vui lòng
                                                                                                         lựa chọn nút bên
                                                                                                         dưới để xác minh

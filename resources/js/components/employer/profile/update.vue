@@ -25,7 +25,10 @@
                       <div class="MultiFile-intercepted">
                         <div class="container rounded bg-white mt-5 mb-5">
                           <div class="row">
-                            <div class="col-md-3 border-right" style=" margin-left: -20px">
+                            <div
+                              class="col-md-3 border-right"
+                              style="margin-left: -20px"
+                            >
                               <div
                                 class="
                                   flex-column
@@ -40,7 +43,8 @@
                                   alt="Admin"
                                   class="rounded-circle"
                                   width="200"
-                                /><span class="font-weight-bold">
+                                />
+                                <br /><span class="font-weight-bold">
                                   {{ employer.name }}</span
                                 >
                                 <br /><span> </span>
@@ -414,9 +418,7 @@ export default {
 }
 .btn-primary {
   color: #fff;
-  
 }
-
 
 .btn-group-lg > .min-width.btn,
 .min-width.btn-lg {
