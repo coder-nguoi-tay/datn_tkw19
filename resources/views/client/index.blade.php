@@ -397,9 +397,35 @@
                         </div>
 
 
+
                     </div>
                 </div>
             </section>
+            <div class="page-white-100">
+                <div id="box-discover">
+                    <div class="container">
+                        <div class="list-discover">
+                            @foreach ($majors as $item)
+                                <div class="items">
+
+                                    <div class="image">
+                                        <img src="../../wp-content/themes/jobbox/assets/imgs/template/major.png"
+                                            alt="">
+                                    </div>
+                                    <div class="title">{{ $item->name }}</div>
+                                    <p class="count">(<span class="number count_job_manager">2,122</span> việc làm)
+                                    </p>
+                                    <div>
+                                        <a href="{{ route('searchMajors', $item->id) }}" class="see-more">Khám
+                                            phá ngay <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
             <section
                 class="elementor-section elementor-top-section elementor-element elementor-element-d98c6ff elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                 data-id="d98c6ff" data-element_type="section">
