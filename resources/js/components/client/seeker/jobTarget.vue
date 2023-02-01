@@ -23,8 +23,12 @@
                       <h6>
                         NHỮNG THUẬN LỢI KHI BẠN CẬP NHẬT THÔNG TIN TÌM VIỆC ?
                       </h6>
-                      <p style="font-size: 15px">- Tạo điều kiện cho nhà tuyển dụng dễ tìm thấy bạn.</p>
-                      <p style="font-size: 15px; margin-top: -10px !important ">- Được gợi ý các công việc phù hợp với bạn.</p>
+                      <p style="font-size: 15px">
+                        - Tạo điều kiện cho nhà tuyển dụng dễ tìm thấy bạn.
+                      </p>
+                      <p style="font-size: 15px; margin-top: -10px !important">
+                        - Được gợi ý các công việc phù hợp với bạn.
+                      </p>
 
                       <hr class="mt-0 mb-4" />
                       <div class="row pt-1">
@@ -68,6 +72,96 @@
                               </option>
                             </Field>
                             <ErrorMessage class="error" name="experience_id" />
+                          </div>
+                        </div>
+                        <div class="mb-3 row">
+                          <label
+                            for="inputPassword"
+                            class="col-sm-4 col-form-label"
+                            >Địa chỉ<span class="required-label">
+                              *</span
+                            ></label
+                          >
+                          <div class="col-sm-8">
+                            <Field
+                              name="location_id"
+                              as="select"
+                              v-model="valueSelect.location_id"
+                              rules="required"
+                              class="form-control s00"
+                            >
+                              <option value disabled selected>
+                                --Chọn Địa chỉ--
+                              </option>
+                              <option
+                                v-for="item in data.location"
+                                :key="item.id"
+                                :value="item.id"
+                              >
+                                {{ item.label }}
+                              </option>
+                            </Field>
+                            <ErrorMessage class="error" name="location_id" />
+                          </div>
+                        </div>
+                        <div class="mb-3 row">
+                          <label
+                            for="inputPassword"
+                            class="col-sm-4 col-form-label"
+                            >Hình thức làm việc<span class="required-label">
+                              *</span
+                            ></label
+                          >
+                          <div class="col-sm-8">
+                            <Field
+                              name="workingform_id"
+                              as="select"
+                              v-model="valueSelect.workingform_id"
+                              rules="required"
+                              class="form-control s00"
+                            >
+                              <option value disabled selected>
+                                --Chọn hình thức làm việc--
+                              </option>
+                              <option
+                                v-for="item in data.workingform"
+                                :key="item.id"
+                                :value="item.id"
+                              >
+                                {{ item.label }}
+                              </option>
+                            </Field>
+                            <ErrorMessage class="error" name="workingform_id" />
+                          </div>
+                        </div>
+                        <div class="mb-3 row">
+                          <label
+                            for="inputPassword"
+                            class="col-sm-4 col-form-label"
+                            >Nghành nghề<span class="required-label">
+                              *</span
+                            ></label
+                          >
+                          <div class="col-sm-8">
+                            <Field
+                              name="majors_id"
+                              as="select"
+                              v-model="valueSelect.majors_id"
+                              rules="required"
+                              class="form-control s00"
+                            >
+                              <option value disabled selected>
+                                --Chọn Nghành nghề--
+                              </option>
+                              <option
+                                v-for="item in data.majors"
+                                :key="item.id"
+                                :value="item.id"
+                              >
+                                {{ item.label }}
+                              </option>
+                            </Field>
+                            <ErrorMessage class="error" name="majors_id" />
                           </div>
                         </div>
                         <div class="mb-3 row">
@@ -294,28 +388,16 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: this.data.user ?? '',
-      filePreview: '',
-      loading: false,
       value: [],
       options: [],
       valueSelect: this.data.user.get_profile_use ?? {},
-      checkImage: '',
-      errmsgCheckImage: '',
-      Media: '',
-      deleteImage: '',
-      skill: [],
-      isLoading: false
+      skill: []
     }
   },
 
   created() {
-    console.log(this.data);
     let array = []
-    this.Media = this.data.user.get_profile_use
-      ? this.data.user.get_profile_use.images
-      : 1
-    if (this.data.getskill ) {
+    if (this.data.getskill) {
       this.data.getskill.getskill.map((e) => {
         this.value.push({
           value: e.id,
@@ -370,6 +452,15 @@ export default {
           time_work_id: {
             required: 'Thời gian không được bỏ trống'
           },
+          location_id: {
+            required: 'không được bỏ trống'
+          },
+          majors_id: {
+            required: 'không được bỏ trống'
+          },
+          workingform_id: {
+            required: 'không được bỏ trống'
+          },
           skill_id: {
             required: 'Kỹ năng không được bỏ trống'
           }
@@ -407,7 +498,6 @@ export default {
     },
     onSubmit() {
       this.$refs.formData.submit()
-      
     }
   }
 }

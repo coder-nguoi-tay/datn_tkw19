@@ -85,9 +85,9 @@ class HomeController extends BaseController
             'Thông tin cá nhân'
         ];
         $user =  $this->user
-            ->with('getProfileUse')
-            ->where('users.id', Auth::guard('user')->user()->id)
+            ->where('id', Auth::guard('user')->user()->id)
             ->first();
+        // dd($user);
         $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
         $cv = UploadCv::where('user_id', Auth::guard('user')->user()->id)->get();
         return view('client.seeker.profile', [
@@ -125,10 +125,15 @@ class HomeController extends BaseController
      */
     public function store(Request $request)
     {
+        $user = $this->user->where('id', Auth::guard('user')->user()->id)->first();
+        if (count($user->getploadCv) == 2) {
+            $this->setFlash(__('Số lượng cv của bạn thêm vào đã vượt mức cho phép, mỗi tài khoản chỉ được thêm mới tối đa 2 cv'), 'error');
+            return redirect()->back();
+        }
         try {
             $upload = new $this->upload();
             $upload->user_id = Auth::guard('user')->user()->id;
-            $upload->title = Auth::guard('user')->user()->name;
+            $upload->title = $request->title;
             if ($request->hasFile('file_cv')) {
                 $upload->file_cv = $request->file_cv->storeAs('images/cv', $request->file_cv->hashName());
             }
@@ -155,6 +160,8 @@ class HomeController extends BaseController
             $user->address = '';
             $user->user_role = Auth::guard('user')->user()->id;
             $user->experience_id = $request->experience_id;
+            $user->location_id = $request->location_id;
+            $user->majors_id = $request->majors_id;
             $user->lever_id = $request->lever_id;
             $user->wage_id = $request->wage_id;
             $user->profession_id = $request->profession_id;

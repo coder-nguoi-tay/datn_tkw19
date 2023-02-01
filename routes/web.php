@@ -123,6 +123,11 @@ Route::post('register/create', [HomeEmployerController::class, 'store'])->name('
 // login 
 Route::resource('login', ClientLoginController::class);
 Route::get('register-client', [ClientLoginController::class, 'registerClient'])->name('register');
+Route::get('quen-mat-khau', [ClientLoginController::class, 'FogotPass'])->name('FogotPass');
+Route::post('quen-mat-khau', [ClientLoginController::class, 'FogotPassSuccsess'])->name('FogotPassSuccsess');
+Route::get('doi-mat-khau/{token}', [ClientLoginController::class, 'changePassword'])->name('changePassword');
+Route::post('doi-mat-khau/{token}', [ClientLoginController::class, 'changePasswordSuccsess'])->name('changePasswordSuccsess');
+Route::get('kich-hoat-tai-khoan', [ClientLoginController::class, 'activePass'])->name('activePass');
 // seeker
 Route::middleware('user')->group(function () {
     Route::resource('profile', SeekerHomeController::class);

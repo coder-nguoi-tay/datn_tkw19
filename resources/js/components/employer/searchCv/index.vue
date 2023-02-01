@@ -1,7 +1,7 @@
 <template>
   <VeeForm as="div" v-slot="{ handleSubmit }" @invalid-submit="onInvalidSubmit">
     <form
-      :action="data.urlGet + '234234'"
+      :action="data.urlGet"
       method="POST"
       ref="formData"
       @submit="handleSubmit($event, onSubmit($event))"

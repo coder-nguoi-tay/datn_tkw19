@@ -286,8 +286,12 @@ import popup from './components/common/popupAlert.vue'
 app.component('popup-alert', popup)
 import Upcv from './components/client/home/upcv.vue';
 app.component('up-cv', Upcv)
-import clientLogin from "./components/client/login/index.vue";
-app.component('client-login', clientLogin);
+// quen mat khau
+import ForgotPass from "./components/client/forgotpassword/index.vue";
+app.component('forgot-pass', ForgotPass);
+import ChangePass from "./components/client/forgotpassword/changePass.vue";
+app.component('change-pass', ChangePass);
+
 
 import registerEmployer from "./components/employer/register.vue";
 app.component('register-employer', registerEmployer);
@@ -314,6 +318,9 @@ app.component('business-license', businessLicense);
 
 import modalContract from "./components/client/modal/modalContact.vue";
 app.component('modal-contract', modalContract);
+
+import Statistical from "./components/admin/statistical.vue";
+app.component('statistical', Statistical);
 
 import modalRequired from "./components/client/modal/modalRequired.vue";
 app.component('modal-required', modalRequired);
