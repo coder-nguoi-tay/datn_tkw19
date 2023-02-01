@@ -14,6 +14,16 @@
         :action="data.urlStore"
       >
         <Field type="hidden" :value="csrfToken" name="_token" />
+        <div class="form-group">
+          <Field
+            type="text"
+            class="form-control"
+            name="title"
+            v-model="model.title"
+            style="width: 350px"
+            placeholder="Tên CV"
+          />
+        </div>
         <div style="margin: 30px 0; padding: 0; box-sizing: border-box">
           <div class="main_gt">
             <div class="left_cv">

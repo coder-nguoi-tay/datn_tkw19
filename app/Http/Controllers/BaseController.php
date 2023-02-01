@@ -195,7 +195,7 @@ class BaseController extends Controller
         $mailContents = [
             'data' => [
                 'name' => $account->name,
-                'link' => route('resset_pass.show', $account->reset_password_token),
+                'link' => route('changePassword', $account->reset_password_token),
             ],
         ];
         Mail::to($account->email)->send(new ForgotPassword($mailContents));

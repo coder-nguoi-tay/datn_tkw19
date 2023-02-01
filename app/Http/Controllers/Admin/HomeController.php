@@ -51,6 +51,7 @@ class HomeController extends BaseController
             'total_seeker' => $total_seeker,
             'total_employer' => $total_employer,
             'total_job' => $total_job,
+            
         ]);
     }
 

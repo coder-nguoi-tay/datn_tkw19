@@ -3,7 +3,13 @@
     <div class="row gap_row_form justify-content-center form-find">
       <div class="col-lg-3 align-self-center border p-2 custom-input">
         <fieldset>
-          <input type="text" name="key" style="border: none" v-model="model.key" placeholder="Nhập từ khóa " />
+          <input
+            type="text"
+            name="key"
+            style="border: none"
+            v-model="model.key"
+            placeholder="Nhập từ khóa "
+          />
         </fieldset>
       </div>
       <div class="col-lg-2 align-self-center border p-2 custom-input">
@@ -20,7 +26,11 @@
         <fieldset>
           <Field name="time_work" as="select" v-model="model.time_work">
             <option value selected>Chọn Thời Gian</option>
-            <option v-for="item in data.timework" :key="item.id" :value="item.id">
+            <option
+              v-for="item in data.timework"
+              :key="item.id"
+              :value="item.id"
+            >
               {{ item.label }}
             </option>
           </Field>
@@ -30,7 +40,11 @@
         <fieldset>
           <Field name="profession" as="select" v-model="model.profession">
             <option value selected>Chọn Ngành Nghề</option>
-            <option v-for="item in data.profession" :key="item.id" :value="item.id">
+            <option
+              v-for="item in data.profession"
+              :key="item.id"
+              :value="item.id"
+            >
               {{ item.label }}
             </option>
           </Field>
@@ -41,7 +55,11 @@
         <fieldset>
           <Field name="experience" as="select" v-model="model.experience">
             <option value selected>Chọn Kinh Nghiệm</option>
-            <option v-for="item in data.experience" :key="item.id" :value="item.id">
+            <option
+              v-for="item in data.experience"
+              :key="item.id"
+              :value="item.id"
+            >
               {{ item.label }}
             </option>
           </Field>
@@ -68,11 +86,26 @@
           </Field>
         </fieldset>
       </div>
-      <div class="col-lg-3 align-self-center border p-2" style="border: none !important">
+      <div
+        class="col-lg-3 align-self-center border p-2"
+        style="border: none !important"
+      >
         <fieldset class="custom-multiselect">
-          <Multiselect placeholder="Chọn Kỹ năng" mode="tags" v-model="value" :searchable="true" :options="options"
-            label="label" track-by="label" :infinite="true" :object="true" :filterResults="true" :clearOnSearch="true"
-            :clearOnSelect="true" @input="updateSelected" />
+          <Multiselect
+            placeholder="Chọn Kỹ năng"
+            mode="tags"
+            v-model="value"
+            :searchable="true"
+            :options="options"
+            label="label"
+            track-by="label"
+            :infinite="true"
+            :object="true"
+            :filterResults="true"
+            :clearOnSearch="true"
+            :clearOnSelect="true"
+            @input="updateSelected"
+          />
         </fieldset>
         <input type="hidden" name="skill[]" v-model="skill" />
       </div>
@@ -139,7 +172,6 @@ export default {
 }
 </script>
 <style src="@vueform/multiselect/themes/default.css">
-
 </style>
 <style lang="scss">
 .custom-input {

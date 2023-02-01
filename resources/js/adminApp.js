@@ -99,13 +99,6 @@ app.component('profile-employer', profileEmployer);
 import businessLicense from "./components/employer/profile/business-license.vue";
 app.component('business-license', businessLicense);
 
-
-
-// client
-import clientLogin from "./components/client/login/index.vue";
-app.component('client-login', clientLogin);
-import clientRegister from "./components/client/register/create.vue";
-app.component('client-register', clientRegister);
 // home
 import homeClient from "./components/client/home/index.vue";
 app.component('home-client', homeClient);
@@ -139,6 +132,9 @@ import showCV from "./components/employer/manegercv/show.vue";
 app.component('show-cv', showCV);
 import showCvClient from "./components/client/seeker/create-cv.vue";
 app.component('show-cv-client', showCvClient);
+
+import Statistical from "./components/admin/statistical.vue";
+app.component('statistical', Statistical);
 
 import Widgets from "./components/employer/widgets.vue";
 app.component('widgets', Widgets);
