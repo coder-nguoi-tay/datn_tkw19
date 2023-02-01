@@ -1,21 +1,10 @@
 <template>
-  <CChart
-    type="line"
-    :data="data"
-    :options="options"
-    @get-dataset-at-event="aa"
-    @get-element-at-event="aa"
-    @get-elements-at-event="aa"
-  />
+  <CChart type="line" :data="data" :options="options" />
 </template>
 
 <script>
 import { CChart } from '@coreui/vue-chartjs'
 import { getStyle, hexToRgba } from '@coreui/utils/src'
-
-function random(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
 
 export default {
   created() {
@@ -36,7 +25,6 @@ export default {
   setup() {},
   methods: {
     test() {
-      console.log(this.NameDate)
       this.data = {
         labels: [
           'Tháng 1',
@@ -60,7 +48,6 @@ export default {
             pointHoverBackgroundColor: getStyle('--cui-info'),
             borderWidth: 2,
             data: [
-              // 50, 100, 100, 60, 100, 100, 70, 100, 100, 90, 100, 100
               this.NameDate.countCvMoth1,
               this.NameDate.countCvMoth2,
               this.NameDate.countCvMoth3,
