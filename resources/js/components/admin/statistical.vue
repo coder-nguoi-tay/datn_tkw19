@@ -4,37 +4,63 @@
     <CRow>
       <CCol :md="12">
         <CCard class="mb-4">
-          <CCardBody style="height: 470px">
-            <CRow>
+          <CCardBody style="height: 550px">
+            <!-- <CRow>
               <CCol :sm="8">
                 <div class="small text-medium-emphasis">
                   Thống kê năm: <b></b>
                 </div>
               </CCol>
-              <CCol :sm="4" class="d-flex">
-                <form action="" method="get" class="row">
-                  <div class="col-8 text-center">
-                    <div class="small text-medium-emphasis">
-                      <DatePicker
-                       
-                        name="date"
-                        year-picker
-                        textInput
-                      />
-                    </div>
-                  </div>
-                  <div class="col-2">
-                    <button class="btn btn-info">Lọc</button>
-                  </div>
-                </form>
-              </CCol>
-            </CRow>
+            </CRow> -->
             <CRow>
-              <MainChartExample
-                
-                :test="'123'"
-                style="height: 300px; max-height: 300px; margin-top: 40px"
-              />
+              <div class="col-6">
+                <CCol :sm="4" class="d-flex" style="margin-left: 500px">
+                  <form action="" method="get" class="row">
+                    <div class="col-8 text-center">
+                      <div class="small text-medium-emphasis">
+                        <DatePicker
+                          v-model="dataPayment"
+                          name="date_payment"
+                          year-picker
+                          textInput
+                        />
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <button class="btn btn-info text-white">Lọc</button>
+                    </div>
+                  </form>
+                </CCol>
+                Tổng doanh thu : {{ data.totalPayment }}
+                <MainChartExample
+                  :dataPayment="this.data"
+                  style="height: 300px; max-height: 300px; margin-top: 40px"
+                />
+              </div>
+              <div class="col-6">
+                <CCol :sm="4" class="d-flex" style="margin-left: 500px">
+                  <form action="" method="get" class="row">
+                    <div class="col-8 text-center">
+                      <div class="small text-medium-emphasis">
+                        <DatePicker
+                          name="date_new"
+                          v-model="dataNew"
+                          year-picker
+                          textInput
+                        />
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <button class="btn btn-info text-white">Lọc</button>
+                    </div>
+                  </form>
+                </CCol>
+                Tổng doanh thu :{{ data.totalJob }}
+                <MainNewExample
+                  :dataNew="this.totalNew"
+                  style="height: 300px; max-height: 300px; margin-top: 40px"
+                />
+              </div>
             </CRow>
           </CCardBody>
         </CCard>
@@ -47,151 +73,35 @@
 
 <script>
 import MainChartExample from './chart/MainChartExample'
+import MainNewExample from './chart/TotalNew'
 
 import WidgetsStatsD from './chart/WidgetsStatsTypeD.vue'
 import DatePicker from './../common/datePickerYear.vue'
-import { ref } from '@vue/reactivity'
 
 export default {
-  props: ['data'],
+  props: ['data', 'totalNew'],
   name: 'Dashboard',
   components: {
     MainChartExample,
     DatePicker,
-    WidgetsStatsD
+    WidgetsStatsD,
+    MainNewExample
   },
   data: function () {
     return {
-     
+      dataPayment: '',
+      dataNew: ''
     }
   },
-  methods: {},
-  setup() {
-    
-
-    const progressGroupExample1 = [
-      { title: 'Thứ 2', value1: 34, value2: 78 },
-      { title: 'Thứ 3', value1: 56, value2: 94 },
-      { title: 'Thứ 4', value1: 12, value2: 67 },
-      { title: 'Thứ 5', value1: 43, value2: 91 },
-      { title: 'Thứ 6', value1: 22, value2: 73 },
-      { title: 'Thứ 7', value1: 53, value2: 82 },
-      { title: 'Thứ 8', value1: 9, value2: 69 }
-    ]
-    const progressGroupExample2 = [
-      { title: 'Male', icon: 'cil-user', value: 53 },
-      { title: 'Female', icon: 'cil-user-female', value: 43 }
-    ]
-    const progressGroupExample3 = [
-      {
-        title: 'Organic Search',
-        icon: 'cib-google',
-        percent: 56,
-        value: '191,235'
-      },
-      { title: 'Facebook', icon: 'cib-facebook', percent: 15, value: '51,223' },
-      { title: 'Twitter', icon: 'cib-twitter', percent: 11, value: '37,564' },
-      { title: 'LinkedIn', icon: 'cib-linkedin', percent: 8, value: '27,319' }
-    ]
-    const tableExample = [
-      {
-        avatar: { status: 'success' },
-        user: {
-          name: 'Yiorgos Avraamu',
-          new: true,
-          registered: 'Jan 1, 2021'
-        },
-        country: { name: 'USA', flag: 'cif-us' },
-        usage: {
-          value: 50,
-          period: 'Jun 11, 2021 - Jul 10, 2021',
-          color: 'success'
-        },
-        payment: { name: 'Mastercard', icon: 'cib-cc-mastercard' },
-        activity: '10 sec ago'
-      },
-      {
-        avatar: { status: 'danger' },
-        user: {
-          name: 'Avram Tarasios',
-          new: false,
-          registered: 'Jan 1, 2021'
-        },
-        country: { name: 'Brazil', flag: 'cif-br' },
-        usage: {
-          value: 22,
-          period: 'Jun 11, 2021 - Jul 10, 2021',
-          color: 'info'
-        },
-        payment: { name: 'Visa', icon: 'cib-cc-visa' },
-        activity: '5 minutes ago'
-      },
-      {
-        avatar: { status: 'warning' },
-        user: { name: 'Quintin Ed', new: true, registered: 'Jan 1, 2021' },
-        country: { name: 'India', flag: 'cif-in' },
-        usage: {
-          value: 74,
-          period: 'Jun 11, 2021 - Jul 10, 2021',
-          color: 'warning'
-        },
-        payment: { name: 'Stripe', icon: 'cib-cc-stripe' },
-        activity: '1 hour ago'
-      },
-      {
-        avatar: { status: 'secondary' },
-        user: { name: 'Enéas Kwadwo', new: true, registered: 'Jan 1, 2021' },
-        country: { name: 'France', flag: 'cif-fr' },
-        usage: {
-          value: 98,
-          period: 'Jun 11, 2021 - Jul 10, 2021',
-          color: 'danger'
-        },
-        payment: { name: 'PayPal', icon: 'cib-cc-paypal' },
-        activity: 'Last month'
-      },
-      {
-        avatar: { status: 'success' },
-        user: {
-          name: 'Agapetus Tadeáš',
-          new: true,
-          registered: 'Jan 1, 2021'
-        },
-        country: { name: 'Spain', flag: 'cif-es' },
-        usage: {
-          value: 22,
-          period: 'Jun 11, 2021 - Jul 10, 2021',
-          color: 'primary'
-        },
-        payment: { name: 'Google Wallet', icon: 'cib-cc-apple-pay' },
-        activity: 'Last week'
-      },
-      {
-        avatar: { status: 'danger' },
-        user: {
-          name: 'Friderik Dávid',
-          new: true,
-          registered: 'Jan 1, 2021'
-        },
-        country: { name: 'Poland', flag: 'cif-pl' },
-        usage: {
-          value: 43,
-          period: 'Jun 11, 2021 - Jul 10, 2021',
-          color: 'success'
-        },
-        payment: { name: 'Amex', icon: 'cib-cc-amex' },
-        activity: 'Last week'
-      }
-    ]
-
-    return {
-      tableExample,
-      progressGroupExample1,
-      progressGroupExample2,
-      progressGroupExample3,
-      
+  created() {
+    if (this.data.request.date_payment) {
+      this.dataPayment = this.data.request.date_payment
     }
-  }
+    if (this.data.request.date_new) {
+      this.dataNew = this.data.request.date_new
+    }
+  },
+  methods: {}
 }
 </script>
 

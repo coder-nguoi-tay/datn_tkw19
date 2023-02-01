@@ -290,11 +290,11 @@
                                                             <span class="elementor-counter-number-prefix"></span>
                                                             <span class="elementor-counter-number" data-duration="2000"
                                                                 data-to-value="25" data-from-value="0"
-                                                                data-delimiter=",">25</span>
-                                                            <span class="elementor-counter-number-suffix">K+</span>
+                                                                data-delimiter=",">{{ $totalSeeker }}</span>
                                                         </h1>
                                                         <h5 class="ctrl-elementor-counter-title">Thành viên</h5>
-                                                        <p class="font-sm color-text-paragraph mt-10">Đã có 25k thành viên
+                                                        <p class="font-sm color-text-paragraph mt-10">Đã có
+                                                            {{ $totalSeeker }} thành viên
                                                             đã <br class="d-none d-lg-block"> đăng kí vào website của chúng
                                                             tôi</p>
                                                     </div>
@@ -314,13 +314,14 @@
                                                             <span class="elementor-counter-number-prefix"></span>
                                                             <span class="elementor-counter-number" data-duration="2000"
                                                                 data-to-value="17" data-from-value="0"
-                                                                data-delimiter=",">17</span>
+                                                                data-delimiter=",">{{ $totalJob }}</span>
                                                             <span class="elementor-counter-number-suffix">+</span>
                                                         </h1>
                                                         <h5 class="ctrl-elementor-counter-title">Bài đăng
                                                         </h5>
                                                         <p class="font-sm color-text-paragraph mt-10">Trang web của chúng
-                                                            tôi<br class="d-none d-lg-block">đã có 17+ bài job tìm kiếm
+                                                            tôi<br class="d-none d-lg-block">đã có {{ $totalJob }} bài
+                                                            job tìm kiếm
                                                         </p>
                                                     </div>
                                                 </div>
@@ -339,13 +340,14 @@
                                                             <span class="elementor-counter-number-prefix"></span>
                                                             <span class="elementor-counter-number" data-duration="2000"
                                                                 data-to-value="86" data-from-value="0"
-                                                                data-delimiter=",">86</span>
+                                                                data-delimiter=",">{{ count($majors) }}</span>
                                                             <span class="elementor-counter-number-suffix">+</span>
                                                         </h1>
                                                         <h5 class="ctrl-elementor-counter-title">Ngành nghề
                                                         </h5>
                                                         <p class="font-sm color-text-paragraph mt-10">Trên website của
-                                                            chúng tôi có<br class="d-none d-lg-block">5 Ngành nghề có sẵn
+                                                            chúng tôi có<br class="d-none d-lg-block">{{ count($majors) }}
+                                                            Ngành nghề có sẵn
                                                         </p>
                                                     </div>
                                                 </div>
@@ -364,13 +366,14 @@
                                                             <span class="elementor-counter-number-prefix"></span>
                                                             <span class="elementor-counter-number" data-duration="2000"
                                                                 data-to-value="28" data-from-value="0"
-                                                                data-delimiter=",">28</span>
+                                                                data-delimiter=",">{{ $totalEmployer }}</span>
                                                             <span class="elementor-counter-number-suffix">+</span>
                                                         </h1>
                                                         <h5 class="ctrl-elementor-counter-title">Nhà tuyển dụng
                                                         </h5>
                                                         <p class="font-sm color-text-paragraph mt-10">Trên trang web của
-                                                            chúng tôi <br class="d-none d-lg-block">có 28+ nhà tuyển dụng
+                                                            chúng tôi <br class="d-none d-lg-block">có
+                                                            {{ $totalEmployer }} nhà tuyển dụng
                                                             đang hoạt động
                                                         </p>
                                                     </div>

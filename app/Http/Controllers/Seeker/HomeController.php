@@ -160,6 +160,8 @@ class HomeController extends BaseController
             $user->address = '';
             $user->user_role = Auth::guard('user')->user()->id;
             $user->experience_id = $request->experience_id;
+            $user->location_id = $request->location_id;
+            $user->majors_id = $request->majors_id;
             $user->lever_id = $request->lever_id;
             $user->wage_id = $request->wage_id;
             $user->profession_id = $request->profession_id;
