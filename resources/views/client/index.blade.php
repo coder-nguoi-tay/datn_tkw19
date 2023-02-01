@@ -428,6 +428,7 @@
                     </div>
                 </div>
             </div>
+            {{-- {{ dd($jobAttractive) }} --}}
             <section
                 class="elementor-section elementor-top-section elementor-element elementor-element-d98c6ff elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                 data-id="d98c6ff" data-element_type="section">
@@ -445,8 +446,6 @@
                             <div class="elementor-element elementor-element-54a362e text-center elementor-widget elementor-widget-template"
                                 data-id="54a362e" data-element_type="widget" data-widget_type="template.default">
                                 <div class="elementor-widget-container">
-
-
 
                                     <div class="mt-10">
                                         <div class="tab-content" id="myTabContent-2">
