@@ -299,7 +299,7 @@
                       <a href="/file/tao-moi" class="btn btn-info col-2"
                         >Xem cv đã tạo</a
                       >
-                      <div class="box-content">
+                      <div class="box-content" v-if="ProfileCv != ''">
                         <div class="row">
                           <!--  -->
                           <div class="col-md-6 col-12 pr-12">
@@ -407,12 +407,13 @@ export default {
   created() {
     if (this.data.getCheckUser) {
       this.ProfileCv = this.data.getCheckUser
+      if (this.data.getCheckUser.status_profile == 1) {
+        this.status_profile = true
+      } else {
+        this.status_profile = false
+      }
     }
-    if (this.data.getCheckUser.status_profile == 1) {
-      this.status_profile = true
-    } else {
-      this.status_profile = false
-    }
+
     if (this.data.cv) {
       this.cv = this.data.cv
     }
