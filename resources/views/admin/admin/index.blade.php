@@ -33,10 +33,10 @@ use App\Enums\Onoff;
                                             Chức vụ</th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Status</th>
+                                            Trạng thái</th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Create_at</th>
+                                            ngày tạo</th>
                                         <th class="text-secondary opacity-7" colspan="2">
 
 
@@ -60,10 +60,9 @@ use App\Enums\Onoff;
                                             </td>
                                             <td>
                                                 <p class="text-xs font-weight-bold mb-0">
-                                                    {{ $item->role == 1 ? 'Admin' : 'System Admin ' }}</p>
+                                                    {{ $item->role == 1 ? 'Admin' : 'Super Admin ' }}</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-
                                                 @if (Onoff::getDescription($item->status) == 'online')
                                                     <span class="badge badge-sm bg-gradient-success">ONLINE</span>
                                                 @else
@@ -76,10 +75,10 @@ use App\Enums\Onoff;
                                                     class="text-secondary text-xs font-weight-bold">{{ $item->created_at->format('Y-m-d') }}</span>
                                             </td>
                                             <td class="align-middle">
-                                                <btn-delete-admin
+                                                {{-- <btn-delete-admin
                                                     :message-confirm="{{ json_encode('Bạn có chắc muốn xóa không ?') }}"
                                                     :delete-action="{{ json_encode(route('admin.admin.destroy', $item->id)) }}">
-                                                </btn-delete-admin>
+                                                </btn-delete-admin> --}}
                                             </td>
 
                                         </tr>
