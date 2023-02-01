@@ -82,15 +82,43 @@ class SearchCvController extends BaseController
     public function index(Request $request)
     {
         $cv = $this->profileCv
+            ->leftjoin('job-seeker', 'job-seeker.user_role', '=', 'profile_user_cv.user_id')
+            ->leftjoin('seeker_skill', 'seeker_skill.job-seeker_id', '=', 'job-seeker.id')
+            ->leftjoin('skill', 'skill.id', '=', 'seeker_skill.skill_id')
             ->where([
                 ['status_profile', 1],
                 ['status', '!=', Auth::guard('user')->user()->id],
             ])
             ->where(function ($q) use ($request) {
-                if (!empty($request['free_word'])) {
-                    $q->orWhere($this->escapeLikeSentence('majors', $request['free_word']));
+                if (!empty($request['name'])) {
+                    $q->Where($this->escapeLikeSentence('majors', $request['free_word']));
+                }
+                if (!empty($request['location'])) {
+                    $q->Where('job-seeker.location_id', $request['location']);
+                }
+                if (!empty($request['majors'])) {
+                    $q->Where('job-seeker.majors_id', $request['majors']);
+                }
+                if (!empty($request['profession'])) {
+                    $q->Where('job-seeker.profession_id', $request['profession']);
+                }
+                if (!empty($request['lever'])) {
+                    $q->Where('job-seeker.lever_id', $request['lever']);
+                }
+                if (!empty($request['experience'])) {
+                    $q->Where('job-seeker.experience_id', $request['experience']);
+                }
+                if (!empty($request['skill'])) {
+                    $q->WhereIn('seeker_skill.skill_id', $request['skill']);
+                }
+                if (!empty($request['timework'])) {
+                    $q->Where('job-seeker.time_work_id', $request['timework']);
+                }
+                if (!empty($request['workingform'])) {
+                    $q->Where('job-seeker.workingform_id', $request['workingform']);
                 }
             })
+            ->select('profile_user_cv.*')
             ->with('user')->get();
         $breadcrumbs = [
             'Tìm kiếm ứng viên',
