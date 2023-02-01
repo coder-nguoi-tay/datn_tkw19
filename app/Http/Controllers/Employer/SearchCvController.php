@@ -24,6 +24,7 @@ use App\Models\User;
 use App\Models\Wage;
 use App\Models\WorkingForm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SearchCvController extends BaseController
 {
@@ -81,7 +82,10 @@ class SearchCvController extends BaseController
     public function index(Request $request)
     {
         $cv = $this->profileCv
-            ->where('status_profile', 1)
+            ->where([
+                ['status_profile', 1],
+                ['status', '!=', Auth::guard('user')->user()->id],
+            ])
             ->where(function ($q) use ($request) {
                 if (!empty($request['free_word'])) {
                     $q->orWhere($this->escapeLikeSentence('majors', $request['free_word']));
@@ -96,6 +100,16 @@ class SearchCvController extends BaseController
             'cv' => $cv,
             'request' => $request,
             'breadcrumbs' => $breadcrumbs,
+            'profestion' => $this->getprofession(),
+            'lever' => $this->getlever(),
+            'experience' => $this->getexperience(),
+            'wage' => $this->getwage(),
+            'skill' => $this->getskill(),
+            'timework' => $this->gettimework(),
+            'profession' => $this->getprofession(),
+            'majors' => $this->majors->get(),
+            'workingform' => $this->getworkingform(),
+            'location' => $this->getlocation(),
         ]);
     }
 

@@ -10,44 +10,60 @@
             <div class="brand-wrapper">
               <img src="assets/img/logo_it.jpg" alt="logo" class="logo" />
               <br />
-              <p class="login-card-description">Chào mừng bạn đến với ITWork </p>
+              <p class="login-card-description">Chào mừng bạn đến với ITWork</p>
             </div>
-            <VeeForm as="div" v-slot="{ handleSubmit }" @invalid-submit="onInvalidSubmit">
-              <div class="error text-center" role="alert" v-if="msgLogin && !msgSucsess">
-                {{ msgLogin }}
-              </div>
-              <form @submit="handleSubmit($event, onSubmit)" ref="formData" method="POST">
+            <VeeForm
+              as="div"
+              v-slot="{ handleSubmit }"
+              @invalid-submit="onInvalidSubmit"
+            >
+              <form
+                @submit="handleSubmit($event, onSubmit)"
+                ref="formData"
+                method="POST"
+                :action="data.urlStore"
+              >
                 <input type="hidden" :value="csrfToken" name="_token" />
                 <div class="form-group">
                   <label for="email" class="sr-only">Email</label>
-                  <Field type="email" name="email" v-model="model.email" rules="required|email" id="email"
-                    class="form-control" placeholder="Email address" />
+                  <Field
+                    type="email"
+                    name="email"
+                    v-model="model.email"
+                    rules="required|email"
+                    id="email"
+                    class="form-control"
+                    placeholder="Email address"
+                  />
                   <ErrorMessage class="error" name="email" />
                 </div>
                 <div class="form-group mb-4">
                   <label for="password" class="sr-only">Password</label>
-                  <Field type="password" v-model="model.password" name="password" rules="required|min:8|max:16"
-                    id="password" class="form-control" placeholder="***********" />
+                  <Field
+                    type="password"
+                    v-model="model.password"
+                    name="password"
+                    rules="required|min:8|max:16"
+                    id="password"
+                    class="form-control"
+                    placeholder="***********"
+                  />
                   <ErrorMessage class="error" name="password" />
                 </div>
 
                 <Button class="btn btn-block login-btn mb-4">Đăng nhập</Button>
-
-                <!-- <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Login" /> -->
                 <div class="row">
-                  <div class="col-md-5" style="margin-left: 20px">
-                    <Field name="save" class="form-check-input text-checkbok" v-model="model.save" type="checkbox"
-                      id="rememberMe" value="on" />
-                    <label class="form-check-label mb-0 ms-3 text-rememberMe" for="rememberMe">Remember me</label>
-                  </div>
+                  <div class="col-md-5" style="margin-left: 20px"></div>
                   <div class="col-md-6">
-                    <a href="" class="forgot-password-link">Forgot password?</a>
+                    <a href="/quen-mat-khau" class="forgot-password-link"
+                      >Quên mật khẩu</a
+                    >
                   </div>
                 </div>
                 <br />
                 <p class="login-card-footer-text">
-                  Don't have an account?
-                  <a href="register-client" class="text-reset">Register here</a>
+                  Nếu bạn chưa có tài khoản?
+                  <a href="/register-client" class="text-reset">Đăng ký</a>
                 </p>
               </form>
             </VeeForm>
@@ -87,18 +103,10 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-
-      model: {},
-      msgLogin: '',
-      // checkForm: 1,
-      msgSucsess: ''
-      //   model: {},
-      //   msgLogin: '',
-      //   checkForm: 1,
-      //   msgSucsess: ''
+      model: {}
     }
   },
-  mounted() { },
+  mounted() {},
   created() {
     let messError = {
       en: {
@@ -133,33 +141,8 @@ export default {
     },
 
     onSubmit() {
-      let url = this.data.urlStore
-      axios
-        .post(url, {
-          email: this.model.email,
-          password: this.model.password,
-          save: this.model.save
-        })
-        .then(function (data) {
-          if (data.data.status == 403) {
-            that.msgLogin = data.data.data
-          }
-
-          if (data.data.data == 1) {
-            window.location.href = '/'
-          } else if (data.data.data == 2) {
-            window.location.href = '/employer/profile'
-          }
-          console.log(data.data.data);
-        })
-        .catch(function () {
-
-          location.reload()
-        })
-
-
+      this.$refs.formData.submit()
     }
-
   }
 }
 </script>
@@ -220,7 +203,7 @@ body {
 .login-card .form-control {
   border: 1px solid #d5dae2;
   padding: 15px 25px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   min-height: 45px;
   font-size: 13px;
   line-height: 15;
@@ -276,7 +259,7 @@ body {
 .login-card-footer-text {
   font-size: 16px;
   color: #0d2366;
-  margin-bottom: 60px;
+  /* margin-bottom: 60px; */
 }
 
 @media (max-width: 767px) {

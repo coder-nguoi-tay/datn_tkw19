@@ -99,13 +99,6 @@ app.component('profile-employer', profileEmployer);
 import businessLicense from "./components/employer/profile/business-license.vue";
 app.component('business-license', businessLicense);
 
-
-
-// client
-import clientLogin from "./components/client/login/index.vue";
-app.component('client-login', clientLogin);
-import clientRegister from "./components/client/register/create.vue";
-app.component('client-register', clientRegister);
 // home
 import homeClient from "./components/client/home/index.vue";
 app.component('home-client', homeClient);

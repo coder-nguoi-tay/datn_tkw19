@@ -76,17 +76,14 @@ class JobSuggestController extends BaseController
         ];
         $user =  $this->user
             ->with('getProfileUse')
-            ->where('users.id', Auth::guard('user')->user()->id)
+            ->where('id', Auth::guard('user')->user()->id)
             ->first();
         $getskill = $this->Jobseeker->with('getskill')->where('user_role', Auth::guard('user')->user()->id)->first();
-        $cv = UploadCv::where('user_id', Auth::guard('user')->user()->id)->get();
-        // dd($getskill);
+
         return view('client.goi-y.index', [
             'title' => 'Gợi ý việc làm',
             'breadcrumbs' => $breadcrumbs,
             'user' => $user,
-            'breadcrumbs' => $breadcrumbs,
-            'title' => 'Thông tin cá nhân',
             'lever' => $this->getlever(),
             'experience' => $this->getexperience(),
             'wage' => $this->getwage(),
@@ -97,7 +94,6 @@ class JobSuggestController extends BaseController
             'location' => $this->getlocation(),
             'workingform' => $this->getworkingform(),
             'getskill' => $getskill,
-            'cv' => $cv,
         ]);
     }
 

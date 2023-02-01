@@ -294,27 +294,15 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      model: this.data.user ?? '',
-      filePreview: '',
-      loading: false,
       value: [],
       options: [],
       valueSelect: this.data.user.get_profile_use ?? {},
-      checkImage: '',
-      errmsgCheckImage: '',
-      Media: '',
-      deleteImage: '',
       skill: [],
-      isLoading: false
     }
   },
 
   created() {
-    console.log(this.data);
     let array = []
-    this.Media = this.data.user.get_profile_use
-      ? this.data.user.get_profile_use.images
-      : 1
     if (this.data.getskill ) {
       this.data.getskill.getskill.map((e) => {
         this.value.push({

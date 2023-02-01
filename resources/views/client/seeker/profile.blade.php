@@ -30,7 +30,8 @@
                     :data="{{ json_encode([
                         'cv' => $cv,
                         'user' => $user,
-                        'checkProfile' => $user->getCheckUser->status_profile ?? null,
+                        'checkProfile' => $user->getProfileUse ?? null,
+                        'getCheckUser' => $user->getCheckUser ?? null,
                         'urlStore' => route('profile.store'),
                         'urlBack' => route('profile.index'),
                         'urlUpdateAvatar' => route('profile.updateAvatar'),
