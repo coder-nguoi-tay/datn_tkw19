@@ -80,6 +80,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::get('new/top-new', [NewEmployerController::class, 'topNew'])->name('new.topNew');
     Route::post('new/top-new', [NewEmployerController::class, 'upTopNew'])->name('new.uopTopNew');
     Route::post('new/change-status-new-top/{id}', [NewEmployerController::class, 'changeStatusTop'])->name('new.changeStatusTop');
+    Route::post('new/delete-all-job', [NewEmployerController::class, 'deleteAllJob'])->name('new.deleteAllJob');
 
     //
     Route::resource('package', EmployerPackageController::class);

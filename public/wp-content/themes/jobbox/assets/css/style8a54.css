@@ -9456,4 +9456,8 @@ div.job_listings .job-manager-pagination {
   margin-left: 5px !important;
 }
 
+.none-job {
+  display: none !important;
+}
+
 /*# sourceMappingURL=style.css.map */

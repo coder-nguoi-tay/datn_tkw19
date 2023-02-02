@@ -502,4 +502,16 @@ class NewEmployerController extends BaseController
             ], StatusCode::OK);
         }
     }
+    public function deleteAllJob(Request $request)
+    {
+        try {
+            $this->job->whereIn('id', $request->id)->delete();
+            $this->setFlash(__('Quá trình thực thiện thành công!'));
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->setFlash(__('Có một lỗi không mong muốn đã xảy ra'), 'error');
+            return redirect()->back();
+        }
+    }
 }
