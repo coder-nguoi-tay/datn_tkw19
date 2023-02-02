@@ -67,13 +67,13 @@
                                     >
                                   </div>
                                 </div>
-                                <!-- <div class="col-md-3 col-xs-12 text-right">
+                                <div class="col-md-3 col-xs-12 text-right">
                                   <p>
                                     <span class="open-time text-gray">
                                       4 tháng trước</span
                                     >
                                   </p>
-                                </div> -->
+                                </div>
                               </div>
                             </div>
                           </div>

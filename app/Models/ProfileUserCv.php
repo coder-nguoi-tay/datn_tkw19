@@ -47,4 +47,8 @@ class ProfileUserCv extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+    public function Profile()
+    {
+        return $this->hasOne(Jobseeker::class, 'user_role', 'user_id');
+    }
 }

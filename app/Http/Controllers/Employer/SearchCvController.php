@@ -120,6 +120,7 @@ class SearchCvController extends BaseController
             })
             ->select('profile_user_cv.*')
             ->with('user')->get();
+        // dd($cv);
         $breadcrumbs = [
             'Tìm kiếm ứng viên',
 
