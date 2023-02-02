@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Employer;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Majors;
+use App\Models\SaveCv;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ViewProfileController extends BaseController
 {
@@ -19,18 +21,25 @@ class ViewProfileController extends BaseController
     {
         $this->majors = $majors;
     }
-    public function index()
+    public function index(Request $request)
     {
+
+        $job = SaveCv::where('save_cv.user_id', Auth::guard('user')->user()->id)
+            ->leftjoin('job', 'job.id', '=', 'save_cv.id_job')
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->select('job.id as id', 'job.title as title', 'company.id as idCompany', 'company.logo as logo', 'company.name as nameCompany')
+            ->get();
         $breadcrumbs = [
             'Danh sách công việc đã nộp',
 
         ];
 
         return view('client.seeker.view-profile', [
-
             'title' => 'Danh sách công việc đã nộp',
             'breadcrumbs' => $breadcrumbs,
             'majors' => $this->getmajors(),
+            'job' => $job,
         ]);
     }
 
