@@ -56,8 +56,12 @@
                                       id="img-preview"
                                       @click="chooseImage()"
                                       role="button"
-                                      style="height: 200px; width: 200px; object-fit: cover;"
-                                      v-if="!Image"
+                                      style="
+                                        height: 200px;
+                                        width: 200px;
+                                        object-fit: cover;
+                                      "
+                                      v-if="statusImage == 0"
                                     >
                                       <div style="display: none">
                                         <input
@@ -68,7 +72,6 @@
                                           name="images"
                                         />
                                       </div>
-
                                       <div
                                         id="img-preview"
                                         @click="chooseImage()"
@@ -85,19 +88,46 @@
                                           />
                                         </div>
                                         <img
-                                          v-if="filePreview"
+                                          v-if="filePreview && Image != null"
                                           :src="filePreview"
                                           class="img-fluid img-show border"
-                                          style="width: 200px; height: 200px; object-fit: cover;"
+                                          style="
+                                            width: 200px;
+                                            height: 200px;
+                                            object-fit: cover;
+                                          "
+                                        />
+                                        <img
+                                          v-if="Image != null && !filePreview"
+                                          :src="baseUrl + Image"
+                                          class="img-fluid img-show border"
+                                          style="
+                                            width: 200px;
+                                            height: 200px;
+                                            object-fit: cover;
+                                          "
                                         />
                                       </div>
                                     </div>
-                                    <div class=" text-center border" style="width: 220px; height: 220px; margin-left: 20px;">
+                                    <div
+                                      class="text-center border"
+                                      style="
+                                        width: 220px;
+                                        height: 220px;
+                                        margin-left: 20px;
+                                      "
+                                      v-if="statusImage == 1"
+                                    >
                                       <img
                                         v-if="Image != null"
-                                        :src="'http://127.0.0.1:8000/' + Image"
+                                        :src="baseUrl + Image"
                                         class="img-fluid"
-                                        style="width: 200px; height: 200px; margin-top: 10px; object-fit: cover"
+                                        style="
+                                          width: 200px;
+                                          height: 200px;
+                                          margin-top: 10px;
+                                          object-fit: cover;
+                                        "
                                       />
                                     </div>
                                   </div>
@@ -111,7 +141,7 @@
                               </div>
                             </div>
 
-                            <div class="col-md-12" v-if="!Image">
+                            <div class="col-md-12" v-if="statusImage == 0">
                               <button
                                 type="submit"
                                 class="btn min-width btn btn-primary btn-lg"
@@ -178,6 +208,7 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
+      baseUrl: Laravel.baseUrl,
       model: this.data.Company ?? '',
       employer: this.data.employer,
       preview: null,

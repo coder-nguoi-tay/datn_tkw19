@@ -223,7 +223,11 @@ class ManagerUploadCvController extends BaseController
         }
         try {
             $company = Company::where('id', $employer->id_company)->first();
-            $accy = new Accuracy();
+            if ($company->accuracy) {
+                $accy = $company->accuracy;
+            } else {
+                $accy = new Accuracy();
+            }
             $accy->user_id = $company->id;
             $accy->status = 0;
             if ($request->hasFile('images')) {

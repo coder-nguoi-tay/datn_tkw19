@@ -23,4 +23,8 @@ class Company extends Model
     {
         return $this->hasOne(Employer::class, 'id_company', 'id');
     }
+    public function accuracy()
+    {
+        return $this->hasOne(Accuracy::class, 'user_id', 'id');
+    }
 }
