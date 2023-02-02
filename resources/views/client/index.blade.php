@@ -198,6 +198,10 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-sm-12 mt-4">
+                                                <a href="{{ route('home.search.jobGood') }}"
+                                                    class="btn btn-default btn-find font-sm">Xem tất cả</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -510,7 +514,7 @@
                                                     @endforeach
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <a href="{{ route('home.search') }}"
+                                                    <a href="{{ route('home.search.allJob') }}"
                                                         class="btn btn-default btn-find font-sm">Xem tất cả</a>
                                                 </div>
                                             </div>

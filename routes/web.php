@@ -165,6 +165,8 @@ Route::post('home/detail/upcv', [ClientHomeController::class, 'upCv'])->name('ho
 Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 'searchLocation'])->name('home.search.location');
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
 Route::get('tim-viec-lam', [SearchController::class, 'create'])->name('home.search');
+Route::get('tim-viec-lam-tot-nhat', [SearchController::class, 'jobGood'])->name('home.search.jobGood');
+Route::get('tat-ca-viec-lam', [SearchController::class, 'allJob'])->name('home.search.allJob');
 //trang giới thiệu các công ty
 Route::get(
     'detail-company/{id}',

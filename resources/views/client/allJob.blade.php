@@ -37,7 +37,7 @@
                         'majors' => $majors,
                         'location' => $location,
                         'workingform' => $workingform,
-                        'urlSeach' => route('home.search'),
+                        'urlSeach' => route('home.search.allJob'),
                         'skillSearch' => $skillSearch,
                         'request' => !empty($request) ? $request->all() : new stdClass(),
                     ]) }}">
@@ -103,9 +103,6 @@
                                                     <span><i class="fi-rr-clock ms-0 me-5"></i><time
                                                             datetime="2022-09-27">{{ $value->end_job_time }}</time></span>
                                                 </div>
-
-                                                {{-- <p class="font-sm color-text-paragraph mt-15">
-                                                    {!! $value->describe !!}</p> --}}
 
                                                 <div class="card-2-bottom mt-30">
                                                     <div class="row align-items-center">
@@ -202,11 +199,6 @@
                                                         <span><i class="fi-rr-clock ms-0 me-5"></i><time
                                                                 datetime="2022-09-27">{{ $value->end_job_time }}</time></span>
                                                     </div>
-                                                    {{-- <div>
-                                                    <p class="font-sm color-text-paragraph mt-15">
-                                                        {!! $value->describe !!}</p>
-                                                </div> --}}
-
                                                     <div class="card-2-bottom mt-30">
                                                         <div class="row align-items-center">
                                                             <div class="col-lg-6 col-7">
@@ -215,8 +207,7 @@
                                                             </div>
 
                                                             <div class="col-lg-6 col-5 text-end">
-                                                                <a class="btn btn-apply-now" href="">Apply
-                                                                    now</a>
+                                                                <a class="btn btn-apply-now" href="">Xem chi tiết</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -224,9 +215,6 @@
                                             </div>
                                         </div>
                                     @endforeach
-
-
-
                                 </div>
                                 <!--row job_listings-->
                             </div>

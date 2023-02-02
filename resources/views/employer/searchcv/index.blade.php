@@ -28,11 +28,6 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="billing-form-item p-3">
-                        {{-- <div style="float: right !important">
-                            <search-find-cv :url="{{ json_encode(route('employer.tim-kiem-cv.index')) }}"
-                                :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
-                            </search-find-cv>
-                        </div> --}}
                         <div class="billing-content">
                             <div class="contact-form-action">
                                 <form method="get" action="{{ route('employer.tim-kiem-cv.index') }}"

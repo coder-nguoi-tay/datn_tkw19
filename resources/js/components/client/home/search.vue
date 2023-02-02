@@ -65,7 +65,7 @@
           </Field>
         </fieldset>
       </div>
-      <div class="col-lg-3 align-self-center border p-2 custom-input">
+      <div class="col-lg-3 align-self-center border p-2 custom-input mt-2">
         <fieldset>
           <Field name="majors" as="select" v-model="model.majors">
             <option value selected>Chọn lĩnh vực</option>
@@ -76,11 +76,25 @@
         </fieldset>
       </div>
 
-      <div class="col-lg-3 align-self-center border p-2 custom-input">
+      <div class="col-lg-3 align-self-center border p-2 custom-input  mt-2">
         <fieldset>
           <Field name="wage" as="select" v-model="model.wage">
             <option value selected>Chọn Mức Lương</option>
             <option v-for="item in data.wage" :key="item.id" :value="item.id">
+              {{ item.label }}
+            </option>
+          </Field>
+        </fieldset>
+      </div>
+      <div class="col-lg-3 align-self-center border p-2 custom-input  mt-2">
+        <fieldset>
+          <Field name="location" as="select" v-model="model.location">
+            <option value selected>Chọn địa chỉ</option>
+            <option
+              v-for="item in data.location"
+              :key="item.id"
+              :value="item.id"
+            >
               {{ item.label }}
             </option>
           </Field>
