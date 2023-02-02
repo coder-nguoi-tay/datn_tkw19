@@ -158,7 +158,7 @@
                                 :key="item.id"
                                 :value="item.id"
                               >
-                                {{ item.name }}
+                                {{ item.label }}
                               </option>
                             </Field>
                             <ErrorMessage class="error" name="majors_id" />

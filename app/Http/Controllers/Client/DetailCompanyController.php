@@ -19,11 +19,12 @@ class DetailCompanyController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
-        $company = DB::table('company')->where(function ($q) use ($search) {
-            if ($search) {
-                $q->where('name', 'LIKE', '%' . $search . '%');
-            }
-        })->get();
+        $company = Company::with('employer.job')
+            ->where(function ($q) use ($search) {
+                if ($search) {
+                    $q->where('name', 'LIKE', '%' . $search . '%');
+                }
+            })->get();
         return view('client.company.getCompany', [
             'company' => $company,
             'request' => $request,

@@ -56,9 +56,9 @@
 
                     <div class="row flex-row-reverse ">
                         <div class="col-lg-12">
-                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-30" id="paginated-list1">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-30" id="paginated-list">
                                 @foreach ($job as $value)
-                                    <div class="col jobbox-grid-item ">
+                                    <div class="col jobbox-grid-item render-job-search">
                                         <div class="card-grid-2 hover-up">
                                             <div class="card-grid-2-image-left">
                                                 <div class="image-box">
@@ -82,7 +82,7 @@
                                                             display: -webkit-box;
                                                             text-align: justify;">
                                                         <span class="location-small custom-text-company"><a
-                                                                href="">{{ $value->nameCompany }}</a></span>
+                                                                href="{{ route('detail.company', $value->idCompany) }}">{{ $value->nameCompany }}</a></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -94,10 +94,6 @@
                                                     <span><i class="fi-rr-clock ms-0 me-5"></i><time
                                                             datetime="2022-09-27">{{ $value->end_job_time }}</time></span>
                                                 </div>
-
-                                                {{-- <p class="font-sm color-text-paragraph mt-15">
-                                                    {!! $value->describe !!}</p> --}}
-
                                                 <div class="card-2-bottom mt-30">
                                                     <div class="row align-items-center">
                                                         <div class="col-lg-6 col-7">
@@ -120,8 +116,8 @@
                     <!-- All jobs -->
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12"> <br><br>
-                            <span class="page-item text-center pagination-container d-flex">
-                                <div id="pagination-numbers">
+                            <span class="page-item text-center">
+                                <div id="pagination-numbers" style="margin-bottom: 20px">
                                 </div>
 
                             </span>
@@ -145,9 +141,9 @@
                         <div class="row flex-row-reverse">
                             <div class="col-lg-12">
                                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-25"
-                                    id="paginated-list2">
+                                    id="paginated-list1">
                                     @foreach ($datalq as $value)
-                                        <div class="col jobbox-grid-item ">
+                                        <div class="col jobbox-grid-item render-job-search1">
                                             <div class="card-grid-2 hover-up">
                                                 <div class="card-grid-2-image-left">
                                                     <div class="image-box">
@@ -170,8 +166,8 @@
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
                                                             text-align: justify;">
-                                                            <span
-                                                                class="location-small custom-text-company">{{ $value->nameCompany }}</span>
+                                                            <span class="location-small custom-text-company"><a
+                                                                    href="">{{ $value->nameCompany }}</a></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -202,9 +198,6 @@
                                             </div>
                                         </div>
                                     @endforeach
-
-
-
                                 </div>
                                 <!--row job_listings-->
                             </div>
@@ -214,8 +207,8 @@
                         <!-- All jobs -->
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12"> <br><br>
-                                <span class="page-item text-center pagination-container d-flex">
-                                    <div id="pagination-numbers">
+                                <span class="page-item text-center">
+                                    <div id="pagination-numbers1" style="margin-bottom: 20px">
                                     </div>
 
                                 </span>

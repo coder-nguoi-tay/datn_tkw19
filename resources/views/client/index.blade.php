@@ -58,7 +58,7 @@
                                                                     <select class="form-input mr-10 select-active w-200"
                                                                         name="majors">
                                                                         <option value="">Chọn ngành nghề</option>
-                                                                        @foreach ($majors as $item)
+                                                                        @foreach ($majorsALL as $item)
                                                                             <option value="{{ $item->id }}">
                                                                                 {{ $item->name }}
                                                                             </option>
@@ -172,9 +172,14 @@
                                                                                             data-placement="top"
                                                                                             data-container="body"
                                                                                             data-original-title="{{ $item->nameCompany }}">
-                                                                                            {{ $item->nameCompany }}</h6>
+                                                                                            <a
+                                                                                                href="{{ route('detail.company', $item->idCompany) }}">{{ $item->nameCompany }}</a>
+                                                                                        </h6>
                                                                                         <span
-                                                                                            class="card-location font-xxs pl-15 color-text-paragraph-2">{{ $item->getlocation->name }}</span>
+                                                                                            class="card-location font-xxs pl-15 color-text-paragraph-2 custom-text-company custom-text-location-company ml-2">
+                                                                                            <p>Hà
+                                                                                                nội</p>
+                                                                                        </span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -345,13 +350,14 @@
                                                             <span class="elementor-counter-number-prefix"></span>
                                                             <span class="elementor-counter-number" data-duration="2000"
                                                                 data-to-value="86" data-from-value="0"
-                                                                data-delimiter=",">{{ count($majors) }}</span>
+                                                                data-delimiter=",">{{ count($majorsALL) }}</span>
                                                             <span class="elementor-counter-number-suffix">+</span>
                                                         </h1>
                                                         <h5 class="ctrl-elementor-counter-title">Ngành nghề
                                                         </h5>
                                                         <p class="font-sm color-text-paragraph mt-10">Trên website của
-                                                            chúng tôi có<br class="d-none d-lg-block">{{ count($majors) }}
+                                                            chúng tôi có<br
+                                                                class="d-none d-lg-block">{{ count($majorsALL) }}
                                                             Ngành nghề có sẵn
                                                         </p>
                                                     </div>
@@ -401,8 +407,6 @@
                                 kết nối với các ứng viên phù hợp nhanh hơn.</p>
                         </div>
 
-
-
                     </div>
                 </div>
             </section>
@@ -410,22 +414,18 @@
                 <div id="box-discover">
                     <div class="container">
                         <div class="list-discover">
-                            @foreach ($majors as $item)
+                            @foreach ($majorsALL as $item)
                                 <div class="items">
 
                                     <div class="image">
                                         <img src="../../wp-content/themes/jobbox/assets/imgs/template/major.png"
                                             alt="">
                                     </div>
-                                    <div class="title">{{ $item->name }}</div>
+                                    <div class="title"><a
+                                            href="{{ route('searchMajors', $item->id) }}">{{ $item->name }}</a></div>
                                     <p class="count">(<span
                                             class="number count_job_manager">{{ count($item->majors) }}</span> việc làm)
                                     </p>
-                                    <div>
-                                        <a href="{{ route('searchMajors', $item->id) }}" class="see-more">Khám
-                                            phá ngay <i class="fa-solid fa-angle-right"></i></a>
-                                    </div>
-
                                 </div>
                             @endforeach
                         </div>
@@ -495,10 +495,14 @@
                                                                                                     overflow: hidden;
                                                                                                     text-overflow: ellipsis;"
                                                                                             class="color-brand-1 lh-14 mb-0">
-                                                                                            {{ $item->nameCompany }}
+                                                                                            <a
+                                                                                                href="{{ route('detail.company', $item->idCompany) }}">{{ $item->nameCompany }}</a>
                                                                                         </h6>
                                                                                         <span
-                                                                                            class="card-location font-xxs pl-15 color-text-paragraph-2">{{ $item->getlocation->name }}</span>
+                                                                                            class="card-location font-xxs pl-15 color-text-paragraph-2 custom-text-company custom-text-location-company ml-2">
+                                                                                            <p>Hà
+                                                                                                nội</p>
+                                                                                        </span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

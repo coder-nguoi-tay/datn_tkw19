@@ -1,4 +1,3 @@
-
 @extends('client.layout.index')
 @section('client')
     <main class="main">
@@ -20,9 +19,6 @@
                                     placeholder=" Vui lòng nhập tên công ty..."
                                     value="{{ !empty($request) ? $request->search : '' }}">
                                 <button class="btn btn-default btn-find font-sm" value="Search">Search</button>
-
-
-
                             </form>
                         </div>
 
@@ -33,8 +29,6 @@
 
         <section class="section-box mt-50">
             <div class="container">
-
-
                 <div class="box-filters-job">
                     <div class="row align-items-center">
                         <div class="col-xl-6 col-lg-5">
@@ -64,23 +58,11 @@
                                         <h5 class="font-lg font-bold"><a
                                                 href="{{ route('detail.company', $item->id) }}">{{ $item->name }}</a>
                                         </h5>
-
-                                        <div class="mt-5">
-                                            <img alt="Star"
-                                                src="../wp-content/themes/jobbox/assets/imgs/template/icons/star.svg"><img
-                                                alt="Star"
-                                                src="../wp-content/themes/jobbox/assets/imgs/template/icons/star.svg"><img
-                                                alt="Star"
-                                                src="../wp-content/themes/jobbox/assets/imgs/template/icons/star.svg"><img
-                                                alt="Star"
-                                                src="../wp-content/themes/jobbox/assets/imgs/template/icons/star.svg">
-                                        </div>
                                         <span class="card-location">{{ $item->address }}</span>
 
                                         <div class="mt-30">
-                                            <a class="btn btn-grey-big"
-                                                href="{{ route('detail.company', $item->id) }}">
-                                                Xem chi tiết </a>
+                                            <a class="btn btn-grey-big" href="{{ route('detail.company', $item->id) }}">
+                                                {{ count($item->employer->job) }} Công việc </a>
                                         </div>
 
                                     </div>
