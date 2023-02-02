@@ -72,7 +72,7 @@
                                                             display: -webkit-box;
                                                             text-align: left;"
                                                         href="home/detail/{{ $value->id }}">
-                                                        <span class="name-job">{{ $value->nameCompany }}</span>
+                                                        <span class="name-job">{{ $value->title }}</span>
                                                     </a>
                                                     <div
                                                         style=" -webkit-line-clamp: 1;
@@ -81,22 +81,13 @@
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
                                                             text-align: justify;">
-                                                        <span class="location-small">{{ $value->getLocation->name }}</span>
+                                                        <span
+                                                            class="location-small custom-text-company">{{ $value->nameCompany }}</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="card-block-info">
-                                                <h6 class="mb-1"
-                                                    style=" -webkit-line-clamp: 1;
-                                                            -webkit-box-orient: vertical;
-                                                            overflow: hidden;
-                                                            text-overflow: ellipsis;
-                                                            display: -webkit-box;
-                                                            text-align: justify;">
-                                                    <a href="home/detail/{{ $value->id }}">
-                                                        {{ $value->title }}</a>
-                                                </h6>
 
                                                 <div class="d-flex align-items-center gap-3 font-xs color-text-mutted">
                                                     <span><i class="fi-rr-briefcase ms-0 me-5"></i>Part Time</span>
@@ -160,14 +151,14 @@
                                                         <img src="{{ asset($value->logo) }}" width="52" alt="Percepta">
                                                     </div>
                                                     <div class="right-info">
-                                                        <a href="home/detail/{{ $value->id }}">
-                                                            <span class="name-job"
-                                                                style=" -webkit-line-clamp: 1;
+                                                        <a style=" -webkit-line-clamp: 1;
                                                             -webkit-box-orient: vertical;
                                                             overflow: hidden;
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
-                                                            text-align: left;">{{ $value->nameCompany }}</span>
+                                                            text-align: left;"
+                                                            href="home/detail/{{ $value->id }}">
+                                                            <span class="name-job">{{ $value->title }}</span>
                                                         </a>
                                                         <div
                                                             style=" -webkit-line-clamp: 1;
@@ -177,23 +168,12 @@
                                                             display: -webkit-box;
                                                             text-align: justify;">
                                                             <span
-                                                                class="location-small">{{ $value->getLocation->name }}</span>
+                                                                class="location-small custom-text-company">{{ $value->nameCompany }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="card-block-info">
-                                                    <h6 class="mb-1"
-                                                        style=" -webkit-line-clamp: 1;
-                                                            -webkit-box-orient: vertical;
-                                                            overflow: hidden;
-                                                            text-overflow: ellipsis;
-                                                            display: -webkit-box;
-                                                            text-align: justify;">
-                                                        <a href="home/detail/{{ $value->id }}">
-                                                            {{ $value->title }}</a>
-                                                    </h6>
-
                                                     <div class="d-flex align-items-center gap-3 font-xs color-text-mutted">
                                                         <span><i class="fi-rr-briefcase ms-0 me-5"></i>Part Time</span>
                                                         <span><i class="fi-rr-clock ms-0 me-5"></i><time

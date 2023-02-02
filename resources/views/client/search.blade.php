@@ -72,7 +72,7 @@
                                                             display: -webkit-box;
                                                             text-align: left;"
                                                         href="home/detail/{{ $value->id }}">
-                                                        <span class="name-job">{{ $value->nameCompany }}</span>
+                                                        <span class="name-job">{{ $value->title }}</span>
                                                     </a>
                                                     <div
                                                         style=" -webkit-line-clamp: 1;
@@ -81,25 +81,16 @@
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
                                                             text-align: justify;">
-                                                        <span class="location-small">{{ $value->getLocation->name }}</span>
+                                                        <span class="location-small custom-text-company"><a
+                                                                href="">{{ $value->nameCompany }}</a></span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="card-block-info">
-                                                <h6 class="mb-1"
-                                                    style=" -webkit-line-clamp: 1;
-                                                            -webkit-box-orient: vertical;
-                                                            overflow: hidden;
-                                                            text-overflow: ellipsis;
-                                                            display: -webkit-box;
-                                                            text-align: justify;">
-                                                    <a href="home/detail/{{ $value->id }}">
-                                                        {{ $value->title }}</a>
-                                                </h6>
-
                                                 <div class="d-flex align-items-center gap-3 font-xs color-text-mutted">
-                                                    <span><i class="fi-rr-briefcase ms-0 me-5"></i>Part Time</span>
+                                                    <span><i
+                                                            class="fi-rr-briefcase ms-0 me-5"></i>{{ $value->getTime_work->name }}</span>
                                                     <span><i class="fi-rr-clock ms-0 me-5"></i><time
                                                             datetime="2022-09-27">{{ $value->end_job_time }}</time></span>
                                                 </div>
@@ -114,8 +105,8 @@
                                                         </div>
 
                                                         <div class="col-lg-6 col-5 text-end">
-                                                            <a class="btn btn-apply-now" href="">Apply
-                                                                now</a>
+                                                            <a class="btn btn-apply-now"
+                                                                href="home/detail/{{ $value->id }}">Xem chi tiết</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -170,7 +161,7 @@
                                                             overflow: hidden;
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
-                                                            text-align: left;">{{ $value->nameCompany }}</span>
+                                                            text-align: left;">{{ $value->title }}</span>
                                                         </a>
                                                         <div
                                                             style=" -webkit-line-clamp: 1;
@@ -180,32 +171,18 @@
                                                             display: -webkit-box;
                                                             text-align: justify;">
                                                             <span
-                                                                class="location-small">{{ $value->getLocation->name }}</span>
+                                                                class="location-small custom-text-company">{{ $value->nameCompany }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="card-block-info">
-                                                    <h6 class="mb-1"
-                                                        style=" -webkit-line-clamp: 1;
-                                                            -webkit-box-orient: vertical;
-                                                            overflow: hidden;
-                                                            text-overflow: ellipsis;
-                                                            display: -webkit-box;
-                                                            text-align: justify;">
-                                                        <a href="home/detail/{{ $value->id }}">
-                                                            {{ $value->title }}</a>
-                                                    </h6>
-
                                                     <div class="d-flex align-items-center gap-3 font-xs color-text-mutted">
-                                                        <span><i class="fi-rr-briefcase ms-0 me-5"></i>Part Time</span>
+                                                        <span><i
+                                                                class="fi-rr-briefcase ms-0 me-5"></i>{{ $value->getTime_work->name }}</span>
                                                         <span><i class="fi-rr-clock ms-0 me-5"></i><time
                                                                 datetime="2022-09-27">{{ $value->end_job_time }}</time></span>
                                                     </div>
-                                                    {{-- <div>
-                                                    <p class="font-sm color-text-paragraph mt-15">
-                                                        {!! $value->describe !!}</p>
-                                                </div> --}}
 
                                                     <div class="card-2-bottom mt-30">
                                                         <div class="row align-items-center">
@@ -215,8 +192,9 @@
                                                             </div>
 
                                                             <div class="col-lg-6 col-5 text-end">
-                                                                <a class="btn btn-apply-now" href="">Apply
-                                                                    now</a>
+                                                                <a class="btn btn-apply-now"
+                                                                    href="/home/detail/{{ $value->id }}">Xem chi
+                                                                    tiết</a>
                                                             </div>
                                                         </div>
                                                     </div>

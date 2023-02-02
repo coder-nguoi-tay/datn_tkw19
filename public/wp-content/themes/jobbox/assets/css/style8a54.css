@@ -9444,4 +9444,12 @@ div.job_listings .job-manager-pagination {
   border: 1px solid #ccc !important;
 }
 
+.custom-text-company {
+  font-size: 15px !important;
+}
+
+.custom-text-company a {
+  margin-left: 5px !important;
+}
+
 /*# sourceMappingURL=style.css.map */
