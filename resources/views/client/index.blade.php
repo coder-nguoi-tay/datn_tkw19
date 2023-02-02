@@ -58,7 +58,7 @@
                                                                     <select class="form-input mr-10 select-active w-200"
                                                                         name="majors">
                                                                         <option value="">Chọn ngành nghề</option>
-                                                                        @foreach ($majors as $item)
+                                                                        @foreach ($majorsALL as $item)
                                                                             <option value="{{ $item->id }}">
                                                                                 {{ $item->name }}
                                                                             </option>
@@ -350,13 +350,14 @@
                                                             <span class="elementor-counter-number-prefix"></span>
                                                             <span class="elementor-counter-number" data-duration="2000"
                                                                 data-to-value="86" data-from-value="0"
-                                                                data-delimiter=",">{{ count($majors) }}</span>
+                                                                data-delimiter=",">{{ count($majorsALL) }}</span>
                                                             <span class="elementor-counter-number-suffix">+</span>
                                                         </h1>
                                                         <h5 class="ctrl-elementor-counter-title">Ngành nghề
                                                         </h5>
                                                         <p class="font-sm color-text-paragraph mt-10">Trên website của
-                                                            chúng tôi có<br class="d-none d-lg-block">{{ count($majors) }}
+                                                            chúng tôi có<br
+                                                                class="d-none d-lg-block">{{ count($majorsALL) }}
                                                             Ngành nghề có sẵn
                                                         </p>
                                                     </div>
@@ -413,7 +414,7 @@
                 <div id="box-discover">
                     <div class="container">
                         <div class="list-discover">
-                            @foreach ($majors as $item)
+                            @foreach ($majorsALL as $item)
                                 <div class="items">
 
                                     <div class="image">

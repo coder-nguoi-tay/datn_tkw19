@@ -156,7 +156,7 @@ class HomeController extends BaseController
         } else {
             $job = $jobForUser;
         }
-        $majors = Majors::with('majors')->get();
+        $majorsALL = Majors::with('majors')->get();
 
         $new = News::select('id', 'title', 'profession_id', 'new_image', 'describe', 'majors', 'created_at')->paginate(4);
         $totalSeeker = User::select('id')->where('status', 2)
@@ -166,7 +166,7 @@ class HomeController extends BaseController
             ->count('id');
         $totalJob = Job::count();
         return view('client.index', [
-            'majors' => $majors,
+            'majorsALL' => $majorsALL,
             'totalJob' => $totalJob,
             'totalSeeker' => $totalSeeker,
             'totalEmployer' => $totalEmployer,
@@ -178,7 +178,7 @@ class HomeController extends BaseController
             'skill' => $this->getskill(),
             'timework' => $this->gettimework(),
             'profession' => $this->getprofession(),
-            // 'majors' => $this->majors->get(),
+            'majors' => $this->getmajors(),
             'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
             'user' => $user ?? '',
