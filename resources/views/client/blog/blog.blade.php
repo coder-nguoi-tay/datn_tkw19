@@ -36,7 +36,7 @@
         <section class="trending-news section-box mt-50">
             <div class="container">
                 <div class="row">
-                    
+
                     @foreach ($news as $news)
                         <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                             <div class="card-grid-5">
@@ -52,7 +52,7 @@
                                                         srcset='https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/user10-150x150.png 2x'
                                                         class='avatar avatar-64 photo img-rounded' height='35'
                                                         width='35' loading='lazy' decoding='async' /> <span
-                                                        class="color-white font-sm mr-25">ADMIN</span>
+                                                        class="color-white font-sm mr-25"></span>
                                                 </div>
                                             </div>
                                         </div>
