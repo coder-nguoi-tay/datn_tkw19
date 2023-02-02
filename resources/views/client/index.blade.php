@@ -695,22 +695,15 @@
                                             <div class="row d-flex align-items-end">
                                                 <div class="col-lg-6 col-6">
                                                     <div class="d-flex align-items-center">
-                                                        <img alt=""
-                                                            src="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/user10-150x150.png"
-                                                            srcset="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/user10-150x150.png 2x"
-                                                            class="avatar avatar-64 photo img-rounded" height="35"
-                                                            width="35" loading="lazy" decoding="async">
+
                                                         <div class="info-right-img d-grid">
-                                                            <span
-                                                                class="font-sm font-bold color-brand-1 op-70">Admin</span>
+
                                                             <span
                                                                 class="font-xs color-text-paragraph-2">{{ $item->created_at->format('m-d-Y') }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 text-end col-6">
-                                                    <span class="color-text-paragraph-2 font-xs">2 mins to read</span>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
