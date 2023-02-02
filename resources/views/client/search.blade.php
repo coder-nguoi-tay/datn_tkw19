@@ -65,23 +65,25 @@
                                                     <img src="{{ asset($value->logo) }}" width="52" alt="Percepta">
                                                 </div>
                                                 <div class="right-info">
-                                                    <a style=" -webkit-line-clamp: 1;
+                                                    <a href="home/detail/{{ $value->id }}">
+                                                        <span
+                                                            style=" -webkit-line-clamp: 1;
                                                             -webkit-box-orient: vertical;
                                                             overflow: hidden;
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
                                                             text-align: left;"
-                                                        href="home/detail/{{ $value->id }}">
-                                                        <span class="name-job">{{ $value->title }}</span>
+                                                            class="name-job">{{ $value->title }}</span>
                                                     </a>
-                                                    <div
-                                                        style=" -webkit-line-clamp: 1;
+                                                    <div>
+                                                        <span
+                                                            style=" -webkit-line-clamp:2;
                                                             -webkit-box-orient: vertical;
                                                             overflow: hidden;
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
-                                                            text-align: justify;">
-                                                        <span class="location-small custom-text-company"><a
+                                                            text-align: initial;"
+                                                            class="location-small custom-text-company"><a
                                                                 href="{{ route('detail.company', $value->idCompany) }}">{{ $value->nameCompany }}</a></span>
                                                     </div>
                                                 </div>
