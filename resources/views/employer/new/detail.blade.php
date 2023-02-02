@@ -37,7 +37,7 @@
                                                 :data="{{ json_encode(2) }}">
                                             </search-cv-date>
                                         </div>
-                                        <table class="table text-center mt-3">
+                                        <table class="table text-center mt-5">
                                             <thead>
                                                 <tr>
                                                     <th>Mã CV</th>

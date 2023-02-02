@@ -417,11 +417,16 @@ class HomeController extends BaseController
                 $cvUpload->save();
             }
         }
-        $user = $this->job->join('employer', 'employer.id', '=', 'job.employer_id')
+        $emailCompany = $this->job->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('users', 'users.id', '=', 'employer.user_id')
             ->select('users.email as email')->first();
-        $mailContents = $mailUpCv->name;
-        Mail::to($user->mail)->send(new MailNotifyCV($mailContents));
+        $firstJob = $this->job->where([
+            ['id', $request->id_job],
+        ])->first();
+        $mailContents = [
+            'job' => $firstJob
+        ];
+        Mail::to($emailCompany->email)->send(new MailNotifyCV($mailContents));
 
         $this->setFlash(__('Hãy chờ phản hồi của nhà tuyển dụng'));
         return redirect()->back();

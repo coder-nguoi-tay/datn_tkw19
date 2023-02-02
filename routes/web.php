@@ -63,7 +63,7 @@ Route::resource('resset_pass', ResetPasswordController::class);
 Route::resource('forgotPasswordSuccess', forgotPasswordSuccessController::class);
 
 //// employer
-Route::middleware('user')->name('employer.')->prefix('employer')->group(function () {
+Route::middleware('employer')->name('employer.')->prefix('employer')->group(function () {
     // Route::resource('', HomeEmployerController::class);
     Route::get('logout', [HomeEmployerController::class, 'logout'])->name('logout');
     Route::get('dashboard', [HomeEmployerController::class, 'index'])->name('index');

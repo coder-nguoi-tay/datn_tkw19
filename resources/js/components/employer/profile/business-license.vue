@@ -88,7 +88,7 @@
                                           />
                                         </div>
                                         <img
-                                          v-if="filePreview && Image != null"
+                                          v-if="filePreview || Image == null"
                                           :src="filePreview"
                                           class="img-fluid img-show border"
                                           style="
