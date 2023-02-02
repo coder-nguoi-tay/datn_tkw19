@@ -19,4 +19,8 @@ class Company extends Model
         'logo',
         'number_tax',
     ];
+    public function employer()
+    {
+        return $this->hasOne(Employer::class, 'id_company', 'id');
+    }
 }

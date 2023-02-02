@@ -21,7 +21,6 @@
 
                             <h5 class="f-18">
                                 {{ $company->name }}
-                                <span class="card-location font-regular ml-20">{{ $company->address }}</span>
                             </h5>
                         </div>
 
@@ -130,7 +129,7 @@
                                 </ul>
 
                                 <div class="mt-30">
-                                    <a class="btn btn-send-message" href="{{ $company->email }}">Gửi mail đến công ty</a>
+                                    <a class="btn btn-send-message" href="">Gửi mail đến công ty</a>
                                 </div>
                             </div>
                         </div>
@@ -147,9 +146,6 @@
                 </div>
             </div>
         </section>
-
-
-
 
         <section class="section-box mt-50 mb-20">
             <div class="container">
