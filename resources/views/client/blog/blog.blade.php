@@ -36,6 +36,7 @@
         <section class="trending-news section-box mt-50">
             <div class="container">
                 <div class="row">
+                    
                     @foreach ($news as $news)
                         <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                             <div class="card-grid-5">
