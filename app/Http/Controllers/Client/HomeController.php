@@ -178,7 +178,7 @@ class HomeController extends BaseController
             'skill' => $this->getskill(),
             'timework' => $this->gettimework(),
             'profession' => $this->getprofession(),
-            'majors' => $this->majors->get(),
+            // 'majors' => $this->majors->get(),
             'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
             'user' => $user ?? '',
@@ -191,7 +191,7 @@ class HomeController extends BaseController
                 ->where([
                     ['job.status', 1],
                     ['job.expired', 0],
-                    ['employer.position', 0],
+                    ['job.package_id_position', 0],
                 ])
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                 ->orderBy('employer.prioritize', 'desc')

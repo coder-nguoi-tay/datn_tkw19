@@ -145,7 +145,7 @@
                                                         name="skill[]">
                                                         @foreach ($skill as $item)
                                                             <option value="{{ $item->id }}"
-                                                                {{ in_array($item->id, $request->skill) ? 'selected' : '' }}>
+                                                                {{ !empty($request->skill) ? (in_array($item->id, $request->skill) ? 'selected' : '') : '' }}>
                                                                 {{ $item->label }}
                                                             </option>
                                                         @endforeach

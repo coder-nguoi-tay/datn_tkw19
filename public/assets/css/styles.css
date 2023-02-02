@@ -2,6 +2,60 @@
     outline: none;
 }
 
+#box-discover {
+    /* background: #fff; */
+    padding-bottom: 28px;
+}
+
+#box-discover .list-discover {
+    display: grid;
+    gap: 20px 16px;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+#box-discover .list-discover .items {
+    background: #f7fdfa;
+    border: 1px solid #babebc;
+    border-radius: 5px;
+    padding: 20px;
+    transition: all .4s;
+}
+
+#box-discover .list-discover .items:hover {
+    /* background: var(--jobbox-color-brand-2); */
+    cursor: pointer;
+}
+
+#box-discover .list-discover .items .image {
+    background: #e5f7ed;
+    border-radius: 50%;
+    display: flex;
+    height: 44px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 44px;
+}
+
+#box-discover .list-discover .items .title {
+    color: black;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-bottom: 12px;
+}
+
+#box-discover .list-discover .items .count {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+#box-discover .list-discover .items .see-more {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+
+
 .modal-open {
     overflow: hidden !important;
 }
@@ -3966,9 +4020,10 @@ select.form-control {
     border-color: #e5e5e5;
 }
 
-.s00{
+.s00 {
     padding: 10px 15px !important;
 }
+
 .form-control.form-control.lg {
     height: 60px !important;
     padding: 10px 15px;

@@ -45,7 +45,7 @@
                             <a href="{{ route('blog') }}">Bài viết</a>
 
                         </li>
-                        <li id="menu-item-123"
+                        {{-- <li id="menu-item-123"
                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-123 has-children">
                             <a href="#">Liên hệ</a>
                             <ul class="sub-menu">
@@ -66,7 +66,7 @@
                                     <a href="../shop/index.html">Shop Page</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                     </ul>
                 </nav>
                 <div class="burger-icon burger-icon-white" data-bs-toggle="offcanvas" href="#offcanvasMenu"
