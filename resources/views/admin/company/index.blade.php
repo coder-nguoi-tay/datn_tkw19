@@ -43,9 +43,9 @@
                                             Name</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Email</th>
-                                        <th
+                                        {{-- <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Địa chỉ</th>
+                                            Địa chỉ</th> --}}
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Giấy chứng nhận</th>
@@ -69,9 +69,10 @@
                                             <td>
                                                 {{ $item->email }}
                                             </td>
-                                            <td>
+                                            {{-- <td
+                                               >
                                                 {{ $item->address }}
-                                            </td>
+                                            </td> --}}
 
                                             <td class="text-center">
                                                 @if ($item->status == 0)

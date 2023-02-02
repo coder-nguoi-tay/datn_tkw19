@@ -49,16 +49,30 @@
 
                                     <div class="image-box">
                                         <a href="{{ route('detail.company', $item->id) }}">
-                                            <img src="{{ asset($item->logo) }}" width="52" alt="Logo">
+                                            <img class="img-circle" src="{{ asset($item->logo) }}" width="56"
+                                                style="height:50px" alt="Logo">
                                         </a>
                                     </div>
 
                                     <div class="info-text mt-10">
 
-                                        <h5 class="font-lg font-bold"><a
-                                                href="{{ route('detail.company', $item->id) }}">{{ $item->name }}</a>
+                                        <h5 class="font-lg font-bold"
+                                            style=" display: -webkit-box;
+                                                     line-height: 1;
+                                                    -webkit-line-clamp: 1;
+                                                    -webkit-box-orient: vertical;
+                                                     overflow: hidden;
+                                                     text-overflow: ellipsis;">
+                                            <a href="{{ route('detail.company', $item->id) }}">{{ $item->name }}</a>
                                         </h5>
-                                        <span class="card-location">{{ $item->address }}</span>
+                                        <span
+                                            style=" display: -webkit-box;
+                                                    line-height: 2;
+                                                    -webkit-line-clamp: 1;
+                                                    -webkit-box-orient: vertical;
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis;"
+                                            class="card-location">{{ $item->address }}</span>
 
                                         <div class="mt-30">
                                             <a class="btn btn-grey-big" href="{{ route('detail.company', $item->id) }}">

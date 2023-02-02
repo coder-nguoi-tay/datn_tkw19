@@ -65,6 +65,7 @@
                     </div>
                 </div>
             @else
+                
                 <div class="btn-group">
                     <button type="button" style="border-radius: 20px;padding: 4px 8px 4px 0"
                         class="btn btn-default btn-shadow ml-30 hover-up dropdown-toggle" data-bs-toggle="dropdown"
@@ -73,6 +74,7 @@
                             style="width: 35px;height: 35px;margin : 0 20px 0 4px" class="rounded-circle img-fluid">
                         <p class="d-inline text-white">{{ Auth::guard('user')->user()->name }}</p>
                     </button>
+
                     <ul class="dropdown-menu">
 
                         <li class="{{ request()->is('*profile*') ? 'active' : '' }}"> <a class="dropdown-item"

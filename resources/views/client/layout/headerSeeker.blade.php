@@ -56,8 +56,10 @@
                                                 id="notificationDropdownMenu" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
                                                 <img src="{{ asset(Auth::guard('user')->user()->images) }}"
-                                                    alt="" class="img-profile" style="width: 35px;height: 35px;">
-                                                <span class="fullname"> &nbsp; {{ Auth::guard('user')->user()->name }}
+                                                    alt="" style="width: 35px;height: 35px;margin : 0 "
+                                                    class="rounded-circle img-fluid">
+                                                <span class="fullname"> &nbsp;
+                                                    {{ Auth::guard('user')->user()->name }}
                                                 </span>
                                             </button>
                                         </div><!-- end dropdown -->

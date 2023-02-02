@@ -4,18 +4,9 @@
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col col-lg-11 mb-4 mb-lg-0">
           <div class="card mb-3" style="border-radius: 0.5rem">
-            <VeeForm
-              as="div"
-              v-slot="{ handleSubmit }"
-              @invalid-submit="onInvalidSubmit"
-            >
-              <form
-                @submit="handleSubmit($event, onSubmit)"
-                ref="formData"
-                enctype="multipart/form-data"
-                :action="data.urlStore"
-                method="POST"
-              >
+            <VeeForm as="div" v-slot="{ handleSubmit }" @invalid-submit="onInvalidSubmit">
+              <form @submit="handleSubmit($event, onSubmit)" ref="formData" enctype="multipart/form-data"
+                :action="data.urlStore" method="POST">
                 <Field type="hidden" :value="csrfToken" name="_token" />
                 <div class="g-0">
                   <div class="col-md-12">
@@ -36,38 +27,22 @@
                           Bạn vui lòng hoàn thiện các thông tin dưới đây
                         </h6>
                         <p class="text-center">(*) Các thông tin bắt buộc</p>
-                        <div
-                          class="col-md-12"
-                          style="color: #3c65f5; font-weight: 550"
-                        >
+                        <div class="col-md-12" style="color: #3c65f5; font-weight: 550">
                           KINH NGHIỆM THỰC TẾ
                         </div>
                         <br />
                         <br />
                         <div class="mb-3 row">
-                          <label
-                            for="inputPassword"
-                            class="col-sm-4 col-form-label"
-                            >Kinh Nghiệm<span class="required-label">
-                              *</span
-                            ></label
-                          >
+                          <label for="inputPassword" class="col-sm-4 col-form-label">Kinh Nghiệm<span
+                              class="required-label">
+                              *</span></label>
                           <div class="col-sm-8">
-                            <Field
-                              name="experience_id"
-                              as="select"
-                              v-model="valueSelect.experience_id"
-                              rules="required"
-                              class="form-control s00"
-                            >
+                            <Field name="experience_id" as="select" v-model="valueSelect.experience_id" rules="required"
+                              class="form-control s00">
                               <option value disabled selected>
                                 --Chọn Kinh Nghiệm--
                               </option>
-                              <option
-                                v-for="item in data.experience"
-                                :key="item.id"
-                                :value="item.id"
-                              >
+                              <option v-for="item in data.experience" :key="item.id" :value="item.id">
                                 {{ item.label }}
                               </option>
                             </Field>
@@ -75,29 +50,16 @@
                           </div>
                         </div>
                         <div class="mb-3 row">
-                          <label
-                            for="inputPassword"
-                            class="col-sm-4 col-form-label"
-                            >Địa chỉ<span class="required-label">
-                              *</span
-                            ></label
-                          >
+                          <label for="inputPassword" class="col-sm-4 col-form-label">Địa chỉ<span
+                              class="required-label">
+                              *</span></label>
                           <div class="col-sm-8">
-                            <Field
-                              name="location_id"
-                              as="select"
-                              v-model="valueSelect.location_id"
-                              rules="required"
-                              class="form-control s00"
-                            >
+                            <Field name="location_id" as="select" v-model="valueSelect.location_id" rules="required"
+                              class="form-control s00">
                               <option value disabled selected>
                                 --Chọn Địa chỉ--
                               </option>
-                              <option
-                                v-for="item in data.location"
-                                :key="item.id"
-                                :value="item.id"
-                              >
+                              <option v-for="item in data.location" :key="item.id" :value="item.id">
                                 {{ item.label }}
                               </option>
                             </Field>
@@ -105,29 +67,16 @@
                           </div>
                         </div>
                         <div class="mb-3 row">
-                          <label
-                            for="inputPassword"
-                            class="col-sm-4 col-form-label"
-                            >Hình thức làm việc<span class="required-label">
-                              *</span
-                            ></label
-                          >
+                          <label for="inputPassword" class="col-sm-4 col-form-label">Hình thức làm việc<span
+                              class="required-label">
+                              *</span></label>
                           <div class="col-sm-8">
-                            <Field
-                              name="workingform_id"
-                              as="select"
-                              v-model="valueSelect.workingform_id"
-                              rules="required"
-                              class="form-control s00"
-                            >
+                            <Field name="workingform_id" as="select" v-model="valueSelect.workingform_id"
+                              rules="required" class="form-control s00">
                               <option value disabled selected>
                                 --Chọn hình thức làm việc--
                               </option>
-                              <option
-                                v-for="item in data.workingform"
-                                :key="item.id"
-                                :value="item.id"
-                              >
+                              <option v-for="item in data.workingform" :key="item.id" :value="item.id">
                                 {{ item.label }}
                               </option>
                             </Field>
@@ -135,21 +84,12 @@
                           </div>
                         </div>
                         <div class="mb-3 row">
-                          <label
-                            for="inputPassword"
-                            class="col-sm-4 col-form-label"
-                            >Nghành nghề<span class="required-label">
-                              *</span
-                            ></label
-                          >
+                          <label for="inputPassword" class="col-sm-4 col-form-label">Nghành nghề<span
+                              class="required-label">
+                              *</span></label>
                           <div class="col-sm-8">
-                            <Field
-                              name="majors_id"
-                              as="select"
-                              v-model="valueSelect.majors_id"
-                              rules="required"
-                              class="form-control s00"
-                            >
+                            <Field name="majors_id" as="select" v-model="valueSelect.majors_id" rules="required"
+                              class="form-control s00">
                               <option value disabled selected>
                                 --Chọn Nghành nghề--
                               </option>
@@ -165,29 +105,16 @@
                           </div>
                         </div>
                         <div class="mb-3 row">
-                          <label
-                            for="inputPassword"
-                            class="col-sm-4 col-form-label"
-                            >Trình độ<span class="required-label">
-                              *</span
-                            ></label
-                          >
+                          <label for="inputPassword" class="col-sm-4 col-form-label">Trình độ<span
+                              class="required-label">
+                              *</span></label>
                           <div class="col-sm-8">
-                            <Field
-                              name="lever_id"
-                              as="select"
-                              v-model="valueSelect.lever_id"
-                              rules="required"
-                              class="form-control s00"
-                            >
+                            <Field name="lever_id" as="select" v-model="valueSelect.lever_id" rules="required"
+                              class="form-control s00">
                               <option value disabled selected>
                                 --Chọn Trình Độ--
                               </option>
-                              <option
-                                v-for="item in data.lever"
-                                :key="item.id"
-                                :value="item.id"
-                              >
+                              <option v-for="item in data.lever" :key="item.id" :value="item.id">
                                 {{ item.label }}
                               </option>
                             </Field>
@@ -196,29 +123,16 @@
                         </div>
 
                         <div class="mb-3 row">
-                          <label
-                            for="inputPassword"
-                            class="col-sm-4 col-form-label"
-                            >Mức lương<span class="required-label">
-                              *</span
-                            ></label
-                          >
+                          <label for="inputPassword" class="col-sm-4 col-form-label">Mức lương<span
+                              class="required-label">
+                              *</span></label>
                           <div class="col-sm-8">
-                            <Field
-                              name="wage_id"
-                              as="select"
-                              v-model="valueSelect.wage_id"
-                              rules="required"
-                              class="form-control s00"
-                            >
+                            <Field name="wage_id" as="select" v-model="valueSelect.wage_id" rules="required"
+                              class="form-control s00">
                               <option value disabled selected>
                                 --Chọn Mức Lương--
                               </option>
-                              <option
-                                v-for="item in data.wage"
-                                :key="item.id"
-                                :value="item.id"
-                              >
+                              <option v-for="item in data.wage" :key="item.id" :value="item.id">
                                 {{ item.label }}
                               </option>
                             </Field>
@@ -226,59 +140,34 @@
                           </div>
                         </div>
                         <div class="mb-3 row">
-                          <label
-                            for="inputPassword"
-                            class="col-sm-4 col-form-label"
-                            >Ngành Nghề<span class="required-label">
-                              *</span
-                            ></label
-                          >
+                          <label for="inputPassword" class="col-sm-4 col-form-label">Ngành Nghề<span
+                              class="required-label">
+                              *</span></label>
                           <div class="col-sm-8">
-                            <Field
-                              name="profession_id"
-                              as="select"
-                              v-model="valueSelect.profession_id"
-                              rules="required"
-                              class="form-control s00"
-                            >
+                            <Field name="profession_id" as="select" v-model="valueSelect.profession_id" rules="required"
+                              class="form-control s00">
                               <option value disabled selected>
                                 --Chọn Ngành Nghề--
                               </option>
-                              <option
-                                v-for="item in data.profession"
-                                :key="item.id"
-                                :value="item.id"
-                              >
+                              <option v-for="item in data.profession" :key="item.id" :value="item.id">
                                 {{ item.label }}
+
                               </option>
                             </Field>
                             <ErrorMessage class="error" name="profession_id" />
                           </div>
                         </div>
                         <div class="mb-3 row">
-                          <label
-                            for="inputPassword"
-                            class="col-sm-4 col-form-label"
-                            >Thời gian làm việc<span class="required-label">
-                              *</span
-                            ></label
-                          >
+                          <label for="inputPassword" class="col-sm-4 col-form-label">Thời gian làm việc<span
+                              class="required-label">
+                              *</span></label>
                           <div class="col-sm-8">
-                            <Field
-                              name="time_work_id"
-                              as="select"
-                              v-model="valueSelect.time_work_id"
-                              rules="required"
-                              class="form-control s00"
-                            >
+                            <Field name="time_work_id" as="select" v-model="valueSelect.time_work_id" rules="required"
+                              class="form-control s00">
                               <option value disabled selected>
                                 --Chọn Thời Gian--
                               </option>
-                              <option
-                                v-for="item in data.timework"
-                                :key="item.id"
-                                :value="item.id"
-                              >
+                              <option v-for="item in data.timework" :key="item.id" :value="item.id">
                                 {{ item.label }}
                               </option>
                             </Field>
@@ -286,41 +175,16 @@
                           </div>
                         </div>
                         <div class="mb-3 row">
-                          <label
-                            for="inputPassword"
-                            class="col-sm-4 col-form-label"
-                            >Kĩ năng
-                            <span class="required-label"> *</span></label
-                          >
+                          <label for="inputPassword" class="col-sm-4 col-form-label">Kĩ năng
+                            <span class="required-label"> *</span></label>
                           <div class="col-sm-8">
-                            <Field
-                              class="form-control s00"
-                              v-model="value"
-                              name="skill_id"
-                              rules="required"
-                            >
-                              <Multiselect
-                                placeholder="--Chọn Kỹ năng--"
-                                v-model="value"
-                                mode="tags"
-                                :searchable="true"
-                                :options="options"
-                                label="label"
-                                track-by="label"
-                                :infinite="true"
-                                :object="true"
-                                :loading="isLoading"
-                                :internal-search="false"
-                                :clear-on-select="false"
-                                :close-on-select="false"
-                                :options-limit="300"
-                                :limit="3"
-                                :limit-text="limitText"
-                                :max-height="600"
-                                :show-no-results="false"
-                                :hide-selected="true"
-                                @input="updateSelected"
-                              />
+                            <Field class="form-control s00" v-model="value" name="skill_id" rules="required">
+                              <Multiselect placeholder="--Chọn Kỹ năng--" v-model="value" mode="tags" :searchable="true"
+                                :options="options" label="label" track-by="label" :infinite="true" :object="true"
+                                :loading="isLoading" :internal-search="false" :clear-on-select="false"
+                                :close-on-select="false" :options-limit="300" :limit="3" :limit-text="limitText"
+                                :max-height="600" :show-no-results="false" :hide-selected="true"
+                                @input="updateSelected" />
                             </Field>
                             <ErrorMessage class="error" name="skill_id" />
                           </div>
@@ -330,18 +194,14 @@
                       <input type="hidden" name="skill[]" v-model="skill" />
                       <div class="col-xl-12 col-lg-12">
                         <div class="form-group">
-                          <button
-                            style="background: #3c65f5 !important"
-                            type="submit"
-                            class="
+                          <button style="background: #3c65f5 !important" type="submit" class="
                               btn btn-md
                               ft-medium
                               text-light
                               rounded
                               theme-bg
                               btn-register-employer
-                            "
-                          >
+                            ">
                             Cập nhật
                           </button>
                         </div>
@@ -529,4 +389,5 @@ export default {
 }
 </style>
 <style src="@vueform/multiselect/themes/default.css">
+
 </style>
