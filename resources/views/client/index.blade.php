@@ -172,9 +172,14 @@
                                                                                             data-placement="top"
                                                                                             data-container="body"
                                                                                             data-original-title="{{ $item->nameCompany }}">
-                                                                                            {{ $item->nameCompany }}</h6>
+                                                                                            <a
+                                                                                                href="{{ route('detail.company', $item->idCompany) }}">{{ $item->nameCompany }}</a>
+                                                                                        </h6>
                                                                                         <span
-                                                                                            class="card-location font-xxs pl-15 color-text-paragraph-2">{{ $item->getlocation->name }}</span>
+                                                                                            class="card-location font-xxs pl-15 color-text-paragraph-2 custom-text-company custom-text-location-company ml-2">
+                                                                                            <p>Hà
+                                                                                                nội</p>
+                                                                                        </span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -197,6 +202,10 @@
                                                         </span>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-sm-12 mt-4">
+                                                <a href="{{ route('home.search.jobGood') }}"
+                                                    class="btn btn-default btn-find font-sm">Xem tất cả</a>
                                             </div>
                                         </div>
                                     </div>
@@ -397,8 +406,6 @@
                                 kết nối với các ứng viên phù hợp nhanh hơn.</p>
                         </div>
 
-
-
                     </div>
                 </div>
             </section>
@@ -413,15 +420,11 @@
                                         <img src="../../wp-content/themes/jobbox/assets/imgs/template/major.png"
                                             alt="">
                                     </div>
-                                    <div class="title">{{ $item->name }}</div>
+                                    <div class="title"><a
+                                            href="{{ route('searchMajors', $item->id) }}">{{ $item->name }}</a></div>
                                     <p class="count">(<span
                                             class="number count_job_manager">{{ count($item->majors) }}</span> việc làm)
                                     </p>
-                                    <div>
-                                        <a href="{{ route('searchMajors', $item->id) }}" class="see-more">Khám
-                                            phá ngay <i class="fa-solid fa-angle-right"></i></a>
-                                    </div>
-
                                 </div>
                             @endforeach
                         </div>
@@ -491,10 +494,14 @@
                                                                                                     overflow: hidden;
                                                                                                     text-overflow: ellipsis;"
                                                                                             class="color-brand-1 lh-14 mb-0">
-                                                                                            {{ $item->nameCompany }}
+                                                                                            <a
+                                                                                                href="{{ route('detail.company', $item->idCompany) }}">{{ $item->nameCompany }}</a>
                                                                                         </h6>
                                                                                         <span
-                                                                                            class="card-location font-xxs pl-15 color-text-paragraph-2">{{ $item->getlocation->name }}</span>
+                                                                                            class="card-location font-xxs pl-15 color-text-paragraph-2 custom-text-company custom-text-location-company ml-2">
+                                                                                            <p>Hà
+                                                                                                nội</p>
+                                                                                        </span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -510,7 +517,7 @@
                                                     @endforeach
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <a href="{{ route('home.search') }}"
+                                                    <a href="{{ route('home.search.allJob') }}"
                                                         class="btn btn-default btn-find font-sm">Xem tất cả</a>
                                                 </div>
                                             </div>

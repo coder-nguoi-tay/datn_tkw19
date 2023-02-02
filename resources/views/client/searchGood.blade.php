@@ -37,7 +37,7 @@
                         'majors' => $majors,
                         'location' => $location,
                         'workingform' => $workingform,
-                        'urlSeach' => route('home.search'),
+                        'urlSeach' => route('home.search.jobGood'),
                         'skillSearch' => $skillSearch,
                         'request' => !empty($request) ? $request->all() : new stdClass(),
                     ]) }}">

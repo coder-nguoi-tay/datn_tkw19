@@ -27,29 +27,19 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="{{ route('home.search') }}">Việc làm </a>
-
-                                    </li>
-                                    {{-- <li>
-                                        <a href="{{ route('company') }}">Công ty</a>
-                                    </li> --}}
-                                    <li>
-                                        <a href="#">Tin tức </a>
-
+                                        <a href="{{ route('index') }}">Việc làm </a>
                                     </li>
                                     <li>
-                                        <a href="#">Câu hỏi thường gặp </a>
+                                        <a href="{{ route('CongTy') }}">Công ty</a>
+                                    </li>
+                                    <li>
+                                        <a href="/blog">Tin tức </a>
 
                                     </li>
-                                    @if (Auth::guard('user')->check())
-                                        <li>
-                                            <a href="#">Xem hồ sơ <i class="la la-angle-down"></i></a>
-                                            <ul class="dropdown-menu-item">
-                                                <li><a href="{{ route('profile.index') }}">Thông tin cá nhân</a></li>
-                                                <li><a href="{{ route('quan-ly-cv.index') }}">Quản lý hồ sơ</a></li>
-                                            </ul>
-                                        </li>
-                                    @endif
+                                    <li>
+                                        <a href="/faqs">Câu hỏi thường gặp </a>
+
+                                    </li>
                                 </ul>
                             </nav>
                         </div><!-- end main-menu-content -->
@@ -61,94 +51,13 @@
                                             <button class="notification-btn dropdown-toggle" type="button"
                                                 id="notificationDropdownMenu" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
-
-
                                                 <img src="{{ asset(Auth::guard('user')->user()->images) }}"
                                                     alt="" style="width: 35px;height: 35px;margin : 0 "
                                                     class="rounded-circle img-fluid">
                                                 <span class="fullname"> &nbsp;
                                                     {{ Auth::guard('user')->user()->name }}
                                                 </span>
-
-
                                             </button>
-                                            <div class="dropdown-menu" aria-labelledby="notificationDropdownMenu">
-                                                <div class="mess-dropdown">
-                                                    <div class="mess__title">
-                                                        <h4
-                                                            class="widget-title d-flex align-items-center justify-content-between">
-                                                            Notifications<a href="#"
-                                                                class="font-size-12 color-text-3">Mark all as read</a>
-                                                        </h4>
-                                                        <p class="font-size-12 font-weight-medium">You have 5
-                                                            Notifications</p>
-                                                    </div><!-- end mess__title -->
-                                                    <div class="mess__body">
-                                                        <a href="#" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="icon-element">
-                                                                    <i class="la la-bolt"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p class="text">Your Resume Updated!</p>
-                                                                    <span class="time">5 hours ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="#" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="icon-element">
-                                                                    <i class="la la-lock"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p class="text">You changed password</p>
-                                                                    <span class="time">2 day ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="#" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="icon-element">
-                                                                    <i class="la la-check-circle"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p class="text">You applied for a job <span
-                                                                            class="color-text">Front-end
-                                                                            Developer</span></p>
-                                                                    <span class="time">1 day ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="#" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="icon-element">
-                                                                    <i class="la la-user"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p class="text">Your account has been created
-                                                                        successfully</p>
-                                                                    <span class="time">1 minute ago</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                        <a href="#" class="d-block">
-                                                            <div class="mess__item">
-                                                                <div class="icon-element">
-                                                                    <i class="la la-download"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p class="text">Someone downloaded resume</p>
-                                                                    <span class="time">Yesterday</span>
-                                                                </div>
-                                                            </div><!-- end mess__item -->
-                                                        </a>
-                                                    </div><!-- end mess__body -->
-                                                    <div class="mess__item border-bottom-0 text-center">
-                                                        <a href="#" class="theme-btn w-100">View All
-                                                            Notifications</a>
-                                                    </div><!-- end mess__item -->
-                                                </div><!-- end mess-dropdown -->
-                                            </div><!-- end dropdown-menu -->
                                         </div><!-- end dropdown -->
                                     </div>
                                 </div>
