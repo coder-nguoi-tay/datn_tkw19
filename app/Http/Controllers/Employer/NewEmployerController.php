@@ -462,7 +462,6 @@ class NewEmployerController extends BaseController
             ['expired', 0],
             ['package_id_position', 1],
         ])->count();
-        // dd($allJob);
         if (count($request->job) > $checkCompany->amount_job) {
             $this->setFlash(__('Số lượng bài viết được hiển thị trên top của bạn đã quá múc cho phép'), 'error');
             return redirect()->back();
