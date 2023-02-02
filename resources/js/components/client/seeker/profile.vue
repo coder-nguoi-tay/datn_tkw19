@@ -105,9 +105,9 @@
                               alert-secondary
                               p-3
                             "
-                            id="job-waiting-text"
+                            id="job-waiting-text" style="text-align: justify !important;"
                           >
-                            <span style="color: red">Lưu ý</span>: Bạn cần cập
+                            <span style="color: red; ">Lưu ý</span>: Bạn cần cập
                             nhật thông tin gọi ý công việc để chúng tôi có thể
                             tìm kiếm công việc tốt nhất cho bạn và nhà tuyển
                             dụng có thể dựa vào những thông số đó để có thể tiếp

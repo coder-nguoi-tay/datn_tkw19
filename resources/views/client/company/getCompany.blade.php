@@ -1,8 +1,4 @@
-{{-- @include('client.layout.header') --}}
-{{-- @extends('client.layout.index')
-@section('client')
-    fvxcbcvncvn
-@endsection --}}
+
 @extends('client.layout.index')
 @section('client')
     <main class="main">
@@ -11,22 +7,18 @@
                 <div class="banner-hero banner-company" data-settings-id="banner-recruiter">
                     <div class="block-banner text-center">
                         <h3 class="wow animate__ animate__fadeInUp  animated"
-                            style="visibility: visible; animation-name: fadeInUp;">Browse Recruiters</h3>
+                            style="visibility: visible; animation-name: fadeInUp;">Khám Phá Văn Hoá Công Ty</h3>
                         <div class="font-sm color-text-paragraph-2 mt-10 wow animate__ animate__fadeInUp  animated"
                             data-wow-delay=".1s"
                             style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni,atque delectus
-                            molestias quis? </div>
+                            Tra cứu thông tin công ty và tìm kiếm nơi làm việc tốt nhất dành cho bạn </div>
                         <div class="form-find text-start mt-40 wow animate__ animate__fadeInUp animated"
                             data-wow-delay=".2s"
                             style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                             <form class="job_filters" method="GET">
-                                <input class="form-input input-keysearch mr-10" type="text" name="search" id="search"
+                                <input class="form-input input-keysearch mr-10" style="border: none" type="text" name="search" id="search"
                                     placeholder=" Vui lòng nhập tên công ty..."
                                     value="{{ !empty($request) ? $request->search : '' }}">
-
-
-
                                 <button class="btn btn-default btn-find font-sm" value="Search">Search</button>
 
 
@@ -47,7 +39,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-6 col-lg-5">
                             <span class="text-small text-showing">
-                                Showing <strong>{{ count($company) }}</strong> Công ty</span>
+                                 <strong>{{ count($company) }}</strong> Công ty</span>
                         </div>
 
                     </div>
@@ -87,8 +79,8 @@
 
                                         <div class="mt-30">
                                             <a class="btn btn-grey-big"
-                                                href="../jobs/index22ab.html?search_location=Chicago,%20US">
-                                                1 Open Job </a>
+                                                href="{{ route('detail.company', $item->id) }}">
+                                                Xem chi tiết </a>
                                         </div>
 
                                     </div>

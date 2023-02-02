@@ -7,9 +7,8 @@
                 <div class="container">
                     <div class="row d-grid d-md-flex gap-30 gap-lg-0 align-items-end">
                         <div class="col-lg-6">
-                            <h2 class="mb-0">Blog</h2>
-                            <div class="banner-subtitle font-lg color-text-paragraph-2 mt-10">Get the latest news, updates
-                                and tips
+                            <h2 class="mb-0">Tin tức</h2>
+                            <div class="banner-subtitle font-lg color-text-paragraph-2 mt-10">Cập nhật những thông tin mới nhất đến với người dùng
                             </div>
                         </div>
                         <div class="col-lg-6 text-lg-end">
@@ -18,12 +17,12 @@
                                 <li class="home"><span property="itemListElement" typeof="ListItem"><a property="item"
                                             typeof="WebPage" title="Go to Jobbox."
                                             href="https://jthemes.com/themes/wp/jobbox" class="home home-icon"><span
-                                                property="name">Jobbox</span></a>
+                                                property="name">ITWork</span></a>
                                         <meta property="position" content="1">
                                     </span></li>
                                 <li class="post-root post post-post current-item"><span property="itemListElement"
                                         typeof="ListItem"><span property="name"
-                                            class="post-root post post-post current-item">Blog</span>
+                                            class="post-root post post-post current-item">Tin tức</span>
                                         <meta property="url" content="index.html">
                                         <meta property="position" content="2">
                                     </span></li>
@@ -38,7 +37,7 @@
             <div class="container">
                 <div class="row">
                     @foreach ($news as $news)
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                             <div class="card-grid-5">
                                 <div class="card-grid-5 hover-up"
                                     style="background-image: url('{{ $news->new_image }}'); background-position:center center; background-repeat:no-repeat">

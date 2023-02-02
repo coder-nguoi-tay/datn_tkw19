@@ -34,11 +34,11 @@
                                         <a href="{{ route('company') }}">Công ty</a>
                                     </li> --}}
                                     <li>
-                                        <a href="#">Tin tức </a>
+                                        <a href="{{ route('blog') }}">Tin tức </a>
 
                                     </li>
                                     <li>
-                                        <a href="#">Câu hỏi thường gặp </a>
+                                        <a href="{{ route('faqs.index') }}">Câu hỏi thường gặp </a>
 
                                     </li>
                                     @if (Auth::guard('user')->check())
