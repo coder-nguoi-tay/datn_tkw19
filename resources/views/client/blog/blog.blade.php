@@ -44,7 +44,7 @@
                                     <a href="{{ route('detail.blog', $news->id) }}">
                                         <div class="box-cover-img">
                                             <div class="content-bottom">
-                                                <h3 class="color-white mb-20">{{ $news->title }}</h3>
+                                                <h5 class="color-white mb-20">{{ $news->title }}</h5>
                                                 <div class="author d-flex align-items-center">
                                                     <img alt=''
                                                         src='../wp-content/uploads/2022/09/user10-150x150.png'
