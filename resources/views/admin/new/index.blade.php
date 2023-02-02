@@ -13,31 +13,47 @@
                         </div>
                     </div>
                     <div class="card-body px-0 pb-2">
-                        <div class="ps-3">
-                            <a href="{{ route('admin.new.create') }}" class="btn btn-primary">Thêm tin tức mới</a>
+
+                        <div class="col-md-12">
+                            <div class="col-6 ps-3">
+                                <a href="{{ route('admin.new.create') }}" class="btn btn-primary">Thêm tin tức mới</a>
+                            </div>
+                            <div class="col-6"
+                                style="float: right !important; width: 400px;height: 40px; margin-right: 20px; margin-top: -80px">
+                                <form class="d-flex" method="get" style="height: 40px;">
+                                    <input name="free_word" class="custom-input form-control mr-1"
+                                        placeholder="Tìm Kiếm...." autocomplete="off" id="free_word" />
+                                    <button class="btn btn-info font-weight-medium color-text-2 mr-1 text-white"
+                                        style="height: 40px;" href="">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
+
+                        <hr>
                         <div class="table table-responsive p-0">
                             <table class="table align-items-center mb-0 table  table-striped ">
                                 <thead class="table-danger ">
                                     <tr class="">
-                                        
+
                                         <th
                                             class="text-dark text-center text-secondary  text-dark font-weight-bolder opacity-7">
                                             ID
                                         </th>
                                         <th class=" text-dark text-secondary  font-weight-bolder opacity-7">
-                                       
+
                                             Tiêu Dề
                                         </th>
                                         <th class=" text-dark text-secondary  font-weight-bolder opacity-7 w-25">
-                                        
+
                                             Hình ảnh
                                         </th>
                                         <th class=" text-dark text-secondary  font-weight-bolder opacity-7">
                                             Chuyên ngành
                                         </th>
                                         <th class=" text-dark text-secondary  font-weight-bolder opacity-7">
-                                        
+
                                             Ngày Tạo
                                         </th>
                                         <th class="text-secondary opacity-7"></th>
@@ -62,7 +78,7 @@
                                                     overflow: hidden;
                                                     text-overflow: ellipsis !important;
                                                      ">
-                                                        
+
                                                         {{ $item->title }}</p>
                                                 </div>
                                             </td>
@@ -75,7 +91,7 @@
                                                             src="{{ asset($item->new_image) }}"
                                                             class="img-thumbnail border-radius-lgc" alt="..." />
 
-                                                       
+
 
                                                     </label>
 
@@ -84,7 +100,7 @@
                                             </td>
                                             <td class="align-middle ">
                                                 <span class="text-secondary  font-weight-bold">{{ $item->majors }}</span>
-                                                
+
                                             </td>
                                             <td class="align-middle ">
                                                 <span
@@ -92,10 +108,9 @@
                                             </td>
                                             <td class="align-middle">
                                                 <div class="" style="display: flex; max-width: 80%; margin-left: 7% ">
-                                                
+
                                                     <div style="margin-right: 10%">
                                                         <btn-delete-confirm
-                                                 
                                                             :message-confirm="{{ json_encode('Bạn có chắc muốn xóa không ?') }}"
                                                             :delete-action="{{ json_encode(route('admin.new.destroy', $item->id)) }}">
                                                         </btn-delete-confirm>
