@@ -74,14 +74,15 @@
                                                         href="home/detail/{{ $value->id }}">
                                                         <span class="name-job">{{ $value->title }}</span>
                                                     </a>
-                                                    <div
-                                                        style=" -webkit-line-clamp: 1;
+                                                    <div>
+                                                        <span
+                                                            style=" -webkit-line-clamp: 1;
                                                             -webkit-box-orient: vertical;
                                                             overflow: hidden;
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
-                                                            text-align: justify;">
-                                                        <span class="location-small custom-text-company"><a
+                                                            text-align: inherit;"
+                                                            class="location-small custom-text-company"><a
                                                                 href="{{ route('detail.company', $value->idCompany) }}">{{ $value->nameCompany }}</a></span>
                                                     </div>
                                                 </div>
@@ -159,14 +160,15 @@
                                                             display: -webkit-box;
                                                             text-align: left;">{{ $value->title }}</span>
                                                         </a>
-                                                        <div
-                                                            style=" -webkit-line-clamp: 1;
+                                                        <div>
+                                                            <span
+                                                                style=" -webkit-line-clamp: 1;
                                                             -webkit-box-orient: vertical;
                                                             overflow: hidden;
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
-                                                            text-align: justify;">
-                                                            <span class="location-small custom-text-company"><a
+                                                            text-align: initial;"
+                                                                class="location-small custom-text-company"><a
                                                                     href="">{{ $value->nameCompany }}</a></span>
                                                         </div>
                                                     </div>
