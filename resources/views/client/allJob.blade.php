@@ -65,14 +65,14 @@
                                                     <img src="{{ asset($value->logo) }}" width="52" alt="Percepta">
                                                 </div>
                                                 <div class="right-info">
-                                                    <a style=" -webkit-line-clamp: 1;
+                                                    <a href="home/detail/{{ $value->id }}">
+                                                        <span class="name-job"
+                                                            style=" -webkit-line-clamp: 1;
                                                             -webkit-box-orient: vertical;
                                                             overflow: hidden;
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
-                                                            text-align: left;"
-                                                        href="home/detail/{{ $value->id }}">
-                                                        <span class="name-job">{{ $value->title }}</span>
+                                                            text-align: left;">{{ $value->title }}</span>
                                                     </a>
                                                     <div>
                                                         <span
