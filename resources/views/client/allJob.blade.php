@@ -37,7 +37,7 @@
                         'majors' => $majors,
                         'location' => $location,
                         'workingform' => $workingform,
-                        'urlSeach' => route('home.search'),
+                        'urlSeach' => route('home.search.allJob'),
                         'skillSearch' => $skillSearch,
                         'request' => !empty($request) ? $request->all() : new stdClass(),
                     ]) }}">
@@ -81,22 +81,19 @@
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
                                                             text-align: justify;">
-                                                        <span class="location-small custom-text-company"><a
-                                                                href="">{{ $value->nameCompany }}</a></span>
+                                                        <span
+                                                            class="location-small custom-text-company">{{ $value->nameCompany }}</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="card-block-info">
+
                                                 <div class="d-flex align-items-center gap-3 font-xs color-text-mutted">
-                                                    <span><i
-                                                            class="fi-rr-briefcase ms-0 me-5"></i>{{ $value->getTime_work->name }}</span>
+                                                    <span><i class="fi-rr-briefcase ms-0 me-5"></i>Part Time</span>
                                                     <span><i class="fi-rr-clock ms-0 me-5"></i><time
                                                             datetime="2022-09-27">{{ $value->end_job_time }}</time></span>
                                                 </div>
-
-                                                {{-- <p class="font-sm color-text-paragraph mt-15">
-                                                    {!! $value->describe !!}</p> --}}
 
                                                 <div class="card-2-bottom mt-30">
                                                     <div class="row align-items-center">
@@ -105,8 +102,8 @@
                                                         </div>
 
                                                         <div class="col-lg-6 col-5 text-end">
-                                                            <a class="btn btn-apply-now"
-                                                                href="home/detail/{{ $value->id }}">Xem chi tiết</a>
+                                                            <a class="btn btn-apply-now" href="">Apply
+                                                                now</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -154,14 +151,14 @@
                                                         <img src="{{ asset($value->logo) }}" width="52" alt="Percepta">
                                                     </div>
                                                     <div class="right-info">
-                                                        <a href="home/detail/{{ $value->id }}">
-                                                            <span class="name-job"
-                                                                style=" -webkit-line-clamp: 1;
+                                                        <a style=" -webkit-line-clamp: 1;
                                                             -webkit-box-orient: vertical;
                                                             overflow: hidden;
                                                             text-overflow: ellipsis;
                                                             display: -webkit-box;
-                                                            text-align: left;">{{ $value->title }}</span>
+                                                            text-align: left;"
+                                                            href="home/detail/{{ $value->id }}">
+                                                            <span class="name-job">{{ $value->title }}</span>
                                                         </a>
                                                         <div
                                                             style=" -webkit-line-clamp: 1;
@@ -177,13 +174,12 @@
                                                 </div>
 
                                                 <div class="card-block-info">
+
                                                     <div class="d-flex align-items-center gap-3 font-xs color-text-mutted">
-                                                        <span><i
-                                                                class="fi-rr-briefcase ms-0 me-5"></i>{{ $value->getTime_work->name }}</span>
+                                                        <span><i class="fi-rr-briefcase ms-0 me-5"></i>Part Time</span>
                                                         <span><i class="fi-rr-clock ms-0 me-5"></i><time
                                                                 datetime="2022-09-27">{{ $value->end_job_time }}</time></span>
                                                     </div>
-
                                                     <div class="card-2-bottom mt-30">
                                                         <div class="row align-items-center">
                                                             <div class="col-lg-6 col-7">
@@ -192,9 +188,7 @@
                                                             </div>
 
                                                             <div class="col-lg-6 col-5 text-end">
-                                                                <a class="btn btn-apply-now"
-                                                                    href="/home/detail/{{ $value->id }}">Xem chi
-                                                                    tiết</a>
+                                                                <a class="btn btn-apply-now" href="">Xem chi tiết</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -202,9 +196,6 @@
                                             </div>
                                         </div>
                                     @endforeach
-
-
-
                                 </div>
                                 <!--row job_listings-->
                             </div>
