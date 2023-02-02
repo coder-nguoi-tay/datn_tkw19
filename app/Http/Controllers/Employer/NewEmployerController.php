@@ -462,6 +462,11 @@ class NewEmployerController extends BaseController
             ['expired', 0],
             ['package_id_position', 1],
         ])->count();
+        // dd($allJob);
+        if (count($request->job) > $checkCompany->amount_job) {
+            $this->setFlash(__('Số lượng bài viết được hiển thị trên top của bạn đã quá múc cho phép'), 'error');
+            return redirect()->back();
+        }
         if ($allJob == $checkCompany->amount_job) {
             $this->setFlash(__('Số lượng bài viết được hiển thị trên top của bạn đã quá múc cho phép'), 'error');
             return redirect()->back();
@@ -478,6 +483,24 @@ class NewEmployerController extends BaseController
             DB::rollBack();
             $this->setFlash(__('Có một lỗi không mong muốn đã xảy ra'), 'error');
             return redirect()->back();
+        }
+    }
+    public function changeStatusTop($id)
+    {
+        try {
+            $job = $this->job->where('id', $id)->first();
+            $job->package_id_position = 0;
+            $job->save();
+            return response()->json([
+                'message' => 'Quá trình thực hiện thành công!',
+                'status' => StatusCode::OK,
+            ], StatusCode::OK);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Có một lỗi không xác định đã xảy ra',
+                'status' => StatusCode::FORBIDDEN,
+            ], StatusCode::OK);
         }
     }
 }
