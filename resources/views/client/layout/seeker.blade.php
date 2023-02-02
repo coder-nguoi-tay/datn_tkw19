@@ -15,6 +15,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:100,300,400,500,700,&amp;display=swap"
         rel="stylesheet">
+    <link rel="icon" href="../wp-content/uploads/2022/09/favicon.png" sizes="32x32" />
     <!-- Template CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/company/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/company/line-awesome.css') }}">
