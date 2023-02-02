@@ -46,14 +46,7 @@
                                         <div class="box-cover-img">
                                             <div class="content-bottom">
                                                 <h5 class="color-white mb-20">{{ $news->title }}</h5>
-                                                <div class="author d-flex align-items-center">
-                                                    <img alt=''
-                                                        src='../wp-content/uploads/2022/09/user10-150x150.png'
-                                                        srcset='https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/user10-150x150.png 2x'
-                                                        class='avatar avatar-64 photo img-rounded' height='35'
-                                                        width='35' loading='lazy' decoding='async' /> <span
-                                                        class="color-white font-sm mr-25"></span>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </a>
