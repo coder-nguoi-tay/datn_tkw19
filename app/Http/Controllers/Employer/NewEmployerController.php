@@ -106,7 +106,9 @@ class NewEmployerController extends BaseController
             if (!empty($request['free_word'])) {
                 $q->orWhere($this->escapeLikeSentence('job.title', $request['free_word']));
             }
-        })->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill', 'AllCv'])
+        })->with(['AllCv' => function ($q) {
+            $q->where('status', 0);
+        }])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->select('job.*', 'company.logo as logo')
@@ -360,7 +362,10 @@ class NewEmployerController extends BaseController
             ->leftjoin('users', 'users.id', '=', 'save_cv.user_id')
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->leftjoin('majors', 'majors.id', '=', 'job.majors_id')
-            ->where('job.id', $id)
+            ->where([
+                ['job.id', $id],
+                ['save_cv.status', 0],
+            ])
             ->where(function ($q) use ($request) {
                 if (!empty($request['start_date'])) {
                     $q->whereDate('save_cv.created_at', '>=', $request['start_date']);

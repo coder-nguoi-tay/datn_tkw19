@@ -73,6 +73,12 @@
                                                                                     data-placement="top" title=""
                                                                                     data-original-title="Xem chi tiết"></i></a>
                                                                         </li>
+                                                                        <li class="d-inline-block mb-0">
+                                                                            <btn-delete-cv-for-job
+                                                                                :message-confirm="{{ json_encode('Bạn có chắc muốn loại bỏ hồ sơ ra không?') }}"
+                                                                                :delete-action="{{ json_encode(route('employer.quan-ly-cv.changeStatus.cv', $item->token)) }}">
+                                                                            </btn-delete-cv-for-job>
+                                                                        </li>
 
                                                                     </ul>
                                                                 </div>
