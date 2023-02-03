@@ -25,6 +25,7 @@ use App\Models\Wage;
 use App\Models\WorkingForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SearchCvController extends BaseController
 {
@@ -81,14 +82,21 @@ class SearchCvController extends BaseController
     }
     public function index(Request $request)
     {
-        // $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
         $cv = $this->profileCv
             ->leftjoin('job-seeker', 'job-seeker.user_role', '=', 'profile_user_cv.user_id')
             ->leftjoin('seeker_skill', 'seeker_skill.job-seeker_id', '=', 'job-seeker.id')
             ->leftjoin('skill', 'skill.id', '=', 'seeker_skill.skill_id')
+            ->with(['feedback' => function ($q) {
+                $q->where('feedback_id', 1);
+            }])
+            ->with(['feedback2' => function ($q) {
+                $q->where('feedback_id', 2);
+            }])
+            ->with(['feedback3' => function ($q) {
+                $q->where('feedback_id', 3);
+            }])
             ->where([
                 ['status_profile', 1],
-                // ['employer_payment_cv.employer_id', '!=', $employer->id],
             ])
             ->where(function ($q) use ($request) {
                 if (!empty($request['name'])) {
@@ -122,6 +130,7 @@ class SearchCvController extends BaseController
             ->select('profile_user_cv.*')
             ->groupBy('profile_user_cv.user_id')
             ->with('user')->get();
+        // dd($cv);
         $breadcrumbs = [
             'Tìm kiếm ứng viên',
 

@@ -208,6 +208,13 @@
                                                 <span class="mr-2"><i
                                                         class="la la-map-marker mr-1"></i>{{ $item->address }}</span>
                                             </p>
+                                            <p class="mt-2 font-size-15">
+                                                <span class="mr-2">Đánh giá:
+                                                    <span> Tốt: {{ $item->feedback->count() }}</span>
+                                                    <span> Vừa: {{ $item->feedback2->count() }}</span>
+                                                    <span> Yếu: {{ $item->feedback3->count() }}</span>
+                                                </span>
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="bread-action">
