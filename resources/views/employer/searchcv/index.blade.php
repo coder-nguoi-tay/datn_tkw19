@@ -230,17 +230,17 @@
                 <div class="col-lg-12">
                     <div class="page-navigation-wrap mt-4">
                         <div class="page-navigation mx-auto">
-                            <a href="#" class="page-go page-prev">
+                            <a href="" class="page-go page-prev">
                                 <i class="la la-arrow-left"></i>
                             </a>
                             <ul class="page-navigation-nav">
-                                <li><a href="#" class="page-go-link">1</a></li>
-                                <li class="active"><a href="#" class="page-go-link">2</a></li>
-                                <li><a href="#" class="page-go-link">3</a></li>
-                                <li><a href="#" class="page-go-link">4</a></li>
-                                <li><a href="#" class="page-go-link">5</a></li>
+                                <li class="active"><a href="" class="page-go-link">1</a></li>
+                                <li><a href="" class="page-go-link">2</a></li>
+                                <li><a href="" class="page-go-link">3</a></li>
+                                <li><a href="" class="page-go-link">4</a></li>
+                                <li><a href="" class="page-go-link">5</a></li>
                             </ul>
-                            <a href="#" class="page-go page-next">
+                            <a href="" class="page-go page-next">
                                 <i class="la la-arrow-right"></i>
                             </a>
                         </div>
