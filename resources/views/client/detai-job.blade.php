@@ -144,7 +144,6 @@
                                             data-bs-target="#ModalApplyJobForm">Ứng
                                             tuyển</a>
                                     @endif
-
                                     <a class="btn-like" class="mr-15 mb-5"><i class="fa-solid fa-heart icon-save-cv"
                                             id="{{ $job->id . ',' . $checklove }}"></i></a>
                                 </div>
