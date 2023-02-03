@@ -81,13 +81,14 @@ class SearchCvController extends BaseController
     }
     public function index(Request $request)
     {
+        // $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
         $cv = $this->profileCv
             ->leftjoin('job-seeker', 'job-seeker.user_role', '=', 'profile_user_cv.user_id')
             ->leftjoin('seeker_skill', 'seeker_skill.job-seeker_id', '=', 'job-seeker.id')
             ->leftjoin('skill', 'skill.id', '=', 'seeker_skill.skill_id')
             ->where([
                 ['status_profile', 1],
-                ['status', '!=', Auth::guard('user')->user()->id],
+                // ['employer_payment_cv.employer_id', '!=', $employer->id],
             ])
             ->where(function ($q) use ($request) {
                 if (!empty($request['name'])) {
