@@ -148,7 +148,7 @@
                                                                             <li class="d-inline-block">
                                                                                 <btn-delete-job-top
                                                                                     :message-confirm="{{ json_encode('Bạn có chắc muốn xóa bài viết ra khỏi Top?') }}"
-                                                                                    :delete-action="{{ json_encode(route('employer.package.updateTimePayment', $item->id)) }}">
+                                                                                    :delete-action="{{ json_encode(route('employer.new.changeStatusTop', $item->id)) }}">
                                                                                 </btn-delete-job-top>
                                                                             </li>
                                                                         </ul>

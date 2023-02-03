@@ -119,8 +119,8 @@ class SearchCvController extends BaseController
                 }
             })
             ->select('profile_user_cv.*')
+            ->groupBy('profile_user_cv.user_id')
             ->with('user')->get();
-        // dd($cv);
         $breadcrumbs = [
             'Tìm kiếm ứng viên',
 

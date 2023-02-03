@@ -120,7 +120,7 @@
                                     >
                                       <img
                                         v-if="Image != null"
-                                        :src="baseUrl + Image"
+                                        :src="'/' + Image"
                                         class="img-fluid"
                                         style="
                                           width: 200px;

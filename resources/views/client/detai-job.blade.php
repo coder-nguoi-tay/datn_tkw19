@@ -1,7 +1,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Full Stack Engineer &#8211; Jobbox</title>
+    @if (isset($title))
+        <title>{{ $title }}</title>
+    @endif
     <meta name='robots' content='max-image-preview:large' />
     <link rel='dns-prefetch' href='http://code.jquery.com/' />
     <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
@@ -260,29 +262,26 @@
                                         </div>
 
                                         <div class="content-single">
-                                            <h4>Chào mừng đến với {{ $jobCompany[0]->name }}</h4>
-                                            <p>{!! $jobCompany[0]->desceibe !!}</p>
-
-                                            <h4>Quyền lợi công việc</h4>
+                                            <h4>- Quyền lợi công việc</h4>
                                             <ul>
 
                                                 <li>{!! $job->benefit !!}</li>
                                             </ul>
-                                            <h4>Yêu cầu của công việc</h4>
+                                            <h4>- Yêu cầu của công việc</h4>
                                             <ul>
                                                 <li>{!! $job->candidate_requirements !!}</li>
 
                                             </ul>
-                                            <h4>Kỹ năng</h4>
+                                            <h4>- Kỹ năng</h4>
                                             @foreach ($job->getskill as $item)
                                                 <li><span
                                                         class="px-2 py-1 medium skill-bg rounded text-dark">{{ $item->name }}</span>
                                                 </li>
                                             @endforeach
-
-                                        </div>
-                                        <div class="author-single">
-                                            <span> {{ $job->nameCompany }}</span>
+                                            <div class="mt-5">
+                                                <h4>- {{ $jobCompany[0]->name }}</h4>
+                                                <p>{!! $jobCompany[0]->desceibe !!}</p>
+                                            </div>
                                         </div>
 
 
@@ -404,7 +403,7 @@
             gap: 9px 9px;
         }
     </style>
-    <script src='../../wp-includes/js/dist/a11y.min65c7.js?ver=ecce20f002eda4c19664' id='wp-a11y-js'></script>
+    {{-- <script src='../../wp-includes/js/dist/a11y.min65c7.js?ver=ecce20f002eda4c19664' id='wp-a11y-js'></script> --}}
     <script id='jquery-ui-autocomplete-js-extra'>
         var uiAutocompleteL10n = {
             "noResults": "No results found.",

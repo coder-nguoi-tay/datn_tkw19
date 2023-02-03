@@ -280,6 +280,10 @@ class HomeController extends BaseController
             ->paginate(4);
         if (Auth::guard('user')->check()) {
             $cv = $this->upload->where('user_id', Auth::guard('user')->user()->id)->get();
+            $checkJob = $this->savecv->where([
+                ['id_job', $id],
+                ['user_id', Auth::guard('user')->user()->id]
+            ])->first();
         }
         $breadcrumbs = [
             $job->title
@@ -290,6 +294,7 @@ class HomeController extends BaseController
             'locationAll' => $this->location->get(),
             'rules' => $relate,
             'breadcrumbs' => $breadcrumbs,
+            'title' => $job->title,
             'cv' => $cv ?? '',
             'majors' => $this->majors->get(),
             'checklove' => $love,
@@ -359,8 +364,6 @@ class HomeController extends BaseController
             $this->setFlash(__('Bạn cần đăng nhập hoặc đăng ký để trải nghiệm dịch vụ của chúng tôi'), 'error');
             return redirect()->back();
         }
-        $mailUpCv = $this->savecv;
-
         $checkJob = $this->savecv->where([
             ['id_job', $request->id_job],
             ['user_id', Auth::guard('user')->user()->id]
