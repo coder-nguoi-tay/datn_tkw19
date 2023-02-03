@@ -94,6 +94,7 @@ Route::middleware('employer')->name('employer.')->prefix('employer')->group(func
 
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
+    Route::post('quan-ly-cv/change-status-cv/{id}', [ManagerUploadCvController::class, 'changeStatusCv'])->name('quan-ly-cv.changeStatus.cv');
     Route::resource('tim-kiem-cv', SearchCvController::class);
     Route::resource('cv-da-mua', BoughtCvController::class);
 

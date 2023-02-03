@@ -136,9 +136,15 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-12 text-lg-end">
-                                    <a class="btn-border mr-15 mb-5 active" data-bs-toggle="modal"
-                                        data-bs-target="#ModalApplyJobForm">Ứng
-                                        tuyển</a>
+                                    @if ($checkJobTrue == 0)
+                                        <a class="btn-border mr-15 mb-5 active"
+                                            style="background: blue; color: white">Đã ứng tuyển</a>
+                                    @else
+                                        <a class="btn-border mr-15 mb-5 active" data-bs-toggle="modal"
+                                            data-bs-target="#ModalApplyJobForm">Ứng
+                                            tuyển</a>
+                                    @endif
+
                                     <a class="btn-like" class="mr-15 mb-5"><i class="fa-solid fa-heart icon-save-cv"
                                             id="{{ $job->id . ',' . $checklove }}"></i></a>
                                 </div>

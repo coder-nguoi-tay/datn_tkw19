@@ -284,10 +284,15 @@ class HomeController extends BaseController
                 ['id_job', $id],
                 ['user_id', Auth::guard('user')->user()->id]
             ])->first();
+            if ($checkJob) {
+                if ($checkJob->status == 1)
+                    $checkJobTrue = 1;
+            }
         }
         $breadcrumbs = [
             $job->title
         ];
+
         return view('client.detai-job', [
             'job' => $job,
             'jobCompany' => $jobCompany,
@@ -298,6 +303,7 @@ class HomeController extends BaseController
             'cv' => $cv ?? '',
             'majors' => $this->majors->get(),
             'checklove' => $love,
+            'checkJobTrue' => $checkJobTrue ?? 0,
         ]);
     }
 
@@ -369,22 +375,24 @@ class HomeController extends BaseController
             ['user_id', Auth::guard('user')->user()->id]
         ])->first();
         if ($checkJob) {
-            $this->setFlash(__('Bạn đã nộp đơn vào công việc này rồi'), 'error');
-            return redirect()->back();
+            $cvSave = $checkJob;
+            $cvUpload = $checkJob;
+        } else {
+            $cvSave = new $this->upload();
+            $cvUpload = new $this->savecv();
         }
 
         if (isset($request->file_cv)) {
             if ($request->save_cv) {
                 try {
-                    $cvSave = new $this->upload();
                     $cvSave->title = $request->title;
                     $cvSave->user_id = Auth::guard('user')->user()->id;
+                    $cvUpload->status = 0;
                     if ($request->hasFile('file_cv')) {
                         $cvSave->file_cv = $request->file_cv->storeAs('images/cv', $request->file_cv->hashName());
                     }
                     $cvSave->save();
                     //
-                    $cvUpload = new $this->savecv();
                     $cvUpload->title = $request->title;
                     $cvUpload->token = rand(00000, 99999);
                     $cvUpload->user_id = Auth::guard('user')->user()->id;
@@ -398,9 +406,11 @@ class HomeController extends BaseController
                     return back();
                 }
             } else {
-                $cv = new $this->savecv();
+                $cv = $cvSave;
                 $cv->title = $request->title;
+                $cv->token = rand(00000, 99999);
                 $cv->user_id = Auth::guard('user')->user()->id;
+                $cv->status = 0;
                 if ($request->hasFile('file_cv')) {
                     $cv->file_cv = $request->file_cv->storeAs('images/cv', $request->file_cv->hashName());
                 }
@@ -411,11 +421,11 @@ class HomeController extends BaseController
 
             $cvSave = $this->upload->where('id', $request->cv_for_save)->first();
             if ($cvSave) {
-                $cvUpload = new $this->savecv();
                 $cvUpload->title = $cvSave->title;
                 $cvUpload->token = rand(00000, 99999);
                 $cvUpload->user_id = Auth::guard('user')->user()->id;
                 $cvUpload->file_cv = $cvSave->file_cv;
+                $cvUpload->status = 0;
                 $cvUpload->id_job = $request->id_job;
                 $cvUpload->save();
             }
