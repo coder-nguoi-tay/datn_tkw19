@@ -143,7 +143,9 @@ import btnPayment from "./components/common/btnPayment.vue";
 app.component('btn-payment-extend-employer', btnPayment);
 import btnDeleteJobTop from "./components/common/btnDeleteJobTop.vue";
 app.component('btn-delete-job-top', btnDeleteJobTop);
-
+//cv
+import btnDeleteCv from "./components/common/btnDeleteCv.vue";
+app.component('btn-delete-cv-for-job', btnDeleteCv);
 app.mount('#app');
 
 

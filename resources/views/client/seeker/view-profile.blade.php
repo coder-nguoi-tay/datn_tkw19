@@ -85,6 +85,12 @@
                                                                                     <span class="open-time text-gray">
                                                                                         {{ Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
                                                                                 </p>
+                                                                                <p>
+                                                                                    <span class="open-time text-gray">
+                                                                                        <span
+                                                                                            class="badge p-1 {{ $item->status == 0 ? 'bg-success text-white' : 'bg-secondary text-white' }}">{{ $item->status == 0 ? 'Đang xem' : 'Từ chối' }}</span>
+                                                                                    </span>
+                                                                                </p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
