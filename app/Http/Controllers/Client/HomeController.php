@@ -156,12 +156,20 @@ class HomeController extends BaseController
         } else {
             $job = $jobForUser;
         }
-        $majors = Majors::with('majors')->get();
+        $majorsALL = Majors::with('majors')->get();
 
         $new = News::select('id', 'title', 'profession_id', 'new_image', 'describe', 'majors', 'created_at')->paginate(4);
-
+        $totalSeeker = User::select('id')->where('status', 2)
+            ->count('id');
+        $totalEmployer = User::select('id')->where('status', 2)
+            ->where('role_id', '=', 2)
+            ->count('id');
+        $totalJob = Job::count();
         return view('client.index', [
-            'majors' => $majors,
+            'majorsALL' => $majorsALL,
+            'totalJob' => $totalJob,
+            'totalSeeker' => $totalSeeker,
+            'totalEmployer' => $totalEmployer,
             'title' => 'Tuyển dung, tìm việc làm nhanh 24h',
             'profestion' => $this->getprofession(),
             'lever' => $this->getlever(),
@@ -170,7 +178,7 @@ class HomeController extends BaseController
             'skill' => $this->getskill(),
             'timework' => $this->gettimework(),
             'profession' => $this->getprofession(),
-            'majors' => $this->majors->get(),
+            'majors' => $this->getmajors(),
             'workingform' => $this->getworkingform(),
             'location' => $this->getlocation(),
             'user' => $user ?? '',
@@ -183,7 +191,7 @@ class HomeController extends BaseController
                 ->where([
                     ['job.status', 1],
                     ['job.expired', 0],
-                    ['employer.position', 0],
+                    ['job.package_id_position', 0],
                 ])
                 ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
                 ->orderBy('employer.prioritize', 'desc')
@@ -272,19 +280,30 @@ class HomeController extends BaseController
             ->paginate(4);
         if (Auth::guard('user')->check()) {
             $cv = $this->upload->where('user_id', Auth::guard('user')->user()->id)->get();
+            $checkJob = $this->savecv->where([
+                ['id_job', $id],
+                ['user_id', Auth::guard('user')->user()->id]
+            ])->first();
+            if ($checkJob) {
+                if ($checkJob->status == 1)
+                    $checkJobTrue = 1;
+            }
         }
         $breadcrumbs = [
             $job->title
         ];
+
         return view('client.detai-job', [
             'job' => $job,
             'jobCompany' => $jobCompany,
             'locationAll' => $this->location->get(),
             'rules' => $relate,
             'breadcrumbs' => $breadcrumbs,
+            'title' => $job->title,
             'cv' => $cv ?? '',
             'majors' => $this->majors->get(),
             'checklove' => $love,
+            'checkJobTrue' => $checkJobTrue ?? 0,
         ]);
     }
 
@@ -351,29 +370,29 @@ class HomeController extends BaseController
             $this->setFlash(__('Bạn cần đăng nhập hoặc đăng ký để trải nghiệm dịch vụ của chúng tôi'), 'error');
             return redirect()->back();
         }
-        $mailUpCv = $this->savecv;
-
         $checkJob = $this->savecv->where([
             ['id_job', $request->id_job],
             ['user_id', Auth::guard('user')->user()->id]
         ])->first();
         if ($checkJob) {
-            $this->setFlash(__('Bạn đã nộp đơn vào công việc này rồi'), 'error');
-            return redirect()->back();
+            $cvSave = $checkJob;
+            $cvUpload = $checkJob;
+        } else {
+            $cvSave = new $this->upload();
+            $cvUpload = new $this->savecv();
         }
 
         if (isset($request->file_cv)) {
             if ($request->save_cv) {
                 try {
-                    $cvSave = new $this->upload();
                     $cvSave->title = $request->title;
                     $cvSave->user_id = Auth::guard('user')->user()->id;
+                    $cvUpload->status = 0;
                     if ($request->hasFile('file_cv')) {
                         $cvSave->file_cv = $request->file_cv->storeAs('images/cv', $request->file_cv->hashName());
                     }
                     $cvSave->save();
                     //
-                    $cvUpload = new $this->savecv();
                     $cvUpload->title = $request->title;
                     $cvUpload->token = rand(00000, 99999);
                     $cvUpload->user_id = Auth::guard('user')->user()->id;
@@ -387,9 +406,11 @@ class HomeController extends BaseController
                     return back();
                 }
             } else {
-                $cv = new $this->savecv();
+                $cv = $cvSave;
                 $cv->title = $request->title;
+                $cv->token = rand(00000, 99999);
                 $cv->user_id = Auth::guard('user')->user()->id;
+                $cv->status = 0;
                 if ($request->hasFile('file_cv')) {
                     $cv->file_cv = $request->file_cv->storeAs('images/cv', $request->file_cv->hashName());
                 }
@@ -400,20 +421,25 @@ class HomeController extends BaseController
 
             $cvSave = $this->upload->where('id', $request->cv_for_save)->first();
             if ($cvSave) {
-                $cvUpload = new $this->savecv();
                 $cvUpload->title = $cvSave->title;
                 $cvUpload->token = rand(00000, 99999);
                 $cvUpload->user_id = Auth::guard('user')->user()->id;
                 $cvUpload->file_cv = $cvSave->file_cv;
+                $cvUpload->status = 0;
                 $cvUpload->id_job = $request->id_job;
                 $cvUpload->save();
             }
         }
-        $user = $this->job->join('employer', 'employer.id', '=', 'job.employer_id')
+        $emailCompany = $this->job->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('users', 'users.id', '=', 'employer.user_id')
             ->select('users.email as email')->first();
-        $mailContents = $mailUpCv->name;
-        Mail::to($user->mail)->send(new MailNotifyCV($mailContents));
+        $firstJob = $this->job->where([
+            ['id', $request->id_job],
+        ])->first();
+        $mailContents = [
+            'job' => $firstJob
+        ];
+        Mail::to($emailCompany->email)->send(new MailNotifyCV($mailContents));
 
         $this->setFlash(__('Hãy chờ phản hồi của nhà tuyển dụng'));
         return redirect()->back();

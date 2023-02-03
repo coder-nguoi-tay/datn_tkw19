@@ -8,6 +8,7 @@ use App\Models\OperationLog;
 
 use App\Repositories\Packageoffer\PackageInterface;
 use App\Mail\ForgotPassword;
+use App\Models\Job;
 use App\Models\PaymentHistoryEmployer;
 use Carbon\Carbon;
 use Illuminate\Routing\Controller;
@@ -318,5 +319,21 @@ class BaseController extends Controller
                 ->whereMonth('created_at', $request)
                 ->whereYear('created_at', Carbon::parse(Carbon::now())->format('Y'));
         })->pluck('price')->sum();
+    }
+    public function getPaymentMouth($request, $year)
+    {
+        $date = $year ?? Carbon::parse(Carbon::now())->format('Y');
+        return PaymentHistoryEmployer::where(function ($q) use ($request, $date) {
+            $q->whereMonth('created_at', $request)
+                ->whereYear('created_at', $date);
+        })->first();
+    }
+    public function getNewMouth($request, $year)
+    {
+        $date = $year ?? Carbon::parse(Carbon::now())->format('Y');
+        return Job::where(function ($q) use ($request, $date) {
+            $q->whereMonth('created_at', $request)
+                ->whereYear('created_at', $date);
+        })->count();
     }
 }

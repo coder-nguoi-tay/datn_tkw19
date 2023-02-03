@@ -15,14 +15,9 @@
             <div class="header-nav">
                 <nav class="primary-menu-container nav-main-menu">
                     <ul id="primary-menu-list" class="menu-wrapper main-menu list-unstyled mb-0">
-                        <li id="menu-item-93"
-                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-menu-ancestor current-menu-parent menu-item-has-children menu-item-93 ">
-                            <a href="{{ route('index') }}" class="active">Trang chủ</a>
-
-                        </li>
                         <li id="menu-item-145"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-145 ">
-                            <a href="{{ route('home.search') }}">Việc làm</a>
+                            <a href="{{ route('index') }}">Việc làm</a>
 
                         </li>
                         <li id="menu-item-134"
@@ -43,29 +38,10 @@
                         <li id="menu-item-96"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-96">
                             <a href="{{ route('blog') }}">Bài viết</a>
-
                         </li>
-                        <li id="menu-item-123"
-                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-123 has-children">
-                            <a href="#">Liên hệ</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-124"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-124">
-                                    <a href="../about-us/index.html">About Us</a>
-                                </li>
-                                <li id="menu-item-147"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-147">
-                                    <a href="../contact-us/index.html">Contact</a>
-                                </li>
-                                <li id="menu-item-131"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-131">
-                                    <a href="../pricing-plan/index.html">Pricing Plan</a>
-                                </li>
-                                <li id="menu-item-1410"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1410">
-                                    <a href="../shop/index.html">Shop Page</a>
-                                </li>
-                            </ul>
+                        <li id="menu-item-96"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-96">
+                            <a href="/faqs">Câu hỏi thường gặp</a>
                         </li>
                     </ul>
                 </nav>
@@ -89,6 +65,7 @@
                     </div>
                 </div>
             @else
+                
                 <div class="btn-group">
                     <button type="button" style="border-radius: 20px;padding: 4px 8px 4px 0"
                         class="btn btn-default btn-shadow ml-30 hover-up dropdown-toggle" data-bs-toggle="dropdown"
@@ -97,12 +74,21 @@
                             style="width: 35px;height: 35px;margin : 0 20px 0 4px" class="rounded-circle img-fluid">
                         <p class="d-inline text-white">{{ Auth::guard('user')->user()->name }}</p>
                     </button>
+
                     <ul class="dropdown-menu">
 
-                        <li> <a class="dropdown-item" href="{{ route('profile.index') }} ">Thông tin cá nhân</a></li>
-                        <li> <a class="dropdown-item" href="#">Quản lý CV</a></li>
-                        <li> <a class="dropdown-item" href="#">Cài đặt gợi ý việc làm</a></li>
-                        <li> <a class="dropdown-item" href="#">Bài tuyển dụng đã yêu thích</a></li>
+                        <li class="{{ request()->is('*profile*') ? 'active' : '' }}"> <a class="dropdown-item"
+                                href="{{ route('profile.index') }} ">Thông tin cá nhân</a></li>
+                        <li class="{{ request()->is('*goi-y-viec-lam*') ? 'active' : '' }}"> <a class="dropdown-item"
+                                href="{{ route('goi-y-viec-lam.index') }}">Cài đặt gợi ý việc
+                                làm</a></li>
+                        <li> <a class="dropdown-item" href="{{ route('user.favourite') }}">Công việc đã yêu thích</a>
+                        </li>
+                        <li class="{{ request()->is('*xem-ho-so*') ? 'active' : '' }}"> <a class="dropdown-item"
+                                href="{{ route('xem-ho-so.index') }}">Những công
+                                việc đã nộp</a></li>
+                        <li class="{{ request()->is('*change-password*') ? 'active' : '' }}"> <a class="dropdown-item"
+                                href="{{ route('user.changepass') }}">Đổi mật khẩu</a></li>
                         <li> <a class="dropdown-item" href="{{ route('user.logout') }}">Đăng xuất</a></li>
                     </ul>
                 </div>

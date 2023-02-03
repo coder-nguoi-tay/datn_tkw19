@@ -1,8 +1,3 @@
-{{-- @include('client.layout.header') --}}
-{{-- @extends('client.layout.index')
-@section('client')
-    fvxcbcvncvn
-@endsection --}}
 @extends('client.layout.index')
 @section('client')
     <main class="main">
@@ -11,26 +6,19 @@
                 <div class="banner-hero banner-company" data-settings-id="banner-recruiter">
                     <div class="block-banner text-center">
                         <h3 class="wow animate__ animate__fadeInUp  animated"
-                            style="visibility: visible; animation-name: fadeInUp;">Browse Recruiters</h3>
+                            style="visibility: visible; animation-name: fadeInUp;">Khám Phá Văn Hoá Công Ty</h3>
                         <div class="font-sm color-text-paragraph-2 mt-10 wow animate__ animate__fadeInUp  animated"
                             data-wow-delay=".1s"
                             style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni,atque delectus
-                            molestias quis? </div>
+                            Tra cứu thông tin công ty và tìm kiếm nơi làm việc tốt nhất dành cho bạn </div>
                         <div class="form-find text-start mt-40 wow animate__ animate__fadeInUp animated"
                             data-wow-delay=".2s"
                             style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                             <form class="job_filters" method="GET">
-                                <input class="form-input input-keysearch mr-10" type="text" name="search" id="search"
+                                <input class="form-input input-keysearch mr-10" style="border: none" type="text" name="search" id="search"
                                     placeholder=" Vui lòng nhập tên công ty..."
                                     value="{{ !empty($request) ? $request->search : '' }}">
-
-
-
                                 <button class="btn btn-default btn-find font-sm" value="Search">Search</button>
-
-
-
                             </form>
                         </div>
 
@@ -41,13 +29,11 @@
 
         <section class="section-box mt-50">
             <div class="container">
-
-
                 <div class="box-filters-job">
                     <div class="row align-items-center">
                         <div class="col-xl-6 col-lg-5">
                             <span class="text-small text-showing">
-                                Showing <strong>{{ count($company) }}</strong> Công ty</span>
+                                 <strong>{{ count($company) }}</strong> Công ty</span>
                         </div>
 
                     </div>
@@ -63,32 +49,34 @@
 
                                     <div class="image-box">
                                         <a href="{{ route('detail.company', $item->id) }}">
-                                            <img src="{{ asset($item->logo) }}" width="52" alt="Logo">
+                                            <img class="img-circle" src="{{ asset($item->logo) }}" width="56"
+                                                style="height:50px" alt="Logo">
                                         </a>
                                     </div>
 
                                     <div class="info-text mt-10">
 
-                                        <h5 class="font-lg font-bold"><a
-                                                href="{{ route('detail.company', $item->id) }}">{{ $item->name }}</a>
+                                        <h5 class="font-lg font-bold"
+                                            style=" display: -webkit-box;
+                                                     line-height: 1;
+                                                    -webkit-line-clamp: 1;
+                                                    -webkit-box-orient: vertical;
+                                                     overflow: hidden;
+                                                     text-overflow: ellipsis;">
+                                            <a href="{{ route('detail.company', $item->id) }}">{{ $item->name }}</a>
                                         </h5>
-
-                                        <div class="mt-5">
-                                            <img alt="Star"
-                                                src="../wp-content/themes/jobbox/assets/imgs/template/icons/star.svg"><img
-                                                alt="Star"
-                                                src="../wp-content/themes/jobbox/assets/imgs/template/icons/star.svg"><img
-                                                alt="Star"
-                                                src="../wp-content/themes/jobbox/assets/imgs/template/icons/star.svg"><img
-                                                alt="Star"
-                                                src="../wp-content/themes/jobbox/assets/imgs/template/icons/star.svg">
-                                        </div>
-                                        <span class="card-location">{{ $item->address }}</span>
+                                        <span
+                                            style=" display: -webkit-box;
+                                                    line-height: 2;
+                                                    -webkit-line-clamp: 1;
+                                                    -webkit-box-orient: vertical;
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis;"
+                                            class="card-location">{{ $item->address }}</span>
 
                                         <div class="mt-30">
-                                            <a class="btn btn-grey-big"
-                                                href="../jobs/index22ab.html?search_location=Chicago,%20US">
-                                                1 Open Job </a>
+                                            <a class="btn btn-grey-big" href="{{ route('detail.company', $item->id) }}">
+                                                {{ count($item->employer->job) }} Công việc </a>
                                         </div>
 
                                     </div>
@@ -110,39 +98,5 @@
 
             </div>
         </section>
-
-
-        {{-- <section class="section-box mt-50 mb-20">
-            <div class="container">
-                <div class="box-newsletter">
-                    <div class="row align-items-center">
-
-                        <div class="col-xl-3 col-12 text-center d-none d-xl-block">
-                            <img src="../wp-content/uploads/2022/12/newsletter-left.png" alt="Newsletter">
-                        </div>
-
-                        <div class="col-lg-12 col-xl-6 col-12">
-                            <h2 class="text-md-newsletter text-center">New Things Will Always Update Regularly</h2>
-                            <div class="box-form-newsletter mt-40">
-                                <form id="mc-form" class="form-newsletter">
-                                    <input id="mc-email" class="input-newsletter" type="email"
-                                        placeholder="Enter your email" required="required">
-                                    <button class="btn btn-default font-heading icon-send-letter"
-                                        type="submit">Subscribe</button>
-                                </form>
-
-                            </div>
-                            <div id="mc-response" class="mt-15"></div>
-                        </div>
-
-                        <div class="col-xl-3 col-12 text-center d-none d-xl-block">
-                            <img src="../wp-content/uploads/2022/12/newsletter-right.png" alt="Newsletter">
-                        </div>
-
-                    </div>
-                    <!--row-->
-                </div>
-            </div>
-        </section> --}}
     </main>
 @endsection

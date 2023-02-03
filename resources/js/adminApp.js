@@ -43,10 +43,6 @@ import 'sweetalert2/dist/sweetalert2.min.css'
 app.use(VueSweetalert2)
 import login from './components/login/index.vue';
 app.component('login', login);
-import EditPackage from './components/package/edit.vue';
-app.component('edit-package', EditPackage);
-import CreatePackage from './components/package/create.vue';
-app.component('create-package', CreatePackage);
 import Resetpassword from './components/resetpassword/index.vue';
 app.component('reset-password', Resetpassword)
 import showPassword from './components/showpassword/show.vue';
@@ -103,7 +99,7 @@ app.component('business-license', businessLicense);
 import homeClient from "./components/client/home/index.vue";
 app.component('home-client', homeClient);
 
-// create company
+// create package/create
 import CretaeCompany from './components/company/create.vue'
 app.component('create-company', CretaeCompany);
 
@@ -145,8 +141,13 @@ app.component('bought-cv', BoughtCV);
 
 import btnPayment from "./components/common/btnPayment.vue";
 app.component('btn-payment-extend-employer', btnPayment);
-
+import btnDeleteJobTop from "./components/common/btnDeleteJobTop.vue";
+app.component('btn-delete-job-top', btnDeleteJobTop);
+//cv
+import btnDeleteCv from "./components/common/btnDeleteCv.vue";
+app.component('btn-delete-cv-for-job', btnDeleteCv);
 app.mount('#app');
+
 
 
 

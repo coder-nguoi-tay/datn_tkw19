@@ -63,7 +63,7 @@ Route::resource('resset_pass', ResetPasswordController::class);
 Route::resource('forgotPasswordSuccess', forgotPasswordSuccessController::class);
 
 //// employer
-Route::middleware('user')->name('employer.')->prefix('employer')->group(function () {
+Route::middleware('employer')->name('employer.')->prefix('employer')->group(function () {
     // Route::resource('', HomeEmployerController::class);
     Route::get('logout', [HomeEmployerController::class, 'logout'])->name('logout');
     Route::get('dashboard', [HomeEmployerController::class, 'index'])->name('index');
@@ -79,6 +79,8 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::get('new/show-all-cv/{id}', [NewEmployerController::class, 'detailNew'])->name('new.showdetai');
     Route::get('new/top-new', [NewEmployerController::class, 'topNew'])->name('new.topNew');
     Route::post('new/top-new', [NewEmployerController::class, 'upTopNew'])->name('new.uopTopNew');
+    Route::post('new/change-status-new-top/{id}', [NewEmployerController::class, 'changeStatusTop'])->name('new.changeStatusTop');
+    Route::post('new/delete-all-job', [NewEmployerController::class, 'deleteAllJob'])->name('new.deleteAllJob');
 
     //
     Route::resource('package', EmployerPackageController::class);
@@ -92,6 +94,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
 
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
+    Route::post('quan-ly-cv/change-status-cv/{id}', [ManagerUploadCvController::class, 'changeStatusCv'])->name('quan-ly-cv.changeStatus.cv');
     Route::resource('tim-kiem-cv', SearchCvController::class);
     Route::resource('cv-da-mua', BoughtCvController::class);
 
@@ -165,6 +168,8 @@ Route::post('home/detail/upcv', [ClientHomeController::class, 'upCv'])->name('ho
 Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 'searchLocation'])->name('home.search.location');
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
 Route::get('tim-viec-lam', [SearchController::class, 'create'])->name('home.search');
+Route::get('tim-viec-lam-tot-nhat', [SearchController::class, 'jobGood'])->name('home.search.jobGood');
+Route::get('tat-ca-viec-lam', [SearchController::class, 'allJob'])->name('home.search.allJob');
 //trang giới thiệu các công ty
 Route::get(
     'detail-company/{id}',

@@ -2466,7 +2466,7 @@ label {
   position: relative;
   display: inline-block;
   width: 100%;
-  height: 575px;
+  height: 400px;
   background: url(../imgs/page/blog/img-big1.png) top left;
   background-size: cover;
   border-radius: 16px;
@@ -9442,6 +9442,22 @@ div.job_listings .job-manager-pagination {
 .custom-css-delete-job {
   border-radius: 5px !important;
   border: 1px solid #ccc !important;
+}
+
+.custom-text-company {
+  font-size: 15px !important;
+}
+
+.custom-text-company a {
+  margin-left: 5px !important;
+}
+
+.custom-text-location-company p {
+  margin-left: 5px !important;
+}
+
+.none-job {
+  display: none !important;
 }
 
 /*# sourceMappingURL=style.css.map */

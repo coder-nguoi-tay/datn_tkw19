@@ -14,6 +14,7 @@ use App\Models\Majors;
 use App\Models\News;
 use App\Models\PaymentHistoryEmployer;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends BaseController
@@ -29,29 +30,62 @@ class HomeController extends BaseController
         $this->admin = $admin; //nó là thằng model Admin
 
     }
-    public function index()
+    public function index(Request $request)
     {
-        $total_money = PaymentHistoryEmployer::where('status', 1)
+        $totalMoney = PaymentHistoryEmployer::where('status', 1)
+            ->where(function ($q) use ($request) {
+                if (!empty($request['date_payment'])) {
+                    $q->whereYear('created_at', $request['date_payment']);
+                }
+            })
             ->sum('price');
-        $total_seeker = User::select('id')->where('status', 2)
+        $totalSeeker = User::select('id')->where('status', 2)
             ->where('role_id', '=', 1)
             ->count('id');
-        $total_employer = User::select('id')->where('status', 2)
+        $totalEmployer = User::select('id')->where('status', 2)
             ->where('role_id', '=', 2)
             ->count('id');
-        $total_job = Job::where('status', 1)->count('id');
-
-        $payment_history = PaymentHistoryEmployer::where('status', 1)->get();
-        $user_seeker = User::select('*')->where('status', 2)->where('role_id', '=', 1)->get();
-        $user_employer = User::select('*')->where('status', 2)->where('role_id', '=', 2)->get();
+        $totalJob = Job::where('status', 1)
+            ->where(function ($q) use ($request) {
+                if (!empty($request['date_new'])) {
+                    $q->whereYear('created_at', $request['date_new']);
+                }
+            })
+            ->count('id');
+        // dd($total_job);
 
         return view('admin.dashboard', [
             'title' => 'Admin',
-            'total_money' => $total_money,
-            'total_seeker' => $total_seeker,
-            'total_employer' => $total_employer,
-            'total_job' => $total_job,
-            
+            'total_money' => $totalMoney,
+            'total_seeker' => $totalSeeker,
+            'total_employer' => $totalEmployer,
+            'total_job' => $totalJob,
+            'request' => $request,
+            'countPaymentMoth1' => $this->getPaymentMouth(1, $request->date_payment),
+            'countPaymentMoth2' => $this->getPaymentMouth(2, $request->date_payment),
+            'countPaymentMoth3' => $this->getPaymentMouth(3, $request->date_payment),
+            'countPaymentMoth4' => $this->getPaymentMouth(4, $request->date_payment),
+            'countPaymentMoth5' => $this->getPaymentMouth(5, $request->date_payment),
+            'countPaymentMoth6' =>  $this->getPaymentMouth(6, $request->date_payment),
+            'countPaymentMoth7' => $this->getPaymentMouth(7, $request->date_payment),
+            'countPaymentMoth8' => $this->getPaymentMouth(8, $request->date_payment),
+            'countPaymentMoth9' => $this->getPaymentMouth(9, $request->date_payment),
+            'countPaymentMoth10' => $this->getPaymentMouth(10, $request->date_payment),
+            'countPaymentMoth11' => $this->getPaymentMouth(11, $request->date_payment),
+            'countPaymentMoth12' => $this->getPaymentMouth(12, $request->date_payment),
+            'countNewMoth1' => $this->getNewMouth(1, $request->date_new),
+            'countNewMoth2' => $this->getNewMouth(2, $request->date_new),
+            'countNewMoth3' => $this->getNewMouth(3, $request->date_new),
+            'countNewMoth4' => $this->getNewMouth(4, $request->date_new),
+            'countNewMoth5' => $this->getNewMouth(5, $request->date_new),
+            'countNewMoth6' =>  $this->getNewMouth(6, $request->date_new),
+            'countNewMoth7' => $this->getNewMouth(7, $request->date_new),
+            'countNewMoth8' => $this->getNewMouth(8, $request->date_new),
+            'countNewMoth9' => $this->getNewMouth(9, $request->date_new),
+            'countNewMoth10' => $this->getNewMouth(10, $request->date_new),
+            'countNewMoth11' => $this->getNewMouth(11, $request->date_new),
+            'countNewMoth12' => $this->getNewMouth(12, $request->date_new),
+
         ]);
     }
 

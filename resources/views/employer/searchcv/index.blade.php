@@ -28,11 +28,6 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="billing-form-item p-3">
-                        {{-- <div style="float: right !important">
-                            <search-find-cv :url="{{ json_encode(route('employer.tim-kiem-cv.index')) }}"
-                                :data-query="{{ json_encode(!empty($request) ? $request->all() : new stdClass()) }}">
-                            </search-find-cv>
-                        </div> --}}
                         <div class="billing-content">
                             <div class="contact-form-action">
                                 <form method="get" action="{{ route('employer.tim-kiem-cv.index') }}"
@@ -145,7 +140,7 @@
                                                         name="skill[]">
                                                         @foreach ($skill as $item)
                                                             <option value="{{ $item->id }}"
-                                                                {{ in_array($item->id, $request->skill) ? 'selected' : '' }}>
+                                                                {{ !empty($request->skill) ? (in_array($item->id, $request->skill) ? 'selected' : '') : '' }}>
                                                                 {{ $item->label }}
                                                             </option>
                                                         @endforeach
@@ -235,17 +230,17 @@
                 <div class="col-lg-12">
                     <div class="page-navigation-wrap mt-4">
                         <div class="page-navigation mx-auto">
-                            <a href="#" class="page-go page-prev">
+                            <a href="" class="page-go page-prev">
                                 <i class="la la-arrow-left"></i>
                             </a>
                             <ul class="page-navigation-nav">
-                                <li><a href="#" class="page-go-link">1</a></li>
-                                <li class="active"><a href="#" class="page-go-link">2</a></li>
-                                <li><a href="#" class="page-go-link">3</a></li>
-                                <li><a href="#" class="page-go-link">4</a></li>
-                                <li><a href="#" class="page-go-link">5</a></li>
+                                <li class="active"><a href="" class="page-go-link">1</a></li>
+                                <li><a href="" class="page-go-link">2</a></li>
+                                <li><a href="" class="page-go-link">3</a></li>
+                                <li><a href="" class="page-go-link">4</a></li>
+                                <li><a href="" class="page-go-link">5</a></li>
                             </ul>
-                            <a href="#" class="page-go page-next">
+                            <a href="" class="page-go page-next">
                                 <i class="la la-arrow-right"></i>
                             </a>
                         </div>

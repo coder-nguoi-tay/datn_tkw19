@@ -69,4 +69,8 @@ class Jobseeker extends Model
     {
         return $this->hasOne(Timework::class, 'id', 'time_work_id');
     }
+    public function Profile()
+    {
+        return $this->hasOne(ProfileUserCv::class, 'user_id', 'user_role');
+    }
 }

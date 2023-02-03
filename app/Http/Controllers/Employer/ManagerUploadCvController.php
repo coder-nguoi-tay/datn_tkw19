@@ -65,7 +65,10 @@ class ManagerUploadCvController extends BaseController
             ->leftjoin('users', 'users.id', '=', 'save_cv.user_id')
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->leftjoin('majors', 'majors.id', '=', 'job.majors_id')
-            ->where('job.employer_id', $checkCompany->id)
+            ->where([
+                ['job.employer_id', $checkCompany->id],
+                ['save_cv.status', 0],
+            ])
             ->where(function ($q) use ($request) {
                 if (!empty($request['start_date'])) {
                     $q->whereDate('save_cv.created_at', '>=', $request['start_date']);
@@ -223,7 +226,11 @@ class ManagerUploadCvController extends BaseController
         }
         try {
             $company = Company::where('id', $employer->id_company)->first();
-            $accy = new Accuracy();
+            if ($company->accuracy) {
+                $accy = $company->accuracy;
+            } else {
+                $accy = new Accuracy();
+            }
             $accy->user_id = $company->id;
             $accy->status = 0;
             if ($request->hasFile('images')) {
@@ -236,6 +243,24 @@ class ManagerUploadCvController extends BaseController
             DB::rollBack();
             $this->setFlash(__('Đã có một lỗi không xác định xảy ra'), 'error');
             return redirect()->back();
+        }
+    }
+    public function changeStatusCv($id)
+    {
+        try {
+            $cv =  $this->savecv->where('token', $id)->first();
+            $cv->status = 1;
+            $cv->save();
+            return response()->json([
+                'message' => 'Loại bỏ hồ sơ thành công',
+                'status' => StatusCode::OK,
+            ], StatusCode::OK);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Đã có một lỗi không xác định sảy ra',
+                'status' => StatusCode::FORBIDDEN,
+            ], StatusCode::OK);
         }
     }
 }

@@ -58,7 +58,7 @@
                                                                     <select class="form-input mr-10 select-active w-200"
                                                                         name="majors">
                                                                         <option value="">Chọn ngành nghề</option>
-                                                                        @foreach ($majors as $item)
+                                                                        @foreach ($majorsALL as $item)
                                                                             <option value="{{ $item->id }}">
                                                                                 {{ $item->name }}
                                                                             </option>
@@ -96,6 +96,7 @@
                     </div>
                 </div>
             </section>
+            {{-- {{ dd($majors) }} --}}
             <section
                 class="elementor-section elementor-top-section elementor-element elementor-element-d98c6ff elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                 data-id="d98c6ff" data-element_type="section">
@@ -171,9 +172,14 @@
                                                                                             data-placement="top"
                                                                                             data-container="body"
                                                                                             data-original-title="{{ $item->nameCompany }}">
-                                                                                            {{ $item->nameCompany }}</h6>
+                                                                                            <a
+                                                                                                href="{{ route('detail.company', $item->idCompany) }}">{{ $item->nameCompany }}</a>
+                                                                                        </h6>
                                                                                         <span
-                                                                                            class="card-location font-xxs pl-15 color-text-paragraph-2">{{ $item->getlocation->name }}</span>
+                                                                                            class="card-location font-xxs pl-15 color-text-paragraph-2 custom-text-company custom-text-location-company ml-2">
+                                                                                            <p>Hà
+                                                                                                nội</p>
+                                                                                        </span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -196,6 +202,10 @@
                                                         </span>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-sm-12 mt-4">
+                                                <a href="{{ route('home.search.jobGood') }}"
+                                                    class="btn btn-default btn-find font-sm">Xem tất cả</a>
                                             </div>
                                         </div>
                                     </div>
@@ -290,11 +300,11 @@
                                                             <span class="elementor-counter-number-prefix"></span>
                                                             <span class="elementor-counter-number" data-duration="2000"
                                                                 data-to-value="25" data-from-value="0"
-                                                                data-delimiter=",">25</span>
-                                                            <span class="elementor-counter-number-suffix">K+</span>
+                                                                data-delimiter=",">{{ $totalSeeker }}</span>
                                                         </h1>
                                                         <h5 class="ctrl-elementor-counter-title">Thành viên</h5>
-                                                        <p class="font-sm color-text-paragraph mt-10">Đã có 25k thành viên
+                                                        <p class="font-sm color-text-paragraph mt-10">Đã có
+                                                            {{ $totalSeeker }} thành viên
                                                             đã <br class="d-none d-lg-block"> đăng kí vào website của chúng
                                                             tôi</p>
                                                     </div>
@@ -314,13 +324,14 @@
                                                             <span class="elementor-counter-number-prefix"></span>
                                                             <span class="elementor-counter-number" data-duration="2000"
                                                                 data-to-value="17" data-from-value="0"
-                                                                data-delimiter=",">17</span>
+                                                                data-delimiter=",">{{ $totalJob }}</span>
                                                             <span class="elementor-counter-number-suffix">+</span>
                                                         </h1>
                                                         <h5 class="ctrl-elementor-counter-title">Bài đăng
                                                         </h5>
                                                         <p class="font-sm color-text-paragraph mt-10">Trang web của chúng
-                                                            tôi<br class="d-none d-lg-block">đã có 17+ bài job tìm kiếm
+                                                            tôi<br class="d-none d-lg-block">đã có {{ $totalJob }} bài
+                                                            job tìm kiếm
                                                         </p>
                                                     </div>
                                                 </div>
@@ -339,13 +350,15 @@
                                                             <span class="elementor-counter-number-prefix"></span>
                                                             <span class="elementor-counter-number" data-duration="2000"
                                                                 data-to-value="86" data-from-value="0"
-                                                                data-delimiter=",">86</span>
+                                                                data-delimiter=",">{{ count($majorsALL) }}</span>
                                                             <span class="elementor-counter-number-suffix">+</span>
                                                         </h1>
                                                         <h5 class="ctrl-elementor-counter-title">Ngành nghề
                                                         </h5>
                                                         <p class="font-sm color-text-paragraph mt-10">Trên website của
-                                                            chúng tôi có<br class="d-none d-lg-block">5 Ngành nghề có sẵn
+                                                            chúng tôi có<br
+                                                                class="d-none d-lg-block">{{ count($majorsALL) }}
+                                                            Ngành nghề có sẵn
                                                         </p>
                                                     </div>
                                                 </div>
@@ -364,13 +377,14 @@
                                                             <span class="elementor-counter-number-prefix"></span>
                                                             <span class="elementor-counter-number" data-duration="2000"
                                                                 data-to-value="28" data-from-value="0"
-                                                                data-delimiter=",">28</span>
+                                                                data-delimiter=",">{{ $totalEmployer }}</span>
                                                             <span class="elementor-counter-number-suffix">+</span>
                                                         </h1>
                                                         <h5 class="ctrl-elementor-counter-title">Nhà tuyển dụng
                                                         </h5>
                                                         <p class="font-sm color-text-paragraph mt-10">Trên trang web của
-                                                            chúng tôi <br class="d-none d-lg-block">có 28+ nhà tuyển dụng
+                                                            chúng tôi <br class="d-none d-lg-block">có
+                                                            {{ $totalEmployer }} nhà tuyển dụng
                                                             đang hoạt động
                                                         </p>
                                                     </div>
@@ -393,10 +407,32 @@
                                 kết nối với các ứng viên phù hợp nhanh hơn.</p>
                         </div>
 
-
                     </div>
                 </div>
             </section>
+            <div class="page-white-100">
+                <div id="box-discover">
+                    <div class="container">
+                        <div class="list-discover">
+                            @foreach ($majorsALL as $item)
+                                <div class="items">
+
+                                    <div class="image">
+                                        <img src="../../wp-content/themes/jobbox/assets/imgs/template/major.png"
+                                            alt="">
+                                    </div>
+                                    <div class="title"><a
+                                            href="{{ route('searchMajors', $item->id) }}">{{ $item->name }}</a></div>
+                                    <p class="count">(<span
+                                            class="number count_job_manager">{{ count($item->majors) }}</span> việc làm)
+                                    </p>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- {{ dd($jobAttractive) }} --}}
             <section
                 class="elementor-section elementor-top-section elementor-element elementor-element-d98c6ff elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                 data-id="d98c6ff" data-element_type="section">
@@ -414,8 +450,6 @@
                             <div class="elementor-element elementor-element-54a362e text-center elementor-widget elementor-widget-template"
                                 data-id="54a362e" data-element_type="widget" data-widget_type="template.default">
                                 <div class="elementor-widget-container">
-
-
 
                                     <div class="mt-10">
                                         <div class="tab-content" id="myTabContent-2">
@@ -461,10 +495,14 @@
                                                                                                     overflow: hidden;
                                                                                                     text-overflow: ellipsis;"
                                                                                             class="color-brand-1 lh-14 mb-0">
-                                                                                            {{ $item->nameCompany }}
+                                                                                            <a
+                                                                                                href="{{ route('detail.company', $item->idCompany) }}">{{ $item->nameCompany }}</a>
                                                                                         </h6>
                                                                                         <span
-                                                                                            class="card-location font-xxs pl-15 color-text-paragraph-2">{{ $item->getlocation->name }}</span>
+                                                                                            class="card-location font-xxs pl-15 color-text-paragraph-2 custom-text-company custom-text-location-company ml-2">
+                                                                                            <p>Hà
+                                                                                                nội</p>
+                                                                                        </span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -480,7 +518,7 @@
                                                     @endforeach
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <a href="{{ route('home.search') }}"
+                                                    <a href="{{ route('home.search.allJob') }}"
                                                         class="btn btn-default btn-find font-sm">Xem tất cả</a>
                                                 </div>
                                             </div>
@@ -657,22 +695,15 @@
                                             <div class="row d-flex align-items-end">
                                                 <div class="col-lg-6 col-6">
                                                     <div class="d-flex align-items-center">
-                                                        <img alt=""
-                                                            src="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/user10-150x150.png"
-                                                            srcset="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/user10-150x150.png 2x"
-                                                            class="avatar avatar-64 photo img-rounded" height="35"
-                                                            width="35" loading="lazy" decoding="async">
+
                                                         <div class="info-right-img d-grid">
-                                                            <span
-                                                                class="font-sm font-bold color-brand-1 op-70">Admin</span>
+
                                                             <span
                                                                 class="font-xs color-text-paragraph-2">{{ $item->created_at->format('m-d-Y') }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 text-end col-6">
-                                                    <span class="color-text-paragraph-2 font-xs">2 mins to read</span>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>

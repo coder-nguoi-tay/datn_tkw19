@@ -73,155 +73,183 @@ class SearchController extends BaseController
         $breadcrumbs = [
             'Tìm kiếm việc làm ' . $request->key
         ];
-        try {
-            $that = $request;
-            $data = $this->job
-                ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
-                ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
-                ->join('employer', 'employer.id', '=', 'job.employer_id')
-                ->join('company', 'company.id', '=', 'employer.id_company')
-                ->Where(function ($q) use ($that) {
-                    if ($that->key) {
-                        $q->Where($this->escapeLikeSentence('job.title', $that->key));
-                    }
-                    if ($that->skill) {
+        // try {
+        $that = $request;
+        $data = $this->job
+            ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
+            ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->Where(function ($q) use ($that) {
+                if (!empty($that->key)) {
+                    $q->where('job.title', 'LIKE', '%' . $that->key . '%');
+                }
+                if (!empty($that->skill)) {
+                    if ($that->skill[0] != null) {
                         $q->whereIn('job_skill.skill_id', $that->skill);
                     }
-                    if ($that->location) {
-                        $q->Where(
-                            'job.location_id',
-                            $that->location
-                        );
-                    }
-                    if ($that->profession) {
-                        $q->Where(
-                            'job.profession_id',
-                            $that->profession
-                        );
-                    }
-                    if ($that->experience) {
-                        $q->Where(
-                            'job.experience_id',
-                            $that->experience
-                        );
-                    }
-                    if ($that->timework) {
-                        $q->Where(
-                            'job.time_work_id',
-                            $that->timework
-                        );
-                    }
-
-                    if ($that->workingform) {
-                        $q->Where(
-                            'job.wk_form_id',
-                            $that->workingform
-                        );
-                    }
-                    if ($that->majors) {
-                        $q->Where(
-                            'job.majors_id',
-                            $that->majors
-                        );
-                    }
-                    if ($that->lever) {
-                        $q->Where(
-                            'job.level_id',
-                            $that->lever
-                        );
-                    }
-                })
-                ->where([
-                    ['job.status', 1],
-                    ['job.expired', 0],
-                ])
-                ->distinct()
-                ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
-                ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
-                ->orderBy('employer.prioritize', 'desc')
-                ->get();
-            $datalq = $this->job
-                ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
-                ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
-                ->join('employer', 'employer.id', '=', 'job.employer_id')
-                ->join('company', 'company.id', '=', 'employer.id_company')
-                ->Where(function ($q) use ($that) {
-                    $q->orWhere($this->escapeLikeSentence('job.title', $that->key))
-                        ->orWhere(function ($q) use ($that) {
-                            if ($that->skill) {
-                                $q->whereIn('job_skill.skill_id', $that->skill);
-                            }
-                        })
-                        ->orWhere(
-                            'job.location_id',
-                            $that->location
-                        )
-                        ->orWhere(
-                            'job.profession_id',
-                            $that->profession
-                        )
-                        ->orWhere(
-                            'job.experience_id',
-                            $that->experience
-                        )
-                        ->orWhere(
-                            'job.time_work_id',
-                            $that->timework
-                        )
-                        ->orWhere(
-                            'job.wk_form_id',
-                            $that->workingform
-                        )
-                        ->orWhere(
-                            'job.majors_id',
-                            $that->majors
-                        )
-                        ->orWhere(
-                            'job.level_id',
-                            $that->lever
-                        )
-                        ->orWhere(
-                            'job.majors_id',
-                            $that->majors
-                        );
-                })
-                ->where([
-                    ['job.status', 1],
-                    ['job.expired', 0],
-                ])
-                ->distinct()
-                ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
-                ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
-                ->orderBy('employer.prioritize', 'desc')
-                ->get();
-            if ($request->skill != null) {
-                $skill = explode(',', $request->skill[0]);
-                
-                foreach ($skill as $item) {
-                    $skillSearch[] = $this->skill->where('id', $item)->first();
                 }
-            }
-            return view('client.search', [
-                'job' => $data,
-                'datalq' => $datalq,
-                'breadcrumbs' => $breadcrumbs,
-                'profestion' => $this->getprofession(),
-                'lever' => $this->getlever(),
-                'experience' => $this->getexperience(),
-                'wage' => $this->getwage(),
-                'skill' => $this->getskill(),
-                'timework' => $this->gettimework(),
-                'profession' => $this->getprofession(),
-                'majors' => $this->majors->get(),
-                'workingform' => $this->getworkingform(),
-                'location' => $this->getlocation(),
-                'request' => $request,
-                'skillSearch' => $skillSearch ?? null,
-            ]);
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            return redirect()->back();
+                if (!empty($that->location)) {
+                    $q->Where(
+                        'job.location_id',
+                        $that->location
+                    );
+                }
+                if (!empty($that->profession)) {
+                    $q->Where(
+                        'job.profession_id',
+                        $that->profession
+                    );
+                }
+                if (!empty($that->experience)) {
+                    $q->Where(
+                        'job.experience_id',
+                        $that->experience
+                    );
+                }
+                if (!empty($that->time_work)) {
+                    $q->Where(
+                        'job.time_work_id',
+                        $that->time_work
+                    );
+                }
+
+                if (!empty($that->workingform)) {
+                    $q->Where(
+                        'job.wk_form_id',
+                        $that->workingform
+                    );
+                }
+                if (!empty($that->majors)) {
+                    $q->Where(
+                        'job.majors_id',
+                        $that->majors
+                    );
+                }
+                if (!empty($that->lever)) {
+                    $q->Where(
+                        'job.level_id',
+                        $that->lever
+                    );
+                }
+                if (!empty($that->wage)) {
+                    $q->Where(
+                        'job.wage_id',
+                        $that->wage
+                    );
+                }
+            })
+            ->where([
+                ['job.status', 1],
+                ['job.expired', 0],
+            ])
+            ->distinct()
+            ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
+            ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+            ->orderBy('employer.prioritize', 'desc')
+            ->get();
+        $dataIdJob = [];
+        foreach ($data as $value) {
+            $dataIdJob[] = $value->id;
         }
+        $datalq = $this->job
+            ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
+            ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->Where(function ($q) use ($that) {
+                if (!empty($that->key)) {
+                    $q->orWhere('job.title', 'LIKE', '%' . $that->key . '%');
+                }
+                if (!empty($that->skill)) {
+                    if ($that->skill[0] != null) {
+                        $q->orWhere(function ($q) use ($that) {
+                            $q->whereIn('job_skill.skill_id', $that->skill);
+                        });
+                    }
+                }
+                if (!empty($that->location)) {
+                    $q->orWhere(
+                        'job.location_id',
+                        $that->location
+                    );
+                }
+                if (!empty($that->profession)) {
+                    $q->orWhere(
+                        'job.profession_id',
+                        $that->profession
+                    );
+                }
+                if (!empty($that->experience)) {
+                    $q->orWhere(
+                        'job.experience_id',
+                        $that->experience
+                    );
+                }
+                if (!empty($that->timework)) {
+                    $q->orWhere(
+                        'job.time_work_id',
+                        $that->timework
+                    );
+                }
+
+                if (!empty($that->workingform)) {
+                    $q->orWhere(
+                        'job.wk_form_id',
+                        $that->workingform
+                    );
+                }
+                if (!empty($that->majors)) {
+                    $q->orWhere(
+                        'job.majors_id',
+                        $that->majors
+                    );
+                }
+                if (!empty($that->lever)) {
+                    $q->orWhere(
+                        'job.level_id',
+                        $that->lever
+                    );
+                }
+            })
+            ->where([
+                ['job.status', 1],
+                ['job.expired', 0],
+            ])
+            ->whereNotIn('job.id', $dataIdJob)
+            ->distinct()
+            ->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill'])
+            ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+            ->orderBy('employer.prioritize', 'desc')
+            ->get();
+        if ($request->skill != null) {
+            $skill = explode(',', $request->skill[0]);
+
+            foreach ($skill as $item) {
+                $skillSearch[] = $this->skill->where('id', $item)->first();
+            }
+        }
+        return view('client.search', [
+            'job' => $data,
+            'datalq' => $datalq,
+            'breadcrumbs' => $breadcrumbs,
+            'profestion' => $this->getprofession(),
+            'lever' => $this->getlever(),
+            'experience' => $this->getexperience(),
+            'wage' => $this->getwage(),
+            'skill' => $this->getskill(),
+            'timework' => $this->gettimework(),
+            'profession' => $this->getprofession(),
+            'majors' => $this->majors->get(),
+            'workingform' => $this->getworkingform(),
+            'location' => $this->getlocation(),
+            'request' => $request,
+            'skillSearch' => $skillSearch ?? null,
+        ]);
+        // } catch (\Throwable $th) {
+        //     DB::rollBack();
+        //     return redirect()->back();
+        // }
     }
 
     /**
@@ -285,5 +313,363 @@ class SearchController extends BaseController
     public function searchMajos($title, $id)
     {
         $job = $this->job->where('majors_id', $id)->get();
+    }
+    public function jobGood(Request $request)
+    {
+        $that = $request;
+        $breadcrumbs = [
+            'Tìm kiếm việc làm tốt nhất' . '/' . $request->key
+        ];
+        $data = $this->job
+            ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
+            ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->Where(function ($q) use ($that) {
+                if (!empty($that->key)) {
+                    $q->where('job.title', 'LIKE', '%' . $that->key . '%');
+                }
+                if (!empty($that->skill)) {
+                    if ($that->skill[0] != null) {
+                        $q->whereIn('job_skill.skill_id', $that->skill);
+                    }
+                }
+                if (!empty($that->location)) {
+                    $q->Where(
+                        'job.location_id',
+                        $that->location
+                    );
+                }
+                if (!empty($that->profession)) {
+                    $q->Where(
+                        'job.profession_id',
+                        $that->profession
+                    );
+                }
+                if (!empty($that->experience)) {
+                    $q->Where(
+                        'job.experience_id',
+                        $that->experience
+                    );
+                }
+                if (!empty($that->time_work)) {
+                    $q->Where(
+                        'job.time_work_id',
+                        $that->time_work
+                    );
+                }
+
+                if (!empty($that->workingform)) {
+                    $q->Where(
+                        'job.wk_form_id',
+                        $that->workingform
+                    );
+                }
+                if (!empty($that->majors)) {
+                    $q->Where(
+                        'job.majors_id',
+                        $that->majors
+                    );
+                }
+                if (!empty($that->lever)) {
+                    $q->Where(
+                        'job.level_id',
+                        $that->lever
+                    );
+                }
+                if (!empty($that->wage)) {
+                    $q->Where(
+                        'job.wage_id',
+                        $that->wage
+                    );
+                }
+            })
+            ->where([
+                ['job.status', 1],
+                ['job.expired', 0],
+                ['job.package_id_position', 1],
+                ['employer.position', 1],
+            ])
+            ->distinct()
+            ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+            ->orderBy('employer.prioritize', 'desc')
+            ->get();
+        $dataIdJob = [];
+        foreach ($data as $value) {
+            $dataIdJob[] = $value->id;
+        }
+        $datalq = $this->job
+            ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
+            ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->Where(function ($q) use ($that) {
+                if (!empty($that->key)) {
+                    $q->orWhere('job.title', 'LIKE', '%' . $that->key . '%');
+                }
+                if (!empty($that->skill)) {
+                    if ($that->skill[0] != null) {
+                        $q->orWhere(function ($q) use ($that) {
+                            $q->whereIn('job_skill.skill_id', $that->skill);
+                        });
+                    }
+                }
+                if (!empty($that->location)) {
+                    $q->orWhere(
+                        'job.location_id',
+                        $that->location
+                    );
+                }
+                if (!empty($that->profession)) {
+                    $q->orWhere(
+                        'job.profession_id',
+                        $that->profession
+                    );
+                }
+                if (!empty($that->experience)) {
+                    $q->orWhere(
+                        'job.experience_id',
+                        $that->experience
+                    );
+                }
+                if (!empty($that->timework)) {
+                    $q->orWhere(
+                        'job.time_work_id',
+                        $that->timework
+                    );
+                }
+
+                if (!empty($that->workingform)) {
+                    $q->orWhere(
+                        'job.wk_form_id',
+                        $that->workingform
+                    );
+                }
+                if (!empty($that->majors)) {
+                    $q->orWhere(
+                        'job.majors_id',
+                        $that->majors
+                    );
+                }
+                if (!empty($that->lever)) {
+                    $q->orWhere(
+                        'job.level_id',
+                        $that->lever
+                    );
+                }
+            })
+            ->where([
+                ['job.status', 1],
+                ['job.expired', 0],
+                ['job.package_id_position', 1],
+                ['employer.position', 1],
+            ])
+            ->whereNotIn('job.id', $dataIdJob)
+            ->distinct()
+            ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+            ->orderBy('employer.prioritize', 'desc')
+            ->get();
+        if ($request->skill != null) {
+            $skill = explode(',', $request->skill[0]);
+
+            foreach ($skill as $item) {
+                $skillSearch[] = $this->skill->where('id', $item)->first();
+            }
+        }
+        return view('client.searchGood', [
+            'job' => $data,
+            'datalq' => $datalq,
+            'breadcrumbs' => $breadcrumbs,
+            'profestion' => $this->getprofession(),
+            'lever' => $this->getlever(),
+            'experience' => $this->getexperience(),
+            'wage' => $this->getwage(),
+            'skill' => $this->getskill(),
+            'timework' => $this->gettimework(),
+            'profession' => $this->getprofession(),
+            'majors' => $this->majors->get(),
+            'workingform' => $this->getworkingform(),
+            'location' => $this->getlocation(),
+            'request' => $request,
+            'skillSearch' => $skillSearch ?? null,
+        ]);
+    }
+    public function allJob(Request $request)
+    {
+        $that = $request;
+        $breadcrumbs = [
+            'Tìm kiếm việc làm tốt nhất' . '/' . $request->key
+        ];
+        $data = $this->job
+            ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
+            ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->Where(function ($q) use ($that) {
+                if (!empty($that->key)) {
+                    $q->where('job.title', 'LIKE', '%' . $that->key . '%');
+                }
+                if (!empty($that->skill)) {
+                    if ($that->skill[0] != null) {
+                        $q->whereIn('job_skill.skill_id', $that->skill);
+                    }
+                }
+                if (!empty($that->location)) {
+                    $q->Where(
+                        'job.location_id',
+                        $that->location
+                    );
+                }
+                if (!empty($that->profession)) {
+                    $q->Where(
+                        'job.profession_id',
+                        $that->profession
+                    );
+                }
+                if (!empty($that->experience)) {
+                    $q->Where(
+                        'job.experience_id',
+                        $that->experience
+                    );
+                }
+                if (!empty($that->time_work)) {
+                    $q->Where(
+                        'job.time_work_id',
+                        $that->time_work
+                    );
+                }
+
+                if (!empty($that->workingform)) {
+                    $q->Where(
+                        'job.wk_form_id',
+                        $that->workingform
+                    );
+                }
+                if (!empty($that->majors)) {
+                    $q->Where(
+                        'job.majors_id',
+                        $that->majors
+                    );
+                }
+                if (!empty($that->lever)) {
+                    $q->Where(
+                        'job.level_id',
+                        $that->lever
+                    );
+                }
+                if (!empty($that->wage)) {
+                    $q->Where(
+                        'job.wage_id',
+                        $that->wage
+                    );
+                }
+            })
+            ->where([
+                ['job.status', 1],
+                ['job.expired', 0],
+                ['job.package_id_position', 0],
+            ])
+            ->distinct()
+            ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+            ->orderBy('employer.prioritize', 'desc')
+            ->get();
+        $dataIdJob = [];
+        foreach ($data as $value) {
+            $dataIdJob[] = $value->id;
+        }
+        $datalq = $this->job
+            ->join('job_skill', 'job_skill.job_id', '=', 'job.id')
+            ->join('skill', 'job_skill.skill_id', '=', 'skill.id')
+            ->join('employer', 'employer.id', '=', 'job.employer_id')
+            ->join('company', 'company.id', '=', 'employer.id_company')
+            ->Where(function ($q) use ($that) {
+                if (!empty($that->key)) {
+                    $q->orWhere('job.title', 'LIKE', '%' . $that->key . '%');
+                }
+                if (!empty($that->skill)) {
+                    if ($that->skill[0] != null) {
+                        $q->orWhere(function ($q) use ($that) {
+                            $q->whereIn('job_skill.skill_id', $that->skill);
+                        });
+                    }
+                }
+                if (!empty($that->location)) {
+                    $q->orWhere(
+                        'job.location_id',
+                        $that->location
+                    );
+                }
+                if (!empty($that->profession)) {
+                    $q->orWhere(
+                        'job.profession_id',
+                        $that->profession
+                    );
+                }
+                if (!empty($that->experience)) {
+                    $q->orWhere(
+                        'job.experience_id',
+                        $that->experience
+                    );
+                }
+                if (!empty($that->timework)) {
+                    $q->orWhere(
+                        'job.time_work_id',
+                        $that->timework
+                    );
+                }
+
+                if (!empty($that->workingform)) {
+                    $q->orWhere(
+                        'job.wk_form_id',
+                        $that->workingform
+                    );
+                }
+                if (!empty($that->majors)) {
+                    $q->orWhere(
+                        'job.majors_id',
+                        $that->majors
+                    );
+                }
+                if (!empty($that->lever)) {
+                    $q->orWhere(
+                        'job.level_id',
+                        $that->lever
+                    );
+                }
+            })
+            ->where([
+                ['job.status', 1],
+                ['job.expired', 0],
+                ['job.package_id_position', 0],
+            ])
+            ->whereNotIn('job.id', $dataIdJob)
+            ->distinct()
+            ->select('job.*', 'company.logo as logo', 'company.id as idCompany', 'company.name as nameCompany')
+            ->orderBy('employer.prioritize', 'desc')
+            ->get();
+        if ($request->skill != null) {
+            $skill = explode(',', $request->skill[0]);
+
+            foreach ($skill as $item) {
+                $skillSearch[] = $this->skill->where('id', $item)->first();
+            }
+        }
+        return view('client.allJob', [
+            'job' => $data,
+            'datalq' => $datalq,
+            'breadcrumbs' => $breadcrumbs,
+            'profestion' => $this->getprofession(),
+            'lever' => $this->getlever(),
+            'experience' => $this->getexperience(),
+            'wage' => $this->getwage(),
+            'skill' => $this->getskill(),
+            'timework' => $this->gettimework(),
+            'profession' => $this->getprofession(),
+            'majors' => $this->majors->get(),
+            'workingform' => $this->getworkingform(),
+            'location' => $this->getlocation(),
+            'request' => $request,
+            'skillSearch' => $skillSearch ?? null,
+        ]);
     }
 }

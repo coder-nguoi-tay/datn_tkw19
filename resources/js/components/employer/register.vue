@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid" style="background: #f2f6fd">
     <div class="register-header-box">
       <div class="overlay">
         <div class="register-header-logo d-flex justify-content-between p-4">
@@ -12,11 +12,7 @@
             </a>
           </div>
           <div class="logo">
-            <img
-              src="/assets/img/logo_it.jpg"
-              width="160px"
-              class="logo-lg"
-            />
+            <img src="/assets/img/logo_it.jpg" width="160px" class="logo-lg" />
             <img src="/assets/img/logo_it.jpg" class="logo-mobile" />
           </div>
         </div>
@@ -29,7 +25,7 @@
         <!-- <br>   -->
       </div>
     </div>
-    <br>
+    <br />
     <div class="container form-employer-register">
       <div class="card login-card">
         <div class="row no-gutters">

@@ -72,7 +72,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-7 ">
+            {{-- <div class="col-7 ">
                 <br>
                 <div class="bg-white br-8">
                     <div class="section ">
@@ -158,7 +158,7 @@
                         </div>
                     </div>
                 </div>
+            </div> --}}
             </div>
-        </div>
     </main>
 @endsection

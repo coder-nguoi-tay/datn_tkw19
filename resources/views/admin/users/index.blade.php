@@ -13,6 +13,21 @@
                         </div>
                     </div>
                     <div class="card-body px-0 pb-2">
+                        <div class="col-md-12">
+                            <div style="float: right !important; width: 400px;height: 40px; margin-right: 20px">
+                                <form class="d-flex" method="get" style="height: 40px;">
+                                    <input name="free_word" class="custom-input form-control mr-1"
+                                        placeholder="Tìm Kiếm...." autocomplete="off" id="free_word" />
+                                    <button class="btn btn-info font-weight-medium color-text-2 mr-1 text-white"
+                                        style="height: 40px;" href="">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <hr>
                         <div class="table-responsive p-0">
                             <table class="table align-items-center mb-0">
                                 <thead>

@@ -45,6 +45,7 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" href="../wp-content/uploads/2022/09/favicon.png" sizes="32x32" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="author" content="TechyDevs">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

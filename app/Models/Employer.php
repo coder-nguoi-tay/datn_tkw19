@@ -31,4 +31,8 @@ class Employer extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+    public function job()
+    {
+        return $this->hasMany(Job::class, 'employer_id', 'id');
+    }
 }

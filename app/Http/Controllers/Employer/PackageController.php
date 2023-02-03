@@ -532,7 +532,7 @@ class PackageController extends BaseController
             DB::rollBack();
             return response()->json([
                 'message' => 'Có một lỗi không xác định đã xảy ra',
-                'message' =>  StatusCode::FORBIDDEN,
+                'status' =>  StatusCode::FORBIDDEN,
             ], StatusCode::OK);
         }
     }
