@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="billing-form-item">
-                        @if ($employer->id != $cv->employerPayment[0]->employer_id)
+                        @if (!$cv->employerPayment->count())
                             <btn-payment-employer :message-confirm="{{ json_encode('Bạn có chắc muốn mua CV không ?') }}"
                                 :delete-action="{{ json_encode(route('employer.changecAcount', $cv->id)) }}"
                                 :count-getskill="{{ json_encode([
@@ -17,16 +17,19 @@
                                     'total' => count(json_decode($cv->skill)) + count(json_decode($cv->project)),
                                 ]) }}">
                             </btn-payment-employer>
+                            {{-- @endif --}}
                         @endif
                         <button type="button" style="margin-top: -65px; margin-left: 1330px"
                             class="btn btn-info font-weight-medium color-text-2 mr-1 text-white" data-coreui-toggle="modal"
                             data-coreui-target="#exampleModal">({{ count($feedback_cv) }}) Feedback
                         </button>
-                        @if ($employer->id == $cv->employerPayment[0]->employer_id)
-                            <button type="button" style="margin-top: -114px; margin-left: 1470px"
-                                class="btn btn-info font-weight-medium color-text-2 mr-1 text-white"
-                                data-coreui-toggle="modal" data-coreui-target="#exampleModal1">Góp ý
-                            </button>
+                        @if ($cv->employerPayment->count())
+                            @if ($employer->id == $cv->employerPayment[0]->employer_id)
+                                <button type="button" style="margin-top: -114px; margin-left: 1470px"
+                                    class="btn btn-info font-weight-medium color-text-2 mr-1 text-white"
+                                    data-coreui-toggle="modal" data-coreui-target="#exampleModal1">Góp ý
+                                </button>
+                            @endif
                         @endif
                         <show-cv
                             :data="{{ json_encode([

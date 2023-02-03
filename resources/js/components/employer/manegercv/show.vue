@@ -21,69 +21,31 @@
             <div class="box_contact">
               <div class="mail">
                 <i class="fas fa-envelope"></i>
-                <p
-                  v-if="
-                    data.cv.employer_payment[0].employer_id == data.CheckUser
-                  "
-                >
+                <p v-if="check == data.CheckUser">
                   {{ data.cv.email }}
                 </p>
-                <p
-                  v-if="
-                    data.cv.employer_payment[0].employer_id != data.CheckUser
-                  "
-                >
-                  **************
-                </p>
+                <p v-if="check != data.CheckUser">**************</p>
               </div>
               <div class="mail">
                 <i class="fas fa-phone"></i>
-                <p
-                  v-if="
-                    data.cv.employer_payment[0].employer_id == data.CheckUser
-                  "
-                >
+                <p v-if="check == data.CheckUser">
                   {{ data.cv.phone }}
                 </p>
-                <p
-                  v-if="
-                    data.cv.employer_payment[0].employer_id != data.CheckUser
-                  "
-                >
-                  *****************
-                </p>
+                <p v-if="check != data.CheckUser">*****************</p>
               </div>
               <div class="mail">
                 <i class="fas fa-map-marker-alt"></i>
-                <p
-                  v-if="
-                    data.cv.employer_payment[0].employer_id == data.CheckUser
-                  "
-                >
+                <p v-if="check == data.CheckUser">
                   {{ data.cv.address }}
                 </p>
-                <p
-                  v-if="
-                    data.cv.employer_payment[0].employer_id != data.CheckUser
-                  "
-                >
-                  ********************
-                </p>
+                <p v-if="check != data.CheckUser">********************</p>
               </div>
               <div class="mail">
                 <i class="fab fa-facebook"></i>
-                <p
-                  v-if="
-                    data.cv.employer_payment[0].employer_id == data.CheckUser
-                  "
-                >
+                <p v-if="check == data.CheckUser">
                   <a :href="data.cv.link_fb">{{ data.cv.link_fb }}</a>
                 </p>
-                <p
-                  v-if="
-                    data.cv.employer_payment[0].employer_id != data.CheckUser
-                  "
-                >
+                <p v-if="check != data.CheckUser">
                   <a :href="data.cv.link_fb">*************</a>
                 </p>
               </div>
@@ -158,13 +120,19 @@
   </div>
 </template>
 <script>
+import { isEmpty } from 'lodash'
 export default {
   created() {
-    console.log(this.data.cv)
+    if (!isEmpty(this.data.cv.employer_payment)) {
+      this.check = this.data.cv.employer_payment[0].employer_id
+    } else {
+      this.check = -1
+    }
   },
   data: function () {
     return {
-      csrfToken: Laravel.csrfToken
+      csrfToken: Laravel.csrfToken,
+      check: ''
     }
   },
   props: ['data']
