@@ -264,7 +264,6 @@ $(document).ready(function () {
         }).catch((y) => {
             console.log(y);
         })
-
 })
 
 import VueSweetalert2 from 'vue-sweetalert2'

@@ -286,8 +286,13 @@ class HomeController extends BaseController
                 ['user_id', Auth::guard('user')->user()->id]
             ])->first();
             if ($checkJob) {
-                if ($checkJob->status == 1)
+                if ($checkJob->status == 1) {
                     $checkJobTrue = 1;
+                } else {
+                    $checkJobTrue = 0;
+                }
+            } else {
+                $checkJobTrue = 1;
             }
         }
         $breadcrumbs = [

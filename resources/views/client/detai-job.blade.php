@@ -131,21 +131,26 @@
                                     <h3>{{ $job->title }}</h3>
                                     <div
                                         class="single_job_listing d-flex flex-wrap align-items-center gap-3 font-xs color-text-mutted mt-0 mb-15">
-                                        <span class="fi-icon full-time"><i
-                                                class="fi-rr-briefcase"></i>{{ $job->getTime_work->name }}</span>
+                                        <span class="fi-icon full-time" style="font-size: 14px; font-weight: 600;">Hạn nộp: {{ $job->end_job_time }}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-12 text-lg-end">
-                                    @if ($checkJobTrue == 0)
-                                        <a class="btn-border mr-15 mb-5 active"
-                                            style="background: blue; color: white">Đã ứng tuyển</a>
+                                    @if (Auth::guard('user')->check())
+                                        @if ($checkJobTrue == 0)
+                                            <a class="btn-border mr-15 mb-5 active"
+                                                style="background: blue; color: white">Đã ứng tuyển</a>
+                                        @else
+                                            <a class="btn-border mr-15 mb-5 active" data-bs-toggle="modal"
+                                                data-bs-target="#ModalApplyJobForm">Ứng
+                                                tuyển</a>
+                                        @endif
+                                        <a class="btn-like" class="mr-15 mb-5"><i
+                                                class="fa-solid fa-heart icon-save-cv"
+                                                id="{{ $job->id . ',' . $checklove }}"></i></a>
                                     @else
-                                        <a class="btn-border mr-15 mb-5 active" data-bs-toggle="modal"
-                                            data-bs-target="#ModalApplyJobForm">Ứng
+                                        <a href="{{ route('login.index') }}" class="btn-border mr-15 mb-5 active">Ứng
                                             tuyển</a>
                                     @endif
-                                    <a class="btn-like" class="mr-15 mb-5"><i class="fa-solid fa-heart icon-save-cv"
-                                            id="{{ $job->id . ',' . $checklove }}"></i></a>
                                 </div>
                             </div>
                             <div class="border-bottom pt-10 pb-10"></div>
@@ -229,7 +234,7 @@
                                                             alt="Deadline">
                                                     </div>
                                                     <div class="sidebar-text-info ml-10">
-                                                        <span class="text-description mb-10">Deadline</span>
+                                                        <span class="text-description mb-10">Hạn nộp</span>
                                                         <strong
                                                             class="small-heading">{{ $job->end_job_time }}</strong>
                                                     </div>
@@ -302,7 +307,7 @@
                                                     </figure>
                                                     <div class="sidebar-info">
                                                         <a href="{{ route('detail.company', $job->idCompany) }}"
-                                                            class="sidebar-company">
+                                                            class="sidebar-company" style="line-height: 20px;font-size: 14px;">
                                                             {{ $job->nameCompany }} </a>
                                                         {{-- <span
                                                             class="card-location">{{ $jobCompany[0]->address }}</span> --}}
