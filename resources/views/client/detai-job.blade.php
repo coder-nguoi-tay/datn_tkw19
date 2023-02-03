@@ -345,7 +345,8 @@
                                                                         <div class="row align-items-center">
                                                                             <div class="col-6">
                                                                                 <h6 class="card-price mb-0"><span
-                                                                                        class="card-text-price">{{ $job->getWage->name }}</span>
+                                                                                        class="card-text-price"
+                                                                                        style="font-size: 14px;">{{ $job->getWage->name }}</span>
                                                                                 </h6>
                                                                             </div>
                                                                             <div class="col-6 text-end">
@@ -362,7 +363,74 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </section>
+                            <section style="border-radius: 3px;background: #f8faffde; padding: 10px;">
+                                <div>
+                                    <h2 class="control-heading-title"
+                                        style="font-weight:600; background:  #f8faff; padding: 8px 10px; margin: 0 -10px;">
+                                        Tin tuyển dụng
+                                        khác của công ty</h2>
+                                </div>
+                                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-30"
+                                    id="paginated-list1" data-v-1cf8e432="">
 
+                                    @if (isset($jobCompany))
+                                        @foreach ($jobCompany as $key => $item)
+                                            @if ($item->idjob != $job->id)
+                                                <div class="col jobbox-grid-item" data-v-1cf8e432="">
+                                                    <div class="card-grid-2 hover-up" data-v-1cf8e432="">
+                                                        <div class="card-block-info" style="padding: 20px;"
+                                                            data-v-1cf8e432="">
+                                                            <h6 class="mb-1" data-toggle="tooltip" title=""
+                                                                data-placement="top" data-container="body"
+                                                                target="_blank"
+                                                                data-original-title="Công ty TNHH Optimizer Việt Nam"
+                                                                data-v-1cf8e432=""
+                                                                style="-webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; text-align: left;">
+                                                                <a href="{{ route('home.detail.show', $item->idjob) }}"
+                                                                    data-v-1cf8e432="">{{ $item->title }}</a>
+                                                            </h6>
+                                                            <div class="d-flex align-items-center gap-3 font-xs color-text-mutted"
+                                                                data-v-1cf8e432=""
+                                                                style="justify-content: space-between;"><span
+                                                                    data-v-1cf8e432=""><i
+                                                                        class="fi-rr-briefcase ms-0 me-1"
+                                                                        data-v-1cf8e432=""></i>{{ $item->getTime_work->name }}</span><span
+                                                                    data-v-1cf8e432=""><i
+                                                                        class="fi-rr-clock ms-0 me-1"
+                                                                        data-v-1cf8e432=""></i><time
+                                                                        datetime="2022-09-27"
+                                                                        data-v-1cf8e432="">{{ $item->end_job_time }}</time></span>
+                                                            </div>
+                                                            <div class="card-2-bottom mt-30" data-v-1cf8e432="">
+                                                                <div class="row align-items-center"
+                                                                    data-v-1cf8e432="">
+                                                                    <div class="col-lg-6 col-7" data-v-1cf8e432="">
+                                                                        <span class="card-text-price"
+                                                                            style="font-size: 14px;"
+                                                                            data-toggle="tooltip" title=""
+                                                                            data-placement="top" data-container="body"
+                                                                            target="_blank"
+                                                                            data-original-title="Công ty TNHH Optimizer Việt Nam"
+                                                                            data-v-1cf8e432="">{{ $item->getWage->name }}</span>
+                                                                    </div>
+                                                                    <div class="col-lg-6 col-5 text-end"
+                                                                        data-v-1cf8e432=""><a
+                                                                            class="btn btn-apply-now"
+                                                                            style="border: 1px solid #cccccc5e; border-radius: 5px;"
+                                                                            target=""
+                                                                            href="{{ route('home.detail.show', $item->idjob) }}"
+                                                                            data-v-1cf8e432="">Xem chi
+                                                                            tiết</a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </div>
                             </section>
                         </div>

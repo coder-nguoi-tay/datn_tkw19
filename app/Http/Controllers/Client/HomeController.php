@@ -271,12 +271,13 @@ class HomeController extends BaseController
                 'job.location_id as location_id',
                 'job.majors_id as majors_id',
                 'job.title as title',
+                'job.end_job_time as end_job_time',
                 'company.*',
 
             )
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
-            ->where('company.id', $job->idCompany)
+            ->where('company.id', $job->idCompany)->with('getTime_work')
             ->paginate(4);
         if (Auth::guard('user')->check()) {
             $cv = $this->upload->where('user_id', Auth::guard('user')->user()->id)->get();
