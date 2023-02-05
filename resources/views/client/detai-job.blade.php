@@ -273,16 +273,13 @@
                                         </div>
 
                                         <div class="content-single">
-                                            <h4>- Quyền lợi công việc</h4>
-                                            <ul>
+                                            <h4>Yêu cầu của công việc</h4>
+                                            <span>{!! $job->candidate_requirements !!}</span>
+                                            <h4>Mô tả công việc</h4>
+                                            <span>{!! $job->describe !!}</span>
+                                            <h4>Quyền lợi công việc</h4>
+                                            <span>{!! $job->benefit !!}</span>
 
-                                                <li>{!! $job->benefit !!}</li>
-                                            </ul>
-                                            <h4>- Yêu cầu của công việc</h4>
-                                            <ul>
-                                                <li>{!! $job->candidate_requirements !!}</li>
-
-                                            </ul>
                                             <h4>- Kỹ năng</h4>
                                             @foreach ($job->getskill as $item)
                                                 <li><span
@@ -294,9 +291,6 @@
                                                 <p>{!! $jobCompany[0]->desceibe !!}</p>
                                             </div>
                                         </div>
-
-
-
                                     </div>
                                     <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15">
                                         <div class="sidebar-border">

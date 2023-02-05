@@ -31,40 +31,32 @@
                                     </li>
                                     <li>
                                         <a href="{{ route('CongTy') }}">Công ty</a>
-
-
                                     </li>
                                     <li>
                                         <a href="/blog">Tin tức </a>
 
                                     </li>
-
-
                                     <li>
                                         <a href="/faqs">Câu hỏi thường gặp </a>
-
                                     </li>
                                 </ul>
                             </nav>
                         </div><!-- end main-menu-content -->
                         <div class="logo-right-content">
-                            <div class="header-action-button d-flex align-items-center">
-                                <div class="notification-wrap d-flex align-items-center">
-                                    <div class="notification-item mr-3">
-                                        <div class="dropdown">
-                                            <button class="notification-btn dropdown-toggle" type="button"
-                                                id="notificationDropdownMenu" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
+                            <div class="header-nav">
+                                <nav class="primary-menu-container nav-main-menu">
+                                    <ul id="primary-menu-list" class="menu-wrapper main-menu list-unstyled mb-0">
+                                        <li id="menu-item-134" class="menu-item menu-item-type-post_type"
+                                            style=" border-radius: 25px; background: #fafafa">
+                                            <a href="#">
                                                 <img src="{{ asset(Auth::guard('user')->user()->images) }}"
-                                                    alt="" style="width: 35px;height: 35px;margin : 0 "
+                                                    style="width: 35px;height: 35px;margin : 0 20px 0 4px"
                                                     class="rounded-circle img-fluid">
-                                                <span class="fullname"> &nbsp;
-                                                    {{ Auth::guard('user')->user()->name }}
-                                                </span>
-                                            </button>
-                                        </div><!-- end dropdown -->
-                                    </div>
-                                </div>
+                                                <p class="d-inline">{{ Auth::guard('user')->user()->name }}</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
                             <div class="menu-toggler d-flex align-items-center">
                                 <div class="side-menu-open">
