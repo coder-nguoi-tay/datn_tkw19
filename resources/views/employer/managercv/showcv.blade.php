@@ -15,9 +15,11 @@
                                 :count-getskill="{{ json_encode([
                                     'accPayment' => $accPayment,
                                     'total' => count(json_decode($cv->skill)) + count(json_decode($cv->project)),
+                                    'totalFeedback' => $cv->feedback->count(),
+                                    'totalFeedback2' => $cv->feedback2->count(),
+                                    'totalFeedback3' => $cv->feedback3->count(),
                                 ]) }}">
                             </btn-payment-employer>
-                            {{-- @endif --}}
                         @endif
                         <button type="button" style="margin-top: -65px; margin-left: 1330px"
                             class="btn btn-info font-weight-medium color-text-2 mr-1 text-white" data-coreui-toggle="modal"

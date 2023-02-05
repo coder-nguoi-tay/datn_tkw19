@@ -148,8 +148,9 @@
                                                 class="fa-solid fa-heart icon-save-cv"
                                                 id="{{ $job->id . ',' . $checklove }}"></i></a>
                                     @else
-                                        <a href="{{ route('login.index') }}" class="btn-border mr-15 mb-5 active">Ứng
-                                            tuyển</a>
+                                        <button type="button" class="btn-border mr-15 mb-5 active"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal">Ứng
+                                            tuyển</button>
                                     @endif
                                 </div>
                             </div>
@@ -272,16 +273,13 @@
                                         </div>
 
                                         <div class="content-single">
-                                            <h4>- Quyền lợi công việc</h4>
-                                            <ul>
+                                            <h4>Yêu cầu của công việc</h4>
+                                            <span>{!! $job->candidate_requirements !!}</span>
+                                            <h4>Mô tả công việc</h4>
+                                            <span>{!! $job->describe !!}</span>
+                                            <h4>Quyền lợi công việc</h4>
+                                            <span>{!! $job->benefit !!}</span>
 
-                                                <li>{!! $job->benefit !!}</li>
-                                            </ul>
-                                            <h4>- Yêu cầu của công việc</h4>
-                                            <ul>
-                                                <li>{!! $job->candidate_requirements !!}</li>
-
-                                            </ul>
                                             <h4>- Kỹ năng</h4>
                                             @foreach ($job->getskill as $item)
                                                 <li><span
@@ -293,9 +291,6 @@
                                                 <p>{!! $jobCompany[0]->desceibe !!}</p>
                                             </div>
                                         </div>
-
-
-
                                     </div>
                                     <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15">
                                         <div class="sidebar-border">
@@ -467,8 +462,29 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Đăng nhập</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <modal-login
+                            :data="{{ json_encode([
+                                'urlStore' => route('owner.loginModal'),
+                                'message' => $message ?? '',
+                            ]) }}">
+                        </modal-login>
+                    </div>
+                </div>
+            </div>
+        </div>
         @include('client.layout.footer')
     </main>
+    <!-- Modal -->
     <script type="text/javascript">
         (function() {
             var c = document.body.className;

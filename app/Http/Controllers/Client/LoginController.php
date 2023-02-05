@@ -72,6 +72,23 @@ class LoginController extends BaseController
         $this->setFlash(__('Tải khoản hoặc mật khẩu không đúng'), 'error');
         return redirect()->back();
     }
+    public function loginModal(CheckLoginRequest $request)
+    {
+        $credentials = $request->only('email', 'password');
+        if (Auth::guard('user')->attempt($credentials, true)) {
+            if (Auth::guard('user')->user()->status == 2) {
+                if (Auth::guard('user')->user()->role_id == 2) {
+                    return redirect()->route('employer.index');
+                }
+                return redirect()->back();
+            } else {
+                $this->setFlash(__('Tải khoản chưa được kích hoạt'), 'error');
+                return redirect()->back();
+            }
+        }
+        $this->setFlash(__('Tải khoản hoặc mật khẩu không đúng'), 'error');
+        return redirect()->back();
+    }
 
     /**
      * Display the specified resource.
