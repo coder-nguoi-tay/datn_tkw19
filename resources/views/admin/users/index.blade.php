@@ -1,5 +1,6 @@
 @php
     use App\Enums\Onoff;
+    use App\Components\SearchQueryComponent;
 @endphp
 @extends('master')
 @section('content')
@@ -76,6 +77,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="group-paginate">
+                                {{ $Users->appends(SearchQueryComponent::alterQuery($request))->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

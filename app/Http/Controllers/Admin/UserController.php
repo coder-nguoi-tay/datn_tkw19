@@ -3,22 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\StatusCode;
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $Users = User::select('id', 'name', 'email', 'created_at')->get();
+        $newSizeLimit = $this->newListLimit($request);
+        $Users = User::select('id', 'name', 'email', 'created_at');
+        $User = $Users->paginate($newSizeLimit);
         return view('admin.users.index', [
-            'Users' => $Users
+            'Users' => $User,
+            'request' => $request,
         ]);
     }
 
