@@ -19,10 +19,6 @@
                     <a href="{{ route('xem-ho-so.index') }}"><i class="fas fa-address-card icon-element"></i>Những công
                         việc đã nộp</a>
                 </li>
-                <li class="{{ request()->is('*company*') ? 'active' : '' }}">
-                    <a href="{{ route('xem-ho-so.index') }}"><i class="fas fa-bookmark icon-element"></i>Công ty đã
-                        theo dõi</a>
-                </li>
                 <li class="{{ request()->is('*profile*') ? 'active' : '' }}">
                     <a href="{{ route('profile.index') }}"><i class="fas fa-user icon-element"></i>Quản lý hồ sơ</a>
                 </li>

@@ -65,32 +65,43 @@
                     </div>
                 </div>
             @else
-                
-                <div class="btn-group">
-                    <button type="button" style="border-radius: 20px;padding: 4px 8px 4px 0"
-                        class="btn btn-default btn-shadow ml-30 hover-up dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <img src="{{ asset(Auth::guard('user')->user()->images) }}"
-                            style="width: 35px;height: 35px;margin : 0 20px 0 4px" class="rounded-circle img-fluid">
-                        <p class="d-inline text-white">{{ Auth::guard('user')->user()->name }}</p>
-                    </button>
-
-                    <ul class="dropdown-menu">
-
-                        <li class="{{ request()->is('*profile*') ? 'active' : '' }}"> <a class="dropdown-item"
-                                href="{{ route('profile.index') }} ">Thông tin cá nhân</a></li>
-                        <li class="{{ request()->is('*goi-y-viec-lam*') ? 'active' : '' }}"> <a class="dropdown-item"
-                                href="{{ route('goi-y-viec-lam.index') }}">Cài đặt gợi ý việc
-                                làm</a></li>
-                        <li> <a class="dropdown-item" href="{{ route('user.favourite') }}">Công việc đã yêu thích</a>
-                        </li>
-                        <li class="{{ request()->is('*xem-ho-so*') ? 'active' : '' }}"> <a class="dropdown-item"
-                                href="{{ route('xem-ho-so.index') }}">Những công
-                                việc đã nộp</a></li>
-                        <li class="{{ request()->is('*change-password*') ? 'active' : '' }}"> <a class="dropdown-item"
-                                href="{{ route('user.changepass') }}">Đổi mật khẩu</a></li>
-                        <li> <a class="dropdown-item" href="{{ route('user.logout') }}">Đăng xuất</a></li>
-                    </ul>
+                <div class="header-nav">
+                    <nav class="primary-menu-container nav-main-menu">
+                        <ul id="primary-menu-list" class="menu-wrapper main-menu list-unstyled mb-0">
+                            <li id="menu-item-134" class="menu-item menu-item-type-post_type"
+                                style=" border-radius: 25px; background: #fafafa">
+                                <a href="#">
+                                    <img src="{{ asset(Auth::guard('user')->user()->images) }}"
+                                        style="width: 35px;height: 35px;margin : 0 20px 0 4px"
+                                        class="rounded-circle img-fluid">
+                                    <p class="d-inline">{{ Auth::guard('user')->user()->name }}</p>
+                                </a>
+                                <ul class="dropdown-menu-item">
+                                    <li class="{{ request()->is('*profile*') ? 'active' : '' }}"> <a class=""
+                                            href="{{ route('profile.index') }} ">Thông tin cá
+                                            nhân</a></li>
+                                    <li class="{{ request()->is('*goi-y-viec-lam*') ? 'active' : '' }}"> <a
+                                            class="dropdown-item" href="{{ route('goi-y-viec-lam.index') }}">Cài
+                                            đặt gợi ý
+                                            việc
+                                            làm</a></li>
+                                    <li> <a class="dropdown-item" href="{{ route('user.favourite') }}">Công
+                                            việc đã yêu
+                                            thích</a>
+                                    </li>
+                                    <li class="{{ request()->is('*xem-ho-so*') ? 'active' : '' }}"> <a
+                                            class="dropdown-item" href="{{ route('xem-ho-so.index') }}">Những
+                                            công
+                                            việc đã nộp</a></li>
+                                    <li class="{{ request()->is('*change-password*') ? 'active' : '' }}"> <a
+                                            class="dropdown-item" href="{{ route('user.changepass') }}">Đổi
+                                            mật khẩu</a></li>
+                                    <li> <a class="dropdown-item" href="{{ route('user.logout') }}">Đăng
+                                            xuất</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             @endif
         </div>

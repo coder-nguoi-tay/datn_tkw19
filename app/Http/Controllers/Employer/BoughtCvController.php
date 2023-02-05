@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
+use App\Models\Employer;
+use App\Models\EmployerPaymentCv;
 use App\Models\ProfileUserCv;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +20,6 @@ class BoughtCvController extends BaseController
     public ProfileUserCv $profileCv;
     public function __construct(ProfileUserCv $profileCv)
     {
-
         $this->profileCv = $profileCv;
     }
     public function index(Request $request)
@@ -26,8 +27,10 @@ class BoughtCvController extends BaseController
         $breadcrumbs = [
             'Hồ sơ đã mua'
         ];
-        $tatalecv = $this->profileCv->where('status', Auth::guard('user')
-            ->user()->id)
+        $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
+        // dd($employer);
+        $tatalecv = EmployerPaymentCv::join('profile_user_cv', 'profile_user_cv.id', '=', 'employer_payment_cv.profile_cv_id')
+            ->where('employer_payment_cv.employer_id', $employer->id)
             ->where(function ($q) {
                 if (!empty($request['start_date'])) {
                     $q->whereDate('created_at', '>=', $request['start_date']);
@@ -36,6 +39,7 @@ class BoughtCvController extends BaseController
                     $q->whereDate('created_at', '<=', $request['end_date']);
                 }
             })
+            ->groupBy('profile_user_cv.id')
             ->get();
         return view('employer.boughtcv.index', [
             'tatalecv' => $tatalecv,

@@ -136,17 +136,23 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-12 text-lg-end">
-                                    @if ($checkJobTrue == 0)
-                                        <a class="btn-border mr-15 mb-5 active"
-                                            style="background: blue; color: white">Đã ứng tuyển</a>
+                                    @if (Auth::guard('user')->check())
+                                        @if ($checkJobTrue == 0)
+                                            <a class="btn-border mr-15 mb-5 active"
+                                                style="background: blue; color: white">Đã ứng tuyển</a>
+                                        @else
+                                            <a class="btn-border mr-15 mb-5 active" data-bs-toggle="modal"
+                                                data-bs-target="#ModalApplyJobForm">Ứng
+                                                tuyển</a>
+                                        @endif
+                                        <a class="btn-like" class="mr-15 mb-5"><i
+                                                class="fa-solid fa-heart icon-save-cv"
+                                                id="{{ $job->id . ',' . $checklove }}"></i></a>
                                     @else
-                                        <a class="btn-border mr-15 mb-5 active" data-bs-toggle="modal"
-                                            data-bs-target="#ModalApplyJobForm">Ứng
-                                            tuyển</a>
+                                        <button type="button" class="btn-border mr-15 mb-5 active"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal">Ứng
+                                            tuyển</button>
                                     @endif
-
-                                    <a class="btn-like" class="mr-15 mb-5"><i class="fa-solid fa-heart icon-save-cv"
-                                            id="{{ $job->id . ',' . $checklove }}"></i></a>
                                 </div>
                             </div>
                             <div class="border-bottom pt-10 pb-10"></div>
@@ -268,16 +274,13 @@
                                         </div>
 
                                         <div class="content-single">
-                                            <h4>- Quyền lợi công việc</h4>
-                                            <ul>
+                                            <h4>Yêu cầu của công việc</h4>
+                                            <span>{!! $job->candidate_requirements !!}</span>
+                                            <h4>Mô tả công việc</h4>
+                                            <span>{!! $job->describe !!}</span>
+                                            <h4>Quyền lợi công việc</h4>
+                                            <span>{!! $job->benefit !!}</span>
 
-                                                <li>{!! $job->benefit !!}</li>
-                                            </ul>
-                                            <h4>- Yêu cầu của công việc</h4>
-                                            <ul>
-                                                <li>{!! $job->candidate_requirements !!}</li>
-
-                                            </ul>
                                             <h4>- Kỹ năng</h4>
                                             @foreach ($job->getskill as $item)
                                                 <li><span
@@ -289,9 +292,6 @@
                                                 <p>{!! $jobCompany[0]->desceibe !!}</p>
                                             </div>
                                         </div>
-
-
-
                                     </div>
                                     <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15">
                                         <div class="sidebar-border">
@@ -351,7 +351,8 @@
                                                                         <div class="row align-items-center">
                                                                             <div class="col-6">
                                                                                 <h6 class="card-price mb-0"><span
-                                                                                        class="card-text-price">{{ $job->getWage->name }}</span>
+                                                                                        class="card-text-price"
+                                                                                        style="font-size: 14px;">{{ $job->getWage->name }}</span>
                                                                                 </h6>
                                                                             </div>
                                                                             <div class="col-6 text-end">
@@ -368,7 +369,74 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </section>
+                            <section style="border-radius: 3px;background: #f8faffde; padding: 10px;">
+                                <div>
+                                    <h2 class="control-heading-title"
+                                        style="font-weight:600; background:  #f8faff; padding: 8px 10px; margin: 0 -10px;">
+                                        Tin tuyển dụng
+                                        khác của công ty</h2>
+                                </div>
+                                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-30"
+                                    id="paginated-list1" data-v-1cf8e432="">
 
+                                    @if (isset($jobCompany))
+                                        @foreach ($jobCompany as $key => $item)
+                                            @if ($item->idjob != $job->id)
+                                                <div class="col jobbox-grid-item" data-v-1cf8e432="">
+                                                    <div class="card-grid-2 hover-up" data-v-1cf8e432="">
+                                                        <div class="card-block-info" style="padding: 20px;"
+                                                            data-v-1cf8e432="">
+                                                            <h6 class="mb-1" data-toggle="tooltip" title=""
+                                                                data-placement="top" data-container="body"
+                                                                target="_blank"
+                                                                data-original-title="Công ty TNHH Optimizer Việt Nam"
+                                                                data-v-1cf8e432=""
+                                                                style="-webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; text-align: left;">
+                                                                <a href="{{ route('home.detail.show', $item->idjob) }}"
+                                                                    data-v-1cf8e432="">{{ $item->title }}</a>
+                                                            </h6>
+                                                            <div class="d-flex align-items-center gap-3 font-xs color-text-mutted"
+                                                                data-v-1cf8e432=""
+                                                                style="justify-content: space-between;"><span
+                                                                    data-v-1cf8e432=""><i
+                                                                        class="fi-rr-briefcase ms-0 me-1"
+                                                                        data-v-1cf8e432=""></i>{{ $item->getTime_work->name }}</span><span
+                                                                    data-v-1cf8e432=""><i
+                                                                        class="fi-rr-clock ms-0 me-1"
+                                                                        data-v-1cf8e432=""></i><time
+                                                                        datetime="2022-09-27"
+                                                                        data-v-1cf8e432="">{{ $item->end_job_time }}</time></span>
+                                                            </div>
+                                                            <div class="card-2-bottom mt-30" data-v-1cf8e432="">
+                                                                <div class="row align-items-center"
+                                                                    data-v-1cf8e432="">
+                                                                    <div class="col-lg-6 col-7" data-v-1cf8e432="">
+                                                                        <span class="card-text-price"
+                                                                            style="font-size: 14px;"
+                                                                            data-toggle="tooltip" title=""
+                                                                            data-placement="top" data-container="body"
+                                                                            target="_blank"
+                                                                            data-original-title="Công ty TNHH Optimizer Việt Nam"
+                                                                            data-v-1cf8e432="">{{ $item->getWage->name }}</span>
+                                                                    </div>
+                                                                    <div class="col-lg-6 col-5 text-end"
+                                                                        data-v-1cf8e432=""><a
+                                                                            class="btn btn-apply-now"
+                                                                            style="border: 1px solid #cccccc5e; border-radius: 5px;"
+                                                                            target=""
+                                                                            href="{{ route('home.detail.show', $item->idjob) }}"
+                                                                            data-v-1cf8e432="">Xem chi
+                                                                            tiết</a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </div>
                             </section>
                         </div>
@@ -395,8 +463,29 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Đăng nhập</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <modal-login
+                            :data="{{ json_encode([
+                                'urlStore' => route('owner.loginModal'),
+                                'message' => $message ?? '',
+                            ]) }}">
+                        </modal-login>
+                    </div>
+                </div>
+            </div>
+        </div>
         @include('client.layout.footer')
     </main>
+    <!-- Modal -->
     <script type="text/javascript">
         (function() {
             var c = document.body.className;

@@ -99,7 +99,7 @@
                                         />
                                         <img
                                           v-if="Image != null && !filePreview"
-                                          :src="baseUrl + Image"
+                                          :src="'/' + Image"
                                           class="img-fluid img-show border"
                                           style="
                                             width: 200px;

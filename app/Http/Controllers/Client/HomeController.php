@@ -271,12 +271,13 @@ class HomeController extends BaseController
                 'job.location_id as location_id',
                 'job.majors_id as majors_id',
                 'job.title as title',
+                'job.end_job_time as end_job_time',
                 'company.*',
 
             )
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
-            ->where('company.id', $job->idCompany)
+            ->where('company.id', $job->idCompany)->with('getTime_work')
             ->paginate(4);
         if (Auth::guard('user')->check()) {
             $cv = $this->upload->where('user_id', Auth::guard('user')->user()->id)->get();
@@ -285,8 +286,13 @@ class HomeController extends BaseController
                 ['user_id', Auth::guard('user')->user()->id]
             ])->first();
             if ($checkJob) {
-                if ($checkJob->status == 1)
+                if ($checkJob->status == 1) {
                     $checkJobTrue = 1;
+                } else {
+                    $checkJobTrue = 0;
+                }
+            } else {
+                $checkJobTrue = 1;
             }
         }
         $breadcrumbs = [
@@ -408,7 +414,6 @@ class HomeController extends BaseController
             } else {
                 $cv = $cvSave;
                 $cv->title = $request->title;
-                $cv->token = rand(00000, 99999);
                 $cv->user_id = Auth::guard('user')->user()->id;
                 $cv->status = 0;
                 if ($request->hasFile('file_cv')) {

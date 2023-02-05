@@ -4,43 +4,22 @@ namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
-use App\Models\Majors;
-use App\Models\SaveCv;
+use App\Models\Employer;
+use App\Models\FeedbackCv;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class ViewProfileController extends BaseController
+class FeedbackController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public Majors $majors;
-    public function __construct(Majors $majors)
+    public function index()
     {
-        $this->majors = $majors;
-    }
-    public function index(Request $request)
-    {
-
-        $job = SaveCv::where('save_cv.user_id', Auth::guard('user')->user()->id)
-            ->leftjoin('job', 'job.id', '=', 'save_cv.id_job')
-            ->join('employer', 'employer.id', '=', 'job.employer_id')
-            ->join('company', 'company.id', '=', 'employer.id_company')
-            ->Orderby('save_cv.created_at', 'DESC')
-            ->select('job.id as id', 'job.title as title', 'company.id as idCompany', 'company.logo as logo', 'company.name as nameCompany', 'save_cv.created_at as created_at', 'save_cv.status as status', 'save_cv.file_cv as file')
-            ->get();
-        $breadcrumbs = [
-            'Danh sách công việc đã nộp',
-
-        ];
-        return view('client.seeker.view-profile', [
-            'title' => 'Danh sách công việc đã nộp',
-            'breadcrumbs' => $breadcrumbs,
-            'majors' => $this->getmajors(),
-            'job' => $job,
-        ]);
+        //
     }
 
     /**
@@ -59,9 +38,23 @@ class ViewProfileController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
+        try {
+            $feedback = new FeedbackCv();
+            $feedback->comment = $request->comment;
+            $feedback->feedback_id = $request->feedback_id;
+            $feedback->profile_cv_id = $id;
+            $feedback->employer_id = $employer->id;
+            $feedback->save();
+            $this->setFlash(__('Cảm ơn bạn đã đánh giá hồ sơ của chúng tôi'));
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->setFlash(__('Đã có một lỗi không xác định xảy ra'), 'error');
+            return redirect()->back();
+        }
     }
 
     /**

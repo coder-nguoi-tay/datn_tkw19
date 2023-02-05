@@ -9,6 +9,9 @@ use App\Models\AccountPayment;
 use App\Models\Accuracy;
 use App\Models\Company;
 use App\Models\Employer;
+use App\Models\EmployerPaymentCv;
+use App\Models\Feedback;
+use App\Models\FeedbackCv;
 use App\Models\Job;
 use App\Models\Jobseeker;
 use App\Models\location;
@@ -130,12 +133,30 @@ class ManagerUploadCvController extends BaseController
      */
     public function show($id)
     {
-        $profile = ProfileUserCv::where('id', $id)->with('user')->first();
+        $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
+        $profile = ProfileUserCv::where('profile_user_cv.id', $id)->with(['employerPayment' => function ($q) use ($employer) {
+            $q->where('employer_id', $employer->id);
+        }, 'user'])
+            ->with(['feedback' => function ($q) {
+                $q->where('feedback_id', 1);
+            }])
+            ->with(['feedback2' => function ($q) {
+                $q->where('feedback_id', 2);
+            }])
+            ->with(['feedback3' => function ($q) {
+                $q->where('feedback_id', 3);
+            }])
+            ->first();
+        // dd($profile);
         $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
+        $checkFeedback = FeedbackCv::where('employer_id', $employer)->first();
         return view('employer.managercv.showcv', [
             'cv' => $profile,
+            'employer' => $employer,
             'accPayment' => $accPayment,
-
+            'checkFeedback' => $checkFeedback,
+            'feedback' => Feedback::all(),
+            'feedback_cv' => FeedbackCv::where('profile_cv_id', $id)->get(),
         ]);
     }
 
@@ -174,6 +195,7 @@ class ManagerUploadCvController extends BaseController
     }
     public function changeStatus($id, Request $request)
     {
+        $employer = $this->employer->where('user_id', Auth::guard('user')->user()->id)->first();
         try {
             //tk
             $account = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
@@ -193,8 +215,11 @@ class ManagerUploadCvController extends BaseController
             $account->save();
             //muacv
             $upcv = ProfileUserCv::where('id', $id)->first();
-            $upcv->status = Auth::guard('user')->user()->id;
-            $upcv->save();
+
+            $profileCv = new EmployerPaymentCv();
+            $profileCv->profile_cv_id = $id;
+            $profileCv->employer_id = $employer->id;
+            $profileCv->save();
             //lsgd
             $paymentHistory = new PaymentHistoryEmployer();
             $paymentHistory->user_id = Auth::guard('user')->user()->id;
@@ -203,8 +228,6 @@ class ManagerUploadCvController extends BaseController
             $paymentHistory->form = '';
             $paymentHistory->status = 1;
             $paymentHistory->save();
-
-
             return response()->json([
                 'message' => 'Mua cv thành công',
                 'status' => StatusCode::OK,
