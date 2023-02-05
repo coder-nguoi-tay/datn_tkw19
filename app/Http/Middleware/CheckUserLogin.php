@@ -20,6 +20,6 @@ class CheckUserLogin
         if (Auth::guard('user')->check()) {
             return $next($request);
         }
-        return redirect()->route('login.index');
+        return redirect(route('login.index', ['url_redirect' => url()->full()]));
     }
 }

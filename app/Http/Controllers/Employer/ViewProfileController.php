@@ -28,14 +28,13 @@ class ViewProfileController extends BaseController
             ->leftjoin('job', 'job.id', '=', 'save_cv.id_job')
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
-            ->select('job.id as id', 'job.title as title', 'company.id as idCompany', 'company.logo as logo', 'company.name as nameCompany', 'save_cv.created_at as created_at', 'save_cv.status as status')
+            ->Orderby('save_cv.created_at', 'DESC')
+            ->select('job.id as id', 'job.title as title', 'company.id as idCompany', 'company.logo as logo', 'company.name as nameCompany', 'save_cv.created_at as created_at', 'save_cv.status as status', 'save_cv.file_cv as file')
             ->get();
-        // dd($job);
         $breadcrumbs = [
             'Danh sách công việc đã nộp',
 
         ];
-
         return view('client.seeker.view-profile', [
             'title' => 'Danh sách công việc đã nộp',
             'breadcrumbs' => $breadcrumbs,

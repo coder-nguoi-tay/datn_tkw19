@@ -120,7 +120,7 @@ Route::middleware('employer')->name('employer.')->prefix('employer')->group(func
     Route::resource('profile', EmployerProfileController::class);
     Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');
     // feedback
-    Route::post('quan-ly-cv/feedback-cv/{id}',[FeedbackController::class,'store'])->name('feedback.cv');
+    Route::post('quan-ly-cv/feedback-cv/{id}', [FeedbackController::class, 'store'])->name('feedback.cv');
 });
 
 
@@ -160,6 +160,7 @@ Route::middleware('user')->group(function () {
 // login
 Route::resource('owner', ClientLoginController::class);
 Route::post('owner/update/register', [ClientLoginController::class, 'updateRegister'])->name('owner.update.register');
+Route::post('owner/login-modal', [ClientLoginController::class, 'loginModal'])->name('owner.loginModal');
 
 //client
 Route::resource('', ClientHomeController::class);

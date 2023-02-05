@@ -149,8 +149,9 @@
                                                 class="fa-solid fa-heart icon-save-cv"
                                                 id="{{ $job->id . ',' . $checklove }}"></i></a>
                                     @else
-                                        <a href="{{ route('login.index') }}" class="btn-border mr-15 mb-5 active">Ứng
-                                            tuyển</a>
+                                        <button type="button" class="btn-border mr-15 mb-5 active"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal">Ứng
+                                            tuyển</button>
                                     @endif
                                 </div>
                             </div>
@@ -462,8 +463,29 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Đăng nhập</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <modal-login
+                            :data="{{ json_encode([
+                                'urlStore' => route('owner.loginModal'),
+                                'message' => $message ?? '',
+                            ]) }}">
+                        </modal-login>
+                    </div>
+                </div>
+            </div>
+        </div>
         @include('client.layout.footer')
     </main>
+    <!-- Modal -->
     <script type="text/javascript">
         (function() {
             var c = document.body.className;

@@ -302,6 +302,8 @@ import showCvClient from "./components/client/seeker/create-cv.vue";
 app.component('show-cv-client', showCvClient);
 import formLogin from "./components/client/login/login.vue";
 app.component('form-login', formLogin);
+import ModalLogin from "./components/client/login/index.vue";
+app.component('modal-login', ModalLogin);
 import formRegister from "./components/client/register/index.vue";
 app.component('form-register', formRegister);
 

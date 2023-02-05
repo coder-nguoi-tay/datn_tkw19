@@ -25,10 +25,6 @@
                         </div><!-- end breadcrumb-content -->
                     </div><!-- end col-lg-12 -->
                 </div><!-- end row -->
-                {{-- <view-profile :data="{{ json_encode([
-                    'job' => $job,
-                ]) }}">
-                </view-profile> --}}
                 <div class="col-12 recuitment-inner">
                     <div class="card-create-employer">
                         <div class="row">
@@ -89,6 +85,14 @@
                                                                                     <span class="open-time text-gray">
                                                                                         <span
                                                                                             class="badge p-1 {{ $item->status == 0 ? 'bg-success text-white' : 'bg-secondary text-white' }}">{{ $item->status == 0 ? 'Đang xem' : 'Từ chối' }}</span>
+                                                                                    </span>
+                                                                                </p>
+                                                                                <p>
+                                                                                    <span class="open-time text-gray">
+                                                                                        <a href="{{ asset($item->file) }}"
+                                                                                            style="color: blue">Xem hồ sơ đã
+                                                                                            nộp
+                                                                                            vào</a>
                                                                                     </span>
                                                                                 </p>
                                                                             </div>
