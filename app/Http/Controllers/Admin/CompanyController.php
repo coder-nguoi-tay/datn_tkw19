@@ -31,7 +31,8 @@ class CompanyController extends Controller
         //     ->whereNotNull('accuracy.user_id')
         //     ->get();
         $company = Accuracy::leftjoin('company', 'company.id', 'accuracy.user_id')
-            ->select('company.*', 'accuracy.status as status', 'accuracy.id as idAccuracy')
+            ->select('company.*', 'accuracy.status as status', 'accuracy.id as idAccuracy', 'accuracy.images as imagesAccuracy')
+            ->orderBy('id', 'desc')
             ->get();
         return view('admin.company.index', [
             'company' => $company,

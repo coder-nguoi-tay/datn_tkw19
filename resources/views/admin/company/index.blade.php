@@ -75,15 +75,17 @@
                                             </td> --}}
 
                                             <td class="text-center">
+                                                <img src="{{asset($item->imagesAccuracy)}}" alt="" style="width: 150px; margin-right: 20px; max-hight: 200px;">
                                                 @if ($item->status == 0)
                                                     <btn-status-company
+                                                        style="border: 1px solid #b1b7c1;font-size: 12px;padding: 5px 10px;"
                                                         :data="{{ json_encode([
                                                             'idCompany' => $item->idAccuracy,
                                                             'urlGetData' => route('admin.company.dataxt', $item->idAccuracy),
                                                         ]) }}">
                                                     </btn-status-company>
                                                 @else
-                                                    <button class="badge bg-success text-center">Đã Xác Thức</button>
+                                                    <button class="badge bg-success text-center" style="border: 1px solid #b1b7c1;font-size: 12px;padding: 5px 10px;">Đã Xác Thức</button>
                                                 @endif
 
 

@@ -53,7 +53,7 @@
                             </label>
                             <div class="col-sm-9">
                               <Field
-                                class="form-select"
+                                class="form-select pl-40"
                                 rules="required"
                                 name="bank"
                                 as="select"
