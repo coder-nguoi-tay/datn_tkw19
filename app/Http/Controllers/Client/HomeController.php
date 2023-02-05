@@ -414,7 +414,6 @@ class HomeController extends BaseController
             } else {
                 $cv = $cvSave;
                 $cv->title = $request->title;
-                $cv->token = rand(00000, 99999);
                 $cv->user_id = Auth::guard('user')->user()->id;
                 $cv->status = 0;
                 if ($request->hasFile('file_cv')) {
