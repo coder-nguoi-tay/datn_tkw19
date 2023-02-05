@@ -137,6 +137,15 @@ class ManagerUploadCvController extends BaseController
         $profile = ProfileUserCv::where('profile_user_cv.id', $id)->with(['employerPayment' => function ($q) use ($employer) {
             $q->where('employer_id', $employer->id);
         }, 'user'])
+            ->with(['feedback' => function ($q) {
+                $q->where('feedback_id', 1);
+            }])
+            ->with(['feedback2' => function ($q) {
+                $q->where('feedback_id', 2);
+            }])
+            ->with(['feedback3' => function ($q) {
+                $q->where('feedback_id', 3);
+            }])
             ->first();
         // dd($profile);
         $accPayment = AccountPayment::where('user_id', Auth::guard('user')->user()->id)->first();
