@@ -51,4 +51,20 @@ class ProfileUserCv extends Model
     {
         return $this->hasOne(Jobseeker::class, 'user_role', 'user_id');
     }
+    public function employerPayment()
+    {
+        return $this->hasMany(EmployerPaymentCv::class, 'profile_cv_id', 'id');
+    }
+    public function feedback()
+    {
+        return $this->hasMany(FeedbackCv::class, 'profile_cv_id', 'id');
+    }
+    public function feedback2()
+    {
+        return $this->hasMany(FeedbackCv::class, 'profile_cv_id', 'id');
+    }
+    public function feedback3()
+    {
+        return $this->hasMany(FeedbackCv::class, 'profile_cv_id', 'id');
+    }
 }

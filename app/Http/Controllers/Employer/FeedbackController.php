@@ -5,48 +5,21 @@ namespace App\Http\Controllers\Employer;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Employer;
-use App\Models\EmployerPaymentCv;
-use App\Models\ProfileUserCv;
+use App\Models\FeedbackCv;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class BoughtCvController extends BaseController
+class FeedbackController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public ProfileUserCv $profileCv;
-    public function __construct(ProfileUserCv $profileCv)
+    public function index()
     {
-        $this->profileCv = $profileCv;
-    }
-    public function index(Request $request)
-    {
-        $breadcrumbs = [
-            'Hồ sơ đã mua'
-        ];
-        $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
-        // dd($employer);
-        $tatalecv = EmployerPaymentCv::join('profile_user_cv', 'profile_user_cv.id', '=', 'employer_payment_cv.profile_cv_id')
-            ->where('employer_payment_cv.employer_id', $employer->id)
-            ->where(function ($q) {
-                if (!empty($request['start_date'])) {
-                    $q->whereDate('created_at', '>=', $request['start_date']);
-                }
-                if (!empty($request['end_date'])) {
-                    $q->whereDate('created_at', '<=', $request['end_date']);
-                }
-            })
-            ->groupBy('profile_user_cv.id')
-            ->get();
-        return view('employer.boughtcv.index', [
-            'tatalecv' => $tatalecv,
-            'title' => 'Hồ sơ đã mua',
-            'breadcrumbs' => $breadcrumbs,
-            'request' => $request
-        ]);
+        //
     }
 
     /**
@@ -65,9 +38,23 @@ class BoughtCvController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
+        try {
+            $feedback = new FeedbackCv();
+            $feedback->comment = $request->comment;
+            $feedback->feedback_id = $request->feedback_id;
+            $feedback->profile_cv_id = $id;
+            $feedback->employer_id = $employer->id;
+            $feedback->save();
+            $this->setFlash(__('Cảm ơn bạn đã đánh giá hồ sơ của chúng tôi'));
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->setFlash(__('Đã có một lỗi không xác định xảy ra'), 'error');
+            return redirect()->back();
+        }
     }
 
     /**

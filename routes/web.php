@@ -26,6 +26,7 @@ use App\Http\Controllers\Seeker\ManageUploadController as SeekerManageUploadCont
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\SearchController;
 use App\Http\Controllers\Employer\BoughtCvController;
+use App\Http\Controllers\Employer\FeedbackController;
 use App\Http\Controllers\Employer\ManagerUploadCvController;
 use App\Http\Controllers\Employer\ProfileController as EmployerProfileController;
 use App\Http\Controllers\Employer\RegisterCompanyController;
@@ -118,6 +119,8 @@ Route::middleware('employer')->name('employer.')->prefix('employer')->group(func
     Route::get('business-license', [EmployerProfileController::class, 'businessLicense'])->name('employer.businessLicense');
     Route::resource('profile', EmployerProfileController::class);
     Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');
+    // feedback
+    Route::post('quan-ly-cv/feedback-cv/{id}',[FeedbackController::class,'store'])->name('feedback.cv');
 });
 
 
