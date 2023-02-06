@@ -24,7 +24,7 @@
                         @endif
                         <create-new
                             :data="{{ json_encode([
-                                'urlStore' => route('admin.new.store'),
+                                'urlStore' => route('admin1.new.store'),
                                 'majors'  =>$majors
                             ]) }}">
                         </create-new>

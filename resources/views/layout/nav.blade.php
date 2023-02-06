@@ -5,7 +5,7 @@
             </div>
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                    <a href="{{ route('admin.profile.show', Auth::guard('admin')->user()->id) }}"
+                    <a href="{{ route('admin1.profile.show', Auth::guard('admin')->user()->id) }}"
                         class="nav-link text-body font-weight-bold px-0" style="margin-left: 20px">
                         <i class="fa fa-user me-sm-1"></i>
                     </a>

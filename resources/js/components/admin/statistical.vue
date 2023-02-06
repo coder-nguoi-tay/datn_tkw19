@@ -55,7 +55,7 @@
                     </div>
                   </form>
                 </CCol>
-                Tổng doanh thu :{{ data.totalJob }}
+                Tổng tin tuyển dụng: {{ data.totalJob }}
                 <MainNewExample
                   :dataNew="this.totalNew"
                   style="height: 300px; max-height: 300px; margin-top: 40px"

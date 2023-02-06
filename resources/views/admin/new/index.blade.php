@@ -16,7 +16,7 @@
 
                         <div class="col-md-12">
                             <div class="col-6 ps-3">
-                                <a href="{{ route('admin.new.create') }}" class="btn btn-primary">Thêm tin tức mới</a>
+                                <a href="{{ route('admin1.new.create') }}" class="btn btn-primary">Thêm tin tức mới</a>
                             </div>
                             <div class="col-6"
                                 style="float: right !important; width: 400px;height: 40px; margin-right: 20px; margin-top: -80px">
@@ -112,11 +112,11 @@
                                                     <div style="margin-right: 10%">
                                                         <btn-delete-confirm
                                                             :message-confirm="{{ json_encode('Bạn có chắc muốn xóa không ?') }}"
-                                                            :delete-action="{{ json_encode(route('admin.new.destroy', $item->id)) }}">
+                                                            :delete-action="{{ json_encode(route('admin1.new.destroy', $item->id)) }}">
                                                         </btn-delete-confirm>
                                                     </div>
                                                     <div style="margin-bottom: 20px; margin-left: 20%" class="">
-                                                        <a href="{{ route('admin.new.edit', $item->id) }}"
+                                                        <a href="{{ route('admin1.new.edit', $item->id) }}"
                                                             class="dropdown-item"><svg xmlns="http://www.w3.org/2000/svg"
                                                                 width="25" height="25" fill="currentColor"
                                                                 class="bi bi-pencil-square" viewBox="0 0 16 16">

@@ -64,7 +64,7 @@
                             <i class="material-icons opacity-10">weekend</i>
                         </div>
                         <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">bài viết</p>
+                            <p class="text-sm mb-0 text-capitalize">Tin tuyển dụng</p>
                             <h4 class="mb-0">{{ isset($total_job) ? number_format($total_job) : '0' }}</h4>
                         </div>
                     </div>

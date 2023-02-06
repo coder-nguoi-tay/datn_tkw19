@@ -23,8 +23,8 @@
                         @endif
                         <create-admin
                             :data="{{ json_encode([
-                                'urlStore' => route('admin.admin.store'),
-                                'urlBack' => route('admin.admin.index'),
+                                'urlStore' => route('admin1.admin.store'),
+                                'urlBack' => route('admin1.admin.index'),
                             ]) }}">
                         </create-admin>
                     </div>

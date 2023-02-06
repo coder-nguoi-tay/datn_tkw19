@@ -23,7 +23,6 @@ class ViewProfileController extends BaseController
     }
     public function index(Request $request)
     {
-
         $job = SaveCv::where('save_cv.user_id', Auth::guard('user')->user()->id)
             ->leftjoin('job', 'job.id', '=', 'save_cv.id_job')
             ->join('employer', 'employer.id', '=', 'job.employer_id')

@@ -19,7 +19,7 @@ class LoginController extends BaseController
     public function index()
     {
         if (Auth::guard('admin')->check()) {
-            return redirect(route('admin.admin.index'));
+            return redirect(route('admin1.index'));
         }
         return view('auth.login', [
             'title' => 'Đăng nhập'
@@ -52,7 +52,7 @@ class LoginController extends BaseController
         if ($request->save == 'on') {
             if (Auth::guard('admin')->attempt($credentials, $request->save)) {
                 $data->update(['status' => 1]);
-                return redirect($request->url_redirect ? $request->url_redirect : route('admin.admin.index'));
+                return redirect($request->url_redirect ? $request->url_redirect : route('admin.index'));
             }
             return view('auth.login', [
                 'message' => 'Tài khoản và mật khẩu không đúng'
@@ -60,7 +60,7 @@ class LoginController extends BaseController
         }
         if (Auth::guard('admin')->attempt($credentials)) {
             $data->update(['status' => 1]);
-            return redirect($request->url_redirect ? $request->url_redirect : route('admin.admin.index'));
+            return redirect($request->url_redirect ? $request->url_redirect : route('admin.index'));
         }
         return view('auth.login', [
             'message' => 'Tài khoản và mật khẩu không đúng'

@@ -46,7 +46,7 @@ use App\Http\Controllers\Employer\ViewProfileController;
 */
 // create route
 
-Route::middleware('admin')->prefix('dashboard')->name('admin.')->group(function () {
+Route::middleware('admin')->prefix('dashboard')->name('admin1.')->group(function () {
     Route::resource('', HomeController::class);
     Route::resource('package', PackageController::class);
     Route::resource('jobAttractive', JobAttractiveController::class);
@@ -57,6 +57,7 @@ Route::middleware('admin')->prefix('dashboard')->name('admin.')->group(function 
     Route::resource('company', CompanyController::class);
     Route::get('company/data-xt/{id}', [CompanyController::class, 'dataXt'])->name('company.dataxt');
     Route::post('company/change-status', [CompanyController::class, 'changeStatus'])->name('company.changeStatus');
+    Route::post('company/end-change-status', [CompanyController::class, 'endShangeStatus'])->name('company.endShangeStatus');
 });
 Route::resource('admin', LoginController::class);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');

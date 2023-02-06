@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Accuracy;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 
 use function GuzzleHttp\Promise\all;
 
-class CompanyController extends Controller
+class CompanyController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -23,18 +26,25 @@ class CompanyController extends Controller
         $this->company = $company;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        // $company = Company::select('company.*', 'accuracy.id as idAccuracy', 'accuracy.status as status')
-        //     ->leftjoin('employer', 'employer.id_company', 'company.id')
-        //     ->leftjoin('accuracy', 'accuracy.user_id', 'employer.user_id')
-        //     ->whereNotNull('accuracy.user_id')
-        //     ->get();
+        $newSizeLimit = $this->newListLimit($request);
         $company = Accuracy::leftjoin('company', 'company.id', 'accuracy.user_id')
-            ->select('company.*', 'accuracy.status as status', 'accuracy.id as idAccuracy')
-            ->get();
+            ->select('company.*', 'accuracy.status as status', 'accuracy.id as idAccuracy', 'accuracy.images as imagesAccuracy')
+            ->where(function ($q) use ($request) {
+                if (!empty($request['free_word'])) {
+                    $q->where($this->escapeLikeSentence('company.name', $request['free_word']));
+                }
+                if ($request['status'] != null) {
+                    $q->where('accuracy.status', $request['status']);
+                }
+            })
+            ->orderBy('accuracy.status', 'ASC');
+        $companys = $company->paginate($newSizeLimit);
+
         return view('admin.company.index', [
-            'company' => $company,
+            'company' => $companys,
+            'request' => $request,
             'title' => 'Danh sách công ty'
         ]);
     }
@@ -57,7 +67,20 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            foreach ($request->company as $item) {
+                $company = Company::where('id', $item)->first();
+                $acc = Accuracy::where('user_id', $company->id)->first();
+                $acc->status = 1;
+                $acc->save();
+            }
+            $this->setFlash(__('Xác thực thành công'));
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->setFlash(__('Đã có một lỗi không xác định xảy ra'), 'error');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -115,6 +138,15 @@ class CompanyController extends Controller
     {
         $acc = Accuracy::where('id', $request['id'])->first();
         $acc->status = 1;
+        $acc->save();
+        return response()->json([
+            'message' => 'Xác nhận thành công'
+        ]);
+    }
+    public function endShangeStatus(Request $request)
+    {
+        $acc = Accuracy::where('id', $request['id'])->first();
+        $acc->status = 0;
         $acc->save();
         return response()->json([
             'message' => 'Xác nhận thành công'

@@ -39,7 +39,7 @@ $(document).ready(function () {
         const paginatedList = document.getElementById("paginated-list");
         const listItems = paginatedList.querySelectorAll(".render-job-search");
 
-        const paginationLimit = 8;
+        const paginationLimit = 12;
         const pageCount = Math.ceil(listItems.length / paginationLimit);
         let currentPage = 1;
 

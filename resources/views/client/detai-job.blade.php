@@ -131,8 +131,7 @@
                                     <h3>{{ $job->title }}</h3>
                                     <div
                                         class="single_job_listing d-flex flex-wrap align-items-center gap-3 font-xs color-text-mutted mt-0 mb-15">
-                                        <span class="fi-icon full-time"><i
-                                                class="fi-rr-briefcase"></i>{{ $job->getTime_work->name }}</span>
+                                        <span class="fi-icon full-time" style="font-size: 14px; font-weight: 600;">Hạn nộp: {{ $job->end_job_time }}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-12 text-lg-end">
@@ -236,7 +235,7 @@
                                                             alt="Deadline">
                                                     </div>
                                                     <div class="sidebar-text-info ml-10">
-                                                        <span class="text-description mb-10">Deadline</span>
+                                                        <span class="text-description mb-10">Hạn nộp</span>
                                                         <strong
                                                             class="small-heading">{{ $job->end_job_time }}</strong>
                                                     </div>
@@ -303,7 +302,7 @@
                                                     </figure>
                                                     <div class="sidebar-info">
                                                         <a href="{{ route('detail.company', $job->idCompany) }}"
-                                                            class="sidebar-company">
+                                                            class="sidebar-company" style="line-height: 20px;font-size: 14px;">
                                                             {{ $job->nameCompany }} </a>
                                                         {{-- <span
                                                             class="card-location">{{ $jobCompany[0]->address }}</span> --}}

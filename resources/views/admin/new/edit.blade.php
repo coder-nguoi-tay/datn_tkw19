@@ -24,8 +24,8 @@
                         <edit
                             :data="{{ json_encode([
                                 'new' => $new,
-                                'urlUpdate' => route('admin.new.update', $new->id),
-                                'urlBack' => route('admin.new.index'),
+                                'urlUpdate' => route('admin1.new.update', $new->id),
+                                'urlBack' => route('admin1.new.index'),
                                 'majors'  =>$majors
                             ]) }}">
                         </edit>
