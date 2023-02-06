@@ -85,15 +85,11 @@
                                                 </div>
 
                                             </div>
-
-
                                             <div class="row mt-25">
 
                                             </div>
                                             <br>
                                             <div class="content-single">
-
-
                                                 <h4>Mô tả gói cước</h4>
                                                 <ul>
                                                     <li style="font-style: 20px">{{ $package->describe }}</li>

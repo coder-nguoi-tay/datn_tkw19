@@ -67,12 +67,6 @@
                                                 <span
                                                     class="text-secondary text-xs font-weight-bold">{{ $item->created_at->format('Y-m-d') }}</span>
                                             </td>
-                                            <td class="align-middle">
-                                                <btn-delete-confirm
-                                                    :message-confirm="{{ json_encode('Bạn có chắc muốn xóa không ?') }}"
-                                                    :delete-action="{{ json_encode(route('admin.Users.destroy', $item->id)) }}">
-                                                </btn-delete-confirm>
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

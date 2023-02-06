@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <br>
-                        <form action="{{ route('admin.company.store') }}" method="post">
+                        <form action="{{ route('admin1.company.store') }}" method="post">
                             @csrf
                             <button name="start_status" value="1"
                                 class="btn btn-info font-weight-medium color-text-2 mr-1 text-white"
@@ -91,7 +91,7 @@
                                                             :data="{{ json_encode([
                                                                 'idCompany' => $item->idAccuracy,
                                                                 'check' => 1,
-                                                                'urlGetData' => route('admin.company.dataxt', $item->idAccuracy),
+                                                                'urlGetData' => route('admin1.company.dataxt', $item->idAccuracy),
                                                             ]) }}">
                                                         </btn-status-company>
                                                     @else
@@ -100,7 +100,7 @@
                                                             :data="{{ json_encode([
                                                                 'idCompany' => $item->idAccuracy,
                                                                 'check' => 2,
-                                                                'urlGetData' => route('admin.company.dataxt', $item->idAccuracy),
+                                                                'urlGetData' => route('admin1.company.dataxt', $item->idAccuracy),
                                                             ]) }}">
                                                         </btn-status-company>
                                                     @endif

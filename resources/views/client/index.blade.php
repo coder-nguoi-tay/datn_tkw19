@@ -96,7 +96,6 @@
                     </div>
                 </div>
             </section>
-            {{-- {{ dd($majors) }} --}}
             <section
                 class="elementor-section elementor-top-section elementor-element elementor-element-d98c6ff elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                 data-id="d98c6ff" data-element_type="section">

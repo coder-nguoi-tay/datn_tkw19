@@ -25,8 +25,8 @@
                        <create-job-attractive
                        :data="{{ json_encode([
                         'leverpackage' =>$leverpackage,
-                        'urlStore' => route('admin.jobAttractive.store'),
-                        'urlBack' => route('admin.jobAttractive.index'),
+                        'urlStore' => route('admin1.jobAttractive.store'),
+                        'urlBack' => route('admin1.jobAttractive.index'),
                     ]) }}"></create-job-attractive>
                     </div>
                 </div>

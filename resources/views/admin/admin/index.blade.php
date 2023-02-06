@@ -21,7 +21,7 @@
                             <br>
                             <div class="col-md-12">
                                 <div class="ps-3">
-                                    <a href="{{ route('admin.admin.create') }}" class="btn btn-outline-secondary">Thêm Người
+                                    <a href="{{ route('admin1.admin.create') }}" class="btn btn-outline-secondary">Thêm Người
                                         Quản
                                         Trị</a>
                                 </div>

@@ -41,7 +41,7 @@
       </CCol>
     </CRow>
     <!-- đasad -->
-    <WidgetsStatsD :dataTotal="data.totalMonny" :dataYear="data" />
+    <!-- <WidgetsStatsD :dataTotal="data.totalMonny" :dataYear="data" /> -->
   </div>
 </template>
 

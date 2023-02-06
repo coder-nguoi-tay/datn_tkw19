@@ -46,7 +46,7 @@ use App\Http\Controllers\Employer\ViewProfileController;
 */
 // create route
 
-Route::middleware('admin')->prefix('dashboard')->name('admin.')->group(function () {
+Route::middleware('admin')->prefix('dashboard')->name('admin1.')->group(function () {
     Route::resource('', HomeController::class);
     Route::resource('package', PackageController::class);
     Route::resource('jobAttractive', JobAttractiveController::class);
