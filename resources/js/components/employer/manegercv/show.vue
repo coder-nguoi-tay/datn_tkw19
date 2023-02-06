@@ -85,6 +85,7 @@
                 font-size: 18px;
                 font-weight: 500;
                 text-transform: uppercase;
+                margin: 0;
               "
             >
               MỤC TIÊU NGHỀ NGHIỆP
@@ -106,7 +107,7 @@
               v-for="(item, index) in JSON.parse(this.data.cv.project)"
             >
               <div class="title_cv">
-                <i class="fab fa-creative-commons-nd"></i>
+                <i class="fab fa-creative-commons-nd mt-10"></i>
                 <h4 v-html="item.name"></h4>
               </div>
               <div class="mt_cv">
