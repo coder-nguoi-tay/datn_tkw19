@@ -537,13 +537,13 @@ export default {
 }
 
 .btn-secondary {
-  color: #212529;
+  // color: #212529;
   background-color: #f3f4f5;
   border-color: #f3f4f5;
 }
 
 .box-up-cv {
-  background: rgba(229, 247, 237, 0.1);
+  // background: rgba(229, 247, 237, 0.1);
   // border: 2px dashed #00b14f;
   border-radius: 8px;
   cursor: pointer;

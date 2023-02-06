@@ -35,7 +35,7 @@
                                 v-model="model.title"
                                 rules="required|max:255"
                                 class="form-control"
-                                placeholder="Enter job title"
+                                placeholder="Tiêu đề"
                               />
                               <ErrorMessage class="error" name="title" />
                             </div>
@@ -74,7 +74,7 @@
                                 as="select"
                                 v-model="model.sex"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn giới tính
@@ -99,7 +99,7 @@
                                 as="select"
                                 v-model="model.location_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Địa chỉ
@@ -178,7 +178,7 @@
                                 as="select"
                                 v-model="model.majors_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn ngành nghề
@@ -207,7 +207,7 @@
                                 as="select"
                                 v-model="model.profession_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn vị trí
@@ -248,7 +248,7 @@
                                 as="select"
                                 v-model="model.level_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Trình độ học vẫn
@@ -277,7 +277,7 @@
                                 as="select"
                                 v-model="model.experience_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Kinh nghiệm
@@ -309,7 +309,7 @@
                                 as="select"
                                 v-model="model.wage_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Mức lương
@@ -338,7 +338,7 @@
                                 as="select"
                                 v-model="model.time_work_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn thời gian làm việc
@@ -387,11 +387,7 @@
                               >Quyền lơi công việc</label
                             >
                             <div class="form-group">
-                              <Editor
-                                class="ckedit"
-                                name="benefit"
-                                v-model="model.benefit"
-                              />
+                              <Editor name="benefit" v-model="model.benefit" />
                             </div>
                           </div>
                         </div>
@@ -402,7 +398,7 @@
                               class="form-group user-chosen-select-container"
                             >
                               <Field
-                                class="form-control user-chosen-select"
+                                class="form-control"
                                 v-model="value"
                                 name="skill_id"
                                 rules="required"
@@ -443,7 +439,7 @@
                                 as="select"
                                 v-model="model.wk_form_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Hình thức làm việc
@@ -491,9 +487,6 @@
                 </div>
                 <!-- end billing-content -->
               </div>
-              <!-- end billing-form-item -->
-
-              <!-- end billing-form-item -->
             </div>
             <!-- end col-lg-12 -->
           </div>
@@ -546,6 +539,7 @@ export default {
     }
   },
   created() {
+    console.log(this.status_profile)
     let array = []
     this.data.job.getskill.map((e) => {
       this.value.push({
@@ -619,6 +613,9 @@ export default {
             required: 'yêu cầu công việc không được để trống',
             max: ' không được vượt qua 255 ký tự'
           },
+          quatity: {
+            required: 'Số lượng không được để trống'
+          },
           skill_id: {
             required: 'kỹ năng không được để trống'
           }
@@ -656,13 +653,6 @@ export default {
 </script>
 
 <style>
-.form-text {
-  height: 42px;
-  padding: 10px 15px;
-  font-size: 15px;
-  border-radius: 1px;
-  border-color: #e5e5e5;
-}
 .ckedit {
   margin-top: 2%;
 }
