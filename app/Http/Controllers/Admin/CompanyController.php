@@ -69,7 +69,7 @@ class CompanyController extends BaseController
     {
         try {
             foreach ($request->company as $item) {
-                $company = Accuracy::where('id', $item)->first();
+                $company = Company::where('id', $item)->first();
                 $acc = Accuracy::where('user_id', $company->id)->first();
                 $acc->status = 1;
                 $acc->save();
@@ -138,6 +138,15 @@ class CompanyController extends BaseController
     {
         $acc = Accuracy::where('id', $request['id'])->first();
         $acc->status = 1;
+        $acc->save();
+        return response()->json([
+            'message' => 'Xác nhận thành công'
+        ]);
+    }
+    public function endShangeStatus(Request $request)
+    {
+        $acc = Accuracy::where('id', $request['id'])->first();
+        $acc->status = 0;
         $acc->save();
         return response()->json([
             'message' => 'Xác nhận thành công'

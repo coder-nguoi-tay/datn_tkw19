@@ -41,12 +41,12 @@
                         <br>
                         <form action="{{ route('admin.company.store') }}" method="post">
                             @csrf
-                            <button class="btn btn-info font-weight-medium color-text-2 mr-1 text-white"
+                            <button name="start_status" value="1"
+                                class="btn btn-info font-weight-medium color-text-2 mr-1 text-white"
                                 style="margin-left: 30px" id="btn-delete-job"
                                 onclick="return confirm('bạn có chắc chắn muốn xác thực công ty?')">Xác thực tất cả</button>
                             <hr>
                             <div class="table-responsive p-0">
-
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
@@ -90,13 +90,19 @@
                                                             style="border: 1px solid #b1b7c1;font-size: 12px;padding: 5px 10px;"
                                                             :data="{{ json_encode([
                                                                 'idCompany' => $item->idAccuracy,
+                                                                'check' => 1,
                                                                 'urlGetData' => route('admin.company.dataxt', $item->idAccuracy),
                                                             ]) }}">
                                                         </btn-status-company>
                                                     @else
-                                                        <button class="badge bg-success text-center"
-                                                            style="border: 1px solid #b1b7c1;font-size: 12px;padding: 5px 10px;">Đã
-                                                            Xác Thức</button>
+                                                        <btn-status-company
+                                                            style="border: 1px solid #b1b7c1;font-size: 12px;padding: 5px 10px;"
+                                                            :data="{{ json_encode([
+                                                                'idCompany' => $item->idAccuracy,
+                                                                'check' => 2,
+                                                                'urlGetData' => route('admin.company.dataxt', $item->idAccuracy),
+                                                            ]) }}">
+                                                        </btn-status-company>
                                                     @endif
                                                 </td>
                                             </tr>

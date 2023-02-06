@@ -57,6 +57,7 @@ Route::middleware('admin')->prefix('dashboard')->name('admin.')->group(function 
     Route::resource('company', CompanyController::class);
     Route::get('company/data-xt/{id}', [CompanyController::class, 'dataXt'])->name('company.dataxt');
     Route::post('company/change-status', [CompanyController::class, 'changeStatus'])->name('company.changeStatus');
+    Route::post('company/end-change-status', [CompanyController::class, 'endShangeStatus'])->name('company.endShangeStatus');
 });
 Route::resource('admin', LoginController::class);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
