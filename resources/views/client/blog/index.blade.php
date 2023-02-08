@@ -65,7 +65,7 @@
                                     </div>
                                 </div>
                                 <img style="width:403px !important; height:257px !important; object-fit: cover; "
-                                    src="{{ $blog->new_image }}" class=" img-fluid wp-post-image" alt=""
+                                    src="{{ asset($blog->new_image) }}" class=" img-fluid wp-post-image" alt=""
                                     decoding="async" loading="lazy">
                             </div>
                         </div>

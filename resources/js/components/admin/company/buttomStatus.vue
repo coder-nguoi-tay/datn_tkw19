@@ -39,6 +39,9 @@
         <div class="modal-body">
           <img :src="'/' + fileXt" alt="" style="width: 300px; height: 300px" />
         </div>
+        <div class="modal-body">
+          <a :href="'/' + fileXt" target="_blank">Click vào để xem chi tiết </a>
+        </div>
         <div class="modal-footer">
           <button
             type="button"

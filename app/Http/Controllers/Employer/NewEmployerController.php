@@ -427,7 +427,9 @@ class NewEmployerController extends BaseController
             if (!empty($request['free_word'])) {
                 $q->orWhere($this->escapeLikeSentence('job.title', $request['free_word']));
             }
-        })->with(['getLevel', 'getExperience', 'getWage', 'getprofession', 'getlocation', 'getMajors', 'getwk_form', 'getTime_work', 'getskill', 'AllCv'])
+        })->with(['AllCv' => function ($q) {
+            $q->where('status', 0);
+        }])
             ->join('employer', 'employer.id', '=', 'job.employer_id')
             ->join('company', 'company.id', '=', 'employer.id_company')
             ->select('job.*', 'company.logo as logo')

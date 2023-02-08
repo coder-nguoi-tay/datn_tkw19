@@ -78,10 +78,10 @@ class NewController extends BaseController
         $new->save();
         if ($new) {
             $this->setFlash(__('Thêm tin tức thành công'));
-            return redirect()->route('admin.new.index');
+            return redirect()->route('admin1.new.index');
         }
         $this->setFlash(__('Thêm tin tức thất bại'));
-        return redirect()->route('admin.new.index');
+        return redirect()->route('admin1.new.index');
     }
 
     /**
@@ -130,7 +130,7 @@ class NewController extends BaseController
         }
         $new->save();
         $this->setFlash(__('Sửa tin tức thành công'));
-        return redirect(route('admin.new.index'));
+        return redirect(route('admin1.new.index'));
     }
 
     /**
