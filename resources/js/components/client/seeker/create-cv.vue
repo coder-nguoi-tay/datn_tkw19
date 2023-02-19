@@ -265,7 +265,7 @@
                 <div class="row" style="margin-bottom: 30px">
                   <div class="col-md-12 col-sm-12 col-xs-12 p-2">
                     <div
-                      v-for="(item1, index) in experience_cv_info"
+                      v-for="(item1, index1) in experience_cv_info"
                       class="wrapper-item"
                     >
                       <div class="row">
@@ -274,27 +274,19 @@
                             <Field
                               v-model="item1.project"
                               rules="required"
-                              :name="'project[ ' + index + ' ]'"
+                              :name="'project[ ' + index1 + ' ]'"
                               :disabled="isReadOnly"
                               type="text"
                               class="form-control custom-input-cv"
                               id="exampleFormControlInput1"
                               placeholder="Vị trí"
                             />
-                            <ErrorMessage
-                              class="error"
-                              :name="'project[' + index + ']'"
-                            />
                             <Editor
-                              :name="'project_detail[ ' + index + ' ]'"
+                              :name="'project_detail[ ' + index1 + ' ]'"
                               v-model="item1.project_detail"
                               class="form-control mt-5"
                               rules="required|max:255"
                               placeholder="Mô tả"
-                            />
-                            <ErrorMessage
-                              class="error"
-                              :name="'project_detail[' + index + ']'"
                             />
                           </div>
                         </div>
@@ -304,7 +296,7 @@
                           ></span>
                           <span
                             v-if="experience_cv_info.length > 1"
-                            @click.prevent="deleteItemexperience(index)"
+                            @click.prevent="deleteItemexperience(index1)"
                             style="margin-left: 5px"
                             ><i class="fas fa-trash-alt"></i
                           ></span>
@@ -468,7 +460,6 @@ export default {
       this.numberFormExperience += 1
     },
     deleteItemexperience(index) {
-      console.log(index)
       this.experience_cv_info.splice(index, 1)
     }
   }

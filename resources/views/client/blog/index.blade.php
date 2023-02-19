@@ -65,7 +65,7 @@
                                     </div>
                                 </div>
                                 <img style="width:403px !important; height:257px !important; object-fit: cover; "
-                                    src="{{ $blog->new_image }}" class=" img-fluid wp-post-image" alt=""
+                                    src="{{ asset($blog->new_image) }}" class=" img-fluid wp-post-image" alt=""
                                     decoding="async" loading="lazy">
                             </div>
                         </div>
@@ -139,26 +139,20 @@
                                                             </div>
 
                                                         </div>
-                                                        <div id="mc-response" class="mt-15"></div>
                                                     </div>
-
-                                                    <div class="col-xl-3 col-12 text-center d-none d-xl-block">
-                                                        <img src="../wp-content/uploads/2022/12/newsletter-right.png"
-                                                            alt="Newsletter">
-                                                    </div>
-
+                                                </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <br>
+                                            <br>
+                                            <span class="page-item text-center pagination-container">
+                                                <div id="pagination-numbers">
                                                 </div>
                                                 <!--row-->
                                             </div>
-                                        @endforeach
                                     </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            </div>
+                                    </section>
     </main>
 @endsection

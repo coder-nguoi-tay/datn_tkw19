@@ -60,10 +60,10 @@ class PackageController extends BaseController
         $package = $this->package->create($request->all())->save();
         if ($package) {
             $this->setFlash(__('Thêm gói thành công'));
-            return redirect()->route('admin.package.index');
+            return redirect()->route('admin1.package.index');
         }
         $this->setFlash(__('Thêm gói thất bại'));
-        return redirect()->route('admin.package.index');
+        return redirect()->route('admin1.package.index');
     }
 
     /**
@@ -103,7 +103,7 @@ class PackageController extends BaseController
     {
         $this->package->find($id)->update($request->all()); 
         $this->setFlash(__('Sửa gói cước thành công'));
-        return redirect(route('admin.package.index'));
+        return redirect(route('admin1.package.index'));
     }
 
     /**
