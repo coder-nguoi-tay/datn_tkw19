@@ -12,7 +12,9 @@ use App\Http\Controllers\Employer\ProfileController;
 use App\Http\Controllers\Admin\ResetPasswordController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\DetailCompanyController;
+use App\Http\Controllers\Client\FagsController;
 use App\Http\Controllers\Client\HomeController as ClientHomeController;
+use App\Http\Controllers\Client\JobSuggestController;
 use App\Http\Controllers\Client\LoginController as ClientLoginController;
 use App\Http\Controllers\Client\NewsController;
 use App\Http\Controllers\Employer\HomeEmployerController;
@@ -24,12 +26,12 @@ use App\Http\Controllers\Seeker\ManageUploadController as SeekerManageUploadCont
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\SearchController;
 use App\Http\Controllers\Employer\BoughtCvController;
+use App\Http\Controllers\Employer\FeedbackController;
 use App\Http\Controllers\Employer\ManagerUploadCvController;
 use App\Http\Controllers\Employer\ProfileController as EmployerProfileController;
 use App\Http\Controllers\Employer\RegisterCompanyController;
 use App\Http\Controllers\Employer\SearchCvController;
 use App\Http\Controllers\Employer\ViewProfileController;
-use App\Http\Controllers\TestController;
 
 
 /*
@@ -44,7 +46,7 @@ use App\Http\Controllers\TestController;
 */
 // create route
 
-Route::middleware('admin')->prefix('dashboard')->name('admin.')->group(function () {
+Route::middleware('admin')->prefix('dashboard')->name('admin1.')->group(function () {
     Route::resource('', HomeController::class);
     Route::resource('package', PackageController::class);
     Route::resource('jobAttractive', JobAttractiveController::class);
@@ -55,6 +57,7 @@ Route::middleware('admin')->prefix('dashboard')->name('admin.')->group(function 
     Route::resource('company', CompanyController::class);
     Route::get('company/data-xt/{id}', [CompanyController::class, 'dataXt'])->name('company.dataxt');
     Route::post('company/change-status', [CompanyController::class, 'changeStatus'])->name('company.changeStatus');
+    Route::post('company/end-change-status', [CompanyController::class, 'endShangeStatus'])->name('company.endShangeStatus');
 });
 Route::resource('admin', LoginController::class);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
@@ -62,7 +65,7 @@ Route::resource('resset_pass', ResetPasswordController::class);
 Route::resource('forgotPasswordSuccess', forgotPasswordSuccessController::class);
 
 //// employer
-Route::middleware('user')->name('employer.')->prefix('employer')->group(function () {
+Route::middleware('employer')->name('employer.')->prefix('employer')->group(function () {
     // Route::resource('', HomeEmployerController::class);
     Route::get('logout', [HomeEmployerController::class, 'logout'])->name('logout');
     Route::get('dashboard', [HomeEmployerController::class, 'index'])->name('index');
@@ -76,9 +79,14 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::post('new/update/{id}', [NewEmployerController::class, 'update'])->name('new.update');
     Route::post('new/change-status/{id}', [NewEmployerController::class, 'changeStus'])->name('new.changeStus');
     Route::get('new/show-all-cv/{id}', [NewEmployerController::class, 'detailNew'])->name('new.showdetai');
+    Route::get('new/top-new', [NewEmployerController::class, 'topNew'])->name('new.topNew');
+    Route::post('new/top-new', [NewEmployerController::class, 'upTopNew'])->name('new.uopTopNew');
+    Route::post('new/change-status-new-top/{id}', [NewEmployerController::class, 'changeStatusTop'])->name('new.changeStatusTop');
+    Route::post('new/delete-all-job', [NewEmployerController::class, 'deleteAllJob'])->name('new.deleteAllJob');
+
     //
     Route::resource('package', EmployerPackageController::class);
-    Route::post('package/{id}', [EmployerPackageController::class, 'show'])->name('package.show');
+    Route::get('package/{id}', [EmployerPackageController::class, 'show'])->name('package.show');
     Route::post('package/update-time/{id}', [EmployerPackageController::class, 'updateTimePayment'])->name('package.updateTimePayment');
     Route::post('package/payment', [EmployerPackageController::class, 'Payment'])->name('package.payment');
     Route::get('package/payment/return', [EmployerPackageController::class, 'vnpayReturn'])->name('package.payment.return');
@@ -88,6 +96,7 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
 
     Route::resource('result', ResultController::class);
     Route::resource('quan-ly-cv', ManagerUploadCvController::class);
+    Route::post('quan-ly-cv/change-status-cv/{id}', [ManagerUploadCvController::class, 'changeStatusCv'])->name('quan-ly-cv.changeStatus.cv');
     Route::resource('tim-kiem-cv', SearchCvController::class);
     Route::resource('cv-da-mua', BoughtCvController::class);
 
@@ -111,6 +120,8 @@ Route::middleware('user')->name('employer.')->prefix('employer')->group(function
     Route::get('business-license', [EmployerProfileController::class, 'businessLicense'])->name('employer.businessLicense');
     Route::resource('profile', EmployerProfileController::class);
     Route::get('new/index', [NewEmployerController::class, 'index'])->name('new.index');
+    // feedback
+    Route::post('quan-ly-cv/feedback-cv/{id}', [FeedbackController::class, 'store'])->name('feedback.cv');
 });
 
 
@@ -119,9 +130,16 @@ Route::post('register/create', [HomeEmployerController::class, 'store'])->name('
 // login 
 Route::resource('login', ClientLoginController::class);
 Route::get('register-client', [ClientLoginController::class, 'registerClient'])->name('register');
+Route::get('quen-mat-khau', [ClientLoginController::class, 'FogotPass'])->name('FogotPass');
+Route::post('quen-mat-khau', [ClientLoginController::class, 'FogotPassSuccsess'])->name('FogotPassSuccsess');
+Route::get('doi-mat-khau/{token}', [ClientLoginController::class, 'changePassword'])->name('changePassword');
+Route::post('doi-mat-khau/{token}', [ClientLoginController::class, 'changePasswordSuccsess'])->name('changePasswordSuccsess');
+Route::get('kich-hoat-tai-khoan', [ClientLoginController::class, 'activePass'])->name('activePass');
 // seeker
 Route::middleware('user')->group(function () {
     Route::resource('profile', SeekerHomeController::class);
+    Route::post('profile/update-status-profile', [SeekerHomeController::class, 'updateStatusProfile'])->name('profile.updateStatusProfile');
+    Route::resource('goi-y-viec-lam', JobSuggestController::class);
     Route::post('profile/update-profile', [SeekerHomeController::class, 'updatePrifileUser'])->name('profile.updateProfile');
     Route::post('profile/update-title-cv/{id}', [SeekerHomeController::class, 'updateTitleCv']);
     Route::get('profile/delete-cv/{id}', [SeekerHomeController::class, 'deleteCv']);
@@ -143,9 +161,11 @@ Route::middleware('user')->group(function () {
 // login
 Route::resource('owner', ClientLoginController::class);
 Route::post('owner/update/register', [ClientLoginController::class, 'updateRegister'])->name('owner.update.register');
+Route::post('owner/login-modal', [ClientLoginController::class, 'loginModal'])->name('owner.loginModal');
 
 //client
 Route::resource('', ClientHomeController::class);
+Route::resource('faqs', FagsController::class);
 Route::post('favourite/{id}', [SeekerHomeController::class, 'userFavouriteId']); // api
 Route::get('favourite-love/{id}', [SeekerHomeController::class, 'getDatalove']); // api
 Route::get('home/detail/{id}', [ClientHomeController::class, 'showDetail'])->name('home.detail.show');
@@ -153,11 +173,17 @@ Route::post('home/detail/upcv', [ClientHomeController::class, 'upCv'])->name('ho
 Route::get('home/serach/location/{title}/{id}', [ClientHomeController::class, 'searchLocation'])->name('home.search.location');
 Route::get('home/serach/majors/{title}/{id}', [ClientHomeController::class, 'searchMajors'])->name('home.search.majors');
 Route::get('tim-viec-lam', [SearchController::class, 'create'])->name('home.search');
+Route::get('tim-viec-lam-tot-nhat', [SearchController::class, 'jobGood'])->name('home.search.jobGood');
+Route::get('tat-ca-viec-lam', [SearchController::class, 'allJob'])->name('home.search.allJob');
 //trang giới thiệu các công ty
 Route::get(
     'detail-company/{id}',
     [DetailCompanyController::class, 'detailCompany']
 )->name('detail.company');
+Route::get(
+    'Cong-Ty',
+    [DetailCompanyController::class, 'index']
+)->name('CongTy');
 
 
 Route::get('blog', [NewsController::class, 'index'])->name('blog');

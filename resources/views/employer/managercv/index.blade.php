@@ -52,10 +52,6 @@
                                             <p class="font-size-15">
                                                 <span class="mr-2">{{ $item->majors_name }}</span>
                                             </p>
-                                            {{-- <p class="mt-2 font-size-15">
-                                                <span class="mr-2"><i
-                                                        class="la la-map-marker mr-1"></i>{{ $item->address }}</span>
-                                            </p> --}}
                                         </div>
                                         <div class="manage-candidate-content">
                                             <h2 class="widget-title pb-2 mx-5"><a href="#" class="color-text-2">Ngày
@@ -73,6 +69,12 @@
                                                     target="_blank"><i class="la la-eye" data-toggle="tooltip"
                                                         data-placement="top" title=""
                                                         data-original-title="View"></i></a></li>
+                                            <li class="d-inline-block mb-0">
+                                                <btn-delete-cv-for-job
+                                                    :message-confirm="{{ json_encode('Bạn có chắc muốn loại bỏ hồ sơ ra không?') }}"
+                                                    :delete-action="{{ json_encode(route('employer.quan-ly-cv.changeStatus.cv', $item->token)) }}">
+                                                </btn-delete-cv-for-job>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div><!-- end manage-candidate-wrap -->
@@ -81,27 +83,6 @@
                         @endforeach
 
                     </div><!-- end billing-form-item -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="page-navigation-wrap mt-4">
-                        <div class="page-navigation mx-auto">
-                            <a href="#" class="page-go page-prev">
-                                <i class="la la-arrow-left"></i>
-                            </a>
-                            <ul class="page-navigation-nav">
-                                <li><a href="#" class="page-go-link">1</a></li>
-                                <li class="active"><a href="#" class="page-go-link">2</a></li>
-                                <li><a href="#" class="page-go-link">3</a></li>
-                                <li><a href="#" class="page-go-link">4</a></li>
-                                <li><a href="#" class="page-go-link">5</a></li>
-                            </ul>
-                            <a href="#" class="page-go page-next">
-                                <i class="la la-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div><!-- end page-navigation-wrap -->
                 </div><!-- end col-lg-12 -->
             </div><!-- end row -->
         </div><!-- end container-fluid -->

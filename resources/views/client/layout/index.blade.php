@@ -139,7 +139,6 @@
     </div>
     <div id="main-wrapper">
         <div id="app">
-            @include('client.Tin-tuc.logn')
             @include('client.layout.header')
             <!-- End Navigation -->
             <div class="clearfix"></div>
@@ -174,8 +173,6 @@
         "ajax": "https:\/\/jthemes.com\/themes\/wp\/jobbox\/wp-admin\/admin-ajax.php"
     };
 </script>
-{{-- <script src='../wp-content/plugins/control-job-manager/assets/js/control-job-manager0ba6.js?ver=1.0.6'
-    id='control-job-manager-js'></script> --}}
 <script id='wp-job-manager-bookmarks-bookmark-js-js-extra'>
     var job_manager_bookmarks = {
         "i18n_confirm_delete": "Are you sure you want to delete this bookmark?",
@@ -184,8 +181,6 @@
         "spinner_url": "https:\/\/jthemes.com\/themes\/wp\/jobbox\/wp-includes\/images\/spinner.gif"
     };
 </script>
-{{-- <script src='../wp-content/plugins/control-job-manager/vendor/tags/assets/dist/js/tag-filter0ba6.js?ver=1.0.6'
-    id='wp-job-manager-ajax-tag-filters-js'></script> --}}
 <script src='../wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min8bd8.js?ver=2.7.0-wc.7.2.2'
     id='jquery-blockui-js'></script>
 

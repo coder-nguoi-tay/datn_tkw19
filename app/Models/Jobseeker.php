@@ -20,7 +20,10 @@ class Jobseeker extends Model
         'lever_id',
         'wage_id',
         'profession_id',
-        'time_work_id'
+        'time_work_id',
+        'location_id',
+        'majors_id',
+        'workingform_id',
     ];
     public function user()
     {
@@ -65,5 +68,9 @@ class Jobseeker extends Model
     public function getEndTimeJob()
     {
         return $this->hasOne(Timework::class, 'id', 'time_work_id');
+    }
+    public function Profile()
+    {
+        return $this->hasOne(ProfileUserCv::class, 'user_id', 'user_role');
     }
 }

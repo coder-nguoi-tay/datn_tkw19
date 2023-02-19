@@ -19,7 +19,7 @@ class LoginController extends BaseController
     public function index()
     {
         if (Auth::guard('admin')->check()) {
-            return redirect(route('admin.admin.index'));
+            return redirect(route('admin1.index'));
         }
         return view('auth.login', [
             'title' => 'Đăng nhập'
@@ -48,16 +48,19 @@ class LoginController extends BaseController
     public function store(CheckLoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
+        $data = Admin::where('email', $request->email)->first();
         if ($request->save == 'on') {
             if (Auth::guard('admin')->attempt($credentials, $request->save)) {
-                return redirect($request->url_redirect ? $request->url_redirect : route('admin.admin.index'));
+                $data->update(['status' => 1]);
+                return redirect($request->url_redirect ? $request->url_redirect : route('admin.index'));
             }
             return view('auth.login', [
                 'message' => 'Tài khoản và mật khẩu không đúng'
             ]);
         }
         if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect($request->url_redirect ? $request->url_redirect : route('admin.admin.index'));
+            $data->update(['status' => 1]);
+            return redirect($request->url_redirect ? $request->url_redirect : route('admin.index'));
         }
         return view('auth.login', [
             'message' => 'Tài khoản và mật khẩu không đúng'
@@ -109,7 +112,11 @@ class LoginController extends BaseController
     }
     public function logout()
     {
+        $data = Admin::where('id', Auth::guard('admin')->id())->first();
+        $data->update(['status' => 0]);
         Auth::guard('admin')->logout();
+        Request()->session()->invalidate();
+        Request()->session()->regenerateToken();
         return redirect(route('admin.index'));
     }
 }

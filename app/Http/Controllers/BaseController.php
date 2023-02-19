@@ -8,6 +8,7 @@ use App\Models\OperationLog;
 
 use App\Repositories\Packageoffer\PackageInterface;
 use App\Mail\ForgotPassword;
+use App\Models\Job;
 use App\Models\PaymentHistoryEmployer;
 use Carbon\Carbon;
 use Illuminate\Routing\Controller;
@@ -31,8 +32,8 @@ class BaseController extends Controller
 
     public static function newListLimit($query)
     {
-        $newSizeLimit = 2;
-        $arrPageSize = [2, 50, 100];
+        $newSizeLimit = 10;
+        $arrPageSize = [10, 50, 100];
         if (isset($query['limit_page'])) {
             $newSizeLimit = (($query['limit_page'] === '') || !in_array($query['limit_page'], $arrPageSize)) ? $newSizeLimit : $query['limit_page'];
         }
@@ -195,7 +196,7 @@ class BaseController extends Controller
         $mailContents = [
             'data' => [
                 'name' => $account->name,
-                'link' => route('resset_pass.show', $account->reset_password_token),
+                'link' => route('changePassword', $account->reset_password_token),
             ],
         ];
         Mail::to($account->email)->send(new ForgotPassword($mailContents));
@@ -318,5 +319,21 @@ class BaseController extends Controller
                 ->whereMonth('created_at', $request)
                 ->whereYear('created_at', Carbon::parse(Carbon::now())->format('Y'));
         })->pluck('price')->sum();
+    }
+    public function getPaymentMouth($request, $year)
+    {
+        $date = $year ?? Carbon::parse(Carbon::now())->format('Y');
+        return PaymentHistoryEmployer::where(function ($q) use ($request, $date) {
+            $q->whereMonth('created_at', $request)
+                ->whereYear('created_at', $date);
+        })->first();
+    }
+    public function getNewMouth($request, $year)
+    {
+        $date = $year ?? Carbon::parse(Carbon::now())->format('Y');
+        return Job::where(function ($q) use ($request, $date) {
+            $q->whereMonth('created_at', $request)
+                ->whereYear('created_at', $date);
+        })->count();
     }
 }

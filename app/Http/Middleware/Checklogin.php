@@ -27,7 +27,6 @@ class Checklogin
         if (!Auth::guard('admin')->check()) {
             return redirect(route('index', ['url_redirect' => url()->full()]));
         }
-        // return redirect(route('admin.index'));
         return $next($request);
     }
 }

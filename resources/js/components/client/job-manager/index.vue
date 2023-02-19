@@ -26,11 +26,7 @@
                       data-container="body"
                       :data-original-title="item.logo"
                     >
-                      <img
-                        src="{{ asset(item.logo) }}"
-                        width="52"
-                        alt="Percepta"
-                      />
+                      <img :src="'/' + item.logo" width="52" alt="Percepta" />
                     </div>
                     <div class="right-info">
                       <a :href="'/detail-company/' + item.id_company"
@@ -104,11 +100,13 @@
                       "
                     >
                       <span
-                        ><i class="fi-rr-briefcase ms-0 me-5"></i>Part
-                        Time</span
+                        ><i class="fi-rr-briefcase ms-0 me-5"></i
+                        >{{ item.get_time_work.name }}</span
                       ><span
                         ><i class="fi-rr-clock ms-0 me-5"></i
-                        ><time datetime="2022-09-27">2023-01-28</time></span
+                        ><time datetime="2022-09-27">{{
+                          item.end_job_time
+                        }}</time></span
                       >
                     </div>
                     <div class="card-2-bottom mt-30">
@@ -128,13 +126,8 @@
                         <div class="col-lg-6 col-5 text-end">
                           <a
                             class="btn btn-apply-now"
-                            data-toggle="tooltip"
-                            title=""
-                            data-placement="top"
-                            data-container="body"
                             target="_blank"
-                            :data-original-title="item.id"
-                            href="#"
+                            :href="'/home/detail/' + item.id"
                             >Xem chi tiết</a
                           >
                         </div>

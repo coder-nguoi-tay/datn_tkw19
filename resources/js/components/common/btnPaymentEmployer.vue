@@ -67,11 +67,21 @@ export default {
     return {
       flagShowLoader: false,
       visibleLiveDemo: false,
-      getSkill: this.countGetskill.total * 5000
+      getSkill:
+        (this.countGetskill.total +
+          (this.countGetskill.totalFeedback -
+            this.countGetskill.totalFeedback3)) *
+        5000
     }
   },
   components: {
     Loader
+  },
+  created() {
+    console.log(
+      this.countGetskill.totalFeedback * 5000,
+      this.countGetskill.totalFeedback3 * 5000
+    )
   },
   props: ['deleteAction', 'listUrl', 'messageConfirm', 'countGetskill'],
   mounted() {},
@@ -107,7 +117,8 @@ export default {
             $('.loading-div').removeClass('hidden')
             axios
               .post(that.deleteAction, {
-                _token: Laravel.csrfToken
+                _token: Laravel.csrfToken,
+                total: that.getSkill
               })
               .then(function (response) {
                 that.flagShowLoader = false

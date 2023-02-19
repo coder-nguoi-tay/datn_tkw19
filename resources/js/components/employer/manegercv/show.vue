@@ -11,9 +11,8 @@
               padding-top: 10px !important;
               object-fit: cover;
             "
-            :src="'http://127.0.0.1:8000/' + data.cv.images"
+            :src="'/' + data.cv.images"
             alt=""
-            
           />
         </div>
         <div class="box-content">
@@ -22,33 +21,31 @@
             <div class="box_contact">
               <div class="mail">
                 <i class="fas fa-envelope"></i>
-                <p v-if="data.cv.status == data.CheckUser">
+                <p v-if="check == data.CheckUser">
                   {{ data.cv.email }}
                 </p>
-                <p v-if="data.cv.status != data.CheckUser">**************</p>
+                <p v-if="check != data.CheckUser">**************</p>
               </div>
               <div class="mail">
                 <i class="fas fa-phone"></i>
-                <p v-if="data.cv.status == data.CheckUser">
+                <p v-if="check == data.CheckUser">
                   {{ data.cv.phone }}
                 </p>
-                <p v-if="data.cv.status != data.CheckUser">*****************</p>
+                <p v-if="check != data.CheckUser">*****************</p>
               </div>
               <div class="mail">
                 <i class="fas fa-map-marker-alt"></i>
-                <p v-if="data.cv.status == data.CheckUser">
+                <p v-if="check == data.CheckUser">
                   {{ data.cv.address }}
                 </p>
-                <p v-if="data.cv.status != data.CheckUser">
-                  ********************
-                </p>
+                <p v-if="check != data.CheckUser">********************</p>
               </div>
               <div class="mail">
                 <i class="fab fa-facebook"></i>
-                <p v-if="data.cv.status == data.CheckUser">
+                <p v-if="check == data.CheckUser">
                   <a :href="data.cv.link_fb">{{ data.cv.link_fb }}</a>
                 </p>
-                <p v-if="data.cv.status != data.CheckUser">
+                <p v-if="check != data.CheckUser">
                   <a :href="data.cv.link_fb">*************</a>
                 </p>
               </div>
@@ -88,6 +85,7 @@
                 font-size: 18px;
                 font-weight: 500;
                 text-transform: uppercase;
+                margin: 0;
               "
             >
               MỤC TIÊU NGHỀ NGHIỆP
@@ -109,7 +107,7 @@
               v-for="(item, index) in JSON.parse(this.data.cv.project)"
             >
               <div class="title_cv">
-                <i class="fab fa-creative-commons-nd"></i>
+                <i class="fab fa-creative-commons-nd mt-10"></i>
                 <h4 v-html="item.name"></h4>
               </div>
               <div class="mt_cv">
@@ -123,11 +121,19 @@
   </div>
 </template>
 <script>
+import { isEmpty } from 'lodash'
 export default {
-  created() {},
+  created() {
+    if (!isEmpty(this.data.cv.employer_payment)) {
+      this.check = this.data.cv.employer_payment[0].employer_id
+    } else {
+      this.check = -1
+    }
+  },
   data: function () {
     return {
-      csrfToken: Laravel.csrfToken
+      csrfToken: Laravel.csrfToken,
+      check: ''
     }
   },
   props: ['data']

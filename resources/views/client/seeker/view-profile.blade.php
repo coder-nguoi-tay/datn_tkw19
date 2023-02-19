@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 @extends('client.layout.seeker')
 @section('content')
     <section class="dashboard-area">
@@ -22,7 +25,92 @@
                         </div><!-- end breadcrumb-content -->
                     </div><!-- end col-lg-12 -->
                 </div><!-- end row -->
-                <view-profile></view-profile>
+                <div class="col-12 recuitment-inner">
+                    <div class="card-create-employer">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="billing-form-item">
+                                    <!-- billing-title-wrap -->
+                                    <div class="billing-content">
+                                        <div class="contact-form-action">
+                                            <div class="MultiFile-intercepted">
+                                                <br />
+                                                <div class="box-group">
+                                                    <div class="box-group-body">
+                                                        <div class="row box-recruiter">
+                                                            @foreach ($job as $item)
+                                                                <div class="col-sm-12">
+                                                                    <div
+                                                                        class="
+                                job
+                                box
+                                box-white
+                                box-relative
+                                box-overflow-hidden
+                                box-view-profile
+                              ">
+                                                                        <div class="row">
+                                                                            <div class="col-md-2 col-sm-3 hidden-xs">
+                                                                                <div class="company-logo">
+                                                                                    <img src="{{ asset($item->logo) }}" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div
+                                                                                class="
+                                    col-md-7 col-sm-9 col-xs-12
+                                    text-right-xs
+                                  ">
+                                                                                <div class="text-highlight employer-name">
+                                                                                    <a
+                                                                                        href="/home/detail/{{ $item->id }}">{{ $item->title }}</a>
+                                                                                </div>
+                                                                                <div class="company-name text-gray"
+                                                                                    style="
+                                      text-transform: uppercase;
+                                      font-size: 0.9em;
+                                    ">
+                                                                                    <a target="_blank"
+                                                                                        href="{{ route('detail.company', $item->idCompany) }}"
+                                                                                        class="text-gray"
+                                                                                        rel="nooppener noreferrer">
+                                                                                        {{ $item->nameCompany }}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3 col-xs-12 text-right">
+                                                                                <p>
+                                                                                    <span class="open-time text-gray">
+                                                                                        {{ Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
+                                                                                </p>
+                                                                                <p>
+                                                                                    <span class="open-time text-gray">
+                                                                                        <span
+                                                                                            class="badge p-1 {{ $item->status == 0 ? 'bg-success text-white' : 'bg-secondary text-white' }}">{{ $item->status == 0 ? 'Đang xem' : 'Từ chối' }}</span>
+                                                                                    </span>
+                                                                                </p>
+                                                                                <p>
+                                                                                    <span class="open-time text-gray">
+                                                                                        <a href="{{ asset($item->file) }}"
+                                                                                            style="color: blue">Xem hồ sơ đã
+                                                                                            nộp
+                                                                                            vào</a>
+                                                                                    </span>
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div><!-- end container-fluid -->
         </div>
     </section><!-- end dashboard-area -->

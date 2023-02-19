@@ -3,11 +3,7 @@
     <div class="card login-card">
       <div class="row no-gutters">
         <div class="col-md-6">
-          <img
-            src="assets/img/login.jpg"
-            alt="login"
-            class="login-card-img"
-          />
+          <img src="assets/img/login.jpg" alt="login" class="login-card-img" />
         </div>
         <div class="col-md-6">
           <div class="card-body">
@@ -25,7 +21,9 @@
                 @submit="handleSubmit($event, onSubmit)"
                 ref="formData"
                 method="POST"
+                :action="data.urlRegister"
               >
+                <input type="hidden" :value="csrfToken" name="_token" />
                 <div class="form-group">
                   <label for="name" class="form-label"
                     >Họ và Tên<span class="required-label">*</span></label
@@ -33,8 +31,8 @@
                   <Field
                     type="text"
                     name="name"
+                    v-model="model.name"
                     rules="required|max:255"
-                    id="name"
                     class="form-control"
                     placeholder="Nhập họ và tên"
                   />
@@ -47,6 +45,7 @@
                   <Field
                     type="text"
                     name="email"
+                    v-model="model.email"
                     rules="required|email"
                     id="email"
                     class="form-control"
@@ -61,6 +60,7 @@
                   <Field
                     type="password"
                     name="password"
+                    v-model="model.password"
                     rules="required|min:8|max:16"
                     id="password"
                     class="form-control"
@@ -70,25 +70,34 @@
                 </div>
                 <div class="form-group mb-4">
                   <label for="password" class="form-label"
-                    >Nhập lại mật khẩu<span class="required-label">*</span></label
+                    >Nhập lại mật khẩu<span class="required-label"
+                      >*</span
+                    ></label
                   >
                   <Field
                     type="password"
-                    name="password"
-                    rules="required|min:8|max:16"
+                    name="password_old"
+                    rules="required|confirmed:@password"
                     id="password"
                     class="form-control"
                     placeholder="***********"
                   />
-                  <ErrorMessage class="error" name="password" />
+                  <ErrorMessage class="error" name="password_old" />
                 </div>
-                <input
-                  name="login"
-                  id="login"
-                  class="btn btn-block login-btn mb-4"
-                  type="submit"
-                  value="Đăng ký"
-                />
+                <div class="row">
+                  <div class="col-md-5" style="margin-left: 20px"></div>
+                  <div class="col-md-6">
+                    <a href="/quen-mat-khau" class="forgot-password-link"
+                      >Quên mật khẩu</a
+                    >
+                  </div>
+                </div>
+                <br />
+                <p class="login-card-footer-text">
+                  Nếu bạn đã có tài khoản?
+                  <a href="/login" class="text-reset">Đăng nhập</a>
+                </p>
+                <button class="btn btn-block login-btn mb-4">Đăng kí</button>
               </form>
             </VeeForm>
           </div>
@@ -126,8 +135,8 @@ export default {
   props: ['data'],
   data: function () {
     return {
-      csrfToken: Laravel.csrfToken
-     
+      csrfToken: Laravel.csrfToken,
+      model: {}
     }
   },
   mounted() {},
@@ -147,6 +156,10 @@ export default {
             required: 'Password không được để trống',
             min: 'Mật khẩu dài từ 8 đến 16 ký tự',
             max: 'Mật khẩu dài từ 8 đến 16 ký tự'
+          },
+          password_old: {
+            required: 'Password không được để trống',
+            confirmed: '2 mật khẩu phải trùng khớp'
           }
         }
       }
@@ -156,7 +169,7 @@ export default {
     })
   },
   methods: {
-    onInvalidSubmit({ values, errors, results }) {
+    onInvalidSubmit({ errors }) {
       let firstInputError = Object.entries(errors)[0][0]
       this.$el.querySelector('input[name=' + firstInputError + ']').focus()
       $('html, body').animate(

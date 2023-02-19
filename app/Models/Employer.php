@@ -21,6 +21,7 @@ class Employer extends Model
         'user_id',
         'prioritize',
         'position',
+        'amount_job'
     ];
     public function getCompany()
     {
@@ -29,5 +30,9 @@ class Employer extends Model
     public function getUser()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+    public function job()
+    {
+        return $this->hasMany(Job::class, 'employer_id', 'id');
     }
 }

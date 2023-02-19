@@ -9,13 +9,10 @@
                     src="../wp-content/uploads/2022/09/jobbox-post-7-1280x514.jpg" class="img-fluid img-fluid wp-post-image"
                     alt="" decoding="async"></div>
         </div>
-
         <section class="section-box">
             <div class="archive-header pt-50 text-center">
                 <div class="container">
                     <div class="box-white position-relative">
-
-
                         <div class="max-width-single">
                             <div class="tags mb-15"><a href="#" rel="tag" class="btn btn-tag">News</a></div>
                             <h2 class="mb-10 mt-20 text-center  text-break">{{ $blog->title }}</h2>
@@ -40,78 +37,42 @@
                 </div>
             </div>
         </section>
+        <section>
+            <div
+                class="post-loop-grid post-30 post type-post status-publish format-standard has-post-thumbnail hentry category-news tag-beauty tag-nature tag-travel-tips">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 mx-auto">
 
-        <div
-            class="post-loop-grid post-30 post type-post status-publish format-standard has-post-thumbnail hentry category-news tag-beauty tag-nature tag-travel-tips">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 mx-auto">
+                            <div class="entry-content">
+                                <figure class="wp-block-image alignwide size-large"><img decoding="async" loading="lazy"
+                                        width="1024" height="456"
+                                        src="../wp-content/uploads/2022/09/img-content-1024x456.png" alt=""
+                                        class="wp-image-21"
+                                        srcset="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content-1024x456.png 1024w, https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content-300x133.png 300w, https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content-768x342.png 768w, https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content-600x267.png 600w, https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content.png 1160w"
+                                        sizes="(max-width: 1024px) 100vw, 1024px"></figure>
+                                <p>{{ $blog->describe }}</p>
+                                <h4>{{ $blog->title }}</h4>
+                            </div>
+                            <div class="max-width-single">
+                                <div class="single-apply-jobs pb-0">
+                                    <div class="row">
+                                        <div class="col-lg-12">
 
-                        <div class="entry-content">
-                            <figure class="wp-block-image alignwide size-large"><img decoding="async" loading="lazy"
-                                    width="1024" height="456"
-                                    src="../wp-content/uploads/2022/09/img-content-1024x456.png" alt=""
-                                    class="wp-image-21"
-                                    srcset="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content-1024x456.png 1024w, https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content-300x133.png 300w, https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content-768x342.png 768w, https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content-600x267.png 600w, https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/09/img-content.png 1160w"
-                                    sizes="(max-width: 1024px) 100vw, 1024px"></figure>
-
-                            <p>{{ $blog->describe }}</p>
-
-
-
-                            <h4>{{ $blog->title }}</h4>
-
-
-
-
-
-
-
-
-
-
-=========
-                <div id="nav">
-                    <div class="container">
-                        <div class="row jobfair-header">
-                            <ul class="col-md-8  premium-company-header-list " id="nav-list-item">
-                                <li><a href="#" class=" active ">Trang chủ</a>
-                                </li>
-                            </ul>
->>>>>>>>> Temporary merge branch 2
-                        </div>
-
-                        <div class="max-width-single">
-
-
-
-                            <div class="single-apply-jobs pb-0">
-                                <div class="row">
-                                    <div class="col-lg-12">
-
-                                        <a class="btn btn-border-3 mr-10 hover-up" href="">{{ $blog->majors }}</a>
-
-
+                                            <a class="btn btn-border-3 mr-10 hover-up"
+                                                href="">{{ $blog->majors }}</a>
+                                        </div>
                                     </div>
                                 </div>
+                                <img style="width:403px !important; height:257px !important; object-fit: cover; "
+                                    src="{{ asset($blog->new_image) }}" class=" img-fluid wp-post-image" alt=""
+                                    decoding="async" loading="lazy">
                             </div>
-
-
-
-
-                            <img style="width:403px !important; height:257px !important; object-fit: cover; "
-                                src="{{ $blog->new_image }}" class=" img-fluid wp-post-image" alt=""
-                                decoding="async" loading="lazy">
-
-
-
                         </div>
-
-
                     </div>
                 </div>
             </div>
-            <div class="col-7 ">
+            {{-- <div class="col-7 ">
                 <br>
                 <div class="bg-white br-8">
                     <div class="section ">
@@ -189,18 +150,9 @@
                                             <span class="page-item text-center pagination-container">
                                                 <div id="pagination-numbers">
                                                 </div>
-                                            </span>
-                                        </div>
+                                                <!--row-->
+                                            </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    </div>
->>>>>>>>> Temporary merge branch 2
+                                    </section>
+    </main>
 @endsection

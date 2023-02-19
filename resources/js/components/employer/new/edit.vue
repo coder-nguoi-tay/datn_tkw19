@@ -35,7 +35,7 @@
                                 v-model="model.title"
                                 rules="required|max:255"
                                 class="form-control"
-                                placeholder="Enter job title"
+                                placeholder="Tiêu đề"
                               />
                               <ErrorMessage class="error" name="title" />
                             </div>
@@ -74,7 +74,7 @@
                                 as="select"
                                 v-model="model.sex"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn giới tính
@@ -99,7 +99,7 @@
                                 as="select"
                                 v-model="model.location_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Địa chỉ
@@ -178,7 +178,7 @@
                                 as="select"
                                 v-model="model.majors_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn ngành nghề
@@ -207,7 +207,7 @@
                                 as="select"
                                 v-model="model.profession_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn vị trí
@@ -248,7 +248,7 @@
                                 as="select"
                                 v-model="model.level_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Trình độ học vẫn
@@ -277,7 +277,7 @@
                                 as="select"
                                 v-model="model.experience_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Kinh nghiệm
@@ -309,7 +309,7 @@
                                 as="select"
                                 v-model="model.wage_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Mức lương
@@ -334,11 +334,11 @@
                               class="form-group user-chosen-select-container"
                             >
                               <Field
-                                name="wage_id"
+                                name="time_work_id"
                                 as="select"
                                 v-model="model.time_work_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn thời gian làm việc
@@ -387,11 +387,7 @@
                               >Quyền lơi công việc</label
                             >
                             <div class="form-group">
-                              <Editor
-                                class="ckedit"
-                                name="benefit"
-                                v-model="model.benefit"
-                              />
+                              <Editor name="benefit" v-model="model.benefit" />
                             </div>
                           </div>
                         </div>
@@ -402,23 +398,32 @@
                               class="form-group user-chosen-select-container"
                             >
                               <Field
-                                class="form-control user-chosen-select"
+                                class="form-control"
                                 v-model="value"
                                 name="skill_id"
                                 rules="required"
                               >
                                 <Multiselect
                                   placeholder="Chọn Kỹ năng"
-                                  v-model="value"
                                   mode="tags"
+                                  v-model="value"
                                   :searchable="true"
                                   :options="options"
                                   label="label"
                                   track-by="label"
                                   :infinite="true"
                                   :object="true"
+                                  :filterResults="true"
+                                  :clearOnSearch="true"
+                                  :clearOnSelect="true"
+                                  @input="updateSelected"
                                 />
                               </Field>
+                              <input
+                                type="hidden"
+                                name="skill[]"
+                                v-model="skill"
+                              />
                               <ErrorMessage class="error" name="skill_id" />
                             </div>
                           </div>
@@ -434,7 +439,7 @@
                                 as="select"
                                 v-model="model.wk_form_id"
                                 rules="required"
-                                class="form-control user-chosen-select"
+                                class="form-control"
                               >
                                 <option value disabled selected>
                                   Chọn Hình thức làm việc
@@ -482,9 +487,6 @@
                 </div>
                 <!-- end billing-content -->
               </div>
-              <!-- end billing-form-item -->
-
-              <!-- end billing-form-item -->
             </div>
             <!-- end col-lg-12 -->
           </div>
@@ -532,16 +534,20 @@ export default {
       model: this.data.job,
       status_profile: this.data.job.status == 1 ? true : false,
       value: [],
-      options: []
+      options: [],
+      skill: []
     }
   },
   created() {
-    console.log(this.data.job.status)
+    console.log(this.status_profile)
+    let array = []
     this.data.job.getskill.map((e) => {
       this.value.push({
         value: e.id,
         label: e.name
       })
+      array.push(e.id)
+      this.skill = array
     })
     this.data.skill.map((e) => {
       this.options.push({
@@ -607,6 +613,9 @@ export default {
             required: 'yêu cầu công việc không được để trống',
             max: ' không được vượt qua 255 ký tự'
           },
+          quatity: {
+            required: 'Số lượng không được để trống'
+          },
           skill_id: {
             required: 'kỹ năng không được để trống'
           }
@@ -618,6 +627,14 @@ export default {
     })
   },
   methods: {
+    updateSelected(e) {
+      let array = []
+      e.map((x) => {
+        array.push(x.value)
+      })
+      array = [...new Set(array)]
+      this.skill = array
+    },
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0]
       this.$el.querySelector('input[name=' + firstInputError + ']').focus()
@@ -629,55 +646,13 @@ export default {
       )
     },
     onSubmit() {
-      let that = this
-      let id = this.data.job.id
-      axios
-        .post('/employer/new/update/' + id, {
-          _token: this.csrfToken,
-          data: this.model,
-          skill: this.value,
-          status_profile: this.status_profile
-        })
-        .then(function (response) {
-          console.log(response)
-          const notyf = new Notyf({
-            duration: 6000,
-            position: {
-              x: 'right',
-              y: 'bottom'
-            },
-            types: [
-              {
-                type: 'error',
-                duration: 8000,
-                dismissible: true
-              }
-            ]
-          })
-          if (response.data.status == 403) {
-            return notyf.error(response.data.message)
-          }
-          setTimeout(function () {
-            window.location.href = that.data.urlBack
-          }, 1100)
-          return notyf.success(response.data.message)
-        })
-        .catch((error) => {
-          location.reload()
-        })
+      this.$refs.formData.submit()
     }
   }
 }
 </script>
 
 <style>
-.form-text {
-  height: 42px;
-  padding: 10px 15px;
-  font-size: 15px;
-  border-radius: 1px;
-  border-color: #e5e5e5;
-}
 .ckedit {
   margin-top: 2%;
 }

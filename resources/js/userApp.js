@@ -39,7 +39,7 @@ $(document).ready(function () {
         const paginatedList = document.getElementById("paginated-list");
         const listItems = paginatedList.querySelectorAll(".render-job-search");
 
-        const paginationLimit = 8;
+        const paginationLimit = 12;
         const pageCount = Math.ceil(listItems.length / paginationLimit);
         let currentPage = 1;
 
@@ -264,7 +264,6 @@ $(document).ready(function () {
         }).catch((y) => {
             console.log(y);
         })
-
 })
 
 import VueSweetalert2 from 'vue-sweetalert2'
@@ -286,8 +285,12 @@ import popup from './components/common/popupAlert.vue'
 app.component('popup-alert', popup)
 import Upcv from './components/client/home/upcv.vue';
 app.component('up-cv', Upcv)
-import clientLogin from "./components/client/login/index.vue";
-app.component('client-login', clientLogin);
+// quen mat khau
+import ForgotPass from "./components/client/forgotpassword/index.vue";
+app.component('forgot-pass', ForgotPass);
+import ChangePass from "./components/client/forgotpassword/changePass.vue";
+app.component('change-pass', ChangePass);
+
 
 import registerEmployer from "./components/employer/register.vue";
 app.component('register-employer', registerEmployer);
@@ -299,6 +302,8 @@ import showCvClient from "./components/client/seeker/create-cv.vue";
 app.component('show-cv-client', showCvClient);
 import formLogin from "./components/client/login/login.vue";
 app.component('form-login', formLogin);
+import ModalLogin from "./components/client/login/index.vue";
+app.component('modal-login', ModalLogin);
 import formRegister from "./components/client/register/index.vue";
 app.component('form-register', formRegister);
 
@@ -314,6 +319,9 @@ app.component('business-license', businessLicense);
 
 import modalContract from "./components/client/modal/modalContact.vue";
 app.component('modal-contract', modalContract);
+
+import Statistical from "./components/admin/statistical.vue";
+app.component('statistical', Statistical);
 
 import modalRequired from "./components/client/modal/modalRequired.vue";
 app.component('modal-required', modalRequired);
@@ -334,7 +342,6 @@ app.component('home-test', Abcxyz);
 import HomeSearch from "./components/client/home/search.vue";
 import axios from 'axios'
 app.component('home-search', HomeSearch);
-
 //job love
 import btnDeleteJobLove from './components/common/btnDeleteJobLove.vue'
 app.component('btn-delete-job-love', btnDeleteJobLove)

@@ -11,9 +11,29 @@
                             </div>
                         </div>
                         <div class="container-fluid px-2 px-md-4" style="margin-top: -30px">
-                            <div class="ps-3">
-                                <a href="{{ route('admin.jobAttractive.create') }}" class="btn btn-primary">Thêm gói ưu đãi</a>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="ps-3">
+                                        <a href="{{ route('admin1.jobAttractive.create') }}" class="btn btn-primary">Thêm gói
+                                            ưu
+                                            đãi</a>
+                                    </div>
+                                    <div class="col-6"
+                                        style="float: right !important; width: 400px;height: 40px; margin-right: 20px; margin-top: -80px">
+                                        <form class="d-flex" method="get" style="height: 40px;">
+                                            <input name="free_word" class="custom-input form-control mr-1"
+                                                placeholder="Tìm Kiếm...." autocomplete="off" id="free_word" />
+                                            <button class="btn btn-info font-weight-medium color-text-2 mr-1 text-white"
+                                                style="height: 40px;" href="">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
+
+                            <hr>
+
                             <div class="row gy-5">
                                 @foreach ($jobAttractives as $item)
                                     <div class="col-md-4 stretch-card grid-margin">
@@ -25,7 +45,8 @@
                                                 <h2 class="mb-5 text-color">- Giá:
                                                     {{ number_format($item->price, 0, ',', '.') }}đ
                                                 </h2>
-                                                <h4 class="">- Cấp Bậc gói :  {{ $item->leverPackage->name ?? 'None' }}</h4>
+                                                <h4 class="">- Cấp Bậc gói : {{ $item->leverPackage->name ?? 'None' }}
+                                                </h4>
                                                 <h6 class="card-text text-color">- Mô tả: {{ $item->describe }}
                                                 </h6>
                                             </div>
@@ -36,14 +57,14 @@
                                                     <div style="margin-right: 30%">
                                                         <btn-delete-confirm
                                                             :message-confirm="{{ json_encode('Bạn có chắc muốn xóa không ?') }}"
-                                                            :delete-action="{{ json_encode(route('admin.jobAttractive.destroy', $item->id)) }}">
+                                                            :delete-action="{{ json_encode(route('admin1.jobAttractive.destroy', $item->id)) }}">
                                                         </btn-delete-confirm>
 
                                                     </div>
 
                                                     <div style="margin-bottom: 20px; margin-left: 15% !important"
                                                         class="text-center">
-                                                        <a href="{{ route('admin.jobAttractive.edit', $item->id) }}"
+                                                        <a href="{{ route('admin1.jobAttractive.edit', $item->id) }}"
                                                             class="dropdown-item"><svg xmlns="http://www.w3.org/2000/svg"
                                                                 width="25" height="25" fill="currentColor"
                                                                 class="bi bi-pencil-square" viewBox="0 0 16 16">

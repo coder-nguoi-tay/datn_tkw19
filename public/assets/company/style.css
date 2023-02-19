@@ -2717,14 +2717,14 @@ body {
         -ms-transform: translateX(-100%);
         -o-transform: translateX(-100%);
         transform: translateX(-100%);
-        padding-top: 145px
+        /* padding-top: 145px */
     }
 }
 
 .dashboard-sidebar .dashboard-nav-container .humburger-menu .humburger-menu-lines {
     opacity: 0;
     visibility: hidden;
-    top: 95px;
+    /* top: 95px; */
     background-color: rgba(44, 44, 81, .1)
 }
 
@@ -4912,7 +4912,7 @@ body {
 .logo-right-content {
     position: relative;
     z-index: 1;
-    width: 230px;
+    /* width: 230px; */
 
     display: -webkit-flex;
     display: -ms-flex;
@@ -8790,7 +8790,7 @@ body {
 
 @media (max-width:1024px) {
     .dashboard-area {
-        padding-top: 120px
+        /* padding-top: 120px */
     }
 }
 

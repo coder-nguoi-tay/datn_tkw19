@@ -24,6 +24,8 @@ use App\Models\User;
 use App\Models\Wage;
 use App\Models\WorkingForm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SearchCvController extends BaseController
 {
@@ -81,13 +83,54 @@ class SearchCvController extends BaseController
     public function index(Request $request)
     {
         $cv = $this->profileCv
-            ->where('status_profile', 1)
+            ->leftjoin('job-seeker', 'job-seeker.user_role', '=', 'profile_user_cv.user_id')
+            ->leftjoin('seeker_skill', 'seeker_skill.job-seeker_id', '=', 'job-seeker.id')
+            ->leftjoin('skill', 'skill.id', '=', 'seeker_skill.skill_id')
+            ->with(['feedback' => function ($q) {
+                $q->where('feedback_id', 1);
+            }])
+            ->with(['feedback2' => function ($q) {
+                $q->where('feedback_id', 2);
+            }])
+            ->with(['feedback3' => function ($q) {
+                $q->where('feedback_id', 3);
+            }])
+            ->where([
+                ['status_profile', 1],
+            ])
             ->where(function ($q) use ($request) {
-                if (!empty($request['free_word'])) {
-                    $q->orWhere($this->escapeLikeSentence('majors', $request['free_word']));
+                if (!empty($request['name'])) {
+                    $q->Where($this->escapeLikeSentence('majors', $request['free_word']));
+                }
+                if (!empty($request['location'])) {
+                    $q->Where('job-seeker.location_id', $request['location']);
+                }
+                if (!empty($request['majors'])) {
+                    $q->Where('job-seeker.majors_id', $request['majors']);
+                }
+                if (!empty($request['profession'])) {
+                    $q->Where('job-seeker.profession_id', $request['profession']);
+                }
+                if (!empty($request['lever'])) {
+                    $q->Where('job-seeker.lever_id', $request['lever']);
+                }
+                if (!empty($request['experience'])) {
+                    $q->Where('job-seeker.experience_id', $request['experience']);
+                }
+                if (!empty($request['skill'])) {
+                    $q->WhereIn('seeker_skill.skill_id', $request['skill']);
+                }
+                if (!empty($request['timework'])) {
+                    $q->Where('job-seeker.time_work_id', $request['timework']);
+                }
+                if (!empty($request['workingform'])) {
+                    $q->Where('job-seeker.workingform_id', $request['workingform']);
                 }
             })
+            ->select('profile_user_cv.*')
+            ->groupBy('profile_user_cv.user_id')
             ->with('user')->get();
+        // dd($cv);
         $breadcrumbs = [
             'Tìm kiếm ứng viên',
 
@@ -96,6 +139,16 @@ class SearchCvController extends BaseController
             'cv' => $cv,
             'request' => $request,
             'breadcrumbs' => $breadcrumbs,
+            'profestion' => $this->getprofession(),
+            'lever' => $this->getlever(),
+            'experience' => $this->getexperience(),
+            'wage' => $this->getwage(),
+            'skill' => $this->getskill(),
+            'timework' => $this->gettimework(),
+            'profession' => $this->getprofession(),
+            'majors' => $this->majors->get(),
+            'workingform' => $this->getworkingform(),
+            'location' => $this->getlocation(),
         ]);
     }
 

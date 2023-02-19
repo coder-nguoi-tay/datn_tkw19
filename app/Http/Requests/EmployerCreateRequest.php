@@ -27,23 +27,20 @@ class EmployerCreateRequest extends FormRequest
             'title' => 'required|max:255',
             'quatity' => 'required|max:255',
             'sex' => 'required|max:255',
-            'describe' => 'required|max:255',
+            'describe' => 'required',
             'level_id' => 'required',
             'experience_id' => 'required',
             'wage_id' => 'required',
             'location_id' => 'required',
             'wk_form_id' => 'required',
-            'benefit' => 'required|max:255',
+            'benefit' => 'required',
             'profession_id' => 'required',
             'address' => 'required|max:255',
             'majors_id' => 'required',
             'time_work_id' => 'required',
-            'candidate_requirements' => 'required|max:255',
-            'skill_id' => 'required',
-            'addressEmployer' => 'required|max:255',
-            'logo' => 'required|max:255', //|mimes:jpeg,jpg,png,gif|max:100000
-            'nameEmployer' => 'required|max:255',
-            'phoneEmployer' => 'required|max:10',
+            'candidate_requirements' => 'required',
+            'skill' => 'required',
+            'end_job_time' => 'required',
         ];
     }
 }

@@ -1,7 +1,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Full Stack Engineer &#8211; Jobbox</title>
+    @if (isset($title))
+        <title>{{ $title }}</title>
+    @endif
     <meta name='robots' content='max-image-preview:large' />
     <link rel='dns-prefetch' href='http://code.jquery.com/' />
     <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
@@ -129,16 +131,27 @@
                                     <h3>{{ $job->title }}</h3>
                                     <div
                                         class="single_job_listing d-flex flex-wrap align-items-center gap-3 font-xs color-text-mutted mt-0 mb-15">
-                                        <span class="fi-icon full-time"><i
-                                                class="fi-rr-briefcase"></i>{{ $job->getTime_work->name }}</span>
+                                        <span class="fi-icon full-time" style="font-size: 14px; font-weight: 600;">Hạn nộp: {{ $job->end_job_time }}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-12 text-lg-end">
-                                    <a class="btn-border mr-15 mb-5 active" data-bs-toggle="modal"
-                                        data-bs-target="#ModalApplyJobForm">Ứng
-                                        tuyển</a>
-                                    <a class="btn-like" class="mr-15 mb-5"><i class="fa-solid fa-heart icon-save-cv"
-                                            id="{{ $job->id . ',' . $checklove }}"></i></a>
+                                    @if (Auth::guard('user')->check())
+                                        @if ($checkJobTrue == 0)
+                                            <a class="btn-border mr-15 mb-5 active"
+                                                style="background: blue; color: white">Đã ứng tuyển</a>
+                                        @else
+                                            <a class="btn-border mr-15 mb-5 active" data-bs-toggle="modal"
+                                                data-bs-target="#ModalApplyJobForm">Ứng
+                                                tuyển</a>
+                                        @endif
+                                        <a class="btn-like" class="mr-15 mb-5"><i
+                                                class="fa-solid fa-heart icon-save-cv"
+                                                id="{{ $job->id . ',' . $checklove }}"></i></a>
+                                    @else
+                                        <button type="button" class="btn-border mr-15 mb-5 active"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal">Ứng
+                                            tuyển</button>
+                                    @endif
                                 </div>
                             </div>
                             <div class="border-bottom pt-10 pb-10"></div>
@@ -222,7 +235,7 @@
                                                             alt="Deadline">
                                                     </div>
                                                     <div class="sidebar-text-info ml-10">
-                                                        <span class="text-description mb-10">Deadline</span>
+                                                        <span class="text-description mb-10">Hạn nộp</span>
                                                         <strong
                                                             class="small-heading">{{ $job->end_job_time }}</strong>
                                                     </div>
@@ -260,33 +273,24 @@
                                         </div>
 
                                         <div class="content-single">
-                                            <h4>Chào mừng đến với {{ $jobCompany[0]->name }}</h4>
-                                            <p>{!! $jobCompany[0]->desceibe !!}</p>
-
-                                            <h4>Quyền lợi công việc</h4>
-                                            <ul>
-
-                                                <li>{!! $job->benefit !!}</li>
-                                            </ul>
                                             <h4>Yêu cầu của công việc</h4>
-                                            <ul>
-                                                <li>{!! $job->candidate_requirements !!}</li>
+                                            <span>{!! $job->candidate_requirements !!}</span>
+                                            <h4>Mô tả công việc</h4>
+                                            <span>{!! $job->describe !!}</span>
+                                            <h4>Quyền lợi công việc</h4>
+                                            <span>{!! $job->benefit !!}</span>
 
-                                            </ul>
-                                            <h4>Kỹ năng</h4>
+                                            <h4>- Kỹ năng</h4>
                                             @foreach ($job->getskill as $item)
                                                 <li><span
                                                         class="px-2 py-1 medium skill-bg rounded text-dark">{{ $item->name }}</span>
                                                 </li>
                                             @endforeach
-
+                                            <div class="mt-5">
+                                                <h4>- {{ $jobCompany[0]->name }}</h4>
+                                                <p>{!! $jobCompany[0]->desceibe !!}</p>
+                                            </div>
                                         </div>
-                                        <div class="author-single">
-                                            <span> {{ $job->nameCompany }}</span>
-                                        </div>
-
-
-
                                     </div>
                                     <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15">
                                         <div class="sidebar-border">
@@ -298,7 +302,7 @@
                                                     </figure>
                                                     <div class="sidebar-info">
                                                         <a href="{{ route('detail.company', $job->idCompany) }}"
-                                                            class="sidebar-company">
+                                                            class="sidebar-company" style="line-height: 20px;font-size: 14px;">
                                                             {{ $job->nameCompany }} </a>
                                                         {{-- <span
                                                             class="card-location">{{ $jobCompany[0]->address }}</span> --}}
@@ -346,7 +350,8 @@
                                                                         <div class="row align-items-center">
                                                                             <div class="col-6">
                                                                                 <h6 class="card-price mb-0"><span
-                                                                                        class="card-text-price">{{ $job->getWage->name }}</span>
+                                                                                        class="card-text-price"
+                                                                                        style="font-size: 14px;">{{ $job->getWage->name }}</span>
                                                                                 </h6>
                                                                             </div>
                                                                             <div class="col-6 text-end">
@@ -363,7 +368,74 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </section>
+                            <section style="border-radius: 3px;background: #f8faffde; padding: 10px;">
+                                <div>
+                                    <h2 class="control-heading-title"
+                                        style="font-weight:600; background:  #f8faff; padding: 8px 10px; margin: 0 -10px;">
+                                        Tin tuyển dụng
+                                        khác của công ty</h2>
+                                </div>
+                                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 job_listings mt-30"
+                                    id="paginated-list1" data-v-1cf8e432="">
 
+                                    @if (isset($jobCompany))
+                                        @foreach ($jobCompany as $key => $item)
+                                            @if ($item->idjob != $job->id)
+                                                <div class="col jobbox-grid-item" data-v-1cf8e432="">
+                                                    <div class="card-grid-2 hover-up" data-v-1cf8e432="">
+                                                        <div class="card-block-info" style="padding: 20px;"
+                                                            data-v-1cf8e432="">
+                                                            <h6 class="mb-1" data-toggle="tooltip" title=""
+                                                                data-placement="top" data-container="body"
+                                                                target="_blank"
+                                                                data-original-title="Công ty TNHH Optimizer Việt Nam"
+                                                                data-v-1cf8e432=""
+                                                                style="-webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; text-align: left;">
+                                                                <a href="{{ route('home.detail.show', $item->idjob) }}"
+                                                                    data-v-1cf8e432="">{{ $item->title }}</a>
+                                                            </h6>
+                                                            <div class="d-flex align-items-center gap-3 font-xs color-text-mutted"
+                                                                data-v-1cf8e432=""
+                                                                style="justify-content: space-between;"><span
+                                                                    data-v-1cf8e432=""><i
+                                                                        class="fi-rr-briefcase ms-0 me-1"
+                                                                        data-v-1cf8e432=""></i>{{ $item->getTime_work->name }}</span><span
+                                                                    data-v-1cf8e432=""><i
+                                                                        class="fi-rr-clock ms-0 me-1"
+                                                                        data-v-1cf8e432=""></i><time
+                                                                        datetime="2022-09-27"
+                                                                        data-v-1cf8e432="">{{ $item->end_job_time }}</time></span>
+                                                            </div>
+                                                            <div class="card-2-bottom mt-30" data-v-1cf8e432="">
+                                                                <div class="row align-items-center"
+                                                                    data-v-1cf8e432="">
+                                                                    <div class="col-lg-6 col-7" data-v-1cf8e432="">
+                                                                        <span class="card-text-price"
+                                                                            style="font-size: 14px;"
+                                                                            data-toggle="tooltip" title=""
+                                                                            data-placement="top" data-container="body"
+                                                                            target="_blank"
+                                                                            data-original-title="Công ty TNHH Optimizer Việt Nam"
+                                                                            data-v-1cf8e432="">{{ $item->getWage->name }}</span>
+                                                                    </div>
+                                                                    <div class="col-lg-6 col-5 text-end"
+                                                                        data-v-1cf8e432=""><a
+                                                                            class="btn btn-apply-now"
+                                                                            style="border: 1px solid #cccccc5e; border-radius: 5px;"
+                                                                            target=""
+                                                                            href="{{ route('home.detail.show', $item->idjob) }}"
+                                                                            data-v-1cf8e432="">Xem chi
+                                                                            tiết</a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </div>
                             </section>
                         </div>
@@ -390,8 +462,29 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Đăng nhập</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <modal-login
+                            :data="{{ json_encode([
+                                'urlStore' => route('owner.loginModal'),
+                                'message' => $message ?? '',
+                            ]) }}">
+                        </modal-login>
+                    </div>
+                </div>
+            </div>
+        </div>
         @include('client.layout.footer')
     </main>
+    <!-- Modal -->
     <script type="text/javascript">
         (function() {
             var c = document.body.className;
@@ -404,7 +497,7 @@
             gap: 9px 9px;
         }
     </style>
-    <script src='../../wp-includes/js/dist/a11y.min65c7.js?ver=ecce20f002eda4c19664' id='wp-a11y-js'></script>
+    {{-- <script src='../../wp-includes/js/dist/a11y.min65c7.js?ver=ecce20f002eda4c19664' id='wp-a11y-js'></script> --}}
     <script id='jquery-ui-autocomplete-js-extra'>
         var uiAutocompleteL10n = {
             "noResults": "No results found.",

@@ -14,16 +14,15 @@
         :action="data.urlStore"
       >
         <Field type="hidden" :value="csrfToken" name="_token" />
-        <div class="col-4">
-          <Toggle
-            name="status_profile"
-            v-model="status_profile"
-            class="toggle-flag"
-            on-label=""
-            off-label=""
-            id="status_profile"
+        <div class="form-group">
+          <Field
+            type="text"
+            class="form-control"
+            name="title"
+            v-model="model.title"
+            style="width: 350px"
+            placeholder="Tên CV"
           />
-          <label for="" class="form-label">Bật Tìm Kiếm Công Việc</label>
         </div>
         <div style="margin: 30px 0; padding: 0; box-sizing: border-box">
           <div class="main_gt">
@@ -266,7 +265,7 @@
                 <div class="row" style="margin-bottom: 30px">
                   <div class="col-md-12 col-sm-12 col-xs-12 p-2">
                     <div
-                      v-for="(item1, index) in experience_cv_info"
+                      v-for="(item1, index1) in experience_cv_info"
                       class="wrapper-item"
                     >
                       <div class="row">
@@ -275,27 +274,19 @@
                             <Field
                               v-model="item1.project"
                               rules="required"
-                              :name="'project[ ' + index + ' ]'"
+                              :name="'project[ ' + index1 + ' ]'"
                               :disabled="isReadOnly"
                               type="text"
                               class="form-control custom-input-cv"
                               id="exampleFormControlInput1"
                               placeholder="Vị trí"
                             />
-                            <ErrorMessage
-                              class="error"
-                              :name="'project[' + index + ']'"
-                            />
                             <Editor
-                              :name="'project_detail[ ' + index + ' ]'"
+                              :name="'project_detail[ ' + index1 + ' ]'"
                               v-model="item1.project_detail"
                               class="form-control mt-5"
                               rules="required|max:255"
                               placeholder="Mô tả"
-                            />
-                            <ErrorMessage
-                              class="error"
-                              :name="'project_detail[' + index + ']'"
                             />
                           </div>
                         </div>
@@ -305,7 +296,7 @@
                           ></span>
                           <span
                             v-if="experience_cv_info.length > 1"
-                            @click.prevent="deleteItemexperience(index)"
+                            @click.prevent="deleteItemexperience(index1)"
                             style="margin-left: 5px"
                             ><i class="fas fa-trash-alt"></i
                           ></span>
@@ -366,7 +357,6 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
       model: this.data.user ?? {},
-      status_profile: '',
       filePreview: '',
       isReadOnly: false,
       skill_cv_info: [],
@@ -392,12 +382,6 @@ export default {
           project_detail: x.value
         })
       })
-      console.log(this.model)
-      if (this.data.user.status_profile == 0) {
-        this.status_profile = false
-      } else {
-        this.status_profile = true
-      }
     } else {
       this.skill_cv_info.push({
         skill: '',
@@ -476,7 +460,6 @@ export default {
       this.numberFormExperience += 1
     },
     deleteItemexperience(index) {
-      console.log(index)
       this.experience_cv_info.splice(index, 1)
     }
   }
@@ -545,13 +528,13 @@ export default {
 }
 
 .btn-secondary {
-  color: #212529;
+  // color: #212529;
   background-color: #f3f4f5;
   border-color: #f3f4f5;
 }
 
 .box-up-cv {
-  background: rgba(229, 247, 237, 0.1);
+  // background: rgba(229, 247, 237, 0.1);
   // border: 2px dashed #00b14f;
   border-radius: 8px;
   cursor: pointer;

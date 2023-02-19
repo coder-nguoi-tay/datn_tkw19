@@ -24,23 +24,18 @@
                         </ul>
                     </div>
                 </div>
+                {{-- {{ dd($user) }} --}}
+                </change-status-new>
                 <user-profile
                     :data="{{ json_encode([
-                        'lever' => $lever,
-                        'experience' => $experience,
-                        'wage' => $wage,
-                        'skill' => $skill,
-                        'timework' => $timework,
-                        'profession' => $profession,
                         'cv' => $cv,
-                        'location' => $location,
-                        'workingform' => $workingform,
                         'user' => $user,
+                        'checkProfile' => $user->getProfileUse ?? null,
+                        'getCheckUser' => $user->getCheckUser ?? null,
                         'urlStore' => route('profile.store'),
                         'urlBack' => route('profile.index'),
-                        'getskill' => $getskill ?? '',
                         'urlUpdateAvatar' => route('profile.updateAvatar'),
-                        'user' => Auth::guard('user')->user(),
+                        'changeStatusProfile' => route('profile.updateStatusProfile'),
                     ]) }}">
                 </user-profile>
             </div>

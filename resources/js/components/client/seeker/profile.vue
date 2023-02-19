@@ -29,7 +29,7 @@
                           >
                             <img
                               v-if="!filePreview"
-                              :src="'http://127.0.0.1:8000/' + data.user.images"
+                              :src="data.user.images"
                               alt=""
                             />
                             <img v-if="filePreview" :src="filePreview" />
@@ -64,6 +64,64 @@
                           <h4 class="profile-fullname text-center">
                             {{ data.user.name }}
                           </h4>
+                        </div>
+                        <div
+                          class="col-md-12"
+                          v-if="
+                            data.checkProfile != null &&
+                            data.getCheckUser != null
+                          "
+                        >
+                          <h4 class="profile-fullname text-center">
+                            <Toggle
+                              name="status_profile"
+                              v-model="status_profile"
+                              class="toggle-flag"
+                              on-label=""
+                              off-label=""
+                              id="status_profile"
+                              @change="ChangeStatus"
+                            />
+                            <label for="">Bật tìm kiếm việc làm</label>
+                          </h4>
+                        </div>
+                        <div
+                          class="col-md-12"
+                          v-if="
+                            data.checkProfile == null ||
+                            data.getCheckUser == null
+                          "
+                        >
+                          <h4 class="profile-fullname text-center">
+                            <Toggle />
+                            <label for="">Bật tìm kiếm việc làm</label>
+                          </h4>
+                        </div>
+                        <div class="col-xs-12">
+                          <p
+                            class="
+                              job-waiting-description
+                              text-gray
+                              alert-secondary
+                              p-3
+                            "
+                            id="job-waiting-text" style="text-align: justify !important;"
+                          >
+                            <span style="color: red; ">Lưu ý</span>: Bạn cần cập
+                            nhật thông tin gọi ý công việc để chúng tôi có thể
+                            tìm kiếm công việc tốt nhất cho bạn và nhà tuyển
+                            dụng có thể dựa vào những thông số đó để có thể tiếp
+                            cận bạn sớm hơn
+                            <a href="/goi-y-viec-lam" style="color: blue"
+                              >Gợi ý việc làm</a
+                            >
+                            và phải tạo Cv trên hệ thống của chúng tôi
+                            <a href="/file/tao-moi" style="color: blue"
+                              >Tạo cv theo mẫu có sẵn</a
+                            >
+                            để chúng tôi có thể giúp bạn tìm kiếm việc làm phù
+                            hợp nhất
+                          </p>
                         </div>
                       </div>
                     </form>
@@ -113,8 +171,18 @@
                           <div>Files hỗ trợ: PDF, DOC, DOCX</div>
                           <div>File tải lên không quá: 5 MB</div>
                         </div>
+                        <label for="" class="form-label"><b>Tên CV</b></label>
+                        <Field
+                          type="text"
+                          name="title"
+                          class="form-control"
+                          id=""
+                          rules="required"
+                        />
+                        <ErrorMessage class="error" name="title" />
+                        <br />
                         <button
-                          class="btn btn-info btn-create-cv"
+                          class="btn btn-info btn-create-cv mb-4"
                           style="margin-top: 10px; margin-left: 45%"
                         >
                           Tải lên
@@ -174,7 +242,7 @@
                                     type="text"
                                     name="title"
                                     v-model="item.title"
-                                    @keyup="textTitle(item.title)"
+                                    @change="textTitle(item.title)"
                                     class="custom-form-create-cv"
                                   />
                                   <i
@@ -231,6 +299,52 @@
                       <a href="/file/tao-moi" class="btn btn-info col-2"
                         >Xem cv đã tạo</a
                       >
+                      <div class="box-content" v-if="ProfileCv != ''">
+                        <div class="row">
+                          <!--  -->
+                          <div class="col-md-6 col-12 pr-12">
+                            <div class="box-cv">
+                              <img
+                                src="https://media.istockphoto.com/id/1142275061/vi/vec-to/bi%E1%BB%83u-m%E1%BA%ABu-cv-t%C3%A0i-li%E1%BB%87u-v%C3%A0-h%C3%ACnh-minh-h%E1%BB%8Da-vector-d%E1%BB%AF-li%E1%BB%87u-c%C3%A1-nh%C3%A2n-c%E1%BB%8Dc-ho%E1%BA%B7c-ng%C4%83n-x%E1%BA%BFp-t%C3%A0i-li%E1%BB%87u-gi%E1%BA%A5y.jpg?s=1024x1024&w=is&k=20&c=_vo4WAl7TTVVYR4oRVqRVibFVseGOngIElVG2Rt5w8U="
+                                data-src="https://media.istockphoto.com/id/1142275061/vi/vec-to/bi%E1%BB%83u-m%E1%BA%ABu-cv-t%C3%A0i-li%E1%BB%87u-v%C3%A0-h%C3%ACnh-minh-h%E1%BB%8Da-vector-d%E1%BB%AF-li%E1%BB%87u-c%C3%A1-nh%C3%A2n-c%E1%BB%8Dc-ho%E1%BA%B7c-ng%C4%83n-x%E1%BA%BFp-t%C3%A0i-li%E1%BB%87u-gi%E1%BA%A5y.jpg?s=1024x1024&w=is&k=20&c=_vo4WAl7TTVVYR4oRVqRVibFVseGOngIElVG2Rt5w8U="
+                                class="img-responsive"
+                              />
+                              <div class="box-bg">
+                                <div class="box-info">
+                                  <h4 class="title-cv">
+                                    <a
+                                      href="/file/tao-moi"
+                                      target="_blank"
+                                      class="title-445516"
+                                      >{{ ProfileCv.title }}</a
+                                    >
+                                  </h4>
+                                  <p class="update_at">
+                                    Cập nhật lần cuối
+                                    <span>{{
+                                      getHumanDate(ProfileCv.updated_at)
+                                    }}</span>
+                                  </p>
+                                  <ul class="action">
+                                    <li>
+                                      <a
+                                        href="javascript:void(true)"
+                                        class="btn btn-sm bold"
+                                        ><i
+                                          class="fa-solid fa-down-to-line"
+                                        ></i>
+                                        Tải xuống</a
+                                      >
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!--  -->
+                        </div>
+                        <div class="text-center"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -281,43 +395,28 @@ export default {
       baseUrl: Laravel.baseUrl,
       model: {},
       filePreview: '',
-      checkImage: '',
-      errmsgCheckImage: '',
-      Media: '',
-      deleteImage: '',
       cv: [],
       checkTitle: true,
       checkTrueTitle: '',
-      nametitle: ''
+      nametitle: '',
+      status_profile: '',
+      ProfileCv: ''
     }
   },
 
   created() {
+    if (this.data.getCheckUser) {
+      this.ProfileCv = this.data.getCheckUser
+      if (this.data.getCheckUser.status_profile == 1) {
+        this.status_profile = true
+      } else {
+        this.status_profile = false
+      }
+    }
+
     if (this.data.cv) {
       this.cv = this.data.cv
     }
-    console.log(this.cv)
-    // let array = []
-    // this.Media = this.data.user.get_profile_use
-    //   ? this.data.user.get_profile_use.images
-    //   : 1
-    // if (this.data.getskill.getskill != null) {
-    //   this.data.getskill.getskill.map((e) => {
-    //     this.value.push({
-    //       value: e.id,
-    //       label: e.name
-    //     })
-    //     array.push(e.id)
-    //     this.skill = array
-    //   })
-    // }
-
-    // this.data.skill.map((e) => {
-    //   this.options.push({
-    //     value: e.id,
-    //     label: e.label
-    //   })
-    // })
     let messError = {
       en: {
         fields: {
@@ -325,6 +424,9 @@ export default {
             required: 'Ảnh không được để trống',
             mimes: 'Ảnh chỉ hỗ trợ dạng pdf,doc,docx',
             max: 'kích thước ảnh quá lớn'
+          },
+          title: {
+            required: 'Tên không được để trống'
           }
         }
       }
@@ -334,6 +436,56 @@ export default {
     })
   },
   methods: {
+    ChangeStatus(e) {
+      let that = this
+      if (e == true) {
+        axios
+          .post(that.data.changeStatusProfile, {
+            _token: Laravel.csrfToken,
+            data: 1
+          })
+          .then((a) => {
+            const notyf = new Notyf({
+              duration: 6000,
+              position: {
+                x: 'right',
+                y: 'bottom'
+              },
+              types: [
+                {
+                  type: 'error',
+                  duration: 8000,
+                  dismissible: true
+                }
+              ]
+            })
+            return notyf.success(a.data.message)
+          })
+      } else {
+        axios
+          .post(that.data.changeStatusProfile, {
+            _token: Laravel.csrfToken,
+            data: 0
+          })
+          .then((a) => {
+            const notyf = new Notyf({
+              duration: 6000,
+              position: {
+                x: 'right',
+                y: 'bottom'
+              },
+              types: [
+                {
+                  type: 'error',
+                  duration: 8000,
+                  dismissible: true
+                }
+              ]
+            })
+            return notyf.success(a.data.message)
+          })
+      }
+    },
     getHumanDate: function (date) {
       return moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY')
     },

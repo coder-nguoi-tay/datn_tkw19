@@ -22,13 +22,14 @@
 
                             </div>
                         @endif
-                       <edit-job-attractive
-                       :data="{{ json_encode([
-                        'jobattractive' =>$jobattractive,
-                        'leverpackage' =>$leverpackage,
-                        'urlUpdate' => route('admin.jobAttractive.update',$jobattractive->id),
-                        'urlBack' => route('admin.jobAttractive.index'),
-                    ]) }}"></edit-job-attractive>
+                        <edit-job-attractive
+                            :data="{{ json_encode([
+                                'jobattractive' => $jobattractive,
+                                'leverpackage' => $leverpackage,
+                                'urlUpdate' => route('admin1.jobAttractive.update', $jobattractive->id),
+                                'urlBack' => route('admin1.jobAttractive.index'),
+                            ]) }}">
+                        </edit-job-attractive>
                     </div>
                 </div>
             </div>

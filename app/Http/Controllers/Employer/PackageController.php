@@ -183,6 +183,7 @@ class PackageController extends BaseController
                 //
                 $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
                 $employer->prioritize = $payment->lever;
+                $employer->amount_job = $payment->lever;
                 $employer->position = 1;
                 $employer->save();
 
@@ -443,6 +444,7 @@ class PackageController extends BaseController
                             //
                             $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
                             $employer->prioritize = $lever_package;
+                            $employer->amount_job = $lever_package;
                             $employer->position = 1;
                             $employer->save();
                             $returnData['RspCode'] = '00';
@@ -479,7 +481,8 @@ class PackageController extends BaseController
         try {
             //
             $employer = Employer::where('user_id', Auth::guard('user')->user()->id)->first();
-            $employer->prioritize += $request['data']['lever_package'];
+            $employer->prioritize = $request['data']['lever_package'];
+            $employer->amount_job = $request['data']['lever_package'];
             $employer->position = 1;
             $employer->save();
             //
@@ -529,7 +532,7 @@ class PackageController extends BaseController
             DB::rollBack();
             return response()->json([
                 'message' => 'Có một lỗi không xác định đã xảy ra',
-                'message' =>  StatusCode::FORBIDDEN,
+                'status' =>  StatusCode::FORBIDDEN,
             ], StatusCode::OK);
         }
     }

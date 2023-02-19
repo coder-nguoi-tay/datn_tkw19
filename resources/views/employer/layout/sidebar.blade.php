@@ -45,8 +45,7 @@
                 </li>
                 <li class="{{ request()->is('*business-license*') ? 'active' : '' }}"><a
                         href="/employer/business-license"><i class="fas fa-file icon-element"></i> Giấy
-                        phép kinh
-                        Doanh</a>
+                        phép KD</a>
                 </li>
                 <li class="{{ request()->is('*pay-money*') ? 'active' : '' }}"><a href="/employer/pay-money"><i
                             class="fas fa-money-check-alt icon-element"></i></i> Nạp tiền</a>

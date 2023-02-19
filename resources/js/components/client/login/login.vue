@@ -3,11 +3,7 @@
     <div class="card login-card">
       <div class="row no-gutters">
         <div class="col-md-6">
-          <img
-            src="assets/img/login.jpg"
-            alt="login"
-            class="login-card-img"
-          />
+          <img src="assets/img/login.jpg" alt="login" class="login-card-img" />
         </div>
         <div class="col-md-6">
           <div class="card-body">
@@ -25,12 +21,15 @@
                 @submit="handleSubmit($event, onSubmit)"
                 ref="formData"
                 method="POST"
+                :action="data.urlStore"
               >
+                <input type="hidden" :value="csrfToken" name="_token" />
                 <div class="form-group">
                   <label for="email" class="sr-only">Email</label>
                   <Field
                     type="email"
                     name="email"
+                    v-model="model.email"
                     rules="required|email"
                     id="email"
                     class="form-control"
@@ -42,6 +41,7 @@
                   <label for="password" class="sr-only">Password</label>
                   <Field
                     type="password"
+                    v-model="model.password"
                     name="password"
                     rules="required|min:8|max:16"
                     id="password"
@@ -50,36 +50,20 @@
                   />
                   <ErrorMessage class="error" name="password" />
                 </div>
-                <input
-                  name="login"
-                  id="login"
-                  class="btn btn-block login-btn mb-4"
-                  type="submit"
-                  value="Login"
-                />
+
+                <Button class="btn btn-block login-btn mb-4">Đăng nhập</Button>
                 <div class="row">
-                  <div class="col-md-5" style="margin-left: 20px">
-                    <Field
-                      name="save"
-                      class="form-check-input text-checkbok"
-                      type="checkbox"
-                      id="rememberMe"
-                      value="on"
-                    />
-                    <label
-                      class="form-check-label mb-0 ms-3 text-rememberMe"
-                      for="rememberMe"
-                      >Remember me</label
-                    >
-                  </div>
+                  <div class="col-md-5" style="margin-left: 20px"></div>
                   <div class="col-md-6">
-                    <a href="" class="forgot-password-link">Forgot password?</a>
+                    <a href="/quen-mat-khau" class="forgot-password-link"
+                      >Quên mật khẩu</a
+                    >
                   </div>
                 </div>
                 <br />
                 <p class="login-card-footer-text">
-                  Don't have an account?
-                  <a href="" class="text-reset">Register here</a>
+                  Nếu bạn chưa có tài khoản?
+                  <a href="/register-client" class="text-reset">Đăng ký</a>
                 </p>
               </form>
             </VeeForm>
@@ -118,13 +102,8 @@ export default {
   props: ['data'],
   data: function () {
     return {
-      csrfToken: Laravel.csrfToken
-      
-
-      //   model: {},
-      //   msgLogin: '',
-      //   checkForm: 1,
-      //   msgSucsess: ''
+      csrfToken: Laravel.csrfToken,
+      model: {}
     }
   },
   mounted() {},
@@ -150,7 +129,7 @@ export default {
     })
   },
   methods: {
-    onInvalidSubmit({ values, errors, results }) {
+    onInvalidSubmit({ errors }) {
       let firstInputError = Object.entries(errors)[0][0]
       this.$el.querySelector('input[name=' + firstInputError + ']').focus()
       $('html, body').animate(
@@ -164,7 +143,6 @@ export default {
     onSubmit() {
       this.$refs.formData.submit()
     }
-   
   }
 }
 </script>
@@ -225,7 +203,7 @@ body {
 .login-card .form-control {
   border: 1px solid #d5dae2;
   padding: 15px 25px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   min-height: 45px;
   font-size: 13px;
   line-height: 15;
@@ -281,7 +259,7 @@ body {
 .login-card-footer-text {
   font-size: 16px;
   color: #0d2366;
-  margin-bottom: 60px;
+  /* margin-bottom: 60px; */
 }
 
 @media (max-width: 767px) {
@@ -289,6 +267,7 @@ body {
     margin-bottom: 24px;
   }
 }
+
 .required-label {
   color: red;
   font-size: 20px;

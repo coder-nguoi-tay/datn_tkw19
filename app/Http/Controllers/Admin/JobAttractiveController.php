@@ -66,10 +66,10 @@ class JobAttractiveController extends BaseController
         $jobattractive = $this->jobattractive->create($request->all())->save();
         if ($jobattractive) {
             $this->setFlash(__('Thêm gói thành công'));
-            return redirect()->route('admin.jobAttractive.index');
+            return redirect()->route('admin1.jobAttractive.index');
         }
         $this->setFlash(__('Thêm gói thất bại'));
-        return redirect()->route('admin.jobAttractive.index');
+        return redirect()->route('admin1.jobAttractive.index');
     }
 
     /**

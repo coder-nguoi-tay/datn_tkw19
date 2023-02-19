@@ -8,7 +8,7 @@
     </div>
 
     <h1>404:
-        <small>Players Not Found</small><br>
+        <small>Page Not Found</small><br>
         <a href="{{ route('index') }}"> <button class="btn btn-success"> back</button></a>
     </h1>
 </div>
