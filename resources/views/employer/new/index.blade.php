@@ -203,4 +203,5 @@
             });
         })
     </script>
+    <a href="" class="custom-link-a">Chi tiết dữ liệu</a>
 @endsection

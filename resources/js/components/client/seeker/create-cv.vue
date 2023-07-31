@@ -387,7 +387,6 @@ export default {
       this.data.project.map((x) => {
         this.experience_cv_info.push({
           project: x.name,
-          project_detail: x.value
         })
       })
     } else {
